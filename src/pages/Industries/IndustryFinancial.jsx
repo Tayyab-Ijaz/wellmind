@@ -372,7 +372,7 @@ export default function IndustryFinancial() {
           {/* 1. Capabilities (Grid) */}
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(14px,2vw,24px)', marginBottom: 'clamp(60px, 8vw, 80px)' }}>
             {capabilities.map((cap, i) => (
-              <div key={i} style={{ flex: '1 1 320px', maxWidth: 360 }}>
+              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 360 }}>
                 <CapabilityCard {...cap} delay={i * 0.07} />
               </div>
             ))}
