@@ -87,10 +87,10 @@ function CapabilityCard({ icon, color, title, desc, delay = 0 }) {
 }
 
 // ─── Use Case Row ─────────────────────────────────────────────────────────────
-function UseCaseRow({ icon, color, title, desc, metrics, index }) {
+function UseCaseRow({ icon, color, title, desc, metrics, index, slug }) {
   const [hovered, setHovered] = useState(false);
   const isEven = index % 2 === 0;
-  return (
+  const content = (
     <motion.div
       initial={{ opacity: 0, x: isEven ? -28 : 28 }} whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -102,7 +102,7 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
         border: `3px solid ${hovered ? color : B.primaryBorder}`,
         borderRadius: 'var(--radius-xl)', padding: 'clamp(24px, 3vw, 40px)',
         boxShadow: hovered ? `0 20px 48px -12px ${color}40` : B.cardShadow,
-        transition: 'all 0.35s ease', cursor: 'default', position: 'relative', overflow: 'hidden',
+        transition: 'all 0.35s ease', cursor: slug ? 'pointer' : 'default', position: 'relative', overflow: 'hidden',
       }}
     >
       <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: `linear-gradient(180deg, ${color}, transparent)`, opacity: hovered ? 1 : 0.3, transition: 'opacity 0.35s' }} />
@@ -112,6 +112,11 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
       <div style={{ flex: '1 1 240px' }}>
         <h3 style={{ fontFamily: 'var(--font-main)', fontWeight: 700, color: hovered ? B.textDark : B.primaryDark, marginBottom: 10, fontSize: 'clamp(1.15rem, 2.2vw, 1.4rem)' }}>{title}</h3>
         <p style={{ color: hovered ? B.textDarkMid : B.textMid, fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)', lineHeight: 1.75 }}>{desc}</p>
+        {slug && (
+          <div style={{ marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(0.8rem, 1.2vw, 0.9rem)', fontWeight: 700, color: hovered ? B.white : color, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            View Case Study <ArrowRight size={14} />
+          </div>
+        )}
       </div>
       <div style={{ display: 'flex', gap: 'clamp(16px, 3vw, 32px)', flexWrap: 'wrap' }}>
         {metrics.map((m, i) => (
@@ -123,6 +128,9 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
       </div>
     </motion.div>
   );
+  return slug
+    ? <Link to={`/case-studies/${slug}`} style={{ textDecoration: 'none', display: 'block' }}>{content}</Link>
+    : content;
 }
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
@@ -138,41 +146,66 @@ export default function IndustryHealthcare() {
   }, []);
 
   const capabilities = [
-    { icon: <Eye size={22} />, color: B.action, title: 'Clinical Imaging AI', desc: 'Deep learning models for radiology, pathology, and ophthalmology — detecting anomalies in X-rays, MRIs, and histopathology slides with radiologist-level accuracy.' },
-    { icon: <Brain size={22} />, color: B.primary, title: 'Predictive Clinical Risk', desc: 'Early warning systems for sepsis, readmission, and deterioration. Models trained on EHR data, vitals streams, and lab results with SHAP explainability for clinicians.' },
-    { icon: <FileText size={22} />, color: B.accent, title: 'NLP for Clinical Notes', desc: 'Unstructured clinical text extraction — ICD coding automation, clinical summarization, and structured data capture from discharge notes and SOAP records.' },
-    { icon: <FlaskConical size={22} />, color: B.secondary, title: 'Clinical Trial Acceleration', desc: 'Patient matching, site selection, and protocol deviation detection using ML — cutting recruitment timelines by up to 60% and reducing screen-fail rates.' },
-    { icon: <ShieldCheck size={22} />, color: B.primary, title: 'HIPAA-Compliant Data Pipelines', desc: 'End-to-end de-identification, consent management, and audit-logged data pipelines built for HIPAA, GDPR, and HL7 FHIR compliance.' },
-    { icon: <Activity size={22} />, color: B.accent, title: 'Remote Patient Monitoring', desc: 'IoT + ML pipelines that process wearable streams, flag anomalies in real time, and route alerts to care teams — reducing emergency admissions.' },
+    { icon: <FileText size={22} />, color: B.action, title: 'ICD-10 & CPT Coding Automation', desc: 'A hybrid NLP engine combining keyword matching, embeddings, and semantic search to recommend diagnosis and procedure codes from clinical notes, with confidence scores and rationale.' },
+    { icon: <DollarSign size={22} />, color: B.primary, title: 'AR Prioritization & Underpayment Recovery', desc: 'A LightGBM classifier trained on public CMS data that flags underpaid Medicare claims and ranks them into a prioritized AR workqueue — surfacing a $15B recovery opportunity across 6.1M claims.' },
+    { icon: <Activity size={22} />, color: B.accent, title: 'Claim Denial Prediction', desc: 'A boosted-tree risk model plus a DistilBERT root-cause classifier that predicts denial probability before submission and identifies the operational fix behind existing denials.' },
+    { icon: <TrendingUp size={22} />, color: B.secondary, title: 'RCM & Prior-Auth Forecasting', desc: 'A 90-day Medicare Advantage enrollment forecast (0.048% holdout MAPE) built entirely on public CMS data, flagging prior-authorization exposure directly from CMS benefit fields.' },
+    { icon: <Brain size={22} />, color: B.primary, title: 'Clinical NLP for Hospital Records', desc: 'A named-entity-recognition pipeline that extracts diagnoses, medications, and procedures from unstructured notes, with de-identification built in before any storage.' },
+    { icon: <FlaskConical size={22} />, color: B.accent, title: 'Single-Cell RNA-seq Analysis', desc: 'An automated clustering pipeline combining PCA/t-SNE/UMAP dimensionality reduction with BIC-optimized GMM and DBSCAN for scRNA-seq cell-state discovery.' },
+    { icon: <ShieldCheck size={22} />, color: B.secondary, title: 'Medicare Fraud Detection', desc: 'A composite Fraud Risk Score combining peer-benchmarking, anomaly detection, and OIG exclusion-list matching — analyzed 44,528 Medicare providers and flagged 3,842 as high-risk.' },
   ];
 
   const useCases = [
     {
-      icon: <Eye />, color: B.action,
-      title: 'AI Radiology Assistant — Regional Hospital Network',
-      desc: 'We built a CNN-based imaging pipeline integrated into their existing PACS system. The model screens chest X-rays for pneumonia, pneumothorax, and pulmonary nodules, flagging priority reads for radiologists. Deployed in 4 hospitals across 2 states with full FDA 510(k) documentation support.',
-      metrics: [{ val: '94%', label: 'Sensitivity' }, { val: '89%', label: 'Specificity' }, { val: '40%', label: 'Read Time Reduction' }],
+      icon: <DollarSign />, color: B.primary, slug: 'ar-prioritization-underpayment-recovery',
+      title: 'AR Prioritization & Underpayment Recovery Engine',
+      desc: 'A LightGBM classifier (PR-AUC 0.875) plus an Isolation Forest anomaly layer, built on public CMS Medicare data, that flags underpaid claims and ranks them into a prioritized AR workqueue via a live FastAPI + React dashboard.',
+      metrics: [{ val: '$15B', label: 'Recovery Opportunity' }, { val: '6.1M', label: 'Claims Modeled' }, { val: '0.875', label: 'Test PR-AUC' }],
     },
     {
-      icon: <Activity />, color: B.primary,
-      title: 'Sepsis Early Warning System — ICU',
-      desc: 'Developed a real-time sepsis prediction model using vital signs, lab trends, and nursing notes. Integrated into Epic EHR with a 6-hour prediction horizon. Clinical team validated a 28% reduction in ICU mortality over a 12-month pilot.',
-      metrics: [{ val: '6hr', label: 'Early Warning' }, { val: '28%', label: 'Mortality Reduction' }, { val: '91%', label: 'AUROC' }],
+      icon: <ShieldCheck />, color: B.secondary, slug: 'healthcare-fraud-detection-billing',
+      title: 'Healthcare Fraud Detection System (Medicare Billing)',
+      desc: 'Peer-group Z-score benchmarking, Isolation Forest anomaly detection, E&M upcoding rules, and OIG exclusion-list cross-referencing combined into one composite Fraud Risk Score across the 2023 CMS Medicare billing dataset.',
+      metrics: [{ val: '44,528', label: 'Providers Analyzed' }, { val: '3,842', label: 'Flagged High-Risk' }, { val: '~96%', label: 'Classifier Accuracy' }],
     },
     {
-      icon: <FlaskConical />, color: B.accent,
-      title: 'Clinical Trial Patient Matching — Biotech',
-      desc: 'NLP-powered eligibility screening across 2.4M patient records, matching candidates to 14 active trials simultaneously. Reduced manual screening from 3 weeks to 48 hours per trial cycle and improved enrollment rate by 3x.',
-      metrics: [{ val: '3x', label: 'Enrollment Rate' }, { val: '48hr', label: 'Screening' }, { val: '2.4M', label: 'Records Processed' }],
+      icon: <Activity />, color: B.action,
+      title: 'Claim Denial Prediction & Root-Cause Classifier', slug: 'claim-denial-prediction',
+      desc: 'A boosted-tree denial-risk model (Optuna-tuned, SHAP-explained) predicts denial probability before submission, while a parallel TF-IDF vs. DistilBERT NLP pipeline classifies the operational root cause behind existing denials.',
+      metrics: [{ val: '3-Tier', label: 'Risk Classification' }, { val: 'SHAP', label: 'Explainability' }, { val: 'FastAPI', label: '+ Streamlit Demo' }],
+    },
+    {
+      icon: <TrendingUp />, color: B.primary, slug: 'rcm-prior-authorization-intelligence',
+      title: 'RCM Opportunity Forecasting & Prior Authorization Intelligence',
+      desc: 'A 90-day Medicare Advantage enrollment forecast built entirely on public CMS data, tracking national enrollment from ~33.5M to 36.1M and flagging prior-authorization exposure directly from CMS PBP benefit fields.',
+      metrics: [{ val: '0.048%', label: 'Holdout MAPE' }, { val: '90-Day', label: 'Forecast Horizon' }, { val: 'Streamlit', label: 'Executive Dashboard' }],
+    },
+    {
+      icon: <FileText />, color: B.accent, slug: 'icd10-cpt-coding-engine',
+      title: 'ICD-10 & CPT Coding Recommendation Engine',
+      desc: 'A hybrid retrieval pipeline — keyword matching, embeddings, and semantic similarity — recommends ICD-10 and CPT codes from a clinical note, ranked against clinical guidelines with a confidence score and rationale for coder review.',
+      metrics: [{ val: 'NLP', label: '+ Embeddings' }, { val: 'ICD-10', label: '+ CPT Codes' }, { val: 'Concept', label: 'Current Stage' }],
+    },
+    {
+      icon: <Brain />, color: B.secondary, slug: 'ehr-clinical-nlp-automation',
+      title: 'Clinical NLP for Structuring Hospital Records',
+      desc: 'A Named Entity Recognition pipeline extracts diagnoses, medications, and procedures from unstructured hospital notes, with de-identification built in before storage and normalization against ICD/SNOMED vocabularies.',
+      metrics: [{ val: 'NER', label: 'Entity Extraction' }, { val: 'De-ID', label: 'Built-In' }, { val: 'Concept', label: 'Current Stage' }],
+    },
+    {
+      icon: <FlaskConical />, color: B.action, slug: 'single-cell-rnaseq-automation',
+      title: 'Single-Cell RNA-seq Automation',
+      desc: 'Parameter-optimized PCA, t-SNE, and UMAP dimensionality reduction combined with BIC-optimized GMM and DBSCAN clustering to automate cell-state discovery from single-cell RNA-seq data.',
+      metrics: [{ val: 'PCA/UMAP', label: 'Dim. Reduction' }, { val: 'GMM+DBSCAN', label: 'Clustering' }, { val: 'BIC', label: 'Auto Model Selection' }],
     },
   ];
 
   const faqs = [
-    { q: 'Do you sign BAAs?', a: 'Yes, always. We execute a Business Associate Agreement before any PHI is shared or accessed. Our infrastructure is HIPAA-aligned with encryption at rest and in transit, role-based access controls, and full audit logging.' },
-    { q: 'Can you integrate with Epic / Cerner?', a: 'Yes. We have experience with Epic\'s SMART on FHIR APIs, Cerner\'s MillenniumSDK, and HL7 FHIR R4 standard pipelines. We\'ve integrated ML outputs directly into clinical workflow views without disrupting existing EHR UX.' },
-    { q: 'How do you handle model bias in clinical AI?', a: 'All models undergo demographic subgroup analysis, fairness audits, and prospective validation on held-out patient cohorts before deployment. We document bias assessments per FDA AI/ML guidance.' },
-    { q: 'What types of clinical data can you work with?', a: 'EHR structured data, radiology DICOM images, pathology whole-slide images, genomic VCF files, wearable time-series streams, and unstructured clinical notes. We build custom ingestion pipelines for each source.' },
-    { q: 'Do you support FDA 510(k) or CE marking submissions?', a: 'We provide technical documentation support — algorithm descriptions, validation study designs, and software lifecycle documentation aligned to FDA SaMD guidance and IEC 62304. We recommend engaging a regulatory consultant for final submission.' },
+    { q: 'Do you work with real patient data?', a: 'Our delivered healthcare work runs entirely on public CMS and Medicare datasets — no PHI involved. For projects that do touch clinical notes, de-identification is built into the pipeline before any storage or processing.' },
+    { q: 'What data sources have you built pipelines for?', a: 'Public CMS Medicare enrollment, billing, and provider data; RVU and Physician Fee Schedule reference tables; unstructured clinical notes; and single-cell RNA-seq genomic datasets. We build custom ingestion for whatever source your project needs.' },
+    { q: 'How do you handle model explainability?', a: 'Our denial-prediction and fraud-detection models ship with SHAP-based feature importance and clear risk tiers, so the reasoning behind every score is visible — not a black box.' },
+    { q: 'What stage are your healthcare projects at?', a: "It varies by project — some (like our AR Prioritization Engine and Fraud Detection System) are fully built with live dashboards; others are validated concepts at README stage. We're upfront about which is which on every case study." },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
@@ -225,7 +258,7 @@ export default function IndustryHealthcare() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  From diagnostic imaging to clinical trial acceleration — we build AI systems that work inside real hospital workflows, not just in research papers. Regulation-ready. Clinician-approved. Outcomes-focused.
+                  From revenue-cycle recovery to clinical NLP and genomics — we build practical AI systems on real CMS and clinical data. Real projects. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -251,9 +284,11 @@ export default function IndustryHealthcare() {
                 }}
               >
                 <img 
-                  src="https://picsum.photos/seed/healthcareai/600/600" 
+                  src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=700&q=80" // TODO: replace with custom illustration — see chat for image brief
                   alt="Healthcare AI Visual" 
                   style={{
+                    width: '100%',
+                    maxWidth: 520,
                     objectFit: 'contain',
                     boxShadow: B.cardShadow,
                     background: 'transparent',
@@ -279,10 +314,10 @@ export default function IndustryHealthcare() {
               }}
             >
               {[
-                { val: '94%', label: 'Diagnostic Accuracy' },
-                { val: '60%', label: 'Admin Time Saved' },
-                { val: '3x', label: 'Trial Recruitment Speed' },
-                { val: '$2.1M+', label: 'Cost Avoided / yr' }
+                { val: '7', label: 'Real Projects Delivered' },
+                { val: '$15B', label: 'Recovery Opportunity Surfaced' },
+                { val: '44.5K+', label: 'Providers Analyzed' },
+                { val: '~96%', label: 'Fraud Classifier Accuracy' }
               ].map((s, i) => (
                 <div key={i} style={{
                   display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10,
@@ -306,14 +341,14 @@ export default function IndustryHealthcare() {
         <DataParticles count={12} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
-            <SectionBadge dark>Measurable Clinical Impact</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>Transforming Patient Outcomes</h2>
+            <SectionBadge dark>Real, Verifiable Work</SectionBadge>
+            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>What We've Actually Built</h2>
           </div>
           <div className="grid-stats">
-            <StatCard prefix="" target={94}   suffix="%"  label="Diagnostic Accuracy"    icon={<Eye />} start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
-            <StatCard target={60}  suffix="%"   label="Admin Time Saved"      icon={<Clock />}      start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
-            <StatCard target={3}  suffix="x"   label="Trial Recruitment Speed" icon={<Zap />}  start={statsVisible} delay={0.2} theme={{ color: B.primary, bg: B.primaryLight }} />
-            <StatCard prefix="$" target={2.1}  suffix="M"   label="Cost Avoided / yr"         icon={<DollarSign />}       start={statsVisible} delay={0.3} theme={{ color: B.accent, bg: B.accentLight }} />
+            <StatCard target={7}   suffix=""    label="Real Projects Delivered"    icon={<Layers />}     start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
+            <StatCard prefix="$" target={15}  suffix="B"   label="Recovery Opportunity Surfaced" icon={<DollarSign />}  start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
+            <StatCard target={44.5}  suffix="K+"  label="Medicare Providers Analyzed" icon={<Activity />}  start={statsVisible} delay={0.2} theme={{ color: B.primary, bg: B.primaryLight }} />
+            <StatCard target={96}  suffix="%"   label="Fraud Classifier Accuracy" icon={<ShieldCheck />} start={statsVisible} delay={0.3} theme={{ color: B.accent, bg: B.accentLight }} />
           </div>
         </div>
       </section>
@@ -334,13 +369,15 @@ export default function IndustryHealthcare() {
               Built for the Complexity of{' '}
               <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Healthcare</span>
             </h2>
-            <p className="section-lead" style={{maxWidth: 1200,}}>End-to-end AI solutions across imaging, risk, trials, and clinical operations.</p>
+            <p className="section-lead" style={{maxWidth: 1200,}}>Seven real, delivered projects across revenue cycle management, clinical NLP, and genomics.</p>
           </motion.div>
 
           {/* 1. Capabilities (Grid) */}
-          <div className="grid-capabilities" style={{ marginBottom: 'clamp(60px, 8vw, 80px)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(14px,2vw,24px)', marginBottom: 'clamp(60px, 8vw, 80px)' }}>
             {capabilities.map((cap, i) => (
-              <CapabilityCard key={i} {...cap} delay={i * 0.07} />
+              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 360 }}>
+                <CapabilityCard {...cap} delay={i * 0.07} />
+              </div>
             ))}
           </div>
 
@@ -393,14 +430,14 @@ export default function IndustryHealthcare() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }} style={{ textAlign: 'center', marginBottom: 'clamp(24px, 4vw, 48px)' }}>
             <SectionBadge dark>Technology Stack</SectionBadge>
             <h2 className="section-h2 dark" style={{ fontSize: 'clamp(1.4rem, 3.2vw, 2.4rem)', marginBottom: 12 }}>Built for Clinical Environments</h2>
-            <p style={{ color: B.textDarkMid, fontSize: 'clamp(1.5rem, 1vw, 1.5rem)', maxWidth: 1200, margin: '0 auto' }}>Production tools trusted by hospital networks and biotech firms.</p>
+            <p style={{ color: B.textDarkMid, fontSize: 'clamp(1.5rem, 1vw, 1.5rem)', maxWidth: 1200, margin: '0 auto' }}>The exact tools we've used to design, build, and ship each of the projects above.</p>
           </motion.div>
           <div className="grid-tech">
             {[
-              { group: 'ML & Imaging', items: ['PyTorch', 'TensorFlow', 'MONAI', 'OpenCV', 'SHAP'], icon: <Brain size={16} />, color: B.action },
-              { group: 'Data & Interop', items: ['HL7 FHIR', 'Epic API', 'Kafka', 'PostgreSQL', 'dbt'], icon: <Database size={16} />, color: B.secondary },
-              { group: 'Deployment', items: ['AWS HealthLake', 'Docker/K8s', 'FastAPI', 'MLflow'], icon: <Cpu size={16} />, color: B.primary },
-              { group: 'Compliance', items: ['HIPAA', 'GDPR', 'FDA 510(k)', 'ISO 13485', 'Audit Logs'], icon: <Lock size={16} />, color: B.accent },
+              { group: 'ML & Modeling', items: ['LightGBM', 'DistilBERT', 'Isolation Forest', 'Random Forest'], icon: <Brain size={16} />, color: B.action },
+              { group: 'NLP & Genomics', items: ['spaCy / NER', 'PCA / UMAP', 'GMM + DBSCAN', 'ICD/SNOMED Normalization'], icon: <Database size={16} />, color: B.secondary },
+              { group: 'Deployment', items: ['FastAPI', 'React', 'Streamlit', 'Python'], icon: <Cpu size={16} />, color: B.primary },
+              { group: 'Data Sources', items: ['CMS Public Data', 'De-Identified Clinical Notes', 'Medicare Billing Records', 'OIG LEIE Exclusion Lists'], icon: <Lock size={16} />, color: B.accent },
             ].map((col, i) => (
               <motion.div
                 key={i}
@@ -456,14 +493,14 @@ export default function IndustryHealthcare() {
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.1rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  Most AI vendors understand algorithms or healthcare. We understand both. Our team includes clinical data scientists who have worked inside hospital systems.
+                  Most AI vendors understand either algorithms or healthcare data. We aim for both — building models on real CMS and clinical data, and shipping them as working dashboards and APIs, not one-off notebooks.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Clinical Workflow Integration', desc: 'We embed into Epic, Cerner, and Meditech — not bolt-on tools that disrupt care teams' },
-                    { title: 'Regulation-Native Development', desc: 'Every model ships with FDA/CE documentation support, bias audits, and explainability layers' },
-                    { title: 'Healthcare Domain Fluency', desc: 'Our team includes clinical data scientists who\'ve worked inside hospital systems' },
-                    { title: 'Zero PHI Risk', desc: 'De-identification pipelines and BAA-ready infrastructure before any data is touched' },
+                    { title: 'Public-Data-First Where Possible', desc: 'Our RCM and forecasting work runs on public CMS data — no PHI risk, fully auditable methodology' },
+                    { title: 'Explainable by Design', desc: 'Denial and fraud models ship with SHAP feature importance and clear risk tiers — not black boxes' },
+                    { title: 'Privacy-Built-In for Clinical NLP', desc: 'De-identification is designed into the pipeline before any clinical text is stored or processed' },
+                    { title: 'Honest About Maturity', desc: "We're upfront about what's live and deployed versus what's still a validated concept" },
                   ].map((item, i) => (
                     <motion.div key={i} initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.08 }} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
                       <div style={{ width: 26, height: 26, borderRadius: 'var(--radius-sm)', background: `${B.action}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
@@ -488,7 +525,7 @@ export default function IndustryHealthcare() {
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${B.action}, ${B.primary}, ${B.accent})` }} />
               <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textMuted, marginBottom: 24 }}>Engagement Overview</div>
               {[
-                { label: 'Discovery & EHR Audit', duration: '2 weeks', color: B.action,  icon: <Eye size={16} /> },
+                { label: 'Discovery & Data Audit', duration: '2 weeks', color: B.action,  icon: <Eye size={16} /> },
                 { label: 'Model Development', duration: '6–10 weeks', color: B.secondary, icon: <Brain size={16} /> },
                 { label: 'Clinical Validation', duration: '2–4 weeks', color: B.primary, icon: <Activity size={16} /> },
                 { label: 'Production Deployment', duration: '1–2 weeks', color: B.accent, icon: <Zap size={16} /> },
