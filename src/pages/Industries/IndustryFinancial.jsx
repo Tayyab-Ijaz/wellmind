@@ -370,9 +370,11 @@ export default function IndustryFinancial() {
           </motion.div>
 
           {/* 1. Capabilities (Grid) */}
-          <div className="grid-capabilities" style={{ marginBottom: 'clamp(60px, 8vw, 80px)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(14px,2vw,24px)', marginBottom: 'clamp(60px, 8vw, 80px)' }}>
             {capabilities.map((cap, i) => (
-              <CapabilityCard key={i} {...cap} delay={i * 0.07} />
+              <div key={i} style={{ flex: '1 1 320px', maxWidth: 360 }}>
+                <CapabilityCard {...cap} delay={i * 0.07} />
+              </div>
             ))}
           </div>
 
@@ -640,4 +642,3 @@ function FaqItem({ q, a, isOpen, onClick, index, color }) {
     </motion.div>
   );
 }
-
