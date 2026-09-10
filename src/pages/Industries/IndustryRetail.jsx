@@ -267,23 +267,22 @@ export default function IndustryRetail() {
                 initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 style={{ 
-                  flex: '1 1 clamp(260px, 40%, 600px)',
+                  flex: '1 1 clamp(300px, 48%, 720px)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  minHeight: '300px',
+                  minHeight: '520px',
                 }}
               >
                 <img 
                   src={retailImage}
+                  className="retail-hero-image"
                   alt="Retail AI Visual" 
                   style={{
-                    width: '100%',
-                    maxWidth: 520,
+                    width: '140%',
+                    maxWidth: 820,
                     objectFit: 'contain',
-                    boxShadow: B.cardShadow,
                     background: 'transparent',
-                    borderRadius: 14,
                   }}
                 />
               </motion.div>
