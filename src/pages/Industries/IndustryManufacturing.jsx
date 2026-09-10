@@ -87,10 +87,10 @@ function CapabilityCard({ icon, color, title, desc, delay = 0 }) {
 }
 
 // ─── Use Case Row ─────────────────────────────────────────────────────────────
-function UseCaseRow({ icon, color, title, desc, metrics, index }) {
+function UseCaseRow({ icon, color, title, desc, metrics, index, slug }) {
   const [hovered, setHovered] = useState(false);
   const isEven = index % 2 === 0;
-  return (
+  const content = (
     <motion.div
       initial={{ opacity: 0, x: isEven ? -28 : 28 }} whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -102,7 +102,7 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
         border: `3px solid ${hovered ? color : B.primaryBorder}`,
         borderRadius: 'var(--radius-xl)', padding: 'clamp(24px, 3vw, 40px)',
         boxShadow: hovered ? `0 20px 48px -12px ${color}40` : B.cardShadow,
-        transition: 'all 0.35s ease', cursor: 'default', position: 'relative', overflow: 'hidden',
+        transition: 'all 0.35s ease', cursor: slug ? 'pointer' : 'default', position: 'relative', overflow: 'hidden',
       }}
     >
       <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: `linear-gradient(180deg, ${color}, transparent)`, opacity: hovered ? 1 : 0.3, transition: 'opacity 0.35s' }} />
@@ -112,6 +112,11 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
       <div style={{ flex: '1 1 240px' }}>
         <h3 style={{ fontFamily: 'var(--font-main)', fontWeight: 700, color: hovered ? B.textDark : B.primaryDark, marginBottom: 10, fontSize: 'clamp(1.15rem, 2.2vw, 1.4rem)' }}>{title}</h3>
         <p style={{ color: hovered ? B.textDarkMid : B.textMid, fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)', lineHeight: 1.75 }}>{desc}</p>
+        {slug && (
+          <div style={{ marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(0.8rem, 1.2vw, 0.9rem)', fontWeight: 700, color: hovered ? B.white : color, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            View Case Study <ArrowRight size={14} />
+          </div>
+        )}
       </div>
       <div style={{ display: 'flex', gap: 'clamp(16px, 3vw, 32px)', flexWrap: 'wrap' }}>
         {metrics.map((m, i) => (
@@ -123,6 +128,9 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
       </div>
     </motion.div>
   );
+  return slug
+    ? <Link to={`/case-studies/${slug}`} style={{ textDecoration: 'none', display: 'block' }}>{content}</Link>
+    : content;
 }
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
@@ -138,41 +146,27 @@ export default function IndustryManufacturing() {
   }, []);
 
   const capabilities = [
-    { icon: <ScanSearch size={22} />, color: B.action, title: 'Computer Vision QC', desc: 'Real-time defect detection on production lines using edge-deployed CNN models. Inspects surface finish, dimensional accuracy, and assembly correctness at line speed — replacing slow manual inspection.' },
-    { icon: <Activity size={22} />, color: B.primary, title: 'Predictive Maintenance', desc: 'Vibration, thermal, and acoustic sensor fusion models that predict equipment failure 2–4 weeks in advance, eliminating unplanned stops and optimizing maintenance scheduling.' },
-    { icon: <BarChart3 size={22} />, color: B.accent, title: 'OEE & Production Analytics', desc: 'Real-time Overall Equipment Effectiveness dashboards with AI-driven root cause analysis for availability, performance, and quality losses across multi-site facilities.' },
-    { icon: <Truck size={22} />, color: B.secondary, title: 'Supply Chain Intelligence', desc: 'Demand-driven procurement models, supplier risk scoring, and logistics route optimization that reduce inventory carrying costs and protect against supply disruptions.' },
-    { icon: <Settings2 size={22} />, color: B.primary, title: 'Digital Twin Simulation', desc: 'Physics-informed ML models that mirror your production line digitally — enabling process parameter optimization, yield improvement, and what-if scenario planning without touching the physical line.' },
-    { icon: <Shield size={22} />, color: B.accent, title: 'Safety & Compliance AI', desc: 'Computer vision-based PPE detection, zone intrusion alerts, and ergonomic risk scoring — reducing workplace incidents and automating ISO/OSHA compliance documentation.' },
+    { icon: <Truck size={22} />, color: B.action, title: 'Supply Chain Disruption Alerts', desc: 'A predictive risk-monitoring system that evaluates operational and environmental signals to generate a continuous 0–100 disruption score for every supplier — moving teams from reactive to proactive risk management.' },
+    { icon: <Activity size={22} />, color: B.primary, title: 'Operational Risk Scoring', desc: 'Engineered operational health metrics (KG Score, Emergency Score) that quantify internal stress signals on a given supplier relationship before they turn into visible disruptions.' },
+    { icon: <Globe size={22} />, color: B.secondary, title: 'Environmental Risk Monitoring', desc: 'Combines weather, economic, geopolitical, and technical infrastructure risk signals with operational data into a single early-warning score for procurement teams.' },
+    { icon: <BarChart3 size={22} />, color: B.accent, title: 'Risk Tier Classification', desc: 'A Logistic Regression classifier converts the combined risk signal into Low, Medium, or High risk tiers — supporting proactive contingency sourcing decisions.' },
   ];
 
   const useCases = [
     {
-      icon: <ScanSearch />, color: B.action,
-      title: 'Computer Vision Defect Detection — Automotive Tier 1',
-      desc: 'Deployed a real-time vision inspection system on a stamping line producing 1,200 parts/hour. The model detects surface cracks, burrs, and dimensional deviations with sub-millimeter precision using edge-deployed NVIDIA Jetson hardware. Replaced 6 manual inspection stations.',
-      metrics: [{ val: '87%', label: 'Defect Detection' }, { val: '0.3mm', label: 'Precision' }, { val: '1,200', label: 'parts/hr' }],
-    },
-    {
-      icon: <Activity />, color: B.primary,
-      title: 'Predictive Maintenance — Chemical Plant',
-      desc: 'Built a multi-sensor fusion model aggregating vibration, temperature, and pressure data from 340 assets. The system predicts bearing failure and pump cavitation 18 days in advance, triggering work orders in SAP PM automatically. Reduced unplanned downtime by 45% in year one.',
-      metrics: [{ val: '45%', label: 'Downtime Reduction' }, { val: '18-day', label: 'Warning' }, { val: '340', label: 'Assets Monitored' }],
-    },
-    {
-      icon: <Truck />, color: B.accent,
-      title: 'Supply Chain Demand Forecasting — FMCG Manufacturer',
-      desc: 'Developed a hierarchical time-series forecasting model integrating POS data, weather signals, promotional calendars, and macroeconomic indicators. Deployed across 38 SKUs in 6 markets, reducing inventory holding costs by $1.2M annually while achieving 97% fill rates.',
-      metrics: [{ val: '97%', label: 'Fill Rate' }, { val: '$1.2M', label: 'Inventory Savings' }, { val: '38', label: 'SKUs' }],
+      icon: <Truck />, color: B.action, slug: 'supplyguard-disruption-alerts',
+      title: 'SupplyGuard — Supply Chain Disruption Alert System',
+      desc: 'A predictive risk-monitoring system that evaluates operational metrics (KG Score, Emergency Score) alongside environmental risk signals — weather, economic, geopolitical, and technical infrastructure — to generate a continuous disruption risk score for every supplier, via a Flask backend and live dashboard.',
+      metrics: [{ val: '0–100', label: 'Risk Score' }, { val: 'Low/Med/High', label: 'Risk Tiers' }, { val: 'Live', label: 'Dashboard' }],
     },
   ];
 
   const faqs = [
-    { q: 'Can you deploy without internet connectivity?', a: 'Yes. We build fully air-gapped edge deployments using NVIDIA Jetson, Coral TPU, or standard industrial PCs. Models are containerized with Docker and run inference locally. Cloud connectivity is optional for telemetry only.' },
-    { q: 'Do you integrate with our existing MES or ERP?', a: 'Yes. We have integration experience with SAP PM/MM/PP, Siemens Opcenter, OSIsoft PI, Rockwell FactoryTalk, and custom MES systems via REST APIs, OPC-UA, and MQTT.' },
-    { q: 'How long does a vision inspection deployment take?', a: 'Typically 6–8 weeks from camera installation to go-live. Week 1–2: data collection and labeling. Week 3–5: model training and validation. Week 6–8: edge deployment and line integration. We can accelerate with existing labeled datasets.' },
-    { q: 'What sensor types do you work with?', a: 'Vibration (accelerometers), thermal (IR cameras), acoustic (microphones + FFT), pressure transducers, optical encoders, and machine-generated PLC event logs. We design custom ingestion pipelines for any industrial protocol.' },
-    { q: 'How do you handle model drift in production?', a: 'All deployed models include a drift monitoring layer that tracks prediction confidence and input data distribution. Alerts trigger retraining workflows automatically when performance degrades below defined thresholds.' },
+    { q: 'What manufacturing/supply chain work have you actually delivered?', a: 'One real, delivered project so far: SupplyGuard, a supplier disruption risk-scoring system combining operational and environmental signals into a continuous 0–100 score with a live dashboard. We\'re upfront that this is our current manufacturing-sector portfolio — not a long client list.' },
+    { q: 'What data does supplier risk scoring need?', a: 'Internal operational health metrics (like delivery consistency or emergency order frequency) plus external signals — weather, economic indicators, geopolitical risk, and infrastructure conditions relevant to a supplier\'s location.' },
+    { q: 'Can you build similar risk-monitoring systems for other use cases?', a: 'Yes — the same pattern (combine operational + external risk signals into a single explainable score) generalizes well beyond supply chain, and it\'s the kind of system we can scope and build for adjacent manufacturing or logistics challenges.' },
+    { q: 'Is this deployed for a live production supply chain?', a: 'SupplyGuard is a fully working system with a live risk-checker dashboard, built and validated on realistic supplier risk scenarios. We\'re transparent with every prospective client about exactly what stage a given build is at.' },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
@@ -217,15 +211,15 @@ export default function IndustryManufacturing() {
                     lineHeight: 1.1, letterSpacing: '-0.02em',
                     marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark,
                   }}>
-                  Zero Defects.<br/>
+                  See Disruption Coming.<br/>
                   <span style={{ background: B.secondary, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                    Zero Downtime. Powered by AI.
+                    Before It Hits Your Supply Chain.
                   </span>
                 </motion.h1>
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  Predictive maintenance, computer vision quality control, and supply chain intelligence for factories running at the edge. We build AI that works on the shop floor — not just in the boardroom.
+                  A predictive supply-chain risk-scoring system, built and delivered — combining operational and environmental signals into a single early-warning score. Real project. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -251,8 +245,8 @@ export default function IndustryManufacturing() {
                 }}
               >
                 <img 
-                  src="https://picsum.photos/seed/mfgai/600/600" 
-                  alt="Manufacturing AI Visual" 
+                  src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=700&q=80" // TODO: replace with custom illustration — see chat for image brief
+                  alt="Manufacturing Supply Chain AI Visual" 
                   style={{
                     objectFit: 'contain',
                     boxShadow: B.cardShadow,
@@ -279,10 +273,10 @@ export default function IndustryManufacturing() {
               }}
             >
               {[
-                { val: '87%', label: 'Defect Detection Rate' },
-                { val: '45%', label: 'Downtime Reduction' },
-                { val: '$3.8M', label: 'Savings / yr / Plant' },
-                { val: '6wk', label: 'Avg Deployment' }
+                { val: '1', label: 'Real Project Delivered' },
+                { val: '0–100', label: 'Disruption Risk Score' },
+                { val: '3', label: 'Risk Tiers (Low/Med/High)' },
+                { val: 'Live', label: 'Risk-Checker Dashboard' }
               ].map((s, i) => (
                 <div key={i} style={{
                   display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10,
@@ -306,14 +300,14 @@ export default function IndustryManufacturing() {
         <DataParticles count={12} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
-            <SectionBadge dark>Measurable Operational Impact</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>Optimizing Factory Floors</h2>
+            <SectionBadge dark>Real, Verifiable Work</SectionBadge>
+            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>What We've Actually Built</h2>
           </div>
           <div className="grid-stats">
-            <StatCard target={87}   suffix="%"  label="Defect Detection Rate"    icon={<ScanSearch />} start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
-            <StatCard target={45}  suffix="%"   label="Downtime Reduction"      icon={<Activity />}      start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
-            <StatCard prefix="$" target={3.8}  suffix="M"   label="Savings / yr / Plant" icon={<DollarSign />}  start={statsVisible} delay={0.2} theme={{ color: B.accent, bg: B.accentLight }} />
-            <StatCard target={6}  suffix="wk"   label="Avg Deployment"         icon={<Zap />}       start={statsVisible} delay={0.3} theme={{ color: B.primary, bg: B.primaryLight }} />
+            <StatCard target={1}   suffix=""  label="Real Project Delivered"    icon={<Truck />} start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
+            <StatCard target={100}  suffix=""   label="Point Disruption Risk Scale"      icon={<Activity />}      start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
+            <StatCard target={3}  suffix=""   label="Risk Classification Tiers" icon={<BarChart3 />}  start={statsVisible} delay={0.2} theme={{ color: B.accent, bg: B.accentLight }} />
+            <StatCard target={2}  suffix=""   label="Signal Categories Fused"         icon={<Globe />}       start={statsVisible} delay={0.3} theme={{ color: B.primary, bg: B.primaryLight }} />
           </div>
         </div>
       </section>
@@ -334,13 +328,15 @@ export default function IndustryManufacturing() {
               Built for the Demands of{' '} <br />
               <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Manufacturing</span>
             </h2>
-            <p className="section-lead" style={{maxWidth: 1200,}}>End-to-end AI solutions across quality, maintenance, and logistics.</p>
+            <p className="section-lead" style={{maxWidth: 1200,}}>One real, delivered project — a supply-chain disruption risk-scoring system.</p>
           </motion.div>
 
           {/* 1. Capabilities (Grid) */}
-          <div className="grid-capabilities" style={{ marginBottom: 'clamp(60px, 8vw, 80px)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(14px,2vw,24px)', marginBottom: 'clamp(60px, 8vw, 80px)' }}>
             {capabilities.map((cap, i) => (
-              <CapabilityCard key={i} {...cap} delay={i * 0.07} />
+              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 360 }}>
+                <CapabilityCard {...cap} delay={i * 0.07} />
+              </div>
             ))}
           </div>
 
@@ -392,15 +388,15 @@ export default function IndustryManufacturing() {
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }} style={{ textAlign: 'center', marginBottom: 'clamp(24px, 4vw, 48px)' }}>
             <SectionBadge dark>Technology Stack</SectionBadge>
-            <h2 className="section-h2 dark" style={{ fontSize: 'clamp(1.4rem, 3.2vw, 2.4rem)', marginBottom: 12 }}>Built for the Edge</h2>
-            <p style={{ color: B.textDarkMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.5rem)', maxWidth: 1200, margin: '0 auto' }}>Production tools trusted by industrial engineers and plant managers.</p>
+            <h2 className="section-h2 dark" style={{ fontSize: 'clamp(1.4rem, 3.2vw, 2.4rem)', marginBottom: 12 }}>Built to Ship, Not Just Prototype</h2>
+            <p style={{ color: B.textDarkMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.5rem)', maxWidth: 1200, margin: '0 auto' }}>The exact tools we've used to design, build, and ship the project above.</p>
           </motion.div>
           <div className="grid-tech">
             {[
-              { group: 'Vision & Edge', items: ['PyTorch', 'OpenCV', 'NVIDIA Jetson', 'TensorRT', 'ONNX'], icon: <ScanSearch size={16} />, color: B.action },
-              { group: 'IoT & Sensors', items: ['MQTT', 'InfluxDB', 'Apache Kafka', 'Node-RED', 'PLC APIs'], icon: <Database size={16} />, color: B.secondary },
-              { group: 'Analytics', items: ['dbt', 'Snowflake', 'Grafana', 'Power BI', 'Apache Spark'], icon: <BarChart3 size={16} />, color: B.primary },
-              { group: 'Integration', items: ['SAP PM/MM', 'Siemens MES', 'OSIsoft PI', 'REST/OPC-UA'], icon: <Settings2 size={16} />, color: B.accent },
+              { group: 'Risk Modeling', items: ['Logistic Regression', 'scikit-learn', 'Feature Engineering', 'Risk Score Calibration'], icon: <Activity size={16} />, color: B.action },
+              { group: 'Signal Sources', items: ['Operational Health Metrics', 'Weather Risk Data', 'Economic Indicators', 'Geopolitical Signals'], icon: <Globe size={16} />, color: B.secondary },
+              { group: 'Deployment', items: ['Python', 'Flask', 'HTML Dashboard', 'REST API'], icon: <Cpu size={16} />, color: B.primary },
+              { group: 'Classification', items: ['Risk Tiering (Low/Med/High)', 'Threshold Calibration', 'Single-Supplier Checker'], icon: <BarChart3 size={16} />, color: B.accent },
             ].map((col, i) => (
               <motion.div
                 key={i}
@@ -450,20 +446,20 @@ export default function IndustryManufacturing() {
               <motion.div initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}>
                 <SectionBadge>Why WellMind</SectionBadge>
                 <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>
-                  Operational Tech Meets<br />
+                  Honest Scope,<br />
                   <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                    Information Tech
+                    Real Delivery
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.2rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  Most AI vendors understand the cloud but not the shop floor. We understand PLCs, SCADA, and the latency constraints of edge devices.
+                  We're a small, honest team — our manufacturing-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and ship.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Edge-First Architecture', desc: 'Models run on-prem and on edge hardware (Jetson, Coral) — no cloud latency, no connectivity dependency' },
-                    { title: 'OT/IT Integration Expertise', desc: 'We speak PLC, SCADA, OPC-UA, and MQTT — bridging the gap between operational and information technology' },
-                    { title: 'Line-Speed Inference', desc: 'Vision models optimized with TensorRT and ONNX for sub-10ms inference at full production line speed' },
-                    { title: 'ROI in 90 Days', desc: 'Fixed-fee pilots scoped to deliver measurable defect reduction or downtime savings within a single quarter' },
+                    { title: 'Explainable Risk Scoring', desc: 'Our disruption score is built from clearly defined operational and environmental signals — not a black box' },
+                    { title: 'Lightweight, Deployable Stack', desc: 'Python + Flask + a live dashboard — simple to run, simple to hand off, no heavy infrastructure lock-in' },
+                    { title: 'Built to Extend', desc: 'The same risk-scoring pattern generalizes to adjacent supply chain and logistics challenges' },
+                    { title: 'Honest About Scope', desc: "We tell you plainly what's live and delivered versus what we'd be building fresh for your use case" },
                   ].map((item, i) => (
                     <motion.div key={i} initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.08 }} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
                       <div style={{ width: 26, height: 26, borderRadius: 'var(--radius-sm)', background: `${B.action}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
@@ -488,10 +484,10 @@ export default function IndustryManufacturing() {
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${B.action}, ${B.primary}, ${B.accent})` }} />
               <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textMuted, marginBottom: 24 }}>Engagement Overview</div>
               {[
-                { label: 'Factory Audit & Sensor Review', duration: '1–2 weeks', color: B.action,  icon: <ScanSearch size={16} /> },
+                { label: 'Discovery & Data Audit', duration: '1–2 weeks', color: B.action,  icon: <Globe size={16} /> },
                 { label: 'Model Development & Training', duration: '4–8 weeks', color: B.secondary, icon: <Brain size={16} /> },
-                { label: 'Edge Deployment & Integration', duration: '2–3 weeks', color: B.primary, icon: <Activity size={16} /> },
-                { label: 'Go-Live & Hypercare', duration: '30 days', color: B.accent, icon: <Zap size={16} /> },
+                { label: 'Dashboard & Deployment', duration: '2–3 weeks', color: B.primary, icon: <Activity size={16} /> },
+                { label: 'Go-Live & Support', duration: '30 days', color: B.accent, icon: <Zap size={16} /> },
               ].map((step, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderBottom: i < 3 ? `1px solid rgba(107, 46, 116,0.10)` : 'none' }}>
                   <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: `${step.color}12`, color: step.color, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${step.color}25`, flexShrink: 0 }}>
@@ -505,7 +501,7 @@ export default function IndustryManufacturing() {
               ))}
               <div style={{ marginTop: 24, padding: '16px 20px', background: `linear-gradient(135deg, ${B.action}10, ${B.primary}08)`, borderRadius: 16, border: `1px solid ${B.action}20`, display: 'flex', alignItems: 'center', gap: 12 }}>
                 <Shield size={18} color={B.action} />
-                <span style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', color: B.textMain, fontWeight: 600 }}>On-prem deployment available · No cloud dependency</span>
+                <span style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', color: B.textMain, fontWeight: 600 }}>Fixed-fee scoping · clear deliverables upfront</span>
               </div>
             </motion.div>
           </div>
@@ -540,14 +536,14 @@ export default function IndustryManufacturing() {
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-              Let's Eliminate Downtime{' '}
+              Let's De-Risk{' '}
               <br className="hero-br" />
               <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                On Your Shop Floor
+                Your Supply Chain
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Walk us through your production line, your biggest quality or maintenance pain point. We'll tell you exactly what AI can and can't do for you — honestly.
+              Book a free 30-minute call. Tell us your supplier or operational risk challenge. We'll give you an honest assessment of what's achievable, what it would cost, and whether it's the right fit — no pitch.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>
