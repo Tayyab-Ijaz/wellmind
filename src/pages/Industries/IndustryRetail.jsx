@@ -15,6 +15,7 @@ import {
 
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
 import { B, SECTION_PAD, PX, fadeUp, useCounter, DataParticles, SectionBadge } from '../../theme';
+import retailImage from '../../assets/illustrations/retail_industry.png';
 
 // ─── Brand Tokens (Synced with IndustryFinancial.jsx) ─────────────────────
 // ─── Counter Hook ─────────────────────────────────────────────────────────────
@@ -274,7 +275,7 @@ export default function IndustryRetail() {
                 }}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=80" // TODO: replace with custom illustration — see chat for image brief
+                  src={retailImage}
                   alt="Retail AI Visual" 
                   style={{
                     width: '100%',
@@ -365,7 +366,7 @@ export default function IndustryRetail() {
           {/* 1. Capabilities (Grid) */}
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(14px,2vw,24px)', marginBottom: 'clamp(60px, 8vw, 80px)' }}>
             {capabilities.map((cap, i) => (
-              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 360 }}>
+              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 460 }}>
                 <CapabilityCard {...cap} delay={i * 0.07} />
               </div>
             ))}
