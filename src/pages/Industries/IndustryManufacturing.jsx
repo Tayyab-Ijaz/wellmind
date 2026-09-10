@@ -211,9 +211,9 @@ export default function IndustryManufacturing() {
                     lineHeight: 1.1, letterSpacing: '-0.02em',
                     marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark,
                   }}>
-                  See Disruption Coming.<br/>
+                  Predict Disruption Early.<br/>
                   <span style={{ background: B.secondary, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                    Before It Hits Your Supply Chain.
+                    Protect Your Supply Chain.
                   </span>
                 </motion.h1>
 
