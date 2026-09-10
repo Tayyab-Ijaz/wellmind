@@ -15,6 +15,7 @@ import {
 
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
 import { B, SECTION_PAD, PX, fadeUp, useCounter, DataParticles, SectionBadge } from '../../theme';
+import manufacturingImage from '../../assets/illustrations/manufactor_industry.png';
 
 // ─── Brand Tokens (Synced with IndustryFinancial.jsx) ─────────────────────
 // ─── Counter Hook ─────────────────────────────────────────────────────────────
@@ -236,21 +237,22 @@ export default function IndustryManufacturing() {
                 initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 style={{ 
-                  flex: '1 1 clamp(260px, 40%, 600px)',
+                  flex: '1 1 clamp(320px, 50%, 760px)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  minHeight: '300px',
+                  minHeight: '520px',
                 }}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=700&q=80" // TODO: replace with custom illustration — see chat for image brief
+                  src={manufacturingImage}
                   alt="Manufacturing Supply Chain AI Visual" 
                   style={{
+                    width: '140%',
+                    maxWidth: 900,
+                    height: 'clamp(460px, 50vw, 760px)',
                     objectFit: 'contain',
-                    boxShadow: B.cardShadow,
                     background: 'transparent',
-                    borderRadius: 14,
                   }}
                 />
               </motion.div>
