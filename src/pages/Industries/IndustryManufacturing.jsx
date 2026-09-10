@@ -147,9 +147,8 @@ export default function IndustryManufacturing() {
 
   const capabilities = [
     { icon: <Truck size={22} />, color: B.action, title: 'Supply Chain Disruption Alerts', desc: 'A predictive risk-monitoring system that evaluates operational and environmental signals to generate a continuous 0–100 disruption score for every supplier — moving teams from reactive to proactive risk management.' },
-    { icon: <Activity size={22} />, color: B.primary, title: 'Operational Risk Scoring', desc: 'Engineered operational health metrics (KG Score, Emergency Score) that quantify internal stress signals on a given supplier relationship before they turn into visible disruptions.' },
+    { icon: <Activity size={22} />, color: B.primary, title: 'Operational Risk Scoring', desc: 'Engineered operational health metrics (KG Score, Emergency Score) quantify internal stress signals on a supplier relationship, then classify the combined signal into Low, Medium, or High risk tiers before disruptions become visible.' },
     { icon: <Globe size={22} />, color: B.secondary, title: 'Environmental Risk Monitoring', desc: 'Combines weather, economic, geopolitical, and technical infrastructure risk signals with operational data into a single early-warning score for procurement teams.' },
-    { icon: <BarChart3 size={22} />, color: B.accent, title: 'Risk Tier Classification', desc: 'A Logistic Regression classifier converts the combined risk signal into Low, Medium, or High risk tiers — supporting proactive contingency sourcing decisions.' },
   ];
 
   const useCases = [
@@ -334,7 +333,7 @@ export default function IndustryManufacturing() {
           {/* 1. Capabilities (Grid) */}
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(14px,2vw,24px)', marginBottom: 'clamp(60px, 8vw, 80px)' }}>
             {capabilities.map((cap, i) => (
-              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 360 }}>
+              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 460 }}>
                 <CapabilityCard {...cap} delay={i * 0.07} />
               </div>
             ))}
