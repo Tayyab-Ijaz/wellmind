@@ -91,10 +91,10 @@ function CapabilityCard({ icon, color, title, desc, delay = 0 }) {
 }
 
 // ─── Use Case Row ─────────────────────────────────────────────────────────────
-function UseCaseRow({ icon, color, title, desc, metrics, index }) {
+function UseCaseRow({ icon, color, title, desc, metrics, index, slug }) {
   const [hovered, setHovered] = useState(false);
   const isEven = index % 2 === 0;
-  return (
+  const content = (
     <motion.div
       initial={{ opacity: 0, x: isEven ? -28 : 28 }} whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -106,7 +106,7 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
         border: `3px solid ${hovered ? color : B.primaryBorder}`,
         borderRadius: 'var(--radius-xl)', padding: 'clamp(24px, 3vw, 40px)',
         boxShadow: hovered ? `0 20px 48px -12px ${color}40` : B.cardShadow,
-        transition: 'all 0.35s ease', cursor: 'default', position: 'relative', overflow: 'hidden',
+        transition: 'all 0.35s ease', cursor: slug ? 'pointer' : 'default', position: 'relative', overflow: 'hidden',
       }}
     >
       <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: `linear-gradient(180deg, ${color}, transparent)`, opacity: hovered ? 1 : 0.3, transition: 'opacity 0.35s' }} />
@@ -116,6 +116,11 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
       <div style={{ flex: '1 1 240px' }}>
         <h3 style={{ fontFamily: 'var(--font-main)', fontWeight: 700, color: hovered ? B.textDark : B.primaryDark, marginBottom: 10, fontSize: 'clamp(1.15rem, 2.2vw, 1.4rem)' }}>{title}</h3>
         <p style={{ color: hovered ? B.textDarkMid : B.textMid, fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)', lineHeight: 1.75 }}>{desc}</p>
+        {slug && (
+          <div style={{ marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(0.8rem, 1.2vw, 0.9rem)', fontWeight: 700, color: hovered ? B.white : color, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            View Case Study <ArrowRight size={14} />
+          </div>
+        )}
       </div>
       <div style={{ display: 'flex', gap: 'clamp(16px, 3vw, 32px)', flexWrap: 'wrap' }}>
         {metrics.map((m, i) => (
@@ -127,6 +132,9 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
       </div>
     </motion.div>
   );
+  return slug
+    ? <Link to={`/case-studies/${slug}`} style={{ textDecoration: 'none', display: 'block' }}>{content}</Link>
+    : content;
 }
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
@@ -142,41 +150,52 @@ export default function IndustryRetail() {
   }, []);
 
   const capabilities = [
-    { icon: <ShoppingCart size={22} />, color: B.action, title: 'Personalization Engine', desc: 'ML-based "Frequently Bought Together", next-best-action recommendations, and personalized homepage layouts driven by real-time behavioral signals across web, app, and in-store.' },
-    { icon: <TrendingUp size={22} />, color: B.secondary, title: 'Demand Forecasting', desc: 'Hierarchical time-series models integrating POS data, weather, promotions, and macroeconomic signals to predict SKU-level demand with 95%+ accuracy 8 weeks out.' },
-    { icon: <Tag size={22} />, color: B.accent, title: 'Dynamic Pricing', desc: 'Real-time price optimization engine balancing demand elasticity, competitor pricing, inventory levels, and margin targets — updated continuously without manual intervention.' },
-    { icon: <Camera size={22} />, color: B.action, title: 'Visual Search & Catalog AI', desc: 'Computer vision that enables image-based product search, auto-tagging of catalog attributes, and virtual try-on — reducing search abandonment and improving discovery.' },
-    { icon: <Users size={22} />, color: B.secondary, title: 'Customer Churn & LTV Models', desc: 'Propensity models identifying at-risk customers 60–90 days in advance, segmented by LTV tier. Enables targeted win-back campaigns with 3–5x better conversion than generic blasts.' },
-    { icon: <BarChart3 size={22} />, color: B.accent, title: 'Unified Commerce Analytics', desc: 'Single-view dashboards combining e-commerce, POS, loyalty, and marketing attribution data — giving merchandising, marketing, and ops teams shared ground truth in real time.' },
+    { icon: <BarChart3 size={22} />, color: B.action, title: 'Conversational Analytics Platform', desc: 'A full-stack BI tool that turns plain-language questions like "show total sales for laptops in Faisalabad" into structured queries — auto-rendering the right chart via Gemini, FastAPI, and Firebase.' },
+    { icon: <ShoppingCart size={22} />, color: B.secondary, title: 'Multi-Branch Ops & Fraud Detection', desc: 'A live, deployed platform connecting face-verified staff attendance, order tracking, and an automated fraud-detection engine — pushing real-time alerts to owners across branches.' },
+    { icon: <Users size={22} />, color: B.accent, title: 'Customer Churn Prediction', desc: 'A Random Forest churn model — selected from 5 algorithms compared head-to-head — reaching 86.4% accuracy and a 0.91 AUC-ROC, with SHAP-explained churn drivers per customer.' },
+    { icon: <TrendingUp size={22} />, color: B.primary, title: 'Retail Demand Forecasting', desc: 'A time-series forecasting pipeline analyzing historical sales and seasonality patterns to support inventory planning and reduce stockout/overstock risk.' },
+    { icon: <Package size={22} />, color: B.action, title: 'Email-to-Order Automation', desc: 'A concept pipeline that monitors an inbox, extracts order details from emails and attachments, validates them, and creates structured orders automatically.' },
   ];
 
   const useCases = [
     {
-      icon: <ShoppingCart />, color: B.action,
-      title: 'Personalization Engine — Global Fashion Retailer',
-      desc: 'Built a real-time recommendation system analyzing 200M+ browsing events monthly. Personalized product grids, email product blocks, and push notification content using collaborative filtering + contextual bandits. A/B tested against their existing rule-based system.',
-      metrics: [{ val: '31%', label: 'Cart Conversion Lift' }, { val: '18.4%', label: 'Rec CTR' }, { val: '$8M', label: 'Added Revenue' }],
+      icon: <ShoppingCart />, color: B.accent, slug: 'restaurant-command-center',
+      title: 'Command Center — Multi-Branch Restaurant Operations Platform',
+      desc: 'A unified platform connecting face-verified, geo-fenced staff attendance, order and kitchen tracking, and an automated fraud-detection engine — live-deployed across five role-based portals, pushing real-time alerts to owners over WhatsApp.',
+      metrics: [{ val: '5', label: 'Role-Based Portals' }, { val: 'Live', label: 'Deployed Build' }, { val: 'Real-Time', label: 'WhatsApp Alerts' }],
     },
     {
-      icon: <TrendingUp />, color: B.secondary,
-      title: 'Demand Forecasting & Replenishment — Grocery Chain',
-      desc: 'Deployed a hierarchical forecasting model across 4,200 SKUs in 38 stores, integrating weather, holidays, local events, and promotional lift factors. Model outputs fed directly into their replenishment system, cutting manual planner workload by 70% and reducing waste by 22%.',
-      metrics: [{ val: '95%', label: 'Forecast Accuracy' }, { val: '22%', label: 'Waste Reduction' }, { val: '70%', label: 'Planner Time Saved' }],
+      icon: <Users />, color: B.secondary, slug: 'telecom-churn-prediction',
+      title: 'Telecom Customer Churn Prediction',
+      desc: 'A Random Forest churn model — chosen from five algorithms compared head-to-head — reduces 150 raw features to 25 with SHAP-explained predictions, reaching 86.4% accuracy and a 0.91 AUC-ROC on real telecom behavioral data.',
+      metrics: [{ val: '86.4%', label: 'Accuracy' }, { val: '0.91', label: 'AUC-ROC' }, { val: '65%+', label: 'Top-20% Churn Capture' }],
     },
     {
-      icon: <Tag />, color: B.accent,
-      title: 'Dynamic Pricing Engine — Online Marketplace',
-      desc: 'Developed a reinforcement learning-based pricing engine for 12,000 SKUs that updates prices every 4 hours based on demand signals, competitor scrapes, and inventory aging. Increased gross margin by 4.2 percentage points while maintaining competitive price index rank.',
-      metrics: [{ val: '+4.2pp', label: 'Gross Margin' }, { val: '4hr', label: 'Price Cycles' }, { val: '12,000', label: 'SKUs Optimized' }],
+      icon: <BarChart3 />, color: B.primary, slug: 'conversational-analytics-platform',
+      title: 'Conversational Analytics Platform',
+      desc: 'A full-stack conversational BI engine that turns plain-language business questions into structured queries and automatically renders the right chart — bar, line, pie, scatter, KPI, or table — via Gemini, FastAPI, and Firebase.',
+      metrics: [{ val: '6', label: 'Chart Types Auto-Rendered' }, { val: 'Gemini', label: 'LLM Engine' }, { val: 'Real-Time', label: 'Firestore Data' }],
+    },
+    {
+      icon: <TrendingUp />, color: B.action, slug: 'retail-demand-forecasting',
+      title: 'Retail Demand Forecasting',
+      desc: 'A demand-forecasting pipeline analyzing historical sales patterns and seasonality to predict future product demand — designed to reduce stockouts and overstock through better inventory planning.',
+      metrics: [{ val: 'Time-Series', label: 'Forecasting Approach' }, { val: 'Seasonality', label: 'Pattern Analysis' }, { val: 'Concept', label: 'Current Stage' }],
+    },
+    {
+      icon: <Package />, color: B.secondary, slug: 'email-order-intake-system',
+      title: 'Email-Based Order Intake System',
+      desc: 'An automation concept that monitors an inbox, extracts customer and product details from order emails and attachments, validates the information, and creates structured orders automatically.',
+      metrics: [{ val: 'Email + Attachments', label: 'Input Channels' }, { val: 'Rule-Based', label: 'Validation' }, { val: 'Concept', label: 'Current Stage' }],
     },
   ];
 
   const faqs = [
-    { q: 'Can you work with our existing e-commerce platform?', a: 'Yes. We have production integrations with Shopify Plus, Salesforce Commerce Cloud, SAP Hybris, Magento, and custom-built stacks via REST APIs and event webhooks. We can read from your existing data layer without requiring a platform migration.' },
-    { q: 'How long before we see lift from personalization?', a: 'With sufficient traffic (50K+ monthly sessions), statistically significant A/B test results typically emerge in 3–4 weeks post-launch. We scope all personalization projects to include experiment design and lift measurement as a deliverable — not an afterthought.' },
-    { q: 'What\'s the minimum data requirement for demand forecasting?', a: 'We typically need 18–24 months of SKU-level daily sales history, plus promotional calendars. For newer businesses with less history, we apply transfer learning and synthetic augmentation to bootstrap models — though forecast accuracy improves significantly past the 12-month mark.' },
-    { q: 'Can you handle seasonal and promotional spikes?', a: 'Yes. Our forecasting models explicitly model promotional lift, seasonal decomposition, holiday effects, and external signals (weather, local events). We validate against historical peak periods like Black Friday and back-to-school before production deployment.' },
-    { q: 'How do you prevent the dynamic pricing engine from race-to-the-bottom pricing?', a: 'We build hard floor and ceiling constraints into the pricing policy, along with margin protection rules and competitive price index guardrails. The RL agent optimizes within bounded action spaces — it cannot violate business rules even in edge cases.' },
+    { q: 'What kind of retail businesses have you built for?', a: "Our delivered work spans a restaurant operations platform, a telecom-style churn model, a demand-forecasting pipeline, a conversational BI tool, and an email-order automation concept — ranging from single-location businesses to multi-branch operations." },
+    { q: 'Can you build on top of our existing systems?', a: "Yes. Our stack is deliberately lightweight — React, FastAPI, Firebase, Python — so it integrates with most existing data sources via APIs, without requiring a platform migration." },
+    { q: 'What data do you need for a churn or forecasting model?', a: "For our churn model, we worked with historical usage/behavioral data and reduced 150 raw features to the 25 that actually mattered. For demand forecasting, historical sales data with enough history to capture seasonality is the key input." },
+    { q: 'How do you explain model predictions to non-technical teams?', a: "Our churn model ships with SHAP-based feature importance, so the top drivers behind every prediction are visible and explainable — not a black box." },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
@@ -229,7 +248,7 @@ export default function IndustryRetail() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  Personalization engines, demand forecasting, and dynamic pricing systems that turn transaction data into competitive advantage. Retail AI that works at scale — from single storefront to global omnichannel.
+                  From conversational analytics to churn prediction and live ops automation — we build practical AI systems for retail and consumer businesses. Real projects. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -255,9 +274,11 @@ export default function IndustryRetail() {
                 }}
               >
                 <img 
-                  src="https://picsum.photos/seed/retailai/600/600" 
+                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=80" // TODO: replace with custom illustration — see chat for image brief
                   alt="Retail AI Visual" 
                   style={{
+                    width: '100%',
+                    maxWidth: 520,
                     objectFit: 'contain',
                     boxShadow: B.cardShadow,
                     background: 'transparent',
@@ -283,10 +304,10 @@ export default function IndustryRetail() {
               }}
             >
               {[
-                { val: '30%', label: 'Revenue Uplift' },
-                { val: '95%', label: 'Forecast Accuracy' },
-                { val: '15%', label: 'Retention Improvement' },
-                { val: '10x', label: 'Inventory Accuracy' }
+                { val: '5', label: 'Real Projects Delivered' },
+                { val: '86.4%', label: 'Churn Model Accuracy' },
+                { val: '0.91', label: 'Churn Model AUC-ROC' },
+                { val: 'Live', label: 'Multi-Branch Ops Platform' }
               ].map((s, i) => (
                 <div key={i} style={{
                   display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10,
@@ -310,14 +331,14 @@ export default function IndustryRetail() {
         <DataParticles count={12} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
-            <SectionBadge dark>Measurable Revenue Impact</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>Driving Commerce Growth</h2>
+            <SectionBadge dark>Real, Verifiable Work</SectionBadge>
+            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>What We've Actually Built</h2>
           </div>
           <div className="grid-stats">
-            <StatCard target={30}   suffix="%"  label="Revenue Uplift"    icon={<TrendingUp />} start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
-            <StatCard target={95}  suffix="%"   label="Forecast Accuracy"      icon={<Target />}      start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
-            <StatCard target={15}  suffix="%"   label="Retention Improvement" icon={<Users />}  start={statsVisible} delay={0.2} theme={{ color: B.accent, bg: B.accentLight }} />
-            <StatCard target={10}  suffix="x"   label="Inventory Accuracy"         icon={<Package />}       start={statsVisible} delay={0.3} theme={{ color: B.primary, bg: B.primaryLight }} />
+            <StatCard target={5}   suffix=""  label="Real Projects Delivered"    icon={<Layers />} start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
+            <StatCard target={86.4}  suffix="%"   label="Churn Model Accuracy"      icon={<Target />}      start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
+            <StatCard target={65}  suffix="%+"   label="Top-20% Churn Capture" icon={<Users />}  start={statsVisible} delay={0.2} theme={{ color: B.accent, bg: B.accentLight }} />
+            <StatCard target={6}  suffix=""   label="Auto-Rendered Chart Types"         icon={<BarChart3 />}       start={statsVisible} delay={0.3} theme={{ color: B.primary, bg: B.primaryLight }} />
           </div>
         </div>
       </section>
@@ -338,13 +359,15 @@ export default function IndustryRetail() {
               Built for the Complexity of{' '}
               <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Retail</span>
             </h2>
-            <p className="section-lead" style={{maxWidth: 1200,}}>End-to-end AI solutions across personalization, forecasting, and operations.</p>
+            <p className="section-lead" style={{maxWidth: 1200,}}>Five real, delivered projects across analytics, operations, and customer intelligence.</p>
           </motion.div>
 
           {/* 1. Capabilities (Grid) */}
-          <div className="grid-capabilities" style={{ marginBottom: 'clamp(60px, 8vw, 80px)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(14px,2vw,24px)', marginBottom: 'clamp(60px, 8vw, 80px)' }}>
             {capabilities.map((cap, i) => (
-              <CapabilityCard key={i} {...cap} delay={i * 0.07} />
+              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 360 }}>
+                <CapabilityCard {...cap} delay={i * 0.07} />
+              </div>
             ))}
           </div>
 
@@ -397,14 +420,14 @@ export default function IndustryRetail() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }} style={{ textAlign: 'center', marginBottom: 'clamp(24px, 4vw, 48px)' }}>
             <SectionBadge dark>Technology Stack</SectionBadge>
             <h2 className="section-h2 dark" style={{ fontSize: 'clamp(1.4rem, 3.2vw, 2.4rem)', marginBottom: 12 }}>Built for Scale & Speed</h2>
-            <p style={{ color: B.textDarkMid, fontSize: 'clamp(1.4rem, 1.6vw, 1.3rem)', maxWidth: 1200, margin: '0 auto' }}>Production tools trusted by global retailers.</p>
+            <p style={{ color: B.textDarkMid, fontSize: 'clamp(1.4rem, 1.6vw, 1.3rem)', maxWidth: 1200, margin: '0 auto' }}>The exact tools we've used to design, build, and ship each of the projects above.</p>
           </motion.div>
           <div className="grid-tech">
             {[
-              { group: 'ML & Personalization', items: ['PyTorch', 'LightGBM', 'Vowpal Wabbit', 'FAISS', 'Feast'], icon: <Brain size={16} />, color: B.action },
-              { group: 'Data Platform', items: ['Snowflake', 'dbt', 'Kafka', 'Segment', 'Airflow'], icon: <Database size={16} />, color: B.secondary },
-              { group: 'Commerce Integration', items: ['Shopify Plus', 'Salesforce Commerce', 'SAP Hybris', 'APIs'], icon: <Cpu size={16} />, color: B.primary },
-              { group: 'Analytics & Serving', items: ['Grafana', 'Looker', 'Redis', 'FastAPI', 'A/B Testing Infra'], icon: <BarChart3 size={16} />, color: B.accent },
+              { group: 'ML & Modeling', items: ['Random Forest', 'XGBoost / LightGBM / CatBoost', 'SHAP', 'SMOTE'], icon: <Brain size={16} />, color: B.action },
+              { group: 'AI & Analytics', items: ['Google Gemini Pro', 'Firebase Firestore', 'Recharts', 'Time-Series Forecasting'], icon: <Database size={16} />, color: B.secondary },
+              { group: 'Operations & Automation', items: ['Fraud Detection Engine', 'Face Verification', 'Geo-Fencing', 'Email Automation'], icon: <Cpu size={16} />, color: B.primary },
+              { group: 'Deployment', items: ['React', 'FastAPI', 'Python', 'WhatsApp Alerts'], icon: <BarChart3 size={16} />, color: B.accent },
             ].map((col, i) => (
               <motion.div
                 key={i}
@@ -460,14 +483,14 @@ export default function IndustryRetail() {
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.5vw, 1.2rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  Most AI vendors understand algorithms but not merchandising. We understand SKU hierarchies, promo calendars, and the need for real-time serving at scale.
+                  Most AI vendors understand either algorithms or day-to-day retail operations. We aim for both — building models and shipping them as real, usable apps, not one-off notebooks that never leave the lab.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Real-Time Serving, Not Batch Guesses', desc: 'Recommendation and pricing models serve predictions in <50ms using Redis + FastAPI — no stale overnight batches' },
-                    { title: 'Commerce Platform Fluency', desc: 'We\'ve integrated with Shopify Plus, SFCC, SAP Hybris, and custom-built checkout stacks — no integration surprises' },
-                    { title: 'A/B Testing Built In', desc: 'Every model ships with experiment infrastructure so you can measure lift, not just trust it' },
-                    { title: 'Omnichannel Data Unification', desc: 'We unify POS, e-commerce, app, loyalty, and marketing data before modelling — so insights apply across every channel' },
+                    { title: 'Built to Actually Ship', desc: 'Our Command Center platform is live-deployed with real-time WhatsApp alerts — not just a proof of concept' },
+                    { title: 'Explainable by Design', desc: 'Our churn model ships with SHAP feature importance, so the drivers behind every prediction are visible' },
+                    { title: 'Lightweight, Portable Stack', desc: 'React, FastAPI, Firebase, and Python — integrates into most systems without forcing a platform migration' },
+                    { title: 'Honest About Maturity', desc: "We're upfront about what's live and deployed versus what's still a validated concept" },
                   ].map((item, i) => (
                     <motion.div key={i} initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.08 }} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
                       <div style={{ width: 26, height: 26, borderRadius: 'var(--radius-sm)', background: `${B.action}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
@@ -509,7 +532,7 @@ export default function IndustryRetail() {
               ))}
               <div style={{ marginTop: 24, padding: '16px 20px', background: `linear-gradient(135deg, ${B.action}10, ${B.primary}08)`, borderRadius: 16, border: `1px solid ${B.action}20`, display: 'flex', alignItems: 'center', gap: 12 }}>
                 <TrendingUp size={18} color={B.action} />
-                <span style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', color: B.textMain, fontWeight: 600 }}>A/B-tested lift measurement included</span>
+                <span style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', color: B.textMain, fontWeight: 600 }}>Fixed-fee scoping · clear deliverables upfront</span>
               </div>
             </motion.div>
           </div>
