@@ -15,6 +15,7 @@ import {
 
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
 import { B, SECTION_PAD, PX, fadeUp, useCounter, DataParticles, SectionBadge } from '../../theme';
+import healthImage from '../../assets/illustrations/Health.png';
 
 // ─── Brand Tokens (Synced with IndustryFinancial.jsx) ─────────────────────
 // ─── Counter Hook ─────────────────────────────────────────────────────────────
@@ -246,7 +247,7 @@ export default function IndustryHealthcare() {
                 <motion.h1 variants={fadeUp} custom={0.05}
                   style={{
                     fontWeight: 700,
-                    fontSize: 'var(--fs-hero)',
+                    fontSize: '45px',
                     lineHeight: 1.1, letterSpacing: '-0.02em',
                     marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark,
                   }}>
@@ -276,23 +277,21 @@ export default function IndustryHealthcare() {
                 initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 style={{ 
-                  flex: '1 1 clamp(260px, 40%, 600px)',
+                  flex: '1 1 clamp(300px, 48%, 720px)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  minHeight: '300px',
+                  minHeight: '420px',
                 }}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=700&q=80" // TODO: replace with custom illustration — see chat for image brief
+                  src={healthImage}
                   alt="Healthcare AI Visual" 
                   style={{
                     width: '100%',
-                    maxWidth: 520,
+                    maxWidth: 1080,
                     objectFit: 'contain',
-                    boxShadow: B.cardShadow,
                     background: 'transparent',
-                    borderRadius: 14,
                   }}
                 />
               </motion.div>
@@ -375,7 +374,7 @@ export default function IndustryHealthcare() {
           {/* 1. Capabilities (Grid) */}
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(14px,2vw,24px)', marginBottom: 'clamp(60px, 8vw, 80px)' }}>
             {capabilities.map((cap, i) => (
-              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 360 }}>
+              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 460 }}>
                 <CapabilityCard {...cap} delay={i * 0.07} />
               </div>
             ))}
