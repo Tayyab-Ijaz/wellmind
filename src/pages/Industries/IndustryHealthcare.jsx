@@ -247,7 +247,7 @@ export default function IndustryHealthcare() {
                 <motion.h1 variants={fadeUp} custom={0.05}
                   style={{
                     fontWeight: 700,
-                    fontSize: '45px',
+                    fontSize: '53px',
                     lineHeight: 1.1, letterSpacing: '-0.02em',
                     marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark,
                   }}>
