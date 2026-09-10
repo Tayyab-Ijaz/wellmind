@@ -183,6 +183,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--c-action);outline-o
   .financial-hero-copy,.financial-hero-image {width:100%;flex:1 1 auto!important}
   .financial-hero-image {min-height:0!important}
   .financial-hero-image img {width:100%!important;max-width:calc(100vw - 32px);height:auto}
+  .retail-hero-image {width:100%!important;max-width:calc(100vw - 32px)!important;height:auto}
 }
 
 /* 425px */
