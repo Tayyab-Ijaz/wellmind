@@ -47,7 +47,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Genomic & Sequencing',
     accentColor: COLORS.bio,
     heroDesc:    'RNA-seq analysis is only as reliable as the pipeline behind it. We build end-to-end RNA-seq workflows — from raw FASTQ quality control through alignment, quantification, and differential expression analysis — using DESeq2, edgeR, or limma with rigorous statistical methodology and publication-ready outputs.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $1,800'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw Reads',          sub: 'FASTQ input files',           color: COLORS.bio,       iconName: 'Dna'         },
@@ -123,7 +123,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Genomic & Sequencing',
     accentColor: COLORS.action,
     heroDesc:    'Variant calling is only as trustworthy as the pipeline calling it. We build GATK Best Practices and DeepVariant-based workflows for SNV, indel, and structural variant detection — with clinical annotation via ClinVar, COSMIC, and gnomAD — producing VCF outputs with the documentation your clinical or publication audience requires.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,200'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw Sequencing',   sub: 'FASTQ / BAM input',            color: COLORS.bio,       iconName: 'Dna'         },
@@ -199,7 +199,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Genomic & Sequencing',
     accentColor: COLORS.primary,
     heroDesc:    'Whole-genome analysis goes beyond variant calling — from de novo assembly and comparative genomics to population-level analyses and GWAS. We handle short-read, long-read (PacBio, Nanopore), and hybrid assembly approaches, delivering annotated genomes and population-level insights with rigorous quality metrics.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw Sequencing',   sub: 'Short / long-read FASTQ',      color: COLORS.bio,       iconName: 'Dna'         },
@@ -275,7 +275,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Genomic & Sequencing',
     accentColor: COLORS.secondary,
     heroDesc:    'Epigenomic data requires specialist analysis that standard RNA-seq pipelines don\'t handle. We build ChIP-seq peak calling pipelines, ATAC-seq chromatin accessibility analyses, and WGBS methylation workflows — with integration against gene expression data to link regulatory changes to transcriptional outcomes.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw Reads',        sub: 'FASTQ (ChIP / ATAC / BS-seq)',  color: COLORS.bio,       iconName: 'Dna'         },
@@ -355,7 +355,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Multi-omics & Systems',
     accentColor: COLORS.bio,
     heroDesc:    'Single-omics analysis answers partial questions. Multi-omics integration reveals the regulatory relationships between molecular layers — linking genetic variants to expression changes to protein abundance to metabolite levels. We design and execute integrative analyses using MOFA+, DIABLO, and custom ML approaches.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $3,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Multi-omics Data',  sub: 'Genomics / Transcriptomics / Proteomics', color: COLORS.bio,      iconName: 'Layers'    },
@@ -431,7 +431,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Multi-omics & Systems',
     accentColor: COLORS.action,
     heroDesc:    'Proteomics data analysis requires specialist handling of mass spectrometry search results, peptide-protein inference, missing value imputation, and appropriate normalisation before any biological conclusion can be drawn. We build MaxQuant, Proteome Discoverer, and DIA-NN-based workflows with differential protein abundance analysis and multi-omics integration.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'MS Raw Data',      sub: 'RAW / mzML / DIA files',       color: COLORS.bio,      iconName: 'FlaskConical'},
@@ -507,7 +507,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Multi-omics & Systems',
     accentColor: COLORS.secondary,
     heroDesc:    'Metabolomics data carries the functional fingerprint of cellular state — but only if the pre-processing, feature detection, and annotation are done correctly. We build XCMS, MZmine, and MetaboAnalyst-based workflows for untargeted LC-MS/MS and NMR metabolomics, with pathway analysis and multi-omics integration.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw Spectra',       sub: 'mzML / CDF / NMR FID',        color: COLORS.bio,       iconName: 'FlaskConical'},
@@ -583,7 +583,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Multi-omics & Systems',
     accentColor: COLORS.primary,
     heroDesc:    'Single-cell RNA-seq reveals cell-type heterogeneity invisible in bulk RNA-seq — but requires careful QC, normalisation, dimensionality reduction, and cell-type annotation to draw valid biological conclusions. We build Seurat and Scanpy-based scRNA-seq workflows, including cell-type annotation, trajectory inference, and spatial transcriptomics analysis.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw scRNA-seq',    sub: 'FASTQ / CellRanger output',    color: COLORS.bio,       iconName: 'Dna'        },
@@ -663,7 +663,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Clinical AI',
     accentColor: COLORS.bio,
     heroDesc:    'Clinical decision support AI must be rigorously validated, explainable, and calibrated — not just accurate on a held-out test set. We build clinical prediction models with proper temporal validation, calibration assessment, SHAP-based explainability, and documentation aligned to regulatory and publication standards.',
-    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation', 'From $4,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation'],
 
     pipelineSteps: [
       { label: 'Clinical Data',    sub: 'EHR / structured / omics',     color: COLORS.bio,       iconName: 'Database'   },
@@ -739,7 +739,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Clinical AI',
     accentColor: COLORS.action,
     heroDesc:    'Diagnostic AI models must perform across the full performance spectrum — sensitivity, specificity, PPV, NPV — not just AUC. We build binary and multi-class diagnostic classifiers from omics, imaging features, or structured EHR data, with decision-threshold analysis, cost-sensitive evaluation, and clinical performance reporting.',
-    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation'],
 
     pipelineSteps: [
       { label: 'Clinical Data',    sub: 'Omics / EHR / imaging features',color: COLORS.bio,      iconName: 'Database'   },
@@ -815,7 +815,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Clinical AI',
     accentColor: COLORS.secondary,
     heroDesc:    'Patient risk stratification models — from survival analysis to readmission prediction to clinical risk scores — require proper time-to-event handling, competing risks, and external validation before any clinical claim can be made. We build Cox proportional hazards, Random Survival Forest, and deep survival models with full calibration and discrimination reporting.',
-    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation'],
 
     pipelineSteps: [
       { label: 'Clinical Data',    sub: 'EHR · survival data · omics',  color: COLORS.bio,       iconName: 'Database'  },
@@ -891,7 +891,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Clinical AI',
     accentColor: COLORS.primary,
     heroDesc:    'Computational pathology requires deep learning expertise combined with clinical domain knowledge. We build CNN and Vision Transformer-based models for whole-slide image classification, segmentation, and biomarker prediction — with rigorous pathologist-level benchmarking, tile-level attention maps, and documentation aligned to clinical and regulatory standards.',
-    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation', 'From $6,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation'],
 
     pipelineSteps: [
       { label: 'Slide Input',      sub: 'WSI / TIFF / DICOM',           color: COLORS.bio,       iconName: 'Microscope' },
@@ -971,7 +971,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Drug & Lab',
     accentColor: COLORS.bio,
     heroDesc:    'Drug discovery AI accelerates the most expensive steps in the pipeline — target identification, virtual screening, and ADMET property prediction. We build graph neural networks for molecular property prediction, virtual screening pipelines for hit identification, and ML models for ADMET prediction — with proper validation against experimental data.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $5,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Target / Library', sub: 'Protein target · compound lib',  color: COLORS.bio,      iconName: 'FlaskConical'},
@@ -1047,7 +1047,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Drug & Lab',
     accentColor: COLORS.action,
     heroDesc:    'Traditional molecular docking is slow and often inaccurate for flexible targets. We enhance docking pipelines with ML rescoring, binding affinity prediction, and deep learning-based pose prediction — combining AutoDock Vina, Glide, or Gnina with ML models trained on your experimental binding data for target-specific accuracy.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Protein & Ligands',sub: 'PDB · SDF · SMILES',           color: COLORS.bio,      iconName: 'FlaskConical'},
@@ -1123,7 +1123,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Drug & Lab',
     accentColor: COLORS.secondary,
     heroDesc:    'Laboratory Information Management Systems hold the metadata that makes bioinformatics analyses interpretable — sample provenance, QC metrics, experimental conditions, and clinical annotations. We build LIMS integrations that automatically route sample data into analysis pipelines, return results to LIMS, and eliminate the manual CSV export that wastes lab staff time.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineSteps: [
       { label: 'LIMS Data',        sub: 'Sample metadata · results',     color: COLORS.bio,       iconName: 'Database'   },
@@ -1199,7 +1199,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Drug & Lab',
     accentColor: COLORS.primary,
     heroDesc:    'Clinical trial analysis requires domain-specific statistical expertise — ANCOVA, mixed models, survival analysis, and multiple-testing correction strategies that satisfy regulatory reviewers. We provide statistical analysis plan execution, primary and secondary endpoint analysis, subgroup analysis, and ICH E9(R1) estimand-aligned reporting for Phase I–III trials.',
-    tags:        ['Fixed-Fee Projects', 'Full Documentation', 'From $5,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Documentation'],
 
     pipelineSteps: [
       { label: 'Trial Data',       sub: 'EDC / SAS / CDISC ADAM',       color: COLORS.bio,       iconName: 'Database'   },

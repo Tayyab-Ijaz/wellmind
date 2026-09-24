@@ -35,7 +35,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Business Intelligence',
     accentColor: COLORS.action,
     heroDesc:    'Most BI failures are strategy failures. We audit your data landscape, align stakeholders on metrics that matter, and design a BI roadmap that delivers measurable decisions — not just prettier charts. From tool selection to governance policies, we define the foundation before a single dashboard is built.',
-    tags:        ['Fixed-Fee Projects', 'Full Documentation', 'From $3,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Documentation'],
 
     stats: [
       { target: 80,  suffix: '+', label: 'BI Audits Completed',  iconName: 'BarChart3',  color: COLORS.action   },
@@ -102,7 +102,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Business Intelligence',
     accentColor: COLORS.primary,
     heroDesc:    'Most dashboards fail because they\'re designed by engineers, not decision-makers. We design and build production-grade dashboards in Power BI, Tableau, or custom React — with real data connections, interactive filters, and a layout reviewed against actual user workflows before delivery.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $2,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 50,  suffix: '+', label: 'Dashboards Delivered', iconName: 'BarChart3', color: COLORS.primary  },
@@ -168,7 +168,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Business Intelligence',
     accentColor: COLORS.accent,
     heroDesc:    'Disagreements about metrics waste more analyst time than bad data. We run a structured KPI design process — from business objective mapping to definition sign-off — and deliver a living KPI framework document that becomes the single source of truth for every dashboard and report your team builds.',
-    tags:        ['Fixed-Fee Projects', 'Full Documentation', 'From $2,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Documentation'],
 
     stats: [
       { target: 70,  suffix: '%', label: 'Reduction in Metric Disputes', iconName: 'Activity',  color: COLORS.accent   },
@@ -234,7 +234,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Business Intelligence',
     accentColor: COLORS.secondary,
     heroDesc:    'Self-serve fails when the data model is wrong, the tool is over-complicated, or the training was a single Zoom call. We design self-serve analytics environments that analysts actually use — with clean semantic layers, governed datasets, embedded documentation, and training programmes that build lasting capability.',
-    tags:        ['Fixed-Fee Projects', 'Team Training Included', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Team Training Included'],
 
     stats: [
       { target: 80,  suffix: '%', label: 'Reduction in Ad-hoc Requests', iconName: 'Activity',  color: COLORS.secondary },
@@ -305,7 +305,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Statistical Methods',
     accentColor: COLORS.action,
     heroDesc:    'Business decisions made on bad statistics are often worse than decisions made on instinct. We run rigorous statistical analyses — hypothesis tests, regression, survival analysis, segmentation — with proper methodology documentation and results written for non-statisticians who still need to act on the findings.',
-    tags:        ['Fixed-Fee Projects', 'Methodology Documented', 'From $2,500'],
+    tags:        ['Fixed-Fee Projects', 'Methodology Documented'],
 
     stats: [
       { target: 100, suffix: '+', label: 'Analyses Completed',   iconName: 'BarChart3',  color: COLORS.action   },
@@ -371,7 +371,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Statistical Methods',
     accentColor: COLORS.primary,
     heroDesc:    'Correlation tells you what moves together. Causal inference tells you what to change. We apply difference-in-differences, instrumental variables, regression discontinuity, and synthetic control methods to observational data — producing causal estimates that justify investment decisions without requiring a randomised experiment.',
-    tags:        ['Fixed-Fee Projects', 'Methodology Documented', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Methodology Documented'],
 
     stats: [
       { target: 30,  suffix: '+', label: 'Causal Studies Delivered', iconName: 'Activity',  color: COLORS.primary  },
@@ -437,7 +437,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Statistical Methods',
     accentColor: COLORS.accent,
     heroDesc:    'Poorly designed experiments waste months of engineering effort. We design statistically sound experiments — from power calculations to assignment strategy to guardrail metrics — and build the analysis infrastructure so results are trustworthy and decisions follow automatically from evidence.',
-    tags:        ['Fixed-Fee Projects', 'Infrastructure Included', 'From $5,000'],
+    tags:        ['Fixed-Fee Projects', 'Infrastructure Included'],
 
     stats: [
       { target: 60,  suffix: '+', label: 'Experiments Designed',    iconName: 'Activity',  color: COLORS.accent   },
@@ -504,7 +504,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Statistical Methods',
     accentColor: COLORS.secondary,
     heroDesc:    'Snapshot metrics lie. We design and analyse surveys with proper sampling and weighting, and build cohort analyses that reveal how retention, revenue, and engagement evolve across acquisition vintages — giving you the time-dimension insight that average metrics hide.',
-    tags:        ['Fixed-Fee Projects', 'Full Methodology', 'From $2,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Methodology'],
 
     stats: [
       { target: 50,  suffix: '+', label: 'Cohort Studies Delivered', iconName: 'Users',     color: COLORS.secondary },
@@ -574,7 +574,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Data Engineering',
     accentColor: COLORS.action,
     heroDesc:    'Analytics is only as good as the data beneath it. We design and build production-grade data infrastructure — ingestion pipelines, transformation layers, warehouse architecture, and orchestration — so your analysts spend time on insights, not debugging broken pipelines.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 60,  suffix: '+', label: 'Pipelines Delivered',   iconName: 'Database',  color: COLORS.action   },
@@ -641,7 +641,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Data Engineering',
     accentColor: COLORS.primary,
     heroDesc:    'ETL failures are silent — analysts just work with stale or wrong data without knowing it. We build reliable ETL/ELT pipelines with comprehensive testing, alerting, and observability so data quality issues are caught and resolved before they reach a dashboard.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 100, suffix: '+', label: 'Pipelines Built',       iconName: 'Database', color: COLORS.primary  },
@@ -708,7 +708,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Data Engineering',
     accentColor: COLORS.accent,
     heroDesc:    'The choice between a data lake, warehouse, or lakehouse is not one-size-fits-all. We design and implement the right architecture for your scale, query patterns, and budget — whether that\'s a lean Snowflake warehouse or a Databricks lakehouse processing petabytes of semi-structured data.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 40,  suffix: '+', label: 'Warehouses Built',      iconName: 'Database',  color: COLORS.accent   },
@@ -775,7 +775,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Data Engineering',
     accentColor: COLORS.secondary,
     heroDesc:    'Real-time analytics is often overkill — and often critical. We assess whether streaming is the right solution for your use-case, then design and build Kafka or Kinesis-based pipelines that deliver sub-minute data freshness with the operational maturity to survive production.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $8,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 20,  suffix: '+', label: 'Streaming Systems Built', iconName: 'Zap',       color: COLORS.secondary },
@@ -846,7 +846,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Data Quality & Ops',
     accentColor: COLORS.action,
     heroDesc:    'Bad data costs more than no data. We conduct systematic data quality audits — completeness, accuracy, consistency, timeliness, and uniqueness — and deliver a prioritised remediation plan with automated quality checks that prevent regressions. Your dashboards become trustworthy again.',
-    tags:        ['Fixed-Fee Projects', 'Automated Checks Included', 'From $3,000'],
+    tags:        ['Fixed-Fee Projects', 'Automated Checks Included'],
 
     stats: [
       { target: 90,  suffix: '%', label: 'Avg Data Issues Resolved',  iconName: 'Activity', color: COLORS.action   },
@@ -913,7 +913,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Data Quality & Ops',
     accentColor: COLORS.primary,
     heroDesc:    'Analysts waste 30% of their time finding and understanding data. We implement metadata management systems — data catalogues, lineage tracking, business glossaries, and ownership frameworks — that make every dataset discoverable and every metric definition unambiguous.',
-    tags:        ['Fixed-Fee Projects', 'Full Documentation', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Documentation'],
 
     stats: [
       { target: 30,  suffix: '%', label: 'Analyst Time Saved',       iconName: 'Zap',      color: COLORS.primary  },
@@ -980,7 +980,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Data Quality & Ops',
     accentColor: COLORS.accent,
     heroDesc:    'Data issues are usually discovered by an analyst, not a monitoring system. We build data observability stacks — freshness monitors, volume anomaly detectors, schema change alerts, and distribution drift checks — that catch problems in minutes, not days.',
-    tags:        ['Fixed-Fee Projects', 'Automated Monitoring', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Automated Monitoring'],
 
     stats: [
       { target: 90,  suffix: '%', label: 'Faster Issue Detection',    iconName: 'Activity', color: COLORS.accent   },
@@ -1047,7 +1047,7 @@ export const DATA_ANALYTICS_CHILDREN = {
     badge:       'Data Quality & Ops',
     accentColor: COLORS.secondary,
     heroDesc:    'Data governance fails when it\'s treated as a compliance exercise rather than a business enabler. We design governance frameworks that are proportionate to your scale, practical enough for adoption, and effective enough to satisfy GDPR, HIPAA, or SOC 2 requirements — without slowing down the teams who depend on data.',
-    tags:        ['Fixed-Fee Projects', 'Policy Documentation Included', 'From $5,000'],
+    tags:        ['Fixed-Fee Projects', 'Policy Documentation Included'],
 
     stats: [
       { target: 30,  suffix: '+', label: 'Governance Frameworks Built', iconName: 'Shield',  color: COLORS.secondary },

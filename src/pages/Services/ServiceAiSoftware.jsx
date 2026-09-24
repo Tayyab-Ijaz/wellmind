@@ -236,18 +236,18 @@ function ArchDiagram() {
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const features = [
-  { icon: <Cpu/>, title: 'AI-Native Architecture', desc: 'Systems designed from the ground up with intelligence baked in — not bolted on afterward. Every component knows how to serve the model layer.', color: AC },
-  { icon: <Server/>, title: 'Production-Grade APIs', desc: 'FastAPI, REST, and GraphQL endpoints built for real traffic — with auth, rate-limiting, versioning, and monitoring included by default.', color: B.action },
+  { icon: <Cpu/>, title: 'AI-Native Architecture', desc: 'Systems designed from the ground up with intelligence baked in, not bolted on afterward. Every component knows how to serve the model layer.', color: AC },
+  { icon: <Server/>, title: 'Production-Grade APIs', desc: 'FastAPI, REST, and GraphQL endpoints built for real traffic, with auth, rate-limiting, versioning, and monitoring included by default.', color: B.action },
   { icon: <GitBranch/>, title: 'ML Pipeline Integration', desc: 'Training, evaluation, and inference pipelines wired into your application. Model versioning, A/B testing, and automated retraining loops.', color: B.accent },
-  { icon: <Layers/>, title: 'Full-Stack Capability', desc: 'We can own the entire stack — from React frontend to Python backend to cloud infrastructure — or slot into your existing architecture.', color: B.secondary },
+  { icon: <Layers/>, title: 'Full-Stack Capability', desc: 'We can own the entire stack (from React frontend to Python backend to cloud infrastructure) or slot into your existing architecture.', color: B.secondary },
   { icon: <ShieldCheck/>, title: 'Security & Compliance', desc: 'HIPAA, GDPR, and SOC 2 readiness built into the design. Encryption at rest and in transit, role-based access, full audit trails.', color: AC },
-  { icon: <Rocket/>, title: 'Deployed & Monitored', desc: 'Docker, Kubernetes, AWS/GCP. Not just "it works locally" — delivered with CI/CD, alerting, and a monitoring dashboard from day one.', color: B.action },
+  { icon: <Rocket/>, title: 'Deployed & Monitored', desc: 'Docker, Kubernetes, AWS/GCP. Not just "it works locally": delivered with CI/CD, alerting, and a monitoring dashboard from day one.', color: B.action },
 ];
 
 const processes = [
   { step: '01', title: 'Discovery & Architecture', desc: 'We audit your existing stack, define the AI integration points, and produce a system architecture doc before a single line of code is written.' },
-  { step: '02', title: 'Prototype & Validate', desc: 'A working prototype with your real data in hand — usually within two weeks. Validation before full build prevents expensive pivots later.' },
-  { step: '03', title: 'Build & Integrate', desc: 'Sprint-based development with weekly demos. Your team reviews real working software — no PowerPoints, no vague promises.' },
+  { step: '02', title: 'Prototype & Validate', desc: 'A working prototype with your real data in hand, usually within two weeks. Validation before full build prevents expensive pivots later.' },
+  { step: '03', title: 'Build & Integrate', desc: 'Sprint-based development with weekly demos. Your team reviews real working software, no PowerPoints, no vague promises.' },
   { step: '04', title: 'Deploy & Handoff', desc: 'Production deployment with CI/CD, monitoring, and a documented handoff. We stay available for 30 days post-launch for any issues.' },
 ];
 
@@ -278,7 +278,7 @@ const tiers = [
   {
     name: 'Prototype',
     price: 'From $3,500',
-    desc: 'A working proof-of-concept — AI feature integrated, deployed, demo-ready.',
+    desc: 'A working proof-of-concept: AI feature integrated, deployed, demo-ready.',
     features: ['Single AI feature integration', 'REST API endpoint', 'Basic auth + deployment', 'Docker setup', '2–3 week delivery'],
     featured: false,
   },
@@ -368,7 +368,7 @@ export default function ServiceAiSoftware() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  We build custom software architectures deeply integrated with AI capabilities — from intelligent APIs and ML pipelines to full-stack applications that learn from your data and scale with your business.
+                  We build custom software architectures deeply integrated with AI capabilities, from intelligent APIs and ML pipelines to full-stack applications that learn from your data and scale with your business.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.5vw, 16px)' }}>
@@ -428,7 +428,7 @@ export default function ServiceAiSoftware() {
                 borderTop: `1px solid ${B.primaryBorder}40`,
               }}
             >
-              {['Starting at $3,500', 'From Prototype to Production', 'Full-Stack Ownership'].map((t, i) => (
+              {['From Prototype to Production', 'Full-Stack Ownership'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
@@ -493,7 +493,7 @@ export default function ServiceAiSoftware() {
               End-to-End AI Software Capabilities
             </h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              Production-ready AI software engineered for scale, security, and real business impact — from intelligent APIs to full-stack systems.
+              Production-ready AI software engineered for scale, security, and real business impact, from intelligent APIs to full-stack systems.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -536,7 +536,7 @@ export default function ServiceAiSoftware() {
               <SectionBadge>What You Get</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>Full Ownership. Zero Black Boxes.</h2>
               <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
-                Everything you need to own and operate your system independently — no black boxes, no dependency on us.
+                Everything you need to own and operate your system independently, no black boxes, no dependency on us.
               </p>
               {deliverables.map((d, i) => {
                 const color = processColors[i % processColors.length];
@@ -561,7 +561,7 @@ export default function ServiceAiSoftware() {
             <SectionBadge dark style={{ color: B.textDarkMuted }}>Transparent Pricing</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 14 }}>Investment</h2>
             <p className="section-lead dark" style={{ maxWidth: 1200 }}>
-              Fixed-fee engagements. No hourly billing surprises. Scope is agreed in writing before we start — ever.
+              Fixed-fee engagements. No hourly billing surprises. Scope is agreed in writing before we ever start.
             </p>
           </div>
           <div className="grid-pricing">
@@ -580,7 +580,6 @@ export default function ServiceAiSoftware() {
               >
                 {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: B.action, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
                 <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: B.action, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
-                <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>{tier.price}</div>
                 <p style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
                 <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
                   {tier.features.map((f, fi) => (
@@ -629,7 +628,7 @@ export default function ServiceAiSoftware() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Tell us what you're building. We'll scope it, price it honestly, and start within a week of agreement — no sales pitch.
+              Tell us what you're building. We'll scope it, price it honestly, and start within a week of agreement. No sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/contact" style={{

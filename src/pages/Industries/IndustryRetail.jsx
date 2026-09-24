@@ -151,9 +151,9 @@ export default function IndustryRetail() {
   }, []);
 
   const capabilities = [
-    { icon: <BarChart3 size={22} />, color: B.action, title: 'Conversational Analytics Platform', desc: 'A full-stack BI tool that turns plain-language questions like "show total sales for laptops in Faisalabad" into structured queries — auto-rendering the right chart via Gemini, FastAPI, and Firebase.' },
-    { icon: <ShoppingCart size={22} />, color: B.secondary, title: 'Multi-Branch Ops & Fraud Detection', desc: 'A live, deployed platform connecting face-verified staff attendance, order tracking, and an automated fraud-detection engine — pushing real-time alerts to owners across branches.' },
-    { icon: <Users size={22} />, color: B.accent, title: 'Customer Churn Prediction', desc: 'A Random Forest churn model — selected from 5 algorithms compared head-to-head — reaching 86.4% accuracy and a 0.91 AUC-ROC, with SHAP-explained churn drivers per customer.' },
+    { icon: <BarChart3 size={22} />, color: B.action, title: 'Conversational Analytics Platform', desc: 'A full-stack BI tool that turns plain-language questions like "show total sales for laptops in Faisalabad" into structured queries, auto-rendering the right chart via Gemini, FastAPI, and Firebase.' },
+    { icon: <ShoppingCart size={22} />, color: B.secondary, title: 'Multi-Branch Ops & Fraud Detection', desc: 'A live, deployed platform connecting face-verified staff attendance, order tracking, and an automated fraud-detection engine, pushing real-time alerts to owners across branches.' },
+    { icon: <Users size={22} />, color: B.accent, title: 'Customer Churn Prediction', desc: 'A Random Forest churn model (selected from 5 algorithms compared head-to-head) reaching 86.4% accuracy and a 0.91 AUC-ROC, with SHAP-explained churn drivers per customer.' },
     { icon: <TrendingUp size={22} />, color: B.primary, title: 'Retail Demand Forecasting', desc: 'A time-series forecasting pipeline analyzing historical sales and seasonality patterns to support inventory planning and reduce stockout/overstock risk.' },
     { icon: <Package size={22} />, color: B.action, title: 'Email-to-Order Automation', desc: 'A concept pipeline that monitors an inbox, extracts order details from emails and attachments, validates them, and creates structured orders automatically.' },
   ];
@@ -161,26 +161,26 @@ export default function IndustryRetail() {
   const useCases = [
     {
       icon: <ShoppingCart />, color: B.accent, slug: 'restaurant-command-center',
-      title: 'Command Center — Multi-Branch Restaurant Operations Platform',
-      desc: 'A unified platform connecting face-verified, geo-fenced staff attendance, order and kitchen tracking, and an automated fraud-detection engine — live-deployed across five role-based portals, pushing real-time alerts to owners over WhatsApp.',
+      title: 'Command Center: Multi-Branch Restaurant Operations Platform',
+      desc: 'A unified platform connecting face-verified, geo-fenced staff attendance, order and kitchen tracking, and an automated fraud-detection engine, live-deployed across five role-based portals, pushing real-time alerts to owners over WhatsApp.',
       metrics: [{ val: '5', label: 'Role-Based Portals' }, { val: 'Live', label: 'Deployed Build' }, { val: 'Real-Time', label: 'WhatsApp Alerts' }],
     },
     {
       icon: <Users />, color: B.secondary, slug: 'telecom-churn-prediction',
       title: 'Telecom Customer Churn Prediction',
-      desc: 'A Random Forest churn model — chosen from five algorithms compared head-to-head — reduces 150 raw features to 25 with SHAP-explained predictions, reaching 86.4% accuracy and a 0.91 AUC-ROC on real telecom behavioral data.',
+      desc: 'A Random Forest churn model (chosen from five algorithms compared head-to-head) reduces 150 raw features to 25 with SHAP-explained predictions, reaching 86.4% accuracy and a 0.91 AUC-ROC on real telecom behavioral data.',
       metrics: [{ val: '86.4%', label: 'Accuracy' }, { val: '0.91', label: 'AUC-ROC' }, { val: '65%+', label: 'Top-20% Churn Capture' }],
     },
     {
       icon: <BarChart3 />, color: B.primary, slug: 'conversational-analytics-platform',
       title: 'Conversational Analytics Platform',
-      desc: 'A full-stack conversational BI engine that turns plain-language business questions into structured queries and automatically renders the right chart — bar, line, pie, scatter, KPI, or table — via Gemini, FastAPI, and Firebase.',
+      desc: 'A full-stack conversational BI engine that turns plain-language business questions into structured queries and automatically renders the right chart (bar, line, pie, scatter, KPI, or table) via Gemini, FastAPI, and Firebase.',
       metrics: [{ val: '6', label: 'Chart Types Auto-Rendered' }, { val: 'Gemini', label: 'LLM Engine' }, { val: 'Real-Time', label: 'Firestore Data' }],
     },
     {
       icon: <TrendingUp />, color: B.action, slug: 'retail-demand-forecasting',
       title: 'Retail Demand Forecasting',
-      desc: 'A demand-forecasting pipeline analyzing historical sales patterns and seasonality to predict future product demand — designed to reduce stockouts and overstock through better inventory planning.',
+      desc: 'A demand-forecasting pipeline analyzing historical sales patterns and seasonality to predict future product demand, designed to reduce stockouts and overstock through better inventory planning.',
       metrics: [{ val: 'Time-Series', label: 'Forecasting Approach' }, { val: 'Seasonality', label: 'Pattern Analysis' }, { val: 'Concept', label: 'Current Stage' }],
     },
     {
@@ -192,11 +192,11 @@ export default function IndustryRetail() {
   ];
 
   const faqs = [
-    { q: 'What kind of retail businesses have you built for?', a: "Our delivered work spans a restaurant operations platform, a telecom-style churn model, a demand-forecasting pipeline, a conversational BI tool, and an email-order automation concept — ranging from single-location businesses to multi-branch operations." },
-    { q: 'Can you build on top of our existing systems?', a: "Yes. Our stack is deliberately lightweight — React, FastAPI, Firebase, Python — so it integrates with most existing data sources via APIs, without requiring a platform migration." },
+    { q: 'What kind of retail businesses have you built for?', a: "Our delivered work spans a restaurant operations platform, a telecom-style churn model, a demand-forecasting pipeline, a conversational BI tool, and an email-order automation concept, ranging from single-location businesses to multi-branch operations." },
+    { q: 'Can you build on top of our existing systems?', a: "Yes. Our stack is deliberately lightweight (React, FastAPI, Firebase, Python), so it integrates with most existing data sources via APIs, without requiring a platform migration." },
     { q: 'What data do you need for a churn or forecasting model?', a: "For our churn model, we worked with historical usage/behavioral data and reduced 150 raw features to the 25 that actually mattered. For demand forecasting, historical sales data with enough history to capture seasonality is the key input." },
-    { q: 'How do you explain model predictions to non-technical teams?', a: "Our churn model ships with SHAP-based feature importance, so the top drivers behind every prediction are visible and explainable — not a black box." },
-    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
+    { q: 'How do you explain model predictions to non-technical teams?', a: "Our churn model ships with SHAP-based feature importance, so the top drivers behind every prediction are visible and explainable, not a black box." },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases, from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
@@ -249,7 +249,7 @@ export default function IndustryRetail() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  From conversational analytics to churn prediction and live ops automation — we build practical AI systems for retail and consumer businesses. Real projects. Real code. Nothing theoretical.
+                  From conversational analytics to churn prediction and live ops automation, we build practical AI systems for retail and consumer businesses. Real projects. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -483,13 +483,13 @@ export default function IndustryRetail() {
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.5vw, 1.2rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  Most AI vendors understand either algorithms or day-to-day retail operations. We aim for both — building models and shipping them as real, usable apps, not one-off notebooks that never leave the lab.
+                  Most AI vendors understand either algorithms or day-to-day retail operations. We aim for both: building models and shipping them as real, usable apps, not one-off notebooks that never leave the lab.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Built to Actually Ship', desc: 'Our Command Center platform is live-deployed with real-time WhatsApp alerts — not just a proof of concept' },
+                    { title: 'Built to Actually Ship', desc: 'Our Command Center platform is live-deployed with real-time WhatsApp alerts, not just a proof of concept' },
                     { title: 'Explainable by Design', desc: 'Our churn model ships with SHAP feature importance, so the drivers behind every prediction are visible' },
-                    { title: 'Lightweight, Portable Stack', desc: 'React, FastAPI, Firebase, and Python — integrates into most systems without forcing a platform migration' },
+                    { title: 'Lightweight, Portable Stack', desc: 'React, FastAPI, Firebase, and Python: integrates into most systems without forcing a platform migration' },
                     { title: 'Honest About Maturity', desc: "We're upfront about what's live and deployed versus what's still a validated concept" },
                   ].map((item, i) => (
                     <motion.div key={i} initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.08 }} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
@@ -574,7 +574,7 @@ export default function IndustryRetail() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your biggest retail challenge — conversion, inventory, churn, or pricing. We'll give you an honest view of what AI can deliver and what it costs. No pitch. No pressure.
+              Book a free 30-minute call. Tell us your biggest retail challenge: conversion, inventory, churn, or pricing. We'll give you an honest view of what AI can deliver and what it costs. No pitch. No pressure.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>

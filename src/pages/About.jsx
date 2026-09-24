@@ -10,7 +10,7 @@ import { motion, useInView } from 'framer-motion';
 import {
   ArrowRight, Zap, Target, FlaskConical, Package, Globe,
   BookOpen, BarChart3, Users, Award, CheckCircle, Star,
-  Brain, TrendingUp, Shield, Mail, ExternalLink, Dna, Clock,
+  Brain, TrendingUp, Shield, Mail, ExternalLink, Dna,
 } from 'lucide-react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge } from '../theme';
@@ -151,7 +151,7 @@ function TeamMember({ member, i }) {
 export default function About() {
   
   const values = [
-    { title: 'Bioinformatics First', desc: 'Our DNA is technical rigor. We don\'t just clean data; we understand the biology, the chemistry, and the clinical implications behind every dataset.', icon:<Dna size={24}/>, color:B.action },
+    { title: 'Domain Rigor First', desc: 'Our DNA is technical rigor. We don\'t just clean data; we understand the domain: the business, the science, and the real-world implications behind every dataset.', icon:<Dna size={24}/>, color:B.action },
     { title: 'Global Standards', desc: 'Our workflows are modeled after top-tier research institutions. We bring publication-quality reproducibility to enterprise problems.', icon:<Globe size={24}/>, color:B.primary },
     { title: 'Full-Stack Ownership', desc: 'From wet-lab strategy to production-grade MLOps deployment. We don\'t hand off a CSV and walk away; we see it through to value.', icon:<Package size={24}/>, color:B.secondary },
     { title: 'Transparent Pricing', desc: 'No hidden billable hours. We scope projects with fixed fees and clear deliverables. You know exactly what you are paying for.', icon:<Target size={24}/>, color:B.accent },
@@ -164,25 +164,16 @@ export default function About() {
       featured: true,
       image: TayyabPhoto,
       linkedin: 'https://www.linkedin.com/in/tayyab-ijaz/',
-      bio: "Tayyab Ijaz is the Founder and AI Head at WellMind Data Solutions, where he leads the design and deployment of production-ready AI systems, data-driven pipelines, and scalable intelligent solutions for clients across industries. With 7+ years of experience and 500+ delivered projects spanning AI, machine learning, and data science, his expertise sits at the intersection of Healthcare AI and business systems — turning complex research and business challenges into practical, real-world outcomes for WellMind's clients.",
+      bio: "Tayyab Ijaz is the Founder and AI Head at WellMind Data Solutions, where he leads the design and deployment of production-ready AI systems, data-driven pipelines, and scalable intelligent solutions for clients across industries. His expertise sits at the intersection of Healthcare AI and business systems. He turns complex research and business challenges into practical, real-world outcomes for WellMind's clients.",
       skills: ['Artificial Intelligence', 'Machine Learning', 'Data Science & Analytics', 'Healthcare AI', 'Biometrics & Voice AI', 'AI Team Leadership'],
-      stats: [
-        { value:'7+', label:'Years Experience', icon:<Clock size={18}/> },
-        { value:'2000+', label:'Students Mentored', icon:<Users size={18}/> },
-        { value:'4.9', label:'Client Rating', icon:<Star size={18}/> },
-      ],
     },
     {
       name: 'Salman Raza',
       role: 'Co-Founder',
       image: SalmanPhoto,
       linkedin: 'https://www.linkedin.com/in/salmanrazaaso/',
-      bio: "Salman Raza is the Co-Founder of WellMind Data Solutions, where he drives the company's strategy, brand direction, and growth roadmap. Alongside building WellMind, he serves as Marketing & Managing Director at WAPEXP and Co-Founder of ATS Digital Agency, bringing hands-on experience in marketing, business development, and client-facing operations. He's especially passionate about career guidance — connecting students, universities, and the tech industry through mentorship, seminars, and hands-on roadmaps for breaking into IT.",
+      bio: "Salman Raza is the Co-Founder of WellMind Data Solutions, where he drives the company's strategy, brand direction, and growth roadmap. Alongside building WellMind, he serves as Marketing & Managing Director at WAPEXP and Co-Founder of ATS Digital Agency, bringing hands-on experience in marketing, business development, and client-facing operations. He's especially passionate about career guidance: connecting students, universities, and the tech industry through mentorship, seminars, and hands-on roadmaps for breaking into IT.",
       skills: ['Business Strategy', 'Marketing & Branding', 'Business Development', 'Career Guidance & Mentorship', 'Digital Solutions', 'Client Relations'],
-      stats: [
-        { value:'17+', label:'Years Experience', icon:<Clock size={18}/> },
-        { value:'4.9', label:'Client Rating', icon:<Star size={18}/> },
-      ],
     },
   ];
 
@@ -213,7 +204,7 @@ export default function About() {
               </motion.h1>
 
               <motion.p variants={fadeUp} custom={0.2} className="hero-sub" style={{ color:B.textMid, maxWidth:600, margin:'0 0 clamp(24px,3vw,40px)', letterSpacing:'0.02em' }}>
-                We are WellMind Data Solutions. A team of bioinformaticians, data scientists, and AI engineers dedicated to solving the world's toughest biological and business challenges.
+                We are WellMind Data Solutions. A team of data scientists, ML engineers, and analytics strategists dedicated to turning complex data into intelligent decisions for startups, enterprises, and research teams worldwide.
               </motion.p>
 
               <motion.div variants={fadeUp} custom={0.3}>
@@ -227,28 +218,6 @@ export default function About() {
               <img src={HeroIllustration} alt="AI-powered data intelligence platform" style={{ width:'100%', height:'auto', display:'block', filter:'drop-shadow(0 30px 60px rgba(74,43,95,0.25))' }} />
             </motion.div>
 
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 2. DARK STRIP — Stats ══ */}
-      <section style={{ padding:`clamp(40px,5vw,60px) 0`, position:'relative', zIndex:1, background:`linear-gradient(135deg,#170F22 0%,#140B20 100%)` }}>
-        <DataParticles count={8} dark/>
-        <div style={{ ...PX, position:'relative', zIndex:2 }}>
-          <div className="grid-stats-compact">
-            {[
-              { val:'7',    suf:'+', lbl:'Years Experience',        color:'#9D4EDD' },
-              { val:'50',   suf:'+', lbl:'Projects Delivered',      color:'#00BBF9' },
-              { val:'4',    suf:'',  lbl:'Industries Served',      color:'#FF9F1C' },
-              { val:'100',  suf:'%', lbl:'Client Satisfaction',    color:'#C58FD4' },
-              { val:'24/7', suf:'',  lbl:'Global Support',         color:'#E87A8A' },
-            ].map((s,i) => (
-              <motion.div key={i} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.05, ease:[0.16,1,0.3,1] }}
-                style={{ background:'rgba(255,255,255,0.02)', backdropFilter:'blur(12px)', border:'1.5px solid rgba(255,255,255,0.08)', borderRadius:16, padding:'clamp(14px,1.5vw,20px) 10px', textAlign:'center', height:'100%' }}>
-                <div style={{ fontWeight:800, fontSize:'clamp(1.4rem,3.5vw,2.2rem)', color:B.textDark, marginBottom:4, letterSpacing:'-0.03em' }}>{s.val}<span style={{ fontSize:'0.5em' }}>{s.suf}</span></div>
-                <div style={{ fontSize:'clamp(10px,1.1vw,12px)', letterSpacing:'0.10em', textTransform:'uppercase', color:B.textDarkMuted, fontWeight:700, lineHeight:1.2 }}>{s.lbl}</div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
@@ -284,10 +253,7 @@ export default function About() {
         <div style={{ ...PX, position:'relative', zIndex:2 }}>
           <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }} style={{ textAlign:'center', marginBottom:60 }}>
             <SectionBadge>Meet The Minds</SectionBadge>
-            <h2 className="section-h2">Our Global Team</h2>
-            <p className="section-lead" style={{ marginTop:12, maxWidth: 1200, }}>
-              A blend of senior scientists, engineers, and strategists working across time zones to deliver impact.
-            </p>
+            <h2 className="section-h2">Meet the Founders</h2>
           </motion.div>
 
           <div className="grid-team-two">

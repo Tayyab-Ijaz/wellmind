@@ -9,10 +9,10 @@ import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'fra
 import {
   Cpu, TrendingUp, Code, Settings2, Palette, Dna,
   ArrowRight, CheckCircle, Wrench, Rocket, Activity,
-  Shield, Globe, Zap, BarChart3, Brain, Star, Sparkles,
+  Shield, Zap, BarChart3, Brain, Star,
   ChevronRight, CircuitBoard, Database, LineChart, BookOpen,
-  Users, Award, FlaskConical, ChevronDown, Image as ImageIcon,
-  Mail, MessageCircle, Share2, Phone, DollarSign, Clock,
+  Users, Award, ChevronDown, Image as ImageIcon,
+  MessageCircle, Share2, Phone, DollarSign, Clock,
   Lock, Repeat,
 } from 'lucide-react';
 import { B, SECTION_PAD, PX, fadeUp, useCounter, DataParticles, SectionBadge, SectionDivider, CircuitBg, FAQItem, InViewSection } from '../../theme';
@@ -37,8 +37,9 @@ import imgHealthcareFraudBilling from '../../assets/case-studies/healthcare-frau
 
 
 
-function StatCard({ target, suffix, label, icon, start, delay = 0, dark = true, theme }) {
-  const val = useCounter(target, 2000, start);
+function StatCard({ target, suffix, value, label, icon, start, delay = 0, dark = true, theme }) {
+  const counted = useCounter(target ?? 0, 2000, start);
+  const val = value !== undefined ? value : counted;
   const [hovered, setHovered] = useState(false);
   const t = theme || { color: B.primary, bg: B.primaryLight };
   return (
@@ -239,7 +240,7 @@ function WhyWellmindScroll() {
     { title: 'System-Driven Delivery', desc: 'Consistent outcomes via battle-tested SOPs and proven delivery frameworks that eliminate guesswork.', imgUrl: SystemDrivenDelivery, color: B.action },
     { title: 'Enterprise Security',    desc: 'ISO 27001 & 42001 compliant end-to-end encryption keeping your data protected at every layer.',     imgUrl: EnterpriseSecurity,    color: B.primary },
     { title: 'Scalable Architecture',  desc: 'Systems engineered to handle millions of requests without performance degradation or downtime.',       imgUrl: ScalableArchitecture,  color: B.accent },
-    { title: 'Rapid Deployment',       desc: 'From validated concept to production-ready system in weeks, not months — with zero compromise.',       imgUrl: RapidDeployment,       color: B.secondary },
+    { title: 'Rapid Deployment',       desc: 'From validated concept to production-ready system in weeks, not months, with zero compromise.',       imgUrl: RapidDeployment,       color: B.secondary },
   ];
 
   const [activeIdx, setActiveIdx] = useState(0);
@@ -421,21 +422,15 @@ export default function Home() {
     { q: 'How long does a project take?',                a: 'Most projects take 2–6 weeks end-to-end. Small focused analyses can deliver in under 10 days. Multi-omics or custom pipeline work typically takes 6–8 weeks. We give you a firm timeline in proposal.' },
     { q: 'Do you work with academic labs?',              a: "Yes, frequently. We can invoice through university procurement systems, support grant-funded projects, and deliver publication-ready outputs. We're comfortable with authorship arrangements when scope warrants it." },
     { q: 'Is my data confidential?',                     a: "Always. We sign NDAs before any data is shared and use secure transfer protocols. For clinical or health data, we follow HIPAA and GDPR requirements. We never use client data in our own research or training without explicit permission." },
-    { q: 'Can you join our team part-time or on retainer?', a: "Yes. Beyond fixed-fee projects, we offer monthly retainers for ongoing analysis support — ideal for research labs or startups that need flexible expert access without hiring full-time." },
-    { q: 'Where are you based and which time zones do you cover?', a: "Our team is based in Pakistan (PKT, UTC+5) with clients across US, UK, Europe, MENA, and Asia. We work fully remote and overlap working hours to fit your time zone — usually 3–5 hours of live overlap every day." },
-  ];
-
-  const heroTrustItems = [
-    { icon: <BarChart3 size={16} />,    label: '50+ Projects Delivered', accent: '#5BB8CC' },
-    { icon: <Globe size={16} />,        label: 'Clients in 5+ Countries', accent: '#8FC48A' },
-    { icon: <FlaskConical size={16} />, label: '6 Industries Served',     accent: '#C0A87A' },
+    { q: 'Can you join our team part-time or on retainer?', a: "Yes. Beyond fixed-fee projects, we offer monthly retainers for ongoing analysis support. It's ideal for research labs or startups that need flexible expert access without hiring full-time." },
+    { q: 'Where are you based and which time zones do you cover?', a: "Our team is based in Pakistan (PKT, UTC+5) with clients across US, UK, Europe, MENA, and Asia. We work fully remote and overlap working hours to fit your time zone, usually 3–5 hours of live overlap every day." },
   ];
 
   const testimonials = [
-    { text: "WellMind's bioinformatics team delivered what two previous consultants couldn't — a clean pipeline, a real answer, and code I could actually hand off to my grad students.", name: 'Principal Investigator', role: 'Research University',    initials: 'PI', avatarBg: B.primaryLight,   avatarColor: B.primary   },
-    { text: "They flagged a data quality issue we'd missed for months. That one catch saved our model — and probably our product launch.",                                              name: 'CTO',                    role: 'Healthcare AI Startup', initials: 'CT', avatarBg: B.actionLight,    avatarColor: B.action    },
+    { text: "WellMind's bioinformatics team delivered what two previous consultants couldn't: a clean pipeline, a real answer, and code I could actually hand off to my grad students.", name: 'Principal Investigator', role: 'Research University',    initials: 'PI', avatarBg: B.primaryLight,   avatarColor: B.primary   },
+    { text: "They flagged a data quality issue we'd missed for months. That one catch saved our model, and probably our product launch.",                                              name: 'CTO',                    role: 'Healthcare AI Startup', initials: 'CT', avatarBg: B.actionLight,    avatarColor: B.action    },
     { text: "Clear communication, honest timelines, and kind of technical depth you rarely find in consulting. We've already booked our next project.",                                name: 'Head of Research',       role: 'Biotech SME',           initials: 'HR', avatarBg: B.accentLight,    avatarColor: B.accent    },
-    { text: "WellMind Data Solutions cut our model deployment time by 70%. Their system-driven approach is unlike anything we've seen before.",                                        name: 'Sarah Chen',             role: 'CTO, NexaFinance',      initials: 'SC', avatarBg: B.secondaryLight, avatarColor: B.secondary },
+    { text: "WellMind Data Solutions cut our model deployment time by 70%. Their system-driven approach is unlike anything we've seen before.",                                        name: 'CTO',                    role: 'Fintech Startup',       initials: 'FT', avatarBg: B.secondaryLight, avatarColor: B.secondary },
   ];
 
   return (
@@ -450,11 +445,7 @@ export default function Home() {
         <div className="wm-home-hero-inner" style={{ ...PX, width: '100%', position: 'relative', zIndex: 10, paddingLeft: 'clamp(28px, 5vw, 76px)', paddingRight: 'clamp(28px, 5vw, 76px)', paddingTop: 'clamp(48px, 6vw, 72px)', paddingBottom: 'clamp(56px, 6vw, 88px)', boxSizing: 'border-box' }}>
           <div className="wm-hero-grid">
             <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.10 } } }} style={{ minWidth: 0 }}>
-              <motion.div variants={fadeUp} custom={0.02} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 14px', borderRadius: 99, background: 'linear-gradient(90deg, rgba(109,40,217,0.10), rgba(217,54,104,0.08))', color: '#7C3AED', fontSize: 'clamp(10px, 1vw, 13px)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', border: '1px solid rgba(109,40,217,0.18)', marginBottom: 'clamp(16px, 2vw, 24px)' }}>
-                <Sparkles size={14} /> AI + DATA + IMPACT
-              </motion.div>
-
-              <motion.h1 variants={fadeUp} custom={0.05} style={{ fontFamily: 'var(--font-main)', fontWeight: 800, fontSize: 'var(--fs-hero)', lineHeight: 1.06, letterSpacing: '-0.035em', margin: 0, marginTop: 'clamp(6px, 1vw, 12px)', maxWidth: 850 }}>
+              <motion.h1 variants={fadeUp} custom={0.05} style={{ fontFamily: 'var(--font-main)', fontWeight: 800, fontSize: 'var(--fs-hero)', lineHeight: 1.06, letterSpacing: '-0.035em', margin: 0, maxWidth: 850 }}>
                 <span style={{ color: '#24113D' }}>We Turn Complex Data </span><br />
                 <span style={{ background: 'linear-gradient(90deg, #6D28D9 0%, #D93668 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Into Intelligent Decisions</span>
               </motion.h1>
@@ -462,8 +453,7 @@ export default function Home() {
               <motion.div variants={fadeUp} custom={0.12} className="wm-hero-divider" style={{ width: 72, height: 4, borderRadius: 99, background: 'linear-gradient(90deg, #7C3AED, #D93668)', margin: 'clamp(16px, 2vw, 24px) 0' }} />
 
               <motion.p variants={fadeUp} custom={0.18} style={{ fontFamily: 'var(--font-main)', fontSize: 'clamp(0.9rem, 1.5vw, 1.18rem)', color: '#625B72', maxWidth: 720, margin: '0 0 clamp(20px, 2.5vw, 32px)', letterSpacing: '0.005em', lineHeight: 1.7 }}>
-                WellMind Data Solutions delivers specialist bioinformatics, healthcare AI, & data science consulting.<br className="hero-br" />
-                Trusted by researchers, startups, and enterprises across five countries.
+                Custom AI, machine learning, and analytics for healthcare, insurance, retail, and finance. We take you from raw data to production-ready models your team can understand and trust.
               </motion.p>
 
               <motion.div variants={fadeUp} custom={0.22} style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginBottom: 'clamp(24px, 3vw, 38px)' }}>
@@ -475,23 +465,6 @@ export default function Home() {
                 </Link>
               </motion.div>
 
-              <motion.div variants={fadeUp} custom={0.28} className="wm-hero-trust" style={{ marginTop: 'clamp(20px, 2.5vw, 32px)' }}>
-                <div className="wm-hero-trust-label" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                  <span style={{ height: 1, width: 42, background: 'rgba(217,54,104,0.35)' }} />
-                  <span style={{ color: '#D93668', fontSize: 12, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Recognized For</span>
-                  <span style={{ height: 1, width: 42, background: 'rgba(217,54,104,0.35)' }} />
-                </div>
-                <div className="wm-hero-trust-items" style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                  {heroTrustItems.map((item, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 12px', fontSize: 'clamp(11px, 1.1vw, 14px)', fontWeight: 700, color: '#3F3650', background: 'rgba(255,255,255,0.82)', borderRadius: 12, border: '1px solid rgba(109,40,217,0.12)', boxShadow: '0 8px 24px rgba(91,33,182,0.06)' }}>
-                      <span style={{ width: 24, height: 24, borderRadius: 7, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${item.accent}18` }}>
-                        {React.cloneElement(item.icon, { size: 14, color: item.accent, strokeWidth: 2.5 })}
-                      </span>
-                      {item.label}
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
             </motion.div>
 
             <motion.div className="wm-hero-visual" initial={{ opacity: 0, x: 40, scale: 0.96 }} animate={{ opacity: 1, x: 0, scale: 1 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
@@ -511,10 +484,10 @@ export default function Home() {
             <SectionBadge dark style={{ color: B.textDarkMuted, marginBottom: 20 }}>Our Impact</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 'clamp(20px, 3.5vw, 40px)', textAlign: 'center' }}>Results that Speak</h2>
             <div className="grid-stats" style={{ width: '100%' }}>
-              <StatCard target={40} suffix="%" label={<span style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', fontWeight: 600 }}>Cost Reduction</span>}    icon={<BarChart3 size={20} />} start={statsVisible} delay={0}   theme={{ color: '#9D4EDD', darkColor: '#7C3AED', bg: 'rgba(157,78,221,0.1)'  }} />
-              <StatCard target={3}  suffix="x" label={<span style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', fontWeight: 600 }}>Faster Delivery</span>}   icon={<Zap size={20} />}      start={statsVisible} delay={0.1} theme={{ color: '#FF9F1C', darkColor: '#E08E00', bg: 'rgba(255,159,28,0.1)'  }} />
-              <StatCard target={50} suffix="+" label={<span style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', fontWeight: 600 }}>Enterprise Models</span>} icon={<Brain size={20} />}    start={statsVisible} delay={0.2} theme={{ color: '#00BBF9', darkColor: '#00A8D6', bg: 'rgba(0,187,249,0.1)'   }} />
-              <StatCard target={99} suffix="%" label={<span style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', fontWeight: 600 }}>Uptime SLA</span>}        icon={<Shield size={20} />}   start={statsVisible} delay={0.3} theme={{ color: '#00F5D4', darkColor: '#00C4A9', bg: 'rgba(0,245,212,0.1)'   }} />
+              <StatCard value="Lower"  label={<span style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', fontWeight: 600 }}>Project Costs</span>}       icon={<BarChart3 size={20} />} start={statsVisible} delay={0}   theme={{ color: '#9D4EDD', darkColor: '#7C3AED', bg: 'rgba(157,78,221,0.1)'  }} />
+              <StatCard value="Faster" label={<span style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', fontWeight: 600 }}>Time to Delivery</span>}    icon={<Zap size={20} />}      start={statsVisible} delay={0.1} theme={{ color: '#FF9F1C', darkColor: '#E08E00', bg: 'rgba(255,159,28,0.1)'  }} />
+              <StatCard value="Proven" label={<span style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', fontWeight: 600 }}>Enterprise Models</span>}   icon={<Brain size={20} />}    start={statsVisible} delay={0.2} theme={{ color: '#00BBF9', darkColor: '#00A8D6', bg: 'rgba(0,187,249,0.1)'   }} />
+              <StatCard value="Reliable" label={<span style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', fontWeight: 600 }}>Production Deployments</span>} icon={<Shield size={20} />}   start={statsVisible} delay={0.3} theme={{ color: '#00F5D4', darkColor: '#00C4A9', bg: 'rgba(0,245,212,0.1)'   }} />
             </div>
           </div>
         </div>
@@ -630,7 +603,6 @@ export default function Home() {
             </motion.div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(12px, 2.5vw, 32px)', justifyContent: 'center', alignItems: 'center' }}>
               {[
-                { icon: <Mail size={16} />,          label: 'wellminddatasolutions@gmail.com',    href: 'mailto:wellminddatasolutions@gmail.com' },
                 { icon: <MessageCircle size={16} />, label: 'WhatsApp: +92 323 6787087', href: 'https://wa.me/923236787087' },
                 { icon: <FaLinkedin size={16} />,    label: 'LinkedIn',                   href: 'https://www.linkedin.com/company/wellmind-data-solutions' },
               ].map((c, i) => (

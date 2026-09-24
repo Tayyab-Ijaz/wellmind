@@ -147,12 +147,12 @@ export default function IndustryHealthcare() {
   }, []);
 
   const capabilities = [
-    { icon: <DollarSign size={22} />, color: B.primary, title: 'AR Prioritization & Underpayment Recovery', desc: 'A LightGBM classifier trained on public CMS data that flags underpaid Medicare claims and ranks them into a prioritized AR workqueue — surfacing a $15B recovery opportunity across 6.1M claims.' },
+    { icon: <DollarSign size={22} />, color: B.primary, title: 'AR Prioritization & Underpayment Recovery', desc: 'A LightGBM classifier trained on public CMS data that flags underpaid Medicare claims and ranks them into a prioritized AR workqueue, surfacing a $15B recovery opportunity across 6.1M claims.' },
     { icon: <Activity size={22} />, color: B.accent, title: 'Claim Denial Prediction', desc: 'A boosted-tree risk model plus a DistilBERT root-cause classifier that predicts denial probability before submission and identifies the operational fix behind existing denials.' },
     { icon: <TrendingUp size={22} />, color: B.secondary, title: 'RCM & Prior-Auth Forecasting', desc: 'A 90-day Medicare Advantage enrollment forecast (0.048% holdout MAPE) built entirely on public CMS data, flagging prior-authorization exposure directly from CMS benefit fields.' },
     { icon: <Brain size={22} />, color: B.primary, title: 'Clinical NLP for Hospital Records', desc: 'A named-entity-recognition pipeline that extracts diagnoses, medications, and procedures from unstructured notes, with de-identification built in before any storage.' },
     { icon: <FlaskConical size={22} />, color: B.accent, title: 'Single-Cell RNA-seq Analysis', desc: 'An automated clustering pipeline combining PCA/t-SNE/UMAP dimensionality reduction with BIC-optimized GMM and DBSCAN for scRNA-seq cell-state discovery.' },
-    { icon: <ShieldCheck size={22} />, color: B.secondary, title: 'Medicare Fraud Detection', desc: 'A composite Fraud Risk Score combining peer-benchmarking, anomaly detection, and OIG exclusion-list matching — analyzed 44,528 Medicare providers and flagged 3,842 as high-risk.' },
+    { icon: <ShieldCheck size={22} />, color: B.secondary, title: 'Medicare Fraud Detection', desc: 'A composite Fraud Risk Score combining peer-benchmarking, anomaly detection, and OIG exclusion-list matching. It analyzed 44,528 Medicare providers and flagged 3,842 as high-risk.' },
   ];
 
   const useCases = [
@@ -195,11 +195,11 @@ export default function IndustryHealthcare() {
   ];
 
   const faqs = [
-    { q: 'Do you work with real patient data?', a: 'Our delivered healthcare work runs entirely on public CMS and Medicare datasets — no PHI involved. For projects that do touch clinical notes, de-identification is built into the pipeline before any storage or processing.' },
+    { q: 'Do you work with real patient data?', a: 'Our delivered healthcare work runs entirely on public CMS and Medicare datasets. No PHI is involved. For projects that do touch clinical notes, de-identification is built into the pipeline before any storage or processing.' },
     { q: 'What data sources have you built pipelines for?', a: 'Public CMS Medicare enrollment, billing, and provider data; RVU and Physician Fee Schedule reference tables; unstructured clinical notes; and single-cell RNA-seq genomic datasets. We build custom ingestion for whatever source your project needs.' },
-    { q: 'How do you handle model explainability?', a: 'Our denial-prediction and fraud-detection models ship with SHAP-based feature importance and clear risk tiers, so the reasoning behind every score is visible — not a black box.' },
-    { q: 'What stage are your healthcare projects at?', a: "It varies by project — some (like our AR Prioritization Engine and Fraud Detection System) are fully built with live dashboards; others are validated concepts at README stage. We're upfront about which is which on every case study." },
-    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
+    { q: 'How do you handle model explainability?', a: 'Our denial-prediction and fraud-detection models ship with SHAP-based feature importance and clear risk tiers, so the reasoning behind every score is visible, not a black box.' },
+    { q: 'What stage are your healthcare projects at?', a: "It varies by project: some (like our AR Prioritization Engine and Fraud Detection System) are fully built with live dashboards; others are validated concepts at README stage. We're upfront about which is which on every case study." },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases, from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
@@ -252,7 +252,7 @@ export default function IndustryHealthcare() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  From revenue-cycle recovery to clinical NLP and genomics — we build practical AI systems on real CMS and clinical data. Real projects. Real code. Nothing theoretical.
+                  From revenue-cycle recovery to clinical NLP and genomics, we build practical AI systems on real CMS and clinical data. Real projects. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -485,12 +485,12 @@ export default function IndustryHealthcare() {
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.1rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  Most AI vendors understand either algorithms or healthcare data. We aim for both — building models on real CMS and clinical data, and shipping them as working dashboards and APIs, not one-off notebooks.
+                  Most AI vendors understand either algorithms or healthcare data. We aim for both: building models on real CMS and clinical data, and shipping them as working dashboards and APIs, not one-off notebooks.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Public-Data-First Where Possible', desc: 'Our RCM and forecasting work runs on public CMS data — no PHI risk, fully auditable methodology' },
-                    { title: 'Explainable by Design', desc: 'Denial and fraud models ship with SHAP feature importance and clear risk tiers — not black boxes' },
+                    { title: 'Public-Data-First Where Possible', desc: 'Our RCM and forecasting work runs on public CMS data, no PHI risk, fully auditable methodology' },
+                    { title: 'Explainable by Design', desc: 'Denial and fraud models ship with SHAP feature importance and clear risk tiers, not black boxes' },
                     { title: 'Privacy-Built-In for Clinical NLP', desc: 'De-identification is designed into the pipeline before any clinical text is stored or processed' },
                     { title: 'Honest About Maturity', desc: "We're upfront about what's live and deployed versus what's still a validated concept" },
                   ].map((item, i) => (
@@ -576,7 +576,7 @@ export default function IndustryHealthcare() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your clinical challenge — imaging, risk stratification, documentation, or trials. We'll give you an honest feasibility assessment. No pitch, no pressure.
+              Book a free 30-minute call. Tell us your clinical challenge: imaging, risk stratification, documentation, or trials. We'll give you an honest feasibility assessment. No pitch, no pressure.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>

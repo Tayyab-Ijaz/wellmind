@@ -5,7 +5,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowRight, Phone, MapPin } from 'lucide-react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import LogoImg from '../assets/WellMindDataSolutions-white-logo.png';
 import { B } from '../theme';
@@ -242,7 +242,6 @@ export default function Footer() {
             <h3 style={{ fontFamily: "'Plus Jakarta Sans', monospace", fontSize: 'clamp(11px, 1.5vw, 20px)', letterSpacing: '0.14em', textTransform: 'uppercase', color: B.actionSoft, marginBottom: 18, fontWeight: 700, opacity: 0.9 }}>Contact</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.8vw, 16px)', marginBottom: 22 }}>
               {[
-                { icon: <Mail size={18}/>,   val: 'wellminddatasolutions@gmail.com'  },
                 { icon: <Phone size={18}/>,  val: '+92 323 6787087' },
                 { icon: <MapPin size={18}/>, val: 'Faisalabad, Pakistan' },
               ].map((c, i) => (
@@ -272,11 +271,15 @@ export default function Footer() {
             © {new Date().getFullYear()} WellMind Data Solutions. All rights reserved.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(12px, 2vw, 20px)' }}>
-            {['Privacy Policy', 'Terms of Service', 'Cookie Settings'].map(l => (
-              <Link key={l} to="#" style={{ fontFamily: "'Plus Jakarta Sans', monospace", fontSize: 'clamp(11px, 1.3vw, 18px)', color: B.textDarkMuted, textDecoration: 'none', transition: 'color 0.2s' }}
+            {[
+              { label: 'Privacy Policy', to: '/privacy-policy' },
+              { label: 'Terms of Service', to: '/terms-of-service' },
+              { label: 'Cookie Policy', to: '/cookie-policy' },
+            ].map(l => (
+              <Link key={l.to} to={l.to} style={{ fontFamily: "'Plus Jakarta Sans', monospace", fontSize: 'clamp(11px, 1.3vw, 18px)', color: B.textDarkMuted, textDecoration: 'none', transition: 'color 0.2s' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#C4B5FD'}
                 onMouseLeave={e => e.currentTarget.style.color = B.textDarkMuted}
-              >{l}</Link>
+              >{l.label}</Link>
             ))}
           </div>
         </motion.div>

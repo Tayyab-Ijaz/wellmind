@@ -59,7 +59,6 @@ function GenomicsPipeline({ steps, accentColor }) {
   const miniStats = [
     { l: '60%',  s: 'Faster Analysis', c: color      },
     { l: '99.9%',s: 'Reproducible',    c: B.action   },
-    { l: '25+',  s: 'Publications',    c: B.primary   },
   ];
 
   return (
@@ -863,12 +862,6 @@ export default function BioinformaticsChildPage() {
                   textTransform: 'uppercase', marginBottom: 10,
                 }}>
                   {tier.name}
-                </div>
-                <div style={{
-                  fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
-                  color: B.textDark, marginBottom: 6,
-                }}>
-                  {tier.price}
                 </div>
                 <p style={{
                   fontSize: 'clamp(0.85rem, 1.4vw, 1.05rem)',

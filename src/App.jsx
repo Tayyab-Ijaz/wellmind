@@ -16,6 +16,9 @@ const IndividualCaseStudy = lazy(() => import('./pages/IndividualCaseStudy'));
 const Resources = lazy(() => import('./pages/Resources'));
 const BookDiscovery = lazy(() => import('./pages/BookDiscovery'));
 const CostCalculator = lazy(() => import('./pages/CostCalculator/CostCalculator'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
 
 const IndustryFinancial = lazy(() => import('./pages/Industries/IndustryFinancial'));
 const IndustryHealthcare = lazy(() => import('./pages/Industries/IndustryHealthcare'));
@@ -89,6 +92,9 @@ function App() {
               <Route path="/resources" element={<Resources/>}/>
               <Route path="/book-discovery" element={<BookDiscovery/>}/>
               <Route path="/ai-cost-calculator" element={<CostCalculator/>}/>
+              <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
+              <Route path="/terms-of-service" element={<TermsOfService/>}/>
+              <Route path="/cookie-policy" element={<CookiePolicy/>}/>
 
               <Route path="/industry-financial-service" element={<IndustryFinancial/>}/>
               <Route path="/industry-healthcare" element={<IndustryHealthcare/>}/>

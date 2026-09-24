@@ -156,40 +156,40 @@ export default function IndustryFinancial() {
   const capabilities = [
     { icon: <Activity size={22} />,      color: B.primary, title: 'Insurance Risk Scoring',           desc: 'A Gradient Boosting model scoring customers across 45 financial, demographic, and behavioral features into Low, Medium, or High risk tiers via an interactive Streamlit app.' },
     { icon: <AlertTriangle size={22} />, color: B.action,  title: 'Real-Time Fraud Detection',        desc: 'A transaction-scoring concept combining supervised and unsupervised models into a single 0–100 risk score, with tiered auto-approve / review / block decisioning.' },
-    { icon: <ShieldCheck size={22} />,   color: B.secondary, title: 'Policy Document Classification',  desc: 'A React Native mobile app that classifies insurance policy documents by type and extracts key fields — including from scanned, multi-page PDFs.' },
+    { icon: <ShieldCheck size={22} />,   color: B.secondary, title: 'Policy Document Classification',  desc: 'A React Native mobile app that classifies insurance policy documents by type and extracts key fields, including from scanned, multi-page PDFs.' },
     { icon: <RefreshCw size={22} />,     color: B.accent,  title: 'Regulatory Form Automation (RPA)', desc: 'A Playwright-driven bot that auto-fills regulatory and government forms from stored client data, pausing only for CAPTCHAs or genuinely missing fields.' },
-    { icon: <DollarSign size={22} />,    color: B.action,  title: 'Invoice Data Extraction',          desc: 'A document-processing pipeline that extracts invoice fields — customer details, dates, amounts, charges — into validated, structured records for AP workflows.' },
+    { icon: <DollarSign size={22} />,    color: B.action,  title: 'Invoice Data Extraction',          desc: 'A document-processing pipeline that extracts invoice fields (customer details, dates, amounts, charges) into validated, structured records for AP workflows.' },
   ];
 
   const useCases = [
     {
       icon: <Activity />, color: B.primary, slug: 'insurance-risk-scoring',
       title: 'Insurance Risk Scoring',
-      desc: 'A Gradient Boosting Classifier trained on 45 engineered features — income, credit score, claims history, vehicle and policy data, behavioral signals — to classify customers into Low, Medium, or High risk, deployed through an interactive Streamlit app with feature-importance visualisations.',
+      desc: 'A Gradient Boosting Classifier trained on 45 engineered features (income, credit score, claims history, vehicle and policy data, behavioral signals) to classify customers into Low, Medium, or High risk, deployed through an interactive Streamlit app with feature-importance visualisations.',
       metrics: [{ val: '45', label: 'Model Features' }, { val: '3', label: 'Risk Tiers' }, { val: 'Live', label: 'Streamlit App' }],
     },
     {
       icon: <ShieldCheck />, color: B.secondary, slug: 'insurance-policy-document-classification',
       title: 'Insurance Policy Document Classification',
-      desc: 'A domain-trained document intelligence platform, shipped as a React Native/Expo mobile app, that classifies incoming insurance documents by policy type and extracts key fields — combining OCR with visual-structure analysis to handle scanned and multi-page PDFs.',
+      desc: 'A domain-trained document intelligence platform, shipped as a React Native/Expo mobile app, that classifies incoming insurance documents by policy type and extracts key fields, combining OCR with visual-structure analysis to handle scanned and multi-page PDFs.',
       metrics: [{ val: 'Mobile', label: 'React Native App' }, { val: 'OCR', label: 'Scanned + Multi-Page' }, { val: 'HITL', label: 'Review Queue' }],
     },
     {
       icon: <RefreshCw />, color: B.accent, slug: 'regulatory-form-auto-completion',
       title: 'Regulatory Form Auto-Completion (RPA)',
-      desc: 'A Playwright-driven RPA bot that opens a real browser, pulls client data from Supabase, and auto-fills regulatory or government forms field-by-field — pausing only for CAPTCHAs or genuinely missing data, with an AI (Groq) field mapper and a React human-in-the-loop dashboard.',
+      desc: 'A Playwright-driven RPA bot that opens a real browser, pulls client data from Supabase, and auto-fills regulatory or government forms field-by-field, pausing only for CAPTCHAs or genuinely missing data, with an AI (Groq) field mapper and a React human-in-the-loop dashboard.',
       metrics: [{ val: 'Full', label: 'Field Auto-Fill' }, { val: '2', label: 'HITL Triggers Only' }, { val: 'Live', label: 'Run Logging' }],
     },
     {
       icon: <AlertTriangle />, color: B.action, slug: 'real-time-fraud-detection',
       title: 'Real-Time Fraud Detection System',
-      desc: 'A concept design for scoring every transaction in real time — combining a supervised fraud classifier with unsupervised anomaly detection into a single weighted 0–100 risk score, feeding a tiered auto-approve / review / auto-block decision system with a continuous analyst feedback loop.',
+      desc: 'A concept design for scoring every transaction in real time: combining a supervised fraud classifier with unsupervised anomaly detection into a single weighted 0–100 risk score, feeding a tiered auto-approve / review / auto-block decision system with a continuous analyst feedback loop.',
       metrics: [{ val: '0–100', label: 'Risk Score' }, { val: '3-Tier', label: 'Decisioning' }, { val: 'Concept', label: 'Current Stage' }],
     },
     {
       icon: <DollarSign />, color: B.primary, slug: 'accounts-payable-invoice-extraction',
       title: 'Accounts Payable Invoice Extraction',
-      desc: 'A document-processing pipeline that ingests invoices, extracts customer details, dates, amounts, and charges, validates completeness, and outputs structured records ready for downstream AP processing — built and tested as a Python notebook prototype.',
+      desc: 'A document-processing pipeline that ingests invoices, extracts customer details, dates, amounts, and charges, validates completeness, and outputs structured records ready for downstream AP processing. It was built and tested as a Python notebook prototype.',
       metrics: [{ val: '6+', label: 'Fields Extracted' }, { val: 'Structured', label: 'Output Format' }, { val: 'Prototype', label: 'Current Stage' }],
     },
   ];
@@ -197,9 +197,9 @@ export default function IndustryFinancial() {
   const faqs = [
     { q: 'What financial data sources do you work with?', a: 'It depends on the project. Our delivered work has integrated with structured customer/policy data, document/invoice sources (PDFs, scans), and live browser sessions for RPA workflows. We build the pipeline around whatever data your systems already produce.' },
     { q: 'How do you approach model explainability?', a: 'For risk-scoring models, we surface feature-importance visualisations directly in the app (as in our Insurance Risk Scoring build) so the drivers behind every score are visible, not a black box.' },
-    { q: 'Can you work within our existing data infrastructure?', a: 'Yes. Our stack is deliberately lightweight and portable — Python, FastAPI, React/React Native, Streamlit, Playwright, and Supabase — so it integrates into most modern cloud or on-prem setups without forcing you onto unfamiliar infrastructure.' },
+    { q: 'Can you work within our existing data infrastructure?', a: 'Yes. Our stack is deliberately lightweight and portable (Python, FastAPI, React/React Native, Streamlit, Playwright, and Supabase), so it integrates into most modern cloud or on-prem setups without forcing you onto unfamiliar infrastructure.' },
     { q: 'Do you sign NDAs before starting work?', a: 'Yes, always. We execute an NDA before any project details or data are shared, and we\'re happy to work within whatever data-handling process your team already has in place.' },
-    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system. Timelines vary by project scope, and we agree them upfront before starting.' },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases, from a working prototype through to a deployed, documented system. Timelines vary by project scope, and we agree them upfront before starting.' },
   ];
 
   return (
@@ -253,7 +253,7 @@ export default function IndustryFinancial() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  From insurance risk scoring to regulatory form automation — we build practical, working AI systems for insurers, lenders, and financial operations teams. Real projects. Real code. Nothing theoretical.
+                  From insurance risk scoring to regulatory form automation, we build practical, working AI systems for insurers, lenders, and financial operations teams. Real projects. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -492,11 +492,11 @@ export default function IndustryFinancial() {
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.1rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  Most AI vendors understand either finance or software engineering. We aim for both — building models and shipping them as real, usable applications, not one-off notebooks that never leave the lab.
+                  Most AI vendors understand either finance or software engineering. We aim for both: building models and shipping them as real, usable applications, not one-off notebooks that never leave the lab.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Explainable by Design', desc: 'Risk and scoring models ship with visible feature-importance and clear decision logic — not black boxes' },
+                    { title: 'Explainable by Design', desc: 'Risk and scoring models ship with visible feature-importance and clear decision logic, not black boxes' },
                     { title: 'Built to Actually Ship', desc: 'Every project is delivered as a working app or API, not just a proof-of-concept notebook' },
                     { title: 'Honest About Maturity', desc: "We're upfront about what's live and deployed versus what's still a concept or prototype" },
                     { title: 'Fixed-Fee Scoping', desc: 'Clear scope and pricing agreed upfront. No billable-hour surprises.' },
@@ -583,7 +583,7 @@ export default function IndustryFinancial() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your risk, compliance, or growth challenge. We'll tell you exactly what's possible — no pitch, no pressure.
+              Book a free 30-minute call. Tell us your risk, compliance, or growth challenge. We'll tell you exactly what's possible. No pitch, no pressure.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>

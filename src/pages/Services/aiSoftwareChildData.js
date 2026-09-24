@@ -36,7 +36,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Product Development',
     accentColor: COLORS.secondary,
     heroDesc:    'We build SaaS products that ship fast and scale reliably. Multi-tenancy, subscription billing, role-based access, and AI capabilities designed as product features — not afterthoughts. From database schema to deployment pipeline, we own the full build so you can focus on selling.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $9,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'React Frontend',    color: COLORS.accent,    icons: ['React', 'Next.js', 'Tailwind'] },
@@ -110,7 +110,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Product Development',
     accentColor: COLORS.action,
     heroDesc:    'The fastest way to validate an AI product idea is to build a real one and put it in front of users. We design and build functional prototypes — connected to real APIs, running real models — in 2–3 weeks. You get something to demo to investors, test with customers, and use to raise funding or internal approval.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'UI / Demo Layer',   color: COLORS.accent,    icons: ['React', 'Vite', 'Tailwind'] },
@@ -183,7 +183,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Product Development',
     accentColor: COLORS.accent,
     heroDesc:    'An MVP is not a prototype and not a full product — it\'s the minimum set of features that lets real users tell you what to build next. We design MVPs with discipline: no scope creep, no gold-plating, no features that can\'t be validated. You get something real in the market within 6–8 weeks.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'User Interface',    color: COLORS.accent,    icons: ['React', 'Next.js'] },
@@ -257,7 +257,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Product Development',
     accentColor: COLORS.purple,
     heroDesc:    'Scaling is an engineering discipline, not just throwing more servers at the problem. We audit your current architecture, identify the constraints, and redesign the bottlenecks — database queries, caching strategy, API throughput, AI inference costs — so your product can grow without re-platforming.',
-    tags:        ['Fixed-Fee Audits', 'Performance Guaranteed', 'From $5,000'],
+    tags:        ['Fixed-Fee Audits', 'Performance Guaranteed'],
 
     archLayers: [
       { label: 'Load Balancer',     color: COLORS.accent,    icons: ['AWS ALB', 'Nginx', 'Cloudflare'] },
@@ -335,7 +335,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Integration & APIs',
     accentColor: COLORS.action,
     heroDesc:    'A poorly designed API becomes a permanent liability — hard to maintain, painful to integrate, and expensive to version. We design and build production-grade REST and GraphQL APIs with OpenAPI documentation, auth, rate-limiting, versioning, and monitoring included by default.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'API Gateway',       color: COLORS.accent,    icons: ['Auth', 'Rate Limit', 'CORS'] },
@@ -409,7 +409,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Integration & APIs',
     accentColor: COLORS.secondary,
     heroDesc:    'Third-party integrations are where AI products live or die — connecting to CRMs, ERPs, data warehouses, and external AI APIs without creating a maintenance nightmare. We build clean, monitored, and documented integrations that handle rate limits, auth flows, schema changes, and error states gracefully.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'Integration Hub',   color: COLORS.accent,    icons: ['Webhooks', 'OAuth', 'API Keys'] },
@@ -483,7 +483,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Integration & APIs',
     accentColor: COLORS.accent,
     heroDesc:    'Microservices are a solution to a specific problem — not a default architecture choice. We assess whether decomposition is right for your stage, design service boundaries that reflect actual business domains, and build or migrate to a microservices architecture that can be owned by small teams and deployed independently.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $8,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'API Gateway',       color: COLORS.accent,    icons: ['Auth', 'Routing', 'Rate Limit'] },
@@ -557,7 +557,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Integration & APIs',
     accentColor: COLORS.purple,
     heroDesc:    'Event-driven architecture makes systems resilient, scalable, and decoupled. We design and build event-driven systems using Kafka, RabbitMQ, or AWS SNS/SQS — with event schemas, consumer groups, dead-letter queues, and the observability to understand what\'s happening across the entire event graph.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $7,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'Event Producers',   color: COLORS.accent,    icons: ['APIs', 'Webhooks', 'CDC'] },
@@ -635,7 +635,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'AI Feature Engineering',
     accentColor: COLORS.action,
     heroDesc:    'Most products don\'t need a new AI product — they need AI features added to what already works. We embed LLM-powered capabilities, computer vision, or ML predictions directly into your existing application — with clean API boundaries, fallback logic, and cost controls from day one.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'Your Existing App',  color: COLORS.accent,    icons: ['React', 'Django', 'Rails'] },
@@ -709,7 +709,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'AI Feature Engineering',
     accentColor: COLORS.secondary,
     heroDesc:    'Recommendation systems are one of the highest-ROI AI investments a product can make — but they fail when built on the wrong algorithm for the data density and business context. We design, train, and deploy recommendation engines matched to your product: collaborative filtering, content-based, or hybrid approaches depending on what your data supports.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'Product UI',        color: COLORS.accent,    icons: ['React', 'Mobile', 'Email'] },
@@ -783,7 +783,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'AI Feature Engineering',
     accentColor: COLORS.accent,
     heroDesc:    'Keyword search fails when users don\'t know the exact terms to use. We build semantic and hybrid search systems — embedding-based retrieval, re-ranking, and query understanding — that surface the right results even when the query is vague, misspelled, or in natural language.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'Search UI',         color: COLORS.accent,    icons: ['React', 'Autocomplete'] },
@@ -857,7 +857,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'AI Feature Engineering',
     accentColor: COLORS.purple,
     heroDesc:    'Personalisation goes beyond recommendations — it\'s about adapting the entire product experience: content ordering, feature prominence, messaging tone, and journey sequencing based on real signals about each user. We design and build personalisation systems that improve over time and respect privacy from day one.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $7,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     archLayers: [
       { label: 'Personalised UI',    color: COLORS.accent,    icons: ['React', 'Dynamic Content'] },
@@ -935,7 +935,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Infrastructure',
     accentColor: COLORS.action,
     heroDesc:    'Architecture decisions made early are the ones you live with longest. We design systems that fit your current stage and scale with your growth — not over-engineered for problems you don\'t have yet. From data flow diagrams to ADRs to hands-on prototyping, we make the architecture concrete before a line of production code is written.',
-    tags:        ['Fixed-Fee Engagements', 'Full Documentation', 'From $4,000'],
+    tags:        ['Fixed-Fee Engagements', 'Full Documentation'],
 
     archLayers: [
       { label: 'Frontend / Clients', color: COLORS.accent,    icons: ['Web', 'Mobile', 'API Clients'] },
@@ -1009,7 +1009,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Infrastructure',
     accentColor: COLORS.secondary,
     heroDesc:    '"Works locally" is not a product. We design and execute cloud deployments on AWS or GCP — Kubernetes clusters, managed databases, CDN configuration, auto-scaling, and cost controls — so your application is production-grade from the first deployment, not retrofitted after the first outage.',
-    tags:        ['Fixed-Fee Projects', 'Full IaC Ownership', 'From $4,500'],
+    tags:        ['Fixed-Fee Projects', 'Full IaC Ownership'],
 
     archLayers: [
       { label: 'CDN / Edge',         color: COLORS.accent,    icons: ['CloudFront', 'Cloudflare'] },
@@ -1083,7 +1083,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Infrastructure',
     accentColor: COLORS.accent,
     heroDesc:    'A missing CI/CD pipeline is a hidden tax on every engineer on your team. We design and implement deployment pipelines, environment management, and observability stacks that let engineers ship confidently multiple times per day — with automated tests, zero-downtime deployments, and rollback in under two minutes.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Ownership', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Pipeline Ownership'],
 
     archLayers: [
       { label: 'Code + PR',          color: COLORS.accent,    icons: ['GitHub', 'PR Checks'] },
@@ -1157,7 +1157,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Infrastructure',
     accentColor: COLORS.purple,
     heroDesc:    'Security built in late costs ten times more than security built in early. We design and implement security architectures for AI software products — threat modelling, auth systems, network security, secrets management, and compliance frameworks for HIPAA, GDPR, or SOC 2 — so you\'re secure from the first deployment.',
-    tags:        ['Fixed-Fee Projects', 'Compliance Documentation', 'From $5,000'],
+    tags:        ['Fixed-Fee Projects', 'Compliance Documentation'],
 
     archLayers: [
       { label: 'Auth & Identity',   color: COLORS.accent,    icons: ['OAuth', 'MFA', 'RBAC'] },

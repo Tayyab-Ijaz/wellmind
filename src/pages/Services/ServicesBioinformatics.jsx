@@ -411,10 +411,10 @@ const features = [
 ];
 
 const processes = [
-  { step: '01', title: 'Data Review & QC',         desc: 'We assess raw data quality, flag coverage issues, contamination, or batch effects, and agree on the analysis approach — before a single pipeline run.' },
+  { step: '01', title: 'Data Review & QC',         desc: 'We assess raw data quality, flag coverage issues, contamination, or batch effects, and agree on the analysis approach before a single pipeline run.' },
   { step: '02', title: 'Pipeline Configuration',   desc: 'Tool selection, parameter tuning for your organism and experimental design, and containerised environment setup to ensure full reproducibility across runs.' },
   { step: '03', title: 'Analysis & Interpretation',desc: 'Variant calling, differential expression, pathway enrichment, and statistical analysis with domain expertise guiding biological interpretation at each stage.' },
-  { step: '04', title: 'Delivery & Documentation', desc: 'Publication-ready outputs, annotated code notebooks, pipeline documentation, and a findings summary written for your intended audience — lab, clinic, or journal.' },
+  { step: '04', title: 'Delivery & Documentation', desc: 'Publication-ready outputs, annotated code notebooks, pipeline documentation, and a findings summary written for your intended audience: lab, clinic, or journal.' },
 ];
 
 const deliverables = [
@@ -437,7 +437,6 @@ const stats = [
   { target: 99,  suffix: '%', label: 'Variant Accuracy',      icon: <Activity size={20}/>,   theme: { color: AC,       bg: `${AC}15`              } },
   { target: 60,  suffix: '%', label: 'Faster Analysis',        icon: <Zap size={20}/>,        theme: { color: B.action, bg: 'rgba(11, 124, 147,0.1)' } },
   { target: 15,  suffix: '+', label: 'Organisms Supported',    icon: <Globe size={20}/>,      theme: { color: '#9D4EDD',bg: 'rgba(157,78,221,0.1)' } },
-  { target: 25,  suffix: '+', label: 'Publications Supported', icon: <BookOpen size={20}/>,   theme: { color: '#FF9F1C',bg: 'rgba(255,159,28,0.1)' } },
 ];
 
 const techStack = [
@@ -517,7 +516,7 @@ export default function ServicesBioinformatics() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  WellMind Data Solutions delivers end-to-end bioinformatics analysis pipelines for genomics, transcriptomics, and multi-omics research. From FASTQ to publication-ready figures — we produce clean code, reproducible results, and findings your PI and collaborators can act on.
+                  WellMind Data Solutions delivers end-to-end bioinformatics analysis pipelines for genomics, transcriptomics, and multi-omics research. From FASTQ to publication-ready figures, we produce clean code, reproducible results, and findings your PI and collaborators can act on.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.5vw, 16px)' }}>
@@ -561,7 +560,7 @@ export default function ServicesBioinformatics() {
                 borderTop: `1px solid ${B.primaryBorder}40`
               }}
             >
-              {['Starting at $1,500', 'Academic & Clinical', 'Publication-Ready'].map((t, i) => (
+              {['Academic & Clinical', 'Publication-Ready'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
@@ -626,7 +625,7 @@ export default function ServicesBioinformatics() {
               What We Analyse
             </h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              From variant calling to multi-omics integration — every analysis pipeline we build is reproducible, documented, and production-grade.
+              From variant calling to multi-omics integration, every analysis pipeline we build is reproducible, documented, and production-grade.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -669,7 +668,7 @@ export default function ServicesBioinformatics() {
               <SectionBadge color={AC}>Deliverables</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>What You Receive</h2>
               <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
-                Every project is delivered with reproducible code, clean documentation, and outputs written for your intended audience — from lab journals to regulatory submissions.
+                Every project is delivered with reproducible code, clean documentation, and outputs written for your intended audience: from lab journals to regulatory submissions.
               </p>
               {deliverables.map((d, i) => {
                 const color = processColors[i % processColors.length];
@@ -713,7 +712,6 @@ export default function ServicesBioinformatics() {
               >
                 {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: AC, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
                 <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: AC, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
-                <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>{tier.price}</div>
                 <p style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1.05rem)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
                 <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
                   {tier.features.map((f, fi) => (
@@ -762,7 +760,7 @@ export default function ServicesBioinformatics() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Share your data challenge with us. We'll tell you what analysis is feasible, what it costs, and whether we're the right team — before you commit to anything.
+              Share your data challenge with us. We'll tell you what analysis is feasible, what it costs, and whether we're the right team, before you commit to anything.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/contact" style={{

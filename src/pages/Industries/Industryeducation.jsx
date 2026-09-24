@@ -199,7 +199,7 @@ export default function IndustryEducation() {
     {
       icon: <Brain />, color: B.primary, slug: 'adaptive-learning-engine',
       title: 'Adaptive Learning Engine',
-      desc: 'A per-skill mastery engine designed to track each student\'s progress at the individual math skill level, adjust question difficulty in real time based on correctness and response time, and recommend the next best exercise — so every student follows a path suited to their own pace.',
+      desc: 'A per-skill mastery engine designed to track each student\'s progress at the individual math skill level, adjust question difficulty in real time based on correctness and response time, and recommend the next best exercise. Every student follows a path suited to their own pace.',
       metrics: [{ val: 'Bayesian', label: 'Mastery Modeling' }, { val: 'Real-Time', label: 'Difficulty Adjustment' }, { val: 'Concept', label: 'Current Stage' }],
     },
   ];
@@ -207,9 +207,9 @@ export default function IndustryEducation() {
   const faqs = [
     { q: 'What education work have you actually delivered?', a: "One real project so far: an adaptive math-learning engine, currently at concept stage. We're upfront that this is our current education-sector portfolio, not a long list of institutional deployments." },
     { q: 'How does the mastery-tracking approach work?', a: 'It uses a Bayesian/probabilistic approach (Bayesian Knowledge Tracing or Item Response Theory) to track mastery separately at the individual skill and sub-skill level, rather than a single overall subject score.' },
-    { q: 'What signals adjust question difficulty?', a: "Correctness, response time, and hint usage feed into a real-time difficulty adjustment — so a student who's struggling gets easier reinforcement, and one who's excelling gets pushed further, automatically." },
-    { q: 'Is this deployed in a live classroom or platform?', a: "Not yet — it's a validated concept, not a live production deployment. We're transparent with every prospective client about exactly what stage a given build is at before scoping new work." },
-    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
+    { q: 'What signals adjust question difficulty?', a: "Correctness, response time, and hint usage feed into a real-time difficulty adjustment. A student who's struggling gets easier reinforcement automatically, while one who's excelling gets pushed further." },
+    { q: 'Is this deployed in a live classroom or platform?', a: "Not yet. It's a validated concept, not a live production deployment. We're transparent with every prospective client about exactly what stage a given build is at before scoping new work." },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases, from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
@@ -371,7 +371,7 @@ export default function IndustryEducation() {
               Built for the Complexity of{' '}
               <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Education</span>
             </h2>
-            <p className="section-lead">One real, delivered project — a per-skill adaptive math mastery engine.</p>
+            <p className="section-lead">One real, delivered project: a per-skill adaptive math mastery engine.</p>
           </motion.div>
 
           {/* Capabilities Grid */}
@@ -495,11 +495,11 @@ export default function IndustryEducation() {
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.1rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  We're a small, honest team — our education-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and validate properly.
+                  We're a small, honest team. Our education-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and validate properly.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Per-Skill, Not Per-Subject',       desc: 'We track mastery at the individual skill level — a more precise signal than a single overall grade' },
+                    { title: 'Per-Skill, Not Per-Subject',       desc: 'We track mastery at the individual skill level, a more precise signal than a single overall grade' },
                     { title: 'Explainable Mastery Modeling', desc: 'Bayesian/probabilistic approaches keep the reasoning behind every difficulty adjustment visible, not a black box' },
                     { title: 'Built to Extend',       desc: 'The same adaptive-learning pattern generalizes beyond math to other structured skill domains' },
                     { title: 'Honest About Scope',          desc: "We tell you plainly what's live and validated versus what we'd be building fresh for your use case" },
@@ -586,7 +586,7 @@ export default function IndustryEducation() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your student success or personalized-learning challenge. We'll tell you exactly what's possible — no pitch, no pressure.
+              Book a free 30-minute call. Tell us your student success or personalized-learning challenge. We'll tell you exactly what's possible. No pitch, no pressure.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>

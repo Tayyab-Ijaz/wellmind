@@ -191,9 +191,9 @@ export default function IndustryAgriculture() {
 
   const capabilities = [
     { icon: <Sprout size={22} />,       color: B.action,    title: 'Satellite & Weather Data Fusion',   desc: 'A multi-source pipeline combining Sentinel-2, MODIS, and Landsat imagery with weather station data and ground-truth records into a single unified, location- and time-matched dataset.' },
-    { icon: <CloudRain size={22} />,    color: B.primary,   title: 'Vegetation Index Analysis',          desc: 'Vegetation and weather indices — NDVI, EVI, NDWI, LST — engineered directly from raw satellite imagery to capture crop health and stress signals over time.' },
+    { icon: <CloudRain size={22} />,    color: B.primary,   title: 'Vegetation Index Analysis',          desc: 'Vegetation and weather indices (NDVI, EVI, NDWI, LST) engineered directly from raw satellite imagery to capture crop health and stress signals over time.' },
     { icon: <FlaskConical size={22} />, color: B.accent,    title: 'Crop Yield Prediction Modeling',      desc: 'Random Forest, XGBoost, LightGBM, SVR, and LSTM/GRU models compared for best-fit time-series yield prediction, evaluated with RMSE, MAE, R², and MAPE.' },
-    { icon: <BarChart3 size={22} />,    color: B.secondary, title: 'Exportable Yield Reports',            desc: 'Designed output formats for yield maps, regional reports, and CSV/GeoTIFF downloads — built for direct use by agronomy and planning teams.' },
+    { icon: <BarChart3 size={22} />,    color: B.secondary, title: 'Exportable Yield Reports',            desc: 'Designed output formats for yield maps, regional reports, and CSV/GeoTIFF downloads, built for direct use by agronomy and planning teams.' },
     { icon: <Tractor size={22} />,      color: B.action,    title: 'Field-Level Monitoring',              desc: 'Location-aware monitoring views connect field boundaries, crop cycles, weather conditions, and satellite observations so teams can compare performance across every growing area.' },
     { icon: <Eye size={22} />,          color: B.primary,   title: 'Crop Health & Stress Alerts',          desc: 'Early-warning signals surface unusual vegetation, moisture, and temperature patterns so agronomy teams can investigate crop stress before it becomes visible across the field.' },
   ];
@@ -202,17 +202,17 @@ export default function IndustryAgriculture() {
     {
       icon: <Sprout />, color: B.action, slug: 'satellite-weather-crop-yield',
       title: 'Satellite, Weather & Crop Yield Prediction',
-      desc: 'A geospatial pipeline fusing Sentinel-2, MODIS, and Landsat satellite imagery with weather and ground-truth data into one unified dataset — extracting NDVI/EVI/NDWI/LST indices and comparing five model families (Random Forest, XGBoost, LightGBM, SVR, LSTM/GRU) for time-series yield prediction.',
+      desc: 'A geospatial pipeline fusing Sentinel-2, MODIS, and Landsat satellite imagery with weather and ground-truth data into one unified dataset. It extracts NDVI/EVI/NDWI/LST indices and compares five model families (Random Forest, XGBoost, LightGBM, SVR, LSTM/GRU) for time-series yield prediction.',
       metrics: [{ val: '3', label: 'Satellite Sources Fused' }, { val: '5', label: 'Models Compared' }, { val: 'Concept', label: 'Current Stage' }],
     },
   ];
 
   const faqs = [
     { q: 'What agriculture work have you actually delivered?', a: "One real project so far: a satellite + weather + crop yield prediction pipeline, currently at concept stage. We're upfront that this is our current agriculture-sector portfolio, not a long list of farm deployments." },
-    { q: 'What data sources does the yield-prediction pipeline use?', a: 'Sentinel-2, MODIS, and Landsat satellite imagery, combined with weather station data and ground-truth yield records — fused spatially and temporally into a single dataset.' },
-    { q: 'What models did you compare for yield prediction?', a: 'Five model families — Random Forest, XGBoost, LightGBM, SVR, and LSTM/GRU — evaluated with RMSE, MAE, R², and MAPE to identify the best-fit approach for time-series yield prediction.' },
-    { q: 'Is this pipeline deployed for a live farm or growing region?', a: "Not yet — it's a validated concept pipeline, not a live production deployment. We're transparent with every prospective client about exactly what stage a given build is at before scoping new work." },
-    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
+    { q: 'What data sources does the yield-prediction pipeline use?', a: 'Sentinel-2, MODIS, and Landsat satellite imagery, combined with weather station data and ground-truth yield records, fused spatially and temporally into a single dataset.' },
+    { q: 'What models did you compare for yield prediction?', a: 'Five model families (Random Forest, XGBoost, LightGBM, SVR, and LSTM/GRU) evaluated with RMSE, MAE, R², and MAPE to identify the best-fit approach for time-series yield prediction.' },
+    { q: 'Is this pipeline deployed for a live farm or growing region?', a: "Not yet. It's a validated concept pipeline, not a live production deployment. We're transparent with every prospective client about exactly what stage a given build is at before scoping new work." },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases, from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
@@ -374,7 +374,7 @@ export default function IndustryAgriculture() {
               Built for the Complexity of{' '}
               <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Agriculture</span>
             </h2>
-            <p className="section-lead">One real, delivered project — a satellite and weather-driven crop yield prediction pipeline.</p>
+            <p className="section-lead">One real, delivered project: a satellite and weather-driven crop yield prediction pipeline.</p>
           </motion.div>
 
           {/* Capabilities Grid */}
@@ -498,12 +498,12 @@ export default function IndustryAgriculture() {
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.1rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  We're a small, honest team — our agriculture-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and validate properly.
+                  We're a small, honest team. Our agriculture-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and validate properly.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Multi-Source Data Fusion', desc: 'We fuse satellite imagery, weather data, and ground-truth records by location and time — not a single, thin data source' },
-                    { title: 'Rigorously Compared Models', desc: 'Five model families evaluated head-to-head with RMSE, MAE, R², and MAPE — not a single untested approach' },
+                    { title: 'Multi-Source Data Fusion', desc: 'We fuse satellite imagery, weather data, and ground-truth records by location and time, not a single, thin data source' },
+                    { title: 'Rigorously Compared Models', desc: 'Five model families evaluated head-to-head with RMSE, MAE, R², and MAPE, not a single untested approach' },
                     { title: 'Built to Extend', desc: 'The same pipeline pattern generalizes to other geospatial and yield-adjacent forecasting challenges' },
                     { title: 'Honest About Scope', desc: "We tell you plainly what's live and validated versus what we'd be building fresh for your use case" },
                   ].map((item, i) => (
@@ -589,7 +589,7 @@ export default function IndustryAgriculture() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your yield, efficiency, or supply-chain challenge. We'll tell you exactly what's possible — no pitch, no pressure.
+              Book a free 30-minute call. Tell us your yield, efficiency, or supply-chain challenge. We'll tell you exactly what's possible. No pitch, no pressure.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>

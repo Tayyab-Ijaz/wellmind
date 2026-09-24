@@ -16,7 +16,7 @@ import { HeroGridBg } from '../components/BgGrid';
 import {
   BookOpen, Clock, ArrowRight, Search, Zap, Dna, Brain,
   TrendingUp, Leaf, BarChart3, Code2, FlaskConical,
-  Mail, CheckCircle, Globe, Users, Star,
+  Star,
 } from 'lucide-react';
 
 /* ─── Brand Tokens — IDENTICAL to Home.jsx ─────────────────────────────── */
@@ -163,36 +163,6 @@ function FilterChip({ label, active, onClick }) {
   );
 }
 
-function NewsletterBlock() {
-  const [email, setEmail] = useState('');
-  const [done, setDone] = useState(false);
-  return (
-    <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }}
-      style={{ padding:'clamp(32px,4.5vw,56px) clamp(28px,4.5vw,64px)', borderRadius:28, background:`linear-gradient(135deg,${B.primaryLight} 0%,${B.actionLight} 100%)`, border:`2px solid ${B.primaryBorder}`, backdropFilter:'blur(12px)', textAlign:'center', boxShadow:B.cardShadow }}>
-      <div style={{ width:54, height:54, borderRadius:16, background:B.action, display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 20px', boxShadow:`0 8px 24px rgba(11, 124, 147,0.35)` }}>
-        <Mail size={22} color={B.white}/>
-      </div>
-      <SectionBadge style={{ marginBottom:16 }}>Newsletter</SectionBadge>
-      <h3 className="section-h2" style={{ fontSize:'clamp(1.3rem,3vw,2rem)', marginBottom:14 }}>Data Science Insights, Twice a Month</h3>
-      <p className="section-lead" style={{ marginBottom:32, maxWidth:520 }}>No fluff. Practical bioinformatics guides, AI strategy breakdowns, and case studies — delivered to your inbox.</p>
-      {done ? (
-        <div style={{ display:'inline-flex', alignItems:'center', gap:10, padding:'clamp(12px,2vw,16px) clamp(20px,3.5vw,32px)', borderRadius:12, background:B.actionLight, border:`1px solid ${B.actionBorder}`, color:B.action, fontWeight:700, fontSize:'clamp(13px,1.6vw,15px)' }}>
-          <CheckCircle size={18}/>You're on the list!
-        </div>
-      ) : (
-        <div style={{ display:'flex', gap:10, maxWidth:480, margin:'0 auto', flexWrap:'wrap', justifyContent:'center' }}>
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com"
-            style={{ flex:1, minWidth:200, padding:'clamp(12px,1.8vw,15px) clamp(14px,2vw,18px)', borderRadius:10, border:`1.5px solid ${B.primaryBorder}`, background:'rgba(255,255,255,0.85)', fontSize:'clamp(13px,1.5vw,15px)', color:B.textMain, outline:'none', fontFamily:'Plus Jakarta Sans,sans-serif' }}/>
-          <button onClick={() => { if(email) setDone(true); }} className="btn-primary" style={{ padding:'clamp(12px,1.8vw,15px) clamp(18px,3vw,28px)', flexShrink:0 }}>
-            <Mail size={14}/>Subscribe
-          </button>
-        </div>
-      )}
-      <p style={{ marginTop:16, fontSize:'clamp(11px,1.2vw,12px)', color:B.textMuted, fontWeight:500 }}>No spam. Unsubscribe anytime. ~500 subscribers.</p>
-    </motion.div>
-  );
-}
-
 /* ─── MAIN ──────────────────────────────────────────────────────────────── */
 export default function Resources() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -253,8 +223,6 @@ export default function Resources() {
                     <div key={setIdx} style={{ display:'flex', gap:'clamp(12px,2vw,24px)', paddingRight:'clamp(20px,3vw,40px)' }}>
                       {[
                         { icon:<BookOpen size={16}/>, label:`${articles.length} Free Articles`, accent:'#5BB8CC' },
-                        { icon:<Users size={16}/>,      label:'500+ Subscribers', accent:'#8FC48A' },
-                        { icon:<Globe size={16}/>,      label:'Read in 40+ Countries', accent:'#C0A87A' },
                       ].map((item,i) => (
                         <div key={i} style={{ display:'flex', alignItems:'center', gap:8, padding:'clamp(8px,1.2vw,10px) clamp(12px,2vw,18px)', fontSize:'clamp(12px,1.8vw,18px)', fontWeight:600, color:'rgba(58,32,59,0.8)', background:'rgba(255,255,255,0.5)', borderRadius:8, border:'1px solid rgba(127,32,55,0.1)', whiteSpace:'nowrap' }}>
                           <div style={{ width:22, height:22, borderRadius:5, flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background:`${item.accent}15` }}>
@@ -376,11 +344,6 @@ export default function Resources() {
                 <p className="section-lead">Try a different filter or search term.</p>
               </div>
             )}
-
-            {/* Newsletter */}
-            <div style={{ marginTop:'clamp(48px,7vw,80px)', maxWidth:720, margin:'clamp(48px,7vw,80px) auto 0' }}>
-              <NewsletterBlock/>
-            </div>
           </div>
         </div>
       </section>

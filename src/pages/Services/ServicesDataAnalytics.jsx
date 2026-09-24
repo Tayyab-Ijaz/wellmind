@@ -116,7 +116,6 @@ function PricingCard({ tier, accentColor, i }) {
     >
       {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: color, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
       <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: color, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
-      <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>{tier.price}</div>
       <p style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
       <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
         {tier.features.map((f, fi) => (
@@ -396,7 +395,7 @@ const features = [
 ];
 
 const processes = [
-  { step: '01', title: 'Data Audit & Strategy', desc: 'We map your data sources, assess quality, identify gaps, and agree on the metrics that will drive real decisions — before building anything.' },
+  { step: '01', title: 'Data Audit & Strategy', desc: 'We map your data sources, assess quality, identify gaps, and agree on the metrics that will drive real decisions before any building starts.' },
   { step: '02', title: 'Data Architecture', desc: 'Schema design, warehouse selection, and pipeline architecture. We build for scalability and analyst self-service.' },
   { step: '03', title: 'Analysis & Visualisation', desc: 'Statistical analysis, model development, and dashboard build. Every visualisation is reviewed for clarity and actionability.' },
   { step: '04', title: 'Handoff & Enablement', desc: 'Dashboard handoff with documentation, a training session for your team, and 30 days of support for independence.' },
@@ -503,7 +502,7 @@ export default function ServicesDataAnalytics() {
                 {/* CHANGE: Text size synced with AiMl (1.8vw) */}
                 <motion.p custom={0.15}
                   style={{ fontSize: 'clamp(0.88rem, 1.8vw, 1.15rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  WellMind Data Solutions designs and deploys Analytics systems that act as a strategic extension of your business — from audit to full production-grade platforms trusted by enterprises globally.
+                  WellMind Data Solutions designs and deploys Analytics systems that act as a strategic extension of your business. Our work ranges from audits to full production-grade platforms trusted by enterprises globally.
                 </motion.p>
 
                 <motion.div custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -553,7 +552,7 @@ export default function ServicesDataAnalytics() {
                 borderTop: `1px solid ${B.primaryBorder}40`
               }}
             >
-              {['Starting at $1,200', 'Self-Service Dashboards', 'Fixed-Fee Projects'].map((t, i) => (
+              {['Self-Service Dashboards', 'Fixed-Fee Projects'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
@@ -619,7 +618,7 @@ export default function ServicesDataAnalytics() {
               End-to-End Analytics Capabilities
             </h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              From raw data to intelligent decisions — we cover the full analytics spectrum so your team stays focused on outcomes, not infrastructure.
+              From raw data to intelligent decisions, we cover the full analytics spectrum so your team stays focused on outcomes, not infrastructure.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -677,7 +676,7 @@ export default function ServicesDataAnalytics() {
             <SectionBadge dark style={{ color: B.textDarkMuted }}>Transparent Pricing</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 14 }}>Investment</h2>
             <p className="section-lead dark" style={{ maxWidth: 480 }}>
-              Fixed-fee engagements. Scope agreed in writing before we start. No surprise invoices — ever.
+              Fixed-fee engagements. Scope agreed in writing before we start. No surprise invoices, ever.
             </p>
           </div>
           <div className="grid-pricing">
@@ -706,7 +705,7 @@ export default function ServicesDataAnalytics() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it costs, and whether Analytics is even the right tool — no sales pitch.
+              Book a free 30-minute call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it costs, and whether Analytics is even the right tool. No sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/contact" style={{

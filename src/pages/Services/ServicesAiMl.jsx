@@ -195,11 +195,11 @@ export default function ServiceAiMl() {
   }, []);
 
   const features = [
-    { icon: <Cpu/>, title: 'Predictive Analytics', desc: 'Turn historical data into precise forecasts. Demand planning, churn prediction, and risk scoring models built on your real data — not generic templates.', color: B.action },
+    { icon: <Cpu/>, title: 'Predictive Analytics', desc: 'Turn historical data into precise forecasts. Demand planning, churn prediction, and risk scoring models built on your real data, not generic templates.', color: B.action },
     { icon: <Brain/>, title: 'NLP & Text Intelligence', desc: 'Sentiment analysis, document classification, entity extraction, and conversational AI. Unstructured text transformed into structured business intelligence.', color: B.primary },
     { icon: <Eye/>, title: 'Computer Vision', desc: 'Object detection, image segmentation, and video analytics for healthcare diagnostics, quality control, and real-time surveillance applications.', color: B.accent },
     { icon: <GitBranch/>, title: 'Recommendation Systems', desc: 'Collaborative filtering and deep-learning recommendation engines that personalise user experience at scale across content, products, and services.', color: B.secondary },
-    { icon: <Zap/>, title: 'Process Automation + AI', desc: 'Intelligent RPA that goes beyond rule-based scripting — AI decision-making layered on automation for complex, dynamic workflows.', color: '#00B4D8' },
+    { icon: <Zap/>, title: 'Process Automation + AI', desc: 'Intelligent RPA that goes beyond rule-based scripting: AI decision-making layered on automation for complex, dynamic workflows.', color: '#00B4D8' },
     { icon: <Database/>, title: 'Data Engineering & MLOps', desc: 'Feature stores, ETL pipelines, model registries, and retraining pipelines. The infrastructure that keeps your models production-healthy.', color: '#FF9F1C' },
   ];
 
@@ -318,7 +318,7 @@ export default function ServiceAiMl() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.88rem, 1.8vw, 1.15rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  WellMind Data Solutions designs and deploys Machine Learning systems that act as a cognitive extension of your business — from exploratory proof-of-concept to production-grade, monitored deployments trusted by healthcare organisations and enterprises across five countries.
+                  WellMind Data Solutions designs and deploys Machine Learning systems that act as a cognitive extension of your business. Our work ranges from exploratory proof-of-concept to production-grade, monitored deployments trusted by healthcare organisations and enterprises across five countries.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -376,7 +376,7 @@ export default function ServiceAiMl() {
                 borderTop: `1px solid ${B.primaryBorder}40`
               }}
             >
-              {['Starting at $3,500', 'Fixed-Fee Projects', 'Full Code Ownership'].map((t, i) => (
+              {['Fixed-Fee Projects', 'Full Code Ownership'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
@@ -443,7 +443,7 @@ export default function ServiceAiMl() {
               End-to-End AI Capabilities
             </h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              From raw data to intelligent decisions — we cover the full ML spectrum so your team stays focused on outcomes, not infrastructure.
+              From raw data to intelligent decisions, we cover the full ML spectrum so your team stays focused on outcomes, not infrastructure.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -514,7 +514,7 @@ export default function ServiceAiMl() {
             <SectionBadge dark style={{ color: B.textDarkMuted }}>Transparent Pricing</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 14 }}>Investment</h2>
             <p className="section-lead dark" style={{ maxWidth: 1200 }}>
-              Fixed-fee engagements. Scope agreed in writing before we start. No surprise invoices — ever.
+              Fixed-fee engagements. Scope agreed in writing before we start. No surprise invoices, ever.
             </p>
           </div>
           <div className="grid-pricing">
@@ -533,7 +533,6 @@ export default function ServiceAiMl() {
               >
                 {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: B.action, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
                 <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: B.action, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
-                <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>{tier.price}</div>
                 <p style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
                 <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
                   {tier.features.map((f, fi) => (
@@ -582,7 +581,7 @@ export default function ServiceAiMl() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it costs, and whether ML is even the right tool — no sales pitch.
+              Book a free 30-minute call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it costs, and whether ML is even the right tool. No sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/contact" style={{

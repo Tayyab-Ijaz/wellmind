@@ -738,12 +738,6 @@ export default function AiSoftwareChildPage() {
                 }}>
                   {tier.name}
                 </div>
-                <div style={{
-                  fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
-                  color: B.textDark, marginBottom: 6,
-                }}>
-                  {tier.price}
-                </div>
                 <p style={{
                   fontSize: 'clamp(12px, 1.4vw, 13.5px)',
                   color: B.textDarkMid, lineHeight: 1.6,

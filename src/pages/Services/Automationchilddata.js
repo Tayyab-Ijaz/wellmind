@@ -40,7 +40,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Process Automation',
     accentColor: COLORS.amber,
     heroDesc:    'Robotic Process Automation works best when it replaces highly repetitive, rule-based tasks — login-navigate-extract-submit loops that eat hours of analyst time every week. We build RPA bots and Python scripts that are maintainable, monitored, and documented — not fragile macros that break on the first UI change.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $2,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Trigger',    sub: 'Schedule / UI event',    color: COLORS.amber,   x: '5%',  y: '20%' },
@@ -115,7 +115,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Process Automation',
     accentColor: COLORS.action,
     heroDesc:    'When a workflow has more than three steps, dependencies, retries, and SLAs, a cron job isn\'t enough. We design and build orchestrated pipelines using Airflow, Prefect, or Dagster — with dependency management, automated retries, backfill capability, and dashboards that show exactly where a failed run went wrong.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'DAG Trigger', sub: 'Schedule / API / Sensor', color: COLORS.action,   x: '5%',  y: '20%' },
@@ -190,7 +190,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Process Automation',
     accentColor: COLORS.primary,
     heroDesc:    'Automating a broken process makes it break faster. We run structured business process mapping engagements — swimlane diagrams, process mining, bottleneck analysis, and automation opportunity scoring — so you invest automation effort in the 20% of steps causing 80% of delays and errors.',
-    tags:        ['Fixed-Fee Projects', 'Full Documentation', 'From $2,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Documentation'],
 
     pipelineNodes: [
       { id: 0, label: 'Capture',   sub: 'Interviews & walkthroughs', color: COLORS.primary,  x: '5%',  y: '20%' },
@@ -265,7 +265,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Process Automation',
     accentColor: COLORS.secondary,
     heroDesc:    'Single-step automation creates new manual handoffs at the boundaries. End-to-end automation eliminates the entire manual chain — from trigger to outcome — with each step validated, monitored, and connected. We design and build full-operation automation that runs without human intervention from start to finish.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Input',      sub: 'Any trigger / source',     color: COLORS.secondary,x: '5%',  y: '20%' },
@@ -344,7 +344,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Document & Data',
     accentColor: COLORS.amber,
     heroDesc:    'Document-heavy operations waste analyst time on extraction that AI can handle reliably. We build document processing pipelines — PDF parsing, invoice extraction, contract analysis, and classification — with validation logic and confidence thresholds that decide automatically when a document needs human review and when it can proceed.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Ingest',    sub: 'Email / Upload / API',     color: COLORS.amber,    x: '5%',  y: '20%' },
@@ -419,7 +419,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Document & Data',
     accentColor: COLORS.action,
     heroDesc:    'Scanned documents, handwritten forms, and image-based PDFs are dead data until an OCR pipeline makes them machine-readable. We build OCR and extraction pipelines that handle real-world scan quality — skew, noise, mixed fonts, handwriting — and output validated, structured data ready for your systems.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Upload',    sub: 'Scan / Image / PDF',       color: COLORS.action,   x: '5%',  y: '20%' },
@@ -494,7 +494,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Document & Data',
     accentColor: COLORS.primary,
     heroDesc:    'Forms are where data enters your business — and where the most manual work happens. We build intelligent form processing systems: structured web forms with validation and downstream routing, intelligent intake of unstructured submissions, and AI-powered classification that decides where each submission goes without human triage.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Submit',    sub: 'Web / Email / PDF form',   color: COLORS.primary,  x: '5%',  y: '20%' },
@@ -569,7 +569,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Document & Data',
     accentColor: COLORS.secondary,
     heroDesc:    'Recurring reports that take an analyst two hours to build every week are a solved problem. We automate report generation end-to-end — data collection, transformation, formatting, and distribution — so Monday morning\'s board report lands in inboxes at 8am without anyone touching a spreadsheet.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Schedule',  sub: 'Time / Event trigger',     color: COLORS.secondary,x: '5%',  y: '20%' },
@@ -648,7 +648,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Integration & Alerts',
     accentColor: COLORS.amber,
     heroDesc:    'Most automation projects fail at the integration boundary — one system can\'t talk to another, the API rate limits everything, or an auth token expires at 2am. We build robust integration middleware with proper OAuth flows, rate-limit handling, retry logic, and monitoring so your systems stay connected reliably.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Source',    sub: 'CRM / ERP / API',          color: COLORS.amber,    x: '5%',  y: '20%' },
@@ -723,7 +723,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Integration & Alerts',
     accentColor: COLORS.action,
     heroDesc:    'Alert fatigue is as dangerous as no alerts. We design and build notification systems with intelligent severity tiering, suppression rules, and escalation logic — so on-call engineers are woken up for real incidents, not false positives, and stakeholders get the context they need to act, not just a number.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $2,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Detect',    sub: 'Metric / log / event',     color: COLORS.action,   x: '5%',  y: '20%' },
@@ -798,7 +798,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Integration & Alerts',
     accentColor: COLORS.primary,
     heroDesc:    'A missed scheduled job is often invisible until someone notices the data is stale. We build scheduling systems with proper job tracking, missed-run alerting, distributed locking for jobs that must not run twice, and dashboards that make the next-scheduled and last-successful run visible to the team.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $2,500'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Schedule',  sub: 'Cron / interval / event',  color: COLORS.primary,  x: '5%',  y: '20%' },
@@ -873,7 +873,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Integration & Alerts',
     accentColor: COLORS.secondary,
     heroDesc:    'Silent automation failures cost more than visible ones. We build monitoring stacks for automation pipelines — freshness checks, throughput dashboards, error rate tracking, and SLA alerting — so your operations team knows a pipeline failed before the downstream team raises a ticket.',
-    tags:        ['Fixed-Fee Projects', 'Full Monitoring Ownership', 'From $3,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Monitoring Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Instrument', sub: 'Logs / metrics / traces',  color: COLORS.secondary,x: '5%',  y: '20%' },
@@ -952,7 +952,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'AI Automation',
     accentColor: COLORS.amber,
     heroDesc:    'Traditional RPA breaks when a UI changes or an input varies unexpectedly. Intelligent RPA combines rule-based automation with AI perception — computer vision for UI understanding, LLMs for content interpretation, and adaptive decision logic — so bots handle real-world variability instead of requiring constant maintenance.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Perceive',  sub: 'Vision + OCR + LLM',       color: COLORS.amber,    x: '5%',  y: '20%' },
@@ -1027,7 +1027,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'AI Automation',
     accentColor: COLORS.action,
     heroDesc:    'Large language models unlock automation for tasks that previously required human judgment — reading long documents, drafting responses, summarising calls, classifying support tickets. We build reliable LLM automation with prompt versioning, output validation, cost controls, and fallback logic so AI-powered workflows are production-grade.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Input',     sub: 'Text / Doc / Email / Data', color: COLORS.action,   x: '5%',  y: '20%' },
@@ -1102,7 +1102,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'AI Automation',
     accentColor: COLORS.primary,
     heroDesc:    'Most automation stops at data movement and leaves the decisions to humans. We build decision engines — rules-based, ML-powered, or hybrid — that make routing, approval, pricing, and classification decisions automatically, with full audit trails, explainability, and human-override capability built in.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    tags:        ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Input',     sub: 'Case / Record / Event',    color: COLORS.primary,  x: '5%',  y: '20%' },
@@ -1177,7 +1177,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'AI Automation',
     accentColor: COLORS.secondary,
     heroDesc:    'Automated systems are invisible without audit trails. Compliance teams, regulators, and internal reviewers need to understand exactly what happened, when, why, and who or what triggered it. We build immutable audit trail systems that capture every automated action with the context needed to reconstruct a decision months later.',
-    tags:        ['Fixed-Fee Projects', 'Compliance Documentation', 'From $4,000'],
+    tags:        ['Fixed-Fee Projects', 'Compliance Documentation'],
 
     pipelineNodes: [
       { id: 0, label: 'Action',    sub: 'Any automated event',      color: COLORS.secondary,x: '5%',  y: '20%' },

@@ -29,7 +29,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Modeling & Prediction',
     accentColor:  COLORS.action,
     heroDesc:     'We build end-to-end predictive systems — from raw feature engineering to production-deployed APIs — that give your business a quantified view of what happens next. Demand forecasting, churn prevention, revenue projection, and risk scoring models trained on your actual data.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 94,  suffix: '%', label: 'Forecast Accuracy',  iconName: 'BarChart3', color: COLORS.action  },
@@ -96,7 +96,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Modeling & Prediction',
     accentColor:  COLORS.primary,
     heroDesc:     'From binary fraud detection to 500-class product taxonomies, we design classification systems that match your data complexity. We handle imbalanced classes, multi-label problems, and real-time inference requirements that generic AutoML tools can\'t address.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 97,  suffix: '%', label: 'Avg F1-Score',        iconName: 'BarChart3',  color: COLORS.primary  },
@@ -163,7 +163,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Modeling & Prediction',
     accentColor:  COLORS.accent,
     heroDesc:     'Regression and time-series forecasting that deliver not just a point estimate but a calibrated confidence interval — so your team knows when to act boldly and when to hedge. From linear baselines to deep temporal models, we match complexity to your data.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 92,  suffix: '%', label: 'Interval Coverage',   iconName: 'Activity',   color: COLORS.accent   },
@@ -230,7 +230,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Modeling & Prediction',
     accentColor:  COLORS.secondary,
     heroDesc:     'Rule-based alerting flags what you already know to look for. Anomaly detection finds the unexpected — the subtle transaction pattern, the equipment signal, the metric drift that precedes failure by days. We build unsupervised and semi-supervised detectors trained on your normal behaviour.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 99,  suffix: '%', label: 'Detection Rate',      iconName: 'Eye',        color: COLORS.secondary },
@@ -297,7 +297,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Language & Vision',
     accentColor:  COLORS.action,
     heroDesc:     'Every support ticket, clinical note, legal document, and customer review contains signal your business isn\'t using. We build NLP pipelines that extract entities, classify intent, summarise documents, and surface insights — at the scale and speed your operations require.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,500'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 96,  suffix: '%', label: 'Entity Accuracy',     iconName: 'Brain',      color: COLORS.action   },
@@ -364,7 +364,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Language & Vision',
     accentColor:  COLORS.primary,
     heroDesc:     'Beyond positive / negative / neutral. We build aspect-level sentiment systems that tell you customers love your onboarding but hate your billing — and track how that changes week over week across every channel you operate.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 95,  suffix: '%', label: 'Sentiment Accuracy',  iconName: 'Brain',      color: COLORS.primary  },
@@ -431,7 +431,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Language & Vision',
     accentColor:  COLORS.accent,
     heroDesc:     'Object detection, image classification, segmentation, and video analytics for industries where seeing is deciding — healthcare diagnostics, manufacturing quality control, retail analytics, and security. We deliver models that run accurately at production inference speeds.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 98,  suffix: '%', label: 'Detection mAP',       iconName: 'Eye',        color: COLORS.accent   },
@@ -498,7 +498,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Language & Vision',
     accentColor:  COLORS.secondary,
     heroDesc:     'Contracts, invoices, clinical forms, and reports contain structured data trapped in unstructured formats. We build document AI systems that extract, classify, and route information with human-level accuracy — at machine speed.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 97,  suffix: '%', label: 'Extraction Accuracy', iconName: 'FileText',   color: COLORS.secondary },
@@ -565,7 +565,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Generative AI & LLMs',
     accentColor:  COLORS.gold,
     heroDesc:     'General-purpose LLMs hallucinate on your domain, use the wrong tone, and don\'t know your products. Fine-tuned models do. We align foundation models to your data, vocabulary, and task — delivering consistent, reliable outputs that off-the-shelf models can\'t match.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 40,  suffix: '%', label: 'Hallucination Reduction', iconName: 'Brain',   color: COLORS.gold     },
@@ -632,7 +632,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Generative AI & LLMs',
     accentColor:  COLORS.cyan,
     heroDesc:     'Retrieval-Augmented Generation connects the generative power of LLMs to your proprietary knowledge base — policies, documents, product data, clinical records. Answers grounded in your content, with citations, no hallucination on your domain, and full access control.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,500'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 90,  suffix: '%', label: 'Hallucination Drop',   iconName: 'Shield',    color: COLORS.cyan     },
@@ -699,7 +699,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Generative AI & LLMs',
     accentColor:  COLORS.primary,
     heroDesc:     'Copilots that assist. Agents that execute. We build LLM-powered systems that use tools, browse systems, write code, and complete multi-step workflows — freeing your team from repetitive cognitive work at a scale no hiring plan can match.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $7,000'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 70,  suffix: '%', label: 'Manual Task Reduction', iconName: 'Zap',      color: COLORS.primary  },
@@ -766,7 +766,7 @@ export const AI_ML_CHILDREN = {
     badge:        'Generative AI & LLMs',
     accentColor:  COLORS.action,
     heroDesc:     'We build complete generative AI applications — not prompts wrapped in a UI, but production-grade products with proper evaluation, safety, scalability, and the business logic that makes AI genuinely useful. From internal tools to customer-facing products.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $8,000'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 15,  suffix: '+', label: 'GenAI Apps Built',    iconName: 'Sparkles',   color: COLORS.action   },
@@ -833,7 +833,7 @@ export const AI_ML_CHILDREN = {
     badge:        'MLOps & Lifecycle',
     accentColor:  COLORS.secondary,
     heroDesc:     'A model in a Jupyter Notebook isn\'t a product. We build the MLOps infrastructure that turns trained models into reliable, scalable production services — with CI/CD, monitoring, retraining, and the operational discipline your business requires.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 99,  suffix: '%', label: 'Uptime SLA',            iconName: 'Activity',  color: COLORS.secondary },
@@ -900,7 +900,7 @@ export const AI_ML_CHILDREN = {
     badge:        'MLOps & Lifecycle',
     accentColor:  COLORS.gold,
     heroDesc:     'Production ML models degrade silently. Data distributions shift. Features change. Labels drift. We build monitoring systems that watch your models continuously and alert your team the moment performance starts to slip.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 95,  suffix: '%', label: 'Drift Caught Early',   iconName: 'Eye',       color: COLORS.gold     },
@@ -967,7 +967,7 @@ export const AI_ML_CHILDREN = {
     badge:        'MLOps & Lifecycle',
     accentColor:  COLORS.primary,
     heroDesc:     'Most ML teams ship models and hope for the best. We build A/B testing infrastructure that compares model versions, feature variants, and business logic changes with statistical rigour — so every deployment decision is backed by evidence, not opinion.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,500'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 100, suffix: '%', label: 'Decision Confidence',  iconName: 'BarChart3', color: COLORS.primary  },
@@ -1034,7 +1034,7 @@ export const AI_ML_CHILDREN = {
     badge:        'MLOps & Lifecycle',
     accentColor:  COLORS.accent,
     heroDesc:     'Without a feature store, every data scientist recomputes the same features differently. Models trained in notebooks diverge from models in production. We build centralised feature stores that ensure consistency, reduce duplication, and accelerate every future model you build.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    tags:         ['Fixed-Fee Projects', 'Full Code Ownership'],
 
     stats: [
       { target: 70,  suffix: '%', label: 'Feature Reuse Rate',   iconName: 'RefreshCw', color: COLORS.accent   },

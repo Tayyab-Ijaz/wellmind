@@ -147,7 +147,7 @@ export default function IndustryManufacturing() {
   }, []);
 
   const capabilities = [
-    { icon: <Truck size={22} />, color: B.action, title: 'Supply Chain Disruption Alerts', desc: 'A predictive risk-monitoring system that evaluates operational and environmental signals to generate a continuous 0–100 disruption score for every supplier — moving teams from reactive to proactive risk management.' },
+    { icon: <Truck size={22} />, color: B.action, title: 'Supply Chain Disruption Alerts', desc: 'A predictive risk-monitoring system that evaluates operational and environmental signals to generate a continuous 0–100 disruption score for every supplier, moving teams from reactive to proactive risk management.' },
     { icon: <Activity size={22} />, color: B.primary, title: 'Operational Risk Scoring', desc: 'Engineered operational health metrics (KG Score, Emergency Score) quantify internal stress signals on a supplier relationship, then classify the combined signal into Low, Medium, or High risk tiers before disruptions become visible.' },
     { icon: <Globe size={22} />, color: B.secondary, title: 'Environmental Risk Monitoring', desc: 'Combines weather, economic, geopolitical, and technical infrastructure risk signals with operational data into a single early-warning score for procurement teams.' },
   ];
@@ -155,18 +155,18 @@ export default function IndustryManufacturing() {
   const useCases = [
     {
       icon: <Truck />, color: B.action, slug: 'supplyguard-disruption-alerts',
-      title: 'SupplyGuard — Supply Chain Disruption Alert System',
-      desc: 'A predictive risk-monitoring system that evaluates operational metrics (KG Score, Emergency Score) alongside environmental risk signals — weather, economic, geopolitical, and technical infrastructure — to generate a continuous disruption risk score for every supplier, via a Flask backend and live dashboard.',
+      title: 'SupplyGuard: Supply Chain Disruption Alert System',
+      desc: 'A predictive risk-monitoring system that evaluates operational metrics (KG Score, Emergency Score) alongside environmental risk signals (weather, economic, geopolitical, and technical infrastructure) to generate a continuous disruption risk score for every supplier, via a Flask backend and live dashboard.',
       metrics: [{ val: '0–100', label: 'Risk Score' }, { val: 'Low/Med/High', label: 'Risk Tiers' }, { val: 'Live', label: 'Dashboard' }],
     },
   ];
 
   const faqs = [
-    { q: 'What manufacturing/supply chain work have you actually delivered?', a: 'One real, delivered project so far: SupplyGuard, a supplier disruption risk-scoring system combining operational and environmental signals into a continuous 0–100 score with a live dashboard. We\'re upfront that this is our current manufacturing-sector portfolio — not a long client list.' },
-    { q: 'What data does supplier risk scoring need?', a: 'Internal operational health metrics (like delivery consistency or emergency order frequency) plus external signals — weather, economic indicators, geopolitical risk, and infrastructure conditions relevant to a supplier\'s location.' },
-    { q: 'Can you build similar risk-monitoring systems for other use cases?', a: 'Yes — the same pattern (combine operational + external risk signals into a single explainable score) generalizes well beyond supply chain, and it\'s the kind of system we can scope and build for adjacent manufacturing or logistics challenges.' },
+    { q: 'What manufacturing/supply chain work have you actually delivered?', a: 'One real, delivered project so far: SupplyGuard, a supplier disruption risk-scoring system combining operational and environmental signals into a continuous 0–100 score with a live dashboard. We\'re upfront that this is our current manufacturing-sector portfolio, not a long client list.' },
+    { q: 'What data does supplier risk scoring need?', a: 'Internal operational health metrics (like delivery consistency or emergency order frequency) plus external signals: weather, economic indicators, geopolitical risk, and infrastructure conditions relevant to a supplier\'s location.' },
+    { q: 'Can you build similar risk-monitoring systems for other use cases?', a: 'Yes. The same pattern (combine operational + external risk signals into a single explainable score) generalizes well beyond supply chain, and it\'s the kind of system we can scope and build for adjacent manufacturing or logistics challenges.' },
     { q: 'Is this deployed for a live production supply chain?', a: 'SupplyGuard is a fully working system with a live risk-checker dashboard, built and validated on realistic supplier risk scenarios. We\'re transparent with every prospective client about exactly what stage a given build is at.' },
-    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases, from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
@@ -219,7 +219,7 @@ export default function IndustryManufacturing() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  A predictive supply-chain risk-scoring system, built and delivered — combining operational and environmental signals into a single early-warning score. Real project. Real code. Nothing theoretical.
+                  A predictive supply-chain risk-scoring system, built and delivered, combining operational and environmental signals into a single early-warning score. Real project. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -329,7 +329,7 @@ export default function IndustryManufacturing() {
               Built for the Demands of{' '} <br />
               <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Manufacturing</span>
             </h2>
-            <p className="section-lead" style={{maxWidth: 1200,}}>One real, delivered project — a supply-chain disruption risk-scoring system.</p>
+            <p className="section-lead" style={{maxWidth: 1200,}}>One real, delivered project: a supply-chain disruption risk-scoring system.</p>
           </motion.div>
 
           {/* 1. Capabilities (Grid) */}
@@ -453,12 +453,12 @@ export default function IndustryManufacturing() {
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.2rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  We're a small, honest team — our manufacturing-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and ship.
+                  We're a small, honest team. Our manufacturing-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and ship.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Explainable Risk Scoring', desc: 'Our disruption score is built from clearly defined operational and environmental signals — not a black box' },
-                    { title: 'Lightweight, Deployable Stack', desc: 'Python + Flask + a live dashboard — simple to run, simple to hand off, no heavy infrastructure lock-in' },
+                    { title: 'Explainable Risk Scoring', desc: 'Our disruption score is built from clearly defined operational and environmental signals, not a black box' },
+                    { title: 'Lightweight, Deployable Stack', desc: 'Python + Flask + a live dashboard: simple to run, simple to hand off, no heavy infrastructure lock-in' },
                     { title: 'Built to Extend', desc: 'The same risk-scoring pattern generalizes to adjacent supply chain and logistics challenges' },
                     { title: 'Honest About Scope', desc: "We tell you plainly what's live and delivered versus what we'd be building fresh for your use case" },
                   ].map((item, i) => (
@@ -544,7 +544,7 @@ export default function IndustryManufacturing() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your supplier or operational risk challenge. We'll give you an honest assessment of what's achievable, what it would cost, and whether it's the right fit — no pitch.
+              Book a free 30-minute call. Tell us your supplier or operational risk challenge. We'll give you an honest assessment of what's achievable, what it would cost, and whether it's the right fit. No pitch.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>
