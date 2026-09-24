@@ -92,10 +92,10 @@ function CapabilityCard({ icon, color, title, desc, delay = 0 }) {
 }
 
 // ─── Use Case Row ─────────────────────────────────────────────────────────────
-function UseCaseRow({ icon, color, title, desc, metrics, index }) {
+function UseCaseRow({ icon, color, title, desc, metrics, index, slug }) {
   const [hovered, setHovered] = useState(false);
   const isEven = index % 2 === 0;
-  return (
+  const content = (
     <motion.div
       initial={{ opacity: 0, x: isEven ? -28 : 28 }} whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -107,7 +107,7 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
         border: `3px solid ${hovered ? color : B.primaryBorder}`,
         borderRadius: 'var(--radius-xl)', padding: 'clamp(24px, 3vw, 40px)',
         boxShadow: hovered ? `0 20px 48px -12px ${color}40` : B.cardShadow,
-        transition: 'all 0.35s ease', cursor: 'default', position: 'relative', overflow: 'hidden',
+        transition: 'all 0.35s ease', cursor: slug ? 'pointer' : 'default', position: 'relative', overflow: 'hidden',
       }}
     >
       <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: `linear-gradient(180deg, ${color}, transparent)`, opacity: hovered ? 1 : 0.3, transition: 'opacity 0.35s' }} />
@@ -117,6 +117,11 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
       <div style={{ flex: '1 1 240px' }}>
         <h3 style={{ fontFamily: 'var(--font-main)', fontWeight: 700, color: hovered ? B.textDark : B.primaryDark, marginBottom: 10, fontSize: 'clamp(1.15rem, 2.2vw, 1.4rem)' }}>{title}</h3>
         <p style={{ color: hovered ? B.textDarkMid : B.textMid, fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)', lineHeight: 1.75 }}>{desc}</p>
+        {slug && (
+          <div style={{ marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(0.8rem, 1.2vw, 0.9rem)', fontWeight: 700, color: hovered ? B.white : color, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            View Case Study <ArrowRight size={14} />
+          </div>
+        )}
       </div>
       <div style={{ display: 'flex', gap: 'clamp(16px, 3vw, 32px)', flexWrap: 'wrap' }}>
         {metrics.map((m, i) => (
@@ -128,6 +133,9 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
       </div>
     </motion.div>
   );
+  return slug
+    ? <Link to={`/case-studies/${slug}`} style={{ textDecoration: 'none', display: 'block' }}>{content}</Link>
+    : content;
 }
 
 // ─── FAQ Item (Dark Mode) ─────────────────────────────────────────────────────
@@ -182,41 +190,29 @@ export default function IndustryAgriculture() {
   }, []);
 
   const capabilities = [
-    { icon: <Sprout size={22} />,       color: B.action,    title: 'Crop Yield Prediction',           desc: 'ML models trained on satellite imagery, soil sensors, and weather data to forecast yield per field with up to 92% accuracy — enabling smarter harvest planning and commodity hedging.' },
-    { icon: <CloudRain size={22} />,    color: B.primary,   title: 'Precision Irrigation & Weather AI', desc: 'IoT-driven models that correlate microclimate data with crop stress indicators, automating irrigation schedules that cut water usage by 30–40% without yield loss.' },
-    { icon: <FlaskConical size={22} />, color: B.accent,    title: 'Soil Health & Nutrient Analytics',  desc: 'Deep-learning pipelines that fuse lab assay data, hyperspectral imagery, and historical yield maps to generate per-zone fertilizer prescriptions, reducing input costs significantly.' },
-    { icon: <Tractor size={22} />,      color: B.secondary, title: 'Autonomous Equipment & Fleet AI',   desc: 'Computer vision and path-planning models for variable-rate application, obstacle detection, and fleet routing — integrated with John Deere Operations Center and similar platforms.' },
-    { icon: <Brain size={22} />,        color: B.action,    title: 'Pest & Disease Early Detection',    desc: 'Real-time image classification deployed on edge devices (drones, cameras) to flag fungal, bacterial, and pest outbreaks 7–14 days before visual symptoms appear.' },
-    { icon: <BarChart3 size={22} />,    color: B.accent,    title: 'Supply Chain & Market Intelligence', desc: 'Demand-sensing and price-forecasting models that help agribusinesses optimize storage, logistics, and forward contracting decisions across volatile commodity markets.' },
+    { icon: <Sprout size={22} />,       color: B.action,    title: 'Satellite & Weather Data Fusion',   desc: 'A multi-source pipeline combining Sentinel-2, MODIS, and Landsat imagery with weather station data and ground-truth records into a single unified, location- and time-matched dataset.' },
+    { icon: <CloudRain size={22} />,    color: B.primary,   title: 'Vegetation Index Analysis',          desc: 'Vegetation and weather indices — NDVI, EVI, NDWI, LST — engineered directly from raw satellite imagery to capture crop health and stress signals over time.' },
+    { icon: <FlaskConical size={22} />, color: B.accent,    title: 'Crop Yield Prediction Modeling',      desc: 'Random Forest, XGBoost, LightGBM, SVR, and LSTM/GRU models compared for best-fit time-series yield prediction, evaluated with RMSE, MAE, R², and MAPE.' },
+    { icon: <BarChart3 size={22} />,    color: B.secondary, title: 'Exportable Yield Reports',            desc: 'Designed output formats for yield maps, regional reports, and CSV/GeoTIFF downloads — built for direct use by agronomy and planning teams.' },
+    { icon: <Tractor size={22} />,      color: B.action,    title: 'Field-Level Monitoring',              desc: 'Location-aware monitoring views connect field boundaries, crop cycles, weather conditions, and satellite observations so teams can compare performance across every growing area.' },
+    { icon: <Eye size={22} />,          color: B.primary,   title: 'Crop Health & Stress Alerts',          desc: 'Early-warning signals surface unusual vegetation, moisture, and temperature patterns so agronomy teams can investigate crop stress before it becomes visible across the field.' },
   ];
 
   const useCases = [
     {
-      icon: <Sprout />, color: B.action,
-      title: 'Yield Prediction for a Large-Scale Grain Producer',
-      desc: 'We built a multi-spectral satellite + weather fusion model covering 120,000 acres across three growing regions. The system ingests Sentinel-2 imagery every 5 days alongside hyperlocal weather station feeds and historical yield data, producing per-field yield estimates 10 weeks before harvest.',
-      metrics: [{ val: '92%', label: 'Yield Accuracy' }, { val: '10wk', label: 'Early Forecast' }, { val: '18%', label: 'Input Cost Savings' }],
-    },
-    {
-      icon: <CloudRain />, color: B.primary,
-      title: 'Smart Irrigation Platform for a Vegetable Farm Network',
-      desc: 'Deployed an edge-AI irrigation controller across 48 farms integrating soil moisture sensors, ET forecasting, and crop growth stage models. The system dynamically adjusts irrigation schedules daily, reducing water consumption while maintaining crop quality standards for export markets.',
-      metrics: [{ val: '34%', label: 'Water Reduction' }, { val: '48', label: 'Farms Covered' }, { val: '$1.2M', label: 'Annual Savings' }],
-    },
-    {
-      icon: <FlaskConical />, color: B.accent,
-      title: 'Nutrient Prescription Engine for an Agri-Input Company',
-      desc: 'Built a variable-rate fertilizer recommendation engine combining soil lab results, NDVI maps, and 5-year yield history. The platform generates geo-referenced prescription maps compatible with leading precision applicators, reducing over-application and improving gross margins for farmer clients.',
-      metrics: [{ val: '22%', label: 'Fertilizer Reduction' }, { val: '3.4x', label: 'ROI for Farmers' }, { val: '15K+', label: 'Fields Processed' }],
+      icon: <Sprout />, color: B.action, slug: 'satellite-weather-crop-yield',
+      title: 'Satellite, Weather & Crop Yield Prediction',
+      desc: 'A geospatial pipeline fusing Sentinel-2, MODIS, and Landsat satellite imagery with weather and ground-truth data into one unified dataset — extracting NDVI/EVI/NDWI/LST indices and comparing five model families (Random Forest, XGBoost, LightGBM, SVR, LSTM/GRU) for time-series yield prediction.',
+      metrics: [{ val: '3', label: 'Satellite Sources Fused' }, { val: '5', label: 'Models Compared' }, { val: 'Concept', label: 'Current Stage' }],
     },
   ];
 
   const faqs = [
-    { q: 'What data sources do you work with in agriculture?', a: 'We integrate Sentinel-2 and Planet Labs satellite imagery, Landsat archives, drone-captured multispectral data, IoT soil and weather sensors (Davis, Campbell Scientific, METER Group), ERP systems like SAP AgriEdge, and yield monitor exports from John Deere, Case IH, and AGCO equipment.' },
-    { q: 'Can your models work in low-connectivity farm environments?', a: 'Yes. We design edge-first architectures where models run locally on ruggedized hardware (NVIDIA Jetson, Raspberry Pi with TPU) and sync batch updates when connectivity is available. Critical alerts are transmitted via LoRaWAN or satellite fallback (Iridium, Starlink).' },
-    { q: 'How do you handle the variability between growing seasons and geographies?', a: 'We use transfer learning and domain adaptation to bootstrap models in new regions using as little as one season of local data. Models are updated continuously with each new season\'s data via automated retraining pipelines, so accuracy improves over time.' },
-    { q: 'Do you integrate with existing farm management software?', a: 'Yes. We build connectors for John Deere Operations Center, Climate FieldView, Trimble Ag, Granular, and custom FMIS platforms via REST and MQTT APIs. Prescription outputs are delivered in ISO-XML, Shapefile, and GeoTIFF formats compatible with major precision applicators.' },
-    { q: 'What does a typical agriculture AI engagement look like?', a: 'We start with a 2-week data audit (satellite coverage, sensor infrastructure, historical records), then develop and validate models over 4–8 weeks using the previous season\'s data. Pilot deployment runs for one full growing cycle, followed by a production rollout with continuous monitoring.' },
+    { q: 'What agriculture work have you actually delivered?', a: "One real project so far: a satellite + weather + crop yield prediction pipeline, currently at concept stage. We're upfront that this is our current agriculture-sector portfolio, not a long list of farm deployments." },
+    { q: 'What data sources does the yield-prediction pipeline use?', a: 'Sentinel-2, MODIS, and Landsat satellite imagery, combined with weather station data and ground-truth yield records — fused spatially and temporally into a single dataset.' },
+    { q: 'What models did you compare for yield prediction?', a: 'Five model families — Random Forest, XGBoost, LightGBM, SVR, and LSTM/GRU — evaluated with RMSE, MAE, R², and MAPE to identify the best-fit approach for time-series yield prediction.' },
+    { q: 'Is this pipeline deployed for a live farm or growing region?', a: "Not yet — it's a validated concept pipeline, not a live production deployment. We're transparent with every prospective client about exactly what stage a given build is at before scoping new work." },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
@@ -269,7 +265,7 @@ export default function IndustryAgriculture() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  From precision crop intelligence to autonomous equipment — we build production-grade AI systems for agribusinesses, cooperatives, and agri-input companies. Data-driven. Field-tested. Results-measured.
+                  A satellite and weather data fusion pipeline for crop yield prediction, built and validated as a concept. Real project. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -295,7 +291,7 @@ export default function IndustryAgriculture() {
                 }}
               >
                 <img
-                  src="https://picsum.photos/seed/agricultureai/600/600"
+                  src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=700&q=80" // TODO: replace with custom illustration — see chat for image brief
                   alt="Agriculture AI Visual"
                   style={{
                     objectFit: 'contain',
@@ -323,10 +319,10 @@ export default function IndustryAgriculture() {
               }}
             >
               {[
-                { val: '92%', label: 'Yield Accuracy' },
-                { val: '34%', label: 'Water Saved' },
-                { val: '$1.2M', label: 'Annual Savings' },
-                { val: '15K+', label: 'Fields Processed' },
+                { val: '1', label: 'Real Project Delivered' },
+                { val: '3', label: 'Satellite Sources Fused' },
+                { val: '5', label: 'Models Compared' },
+                { val: 'Concept', label: 'Current Stage' },
               ].map((s, i) => (
                 <div key={i} style={{
                   display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10,
@@ -350,14 +346,14 @@ export default function IndustryAgriculture() {
         <DataParticles count={12} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
-            <SectionBadge dark>Measurable Agricultural Impact</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>Numbers That Matter in Agriculture</h2>
+            <SectionBadge dark>Real, Verifiable Work</SectionBadge>
+            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>What We've Actually Built</h2>
           </div>
           <div className="grid-stats">
-            <StatCard target={92}  suffix="%"   label="Yield Forecast Accuracy"   icon={<Target />}     start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
-            <StatCard target={34}  suffix="%"   label="Water Usage Reduction"     icon={<CloudRain />}  start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
-            <StatCard target={22}  suffix="%"   label="Fertilizer Cost Savings"   icon={<TrendingUp />} start={statsVisible} delay={0.2} theme={{ color: B.primary, bg: B.primaryLight }} />
-            <StatCard target={15}  suffix="K+"  label="Fields Processed"          icon={<Globe />}      start={statsVisible} delay={0.3} theme={{ color: B.accent, bg: B.accentLight }} />
+            <StatCard target={1}  suffix=""   label="Real Project Delivered"    icon={<Sprout />}     start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
+            <StatCard target={3}  suffix=""   label="Satellite Sources Fused"     icon={<Globe />}  start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
+            <StatCard target={4}  suffix=""   label="Vegetation/Weather Indices"   icon={<CloudRain />} start={statsVisible} delay={0.2} theme={{ color: B.primary, bg: B.primaryLight }} />
+            <StatCard target={5}  suffix=""  label="Models Compared"          icon={<BarChart3 />}      start={statsVisible} delay={0.3} theme={{ color: B.accent, bg: B.accentLight }} />
           </div>
         </div>
       </section>
@@ -378,13 +374,15 @@ export default function IndustryAgriculture() {
               Built for the Complexity of{' '}
               <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Agriculture</span>
             </h2>
-            <p className="section-lead">End-to-end AI solutions across precision farming, supply chain, and agri-input optimization.</p>
+            <p className="section-lead">One real, delivered project — a satellite and weather-driven crop yield prediction pipeline.</p>
           </motion.div>
 
           {/* Capabilities Grid */}
-          <div className="grid-capabilities" style={{ marginBottom: 'clamp(60px, 8vw, 80px)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(14px,2vw,24px)', marginBottom: 'clamp(60px, 8vw, 80px)' }}>
             {capabilities.map((cap, i) => (
-              <CapabilityCard key={i} {...cap} delay={i * 0.07} />
+              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 460 }}>
+                <CapabilityCard {...cap} delay={i * 0.07} />
+              </div>
             ))}
           </div>
 
@@ -436,15 +434,15 @@ export default function IndustryAgriculture() {
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }} style={{ textAlign: 'center', marginBottom: 'clamp(24px, 4vw, 48px)' }}>
             <SectionBadge dark>Technology Stack</SectionBadge>
-            <h2 className="section-h2 dark" style={{ fontSize: 'clamp(1.4rem, 3.2vw, 2.4rem)', marginBottom: 12 }}>Built on Field-Grade Infrastructure</h2>
-            <p style={{ color: B.textDarkMid, fontSize: 'clamp(0.95rem, 1.5vw, 1.15rem)', maxWidth: 640, margin: '0 auto' }}>Production tools trusted by agribusinesses, cooperatives, and agri-input companies worldwide.</p>
+            <h2 className="section-h2 dark" style={{ fontSize: 'clamp(1.4rem, 3.2vw, 2.4rem)', marginBottom: 12 }}>Built to Ship, Not Just Prototype</h2>
+            <p style={{ color: B.textDarkMid, fontSize: 'clamp(0.95rem, 1.5vw, 1.15rem)', maxWidth: 640, margin: '0 auto' }}>The exact tools we've used to design, build, and validate the project above.</p>
           </motion.div>
           <div className="grid-tech">
             {[
-              { group: 'ML & Remote Sensing', items: ['Sentinel-2 / Planet Labs', 'PyTorch (CNN, ViT)', 'NDVI / EVI Processing', 'Scikit-learn', 'Edge Model Quantization'], icon: <Brain size={16} />, color: B.action },
-              { group: 'IoT & Data Engineering', items: ['LoRaWAN / MQTT', 'Apache Kafka', 'InfluxDB (Time-Series)', 'dbt + Snowflake', 'Airflow Pipelines'], icon: <Database size={16} />, color: B.secondary },
-              { group: 'Edge & Deployment', items: ['NVIDIA Jetson', 'AWS IoT Greengrass', 'Docker / K8s', 'FastAPI', 'Starlink / Iridium Fallback'], icon: <Cpu size={16} />, color: B.primary },
-              { group: 'Integration & Standards', items: ['ISO-XML Prescriptions', 'GeoTIFF / Shapefile', 'John Deere Ops Center', 'Climate FieldView API', 'MQTT / REST Connectors'], icon: <Lock size={16} />, color: B.accent },
+              { group: 'Satellite & Remote Sensing', items: ['Sentinel-2', 'MODIS', 'Landsat', 'Cloud Masking & Compositing'], icon: <Globe size={16} />, color: B.action },
+              { group: 'Vegetation Indices', items: ['NDVI', 'EVI', 'NDWI', 'LST'], icon: <CloudRain size={16} />, color: B.secondary },
+              { group: 'ML & Modeling', items: ['Random Forest', 'XGBoost / LightGBM', 'SVR', 'LSTM / GRU'], icon: <Brain size={16} />, color: B.primary },
+              { group: 'Outputs & Evaluation', items: ['RMSE / MAE / R² / MAPE', 'Yield Maps', 'Regional Reports', 'CSV / GeoTIFF Export'], icon: <BarChart3 size={16} />, color: B.accent },
             ].map((col, i) => (
               <motion.div
                 key={i}
@@ -494,20 +492,20 @@ export default function IndustryAgriculture() {
               <motion.div initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}>
                 <SectionBadge>Why WellMind</SectionBadge>
                 <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>
-                  Agronomy Expertise Meets{' '}
+                  Honest Scope,{' '}
                   <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                    Engineering Depth
+                    Real Delivery
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.1rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  Most AI vendors understand either remote sensing or software. We understand both — plus the agronomy, crop science, and commodity economics that make field-level decisions matter.
+                  We're a small, honest team — our agriculture-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and validate properly.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Field-First Design', desc: 'Models built for low-connectivity, high-variability environments — not just clean datacenter workloads' },
-                    { title: 'Season-Over-Season Learning', desc: 'Automated retraining pipelines improve accuracy with every harvest cycle, compounding value over time' },
-                    { title: 'Agronomic Domain Fluency', desc: 'We speak GDD, ETc, VRA, and soil CEC — not just Python and neural networks' },
-                    { title: 'Outcome-Based Pricing', desc: 'Fixed-fee scopes with performance guarantees. No billable-hour bloat.' },
+                    { title: 'Multi-Source Data Fusion', desc: 'We fuse satellite imagery, weather data, and ground-truth records by location and time — not a single, thin data source' },
+                    { title: 'Rigorously Compared Models', desc: 'Five model families evaluated head-to-head with RMSE, MAE, R², and MAPE — not a single untested approach' },
+                    { title: 'Built to Extend', desc: 'The same pipeline pattern generalizes to other geospatial and yield-adjacent forecasting challenges' },
+                    { title: 'Honest About Scope', desc: "We tell you plainly what's live and validated versus what we'd be building fresh for your use case" },
                   ].map((item, i) => (
                     <motion.div key={i} initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.08 }} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
                       <div style={{ width: 26, height: 26, borderRadius: 'var(--radius-sm)', background: `${B.action}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>

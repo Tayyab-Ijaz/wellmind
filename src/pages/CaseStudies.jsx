@@ -22,6 +22,23 @@ import {
 
 import { HeroGridBg, SectionGridBg } from '../components/BgGrid';
 import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge, SectionDivider } from '../theme';
+import imgArPrioritization from '../assets/case-studies/ar-prioritization.png';
+import imgClaimDenial from '../assets/case-studies/claim-denial.png';
+import imgCommandCenter from '../assets/case-studies/command-center.png';
+import imgSupplyGuard from '../assets/case-studies/supplyguard.png';
+import imgInsuranceRiskScoring from '../assets/case-studies/insurance-risk-scoring.png';
+import imgTelecomChurn from '../assets/case-studies/telecom-churn.png';
+import imgRetailDemand from '../assets/case-studies/retail-demand-forecasting.png';
+import imgRcmPriorAuth from '../assets/case-studies/rcm-prior-auth.png';
+import imgAccountsPayable from '../assets/case-studies/accounts-payable.png';
+import imgEmailOrderIntake from '../assets/case-studies/email-order-intake.png';
+import imgSatelliteCropYield from '../assets/case-studies/satellite-crop-yield.png';
+import imgAdaptiveLearning from '../assets/case-studies/adaptive-learning.png';
+import imgEhrClinicalNlp from '../assets/case-studies/ehr-clinical-nlp.png';
+import imgSingleCellRnaseq from '../assets/case-studies/single-cell-rnaseq.png';
+import imgRealTimeFraud from '../assets/case-studies/real-time-fraud-detection.png';
+import imgInsurancePolicyClassification from '../assets/case-studies/insurance-policy-classification.png';
+import imgHealthcareFraudBilling from '../assets/case-studies/healthcare-fraud-billing.png';
 
 // ─── Card accent palette (cycles across cards) ────────────────────────────────
 const CARD_ACCENTS = [
@@ -80,12 +97,12 @@ const caseStudies = [
     timeline: '12 commits', investment: 'Full-Stack Build',
     title: "AR Prioritization & Underpayment Recovery Engine",
     summary: "A public-CMS-data proof of concept that estimates what a Medicare claim should have paid, flags claims that look materially underpaid, and ranks them into a prioritized AR workqueue — backed by a LightGBM classifier and a live FastAPI + React dashboard.",
-    result: "$15B recovery opportunity surfaced from 6.1M claims",
+    result: "6.1M Medicare claims analyzed to flag underpayments for AR review",
     resultIcon: <BarChart3 size={14}/>,
-    metrics: [{ label: 'PR-AUC', value: '0.875' }, { label: 'Rows Modeled', value: '6.1M' }, { label: 'Est. Recovery', value: '$15B' }],
+    metrics: [{ label: 'PR-AUC', value: '0.875' }, { label: 'Rows Modeled', value: '6.1M' }, { label: 'Critical-Tier Claims', value: '9,114' }],
     accentColor: B.action,
     tags: ['LightGBM', 'FastAPI', 'React'],
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
+    image: imgArPrioritization,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/AR-prioritization-underpayment-recovery-engine',
     featured: true,
   },
@@ -117,7 +134,7 @@ const caseStudies = [
     metrics: [{ label: 'Risk Tiers', value: '3-Tier' }, { label: 'Root-Cause NLP', value: 'TF-IDF + DistilBERT' }, { label: 'Explainability', value: 'SHAP' }],
     accentColor: B.secondary,
     tags: ['XGBoost', 'DistilBERT', 'SHAP'],
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80',
+    image: imgClaimDenial,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Claim-denial-prediction-root-cause-classifier',
     featured: false,
   },
@@ -133,7 +150,7 @@ const caseStudies = [
     metrics: [{ label: 'Portals', value: '5 Role-Based' }, { label: 'Alerts', value: 'Real-Time WhatsApp' }, { label: 'Verification', value: 'Face + Geo-Fence' }],
     accentColor: B.accent,
     tags: ['React', 'Fraud Detection', 'Live Demo'],
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+    image: imgCommandCenter,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/restaurant-management-system',
     liveDemo: 'https://nexus-rms.vercel.app',
     featured: false,
@@ -150,7 +167,7 @@ const caseStudies = [
     metrics: [{ label: 'Risk Score', value: '0–100 Scale' }, { label: 'Model', value: 'Logistic Regression' }, { label: 'Risk Tiers', value: 'Low / Med / High' }],
     accentColor: '#2A7AB5',
     tags: ['Logistic Regression', 'Flask', 'Risk Scoring'],
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+    image: imgSupplyGuard,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Supply-Chain-Disruption-Alerts',
     featured: false,
   },
@@ -166,7 +183,7 @@ const caseStudies = [
     metrics: [{ label: 'Model Features', value: '45' }, { label: 'Model', value: 'Gradient Boosting' }, { label: 'Risk Tiers', value: '3' }],
     accentColor: '#7B52B5',
     tags: ['Gradient Boosting', 'Streamlit', 'Insurance'],
-    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
+    image: imgInsuranceRiskScoring,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Insurance-Risk-Scoring',
     featured: false,
   },
@@ -182,7 +199,7 @@ const caseStudies = [
     metrics: [{ label: 'Accuracy', value: '86.4%' }, { label: 'AUC-ROC', value: '0.91' }, { label: 'Top 20% Capture', value: '65%+ Churners' }],
     accentColor: '#C0584A',
     tags: ['Random Forest', 'SHAP', 'SMOTE'],
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+    image: imgTelecomChurn,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Telecom-Customer_Churn_Prediction',
     featured: true,
   },
@@ -198,7 +215,7 @@ const caseStudies = [
     metrics: [{ label: 'Approach', value: 'Time-Series' }, { label: 'Focus', value: 'Seasonality' }, { label: 'Stage', value: 'Concept / README' }],
     accentColor: B.action,
     tags: ['Forecasting', 'Pandas', 'Retail'],
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
+    image: imgRetailDemand,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Retail-Demand-Forecasting',
     featured: false,
   },
@@ -214,7 +231,7 @@ const caseStudies = [
     metrics: [{ label: 'Holdout MAPE', value: '0.048%' }, { label: 'Enrollment Tracked', value: '33.5M → 36.1M' }, { label: 'Forecast Horizon', value: '90 Days' }],
     accentColor: B.primary,
     tags: ['Forecasting', 'Streamlit', 'CMS Data'],
-    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
+    image: imgRcmPriorAuth,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Revenue-forecasting-prior-authorization-intelligence',
     featured: false,
   },
@@ -230,7 +247,7 @@ const caseStudies = [
     metrics: [{ label: 'Fields Extracted', value: '6+ Core Fields' }, { label: 'Output', value: 'Structured Data' }, { label: 'Stage', value: 'Notebook Prototype' }],
     accentColor: B.accent,
     tags: ['Document AI', 'Python', 'Automation'],
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
+    image: imgAccountsPayable,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Accounts-Payable-Invoice-Extraction',
     featured: false,
   },
@@ -246,7 +263,7 @@ const caseStudies = [
     metrics: [{ label: 'Channels', value: 'Email + Attachments' }, { label: 'Validation', value: 'Rule-Based' }, { label: 'Stage', value: 'Concept / README' }],
     accentColor: '#3AB896',
     tags: ['Email Automation', 'Python', 'RPA'],
-    image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=800&q=80',
+    image: imgEmailOrderIntake,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Email-Based-Order-Intake-System',
     featured: false,
   },
@@ -262,7 +279,7 @@ const caseStudies = [
     metrics: [{ label: 'Data Sources', value: '3 Fused' }, { label: 'Models Compared', value: '5' }, { label: 'Stage', value: 'Concept / README' }],
     accentColor: '#1A8A6E',
     tags: ['Satellite Data', 'XGBoost', 'LSTM'],
-    image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=800&q=80',
+    image: imgSatelliteCropYield,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/satellite-weather-crop-yield',
     featured: false,
   },
@@ -278,7 +295,7 @@ const caseStudies = [
     metrics: [{ label: 'Approach', value: 'Bayesian Mastery' }, { label: 'Adjustment', value: 'Real-Time' }, { label: 'Stage', value: 'Concept / README' }],
     accentColor: '#7B52B5',
     tags: ['EdTech', 'Bayesian ML', 'Personalization'],
-    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
+    image: imgAdaptiveLearning,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/adaptive-learning-engine',
     featured: false,
   },
@@ -294,7 +311,7 @@ const caseStudies = [
     metrics: [{ label: 'Entities', value: 'Dx / Meds / Procedures' }, { label: 'Privacy', value: 'De-ID Built-In' }, { label: 'Stage', value: 'Concept / README' }],
     accentColor: B.primary,
     tags: ['Clinical NLP', 'NER', 'Healthcare'],
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+    image: imgEhrClinicalNlp,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/ehr-clinical-nlp-automation',
     featured: false,
   },
@@ -310,7 +327,7 @@ const caseStudies = [
     metrics: [{ label: 'Reduction', value: 'PCA / t-SNE / UMAP' }, { label: 'Clustering', value: 'GMM + DBSCAN' }, { label: 'Selection', value: 'BIC-Optimized' }],
     accentColor: B.action,
     tags: ['scRNA-seq', 'UMAP', 'Clustering'],
-    image: 'https://images.unsplash.com/photo-1583912267550-d6c2ac3196c0?auto=format&fit=crop&w=800&q=80',
+    image: imgSingleCellRnaseq,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/single-cell-rnaseq-automation',
     featured: false,
   },
@@ -326,7 +343,7 @@ const caseStudies = [
     metrics: [{ label: 'Risk Score', value: '0–100 Scale' }, { label: 'Decisioning', value: '3-Tier' }, { label: 'Stage', value: 'Concept / README' }],
     accentColor: B.secondary,
     tags: ['Fraud Detection', 'Anomaly Detection', 'Real-Time'],
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+    image: imgRealTimeFraud,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/real-time-fraud-detection',
     featured: false,
   },
@@ -342,7 +359,7 @@ const caseStudies = [
     metrics: [{ label: 'Platform', value: 'React Native / Expo' }, { label: 'OCR', value: 'Scanned + Multi-Page' }, { label: 'Review', value: 'Human-in-the-Loop' }],
     accentColor: '#2A7AB5',
     tags: ['React Native', 'OCR', 'Insurance'],
-    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
+    image: imgInsurancePolicyClassification,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Insurance-Policy-Document-Classification-System',
     featured: false,
   },
@@ -374,7 +391,7 @@ const caseStudies = [
     metrics: [{ label: 'Providers Analyzed', value: '44,528' }, { label: 'High-Risk Flagged', value: '3,842' }, { label: 'Classifier Accuracy', value: '~96%' }],
     accentColor: B.secondary,
     tags: ['Isolation Forest', 'Anomaly Detection', 'CMS Data'],
-    image: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=800&q=80',
+    image: imgHealthcareFraudBilling,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Fraudulent-Outlier-Billing-Detection-System',
     featured: true,
   },
@@ -581,9 +598,9 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
               backgroundSize: 'cover', backgroundPosition: 'center',
               transform: hovered ? 'scale(1.06)' : 'scale(1)',
               transition: 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
-              filter: hovered ? 'brightness(0.55)' : 'brightness(0.45)',
+              filter: hovered ? 'brightness(0.75)' : 'brightness(0.68)',
             }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(13,10,21,0) 30%, rgba(13,10,21,1) 100%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(13,10,21,0) 45%, rgba(13,10,21,0.88) 100%)' }} />
             <div style={{
               position: 'absolute', top: 0, left: 0, right: 0, height: 3,
               background: `linear-gradient(90deg, ${accent.border}, ${accent.border}60, transparent)`,
@@ -664,15 +681,6 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
                   <div style={{ fontSize: 'clamp(9px, 1vw, 10px)', fontWeight: 600, color: B.textDarkMuted, textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: 3 }}>{m.label}</div>
                 </div>
               ))}
-            </div>
-
-            <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 'clamp(10px, 1.2vw, 12px)', color: B.textDarkMuted, fontWeight: 600 }}>
-                <GitBranch size={12} color={B.textDarkMuted}/> {cs.timeline}
-              </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 'clamp(10px, 1.2vw, 12px)', color: B.textDarkMuted, fontWeight: 600 }}>
-                <Layers size={12} color={B.textDarkMuted}/> {cs.investment}
-              </span>
             </div>
 
             <div style={{
@@ -787,14 +795,14 @@ export default function CaseStudies() {
 
         <div style={{
           flex: 1, position: 'relative', zIndex: 10,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          display: 'flex', alignItems: 'center',
           padding: 'clamp(48px, 8vw, 96px) clamp(16px, 4vw, 24px) clamp(32px, 5vw, 72px)',
-          textAlign: 'center',
         }}>
+          <div style={{ maxWidth: 1400, width: '100%', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr', alignItems: 'center' }} className="cs-hero-grid">
           <motion.div
             initial="hidden" animate="visible"
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.11 } } }}
-            style={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}
+            style={{ width: '100%', textAlign: 'center' }}
           >
             <motion.div variants={fadeUp} custom={0}>
               <SectionBadge>Proven Results</SectionBadge>
@@ -826,8 +834,7 @@ export default function CaseStudies() {
                 letterSpacing: '0.02em', lineHeight: 1.6,
               }}
             >
-              From genomics research to fintech fraud detection, every case study below is a project<br className="hero-br" />
-              we've shipped, a client we've served, and a result that's measurable.
+              From genomics research to fintech fraud detection, every case study below is a project we've shipped, a client we've served, and a result that's measurable.
             </motion.p>
 
             <motion.div
@@ -875,8 +882,16 @@ export default function CaseStudies() {
               </div>
             </motion.div>
           </motion.div>
+
+          </div>
         </div>
       </section>
+
+      <style>{`
+        @media(max-width:900px){
+          .cs-hero-grid{text-align:center}
+        }
+      `}</style>
 
       {/* ═══ 2. DARK STATS ═══ */}
       <section style={{

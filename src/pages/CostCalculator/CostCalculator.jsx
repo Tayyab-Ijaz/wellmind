@@ -129,8 +129,8 @@ export default function CostCalculator() {
       <section style={{ position: 'relative', minHeight: '50vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', zIndex: 1, paddingTop: 'clamp(60px,8vw,100px)', background: B.heroBg }}>
         <HeroGridBg uid="CalcHero" opacity={0.30} />
         <DataParticles count={16} />
-        <div style={{ flex: 1, position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center', padding: 'clamp(34px,5vw,64px) clamp(16px,4vw,24px) clamp(70px,8vw,100px)' }}>
-          <div className="grid-2col calc-hero-grid" style={{ width: '100%', maxWidth: 1380, margin: '0 auto', gap: 'clamp(24px,4vw,72px)', alignItems: 'center' }}>
+        <div style={{ flex: 1, position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center', padding: 'clamp(48px,6vw,72px) clamp(28px,5vw,76px) clamp(70px,8vw,100px)' }}>
+          <div className="grid-2col calc-hero-grid" style={{ width: '100%', maxWidth: 1500, margin: '0 auto', gridTemplateColumns: 'minmax(0,1fr) minmax(340px,1fr)', gap: 'clamp(24px,3.5vw,56px)', alignItems: 'center' }}>
             <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.11 } } }} style={{ width: '100%', textAlign: 'left' }}>
               <motion.div variants={fadeUp} custom={0}>
                 <SectionBadge><Calculator size={12} style={{ marginRight: 2 }} />Free Interactive Tool</SectionBadge>
@@ -144,8 +144,8 @@ export default function CostCalculator() {
               </motion.p>
             </motion.div>
 
-            <motion.div className="calc-hero-visual" initial={{ opacity: 0, x: 35, scale: 0.96 }} animate={{ opacity: 1, x: 0, scale: 1 }} transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }} style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingRight: 'clamp(20px,5vw,64px)' }}>
-              <img src={aiRoiHero} alt="AI ROI cost comparison illustration" className="calc-hero-img" style={{ width: 'min(112%, 860px)', maxHeight: 640, objectFit: 'contain', display: 'block', filter: 'drop-shadow(0 24px 45px rgba(83,42,140,0.18))' }} />
+            <motion.div className="calc-hero-visual" initial={{ opacity: 0, x: 35, scale: 0.96 }} animate={{ opacity: 1, x: 0, scale: 1 }} transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }} style={{ width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', paddingRight: 'clamp(28px,5vw,72px)' }}>
+              <img src={aiRoiHero} alt="AI ROI cost comparison illustration" className="calc-hero-img" style={{ width: 'min(145%, 980px)', maxHeight: 900, objectFit: 'contain', display: 'block', filter: 'drop-shadow(0 24px 45px rgba(83,42,140,0.18))' }} />
             </motion.div>
           </div>
         </div>

@@ -9,6 +9,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { B, SECTION_PAD, PX, NARROW, DataParticles, SectionBadge, CircuitBg } from '../theme';
+import imgArPrioritization from '../assets/case-studies/ar-prioritization.png';
+import imgClaimDenial from '../assets/case-studies/claim-denial.png';
+import imgCommandCenter from '../assets/case-studies/command-center.png';
+import imgSupplyGuard from '../assets/case-studies/supplyguard.png';
+import imgInsuranceRiskScoring from '../assets/case-studies/insurance-risk-scoring.png';
+import imgTelecomChurn from '../assets/case-studies/telecom-churn.png';
+import imgRetailDemand from '../assets/case-studies/retail-demand-forecasting.png';
+import imgRcmPriorAuth from '../assets/case-studies/rcm-prior-auth.png';
+import imgAccountsPayable from '../assets/case-studies/accounts-payable.png';
+import imgEmailOrderIntake from '../assets/case-studies/email-order-intake.png';
+import imgSatelliteCropYield from '../assets/case-studies/satellite-crop-yield.png';
+import imgAdaptiveLearning from '../assets/case-studies/adaptive-learning.png';
+import imgEhrClinicalNlp from '../assets/case-studies/ehr-clinical-nlp.png';
+import imgSingleCellRnaseq from '../assets/case-studies/single-cell-rnaseq.png';
+import imgRealTimeFraud from '../assets/case-studies/real-time-fraud-detection.png';
+import imgInsurancePolicyClassification from '../assets/case-studies/insurance-policy-classification.png';
+import imgHealthcareFraudBilling from '../assets/case-studies/healthcare-fraud-billing.png';
 import {
   ArrowRight, ArrowLeft, Dna, TrendingUp, Brain, Leaf, Clock,
   Zap, CheckCircle, BookOpen, BarChart3, ChevronRight, Star,
@@ -61,12 +78,12 @@ const ALL_CASE_STUDIES = {
     overview: "Revenue Cycle teams need a practical way to identify claims that are likely underpaid and worth following up. This project builds expected-payment tables from CMS RVU reference data, flags claims that appear materially underpaid, and ranks which ones AR teams should review first — surfacing which states, HCPCS codes, and provider types drive the largest recovery opportunity. No PHI is used; the pipeline runs entirely on public CMS Medicare and Physician Fee Schedule data.",
     challenge: `AR teams need to know which underpaid claims are worth chasing first, out of millions of rows, without access to patient-level data. A pure rules-based CMS-formula benchmark is audit-defensible but slow to act on at scale, and needs a validation layer to confirm it isn't systematically over- or under-flagging claims.`,
     approach: `Built expected-payment tables from CMS RVU reference data and joined them against actual CMS payment data. Trained and compared five models — LightGBM came out on top — to flag high-recovery-priority claims, with threshold tuning for different precision/recall targets. Added an Isolation Forest layer to catch anomalous underpayment patterns beyond the standard variance model, plus a supplementary regression layer that cross-checks the CMS formula benchmark against actual allowed amounts. Shipped as a FastAPI backend with an interactive React dashboard for the priority queue, underpayment reports, and a live single-claim checker.`,
-    results: ["LightGBM best model: Test PR-AUC 0.875, ROC-AUC 0.886, F1 0.758 on 6.14M rows across 23 features", "6,056,133 underpaid claims queued with an estimated $14.99B in recovery opportunity", "9,114 Critical-tier and 173,218 High-tier claims surfaced for immediate AR review", "Regression validation layer (HistGradientBoosting, MAE 14.48) confirms the CMS formula benchmark stays the audit-defensible pricing engine"],
+    results: ["LightGBM best model: Test PR-AUC 0.875, ROC-AUC 0.886, F1 0.758 on 6.14M rows across 23 features", "6,056,133 underpaid claims queued and ranked into a prioritized AR workqueue", "9,114 Critical-tier and 173,218 High-tier claims surfaced for immediate AR review", "Regression validation layer (HistGradientBoosting, MAE 14.48) confirms the CMS formula benchmark stays the audit-defensible pricing engine"],
     tools: ['Python', 'LightGBM', 'Isolation Forest', 'FastAPI', 'React', 'CMS RVU Data'],
     quote: null,
-    metrics: [{ value: '0.875', label: 'PR-AUC' }, { value: '6.1M', label: 'Rows Modeled' }, { value: '$15B', label: 'Est. Recovery' }],
+    metrics: [{ value: '0.875', label: 'PR-AUC' }, { value: '6.1M', label: 'Rows Modeled' }, { value: '9,114', label: 'Critical-Tier Claims' }],
     heroIcon: <TrendingUp size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgArPrioritization,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/AR-prioritization-underpayment-recovery-engine',
     nextSlug: 'conversational-analytics-platform', prevSlug: 'icd10-cpt-coding-engine',
   },
@@ -100,7 +117,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: '3-Tier', label: 'Risk Tiers' }, { value: 'TF-IDF + DistilBERT', label: 'Root-Cause NLP' }, { value: 'SHAP', label: 'Explainability' }],
     heroIcon: <Target size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgClaimDenial,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Claim-denial-prediction-root-cause-classifier',
     nextSlug: 'restaurant-command-center', prevSlug: 'conversational-analytics-platform',
   },
@@ -117,7 +134,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: '5 Role-Based', label: 'Portals' }, { value: 'Real-Time WhatsApp', label: 'Alerts' }, { value: 'Face + Geo-Fence', label: 'Verification' }],
     heroIcon: <Rocket size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgCommandCenter,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/restaurant-management-system',
     liveDemo: 'https://nexus-rms.vercel.app',
     nextSlug: 'supplyguard-disruption-alerts', prevSlug: 'claim-denial-prediction',
@@ -135,7 +152,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: '0–100 Scale', label: 'Risk Score' }, { value: 'Logistic Regression', label: 'Model' }, { value: 'Low / Med / High', label: 'Risk Tiers' }],
     heroIcon: <Globe size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgSupplyGuard,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Supply-Chain-Disruption-Alerts',
     nextSlug: 'insurance-risk-scoring', prevSlug: 'restaurant-command-center',
   },
@@ -152,7 +169,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: '45', label: 'Model Features' }, { value: 'Gradient Boosting', label: 'Model' }, { value: '3', label: 'Risk Tiers' }],
     heroIcon: <Shield size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgInsuranceRiskScoring,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Insurance-Risk-Scoring',
     nextSlug: 'telecom-churn-prediction', prevSlug: 'supplyguard-disruption-alerts',
   },
@@ -169,7 +186,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: '86.4%', label: 'Accuracy' }, { value: '0.91', label: 'AUC-ROC' }, { value: '65%+ Churners', label: 'Top 20% Capture' }],
     heroIcon: <TrendingUp size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgTelecomChurn,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Telecom-Customer_Churn_Prediction',
     nextSlug: 'retail-demand-forecasting', prevSlug: 'insurance-risk-scoring',
   },
@@ -186,7 +203,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: 'Time-Series', label: 'Approach' }, { value: 'Seasonality', label: 'Focus' }, { value: 'Concept / README', label: 'Stage' }],
     heroIcon: <BarChart3 size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgRetailDemand,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Retail-Demand-Forecasting',
     nextSlug: 'rcm-prior-authorization-intelligence', prevSlug: 'telecom-churn-prediction',
   },
@@ -203,7 +220,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: '0.048%', label: 'Holdout MAPE' }, { value: '33.5M → 36.1M', label: 'Enrollment Tracked' }, { value: '90 Days', label: 'Forecast Horizon' }],
     heroIcon: <BarChart3 size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgRcmPriorAuth,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Revenue-forecasting-prior-authorization-intelligence',
     nextSlug: 'accounts-payable-invoice-extraction', prevSlug: 'retail-demand-forecasting',
   },
@@ -220,7 +237,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: '6+ Core Fields', label: 'Fields Extracted' }, { value: 'Structured Data', label: 'Output' }, { value: 'Notebook Prototype', label: 'Stage' }],
     heroIcon: <Code2 size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgAccountsPayable,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Accounts-Payable-Invoice-Extraction',
     nextSlug: 'email-order-intake-system', prevSlug: 'rcm-prior-authorization-intelligence',
   },
@@ -237,7 +254,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: 'Email + Attachments', label: 'Channels' }, { value: 'Rule-Based', label: 'Validation' }, { value: 'Concept / README', label: 'Stage' }],
     heroIcon: <Mail size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgEmailOrderIntake,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Email-Based-Order-Intake-System',
     nextSlug: 'satellite-weather-crop-yield', prevSlug: 'accounts-payable-invoice-extraction',
   },
@@ -254,7 +271,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: '3 Fused', label: 'Data Sources' }, { value: '5', label: 'Models Compared' }, { value: 'Concept / README', label: 'Stage' }],
     heroIcon: <Leaf size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgSatelliteCropYield,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/satellite-weather-crop-yield',
     nextSlug: 'adaptive-learning-engine', prevSlug: 'email-order-intake-system',
   },
@@ -271,7 +288,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: 'Bayesian Mastery', label: 'Approach' }, { value: 'Real-Time', label: 'Adjustment' }, { value: 'Concept / README', label: 'Stage' }],
     heroIcon: <GraduationCap size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgAdaptiveLearning,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/adaptive-learning-engine',
     nextSlug: 'ehr-clinical-nlp-automation', prevSlug: 'satellite-weather-crop-yield',
   },
@@ -288,7 +305,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: 'Dx / Meds / Procedures', label: 'Entities' }, { value: 'De-ID Built-In', label: 'Privacy' }, { value: 'Concept / README', label: 'Stage' }],
     heroIcon: <Brain size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgEhrClinicalNlp,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/ehr-clinical-nlp-automation',
     nextSlug: 'single-cell-rnaseq-automation', prevSlug: 'adaptive-learning-engine',
   },
@@ -305,7 +322,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: 'PCA / t-SNE / UMAP', label: 'Reduction' }, { value: 'GMM + DBSCAN', label: 'Clustering' }, { value: 'BIC-Optimized', label: 'Selection' }],
     heroIcon: <Dna size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1583912267550-d6c2ac3196c0?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgSingleCellRnaseq,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/single-cell-rnaseq-automation',
     nextSlug: 'real-time-fraud-detection', prevSlug: 'ehr-clinical-nlp-automation',
   },
@@ -322,7 +339,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: '0–100 Scale', label: 'Risk Score' }, { value: '3-Tier', label: 'Decisioning' }, { value: 'Concept / README', label: 'Stage' }],
     heroIcon: <Shield size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgRealTimeFraud,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/real-time-fraud-detection',
     nextSlug: 'insurance-policy-document-classification', prevSlug: 'single-cell-rnaseq-automation',
   },
@@ -339,7 +356,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: 'React Native / Expo', label: 'Platform' }, { value: 'Scanned + Multi-Page', label: 'OCR' }, { value: 'Human-in-the-Loop', label: 'Review' }],
     heroIcon: <Shield size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgInsurancePolicyClassification,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Insurance-Policy-Document-Classification-System',
     nextSlug: 'regulatory-form-auto-completion', prevSlug: 'real-time-fraud-detection',
   },
@@ -365,7 +382,7 @@ const ALL_CASE_STUDIES = {
     timeline: '16 commits', investment: 'ML Notebook Pipeline',
     accentColor: B.secondary,
     title: "Healthcare Fraud Detection System (Medicare Billing)",
-    overview: "Medicare fraud costs the U.S. healthcare system an estimated $60–100 billion a year, and manual review can't scale across millions of billing records. This system processes raw CMS Medicare billing data and outputs a prioritized, investigator-ready list of providers ranked by fraud risk, each flagged with the specific anomalies that triggered the alert.",
+    overview: "Medicare fraud affects a significant share of U.S. healthcare spending every year, and manual review can't scale across millions of billing records. This system processes raw CMS Medicare billing data and outputs a prioritized, investigator-ready list of providers ranked by fraud risk, each flagged with the specific anomalies that triggered the alert.",
     challenge: `Investigators were facing millions of raw Medicare billing rows with no way to prioritize which providers actually warranted a closer look, and no single system that combined statistical peer benchmarking, unsupervised anomaly detection, upcoding pattern detection, and federal exclusion-list matching into one ranked, defensible shortlist.`,
     approach: `Engineered five provider-level features (payment per beneficiary, services per beneficiary, payment per service, charge-to-payment ratio, unique HCPCS count) and benchmarked every provider against its specialty-state peer group (1,200+ groups) using Z-score analysis. Layered in an Isolation Forest for unsupervised anomaly detection, a rule-based E&M upcoding score across 90+ provider types, and cross-referenced active OIG LEIE federal exclusion lists by NPI. Combined everything into a single composite Fraud Risk Score with Critical / High / Medium / Standard investigation-priority labels.`,
     results: ["44,528 providers analyzed on the 2023 CMS dataset; 3,842 flagged high-risk", "1,247 Critical-priority providers identified — High Risk score plus an active LEIE match", "2,914 E&M upcoding flags issued across 90+ provider types", "Duplicate-claim Random Forest classifier reached ~96% accuracy as a supporting signal"],
@@ -373,7 +390,7 @@ const ALL_CASE_STUDIES = {
     quote: null,
     metrics: [{ value: '44,528', label: 'Providers Analyzed' }, { value: '3,842', label: 'High-Risk Flagged' }, { value: '~96%', label: 'Classifier Accuracy' }],
     heroIcon: <Shield size={52} strokeWidth={1.2}/>,
-    heroImage: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=1200&q=80',
+    heroImage: imgHealthcareFraudBilling,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Fraudulent-Outlier-Billing-Detection-System',
     nextSlug: 'icd10-cpt-coding-engine', prevSlug: 'regulatory-form-auto-completion',
   },
@@ -587,13 +604,6 @@ function NavCard({ slug, dir }) {
             color: hovered ? B.textDark : B.textDarkMid, lineHeight: 1.5,
             transition: 'color 0.25s',
           }}>{cs.title}</div>
-          {/* Timeline */}
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 5, marginTop: 10,
-            fontSize: 'clamp(10px, 1.1vw, 12px)', color: B.textDarkMuted, fontWeight: 600,
-          }}>
-            <GitBranch size={11} color={B.textDarkMuted}/> {cs.timeline}
-          </div>
         </div>
       </motion.div>
     </Link>
@@ -768,10 +778,10 @@ export default function IndividualCaseStudy() {
           </motion.div>
 
           {/* Two-column: left text / right metrics */}
-          <div style={{ display: 'flex', gap: 'clamp(36px, 6vw, 88px)', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+          <div className="cs-detail-hero-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(280px, 310px)', gap: 'clamp(36px, 6vw, 88px)', alignItems: 'center' }}>
 
             {/* LEFT: full narrative */}
-            <div style={{ flex: '1 1 min(100%, 580px)' }}>
+            <div style={{ minWidth: 0 }}>
               {/* Industry + meta row */}
               <motion.div
                 initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
@@ -789,14 +799,6 @@ export default function IndividualCaseStudy() {
                 }}>
                   {tag.icon} {cs.industry}
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 'clamp(11px, 1.2vw, 13px)', color: B.textMuted, fontWeight: 600 }}>
-                  <GitBranch size={12}/> {cs.timeline}
-                </div>
-                {cs.investment && (
-                  <div style={{ fontSize: 'clamp(11px, 1.2vw, 13px)', color: B.primary, fontWeight: 700, padding: '4px clamp(10px, 1.5vw, 14px)', borderRadius: 99, background: B.primaryLight, border: `1px solid ${B.primaryBorder}` }}>
-                    {cs.investment}
-                  </div>
-                )}
               </motion.div>
 
               {/* H1 */}
@@ -888,7 +890,7 @@ export default function IndividualCaseStudy() {
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              style={{ flex: '0 0 min(100%, 310px)', alignSelf: 'flex-start' }}
+              style={{ minWidth: 0, width: '100%' }}
             >
               <div style={{
                 borderRadius: 'var(--radius-xl)',
@@ -929,7 +931,7 @@ export default function IndividualCaseStudy() {
                       style={{
                         padding: 'clamp(13px, 1.8vw, 18px) 0',
                         borderBottom: mi < cs.metrics.length - 1 ? `1px solid ${cs.accentColor}14` : 'none',
-                        display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
+                        display: 'flex', flexDirection: 'column', gap: 6,
                       }}
                     >
                       <div style={{
@@ -938,9 +940,9 @@ export default function IndividualCaseStudy() {
                       }}>{m.label}</div>
                       <div style={{
                         fontWeight: 800,
-                        fontSize: 'clamp(1.1rem, 2vw, 1.55rem)',
-                        color: cs.accentColor, letterSpacing: '-0.02em', lineHeight: 1,
-                        flexShrink: 0,
+                        fontSize: m.value.length > 14 ? 'clamp(0.95rem, 1.6vw, 1.15rem)' : 'clamp(1.1rem, 2vw, 1.55rem)',
+                        color: cs.accentColor, letterSpacing: '-0.01em', lineHeight: 1.25,
+                        maxWidth: '100%', textAlign: 'left', wordBreak: 'break-word', overflowWrap: 'break-word',
                       }}>{m.value}</div>
                     </motion.div>
                   ))}

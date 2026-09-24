@@ -92,10 +92,10 @@ function CapabilityCard({ icon, color, title, desc, delay = 0 }) {
 }
 
 // ─── Use Case Row ─────────────────────────────────────────────────────────────
-function UseCaseRow({ icon, color, title, desc, metrics, index }) {
+function UseCaseRow({ icon, color, title, desc, metrics, index, slug }) {
   const [hovered, setHovered] = useState(false);
   const isEven = index % 2 === 0;
-  return (
+  const content = (
     <motion.div
       initial={{ opacity: 0, x: isEven ? -28 : 28 }} whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -107,7 +107,7 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
         border: `3px solid ${hovered ? color : B.primaryBorder}`,
         borderRadius: 'var(--radius-xl)', padding: 'clamp(24px, 3vw, 40px)',
         boxShadow: hovered ? `0 20px 48px -12px ${color}40` : B.cardShadow,
-        transition: 'all 0.35s ease', cursor: 'default', position: 'relative', overflow: 'hidden',
+        transition: 'all 0.35s ease', cursor: slug ? 'pointer' : 'default', position: 'relative', overflow: 'hidden',
       }}
     >
       <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: `linear-gradient(180deg, ${color}, transparent)`, opacity: hovered ? 1 : 0.3, transition: 'opacity 0.35s' }} />
@@ -117,6 +117,11 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
       <div style={{ flex: '1 1 240px' }}>
         <h3 style={{ fontFamily: 'var(--font-main)', fontWeight: 700, color: hovered ? B.textDark : B.primaryDark, marginBottom: 10, fontSize: 'clamp(1.15rem, 2.2vw, 1.4rem)' }}>{title}</h3>
         <p style={{ color: hovered ? B.textDarkMid : B.textMid, fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)', lineHeight: 1.75 }}>{desc}</p>
+        {slug && (
+          <div style={{ marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(0.8rem, 1.2vw, 0.9rem)', fontWeight: 700, color: hovered ? B.white : color, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            View Case Study <ArrowRight size={14} />
+          </div>
+        )}
       </div>
       <div style={{ display: 'flex', gap: 'clamp(16px, 3vw, 32px)', flexWrap: 'wrap' }}>
         {metrics.map((m, i) => (
@@ -128,6 +133,9 @@ function UseCaseRow({ icon, color, title, desc, metrics, index }) {
       </div>
     </motion.div>
   );
+  return slug
+    ? <Link to={`/case-studies/${slug}`} style={{ textDecoration: 'none', display: 'block' }}>{content}</Link>
+    : content;
 }
 
 // ─── FAQ Item (Dark Mode) ─────────────────────────────────────────────────────
@@ -182,41 +190,26 @@ export default function IndustryEducation() {
   }, []);
 
   const capabilities = [
-    { icon: <GraduationCap size={22} />, color: B.action,    title: 'Student Dropout Prediction',        desc: 'Early-warning ML models that analyze attendance, LMS engagement, grades, and socioeconomic signals to identify at-risk students 8–12 weeks before dropout, enabling timely intervention.' },
-    { icon: <Brain size={22} />,         color: B.primary,   title: 'Adaptive Learning Personalization',  desc: 'AI-driven content sequencing that adjusts lesson difficulty, format, and pacing in real time based on individual mastery levels, learning style signals, and time-on-task data.' },
-    { icon: <BarChart3 size={22} />,     color: B.accent,    title: 'Learning Outcome Analytics',         desc: 'Cohort-level dashboards that correlate instructional interventions with measurable learning outcomes — giving educators and administrators evidence-based levers for continuous improvement.' },
-    { icon: <Users size={22} />,         color: B.secondary, title: 'Enrollment & Retention Modeling',    desc: 'Predictive models that score prospective students by enrollment likelihood and current students by re-enrollment risk, enabling targeted recruitment and financial aid optimization.' },
-    { icon: <Lightbulb size={22} />,     color: B.action,    title: 'Intelligent Tutoring & Chatbots',    desc: 'LLM-powered tutoring assistants fine-tuned on institutional curricula that provide 24/7 Socratic-method support, reducing faculty load while improving student comprehension scores.' },
-    { icon: <ShieldCheck size={22} />,   color: B.accent,    title: 'Academic Integrity & Proctoring AI', desc: 'Computer vision and behavioral models for remote exam integrity, plagiarism detection with citation-graph analysis, and AI-generated content identification aligned to institutional policy.' },
+    { icon: <Brain size={22} />,         color: B.primary,   title: 'Mastery & Prerequisite Intelligence', desc: 'Bayesian/probabilistic modeling (BKT/IRT) tracks mastery at the individual skill and sub-skill level, while automatic prerequisite-gap detection closes foundational gaps before students advance to new concepts.' },
+    { icon: <Zap size={22} />,           color: B.action,    title: 'Real-Time Learning Personalization', desc: "Question difficulty adjusts dynamically from correctness, response time, and hint usage. The engine then recommends the next-best exercise from each student's current mastery state instead of following a fixed curriculum pace." },
+    { icon: <Target size={22} />,        color: B.accent,    title: 'Scalable Adaptive Learning Paths', desc: 'Combines per-skill progress, prerequisite awareness, live difficulty adjustment, and next-exercise recommendations into personalized learning paths that scale without one-on-one tutoring.' },
   ];
 
   const useCases = [
     {
-      icon: <GraduationCap />, color: B.action,
-      title: 'Dropout Prevention System for a University Network',
-      desc: 'We built a multi-signal early-warning system for a network of 8 universities ingesting LMS clickstream data, grade trajectories, attendance records, financial aid status, and counselor notes. The model scores all enrolled students weekly and surfaces the top 5% at-risk cohort to advisors through a priority dashboard.',
-      metrics: [{ val: '31%', label: 'Dropout Reduction' }, { val: '8wk', label: 'Early Warning' }, { val: '94%', label: 'Model Precision' }],
-    },
-    {
-      icon: <Brain />, color: B.primary,
-      title: 'Adaptive Math Platform for a K-12 EdTech Company',
-      desc: 'Built a reinforcement-learning-based content sequencer for a K-12 math platform serving 200,000 students. The system continuously estimates each student\'s knowledge state across 480 skill nodes and selects the optimal next exercise to maximize mastery gain per minute of engagement, outperforming static curricula significantly.',
-      metrics: [{ val: '28%', label: 'Faster Mastery' }, { val: '200K', label: 'Students Served' }, { val: '4.1×', label: 'Engagement Gain' }],
-    },
-    {
-      icon: <BarChart3 />, color: B.accent,
-      title: 'Enrollment Intelligence Platform for a Community College System',
-      desc: 'Developed an enrollment propensity model combining demographic data, high-school GPA, FAFSA completion signals, and prior outreach interaction data. The model powers a CRM workflow that prioritizes recruiter outreach and personalizes financial aid messaging, driving a significant increase in enrolled first-generation students.',
-      metrics: [{ val: '19%', label: 'Enrollment Lift' }, { val: '3.2×', label: 'Recruiter ROI' }, { val: '22%', label: 'First-Gen Increase' }],
+      icon: <Brain />, color: B.primary, slug: 'adaptive-learning-engine',
+      title: 'Adaptive Learning Engine',
+      desc: 'A per-skill mastery engine designed to track each student\'s progress at the individual math skill level, adjust question difficulty in real time based on correctness and response time, and recommend the next best exercise — so every student follows a path suited to their own pace.',
+      metrics: [{ val: 'Bayesian', label: 'Mastery Modeling' }, { val: 'Real-Time', label: 'Difficulty Adjustment' }, { val: 'Concept', label: 'Current Stage' }],
     },
   ];
 
   const faqs = [
-    { q: 'What data sources do you typically work with in education?', a: 'We integrate with LMS platforms (Canvas, Moodle, Blackboard, Google Classroom), SIS systems (Ellucian Banner, PowerSchool, Infinite Campus), CRM tools (Slate, Salesforce Education Cloud), FAFSA / financial aid data, attendance systems, and proctoring platforms via API or data warehouse exports.' },
-    { q: 'How do you handle FERPA compliance and student data privacy?', a: 'All student data is processed under a formal data use agreement aligned with FERPA, COPPA (for K-12), and relevant state privacy laws. We work within the institution\'s existing data governance framework, support on-premise or institution-controlled cloud deployments, and never use student data to train models outside the engagement scope.' },
-    { q: 'Can your models work across different institutional contexts?', a: 'Yes. We use transfer learning to adapt models trained on similar institutional profiles, requiring as little as one academic year of local data for meaningful accuracy. Models are validated on held-out cohorts before deployment and recalibrated each semester as new data accumulates.' },
-    { q: 'Do you integrate with existing LMS and SIS platforms?', a: 'We build certified connectors for Canvas (LTI 1.3), Moodle, Blackboard Ultra, Google Classroom, Ellucian Banner, PowerSchool, and Salesforce Education Cloud. Outputs are delivered as dashboard widgets, API endpoints, or CRM workflow triggers depending on the use case.' },
-    { q: 'What does a typical education AI engagement look like?', a: 'We begin with a 2-week data audit assessing LMS data quality, SIS completeness, and historical outcome records. Model development runs 4–8 weeks, followed by a semester-long pilot with a matched control group for impact measurement. Full institutional rollout includes training for advisors, faculty, and administrators.' },
+    { q: 'What education work have you actually delivered?', a: "One real project so far: an adaptive math-learning engine, currently at concept stage. We're upfront that this is our current education-sector portfolio, not a long list of institutional deployments." },
+    { q: 'How does the mastery-tracking approach work?', a: 'It uses a Bayesian/probabilistic approach (Bayesian Knowledge Tracing or Item Response Theory) to track mastery separately at the individual skill and sub-skill level, rather than a single overall subject score.' },
+    { q: 'What signals adjust question difficulty?', a: "Correctness, response time, and hint usage feed into a real-time difficulty adjustment — so a student who's struggling gets easier reinforcement, and one who's excelling gets pushed further, automatically." },
+    { q: 'Is this deployed in a live classroom or platform?', a: "Not yet — it's a validated concept, not a live production deployment. We're transparent with every prospective client about exactly what stage a given build is at before scoping new work." },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
@@ -269,7 +262,7 @@ export default function IndustryEducation() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  From dropout prediction to adaptive personalization — we build production-grade AI systems for universities, K-12 districts, and EdTech platforms. Privacy-first. Outcome-measured. Institution-ready.
+                  A per-skill mastery engine for adaptive math learning, built and validated as a concept. Real project. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -295,7 +288,7 @@ export default function IndustryEducation() {
                 }}
               >
                 <img
-                  src="https://picsum.photos/seed/educationai/600/600"
+                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80" // TODO: replace with custom illustration — see chat for image brief
                   alt="Education AI Visual"
                   style={{
                     objectFit: 'contain',
@@ -323,10 +316,10 @@ export default function IndustryEducation() {
               }}
             >
               {[
-                { val: '31%',  label: 'Dropout Reduction' },
-                { val: '28%',  label: 'Faster Mastery' },
-                { val: '19%',  label: 'Enrollment Lift' },
-                { val: '200K', label: 'Students Served' },
+                { val: '1',       label: 'Real Project Delivered' },
+                { val: 'Bayesian',  label: 'Mastery Modeling' },
+                { val: 'Real-Time', label: 'Difficulty Adjustment' },
+                { val: 'Concept', label: 'Current Stage' },
               ].map((s, i) => (
                 <div key={i} style={{
                   display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10,
@@ -350,14 +343,14 @@ export default function IndustryEducation() {
         <DataParticles count={12} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
-            <SectionBadge dark>Measurable Educational Impact</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>Numbers That Matter in Education</h2>
+            <SectionBadge dark>Real, Verifiable Work</SectionBadge>
+            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>What We've Actually Built</h2>
           </div>
           <div className="grid-stats">
-            <StatCard target={31}  suffix="%"   label="Dropout Reduction"       icon={<Target />}       start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
-            <StatCard target={94}  suffix="%"   label="Model Precision"         icon={<ShieldCheck />}  start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
-            <StatCard target={28}  suffix="%"   label="Faster Skill Mastery"    icon={<TrendingUp />}   start={statsVisible} delay={0.2} theme={{ color: B.primary, bg: B.primaryLight }} />
-            <StatCard target={200} suffix="K+"  label="Students Served"         icon={<Globe />}        start={statsVisible} delay={0.3} theme={{ color: B.accent, bg: B.accentLight }} />
+            <StatCard target={1}  suffix=""   label="Real Project Delivered"  icon={<GraduationCap />} start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
+            <StatCard target={2}  suffix=""   label="Approaches Considered (BKT/IRT)"        icon={<Brain />}  start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
+            <StatCard target={3}  suffix=""   label="Difficulty Adjustment Signals"    icon={<Zap />}   start={statsVisible} delay={0.2} theme={{ color: B.primary, bg: B.primaryLight }} />
+            <StatCard target={100} suffix="%"  label="Explainable Mastery Path"         icon={<Target />}        start={statsVisible} delay={0.3} theme={{ color: B.accent, bg: B.accentLight }} />
           </div>
         </div>
       </section>
@@ -378,13 +371,15 @@ export default function IndustryEducation() {
               Built for the Complexity of{' '}
               <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Education</span>
             </h2>
-            <p className="section-lead">End-to-end AI solutions across student success, adaptive learning, and institutional intelligence.</p>
+            <p className="section-lead">One real, delivered project — a per-skill adaptive math mastery engine.</p>
           </motion.div>
 
           {/* Capabilities Grid */}
-          <div className="grid-capabilities" style={{ marginBottom: 'clamp(60px, 8vw, 80px)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(14px,2vw,24px)', marginBottom: 'clamp(60px, 8vw, 80px)' }}>
             {capabilities.map((cap, i) => (
-              <CapabilityCard key={i} {...cap} delay={i * 0.07} />
+              <div key={i} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: 280, maxWidth: 460 }}>
+                <CapabilityCard {...cap} delay={i * 0.07} />
+              </div>
             ))}
           </div>
 
@@ -436,15 +431,15 @@ export default function IndustryEducation() {
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }} style={{ textAlign: 'center', marginBottom: 'clamp(24px, 4vw, 48px)' }}>
             <SectionBadge dark>Technology Stack</SectionBadge>
-            <h2 className="section-h2 dark" style={{ fontSize: 'clamp(1.4rem, 3.2vw, 2.4rem)', marginBottom: 12 }}>Built on Institution-Grade Infrastructure</h2>
-            <p style={{ color: B.textDarkMid, fontSize: 'clamp(0.95rem, 1.5vw, 1.15rem)', maxWidth: 640, margin: '0 auto' }}>Production tools trusted by universities, K-12 districts, and global EdTech platforms.</p>
+            <h2 className="section-h2 dark" style={{ fontSize: 'clamp(1.4rem, 3.2vw, 2.4rem)', marginBottom: 12 }}>Built to Ship, Not Just Prototype</h2>
+            <p style={{ color: B.textDarkMid, fontSize: 'clamp(0.95rem, 1.5vw, 1.15rem)', maxWidth: 640, margin: '0 auto' }}>The exact approach we've used to design and validate the project above.</p>
           </motion.div>
           <div className="grid-tech">
             {[
-              { group: 'ML & NLP',             items: ['PyTorch (Transformers)', 'Scikit-learn', 'Knowledge Tracing (BKT, DKT)', 'SHAP Explainability', 'Reinforcement Learning'], icon: <Brain size={16} />,    color: B.action },
-              { group: 'Data & LMS Integration',items: ['Canvas LTI 1.3', 'Moodle API', 'Ellucian Banner', 'PowerSchool', 'xAPI / Caliper Analytics'], icon: <Database size={16} />, color: B.secondary },
-              { group: 'Platform & Deployment', items: ['AWS / Azure EDU', 'Docker / K8s', 'FastAPI', 'dbt + Snowflake', 'Apache Kafka'], icon: <Cpu size={16} />,      color: B.primary },
-              { group: 'Privacy & Compliance',  items: ['FERPA Aligned', 'COPPA (K-12)', 'GDPR Data Handling', 'On-Premise Deployment', 'Audit Trails & DUA'], icon: <Lock size={16} />,    color: B.accent },
+              { group: 'Mastery Modeling', items: ['Bayesian Knowledge Tracing', 'Item Response Theory', 'Probabilistic Modeling'], icon: <Brain size={16} />,    color: B.action },
+              { group: 'Adaptive Signals', items: ['Correctness Tracking', 'Response Time', 'Hint Usage'], icon: <Zap size={16} />, color: B.secondary },
+              { group: 'Recommendation', items: ['Prerequisite Gap Detection', 'Next-Best-Exercise Selection'], icon: <Target size={16} />,      color: B.primary },
+              { group: 'Design Principles', items: ['Per-Skill (Not Per-Subject) Tracking', 'Explainable Progress Paths'], icon: <Lightbulb size={16} />,    color: B.accent },
             ].map((col, i) => (
               <motion.div
                 key={i}
@@ -494,20 +489,20 @@ export default function IndustryEducation() {
               <motion.div initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}>
                 <SectionBadge>Why WellMind</SectionBadge>
                 <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>
-                  Education Expertise Meets{' '}
+                  Honest Scope,{' '}
                   <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                    Engineering Depth
+                    Real Delivery
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.1rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  Most AI vendors understand either data science or software. We understand both — plus the pedagogy, institutional dynamics, and regulatory constraints that make education AI uniquely challenging.
+                  We're a small, honest team — our education-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and validate properly.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Privacy-First by Design',       desc: 'FERPA and COPPA compliance baked into the architecture — not bolted on after the fact' },
-                    { title: 'Semester-Over-Semester Learning', desc: 'Automated retraining pipelines improve model accuracy with each academic cycle, compounding institutional value over time' },
-                    { title: 'Education Domain Fluency',       desc: 'We speak Bloom\'s Taxonomy, IRT, IPEDS, and SIS schema — not just Python and neural networks' },
-                    { title: 'Outcome-Based Pricing',          desc: 'Fixed-fee scopes with performance guarantees. No billable-hour bloat.' },
+                    { title: 'Per-Skill, Not Per-Subject',       desc: 'We track mastery at the individual skill level — a more precise signal than a single overall grade' },
+                    { title: 'Explainable Mastery Modeling', desc: 'Bayesian/probabilistic approaches keep the reasoning behind every difficulty adjustment visible, not a black box' },
+                    { title: 'Built to Extend',       desc: 'The same adaptive-learning pattern generalizes beyond math to other structured skill domains' },
+                    { title: 'Honest About Scope',          desc: "We tell you plainly what's live and validated versus what we'd be building fresh for your use case" },
                   ].map((item, i) => (
                     <motion.div key={i} initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.08 }} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
                       <div style={{ width: 26, height: 26, borderRadius: 'var(--radius-sm)', background: `${B.action}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
@@ -532,10 +527,10 @@ export default function IndustryEducation() {
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${B.action}, ${B.primary}, ${B.accent})` }} />
               <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textMuted, marginBottom: 24 }}>Engagement Overview</div>
               {[
-                { label: 'Data Audit & Feasibility',   duration: '2 weeks',   color: B.action,    icon: <Eye size={16} /> },
+                { label: 'Discovery & Data Audit',   duration: '2 weeks',   color: B.action,    icon: <Eye size={16} /> },
                 { label: 'Model Development',           duration: '4–8 weeks', color: B.secondary, icon: <Brain size={16} /> },
-                { label: 'Semester Pilot',              duration: '1 semester',color: B.primary,   icon: <BookOpen size={16} /> },
-                { label: 'Institution-Wide Rollout',    duration: 'Ongoing',   color: B.accent,    icon: <Activity size={16} /> },
+                { label: 'Pilot & Validation',              duration: '2–4 weeks',color: B.primary,   icon: <BookOpen size={16} /> },
+                { label: 'Deployment & Support',    duration: '30 days',   color: B.accent,    icon: <Activity size={16} /> },
               ].map((step, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderBottom: i < 3 ? `1px solid rgba(107, 46, 116,0.10)` : 'none' }}>
                   <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: `${step.color}12`, color: step.color, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${step.color}25`, flexShrink: 0 }}>
@@ -584,14 +579,14 @@ export default function IndustryEducation() {
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-              Let's Transform Your{' '}
+              Let's Build{' '}
               <br className="hero-br" />
               <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                Educational AI Stack
+                Your Adaptive Learning System
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your student success, enrollment, or learning outcome challenge. We'll tell you exactly what's possible — no pitch, no pressure.
+              Book a free 30-minute call. Tell us your student success or personalized-learning challenge. We'll tell you exactly what's possible — no pitch, no pressure.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>

@@ -2,10 +2,8 @@
  * BookDiscovery.jsx — WellMind Data Solutions — Fully Responsive
  * Updated to mirror ServicesAiMl.jsx design patterns
  * - Dark Section for Trust Pills
- * - Dark Hover Effects on Process Cards
  * - Enhanced Typography
  * - Final CTA in Dark Theme
- * ✅ FIX: ProcessTimeline grid — 2 cards per row, proper gaps
  */
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -13,8 +11,8 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Mail, MapPin, Clock, Zap, ArrowRight, ArrowDown, CheckCircle,
-  Send, ChevronDown, AlertCircle, Calendar, MessageSquare,
-  Shield, Star, Users, TrendingUp, Lightbulb, Target,
+  Send, ChevronDown, AlertCircle, Calendar,
+  Shield, Star, Users, TrendingUp,
 } from 'lucide-react';
 import { FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
@@ -94,7 +92,7 @@ function FormTextarea({ value, onChange, placeholder, name, rows = 5 }) {
 
 // ─── Contact Form ───────────────────────────────────────────────────────────────
 function ContactForm() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', service: '', budget: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', company: '', service: '', timeline: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -103,7 +101,12 @@ function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise(r => setTimeout(r, 1400));
+    const subject = encodeURIComponent(`Discovery Call Request — ${form.name || 'New Inquiry'}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company || '—'}\nService: ${form.service}\nTimeline: ${form.timeline || '—'}\n\nMessage:\n${form.message}`
+    );
+    window.location.href = `mailto:wellminddatasolutions@gmail.com?subject=${subject}&body=${body}`;
+    await new Promise(r => setTimeout(r, 700));
     setLoading(false);
     setSubmitted(true);
   };
@@ -127,10 +130,10 @@ function ContactForm() {
           <CheckCircle size={32} color={B.action}/>
         </div>
         <h3 style={{ fontWeight: 700, fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', color: B.textMain, marginBottom: 12 }}>
-          Message sent!
+          Your email app should have opened!
         </h3>
         <p style={{ fontSize: 'clamp(13px, 1.6vw, 16px)', color: B.textMid, lineHeight: 1.7, marginBottom: 28 }}>
-          We'll get back to you within 24 hours on business days. Check your spam folder if you don't hear from us.
+          Just hit send from there. If nothing opened, email us directly at <strong>wellminddatasolutions@gmail.com</strong> — we'll get back to you within 24 hours on business days.
         </p>
         <Link to="/book-discovery" style={{
           display: 'inline-flex', alignItems: 'center', gap: 7,
@@ -189,15 +192,14 @@ function ContactForm() {
               ]}
             />
           </Field>
-          <Field label="Project Budget" required>
-            <FormSelect name="budget" value={form.budget} onChange={handleChange}
+          <Field label="Project Timeline">
+            <FormSelect name="timeline" value={form.timeline} onChange={handleChange}
               options={[
-                { value: '', label: 'Select a range…' },
-                { value: 'under-1k', label: 'Under $1,000' },
-                { value: '1k-5k', label: '$1,000 – $5,000' },
-                { value: '5k-15k', label: '$5,000 – $15,000' },
-                { value: '15k+', label: '$15,000+' },
-                { value: 'retainer', label: 'Retainer / Ongoing' },
+                { value: '', label: 'Select a timeline…' },
+                { value: 'asap', label: 'ASAP' },
+                { value: '1-3-months', label: '1–3 months' },
+                { value: '3-6-months', label: '3–6 months' },
+                { value: 'just-exploring', label: 'Just exploring' },
               ]}
             />
           </Field>
@@ -234,67 +236,72 @@ function ContactForm() {
   );
 }
 
-// ─── Calendly embed ─────────────────────────────────────────────────────────────
-function CalendlyEmbed() {
+// ─── Instant Booking (WhatsApp) ───────────────────────────────────────────────
+function InstantBooking() {
   return (
     <div style={{
-      padding: 'clamp(24px, 4vw, 40px)', borderRadius: 'var(--radius-xl)',
+      height: '100%', boxSizing: 'border-box',
+      padding: 'clamp(22px, 3.5vw, 32px)', borderRadius: 'var(--radius-xl)',
       background: B.cardBg, backdropFilter: 'blur(12px)',
       border: `2px solid ${B.actionBorder}`,
       boxShadow: `0 8px 32px ${B.actionGlow}20`,
+      display: 'flex', flexDirection: 'column',
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24 }}>
-        <div style={{ width: 'clamp(44px, 5vw, 52px)', height: 'clamp(44px, 5vw, 52px)', borderRadius: 14, background: B.actionLight, border: `1.5px solid ${B.actionBorder}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <Clock size={22} color={B.action}/>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
+        <div style={{ width: 'clamp(40px, 4.5vw, 46px)', height: 'clamp(40px, 4.5vw, 46px)', borderRadius: 13, background: B.actionLight, border: `1.5px solid ${B.actionBorder}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <Clock size={20} color={B.action}/>
         </div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 'clamp(1rem, 2vw, 1.25rem)', color: B.textMain }}>Book a Free 30-Min Call</div>
-          <div style={{ fontSize: 'clamp(12px, 1.4vw, 14px)', color: B.textMuted, marginTop: 3 }}>Pick a time that works for you. No back-and-forth.</div>
+          <div style={{ fontWeight: 700, fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: B.textMain }}>Book a Free 30-Min Call</div>
+          <div style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textMuted, marginTop: 2 }}>We'll lock in a time that works for you.</div>
         </div>
       </div>
 
+      {/* Compact WhatsApp panel — icon + copy side by side, no oversized centered block */}
       <div style={{
-        borderRadius: 16, border: `1.5px dashed ${B.actionBorder}`,
-        background: `linear-gradient(135deg, ${B.actionLight}, rgba(11, 124, 147,0.05))`,
-        display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center',
-        padding: 'clamp(32px, 5vw, 56px) clamp(24px, 4vw, 36px)',
-        textAlign: 'center', minHeight: 280,
+        flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        borderRadius: 14, border: `1.5px solid ${B.actionBorder}`,
+        background: `linear-gradient(135deg, ${B.actionLight}, rgba(11, 124, 147,0.04))`,
+        padding: 'clamp(16px, 2.5vw, 20px)',
       }}>
-        <div style={{
-          width: 'clamp(56px, 6vw, 68px)', height: 'clamp(56px, 6vw, 68px)',
-          borderRadius: '50%', background: B.action,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          marginBottom: 20, boxShadow: `0 8px 28px ${B.actionGlow}`,
-        }}>
-          <Calendar size={26} color={B.white}/>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
+          <div style={{
+            width: 40, height: 40, flexShrink: 0,
+            borderRadius: '50%', background: '#25D366',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 4px 14px rgba(37,211,102,0.35)',
+          }}>
+            <FaWhatsapp size={19} color="#fff"/>
+          </div>
+          <div>
+            <div style={{ fontWeight: 700, fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)', color: B.textMain, marginBottom: 5 }}>
+              Fastest way to book — WhatsApp
+            </div>
+            <div style={{ fontSize: 'clamp(12.5px, 1.4vw, 13.5px)', color: B.textMid, lineHeight: 1.6 }}>
+              Send your name and what you'd like to discuss — we'll reply with time slots the same day.
+            </div>
+          </div>
         </div>
-        <div style={{ fontWeight: 700, fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: B.textMain, marginBottom: 10 }}>
-          Calendly Embed Goes Here
-        </div>
-        <div style={{ fontSize: 'clamp(13px, 1.5vw, 15px)', color: B.textMid, lineHeight: 1.7, marginBottom: 28, maxWidth: 340 }}>
-          Replace this block with your Calendly or Cal.com inline widget to let clients pick a slot instantly.
-        </div>
-        <a href="https://calendly.com" target="_blank" rel="noopener noreferrer"
+        <a href="https://wa.me/923236787087?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20discovery%20call." target="_blank" rel="noopener noreferrer"
           style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: 'clamp(11px, 1.5vw, 13px) clamp(20px, 3vw, 28px)', borderRadius: 10,
-            background: B.action, color: B.white,
-            fontWeight: 700, fontSize: 'clamp(12px, 1.5vw, 14px)', letterSpacing: '0.08em',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+            width: '100%', padding: 'clamp(11px, 1.5vw, 13px)', borderRadius: 10,
+            background: '#25D366', color: '#fff',
+            fontWeight: 700, fontSize: 'clamp(12px, 1.5vw, 13.5px)', letterSpacing: '0.06em',
             textTransform: 'uppercase', textDecoration: 'none',
-            boxShadow: `0 4px 20px ${B.actionGlow}`, transition: 'opacity 0.2s',
+            boxShadow: '0 4px 16px rgba(37,211,102,0.30)', transition: 'opacity 0.2s, transform 0.2s',
           }}
-          onMouseEnter={e => e.currentTarget.style.opacity = '0.88'}
-          onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+          onMouseEnter={e => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}
         >
-          <Zap size={14}/> Open Scheduling Link
+          <FaWhatsapp size={14}/> Message Us on WhatsApp
         </a>
       </div>
 
-      <div style={{ marginTop: 18, padding: 'clamp(12px, 2vw, 16px)', borderRadius: 'var(--radius-md)', background: B.primaryLight, border: `1px solid ${B.primaryBorder}`, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-        <CheckCircle size={16} color={B.primary} style={{ flexShrink: 0, marginTop: 1 }}/>
-        <div style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textMid, lineHeight: 1.6 }}>
-          <strong style={{ color: B.textMain }}>Free, no-obligation call.</strong> We'll discuss your project, share relevant experience, and tell you honestly if we're the right fit.
+      <div style={{ marginTop: 14, flexShrink: 0, padding: 'clamp(11px, 1.8vw, 14px)', borderRadius: 'var(--radius-md)', background: B.primaryLight, border: `1px solid ${B.primaryBorder}`, display: 'flex', gap: 9, alignItems: 'flex-start' }}>
+        <CheckCircle size={15} color={B.primary} style={{ flexShrink: 0, marginTop: 1 }}/>
+        <div style={{ fontSize: 'clamp(11.5px, 1.3vw, 13px)', color: B.textMid, lineHeight: 1.55 }}>
+          <strong style={{ color: B.textMain }}>Free, no-obligation call.</strong> We'll discuss your project and tell you honestly if we're the right fit.
         </div>
       </div>
     </div>
@@ -372,141 +379,20 @@ function ResponsePromise() {
   );
 }
 
-// ─── Process Steps Data ───────────────────────────────────────────────────────
-const PROCESS_STEPS = [
-  {
-    num: '01', icon: <Calendar size={22}/>, color: B.action, bg: B.actionLight, border: B.actionBorder,
-    title: 'Book Your Call',
-    desc: 'Pick a free 30-minute slot. No preparation needed — just come as you are.',
-  },
-  {
-    num: '02', icon: <MessageSquare size={22}/>, color: B.primary, bg: B.primaryLight, border: B.primaryBorder,
-    title: 'Discovery Session',
-    desc: 'We listen, ask the right questions, and map out your challenge with you.',
-  },
-  {
-    num: '03', icon: <Lightbulb size={22}/>, color: B.accent, bg: B.accentLight, border: B.accentBorder,
-    title: 'Honest Assessment',
-    desc: 'We tell you exactly what\'s feasible, what it costs, and if we\'re the right fit.',
-  },
-  {
-    num: '04', icon: <Target size={22}/>, color: B.secondary, bg: B.secondaryLight, border: 'rgba(147, 33, 63,0.25)',
-    title: 'Fixed-Fee Proposal',
-    desc: 'A clear scope, timeline and price. No scope creep, no surprises.',
-  },
-];
-
-// ─── Step Card ────────────────────────────────────────────────────────────────
-function StepCard({ step }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        position: 'relative',
-        padding: 'clamp(28px, 3.5vw, 44px) clamp(24px, 3vw, 36px)',
-        borderRadius: 'var(--radius-xl)',
-        textAlign: 'center',
-        background: hovered ? step.color : B.cardBg,
-        backdropFilter: 'blur(8px)',
-        border: `3px solid ${hovered ? step.color : B.primaryBorder}`,
-        boxShadow: hovered ? `0 16px 40px -10px ${step.color}50` : B.cardShadow,
-        transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        cursor: 'default',
-      }}
-    >
-      {/* Step number badge */}
-      <div style={{
-        display: 'inline-flex', alignItems: 'center', gap: 6,
-        padding: '5px 14px', borderRadius: 99, marginBottom: 20,
-        background: hovered ? 'rgba(255,255,255,0.22)' : step.bg,
-        border: `1px solid ${hovered ? 'rgba(255,255,255,0.35)' : step.border}`,
-        fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 800,
-        letterSpacing: '0.12em', color: hovered ? '#fff' : step.color,
-        transition: 'all 0.35s ease',
-      }}>
-        STEP {step.num}
-      </div>
-
-      {/* Icon */}
-      <div style={{
-        width: 'clamp(56px, 6vw, 68px)',
-        height: 'clamp(56px, 6vw, 68px)',
-        borderRadius: '50%',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        marginBottom: 22,
-        background: hovered ? '#fff' : `${step.color}15`,
-        color: step.color,
-        transition: 'all 0.35s ease',
-        boxShadow: hovered ? `0 10px 28px ${step.color}45` : 'none',
-        flexShrink: 0,
-      }}>
-        {React.cloneElement(step.icon, { size: 26 })}
-      </div>
-
-      {/* Title */}
-      <h3 style={{
-        fontWeight: 700,
-        fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
-        color: hovered ? '#fff' : B.textMain,
-        marginBottom: 14,
-        lineHeight: 1.25,
-        transition: 'color 0.35s ease',
-      }}>
-        {step.title}
-      </h3>
-
-      {/* Description */}
-      <p style={{
-        fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
-        color: hovered ? 'rgba(255,255,255,0.85)' : B.textMid,
-        lineHeight: 1.75,
-        margin: 0,
-        transition: 'color 0.35s ease',
-      }}>
-        {step.desc}
-      </p>
-    </div>
-  );
-}
-
-// ─── ✅ FIXED: ProcessTimeline — 2 per row, proper gap ───────────────────────
-function ProcessTimeline() {
-  return (
-    <div style={{
-      display: 'grid',
-      // 2 columns on desktop, 1 on mobile
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: 'clamp(20px, 3vw, 32px)',
-    }}>
-      {PROCESS_STEPS.map((step, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: i * 0.10, ease: [0.16, 1, 0.3, 1] }}
-          style={{ height: '100%' }}
-        >
-          <StepCard step={step} />
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
 // ─── Trust Badges ─────────────────────────────────────────────────────────────
 const TRUST_ITEMS = [
   { icon: <Shield size={15}/>,    label: 'No Hidden Fees',          accent: B.action    },
-  { icon: <Users size={15}/>,     label: 'Clients in 5+ Countries', accent: '#3AB896'   },
-  { icon: <Star size={15}/>,      label: '1 Nature Publication',    accent: B.accent    },
+  { icon: <Users size={15}/>,     label: '20 Real Projects Delivered', accent: '#3AB896'   },
+  { icon: <Star size={15}/>,      label: '6 Industries Served',    accent: B.accent    },
   { icon: <TrendingUp size={15}/>,label: 'Fixed-Fee Guarantee',     accent: B.secondary },
+];
+
+// ─── Direct contact data ──────────────────────────────────────────────────────
+const DIRECT_CONTACTS = [
+  { icon: <Mail size={18}/>,      label: 'Email',    value: 'wellminddatasolutions@gmail.com', href: 'mailto:wellminddatasolutions@gmail.com' },
+  { icon: <FaWhatsapp size={18}/>,label: 'WhatsApp',  value: '+92 323 6787087', href: 'https://wa.me/923236787087', badge: 'Fastest for PK clients' },
+  { icon: <FaLinkedin size={18}/>,label: 'LinkedIn',  value: 'WellMind Data Solutions', href: 'https://www.linkedin.com/company/wellmind-data-solutions' },
+  { icon: <MapPin size={18}/>,    label: 'Location',  value: 'Based in Pakistan — Working globally', href: '#' },
 ];
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
@@ -593,6 +479,59 @@ export default function BookDiscovery() {
               </a>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ═══ 2. TRUST STRIP (dark) ═══ */}
+      <section style={{ padding: 'clamp(28px, 4vw, 44px) 0', position: 'relative', zIndex: 1, background: `linear-gradient(135deg, #170F22 0%, #140B20 100%)`, overflow: 'hidden' }}>
+        <DataParticles count={10} dark />
+        <div style={{ ...PX, position: 'relative', zIndex: 2, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(16px, 3vw, 40px)' }}>
+          {TRUST_ITEMS.map((item, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ color: item.accent }}>{item.icon}</span>
+              <span style={{ fontSize: 'clamp(12px, 1.4vw, 14px)', fontWeight: 700, color: B.textDarkMid, letterSpacing: '0.03em' }}>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══ 3. BOOK SECTION — Instant Booking + Direct Contact ═══ */}
+      <section id="book-section" style={{ padding: 'var(--sp-section) 0', position: 'relative', background: B.bgLight, zIndex: 1, overflow: 'hidden' }}>
+        <SectionGridBg opacity={0.15} />
+        <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vw, 48px)' }}>
+            <SectionBadge>Get In Touch</SectionBadge>
+            <h2 className="section-h2" style={{ color: B.primaryDark }}>Book Your Free Call</h2>
+            <p className="section-lead">Pick whichever way works best for you.</p>
+          </motion.div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'clamp(24px, 3vw, 40px)', maxWidth: 1100, margin: '0 auto' }}>
+            <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ height: '100%' }}>
+              <InstantBooking />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              <div>
+                <h3 style={{ fontWeight: 700, fontSize: 'clamp(1.1rem, 2vw, 1.3rem)', color: B.textMain, marginBottom: 14 }}>Or reach us directly</h3>
+                {DIRECT_CONTACTS.map((c, i) => <DirectItem key={i} {...c} />)}
+              </div>
+              <ResponsePromise />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 4. SEND MESSAGE — Contact Form ═══ */}
+      <section id="send-message" style={{ padding: 'var(--sp-section) 0', position: 'relative', background: `linear-gradient(180deg, ${B.bgLight} 0%, #EDE7F6 100%)`, zIndex: 1, overflow: 'hidden' }}>
+        <SectionGridBg opacity={0.16} />
+        <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vw, 48px)' }}>
+            <SectionBadge>Prefer to Write?</SectionBadge>
+            <h2 className="section-h2" style={{ color: B.primaryDark }}>Send Us a Message</h2>
+            <p className="section-lead">Fill this out and it'll open a pre-filled email straight to our inbox.</p>
+          </motion.div>
+          <div style={{ maxWidth: 720, margin: '0 auto' }}>
+            <ContactForm />
+          </div>
         </div>
       </section>
 

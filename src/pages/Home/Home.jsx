@@ -27,7 +27,10 @@ import ScrollTest           from './serviceshome';
 
 import { HeroGridBg, SectionGridBg, FooterGridBg } from '../../components/BgGrid';
 import AiCoreDiagram from './AI-core-animation';
-import HeroData3D from '../../assets/HeroData3D.webp';
+import HeroData3D from '../../assets/HeroData.png';
+import imgArPrioritization from '../../assets/case-studies/ar-prioritization.png';
+import imgTelecomChurn from '../../assets/case-studies/telecom-churn.png';
+import imgHealthcareFraudBilling from '../../assets/case-studies/healthcare-fraud-billing.png';
 
 
 
@@ -149,9 +152,9 @@ function ProjectCard({ proj, i }) {
               backgroundSize: 'cover', backgroundPosition: 'center',
               transform: hovered ? 'scale(1.06)' : 'scale(1)',
               transition: 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
-              filter: hovered ? 'brightness(0.55)' : 'brightness(0.45)',
+              filter: hovered ? 'brightness(0.75)' : 'brightness(0.68)',
             }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(13,10,21,0) 30%, rgba(13,10,21,1) 100%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(13,10,21,0) 45%, rgba(13,10,21,0.88) 100%)' }} />
             <div style={{ position: 'absolute', top: 16, right: 16, display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'flex-end', maxWidth: '80%' }}>
               {proj.tags.map((tag, tIdx) => (
                 <span key={tIdx} style={{ fontSize: 'clamp(10px, 1.2vw, 11px)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: B.textDark, background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(8px)', padding: '4px 10px', borderRadius: 6, border: '1px solid rgba(255,255,255,0.15)' }}>{tag}</span>
@@ -408,9 +411,9 @@ export default function Home() {
   }, []);
 
   const projects = [
-    { title: 'AR Prioritization & Underpayment Recovery Engine', desc: 'LightGBM classifier + live dashboard flagging underpaid Medicare claims, surfacing a $15B recovery opportunity from public CMS data.', tags: ['Data Analytics'], tools: ['Python', 'LightGBM', 'FastAPI', 'React', 'Isolation Forest'], imgUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', icon: <TrendingUp />, slug: 'ar-prioritization-underpayment-recovery', link: '/case-studies/ar-prioritization-underpayment-recovery' },
-    { title: 'Telecom Customer Churn Prediction', desc: 'Random Forest churn model with SHAP explainability, reaching 86.4% accuracy and capturing 65%+ of churners in the top-risk band.', tags: ['AI & Machine Learning'], tools: ['Random Forest', 'XGBoost', 'SHAP', 'SMOTE'], imgUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', icon: <BarChart3 />, slug: 'telecom-churn-prediction', link: '/case-studies/telecom-churn-prediction' },
-    { title: 'Healthcare Fraud Detection System', desc: 'Peer-benchmarking, anomaly detection, and OIG exclusion-list matching flagged 3,842 high-risk providers from 44,528 analyzed.', tags: ['AI & Machine Learning'], tools: ['Isolation Forest', 'Random Forest', 'Z-score Analysis'], imgUrl: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', icon: <Shield />, slug: 'healthcare-fraud-detection-billing', link: '/case-studies/healthcare-fraud-detection-billing' },
+    { title: 'AR Prioritization & Underpayment Recovery Engine', desc: 'LightGBM classifier + live dashboard flagging underpaid Medicare claims across 6.1M rows from public CMS data.', tags: ['Data Analytics'], tools: ['Python', 'LightGBM', 'FastAPI', 'React', 'Isolation Forest'], imgUrl: imgArPrioritization, icon: <TrendingUp />, slug: 'ar-prioritization-underpayment-recovery', link: '/case-studies/ar-prioritization-underpayment-recovery' },
+    { title: 'Telecom Customer Churn Prediction', desc: 'Random Forest churn model with SHAP explainability, reaching 86.4% accuracy and capturing 65%+ of churners in the top-risk band.', tags: ['AI & Machine Learning'], tools: ['Random Forest', 'XGBoost', 'SHAP', 'SMOTE'], imgUrl: imgTelecomChurn, icon: <BarChart3 />, slug: 'telecom-churn-prediction', link: '/case-studies/telecom-churn-prediction' },
+    { title: 'Healthcare Fraud Detection System', desc: 'Peer-benchmarking, anomaly detection, and OIG exclusion-list matching flagged 3,842 high-risk providers from 44,528 analyzed.', tags: ['AI & Machine Learning'], tools: ['Isolation Forest', 'Random Forest', 'Z-score Analysis'], imgUrl: imgHealthcareFraudBilling, icon: <Shield />, slug: 'healthcare-fraud-detection-billing', link: '/case-studies/healthcare-fraud-detection-billing' },
   ];
 
   const faqs = [
@@ -439,7 +442,7 @@ export default function Home() {
     <div style={{ background: B.bgLight, minHeight: '100vh', overflowX: 'clip', position: 'relative' }}>
 
       {/* ══ 1. HERO ══ */}
-      <section ref={heroRef} className="wm-home-hero" style={{ position: 'relative', minHeight: 'calc(100vh - 66px)', display: 'flex', alignItems: 'center', paddingTop: '66px', boxSizing: 'border-box', overflow: 'hidden', zIndex: 1, background: '#FFFFFF', fontFamily: 'var(--font-main)' }}>
+      <section ref={heroRef} className="wm-home-hero" style={{ position: 'relative', minHeight: 'clamp(760px, calc(100vh - 66px), 1200px)', display: 'flex', alignItems: 'center', paddingTop: '66px', boxSizing: 'border-box', overflowX: 'hidden', overflowY: 'visible', zIndex: 1, background: '#FFFFFF', fontFamily: 'var(--font-main)' }}>
         <HeroGridBg opacity={0.16} />
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 72% 42%, rgba(185,104,255,0.10), transparent 30%), radial-gradient(circle at 8% 85%, rgba(255,91,150,0.08), transparent 25%)', pointerEvents: 'none', zIndex: 1 }} />
         <DataParticles count={6} />
@@ -493,7 +496,7 @@ export default function Home() {
 
             <motion.div className="wm-hero-visual" initial={{ opacity: 0, x: 40, scale: 0.96 }} animate={{ opacity: 1, x: 0, scale: 1 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <div style={{ position: 'absolute', inset: '12% 6% 8%', background: 'radial-gradient(circle, rgba(146,70,255,0.18), transparent 68%)', filter: 'blur(10px)' }} />
-              <motion.img src={HeroData3D} alt="3D data analytics illustration" width="620" height="551" fetchPriority="high" animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} style={{ position: 'relative', width: '100%', maxWidth: 620, height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 24px 35px rgba(74,32,110,0.20))' }} />
+              <motion.img src={HeroData3D} alt="3D data analytics illustration" width="760" height="560" fetchPriority="high" animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} style={{ position: 'relative', filter: 'drop-shadow(0 24px 35px rgba(74,32,110,0.20))' }} />
             </motion.div>
           </div>
         </div>

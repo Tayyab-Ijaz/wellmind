@@ -147,7 +147,6 @@ export default function IndustryHealthcare() {
   }, []);
 
   const capabilities = [
-    { icon: <FileText size={22} />, color: B.action, title: 'ICD-10 & CPT Coding Automation', desc: 'A hybrid NLP engine combining keyword matching, embeddings, and semantic search to recommend diagnosis and procedure codes from clinical notes, with confidence scores and rationale.' },
     { icon: <DollarSign size={22} />, color: B.primary, title: 'AR Prioritization & Underpayment Recovery', desc: 'A LightGBM classifier trained on public CMS data that flags underpaid Medicare claims and ranks them into a prioritized AR workqueue — surfacing a $15B recovery opportunity across 6.1M claims.' },
     { icon: <Activity size={22} />, color: B.accent, title: 'Claim Denial Prediction', desc: 'A boosted-tree risk model plus a DistilBERT root-cause classifier that predicts denial probability before submission and identifies the operational fix behind existing denials.' },
     { icon: <TrendingUp size={22} />, color: B.secondary, title: 'RCM & Prior-Auth Forecasting', desc: 'A 90-day Medicare Advantage enrollment forecast (0.048% holdout MAPE) built entirely on public CMS data, flagging prior-authorization exposure directly from CMS benefit fields.' },
@@ -180,12 +179,6 @@ export default function IndustryHealthcare() {
       title: 'RCM Opportunity Forecasting & Prior Authorization Intelligence',
       desc: 'A 90-day Medicare Advantage enrollment forecast built entirely on public CMS data, tracking national enrollment from ~33.5M to 36.1M and flagging prior-authorization exposure directly from CMS PBP benefit fields.',
       metrics: [{ val: '0.048%', label: 'Holdout MAPE' }, { val: '90-Day', label: 'Forecast Horizon' }, { val: 'Streamlit', label: 'Executive Dashboard' }],
-    },
-    {
-      icon: <FileText />, color: B.accent, slug: 'icd10-cpt-coding-engine',
-      title: 'ICD-10 & CPT Coding Recommendation Engine',
-      desc: 'A hybrid retrieval pipeline — keyword matching, embeddings, and semantic similarity — recommends ICD-10 and CPT codes from a clinical note, ranked against clinical guidelines with a confidence score and rationale for coder review.',
-      metrics: [{ val: 'NLP', label: '+ Embeddings' }, { val: 'ICD-10', label: '+ CPT Codes' }, { val: 'Concept', label: 'Current Stage' }],
     },
     {
       icon: <Brain />, color: B.secondary, slug: 'ehr-clinical-nlp-automation',

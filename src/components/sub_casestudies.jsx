@@ -36,7 +36,7 @@ const CASE_STUDIES_DATA = {
       tag:      'Data Analytics',
       industry: 'Healthcare',
       link:     '/case-studies/ar-prioritization-underpayment-recovery',
-      metric:   '$15B recovery opportunity',
+      metric:   '6.1M claims analyzed',
       desc:     'LightGBM classifier + live dashboard flagging underpaid Medicare claims from public CMS data.',
     },
     {
