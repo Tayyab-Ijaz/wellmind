@@ -19,6 +19,7 @@ import ResourcesMegaMenu   from './sub_resources';
 
 // ── Assets ────────────────────────────────────────────────────────────────────
 import LogoImg from '../assets/wellmind-data-solutions-logo.png';
+import BookDemoButton from './BookDemoButton';
 
 // ─── MOBILE NAV ITEMS (mirror of desktop labels) ──────────────────────────────
 const MOBILE_SECTIONS = [
@@ -390,6 +391,7 @@ export default function Header() {
 
           {/* CTA + hamburger */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+            <BookDemoButton className="wm-cyan-btn wm-desktop-only" iconSize={15} />
             <BookCallBtn onClick={undefined} />
             <button
               className="wm-hamburger"
@@ -622,7 +624,7 @@ export default function Header() {
                 About
               </Link>
 
-              <div style={{ paddingTop: 24 }}>
+              <div style={{ paddingTop: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <Link
                   to="/book-discovery"
                   className="wm-cyan-btn"
@@ -631,6 +633,12 @@ export default function Header() {
                 >
                   <Zap size={15} /> Book a Discovery Call
                 </Link>
+                <BookDemoButton
+                  className="wm-cyan-btn"
+                  iconSize={15}
+                  style={{ width: '100%', justifyContent: 'center', background: 'transparent', color: '#4A2B5F' }}
+                  onClick={() => setMobileOpen(false)}
+                />
               </div>
             </div>
           </motion.div>

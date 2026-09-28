@@ -26,6 +26,7 @@ import AICORE               from '../../assets/AI-CORE-icon.webp';
 import ScrollTest           from './serviceshome';
 
 import { HeroGridBg, SectionGridBg, FooterGridBg } from '../../components/BgGrid';
+import BookDemoButton from '../../components/BookDemoButton';
 import AiCoreDiagram from './AI-core-animation';
 import HeroData3D from '../../assets/HeroData.png';
 import imgArPrioritization from '../../assets/case-studies/ar-prioritization.png';
@@ -463,6 +464,7 @@ export default function Home() {
                 <Link to="/case-studies" className="btn-secondary">
                   View Case Studies <ArrowRight size={19} />
                 </Link>
+                <BookDemoButton className="btn-outline-action" iconSize={19} />
               </motion.div>
 
             </motion.div>

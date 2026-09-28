@@ -1,126 +1,78 @@
 /**
  * BookDiscovery.jsx — WellMind Data Solutions
- * Minimal contact page: a "Send us a message" form (mailto-based, no backend)
- * plus small WhatsApp / LinkedIn icon links for people who'd rather message directly.
+ * Minimal contact page: WhatsApp, LinkedIn, and Email.
  * TODO: swap the contact-channels section for a Calendly embed once ready.
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, User, Mail, MessageSquare, Send, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Calendar, Mail } from 'lucide-react';
 import { FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 import { HeroGridBg, SectionGridBg } from '../components/BgGrid';
 import { B, PX, fadeUp, DataParticles, SectionBadge } from '../theme';
+import BookDemoButton from '../components/BookDemoButton';
 
-const CONTACT_EMAIL = 'contact@wellminddatasolutions.com';
-
-const SOCIAL_LINKS = [
-  {
-    icon: <FaWhatsapp size={19} />, bg: '#25D366', label: 'WhatsApp',
-    href: 'https://wa.me/923236787087?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20discovery%20call.',
-  },
-  {
-    icon: <FaLinkedin size={19} />, bg: '#0A66C2', label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/wellmind-data-solutions',
-  },
-];
-
-// ─── Form field styling (matches CostCalculator's input language) ─────────────
-const inputStyle = {
-  width: '100%',
-  padding: 'clamp(11px,1.6vw,14px) clamp(14px,1.8vw,16px) clamp(11px,1.6vw,14px) 44px',
-  borderRadius: 12,
-  border: `1.5px solid ${B.primaryBorder}`,
-  background: 'rgba(255,255,255,0.75)',
-  color: B.textMain,
-  fontFamily: 'var(--font-main)',
-  fontSize: 'clamp(0.85rem,1.3vw,0.95rem)',
-  fontWeight: 600,
-  outline: 'none',
-  transition: 'border-color .25s ease, box-shadow .25s ease',
-};
-
-function Field({ label, icon, children }) {
+// ─── Contact Channel Card ───────────────────────────────────────────────────
+function ContactChannel({ icon, iconBg, glow, title, desc, href, buttonLabel }) {
   return (
-    <div style={{ marginBottom: 20, position: 'relative' }}>
-      <label style={{ display: 'block', fontWeight: 700, fontSize: 'clamp(0.78rem,1.1vw,0.86rem)', color: B.primaryDark, marginBottom: 8, letterSpacing: '0.01em' }}>
-        {label}
-      </label>
-      <span style={{ position: 'absolute', left: 14, top: 42, color: B.primaryMid, pointerEvents: 'none' }}>
+    <div style={{
+      height: '100%', boxSizing: 'border-box',
+      padding: 'clamp(28px, 4vw, 44px) clamp(24px, 3.5vw, 36px)', borderRadius: 'var(--radius-xl)',
+      background: B.cardBg, backdropFilter: 'blur(12px)',
+      border: `2px solid ${B.primaryBorder}`,
+      boxShadow: B.cardShadow,
+      display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
+    }}>
+      <div style={{
+        width: 72, height: 72, borderRadius: '50%', flexShrink: 0,
+        background: iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        boxShadow: `0 8px 24px ${glow}`, marginBottom: 22,
+      }}>
         {icon}
-      </span>
-      {children}
+      </div>
+      <h3 style={{ fontWeight: 700, fontSize: 'clamp(1.1rem, 2vw, 1.35rem)', color: B.textMain, marginBottom: 10 }}>{title}</h3>
+      <p style={{ fontSize: 'clamp(13px, 1.5vw, 15px)', color: B.textMid, lineHeight: 1.7, marginBottom: 26, maxWidth: 340 }}>{desc}</p>
+      <a href={href} target="_blank" rel="noopener noreferrer" style={{
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 9,
+        width: '100%', padding: 'clamp(12px, 1.6vw, 15px)', borderRadius: 11,
+        background: iconBg, color: '#fff',
+        fontWeight: 700, fontSize: 'clamp(12.5px, 1.5vw, 14px)', letterSpacing: '0.06em',
+        textTransform: 'uppercase', textDecoration: 'none',
+        boxShadow: `0 6px 20px ${glow}`, transition: 'opacity 0.2s, transform 0.2s',
+      }}
+        onMouseEnter={e => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+        onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}
+      >
+        {buttonLabel} <ArrowRight size={15}/>
+      </a>
     </div>
   );
 }
 
-// ─── Send Us a Message form (mailto-based, no backend required) ───────────────
-function MessageForm() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [focused, setFocused] = useState('');
-  const [sent, setSent] = useState(false);
-
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`New inquiry from ${form.name || 'website visitor'}`);
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`);
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setSent(true);
-  };
-
-  const focusStyle = key => ({
-    ...inputStyle,
-    borderColor: focused === key ? B.action : B.primaryBorder,
-    boxShadow: focused === key ? `0 0 0 4px ${B.actionLight}` : 'none',
-  });
-
-  return (
-    <form onSubmit={handleSubmit} style={{
-      padding: 'clamp(28px, 4vw, 44px) clamp(24px, 3.5vw, 40px)', borderRadius: 'var(--radius-xl)',
-      background: B.cardBg, backdropFilter: 'blur(12px)',
-      border: `2px solid ${B.primaryBorder}`, boxShadow: B.cardShadow,
-    }}>
-      <Field label="Your Name" icon={<User size={17} />}>
-        <input
-          name="name" value={form.name} onChange={handleChange} required
-          placeholder="Jane Doe"
-          onFocus={() => setFocused('name')} onBlur={() => setFocused('')}
-          style={focusStyle('name')}
-        />
-      </Field>
-
-      <Field label="Your Email" icon={<Mail size={17} />}>
-        <input
-          type="email" name="email" value={form.email} onChange={handleChange} required
-          placeholder="jane@company.com"
-          onFocus={() => setFocused('email')} onBlur={() => setFocused('')}
-          style={focusStyle('email')}
-        />
-      </Field>
-
-      <Field label="Your Message" icon={<MessageSquare size={17} />}>
-        <textarea
-          name="message" value={form.message} onChange={handleChange} required
-          placeholder="Tell us a bit about your project or challenge…"
-          rows={5}
-          onFocus={() => setFocused('message')} onBlur={() => setFocused('')}
-          style={{ ...focusStyle('message'), resize: 'vertical', minHeight: 120, fontWeight: 500, lineHeight: 1.6 }}
-        />
-      </Field>
-
-      <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', border: 'none' }}>
-        {sent ? <>Opening Your Email App <CheckCircle2 size={18} /></> : <>Send Message <Send size={17} /></>}
-      </button>
-
-      <p style={{ fontSize: 12.5, color: B.textMid, textAlign: 'center', marginTop: 14, lineHeight: 1.6 }}>
-        This opens your email app with the message pre-filled, addressed to {CONTACT_EMAIL}.
-      </p>
-    </form>
-  );
-}
+const CONTACT_CHANNELS = [
+  {
+    icon: <FaWhatsapp size={30} color="#fff"/>, iconBg: '#25D366', glow: 'rgba(37,211,102,0.35)',
+    title: 'WhatsApp',
+    desc: "Send your name and what you'd like to discuss. We'll reply with time slots the same day.",
+    href: 'https://wa.me/923236787087?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20discovery%20call.',
+    buttonLabel: 'Message Us on WhatsApp',
+  },
+  {
+    icon: <FaLinkedin size={30} color="#fff"/>, iconBg: '#0A66C2', glow: 'rgba(10,102,194,0.35)',
+    title: 'LinkedIn',
+    desc: "Prefer LinkedIn? Send us a message there and we'll get back to you within a business day.",
+    href: 'https://www.linkedin.com/company/wellmind-data-solutions',
+    buttonLabel: 'Message Us on LinkedIn',
+  },
+  {
+    icon: <Mail size={30} color="#fff"/>, iconBg: '#7C3AED', glow: 'rgba(124,58,237,0.35)',
+    title: 'Email',
+    desc: "Prefer email? Send us the details of your project and we'll reply within a business day.",
+    href: 'mailto:contact@wellminddatasolutions.com',
+    buttonLabel: 'Email Us',
+  },
+];
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 export default function BookDiscovery() {
@@ -199,51 +151,29 @@ export default function BookDiscovery() {
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>
                 <Calendar size={20} /> Get In Touch
               </a>
+              <BookDemoButton className="btn-outline-action" iconSize={20} />
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* ═══ 2. SEND US A MESSAGE — form + small WhatsApp/LinkedIn icons ═══ */}
+      {/* ═══ 2. CONTACT CHANNELS — WhatsApp, LinkedIn, Email ═══ */}
       <section id="contact-channels" style={{ padding: 'var(--sp-section) 0', position: 'relative', background: B.bgLight, zIndex: 1, overflow: 'hidden' }}>
         <SectionGridBg opacity={0.15} />
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vw, 48px)' }}>
             <SectionBadge>Get In Touch</SectionBadge>
-            <h2 className="section-h2" style={{ color: B.primaryDark }}>Send Us a Message</h2>
-            <p className="section-lead">Fill out the form and we'll get back to you within a business day.</p>
+            <h2 className="section-h2" style={{ color: B.primaryDark }}>Book Your Free Call</h2>
+            <p className="section-lead">Reach out on WhatsApp, LinkedIn, or email, whichever works best for you.</p>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} style={{ maxWidth: 560, margin: '0 auto' }}>
-            <MessageForm />
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: 14, margin: '28px 0 20px' }}>
-              <div style={{ flex: 1, height: 1, background: B.primaryBorder }} />
-              <span style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: B.textMid, whiteSpace: 'nowrap' }}>
-                Or reach us directly
-              </span>
-              <div style={{ flex: 1, height: 1, background: B.primaryBorder }} />
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 14 }}>
-              {SOCIAL_LINKS.map((s, i) => (
-                <a
-                  key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                  title={s.label}
-                  style={{
-                    width: 40, height: 40, borderRadius: '50%', flexShrink: 0,
-                    background: s.bg, color: '#fff',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    boxShadow: `0 4px 14px ${s.bg}55`, transition: 'transform 0.2s, opacity 0.2s',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.opacity = '0.88'; }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.opacity = '1'; }}
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
-          </motion.div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(24px, 3vw, 40px)', maxWidth: 1100, margin: '0 auto' }}>
+            {CONTACT_CHANNELS.map((c, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.1 }}>
+                <ContactChannel {...c} />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
