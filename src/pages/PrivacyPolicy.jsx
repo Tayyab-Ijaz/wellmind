@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
     <LegalPageLayout
       badge="Legal"
       title="Privacy Policy"
-      updated="September 25, 2026"
+      updated="September 28, 2026"
       intro="This policy explains what information WellMind Data Solutions collects from visitors to this website, and how client project data is handled during a paid engagement."
       sections={[
         {
@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
           heading: '2. Information we collect from this website',
           body: [
             "This site does not run a contact form, newsletter signup, account system, or analytics/tracking scripts at this time. We don't collect names, emails, or browsing behaviour through the site itself.",
-            'If you message us through WhatsApp or LinkedIn using the links on this site, that conversation is handled directly on those platforms and is subject to their own privacy policies (Meta/WhatsApp and LinkedIn/Microsoft, respectively). We only see and store what you choose to send us there.',
+            'If you message us through WhatsApp, LinkedIn, or email using the links on this site, that conversation is handled directly on those platforms and is subject to their own privacy policies (Meta/WhatsApp and LinkedIn/Microsoft, respectively). We only see and store what you choose to send us there.',
             'Our hosting provider may automatically log standard technical information for security and performance purposes, such as IP address, browser type, and pages visited. We do not access or use these logs for marketing.',
           ],
         },
@@ -45,7 +45,7 @@ export default function PrivacyPolicy() {
         {
           heading: '6. Contact us',
           body: [
-            'Questions about this policy can be sent to us via WhatsApp or LinkedIn, both linked in the footer of this site.',
+            'Questions about this policy can be sent to us via WhatsApp, LinkedIn, or email at info@wellminddatasolutions.com.',
           ],
         },
       ]}

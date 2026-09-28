@@ -1,12 +1,12 @@
 /**
  * BookDiscovery.jsx — WellMind Data Solutions
- * Minimal contact page: WhatsApp + LinkedIn only.
+ * Minimal contact page: WhatsApp, LinkedIn, and Email.
  * TODO: swap the contact-channels section for a Calendly embed once ready.
  */
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight, Calendar, Mail } from 'lucide-react';
 import { FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 import { HeroGridBg, SectionGridBg } from '../components/BgGrid';
@@ -63,6 +63,13 @@ const CONTACT_CHANNELS = [
     desc: "Prefer LinkedIn? Send us a message there and we'll get back to you within a business day.",
     href: 'https://www.linkedin.com/company/wellmind-data-solutions',
     buttonLabel: 'Message Us on LinkedIn',
+  },
+  {
+    icon: <Mail size={30} color="#fff"/>, iconBg: '#7C3AED', glow: 'rgba(124,58,237,0.35)',
+    title: 'Email',
+    desc: "Prefer email? Send us the details of your project and we'll reply within a business day.",
+    href: 'mailto:contact@wellminddatasolutions.com',
+    buttonLabel: 'Email Us',
   },
 ];
 
@@ -148,17 +155,17 @@ export default function BookDiscovery() {
         </div>
       </section>
 
-      {/* ═══ 2. CONTACT CHANNELS — WhatsApp + LinkedIn ═══ */}
+      {/* ═══ 2. CONTACT CHANNELS — WhatsApp, LinkedIn, Email ═══ */}
       <section id="contact-channels" style={{ padding: 'var(--sp-section) 0', position: 'relative', background: B.bgLight, zIndex: 1, overflow: 'hidden' }}>
         <SectionGridBg opacity={0.15} />
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vw, 48px)' }}>
             <SectionBadge>Get In Touch</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark }}>Book Your Free Call</h2>
-            <p className="section-lead">Reach out on WhatsApp or LinkedIn, whichever works best for you.</p>
+            <p className="section-lead">Reach out on WhatsApp, LinkedIn, or email, whichever works best for you.</p>
           </motion.div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(24px, 3vw, 40px)', maxWidth: 760, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(24px, 3vw, 40px)', maxWidth: 1100, margin: '0 auto' }}>
             {CONTACT_CHANNELS.map((c, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.1 }}>
                 <ContactChannel {...c} />

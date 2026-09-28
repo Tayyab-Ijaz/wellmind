@@ -137,10 +137,15 @@ function TeamMember({ member, i }) {
         )}
 
         {/* Socials / Actions */}
-        <div style={{ marginTop:'auto', paddingTop:member.stats?0:20, borderTop:member.stats?'none':`1px solid ${B.primaryBorder}` }}>
+        <div style={{ marginTop:'auto', paddingTop:member.stats?0:20, borderTop:member.stats?'none':`1px solid ${B.primaryBorder}`, display:'flex', flexDirection:'column', gap:10 }}>
           <a href={member.linkedin || '#'} target="_blank" rel="noopener noreferrer" style={{ display:'flex', alignItems:'center', gap:8, color:B.action, fontWeight:700, fontSize:'clamp(11px,1.2vw,13px)', letterSpacing:'0.06em', textDecoration:'none', textTransform:'uppercase' }}>
             <FaLinkedin size={15}/> Let's Connect on LinkedIn <ArrowRight size={14} style={{ transform:hov?'translateX(4px)':'translateX(0)', transition:'transform 0.3s' }}/>
           </a>
+          {member.email && (
+            <a href={`mailto:${member.email}`} style={{ display:'flex', alignItems:'center', gap:8, color:B.textMid, fontWeight:700, fontSize:'clamp(11px,1.2vw,13px)', letterSpacing:'0.06em', textDecoration:'none', textTransform:'uppercase' }}>
+              <Mail size={15}/> {member.email}
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
@@ -164,6 +169,7 @@ export default function About() {
       featured: true,
       image: TayyabPhoto,
       linkedin: 'https://www.linkedin.com/in/tayyab-ijaz/',
+      email: 'tayyabijaz@wellminddatasolutions.com',
       bio: "Tayyab Ijaz is the Founder and AI Head at WellMind Data Solutions, where he leads the design and deployment of production-ready AI systems, data-driven pipelines, and scalable intelligent solutions for clients across industries. His expertise sits at the intersection of Healthcare AI and business systems. He turns complex research and business challenges into practical, real-world outcomes for WellMind's clients.",
       skills: ['Artificial Intelligence', 'Machine Learning', 'Data Science & Analytics', 'Healthcare AI', 'Biometrics & Voice AI', 'AI Team Leadership'],
     },
@@ -172,6 +178,7 @@ export default function About() {
       role: 'Co-Founder',
       image: SalmanPhoto,
       linkedin: 'https://www.linkedin.com/in/salmanrazaaso/',
+      email: 'salmanraza@wellminddatasolutions.com',
       bio: "Salman Raza is the Co-Founder of WellMind Data Solutions, where he drives the company's strategy, brand direction, and growth roadmap. Alongside building WellMind, he serves as Marketing & Managing Director at WAPEXP and Co-Founder of ATS Digital Agency, bringing hands-on experience in marketing, business development, and client-facing operations. He's especially passionate about career guidance: connecting students, universities, and the tech industry through mentorship, seminars, and hands-on roadmaps for breaking into IT.",
       skills: ['Business Strategy', 'Marketing & Branding', 'Business Development', 'Career Guidance & Mentorship', 'Digital Solutions', 'Client Relations'],
     },

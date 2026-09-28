@@ -5,7 +5,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Phone, MapPin } from 'lucide-react';
+import { ArrowRight, Phone, MapPin, Mail } from 'lucide-react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import LogoImg from '../assets/WellMindDataSolutions-white-logo.png';
 import { B } from '../theme';
@@ -242,6 +242,7 @@ export default function Footer() {
             <h3 style={{ fontFamily: "'Plus Jakarta Sans', monospace", fontSize: 'clamp(11px, 1.5vw, 20px)', letterSpacing: '0.14em', textTransform: 'uppercase', color: B.actionSoft, marginBottom: 18, fontWeight: 700, opacity: 0.9 }}>Contact</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.8vw, 16px)', marginBottom: 22 }}>
               {[
+                { icon: <Mail size={18}/>,   val: 'info@wellminddatasolutions.com', href: 'mailto:info@wellminddatasolutions.com' },
                 { icon: <Phone size={18}/>,  val: '+92 323 6787087' },
                 { icon: <MapPin size={18}/>, val: 'Faisalabad, Pakistan' },
               ].map((c, i) => (
@@ -249,7 +250,12 @@ export default function Footer() {
                   <span style={{ color: '#C4B5FD', flexShrink: 0, width: 'clamp(28px, 3vw, 32px)', height: 'clamp(28px, 3vw, 32px)', borderRadius: 'var(--radius-sm)', background: B.actionLight, border: `1px solid ${B.actionBorder}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {c.icon}
                   </span>
-                  {c.val}
+                  {c.href ? (
+                    <a href={c.href} style={{ color: 'inherit', textDecoration: 'none' }}
+                      onMouseEnter={e => e.currentTarget.style.color = '#C4B5FD'}
+                      onMouseLeave={e => e.currentTarget.style.color = 'inherit'}
+                    >{c.val}</a>
+                  ) : c.val}
                 </div>
               ))}
             </div>

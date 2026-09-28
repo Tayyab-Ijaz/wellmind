@@ -6,7 +6,7 @@ export default function CookiePolicy() {
     <LegalPageLayout
       badge="Legal"
       title="Cookie Policy"
-      updated="September 25, 2026"
+      updated="September 28, 2026"
       intro="A short, honest note on what this site does and doesn't use cookies for."
       sections={[
         {
@@ -30,7 +30,7 @@ export default function CookiePolicy() {
         {
           heading: '4. Contact us',
           body: [
-            'Questions about this policy can be sent to us via WhatsApp or LinkedIn, both linked in the footer of this site.',
+            'Questions about this policy can be sent to us via WhatsApp, LinkedIn, or email at info@wellminddatasolutions.com.',
           ],
         },
       ]}

@@ -6,7 +6,7 @@ export default function TermsOfService() {
     <LegalPageLayout
       badge="Legal"
       title="Terms of Service"
-      updated="September 25, 2026"
+      updated="September 28, 2026"
       intro="These terms govern your use of this website and, where you engage us for a project, your working relationship with WellMind Data Solutions. They're a general starting point, not a substitute for the signed proposal or contract covering your specific engagement."
       sections={[
         {
@@ -60,7 +60,7 @@ export default function TermsOfService() {
         {
           heading: '9. Contact us',
           body: [
-            'Questions about these terms can be sent to us via WhatsApp or LinkedIn, both linked in the footer of this site.',
+            'Questions about these terms can be sent to us via WhatsApp, LinkedIn, or email at info@wellminddatasolutions.com.',
           ],
         },
       ]}
