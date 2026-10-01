@@ -19,7 +19,7 @@ import ResourcesMegaMenu   from './sub_resources';
 
 // ── Assets ────────────────────────────────────────────────────────────────────
 import LogoImg from '../assets/wellmind-data-solutions-logo.png';
-import BookDemoButton from './BookDemoButton';
+import { CALENDLY_URL, openCalendly } from './BookDemoButton';
 
 // ─── MOBILE NAV ITEMS (mirror of desktop labels) ──────────────────────────────
 const MOBILE_SECTIONS = [
@@ -150,15 +150,16 @@ function BookCallBtn({ onClick }) {
   };
 
   return (
-    <div className="wm-book-wrap wm-desktop-only">
-    <Link
-      to="/book-discovery"
+    <a
+      href={CALENDLY_URL}
+      target="_blank"
+      rel="noopener noreferrer"
       ref={btnRef}
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      onClick={onClick}
-      className="wm-book-btn"
+      onClick={(e) => { openCalendly(e); onClick?.(e); }}
+      className="wm-book-btn wm-desktop-only"
     >
       <span ref={fillRef} aria-hidden="true" style={{
         position:     'absolute',
@@ -177,29 +178,8 @@ function BookCallBtn({ onClick }) {
         gap:         6,
       }}>
         Book a Call
-        <ChevronDown size={14} className="wm-book-chevron" />
       </span>
-    </Link>
-
-    {/* Dropdown — shown on hover / keyboard focus */}
-    <div className="wm-book-menu" role="menu">
-      <div className="wm-book-menu-panel">
-        <Link to="/book-discovery" className="wm-book-menu-item" role="menuitem" onClick={onClick}>
-          <Zap size={15} />
-          <span>
-            <strong>Discovery Call</strong>
-            <small>Free 30-min call about your data challenge</small>
-          </span>
-        </Link>
-        <BookDemoButton
-          className="wm-book-menu-item"
-          iconSize={15}
-          label={<span><strong>Special Request</strong><small>Pick a time directly on our calendar</small></span>}
-          onClick={onClick}
-        />
-      </div>
-    </div>
-    </div>
+    </a>
   );
 }
 
@@ -646,21 +626,16 @@ export default function Header() {
               </Link>
 
               <div style={{ paddingTop: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <Link
-                  to="/book-discovery"
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="wm-cyan-btn"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => { openCalendly(e); setMobileOpen(false); }}
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
-                  <Zap size={15} /> Book a Discovery Call
-                </Link>
-                <BookDemoButton
-                  className="wm-book-menu-item"
-                  iconSize={14}
-                  label="Special request? Pick a time directly"
-                  style={{ justifyContent: 'center', fontSize: 13 }}
-                  onClick={() => setMobileOpen(false)}
-                />
+                  <Zap size={15} /> Book a Call
+                </a>
               </div>
             </div>
           </motion.div>
@@ -761,38 +736,6 @@ export default function Header() {
         .wm-book-btn .wm-book-btn-content { color: #6B2E74; transition: color 0.20s ease 0.15s; }
         .wm-book-btn:hover .wm-book-btn-content { color: #ffffff; }
 
-        /* Book a Call dropdown (Discovery Call / Special Request) */
-        .wm-book-wrap { position: relative; flex-shrink: 0; }
-        .wm-book-chevron { transition: transform 0.2s ease; }
-        .wm-book-wrap:hover .wm-book-chevron,
-        .wm-book-wrap:focus-within .wm-book-chevron { transform: rotate(180deg); }
-        .wm-book-menu {
-          position: absolute; top: 100%; right: 0; z-index: 60;
-          padding-top: 10px; /* hover bridge between button and panel */
-          opacity: 0; visibility: hidden; transform: translateY(-6px);
-          transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-        }
-        .wm-book-wrap:hover .wm-book-menu,
-        .wm-book-wrap:focus-within .wm-book-menu {
-          opacity: 1; visibility: visible; transform: translateY(0);
-        }
-        .wm-book-menu-panel {
-          width: 280px; padding: 6px; background: #ffffff;
-          border: 1px solid rgba(74,43,95,0.15); border-radius: 12px;
-          box-shadow: 0 16px 40px rgba(36,17,61,0.18);
-          display: flex; flex-direction: column; gap: 2px;
-        }
-        .wm-book-menu-item {
-          display: flex; align-items: flex-start; gap: 10px;
-          padding: 10px 12px; border-radius: 8px;
-          color: #4A2B5F; text-decoration: none; text-align: left;
-          font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px;
-          transition: background 0.2s ease;
-        }
-        .wm-book-menu-item:hover { background: rgba(74,43,95,0.08); }
-        .wm-book-menu-item svg { margin-top: 2px; flex-shrink: 0; }
-        .wm-book-menu-item strong { display: block; font-weight: 700; }
-        .wm-book-menu-item small { display: block; font-size: 12px; font-weight: 500; color: #625B72; margin-top: 2px; }
 
         /* Cyan/primary CTA button — used inside dropdowns */
         .wm-cyan-btn {

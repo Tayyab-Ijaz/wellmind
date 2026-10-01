@@ -16,6 +16,15 @@ import { Calendar } from 'lucide-react';
 export const CALENDLY_URL = 'https://calendly.com/tayyabijaz/special-request';
 export const BOOK_DEMO_LABEL = 'Book a Demo';
 
+// Click handler for any <a href={CALENDLY_URL}>: opens the popup when the widget is ready,
+// otherwise lets the link open Calendly in a new tab.
+export function openCalendly(e) {
+  if (typeof window !== 'undefined' && window.Calendly?.initPopupWidget) {
+    e.preventDefault();
+    window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+  }
+}
+
 export default function BookDemoButton({
   className = 'btn-primary',
   style,
@@ -25,10 +34,7 @@ export default function BookDemoButton({
   onClick,
 }) {
   const handleClick = (e) => {
-    if (typeof window !== 'undefined' && window.Calendly?.initPopupWidget) {
-      e.preventDefault();
-      window.Calendly.initPopupWidget({ url: CALENDLY_URL });
-    }
+    openCalendly(e);
     onClick?.(e);
   };
 
