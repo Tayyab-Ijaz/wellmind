@@ -151,7 +151,7 @@ export default function BookDiscovery() {
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>
                 <Calendar size={20} /> Get In Touch
               </a>
-              <BookDemoButton className="btn-outline-action" iconSize={20} />
+              <BookDemoButton className="btn-outline-action" iconSize={20} label="Pick a Time Slot" />
             </motion.div>
           </motion.div>
         </div>
