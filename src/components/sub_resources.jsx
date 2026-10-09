@@ -35,7 +35,7 @@ function ArticleCard({ article, onClose }) {
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 6px 16px rgba(11, 124, 147,0.1)';
+        e.currentTarget.style.boxShadow = '0 6px 16px rgba(84,84,84,0.1)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'translateY(0)';
@@ -47,7 +47,7 @@ function ArticleCard({ article, onClose }) {
         
         {/* Title */}
         <span style={{
-          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          fontFamily: "'Space Grotesk', sans-serif",
           fontSize:   16,
           fontWeight: 700,
           color:      B.textMain,
@@ -60,7 +60,7 @@ function ArticleCard({ article, onClose }) {
 
         {/* Description */}
         <p style={{
-          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          fontFamily: "'Space Grotesk', sans-serif",
           fontSize:   16,
           color:      B.textMuted,
           margin:     0,
@@ -83,7 +83,7 @@ function ArticleCard({ article, onClose }) {
             borderRadius: 4,
             background:   B.actionLight,
             color:        B.action,
-            border:       `1px solid rgba(11, 124, 147,0.15)`,
+            border:       `1px solid rgba(84,84,84,0.15)`,
             textTransform:'uppercase',
             letterSpacing: '0.05em',
           }}>
@@ -93,7 +93,7 @@ function ArticleCard({ article, onClose }) {
           <span style={{
             fontSize:   12,
             color:      B.textMuted,
-            fontFamily: "'Plus Jakarta Sans', sans-serif",
+            fontFamily: "'Space Grotesk', sans-serif",
             fontWeight: 600,
             display:    'flex',
             alignItems: 'center',
@@ -154,7 +154,7 @@ const RESOURCES_DATA = [
     heading:     'Bioinformatics',
     tagline:     'Genomic pipelines, variant calling, and clinical analysis.',
     link:        '/resources#bioinformatics',
-    accentColor: '#0F766E',
+    accentColor: '#4b4b4b',
     articles: [
       {
         title: 'RNA-seq Analysis Guide',
@@ -177,7 +177,7 @@ const RESOURCES_DATA = [
     heading:     'Healthcare AI',
     tagline:     'Diagnostics, patient stratification, and clinical decision support.',
     link:        '/resources#healthcare-ai',
-    accentColor: '#0B7C93',
+    accentColor: '#545454',
     articles: [
       {
         title: 'Explainable AI in Diagnostics',
@@ -193,7 +193,7 @@ const RESOURCES_DATA = [
     heading:     'LLMs & GenAI',
     tagline:     'Transformers, embeddings, and generative applications.',
     link:        '/resources#genai',
-    accentColor: '#6226A0',
+    accentColor: '#373737',
     articles: [
       {
         title: 'RAG Architecture Patterns',
@@ -209,7 +209,7 @@ const RESOURCES_DATA = [
     heading:     'MLOps',
     tagline:     'Lifecycle management, monitoring, and deployment.',
     link:        '/resources#mlops',
-    accentColor: '#B45309',
+    accentColor: '#646464',
     articles: [
       {
         title: 'Model Monitoring Strategies',
@@ -253,7 +253,7 @@ export default function ResourcesMegaMenu({ onClose }) {
               paddingRight:   DT.leftPanelPadR,
               paddingLeft:    DT.leftPadInline,
               background:     activeId === section.id
-                ? `linear-gradient(90deg, rgba(74,43,95,0.10) 0%, rgba(74,43,95,0.04) 100%)`
+                ? `linear-gradient(90deg, rgba(42,42,42,0.10) 0%, rgba(42,42,42,0.04) 100%)`
                 : 'transparent',
               borderLeft:   `3px solid ${activeId === section.id ? B.primaryMid : 'transparent'}`,
               borderTop:    'none',
@@ -267,7 +267,7 @@ export default function ResourcesMegaMenu({ onClose }) {
             }}
           >
             <span style={{
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               fontSize:   18, // Matches sub_services size
               fontWeight: activeId === section.id ? 700 : 500,
               color:      activeId === section.id ? B.primaryMid : B.textMid,
@@ -300,7 +300,7 @@ export default function ResourcesMegaMenu({ onClose }) {
               display:        'flex',
               alignItems:     'center',
               gap:             5,
-              fontFamily:     "'Plus Jakarta Sans', sans-serif",
+              fontFamily:     "'Space Grotesk', sans-serif",
             }}
           >
             Browse All Resources <ArrowRight size={12} />
@@ -326,7 +326,7 @@ export default function ResourcesMegaMenu({ onClose }) {
                 alignItems:   'flex-start',
                 justifyContent: 'space-between',
                 gap:           20,
-                background:   `linear-gradient(135deg, rgba(74,43,95,0.03) 0%, rgba(255,255,255,0) 60%)`,
+                background:   `linear-gradient(135deg, rgba(42,42,42,0.03) 0%, rgba(255,255,255,0) 60%)`,
               }}>
                 <div style={{ flex: 1 }}>
                   <PillBadge label="Topic" accentColor={currentSection.accentColor} />
@@ -384,7 +384,7 @@ export default function ResourcesMegaMenu({ onClose }) {
                           textDecoration: 'none',
                           border:         `1px solid ${B.primaryBorder}`,
                           background:     '#fff',
-                          fontFamily:     "'Plus Jakarta Sans', sans-serif",
+                          fontFamily:     "'Space Grotesk', sans-serif",
                           fontSize:       DT.itemSize,
                           fontWeight:     500,
                           color:          B.textMid,

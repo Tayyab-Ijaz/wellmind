@@ -25,7 +25,7 @@ import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
 import { B, SECTION_PAD, PX, fadeUp, useCounter, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../../theme';
 
 // ─── Brand Tokens (Synced with ServicesAiMl / Home.jsx) ──────────────────────
-const AC = '#1A8A72'; // bioinformatics teal/green
+const AC = '#616161'; // bioinformatics teal/green
 
 // ─── Layout Constants ────────────────────────────────────────────────────────
 // ─── Counter Hook ─────────────────────────────────────────────────────────────
@@ -209,7 +209,7 @@ function GenomicsPipeline() {
       style={{
         padding: 'clamp(20px, 3vw, 32px)',
         borderRadius: 'var(--radius-xl)',
-        background: 'linear-gradient(145deg, rgba(255,255,255,0.92) 0%, rgba(240,248,245,0.88) 100%)',
+        background: 'linear-gradient(145deg, rgba(255,255,255,0.92) 0%, rgba(245,245,245,0.88) 100%)',
         border: `2px solid ${AC}30`,
         boxShadow: `0 20px 60px -10px ${AC}25, 0 4px 20px rgba(0,0,0,0.08)`,
         backdropFilter: 'blur(12px)',
@@ -411,10 +411,10 @@ const features = [
 ];
 
 const processes = [
-  { step: '01', title: 'Data Review & QC',         desc: 'We assess raw data quality, flag coverage issues, contamination, or batch effects, and agree on the analysis approach before a single pipeline run.' },
+  { step: '01', title: 'Data Review & QC',         desc: 'We assess raw data quality, flag coverage issues, contamination, or batch effects, and agree on the analysis approach — before a single pipeline run.' },
   { step: '02', title: 'Pipeline Configuration',   desc: 'Tool selection, parameter tuning for your organism and experimental design, and containerised environment setup to ensure full reproducibility across runs.' },
   { step: '03', title: 'Analysis & Interpretation',desc: 'Variant calling, differential expression, pathway enrichment, and statistical analysis with domain expertise guiding biological interpretation at each stage.' },
-  { step: '04', title: 'Delivery & Documentation', desc: 'Publication-ready outputs, annotated code notebooks, pipeline documentation, and a findings summary written for your intended audience: lab, clinic, or journal.' },
+  { step: '04', title: 'Delivery & Documentation', desc: 'Publication-ready outputs, annotated code notebooks, pipeline documentation, and a findings summary written for your intended audience — lab, clinic, or journal.' },
 ];
 
 const deliverables = [
@@ -435,8 +435,9 @@ const tiers = [
 
 const stats = [
   { target: 99,  suffix: '%', label: 'Variant Accuracy',      icon: <Activity size={20}/>,   theme: { color: AC,       bg: `${AC}15`              } },
-  { target: 60,  suffix: '%', label: 'Faster Analysis',        icon: <Zap size={20}/>,        theme: { color: B.action, bg: 'rgba(11, 124, 147,0.1)' } },
-  { target: 15,  suffix: '+', label: 'Organisms Supported',    icon: <Globe size={20}/>,      theme: { color: '#9D4EDD',bg: 'rgba(157,78,221,0.1)' } },
+  { target: 60,  suffix: '%', label: 'Faster Analysis',        icon: <Zap size={20}/>,        theme: { color: B.action, bg: 'rgba(84,84,84,0.1)' } },
+  { target: 15,  suffix: '+', label: 'Organisms Supported',    icon: <Globe size={20}/>,      theme: { color: '#767676',bg: 'rgba(118,118,118,0.1)' } },
+  { target: 25,  suffix: '+', label: 'Publications Supported', icon: <BookOpen size={20}/>,   theme: { color: '#adadad',bg: 'rgba(173,173,173,0.1)' } },
 ];
 
 const techStack = [
@@ -466,11 +467,11 @@ export default function ServicesBioinformatics() {
   }, []);
 
   return (
-    <div style={{ background: B.bgLight, minHeight: '100vh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
+    <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
 
       {/* ══════════ 1. HERO (LIGHT) ══════════ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden', zIndex: 1,
         background: B.heroBg,
@@ -516,7 +517,7 @@ export default function ServicesBioinformatics() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  WellMind Data Solutions delivers end-to-end bioinformatics analysis pipelines for genomics, transcriptomics, and multi-omics research. From FASTQ to publication-ready figures, we produce clean code, reproducible results, and findings your PI and collaborators can act on.
+                  WellMind Data Solutions delivers end-to-end bioinformatics analysis pipelines for genomics, transcriptomics, and multi-omics research. From FASTQ to publication-ready figures — we produce clean code, reproducible results, and findings your PI and collaborators can act on.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.5vw, 16px)' }}>
@@ -560,13 +561,13 @@ export default function ServicesBioinformatics() {
                 borderTop: `1px solid ${B.primaryBorder}40`
               }}
             >
-              {['Academic & Clinical', 'Publication-Ready'].map((t, i) => (
+              {['Starting at $1,500', 'Academic & Clinical', 'Publication-Ready'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)', border: `1px solid ${B.primaryBorder}`,
                   fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
-                  boxShadow: '0 4px 12px rgba(107, 46, 116, 0.05)',
+                  boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
                   <CheckCircle size={14} color={B.action}/> {t}
@@ -582,7 +583,7 @@ export default function ServicesBioinformatics() {
       <section ref={statsRef} style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #140B20 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.09}/>
@@ -611,7 +612,7 @@ export default function ServicesBioinformatics() {
       {/* ══════════ 3. LIGHT: CAPABILITIES + PROCESS ══════════ */}
       <section style={{
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(180deg, #EBE6EB 0%, #E5DCF0 50%, #D9D3E8 100%)',
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 50%, #d7d7d7 100%)',
         overflow: 'hidden', padding: 0,
       }}>
         <SectionGridBg opacity={0.25}/>
@@ -625,7 +626,7 @@ export default function ServicesBioinformatics() {
               What We Analyse
             </h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              From variant calling to multi-omics integration, every analysis pipeline we build is reproducible, documented, and production-grade.
+              From variant calling to multi-omics integration — every analysis pipeline we build is reproducible, documented, and production-grade.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -668,7 +669,7 @@ export default function ServicesBioinformatics() {
               <SectionBadge color={AC}>Deliverables</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>What You Receive</h2>
               <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
-                Every project is delivered with reproducible code, clean documentation, and outputs written for your intended audience: from lab journals to regulatory submissions.
+                Every project is delivered with reproducible code, clean documentation, and outputs written for your intended audience — from lab journals to regulatory submissions.
               </p>
               {deliverables.map((d, i) => {
                 const color = processColors[i % processColors.length];
@@ -683,7 +684,7 @@ export default function ServicesBioinformatics() {
       {/* <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #1F1236 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.07}/>
@@ -712,6 +713,7 @@ export default function ServicesBioinformatics() {
               >
                 {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: AC, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
                 <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: AC, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
+                <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>{tier.price}</div>
                 <p style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1.05rem)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
                 <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
                   {tier.features.map((f, fi) => (
@@ -743,12 +745,12 @@ export default function ServicesBioinformatics() {
       <section style={{
         padding: `clamp(60px, 10vw, 120px) 0`,
         position: 'relative', overflow: 'hidden', zIndex: 1,
-        background: 'linear-gradient(180deg, #F5F1F6 0%, #E8E1F0 100%)',
+        background: 'linear-gradient(180deg, #f3f3f3 0%, #e5e5e5 100%)',
       }}>
         <SectionGridBg opacity={0.2}/>
         <DataParticles count={14}/>
         <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, ${AC}08 0%, transparent 70%)`, pointerEvents: 'none' }}/>
-        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(11, 124, 147,0.06) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(84,84,84,0.06) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
 
         <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
@@ -760,13 +762,13 @@ export default function ServicesBioinformatics() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Share your data challenge with us. We'll tell you what analysis is feasible, what it costs, and whether we're the right team, before you commit to anything.
+              Share your data challenge with us. We'll tell you what analysis is feasible, what it costs, and whether we're the right team — before you commit to anything.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/contact" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
-                borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${AC}, #14705C)`,
+                borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${AC}, #464646)`,
                 color: B.white, fontWeight: 700, fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
                 letterSpacing: '0.10em', textTransform: 'uppercase', textDecoration: 'none',
                 boxShadow: `0 8px 40px ${AC}40, 0 0 80px ${AC}15`,

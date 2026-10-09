@@ -20,10 +20,10 @@ const jobs = [
 ];
 
 const perks = [
-  { icon:<Globe size={22}/>,     label:'Remote First',         desc:'Work from anywhere in the world.', color:'#22d3ee' },
-  { icon:<BookOpen size={22}/>,  label:'Learning Budget',      desc:'$5K annual for courses & conferences.', color:'#60a5fa' },
-  { icon:<HeartPulse size={22}/>,label:'Top-Tier Health',      desc:'Full coverage insurance for you & family.', color:'#f472b6' },
-  { icon:<Zap size={22}/>,       label:'SOP-Driven Culture',   desc:'No chaos. Just clarity and systems.', color:'#34d399' },
+  { icon:<Globe size={22}/>,     label:'Remote First',         desc:'Work from anywhere in the world.', color:'#a1a1a1' },
+  { icon:<BookOpen size={22}/>,  label:'Learning Budget',      desc:'$5K annual for courses & conferences.', color:'#9a9a9a' },
+  { icon:<HeartPulse size={22}/>,label:'Top-Tier Health',      desc:'Full coverage insurance for you & family.', color:'#a1a1a1' },
+  { icon:<Zap size={22}/>,       label:'SOP-Driven Culture',   desc:'No chaos. Just clarity and systems.', color:'#9d9d9d' },
 ];
 
 const cats = ['All',...new Set(jobs.map(j=>j.cat))];
@@ -38,9 +38,9 @@ export default function Careers() {
   );
 
   return (
-    <div style={{background:'var(--clr-bg)',minHeight:'100vh'}}>
+    <div style={{background:'var(--clr-bg)',minHeight: '100svh'}}>
       <section className="page-hero grid-dots">
-        <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 70%,rgba(34,211,238,0.07),transparent 65%)',pointerEvents:'none'}}/>
+        <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 70%,rgba(161,161,161,0.07),transparent 65%)',pointerEvents:'none'}}/>
         <div style={{maxWidth:860,margin:'0 auto',padding:'0 20px',position:'relative',zIndex:2}}>
           <div className="section-label">We Are Hiring</div>
           <h1 className="hero-title" style={{color:'#fff',marginBottom:20}}>Build the Future of <span className="gradient-text">AI</span></h1>
@@ -51,7 +51,7 @@ export default function Careers() {
       </section>
 
       {/* Perks */}
-      <section style={{background:'rgba(6,15,30,0.6)',borderBottom:'1px solid rgba(34,211,238,0.08)',padding:'clamp(36px,6vw,64px) 0'}}>
+      <section style={{background:'rgba(7,7,7,0.6)',borderBottom:'1px solid rgba(161,161,161,0.08)',padding:'clamp(36px,6vw,64px) 0'}}>
         <div style={{maxWidth:1240,margin:'0 auto',padding:'0 20px'}}>
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,200px),1fr))',gap:18}}>
             {perks.map((p,i)=>(
@@ -94,7 +94,7 @@ export default function Careers() {
                 <div style={{display:'flex',flexWrap:'wrap',gap:16,alignItems:'flex-start',justifyContent:'space-between'}}>
                   <div style={{flex:1,minWidth:200}}>
                     <div style={{display:'flex',flexWrap:'wrap',gap:8,marginBottom:8}}>
-                      <span className="badge" style={{background:'rgba(34,211,238,0.1)',color:'var(--clr-cyan)',border:'1px solid rgba(34,211,238,0.2)'}}>{job.cat}</span>
+                      <span className="badge" style={{background:'rgba(161,161,161,0.1)',color:'var(--clr-cyan)',border:'1px solid rgba(161,161,161,0.2)'}}>{job.cat}</span>
                       <span style={{display:'flex',alignItems:'center',gap:4,fontSize:12,color:'var(--clr-muted)'}}><MapPin size={12}/>{job.loc}</span>
                       <span style={{display:'flex',alignItems:'center',gap:4,fontSize:12,color:'var(--clr-muted)'}}><Briefcase size={12}/>{job.type}</span>
                     </div>
@@ -102,7 +102,7 @@ export default function Careers() {
                     <p style={{color:'var(--clr-muted)',fontSize:14,marginBottom:12,lineHeight:1.6}}>{job.desc}</p>
                     <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
                       {job.tags.map(t=>(
-                        <span key={t} style={{padding:'3px 10px',borderRadius:6,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(34,211,238,0.1)',color:'var(--clr-muted)',fontFamily:'var(--font-mono)',fontSize:11}}>{t}</span>
+                        <span key={t} style={{padding:'3px 10px',borderRadius:6,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(161,161,161,0.1)',color:'var(--clr-muted)',fontFamily:'var(--font-mono)',fontSize:11}}>{t}</span>
                       ))}
                     </div>
                   </div>

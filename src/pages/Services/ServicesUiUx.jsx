@@ -13,7 +13,7 @@ import uiUxImage from '../../assets/ui-ux-coming-soon.webp';
 
 export default function ServicesUiUx() {
   return (
-    <div className="uiux-coming-page" style={{ background: B.bgLight, minHeight: '100vh' }}>
+    <div className="uiux-coming-page" style={{ background: B.bgLight, minHeight: '100svh' }}>
       <style>{`
         .uiux-coming-hero {
           position: relative;
@@ -60,7 +60,7 @@ export default function ServicesUiUx() {
 
         .uiux-coming-title span {
           display: inline-block;
-          background: linear-gradient(90deg, #7C3AED 0%, #B02A8C 48%, #E73578 100%);
+          background: linear-gradient(90deg, #5c5c5c 0%, #555555 48%, #727272 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -95,8 +95,8 @@ export default function ServicesUiUx() {
           height: min(560px, 90vw);
           border-radius: 50%;
           background:
-            radial-gradient(circle at 55% 45%, rgba(168, 85, 247, 0.19), transparent 48%),
-            radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.12), transparent 42%);
+            radial-gradient(circle at 55% 45%, rgba(128,128,128,0.19), transparent 48%),
+            radial-gradient(circle at 70% 70%, rgba(130,130,130,0.12), transparent 42%);
           filter: blur(8px);
           pointer-events: none;
         }
@@ -108,7 +108,7 @@ export default function ServicesUiUx() {
           transform: translateX(20px);
           object-fit: contain;
           display: block;
-          filter: drop-shadow(0 26px 45px rgba(91, 33, 182, 0.18));
+          filter: drop-shadow(0 26px 45px rgba(52,52,52,0.18));
           animation: uiuxFloat 5.5s ease-in-out infinite;
         }
 
@@ -118,13 +118,13 @@ export default function ServicesUiUx() {
           gap: 8px;
           margin-top: 25px;
           padding: 9px 14px;
-          border: 1px solid rgba(124, 58, 237, 0.16);
+          border: 1px solid rgba(92,92,92,0.16);
           border-radius: 999px;
           background: rgba(255,255,255,0.58);
           color: ${B.textMid};
           font-size: 0.84rem;
           font-weight: 600;
-          box-shadow: 0 10px 30px rgba(54, 22, 79, 0.06);
+          box-shadow: 0 10px 30px rgba(23,23,23,0.06);
         }
 
         @keyframes uiuxFloat {
@@ -222,7 +222,7 @@ export default function ServicesUiUx() {
             width: 360,
             height: 360,
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(124,58,237,0.09), transparent 68%)',
+            background: 'radial-gradient(circle, rgba(92,92,92,0.09), transparent 68%)',
             pointerEvents: 'none',
           }}
         />

@@ -19,7 +19,6 @@ import ResourcesMegaMenu   from './sub_resources';
 
 // ── Assets ────────────────────────────────────────────────────────────────────
 import LogoImg from '../assets/wellmind-data-solutions-logo.png';
-import { CALENDLY_URL, openCalendly } from './BookDemoButton';
 
 // ─── MOBILE NAV ITEMS (mirror of desktop labels) ──────────────────────────────
 const MOBILE_SECTIONS = [
@@ -150,15 +149,13 @@ function BookCallBtn({ onClick }) {
   };
 
   return (
-    <a
-      href={CALENDLY_URL}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link
+      to="/book-discovery"
       ref={btnRef}
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      onClick={(e) => { openCalendly(e); onClick?.(e); }}
+      onClick={onClick}
       className="wm-book-btn wm-desktop-only"
     >
       <span ref={fillRef} aria-hidden="true" style={{
@@ -179,7 +176,7 @@ function BookCallBtn({ onClick }) {
       }}>
         Book a Call
       </span>
-    </a>
+    </Link>
   );
 }
 
@@ -188,56 +185,13 @@ export default function Header() {
   const [mobileOpen,    setMobileOpen]    = useState(false);
   const [activeMenu,    setActiveMenu]    = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState('');
-  const [isStickyVisible, setIsStickyVisible] = useState(true); // Default true at top
-  const [scrollY,       setScrollY]       = useState(0);
 
   const location      = useLocation();
   const navRef        = useRef(null);
   const hoverTimerRef = useRef(null);
-  const lastScrollY   = useRef(0);
 
-  // ── Smart Scroll Logic (Hide on Down, Show on Up) ─────────────────────────
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      const headerHeight = 80; // Compact header height
-
-      // Logic:
-      // 1. If scrolling UP -> Show (true)
-      // 2. If scrolling DOWN & past threshold -> Hide (false)
-      // 3. If near top -> Show (true)
-      
-      if (currentY < 80) {
-        setIsStickyVisible(true);
-      } else {
-        if (currentY > lastScrollY.current) {
-          // Scrolling Down
-          setIsStickyVisible(false);
-        } else {
-          // Scrolling Up
-          setIsStickyVisible(true);
-        }
-      }
-
-      setScrollY(currentY);
-      lastScrollY.current = currentY;
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Calculate position: 
-  // Initially shrinks margin from 15px to 0. 
-  // Once passed 15px, behaves as sticky (0 or -100px).
-  let topPosition = 0;
-  const initialMargin = Math.max(0, 15 - scrollY);
-
-  if (scrollY <= 15) {
-    topPosition = initialMargin;
-  } else {
-    // Sticky mode: 0 if visible, -120px if hidden
-    topPosition = isStickyVisible ? 0 : -100;
-  }
+  // NOTE: the old hide-on-scroll logic was removed. It re-rendered the whole header on
+  // every scroll event, and its computed `top` was never applied to the <nav>.
 
   // ── Hover timing ───────────────────────────────────────────────────────────
   const handleNavMouseEnter    = (menu) => { clearTimeout(hoverTimerRef.current); setActiveMenu(menu); };
@@ -248,7 +202,8 @@ export default function Header() {
   // ── Route change reset ─────────────────────────────────────────────────────
   useEffect(() => {
     setMobileOpen(false); setActiveMenu(null); setMobileExpanded('');
-  }, [location]);
+    clearTimeout(hoverTimerRef.current);
+  }, [location.pathname]);
 
   // ── Body scroll lock while drawer is open ─────────────────────────────────
   useEffect(() => {
@@ -273,23 +228,22 @@ export default function Header() {
       {/* ═══════════════════════ NAV BAR ═══════════════════════════════════ */}
       <motion.nav
         ref={navRef}
-        layout
         style={{
           position:             'fixed',
+          top:                  0,        // explicit offsets — without them a fixed element falls back to its
+          left:                 0,        // "static position" and drifts across the page during route changes
+          right:                0,
           width:                '100%',
           zIndex:                50,
           overflow:             'visible',
-          background:           'linear-gradient(135deg, #321447 0%, #4A1F5F 52%, #2C123F 100%)',
+          background:           '#010101',
           backdropFilter:       'blur(14px)',
           WebkitBackdropFilter: 'blur(14px)',
           borderBottom:         `1px solid ${activeMenu ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.10)'}`,
           boxShadow:            activeMenu
-            ? '0 10px 40px rgba(25,8,40,0.28)'
-            : '0 4px 20px rgba(25,8,40,0.18)',
-          // Transition updated to handle the slide-up/down smoothly
-          transition: scrollY > 15
-            ? 'top 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s'
-            : 'top 0.1s linear, box-shadow 0.3s',
+            ? '0 10px 40px rgba(0,0,0,0.45)'
+            : '0 4px 20px rgba(0,0,0,0.30)',
+          transition: 'box-shadow 0.3s, border-color 0.3s',
         }}
       >
         {/* ── Main bar ──────────────────────────────────────────────────── */}
@@ -316,11 +270,11 @@ export default function Header() {
             </div>
             <div className="wm-brand-text" style={{ display: 'flex', flexDirection: 'column', lineHeight: 0.95 }}>
               <span style={{
-                fontFamily:    "'Plus Jakarta Sans', 'Montserrat', sans-serif",
+                fontFamily:    "'Space Grotesk', 'Montserrat', sans-serif",
                 fontWeight:     800,
                 fontSize:      'clamp(18px, 2.4vw, 30px)',
                 letterSpacing: '-0.02em',
-                color:         '#C4B5FD',
+                color:         '#FFFFFF',
               }}>WellMind</span>
               <span style={{
                 fontFamily:    'sans-serif',
@@ -371,7 +325,7 @@ export default function Header() {
                   <ChevronDown size={16} style={{
                     transition: 'transform 0.28s cubic-bezier(0.16,1,0.3,1)',
                     transform:  activeMenu === item.key ? 'rotate(180deg)' : 'none',
-                    color:      '#E9B7FF',
+                    color:      '#FFFFFF',
                   }} />
                   <span className="wm-underline" style={{ width: activeMenu === item.key ? '100%' : undefined }} />
                 </button>
@@ -404,8 +358,8 @@ export default function Header() {
                 justifyContent: 'center',
                 padding:         8,
                 borderRadius:    8,
-                background:     'rgba(74,43,95,0.08)',
-                border:         `1px solid rgba(74,43,95,0.25)`,
+                background:     'rgba(42,42,42,0.08)',
+                border:         `1px solid rgba(42,42,42,0.25)`,
                 color:           B.primaryMid,
                 cursor:         'pointer',
                 transition:     'all 0.2s',
@@ -430,11 +384,11 @@ export default function Header() {
                 top:                  '100%',
                 left:                  0,
                 width:                '100%',
-                background:           'rgba(252,249,255,0.985)',
+                background:           '#FFFFFF',
                 backdropFilter:       'blur(48px)',
                 WebkitBackdropFilter: 'blur(48px)',
-                border:         '1px solid rgba(107,46,116,0.18)',
-                borderTop: '2px solid #D94B78',
+                border:         '1px solid rgba(0,0,0,0.18)',
+                borderTop: '2px solid #000000',
                 borderEndStartRadius:  '20px',
                 borderBottomRightRadius: '20px',
                 zIndex:                100,
@@ -456,7 +410,7 @@ export default function Header() {
               position:      'fixed',
               inset:          0,
               zIndex:         55,
-              background:    'rgba(26,16,48,0.50)',
+              background:    'rgba(0,0,0,0.55)',
               backdropFilter: 'blur(6px)',
             }}
             onClick={() => setMobileOpen(false)}
@@ -477,10 +431,10 @@ export default function Header() {
               bottom:         0,
               zIndex:         70,
               width:         'min(88vw, 340px)',
-              background:    'rgba(255,255,255,0.98)',
+              background:    '#000000',
               backdropFilter: 'blur(24px)',
               borderLeft:    `1px solid ${B.glassBorder}`,
-              boxShadow:     `-12px 0 60px rgba(74,43,95,0.15)`,
+              boxShadow:     `-12px 0 60px rgba(42,42,42,0.15)`,
               overflow:      'hidden',
               display:       'flex',
               flexDirection: 'column',
@@ -495,14 +449,14 @@ export default function Header() {
               alignItems:     'center',
               justifyContent: 'space-between',
               padding:        '0 20px',
-              background:     'rgba(74,43,95,0.04)',
+              background:     'rgba(42,42,42,0.04)',
             }}>
               <Link to="/" onClick={() => setMobileOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: 2, textDecoration: 'none' }}>
                 <div className="wm-mobile-logo-mark" style={{ width: 46, height: 46, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <img src={LogoImg} alt="WellMind Logo" className="wm-logo-img" width="60" height="60" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 </div>
                 <div className="wm-mobile-brand-text" style={{ display: 'flex', flexDirection: 'column', lineHeight: 0.95 }}>
-                  <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: '1.3rem', letterSpacing: '-0.02em', color: '#C4B5FD' }}>WellMind</span>
+                  <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800, fontSize: '1.3rem', letterSpacing: '-0.02em', color: '#FFFFFF' }}>WellMind</span>
                   <span style={{ fontFamily: 'sans-serif', fontWeight: 600, fontSize: '0.6rem', color: '#FFFFFF', letterSpacing: '0.05em', alignSelf: 'end' }}>Data Solutions</span>
                 </div>
               </Link>
@@ -511,7 +465,7 @@ export default function Header() {
                 aria-label="Close menu"
                 style={{
                   background: 'transparent',
-                  border:     `1px solid rgba(74,43,95,0.20)`,
+                  border:     `1px solid rgba(42,42,42,0.20)`,
                   color:       B.primaryMid,
                   cursor:     'pointer',
                   padding:     6,
@@ -539,8 +493,8 @@ export default function Header() {
                       background:      'transparent',
                       border:          'none',
                       cursor:          'pointer',
-                      color:           '#1a1030',
-                      fontFamily:      "'Plus Jakarta Sans', sans-serif",
+                      color:           '#0c0c0c',
+                      fontFamily:      "'Space Grotesk', sans-serif",
                       fontSize:         15,
                       fontWeight:       600,
                       borderBottom:    `1px solid ${B.primaryBorder}`,
@@ -579,7 +533,7 @@ export default function Header() {
                               }}
                             >
                               <span style={{ width: 5, height: 5, borderRadius: '50%', background: B.primaryMid, flexShrink: 0 }} />
-                              <span style={{ color: B.textMid, fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 14 }}>
+                              <span style={{ color: B.textMid, fontFamily: "'Space Grotesk', sans-serif", fontSize: 14 }}>
                                 {item.label}
                               </span>
                             </Link>
@@ -597,9 +551,9 @@ export default function Header() {
                 style={{
                   display:        'block',
                   padding:        '14px 0',
-                  color:          '#1a1030',
+                  color:          '#0c0c0c',
                   textDecoration: 'none',
-                  fontFamily:     "'Plus Jakarta Sans', sans-serif",
+                  fontFamily:     "'Space Grotesk', sans-serif",
                   fontSize:        15,
                   fontWeight:      600,
                   borderBottom:   `1px solid ${B.primaryBorder}`,
@@ -614,9 +568,9 @@ export default function Header() {
                 style={{
                   display:        'block',
                   padding:        '14px 0',
-                  color:          '#1a1030',
+                  color:          '#0c0c0c',
                   textDecoration: 'none',
-                  fontFamily:     "'Plus Jakarta Sans', sans-serif",
+                  fontFamily:     "'Space Grotesk', sans-serif",
                   fontSize:        15,
                   fontWeight:      600,
                   borderBottom:   `1px solid ${B.primaryBorder}`,
@@ -625,17 +579,15 @@ export default function Header() {
                 About
               </Link>
 
-              <div style={{ paddingTop: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+              <div style={{ paddingTop: 24 }}>
+                <Link
+                  to="/book-discovery"
                   className="wm-cyan-btn"
-                  onClick={(e) => { openCalendly(e); setMobileOpen(false); }}
+                  onClick={() => setMobileOpen(false)}
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
-                  <Zap size={15} /> Book a Call
-                </a>
+                  <Zap size={15} /> Book a Discovery Call
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -644,7 +596,7 @@ export default function Header() {
 
       {/* ═══════════════════════ GLOBAL STYLES ══════════════════════════════ */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 
         .wm-logo-img { transition: filter 0.25s ease, opacity 0.25s ease; }
         .wm-logo-img { filter: brightness(0) invert(1); }
@@ -661,7 +613,7 @@ export default function Header() {
 
         .wm-nav-link {
           color: rgba(255,255,255,0.88);
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: 'Space Grotesk', sans-serif;
           font-size: clamp(13px, 1.4vw, 18px);
           font-weight: 600; text-decoration: none;
           position: relative; transition: color 0.2s;
@@ -670,88 +622,91 @@ export default function Header() {
         .wm-nav-link:hover { color: #FFFFFF; }
         .wm-nav-link .wm-underline {
           position: absolute; left: 0; bottom: -3px;
-          width: 0; height: 2px; background: linear-gradient(90deg, #E64D83, #B66CFF);
+          width: 0; height: 2px; background: #FFFFFF;
           transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1); display: block;
         }
         .wm-nav-link:hover .wm-underline { width: 100%; }
 
-        /* Sub-service links */
+        /* Sub-service links — black text on white, invert on hover */
         .wm-sub-link:hover {
-          background: rgba(74,43,95,0.08) !important;
-          color: #47234F !important;
+          background: #000000 !important;
+          color: #FFFFFF !important;
           transform: translateX(2px);
         }
+        .wm-sub-link:hover * { color: #FFFFFF !important; }
 
         /* Industry capability links */
         .wm-cap-link:hover {
-          background: rgba(74,43,95,0.08) !important;
-          border-color: #47234F !important;
+          background: #000000 !important;
+          border-color: #000000 !important;
+          color: #FFFFFF !important;
           transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(74,43,95,0.10);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.25);
         }
+        .wm-cap-link:hover * { color: #FFFFFF !important; }
 
         /* Filter rows */
         .wm-filter-row:hover {
-          background: rgba(74,43,95,0.06) !important;
-          color: #47234F !important;
+          background: #000000 !important;
+          color: #FFFFFF !important;
         }
+        .wm-filter-row:hover * { color: #FFFFFF !important; }
 
         /* Case study cards */
         .wm-cs-card:hover {
-          border-color: #47234F !important;
+          border-color: #000000 !important;
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(74,43,95,0.12) !important;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.25) !important;
         }
 
         /* Resource article cards */
         .wm-res-card:hover {
-          border-color: #0B7C93 !important;
+          border-color: #000000 !important;
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(11, 124, 147,0.10) !important;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.25) !important;
         }
 
         /* Topic chips */
         .wm-topic-chip:hover {
-          background: rgba(74,43,95,0.08) !important;
-          border-color: #4A2B5F !important;
-          color: #4A2B5F !important;
+          background: #000000 !important;
+          border-color: #000000 !important;
+          color: #FFFFFF !important;
         }
 
         /* Quick guide links */
-        .wm-guide-link:hover { color: #47234F !important; }
+        .wm-guide-link:hover { color: #000000 !important; text-decoration: underline; }
 
         /* Book a Call button */
         .wm-book-btn {
           position: relative; overflow: hidden;
           display: inline-flex; align-items: center; gap: 6px;
-          background: rgba(255,255,255,0.98); color: #5A2573;
+          background: rgba(255,255,255,0.98); color: #000000;
           border: 1.5px solid rgba(255,255,255,0.75); border-radius: 9px;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: 'Space Grotesk', sans-serif;
           font-weight: 700; font-size: clamp(13px, 1.4vw, 18px);
           padding: clamp(7px, 1vw, 9px) clamp(12px, 1.5vw, 18px);
           text-decoration: none; cursor: pointer; white-space: nowrap;
           transition: border-color 0.25s ease; flex-shrink: 0;
         }
         .wm-book-btn:hover { border-color: #FFFFFF; box-shadow: 0 8px 24px rgba(0,0,0,0.20); }
-        .wm-book-btn .wm-book-btn-content { color: #6B2E74; transition: color 0.20s ease 0.15s; }
+        .wm-book-btn .wm-book-btn-content { color: #000000; transition: color 0.20s ease 0.15s; }
         .wm-book-btn:hover .wm-book-btn-content { color: #ffffff; }
 
-
-        /* Cyan/primary CTA button — used inside dropdowns */
+        /* Primary CTA button — black, inverts to white on hover */
         .wm-cyan-btn {
           display: inline-flex; align-items: center; gap: 6px;
-          background: #4A2B5F; color: #ffffff;
-          border: 1px solid #4A2B5F; border-radius: 8px;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          background: #000000; color: #ffffff;
+          border: 1px solid #000000; border-radius: 8px;
+          font-family: 'Space Grotesk', sans-serif;
           font-weight: 700; font-size: 13px; padding: 9px 18px;
           text-decoration: none; transition: all 0.25s ease;
           cursor: pointer; white-space: nowrap;
-          box-shadow: 0 0 20px rgba(74,43,95,0.20);
+          box-shadow: none;
         }
         .wm-cyan-btn:hover {
-          background: #5c3575; border-color: #5c3575;
-          box-shadow: 0 0 32px rgba(74,43,95,0.35);
-          transform: translateY(-1px); color: #ffffff;
+          background: #ffffff; border-color: #000000; color: #000000;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+          transform: translateY(-1px);
         }
       `}</style>
     </>

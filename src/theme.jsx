@@ -19,72 +19,72 @@ import { Plus, Minus } from 'lucide-react';
 // ─── Brand Colors ─────────────────────────────────────────────────────────────
 export const B = {
   // Primary purple — deepened for richer, more premium contrast
-  primary:        '#6D28D9',
-  primaryDark:    '#24113D',
-  primaryMid:     '#4C1D95',
-  primaryLight:   'rgba(109, 40, 217, 0.08)',
-  primaryBorder:  'rgba(109, 40, 217, 0.22)',
-  primaryGlow:    'rgba(109, 40, 217, 0.22)',
+  primary:        '#000000',
+  primaryDark:    '#000000',
+  primaryMid:     '#222222',
+  primaryLight:   'rgba(0, 0, 0, 0.06)',
+  primaryBorder:  'rgba(0, 0, 0, 0.18)',
+  primaryGlow:    'rgba(0, 0, 0, 0.16)',
 
   // Secondary burgundy
-  secondary:      '#D93668',
-  secondaryLight: 'rgba(217,54,104,0.10)',
-  secondaryMuted: '#D93668cc',
+  secondary:      '#111111',
+  secondaryLight: 'rgba(0,0,0,0.06)',
+  secondaryMuted: '#111111cc',
 
   // Action purple
-  action:       '#7C3AED',
-  actionLight:  'rgba(124,58,237,0.10)',
-  actionBorder: 'rgba(124,58,237,0.30)',
-  actionGlow:   'rgba(124,58,237,0.28)',
+  action:       '#000000',
+  actionLight:  'rgba(0,0,0,0.06)',
+  actionBorder: 'rgba(0,0,0,0.22)',
+  actionGlow:   'rgba(0,0,0,0.18)',
   // Lighter lavender — use instead of `action` for text/headings on dark
-  // backgrounds (footer etc.), since #7C3AED reads muddy/low-contrast there.
-  actionSoft:   '#C4B5FD',
+  // backgrounds (footer etc.), since #5c5c5c reads muddy/low-contrast there.
+  actionSoft:   '#111111',
 
   // Accent gold
-  accent:       '#F59E0B',
-  accentLight:  'rgba(245,158,11,0.10)',
-  accentBorder: 'rgba(245,158,11,0.25)',
+  accent:       '#000000',
+  accentLight:  'rgba(0,0,0,0.06)',
+  accentBorder: 'rgba(0,0,0,0.18)',
 
   // Gradients — for headline accents, CTAs, dividers
-  gradientPrimary: 'linear-gradient(135deg, #6D28D9 0%, #D93668 100%)',
-  gradientAction:  'linear-gradient(135deg, #6D28D9 0%, #D93668 100%)',
-  gradientGold:    'linear-gradient(90deg, #D93668 20%, #F59E0B 80%)',
+  gradientPrimary: 'linear-gradient(135deg, #000000 0%, #333333 100%)',
+  gradientAction:  'linear-gradient(135deg, #000000 0%, #333333 100%)',
+  gradientGold:    'linear-gradient(90deg, #000000 20%, #777777 80%)',
 
   // Backgrounds
   bgMain:  '#FFFFFF',
-  bgLight: '#FAF7FF',
-  bgDark:  '#1B1033',
-  heroBg:  'linear-gradient(135deg, #FFFFFF 0%, #FBF7FF 55%, #F2E8FF 100%)',
+  bgLight: '#FFFFFF',
+  bgDark:  '#000000',
+  heroBg:  'linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 55%, #F3F3F3 100%)',
 
   // Cards / Glass
-  cardBg:     'linear-gradient(135deg, rgba(255,255,255,0.72) 0%, rgba(245,241,246,0.52) 100%)',
-  cardShadow: '0 14px 36px -12px rgba(91,33,182,0.14)',
-  glassBg:     'rgba(255,255,255,0.65)',
-  glassBorder: 'rgba(109,40,217,0.14)',
-  bgDarkCard:  'rgba(255,255,255,0.03)',
+  cardBg:     '#FFFFFF',
+  cardShadow: '0 14px 36px -12px rgba(0,0,0,0.14)',
+  glassBg:     '#FFFFFF',
+  glassBorder: 'rgba(0,0,0,0.14)',
+  bgDarkCard:  '#000000',
 
   // Text — light backgrounds
-  textMain:  '#24113D',
-  textMid:   'rgba(36,17,61,0.72)',
-  textMuted: 'rgba(36,17,61,0.65)',
+  textMain:  '#000000',
+  textMid:   'rgba(0,0,0,0.72)',
+  textMuted: 'rgba(0,0,0,0.62)',
 
   // Text — dark backgrounds
-  textDark:      '#F3ECFA',
-  textDarkMid:   'rgba(243,236,250,0.75)',
-  textDarkMuted: 'rgba(243,236,250,0.62)',
+  textDark:      '#f0f0f0',
+  textDarkMid:   'rgba(240,240,240,0.75)',
+  textDarkMuted: 'rgba(240,240,240,0.62)',
 
   // Footer-specific dark backgrounds — same purple family as the navbar
-  // gradient (#321447 / #2C123F) for a cohesive brand color across the site.
-  darkBg:   '#2C123F',
-  voidBg:   '#1A0A28',
-  actionMid: '#5B21B6',
+  // gradient (#151515 / #121212) for a cohesive brand color across the site.
+  darkBg:   '#000000',
+  voidBg:   '#000000',
+  actionMid: '#222222',
 
   // Misc
   white:    '#ffffff',
-  shadowMd: 'rgba(109,40,217,0.15)',
-  shadowLg: 'rgba(109,40,217,0.25)',
+  shadowMd: 'rgba(0,0,0,0.15)',
+  shadowLg: 'rgba(0,0,0,0.22)',
   pillRadius: 28,
-  fontDisplay: "'Fraunces', 'Plus Jakarta Sans', serif",
+  fontDisplay: "'Unbounded', 'Space Grotesk', serif",
 };
 
 // ─── Layout Constants ─────────────────────────────────────────────────────────
@@ -151,15 +151,15 @@ export function useCounter(target, duration = 2000, start = false) {
  */
 export function DataParticles({ count = 24, dark = false }) {
   const LIGHT_COLORS = [
-    'rgba(11, 124, 147,0.50)',
-    'rgba(127,32,55,0.40)',
-    'rgba(197,174,210,0.60)',
-    'rgba(147, 33, 63,0.35)',
+    'rgba(84,84,84,0.50)',
+    'rgba(47,47,47,0.40)',
+    'rgba(185,185,185,0.60)',
+    'rgba(55,55,55,0.35)',
   ];
   const DARK_COLORS = [
-    'rgba(123,82,181,0.55)',
-    'rgba(11, 124, 147,0.45)',
-    'rgba(200, 138, 70,0.40)',
+    'rgba(103,103,103,0.55)',
+    'rgba(84,84,84,0.45)',
+    'rgba(149,149,149,0.40)',
     'rgba(255,255,255,0.20)',
   ];
 
@@ -194,14 +194,14 @@ export function DataParticles({ count = 24, dark = false }) {
  * @param {object} style   additional inline style overrides
  */
 export function SectionBadge({ children, dark = false, style = {} }) {
-  const defaultColor = dark ? B.primaryMid : B.primary;
+  // dark look lives in theme.css (.section-badge--dark); light look stays inline
+  const light = dark ? {} : {
+    background: B.primaryLight,
+    border: `1px solid ${B.primaryBorder}`,
+    color: style.color || B.primary,
+  };
   return (
-    <div className="section-badge" style={{
-      background: dark ? 'rgba(91,58,142,0.15)' : B.primaryLight,
-      border: `1px solid ${dark ? 'rgba(91,58,142,0.30)' : B.primaryBorder}`,
-      color: style.color || defaultColor,
-      ...style,
-    }}>
+    <div className={`section-badge${dark ? ' section-badge--dark' : ''}`} style={{ ...light, ...style }}>
       <span className="badge-dot" />
       {children}
     </div>
@@ -218,13 +218,13 @@ export function SectionDivider() {
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: 'clamp(16px, 2.5vw, 32px) 0',
     }}>
-      <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to right, transparent, rgba(147, 33, 63,0.35))' }} />
+      <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to right, transparent, rgba(55,55,55,0.35))' }} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0 24px' }}>
-        <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(147, 33, 63,0.40)' }} />
-        <div style={{ width: 10, height: 10, background: B.secondary, transform: 'rotate(45deg)', boxShadow: '0 0 12px rgba(147, 33, 63,0.50)' }} />
-        <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(147, 33, 63,0.40)' }} />
+        <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(55,55,55,0.40)' }} />
+        <div style={{ width: 10, height: 10, background: B.secondary, transform: 'rotate(45deg)', boxShadow: '0 0 12px rgba(55,55,55,0.50)' }} />
+        <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(55,55,55,0.40)' }} />
       </div>
-      <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to left, transparent, rgba(147, 33, 63,0.35))' }} />
+      <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to left, transparent, rgba(55,55,55,0.35))' }} />
     </div>
   );
 }
@@ -266,10 +266,10 @@ export function FAQItem({ q, a, isOpen, onClick, index }) {
       transition={{ duration: 0.2 }}
       style={{
         borderRadius: 16, overflow: 'hidden', marginBottom: 12, cursor: 'pointer',
-        border: `1.5px solid ${isOpen ? 'rgba(11, 124, 147,0.50)' : 'rgba(255,255,255,0.10)'}`,
-        background: isOpen ? 'rgba(124,58,237,0.12)' : 'rgba(255,255,255,0.04)',
+        border: `1.5px solid ${isOpen ? 'rgba(84,84,84,0.50)' : 'rgba(255,255,255,0.10)'}`,
+        background: isOpen ? 'rgba(92,92,92,0.12)' : 'rgba(255,255,255,0.04)',
         transition: 'border-color 0.3s ease, background 0.3s ease',
-        boxShadow: isOpen ? '0 8px 32px rgba(11, 124, 147,0.15)' : 'none',
+        boxShadow: isOpen ? '0 8px 32px rgba(84,84,84,0.15)' : 'none',
       }}
     >
       <div style={{
@@ -279,7 +279,7 @@ export function FAQItem({ q, a, isOpen, onClick, index }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(10px, 1.5vw, 16px)', flex: 1 }}>
           <span style={{
             fontSize: 12, fontWeight: 800, letterSpacing: '0.10em',
-            color: isOpen ? B.action : 'rgba(240,234,248,0.60)',
+            color: isOpen ? B.action : 'rgba(237,237,237,0.60)',
             minWidth: 28, fontFamily: 'sans-serif', transition: 'color 0.3s ease',
           }}>
             {String(index + 1).padStart(2, '0')}
@@ -287,7 +287,7 @@ export function FAQItem({ q, a, isOpen, onClick, index }) {
           <h3 style={{
             fontFamily: 'sans-serif', fontWeight: 600,
             fontSize: 'clamp(0.9rem, 1.6vw, 1.15rem)',
-            color: isOpen ? B.textDark : 'rgba(240,234,248,0.85)',
+            color: isOpen ? B.textDark : 'rgba(237,237,237,0.85)',
             margin: 0, lineHeight: 1.4, transition: 'color 0.3s ease',
           }}>{q}</h3>
         </div>
@@ -300,7 +300,7 @@ export function FAQItem({ q, a, isOpen, onClick, index }) {
         }}>
           {isOpen
             ? <Minus size={14} color="#fff" strokeWidth={2.5} />
-            : <Plus size={14} color="rgba(240,234,248,0.60)" strokeWidth={2.5} />
+            : <Plus size={14} color="rgba(237,237,237,0.60)" strokeWidth={2.5} />
           }
         </div>
       </div>
@@ -319,8 +319,8 @@ export function FAQItem({ q, a, isOpen, onClick, index }) {
             }}>
               <div style={{
                 fontSize: 'clamp(0.85rem, 1.5vw, 1.05rem)', lineHeight: 1.8,
-                color: 'rgba(240,234,248,0.72)',
-                borderLeft: `2px solid rgba(124,58,237,0.40)`, paddingLeft: 20,
+                color: 'rgba(237,237,237,0.72)',
+                borderLeft: `2px solid rgba(92,92,92,0.40)`, paddingLeft: 20,
               }}>{a}</div>
             </div>
           </motion.div>
@@ -404,12 +404,12 @@ export const S = {
 
   // Cards
   cardBase: {
-    background:'linear-gradient(135deg,rgba(255,255,255,0.70) 0%,rgba(245, 241, 246,0.50) 100%)',
+    background:'linear-gradient(135deg,rgba(255,255,255,0.70) 0%,rgba(243,243,243,0.50) 100%)',
     backdropFilter:'blur(8px)', borderRadius:'var(--radius-xl)',
     border:`1px solid ${B.primaryBorder}`, boxShadow:B.cardShadow, padding:'var(--sp-card)',
   },
   cardBaseHover: {
-    background:'linear-gradient(135deg,rgba(255,255,255,0.70) 0%,rgba(245, 241, 246,0.50) 100%)',
+    background:'linear-gradient(135deg,rgba(255,255,255,0.70) 0%,rgba(243,243,243,0.50) 100%)',
     backdropFilter:'blur(8px)', borderRadius:'var(--radius-xl)',
     border:`3px solid ${B.primaryBorder}`, boxShadow:B.cardShadow, padding:'var(--sp-card)',
     transition:'border-color 0.3s ease,box-shadow 0.3s ease,transform 0.3s ease',
@@ -432,16 +432,16 @@ export const S = {
   // Sections
   sectionLight: {
     position:'relative', zIndex:1, overflow:'clip', padding:'var(--sp-section) 0',
-    background:'linear-gradient(180deg,#FAF7FF 0%,#F6EFFF 50%,#EEE4FA 100%)',
+    background:'linear-gradient(180deg,#f9f9f9 0%,#f3f3f3 50%,#e9e9e9 100%)',
   },
   sectionDark: {
     position:'relative', zIndex:1, padding:'var(--sp-section) 0',
-    background:'linear-gradient(135deg,#1B1033 0%,#120A26 100%)',
+    background:'linear-gradient(135deg,#0c0c0c 0%,#080808 100%)',
   },
   sectionHero: {
-    position:'relative', minHeight:'100vh', display:'flex', flexDirection:'column',
+    position:'relative', minHeight: '100svh', display:'flex', flexDirection:'column',
     overflow:'hidden', zIndex:1, paddingTop:'clamp(40px,5vw,50px)',
-    background:'linear-gradient(to right,#FFFFFF 0%,#FFFFFF 60%,#F3EAFF 85%,#EDE4FA 100%)',
+    background:'linear-gradient(to right,#FFFFFF 0%,#FFFFFF 60%,#efefef 85%,#e9e9e9 100%)',
   },
 
   // Layout
@@ -461,20 +461,20 @@ export const S = {
   // Pills / Tags
   pill:          { fontFamily:'var(--font-main)', fontSize:'var(--fs-badge)', fontWeight:700, letterSpacing:'0.04em', padding:'4px 10px', borderRadius:99, background:B.primaryLight,  color:B.primary,   border:`1px solid ${B.primaryBorder}`,          display:'inline-flex', alignItems:'center' },
   pillAction:    { fontFamily:'var(--font-main)', fontSize:'var(--fs-badge)', fontWeight:700, letterSpacing:'0.04em', padding:'4px 10px', borderRadius:99, background:B.actionLight,   color:B.action,    border:`1px solid ${B.actionBorder}`,           display:'inline-flex', alignItems:'center' },
-  pillSecondary: { fontFamily:'var(--font-main)', fontSize:'var(--fs-badge)', fontWeight:700, letterSpacing:'0.04em', padding:'4px 10px', borderRadius:99, background:B.secondaryLight,color:B.secondary, border:'1px solid rgba(217,54,104,0.25)',         display:'inline-flex', alignItems:'center' },
+  pillSecondary: { fontFamily:'var(--font-main)', fontSize:'var(--fs-badge)', fontWeight:700, letterSpacing:'0.04em', padding:'4px 10px', borderRadius:99, background:B.secondaryLight,color:B.secondary, border:'1px solid rgba(108,108,108,0.25)',         display:'inline-flex', alignItems:'center' },
   pillAccent:    { fontFamily:'var(--font-main)', fontSize:'var(--fs-badge)', fontWeight:700, letterSpacing:'0.04em', padding:'4px 10px', borderRadius:99, background:B.accentLight,   color:B.accent,    border:`1px solid ${B.accentBorder}`,           display:'inline-flex', alignItems:'center' },
   pillDark:      { fontFamily:'var(--font-main)', fontSize:'var(--fs-badge)', fontWeight:700, letterSpacing:'0.04em', padding:'4px 10px', borderRadius:99, background:'rgba(255,255,255,0.12)', color:B.textDark, border:'1px solid rgba(255,255,255,0.15)', display:'inline-flex', alignItems:'center' },
   toolTag:       { fontSize:'clamp(9px,1.1vw,12px)', fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:6, background:B.actionLight,   color:B.action },
-  toolTagDark:   { fontSize:'clamp(9px,1.1vw,12px)', fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:6, background:'rgba(124,58,237,0.12)', color:B.action, border:'1px solid rgba(124,58,237,0.25)' },
+  toolTagDark:   { fontSize:'clamp(9px,1.1vw,12px)', fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:6, background:'rgba(92,92,92,0.12)', color:B.action, border:'1px solid rgba(92,92,92,0.25)' },
 
   // Dividers
   divider:     { borderTop:`1px solid ${B.primaryBorder}`,       margin:'clamp(20px,2.5vw,36px) 0' },
   dividerDark: { borderTop:'1px solid rgba(255,255,255,0.07)',    margin:'clamp(20px,2.5vw,36px) 0' },
 
   // Gradient text helpers
-  gradientRed:    { background:'linear-gradient(90deg,#6D28D9 25%,#D93668 75%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' },
-  gradientPurple: { background:`linear-gradient(135deg,#6D28D9 0%,#D93668 100%)`,WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' },
-  gradientAction: { background:`linear-gradient(135deg,#7C3AED 0%,#6D28D9 100%)`, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' },
+  gradientRed:    { background:'linear-gradient(90deg,#444444 25%,#6c6c6c 75%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' },
+  gradientPurple: { background:`linear-gradient(135deg,#444444 0%,#6c6c6c 100%)`,WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' },
+  gradientAction: { background:`linear-gradient(135deg,#5c5c5c 0%,#444444 100%)`, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' },
 
   // Page padding
   pagePad:     { padding:'var(--sp-section) 0' },

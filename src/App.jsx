@@ -1,6 +1,5 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useLayoutEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -16,6 +15,7 @@ const IndividualCaseStudy = lazy(() => import('./pages/IndividualCaseStudy'));
 const Resources = lazy(() => import('./pages/Resources'));
 const BookDiscovery = lazy(() => import('./pages/BookDiscovery'));
 const CostCalculator = lazy(() => import('./pages/CostCalculator/CostCalculator'));
+const Careers = lazy(() => import('./pages/Careers'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
@@ -40,19 +40,41 @@ const AiSoftwareChildPage = lazy(() => import('./pages/Services/AiSoftwareChildP
 const AutomationChildPage = lazy(() => import('./pages/Services/Automationchildpage'));
 const BioinformaticsChildPage = lazy(() => import('./pages/Services/Bioinformaticschildpage'));
 
-// Minimal, layout-neutral fallback shown while a lazy page chunk downloads.
+// Fallback shown while a lazy page chunk downloads. It is a full screen tall on
+// purpose: if it were shorter than the page we just left, the browser would clamp
+// the scroll position and the footer / navbar would visibly jump around.
 function PageLoader() {
   return (
-    <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ width: 36, height: 36, borderRadius: '50%', border: '3px solid rgba(0,0,0,0.08)', borderTopColor: 'currentColor', animation: 'spin 0.8s linear infinite' }} />
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff' }}>
+      <div style={{ width: 36, height: 36, borderRadius: '50%', border: '3px solid rgba(0,0,0,0.08)', borderTopColor: '#000', animation: 'wm-spin 0.8s linear infinite' }} />
+      <style>{`@keyframes wm-spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
 }
 
+// Resets scroll on every route change.
+//  • useLayoutEffect → runs before the browser paints the new page (no flash of old scroll position)
+//  • behavior:'instant' → index.css sets `scroll-behavior: smooth` on <html>, which used to turn
+//    this reset into a slow animated glide from the footer to the top (the navbar then
+//    slid up/down across the page while it happened).
+//  • #hash links still scroll to their target.
 function ScrollTop() {
-  const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  const { pathname, hash } = useLocation();
+
+  useLayoutEffect(() => {
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
+  }, []);
+
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    const prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    const target = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
+    if (target) target.scrollIntoView({ block: 'start' });
+    else window.scrollTo(0, 0);
+    root.style.scrollBehavior = prev;
+  }, [pathname, hash]);
+
   return null;
 }
 
@@ -82,7 +104,7 @@ function App() {
             <Link to="/case-studies?service=ai-ml">View All Case Studies →</Link>
             <Link to="/case-studies?industry=healthcare">View All Case Studies →</Link>
         */}
-        <main>
+        <main style={{ flex: '1 0 auto', width: '100%', minWidth: 0 }}>
           <Suspense fallback={<PageLoader/>}>
             <Routes>
               <Route path="/" element={<Home/>}/>
@@ -92,9 +114,11 @@ function App() {
               <Route path="/resources" element={<Resources/>}/>
               <Route path="/book-discovery" element={<BookDiscovery/>}/>
               <Route path="/ai-cost-calculator" element={<CostCalculator/>}/>
+              <Route path="/careers" element={<Careers/>}/>
               <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
               <Route path="/terms-of-service" element={<TermsOfService/>}/>
               <Route path="/cookie-policy" element={<CookiePolicy/>}/>
+              <Route path="/industries" element={<Navigate to="/industry-healthcare" replace/>}/>
 
               <Route path="/industry-financial-service" element={<IndustryFinancial/>}/>
               <Route path="/industry-healthcare" element={<IndustryHealthcare/>}/>

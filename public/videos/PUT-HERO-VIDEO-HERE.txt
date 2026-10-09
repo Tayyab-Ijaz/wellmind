@@ -1,0 +1,20 @@
+WELLMIND HERO VIDEO
+===================
+
+Put your hero video in THIS folder with this exact filename:
+
+    hero.mp4
+
+The website will automatically load it at:
+    /videos/hero.mp4
+
+Recommended source quality:
+- 3840 x 2160 (4K) for maximum detail
+- 30 or 60 FPS
+- H.264 MP4 for broad browser compatibility
+- Keep the original high-quality export; do not upload a low-resolution preview
+- Landscape 16:9 works best for the full-screen hero
+
+The hero video is muted, autoplaying, looping and plays inline. Muting is required
+for reliable autoplay in modern browsers. There is no CSS blur, canvas resizing,
+or image filter applied to the video.

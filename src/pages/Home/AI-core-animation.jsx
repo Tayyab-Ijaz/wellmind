@@ -101,7 +101,7 @@ export default function AiCoreDiagram() {
                     fill={colors.white} stroke={o.labelColor} strokeWidth="1.5"
                     strokeOpacity="0.4" filter="url(#pillShadow)" />
                   <text x="0" y="-23" textAnchor="middle"
-                    fontFamily="'Plus Jakarta Sans', sans-serif"
+                    fontFamily="'Space Grotesk', sans-serif"
                     fontSize="15" fontWeight="700" fill={colors.textMain}>
                     {o.label}
                   </text>
@@ -117,7 +117,7 @@ export default function AiCoreDiagram() {
             preserveAspectRatio="xMidYMid meet"
           />
           <text x={cx} y={cy + 76} textAnchor="middle"
-            fontFamily="'Plus Jakarta Sans', sans-serif"
+            fontFamily="'Space Grotesk', sans-serif"
             fontSize="16" fontWeight="800" fill={colors.action} letterSpacing="1">
             AI CORE
           </text>

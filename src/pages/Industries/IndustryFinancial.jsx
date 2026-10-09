@@ -5,7 +5,7 @@
  *
  * CHANGES:
  * 1. Capabilities & Case Studies: Merged into 1 Single Section.
- * 2. Tech Stack: Background changed to PrimaryDark Gradient (#2C1636). Colors matched to palette.
+ * 2. Tech Stack: Background changed to PrimaryDark Gradient (#131313). Colors matched to palette.
  * 3. Headings: Strictly using PrimaryDark and Secondary (matching ServicesAiMl).
  * 4. Buttons: Updated colors to match ServicesAiMl (Action Blue, Secondary Outline).
  */
@@ -156,40 +156,40 @@ export default function IndustryFinancial() {
   const capabilities = [
     { icon: <Activity size={22} />,      color: B.primary, title: 'Insurance Risk Scoring',           desc: 'A Gradient Boosting model scoring customers across 45 financial, demographic, and behavioral features into Low, Medium, or High risk tiers via an interactive Streamlit app.' },
     { icon: <AlertTriangle size={22} />, color: B.action,  title: 'Real-Time Fraud Detection',        desc: 'A transaction-scoring concept combining supervised and unsupervised models into a single 0–100 risk score, with tiered auto-approve / review / block decisioning.' },
-    { icon: <ShieldCheck size={22} />,   color: B.secondary, title: 'Policy Document Classification',  desc: 'A React Native mobile app that classifies insurance policy documents by type and extracts key fields, including from scanned, multi-page PDFs.' },
+    { icon: <ShieldCheck size={22} />,   color: B.secondary, title: 'Policy Document Classification',  desc: 'A React Native mobile app that classifies insurance policy documents by type and extracts key fields — including from scanned, multi-page PDFs.' },
     { icon: <RefreshCw size={22} />,     color: B.accent,  title: 'Regulatory Form Automation (RPA)', desc: 'A Playwright-driven bot that auto-fills regulatory and government forms from stored client data, pausing only for CAPTCHAs or genuinely missing fields.' },
-    { icon: <DollarSign size={22} />,    color: B.action,  title: 'Invoice Data Extraction',          desc: 'A document-processing pipeline that extracts invoice fields (customer details, dates, amounts, charges) into validated, structured records for AP workflows.' },
+    { icon: <DollarSign size={22} />,    color: B.action,  title: 'Invoice Data Extraction',          desc: 'A document-processing pipeline that extracts invoice fields — customer details, dates, amounts, charges — into validated, structured records for AP workflows.' },
   ];
 
   const useCases = [
     {
       icon: <Activity />, color: B.primary, slug: 'insurance-risk-scoring',
       title: 'Insurance Risk Scoring',
-      desc: 'A Gradient Boosting Classifier trained on 45 engineered features (income, credit score, claims history, vehicle and policy data, behavioral signals) to classify customers into Low, Medium, or High risk, deployed through an interactive Streamlit app with feature-importance visualisations.',
+      desc: 'A Gradient Boosting Classifier trained on 45 engineered features — income, credit score, claims history, vehicle and policy data, behavioral signals — to classify customers into Low, Medium, or High risk, deployed through an interactive Streamlit app with feature-importance visualisations.',
       metrics: [{ val: '45', label: 'Model Features' }, { val: '3', label: 'Risk Tiers' }, { val: 'Live', label: 'Streamlit App' }],
     },
     {
       icon: <ShieldCheck />, color: B.secondary, slug: 'insurance-policy-document-classification',
       title: 'Insurance Policy Document Classification',
-      desc: 'A domain-trained document intelligence platform, shipped as a React Native/Expo mobile app, that classifies incoming insurance documents by policy type and extracts key fields, combining OCR with visual-structure analysis to handle scanned and multi-page PDFs.',
+      desc: 'A domain-trained document intelligence platform, shipped as a React Native/Expo mobile app, that classifies incoming insurance documents by policy type and extracts key fields — combining OCR with visual-structure analysis to handle scanned and multi-page PDFs.',
       metrics: [{ val: 'Mobile', label: 'React Native App' }, { val: 'OCR', label: 'Scanned + Multi-Page' }, { val: 'HITL', label: 'Review Queue' }],
     },
     {
       icon: <RefreshCw />, color: B.accent, slug: 'regulatory-form-auto-completion',
       title: 'Regulatory Form Auto-Completion (RPA)',
-      desc: 'A Playwright-driven RPA bot that opens a real browser, pulls client data from Supabase, and auto-fills regulatory or government forms field-by-field, pausing only for CAPTCHAs or genuinely missing data, with an AI (Groq) field mapper and a React human-in-the-loop dashboard.',
+      desc: 'A Playwright-driven RPA bot that opens a real browser, pulls client data from Supabase, and auto-fills regulatory or government forms field-by-field — pausing only for CAPTCHAs or genuinely missing data, with an AI (Groq) field mapper and a React human-in-the-loop dashboard.',
       metrics: [{ val: 'Full', label: 'Field Auto-Fill' }, { val: '2', label: 'HITL Triggers Only' }, { val: 'Live', label: 'Run Logging' }],
     },
     {
       icon: <AlertTriangle />, color: B.action, slug: 'real-time-fraud-detection',
       title: 'Real-Time Fraud Detection System',
-      desc: 'A concept design for scoring every transaction in real time: combining a supervised fraud classifier with unsupervised anomaly detection into a single weighted 0–100 risk score, feeding a tiered auto-approve / review / auto-block decision system with a continuous analyst feedback loop.',
+      desc: 'A concept design for scoring every transaction in real time — combining a supervised fraud classifier with unsupervised anomaly detection into a single weighted 0–100 risk score, feeding a tiered auto-approve / review / auto-block decision system with a continuous analyst feedback loop.',
       metrics: [{ val: '0–100', label: 'Risk Score' }, { val: '3-Tier', label: 'Decisioning' }, { val: 'Concept', label: 'Current Stage' }],
     },
     {
       icon: <DollarSign />, color: B.primary, slug: 'accounts-payable-invoice-extraction',
       title: 'Accounts Payable Invoice Extraction',
-      desc: 'A document-processing pipeline that ingests invoices, extracts customer details, dates, amounts, and charges, validates completeness, and outputs structured records ready for downstream AP processing. It was built and tested as a Python notebook prototype.',
+      desc: 'A document-processing pipeline that ingests invoices, extracts customer details, dates, amounts, and charges, validates completeness, and outputs structured records ready for downstream AP processing — built and tested as a Python notebook prototype.',
       metrics: [{ val: '6+', label: 'Fields Extracted' }, { val: 'Structured', label: 'Output Format' }, { val: 'Prototype', label: 'Current Stage' }],
     },
   ];
@@ -197,24 +197,24 @@ export default function IndustryFinancial() {
   const faqs = [
     { q: 'What financial data sources do you work with?', a: 'It depends on the project. Our delivered work has integrated with structured customer/policy data, document/invoice sources (PDFs, scans), and live browser sessions for RPA workflows. We build the pipeline around whatever data your systems already produce.' },
     { q: 'How do you approach model explainability?', a: 'For risk-scoring models, we surface feature-importance visualisations directly in the app (as in our Insurance Risk Scoring build) so the drivers behind every score are visible, not a black box.' },
-    { q: 'Can you work within our existing data infrastructure?', a: 'Yes. Our stack is deliberately lightweight and portable (Python, FastAPI, React/React Native, Streamlit, Playwright, and Supabase), so it integrates into most modern cloud or on-prem setups without forcing you onto unfamiliar infrastructure.' },
+    { q: 'Can you work within our existing data infrastructure?', a: 'Yes. Our stack is deliberately lightweight and portable — Python, FastAPI, React/React Native, Streamlit, Playwright, and Supabase — so it integrates into most modern cloud or on-prem setups without forcing you onto unfamiliar infrastructure.' },
     { q: 'Do you sign NDAs before starting work?', a: 'Yes, always. We execute an NDA before any project details or data are shared, and we\'re happy to work within whatever data-handling process your team already has in place.' },
-    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases, from a working prototype through to a deployed, documented system. Timelines vary by project scope, and we agree them upfront before starting.' },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system. Timelines vary by project scope, and we agree them upfront before starting.' },
   ];
 
   return (
-    <div style={{ background: B.bgLight, minHeight: '100vh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-main)' }}>
+    <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-main)' }}>
 
       {/* ══ 1. HERO ══ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
         overflow: 'hidden', zIndex: 1,
         background: B.heroBg,
         paddingTop: 'clamp(40px, 5vw, 50px)',
       }}>
         <HeroGridBg opacity={0.35}/>
-        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(127,32,55,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }}/>
+        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(47,47,47,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }}/>
         <DataParticles count={18}/>
 
         <div style={{
@@ -253,7 +253,7 @@ export default function IndustryFinancial() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  From insurance risk scoring to regulatory form automation, we build practical, working AI systems for insurers, lenders, and financial operations teams. Real projects. Real code. Nothing theoretical.
+                  From insurance risk scoring to regulatory form automation — we build practical, working AI systems for insurers, lenders, and financial operations teams. Real projects. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -271,7 +271,7 @@ export default function IndustryFinancial() {
                 initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 className="financial-hero-image"
-                style={{ 
+                style={{
                   flex: '1 1 clamp(280px, 45%, 650px)',
                   display: 'flex',
                   alignItems: 'center',
@@ -280,9 +280,9 @@ export default function IndustryFinancial() {
                   minWidth: 0,
                 }}
               >
-                <img 
+                <img
                   src={financeImage}
-                  alt="Financial Services AI Visual" 
+                  alt="Financial Services AI Visual"
                   style={{
                     width: '100%',
                     maxWidth: 660,
@@ -294,14 +294,14 @@ export default function IndustryFinancial() {
             </div>
 
             {/* BOTTOM ROW: Tags (Centered) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
-              style={{ 
-                display: 'flex', 
-                flexWrap: 'wrap', 
-                gap: 'clamp(12px, 2vw, 20px)', 
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: 'clamp(12px, 2vw, 20px)',
                 justifyContent: 'center',
                 width: '100%',
                 paddingTop: 'clamp(10px, 2vw, 20px)',
@@ -318,10 +318,10 @@ export default function IndustryFinancial() {
                   // CHANGED: flexDirection to 'row' for single line
                   display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10,
                   // CHANGED: Reduced vertical padding to make height smaller
-                  padding: 'clamp(8px, 1.5vw, 12px) clamp(18px, 2.5vw, 28px)', 
+                  padding: 'clamp(8px, 1.5vw, 12px) clamp(18px, 2.5vw, 28px)',
                   borderRadius: 50,
                   background: 'rgba(255,255,255,0.7)', border: `2px solid ${B.primaryBorder}`,
-                  boxShadow: '0 4px 12px rgba(107, 46, 116, 0.08)',
+                  boxShadow: '0 4px 12px rgba(57,57,57,0.08)',
                   animation: `wmFloat ${3.5 + i * 0.5}s ease-in-out infinite`,
                 }}>
                   <span style={{ fontSize: 'clamp(1rem, 1.8vw, 1.4rem)', fontWeight: 800, color: B.secondary, lineHeight: 1 }}>{s.val}</span>
@@ -334,7 +334,7 @@ export default function IndustryFinancial() {
       </section>
 
       {/* ══ 2. STATS STRIP (dark) ══ */}
-      <section ref={statsRef} style={{ padding: 'var(--sp-section) 0', position: 'relative', zIndex: 1, background: `linear-gradient(135deg, #170F22 0%, #140B20 100%)`, overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+      <section ref={statsRef} style={{ padding: 'var(--sp-section) 0', position: 'relative', zIndex: 1, background: `linear-gradient(135deg, #0a0a0a 0%, #080808 100%)`, overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
         <DataParticles count={12} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
@@ -351,20 +351,20 @@ export default function IndustryFinancial() {
       </section>
 
       {/* ══ 3. MERGED: CAPABILITIES + CASE STUDIES (Light) ══ */}
-      <section style={{ 
-        padding: 'var(--sp-section) 0', 
-        position: 'relative', 
-        background: 'linear-gradient(180deg, #EBE6EB 0%, #E5DCF0 100%)', 
-        overflow: 'hidden', zIndex: 1 
+      <section style={{
+        padding: 'var(--sp-section) 0',
+        position: 'relative',
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 100%)',
+        overflow: 'hidden', zIndex: 1
       }}>
         <SectionGridBg opacity={0.14} />
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
-          
+
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vw, 56px)' }}>
             <SectionBadge>Capabilities & Impact</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark }}>
               Built for the Complexity of{' '}
-              <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Finance</span>
+              <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Finance</span>
             </h2>
             <p className="section-lead">Five real, delivered projects across insurance, risk, and financial operations automation.</p>
           </motion.div>
@@ -380,13 +380,13 @@ export default function IndustryFinancial() {
 
           {/* Divider inside section */}
           <div style={{ position: 'relative', zIndex: 5, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(24px, 4vw, 48px) 0' }}>
-            <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to right, transparent, rgba(147, 33, 63,0.25))' }}/>
+            <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to right, transparent, rgba(55,55,55,0.25))' }}/>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0 24px' }}>
-              <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(147, 33, 63,0.40)' }}/>
-              <div style={{ width: 10, height: 10, background: B.secondary, transform: 'rotate(45deg)', boxShadow: `0 0 12px rgba(147, 33, 63,0.50)` }}/>
-              <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(147, 33, 63,0.40)' }}/>
+              <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(55,55,55,0.40)' }}/>
+              <div style={{ width: 10, height: 10, background: B.secondary, transform: 'rotate(45deg)', boxShadow: `0 0 12px rgba(55,55,55,0.50)` }}/>
+              <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(55,55,55,0.40)' }}/>
             </div>
-            <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to left, transparent, rgba(147, 33, 63,0.25))' }}/>
+            <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to left, transparent, rgba(55,55,55,0.25))' }}/>
           </div>
 
           {/* 2. Case Studies (Rows) */}
@@ -405,8 +405,8 @@ export default function IndustryFinancial() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }} style={{ textAlign: 'center' }}>
             <Link
               to="/case-studies?industry=financial"
-              className="btn-primary" 
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: 'clamp(14px, 2vw, 18px) clamp(28px, 4vw, 48px)', borderRadius: 'var(--radius-md)', border: 'none', boxShadow: '0 4px 14px rgba(147, 33, 63,0.25)' }}
+              className="btn-primary"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: 'clamp(14px, 2vw, 18px) clamp(28px, 4vw, 48px)', borderRadius: 'var(--radius-md)', border: 'none', boxShadow: '0 4px 14px rgba(55,55,55,0.25)' }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}
             >
@@ -417,12 +417,12 @@ export default function IndustryFinancial() {
       </section>
 
       {/* ══ 4. TECH STACK (PrimaryDark BG) ══ */}
-      <section style={{ 
-        padding: `clamp(40px, 6vw, 80px) 0`, 
-        position: 'relative', 
+      <section style={{
+        padding: `clamp(40px, 6vw, 80px) 0`,
+        position: 'relative',
         // CHANGE: PrimaryDark Background
-        background: `linear-gradient(135deg, ${B.primaryDark} 0%, #140B20 100%)`, 
-        zIndex: 1, overflow: 'hidden' 
+        background: `linear-gradient(135deg, ${B.primaryDark} 0%, #080808 100%)`,
+        zIndex: 1, overflow: 'hidden'
       }}>
         <DataParticles count={10} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
@@ -442,12 +442,12 @@ export default function IndustryFinancial() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.09 }}
-                style={{ 
-                  background: 'rgba(255,255,255,0.04)', 
+                style={{
+                  background: 'rgba(255,255,255,0.04)',
                   border: `1.5px solid ${col.color}40`, // Using palette colors for borders
-                  borderRadius: 'var(--radius-lg)', 
-                  padding: 'clamp(20px, 3vw, 32px)', 
-                  position: 'relative', 
+                  borderRadius: 'var(--radius-lg)',
+                  padding: 'clamp(20px, 3vw, 32px)',
+                  position: 'relative',
                   overflow: 'hidden',
                   boxShadow: '0 10px 30px -10px rgba(0,0,0,0.3)'
                 }}
@@ -474,12 +474,12 @@ export default function IndustryFinancial() {
       </section>
 
       {/* ══ 5. WHY CHOOSE US (light) ══ */}
-      <section style={{ padding: 'var(--sp-section) 0', position: 'relative', background: `linear-gradient(180deg, ${B.bgLight} 0%, #EDE7F6 100%)`, zIndex: 1, overflow: 'hidden' }}>
+      <section style={{ padding: 'var(--sp-section) 0', position: 'relative', background: `linear-gradient(180deg, ${B.bgLight} 0%, #ebebeb 100%)`, zIndex: 1, overflow: 'hidden' }}>
         <SectionGridBg opacity={0.16} />
         <DataParticles count={10} />
-        
+
         <div style={{ maxWidth: 1250, margin: '0 auto', padding: '0 clamp(16px, 4vw, 24px)', position: 'relative', zIndex: 2 }}>
-          
+
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(32px, 5vw, 64px)', alignItems: 'center' }}>
             {/* Left — text */}
             <div style={{ flex: '1 1 320px' }}>
@@ -487,16 +487,16 @@ export default function IndustryFinancial() {
                 <SectionBadge>Why WellMind</SectionBadge>
                 <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>
                   Domain Expertise Meets{' '}
-                  <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                  <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                     Engineering Depth
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.1rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  Most AI vendors understand either finance or software engineering. We aim for both: building models and shipping them as real, usable applications, not one-off notebooks that never leave the lab.
+                  Most AI vendors understand either finance or software engineering. We aim for both — building models and shipping them as real, usable applications, not one-off notebooks that never leave the lab.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Explainable by Design', desc: 'Risk and scoring models ship with visible feature-importance and clear decision logic, not black boxes' },
+                    { title: 'Explainable by Design', desc: 'Risk and scoring models ship with visible feature-importance and clear decision logic — not black boxes' },
                     { title: 'Built to Actually Ship', desc: 'Every project is delivered as a working app or API, not just a proof-of-concept notebook' },
                     { title: 'Honest About Maturity', desc: "We're upfront about what's live and deployed versus what's still a concept or prototype" },
                     { title: 'Fixed-Fee Scoping', desc: 'Clear scope and pricing agreed upfront. No billable-hour surprises.' },
@@ -519,7 +519,7 @@ export default function IndustryFinancial() {
             <motion.div
               initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.15 }}
-              style={{ flex: '1 1 320px', background: 'rgba(255,255,255,0.75)', backdropFilter: 'blur(16px)', border: `3px solid ${B.primaryBorder}`, borderRadius: 'var(--radius-xl)', padding: 'clamp(24px, 3vw, 40px)', boxShadow: `0 24px 64px -12px rgba(107, 46, 116,0.12)`, position: 'relative', overflow: 'hidden' }}
+              style={{ flex: '1 1 320px', background: 'rgba(255,255,255,0.75)', backdropFilter: 'blur(16px)', border: `3px solid ${B.primaryBorder}`, borderRadius: 'var(--radius-xl)', padding: 'clamp(24px, 3vw, 40px)', boxShadow: `0 24px 64px -12px rgba(57,57,57,0.12)`, position: 'relative', overflow: 'hidden' }}
             >
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${B.action}, ${B.primary}, ${B.accent})` }} />
               <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textMuted, marginBottom: 24 }}>Engagement Overview</div>
@@ -529,7 +529,7 @@ export default function IndustryFinancial() {
                 { label: 'Production Deployment', duration: '1–2 weeks', color: B.primary, icon: <Zap size={16} /> },
                 { label: 'Hypercare & Monitoring', duration: '30 days', color: B.accent, icon: <Activity size={16} /> },
               ].map((step, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderBottom: i < 3 ? `1px solid rgba(107, 46, 116,0.10)` : 'none' }}>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderBottom: i < 3 ? `1px solid rgba(57,57,57,0.10)` : 'none' }}>
                   <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: `${step.color}12`, color: step.color, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${step.color}25`, flexShrink: 0 }}>
                     {step.icon}
                   </div>
@@ -549,7 +549,7 @@ export default function IndustryFinancial() {
       </section>
 
       {/* ══ 6. FAQ (DARK) ══ */}
-      <section style={{ padding: 'var(--sp-section) 0', position: 'relative', background: `linear-gradient(135deg, #170F22 0%, #140B20 100%)`, zIndex: 1, overflow: 'hidden' }}>
+      <section style={{ padding: 'var(--sp-section) 0', position: 'relative', background: `linear-gradient(135deg, #0a0a0a 0%, #080808 100%)`, zIndex: 1, overflow: 'hidden' }}>
         <DataParticles count={10} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
@@ -566,11 +566,11 @@ export default function IndustryFinancial() {
       </section>
 
       {/* ══ 7. FINAL CTA (light — not dark) ══ */}
-      <section style={{ padding: `clamp(60px, 10vw, 120px) 0`, position: 'relative', overflow: 'hidden', zIndex: 1, background: 'linear-gradient(180deg, #F5F1F6 0%, #E8E1F0 100%)' }}>
+      <section style={{ padding: `clamp(60px, 10vw, 120px) 0`, position: 'relative', overflow: 'hidden', zIndex: 1, background: 'linear-gradient(180deg, #f3f3f3 0%, #e5e5e5 100%)' }}>
         <SectionGridBg opacity={0.18} />
         <DataParticles count={14} />
-        <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(11, 124, 147,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(147, 33, 63,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(84,84,84,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(55,55,55,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }} />
 
         <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
@@ -578,16 +578,16 @@ export default function IndustryFinancial() {
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
               Let's Modernize Your{' '}
               <br className="hero-br" />
-              <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Financial AI Stack
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your risk, compliance, or growth challenge. We'll tell you exactly what's possible. No pitch, no pressure.
+              Book a free 30-minute call. Tell us your risk, compliance, or growth challenge. We'll tell you exactly what's possible — no pitch, no pressure.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/book-discovery" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 52px)', borderRadius: 'var(--radius-md)', boxShadow: `0 8px 40px rgba(11, 124, 147,0.28), 0 0 80px rgba(11, 124, 147,0.10)`, border: `1px solid rgba(11, 124, 147,0.40)` }}>
+                <Link to="/book-discovery" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 52px)', borderRadius: 'var(--radius-md)', boxShadow: `0 8px 40px rgba(84,84,84,0.28), 0 0 80px rgba(84,84,84,0.10)`, border: `1px solid rgba(84,84,84,0.40)` }}>
                   <Zap size={18} /> Book a Free Consultation <ArrowRight size={18} />
                 </Link>
               </motion.div>

@@ -147,7 +147,7 @@ export default function IndustryManufacturing() {
   }, []);
 
   const capabilities = [
-    { icon: <Truck size={22} />, color: B.action, title: 'Supply Chain Disruption Alerts', desc: 'A predictive risk-monitoring system that evaluates operational and environmental signals to generate a continuous 0–100 disruption score for every supplier, moving teams from reactive to proactive risk management.' },
+    { icon: <Truck size={22} />, color: B.action, title: 'Supply Chain Disruption Alerts', desc: 'A predictive risk-monitoring system that evaluates operational and environmental signals to generate a continuous 0–100 disruption score for every supplier — moving teams from reactive to proactive risk management.' },
     { icon: <Activity size={22} />, color: B.primary, title: 'Operational Risk Scoring', desc: 'Engineered operational health metrics (KG Score, Emergency Score) quantify internal stress signals on a supplier relationship, then classify the combined signal into Low, Medium, or High risk tiers before disruptions become visible.' },
     { icon: <Globe size={22} />, color: B.secondary, title: 'Environmental Risk Monitoring', desc: 'Combines weather, economic, geopolitical, and technical infrastructure risk signals with operational data into a single early-warning score for procurement teams.' },
   ];
@@ -155,33 +155,33 @@ export default function IndustryManufacturing() {
   const useCases = [
     {
       icon: <Truck />, color: B.action, slug: 'supplyguard-disruption-alerts',
-      title: 'SupplyGuard: Supply Chain Disruption Alert System',
-      desc: 'A predictive risk-monitoring system that evaluates operational metrics (KG Score, Emergency Score) alongside environmental risk signals (weather, economic, geopolitical, and technical infrastructure) to generate a continuous disruption risk score for every supplier, via a Flask backend and live dashboard.',
+      title: 'SupplyGuard — Supply Chain Disruption Alert System',
+      desc: 'A predictive risk-monitoring system that evaluates operational metrics (KG Score, Emergency Score) alongside environmental risk signals — weather, economic, geopolitical, and technical infrastructure — to generate a continuous disruption risk score for every supplier, via a Flask backend and live dashboard.',
       metrics: [{ val: '0–100', label: 'Risk Score' }, { val: 'Low/Med/High', label: 'Risk Tiers' }, { val: 'Live', label: 'Dashboard' }],
     },
   ];
 
   const faqs = [
-    { q: 'What manufacturing/supply chain work have you actually delivered?', a: 'One real, delivered project so far: SupplyGuard, a supplier disruption risk-scoring system combining operational and environmental signals into a continuous 0–100 score with a live dashboard. We\'re upfront that this is our current manufacturing-sector portfolio, not a long client list.' },
-    { q: 'What data does supplier risk scoring need?', a: 'Internal operational health metrics (like delivery consistency or emergency order frequency) plus external signals: weather, economic indicators, geopolitical risk, and infrastructure conditions relevant to a supplier\'s location.' },
-    { q: 'Can you build similar risk-monitoring systems for other use cases?', a: 'Yes. The same pattern (combine operational + external risk signals into a single explainable score) generalizes well beyond supply chain, and it\'s the kind of system we can scope and build for adjacent manufacturing or logistics challenges.' },
+    { q: 'What manufacturing/supply chain work have you actually delivered?', a: 'One real, delivered project so far: SupplyGuard, a supplier disruption risk-scoring system combining operational and environmental signals into a continuous 0–100 score with a live dashboard. We\'re upfront that this is our current manufacturing-sector portfolio — not a long client list.' },
+    { q: 'What data does supplier risk scoring need?', a: 'Internal operational health metrics (like delivery consistency or emergency order frequency) plus external signals — weather, economic indicators, geopolitical risk, and infrastructure conditions relevant to a supplier\'s location.' },
+    { q: 'Can you build similar risk-monitoring systems for other use cases?', a: 'Yes — the same pattern (combine operational + external risk signals into a single explainable score) generalizes well beyond supply chain, and it\'s the kind of system we can scope and build for adjacent manufacturing or logistics challenges.' },
     { q: 'Is this deployed for a live production supply chain?', a: 'SupplyGuard is a fully working system with a live risk-checker dashboard, built and validated on realistic supplier risk scenarios. We\'re transparent with every prospective client about exactly what stage a given build is at.' },
-    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases, from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
+    { q: 'What does a typical engagement look like?', a: 'We start with a short discovery and scoping conversation, then move into focused build phases — from a working prototype through to a deployed, documented system, with timelines agreed upfront based on scope.' },
   ];
 
   return (
-    <div style={{ background: B.bgLight, minHeight: '100vh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-main)' }}>
+    <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-main)' }}>
 
       {/* ══ 1. HERO ══ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
         overflow: 'hidden', zIndex: 1,
         background: B.heroBg,
         paddingTop: 'clamp(40px, 5vw, 50px)',
       }}>
         <HeroGridBg opacity={0.35}/>
-        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(127,32,55,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }}/>
+        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(47,47,47,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }}/>
         <DataParticles count={18}/>
 
         <div style={{
@@ -219,7 +219,7 @@ export default function IndustryManufacturing() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  A predictive supply-chain risk-scoring system, built and delivered, combining operational and environmental signals into a single early-warning score. Real project. Real code. Nothing theoretical.
+                  A predictive supply-chain risk-scoring system, built and delivered — combining operational and environmental signals into a single early-warning score. Real project. Real code. Nothing theoretical.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -236,7 +236,7 @@ export default function IndustryManufacturing() {
               <motion.div
                 initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                style={{ 
+                style={{
                   flex: '1 1 clamp(320px, 50%, 760px)',
                   display: 'flex',
                   alignItems: 'center',
@@ -244,9 +244,9 @@ export default function IndustryManufacturing() {
                   minHeight: '520px',
                 }}
               >
-                <img 
+                <img
                   src={manufacturingImage}
-                  alt="Manufacturing Supply Chain AI Visual" 
+                  alt="Manufacturing Supply Chain AI Visual"
                   style={{
                     width: '140%',
                     maxWidth: 900,
@@ -259,14 +259,14 @@ export default function IndustryManufacturing() {
             </div>
 
             {/* BOTTOM ROW: Tags (Centered) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
-              style={{ 
-                display: 'flex', 
-                flexWrap: 'wrap', 
-                gap: 'clamp(12px, 2vw, 20px)', 
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: 'clamp(12px, 2vw, 20px)',
                 justifyContent: 'center',
                 width: '100%',
                 paddingTop: 'clamp(10px, 2vw, 20px)',
@@ -281,10 +281,10 @@ export default function IndustryManufacturing() {
               ].map((s, i) => (
                 <div key={i} style={{
                   display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10,
-                  padding: 'clamp(8px, 1.5vw, 12px) clamp(18px, 2.5vw, 28px)', 
+                  padding: 'clamp(8px, 1.5vw, 12px) clamp(18px, 2.5vw, 28px)',
                   borderRadius: 50,
                   background: 'rgba(255,255,255,0.7)', border: `2px solid ${B.primaryBorder}`,
-                  boxShadow: '0 4px 12px rgba(107, 46, 116, 0.08)',
+                  boxShadow: '0 4px 12px rgba(57,57,57,0.08)',
                   animation: `wmFloat ${3.5 + i * 0.5}s ease-in-out infinite`,
                 }}>
                   <span style={{ fontSize: 'clamp(1rem, 1.8vw, 1.4rem)', fontWeight: 800, color: B.secondary, lineHeight: 1 }}>{s.val}</span>
@@ -297,7 +297,7 @@ export default function IndustryManufacturing() {
       </section>
 
       {/* ══ 2. STATS STRIP (dark) ══ */}
-      <section ref={statsRef} style={{ padding: 'var(--sp-section) 0', position: 'relative', zIndex: 1, background: `linear-gradient(135deg, #170F22 0%, #140B20 100%)`, overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+      <section ref={statsRef} style={{ padding: 'var(--sp-section) 0', position: 'relative', zIndex: 1, background: `linear-gradient(135deg, #0a0a0a 0%, #080808 100%)`, overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
         <DataParticles count={12} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
@@ -314,22 +314,22 @@ export default function IndustryManufacturing() {
       </section>
 
       {/* ══ 3. MERGED: CAPABILITIES + CASE STUDIES (Light) ══ */}
-      <section style={{ 
-        padding: 'var(--sp-section) 0', 
-        position: 'relative', 
-        background: 'linear-gradient(180deg, #EBE6EB 0%, #E5DCF0 100%)', 
-        overflow: 'hidden', zIndex: 1 
+      <section style={{
+        padding: 'var(--sp-section) 0',
+        position: 'relative',
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 100%)',
+        overflow: 'hidden', zIndex: 1
       }}>
         <SectionGridBg opacity={0.14} />
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
-          
+
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vw, 56px)' }}>
             <SectionBadge>Capabilities & Impact</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark }}>
               Built for the Demands of{' '} <br />
-              <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Manufacturing</span>
+              <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Modern Manufacturing</span>
             </h2>
-            <p className="section-lead" style={{maxWidth: 1200,}}>One real, delivered project: a supply-chain disruption risk-scoring system.</p>
+            <p className="section-lead" style={{maxWidth: 1200,}}>One real, delivered project — a supply-chain disruption risk-scoring system.</p>
           </motion.div>
 
           {/* 1. Capabilities (Grid) */}
@@ -343,13 +343,13 @@ export default function IndustryManufacturing() {
 
           {/* Divider inside section */}
           <div style={{ position: 'relative', zIndex: 5, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(24px, 4vw, 48px) 0' }}>
-            <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to right, transparent, rgba(147, 33, 63,0.25))' }}/>
+            <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to right, transparent, rgba(55,55,55,0.25))' }}/>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0 24px' }}>
-              <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(147, 33, 63,0.40)' }}/>
-              <div style={{ width: 10, height: 10, background: B.secondary, transform: 'rotate(45deg)', boxShadow: `0 0 12px rgba(147, 33, 63,0.50)` }}/>
-              <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(147, 33, 63,0.40)' }}/>
+              <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(55,55,55,0.40)' }}/>
+              <div style={{ width: 10, height: 10, background: B.secondary, transform: 'rotate(45deg)', boxShadow: `0 0 12px rgba(55,55,55,0.50)` }}/>
+              <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(55,55,55,0.40)' }}/>
             </div>
-            <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to left, transparent, rgba(147, 33, 63,0.25))' }}/>
+            <div style={{ flex: 1, maxWidth: 320, height: 1, background: 'linear-gradient(to left, transparent, rgba(55,55,55,0.25))' }}/>
           </div>
 
           {/* 2. Case Studies (Rows) */}
@@ -367,8 +367,8 @@ export default function IndustryManufacturing() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }} style={{ textAlign: 'center' }}>
             <Link
               to="/case-studies?industry=manufacturing"
-              className="btn-primary" 
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: 'clamp(14px, 2vw, 18px) clamp(28px, 4vw, 48px)', borderRadius: 'var(--radius-md)', border: 'none', boxShadow: '0 4px 14px rgba(147, 33, 63,0.25)' }}
+              className="btn-primary"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: 'clamp(14px, 2vw, 18px) clamp(28px, 4vw, 48px)', borderRadius: 'var(--radius-md)', border: 'none', boxShadow: '0 4px 14px rgba(55,55,55,0.25)' }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}
             >
@@ -379,11 +379,11 @@ export default function IndustryManufacturing() {
       </section>
 
       {/* ══ 4. TECH STACK (PrimaryDark BG) ══ */}
-      <section style={{ 
-        padding: `clamp(40px, 6vw, 80px) 0`, 
-        position: 'relative', 
-        background: `linear-gradient(135deg, ${B.primaryDark} 0%, #140B20 100%)`, 
-        zIndex: 1, overflow: 'hidden' 
+      <section style={{
+        padding: `clamp(40px, 6vw, 80px) 0`,
+        position: 'relative',
+        background: `linear-gradient(135deg, ${B.primaryDark} 0%, #080808 100%)`,
+        zIndex: 1, overflow: 'hidden'
       }}>
         <DataParticles count={10} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
@@ -403,12 +403,12 @@ export default function IndustryManufacturing() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.09 }}
-                style={{ 
-                  background: 'rgba(255,255,255,0.04)', 
-                  border: `1.5px solid ${col.color}40`, 
-                  borderRadius: 'var(--radius-lg)', 
-                  padding: 'clamp(20px, 3vw, 32px)', 
-                  position: 'relative', 
+                style={{
+                  background: 'rgba(255,255,255,0.04)',
+                  border: `1.5px solid ${col.color}40`,
+                  borderRadius: 'var(--radius-lg)',
+                  padding: 'clamp(20px, 3vw, 32px)',
+                  position: 'relative',
                   overflow: 'hidden',
                   boxShadow: '0 10px 30px -10px rgba(0,0,0,0.3)'
                 }}
@@ -435,12 +435,12 @@ export default function IndustryManufacturing() {
       </section>
 
       {/* ══ 5. WHY CHOOSE US (light) ══ */}
-      <section style={{ padding: 'var(--sp-section) 0', position: 'relative', background: `linear-gradient(180deg, ${B.bgLight} 0%, #EDE7F6 100%)`, zIndex: 1, overflow: 'hidden' }}>
+      <section style={{ padding: 'var(--sp-section) 0', position: 'relative', background: `linear-gradient(180deg, ${B.bgLight} 0%, #ebebeb 100%)`, zIndex: 1, overflow: 'hidden' }}>
         <SectionGridBg opacity={0.16} />
         <DataParticles count={10} />
-        
+
         <div style={{ maxWidth: 1250, margin: '0 auto', padding: '0 clamp(16px, 4vw, 24px)', position: 'relative', zIndex: 2 }}>
-          
+
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(32px, 5vw, 64px)', alignItems: 'center' }}>
             {/* Left — text */}
             <div style={{ flex: '1 1 320px' }}>
@@ -448,17 +448,17 @@ export default function IndustryManufacturing() {
                 <SectionBadge>Why WellMind</SectionBadge>
                 <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>
                   Honest Scope,<br />
-                  <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                  <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                     Real Delivery
                   </span>
                 </h2>
                 <p style={{ color: B.textMid, fontSize: 'clamp(1.2rem, 1.6vw, 1.2rem)', lineHeight: 1.75, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-                  We're a small, honest team. Our manufacturing-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and ship.
+                  We're a small, honest team — our manufacturing-sector portfolio is one real project so far, not a long client roster. What we can promise is that whatever we scope, we build and ship.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { title: 'Explainable Risk Scoring', desc: 'Our disruption score is built from clearly defined operational and environmental signals, not a black box' },
-                    { title: 'Lightweight, Deployable Stack', desc: 'Python + Flask + a live dashboard: simple to run, simple to hand off, no heavy infrastructure lock-in' },
+                    { title: 'Explainable Risk Scoring', desc: 'Our disruption score is built from clearly defined operational and environmental signals — not a black box' },
+                    { title: 'Lightweight, Deployable Stack', desc: 'Python + Flask + a live dashboard — simple to run, simple to hand off, no heavy infrastructure lock-in' },
                     { title: 'Built to Extend', desc: 'The same risk-scoring pattern generalizes to adjacent supply chain and logistics challenges' },
                     { title: 'Honest About Scope', desc: "We tell you plainly what's live and delivered versus what we'd be building fresh for your use case" },
                   ].map((item, i) => (
@@ -480,7 +480,7 @@ export default function IndustryManufacturing() {
             <motion.div
               initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.15 }}
-              style={{ flex: '1 1 320px', background: 'rgba(255,255,255,0.75)', backdropFilter: 'blur(16px)', border: `3px solid ${B.primaryBorder}`, borderRadius: 'var(--radius-xl)', padding: 'clamp(24px, 3vw, 40px)', boxShadow: `0 24px 64px -12px rgba(107, 46, 116,0.12)`, position: 'relative', overflow: 'hidden' }}
+              style={{ flex: '1 1 320px', background: 'rgba(255,255,255,0.75)', backdropFilter: 'blur(16px)', border: `3px solid ${B.primaryBorder}`, borderRadius: 'var(--radius-xl)', padding: 'clamp(24px, 3vw, 40px)', boxShadow: `0 24px 64px -12px rgba(57,57,57,0.12)`, position: 'relative', overflow: 'hidden' }}
             >
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${B.action}, ${B.primary}, ${B.accent})` }} />
               <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textMuted, marginBottom: 24 }}>Engagement Overview</div>
@@ -490,7 +490,7 @@ export default function IndustryManufacturing() {
                 { label: 'Dashboard & Deployment', duration: '2–3 weeks', color: B.primary, icon: <Activity size={16} /> },
                 { label: 'Go-Live & Support', duration: '30 days', color: B.accent, icon: <Zap size={16} /> },
               ].map((step, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderBottom: i < 3 ? `1px solid rgba(107, 46, 116,0.10)` : 'none' }}>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderBottom: i < 3 ? `1px solid rgba(57,57,57,0.10)` : 'none' }}>
                   <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: `${step.color}12`, color: step.color, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${step.color}25`, flexShrink: 0 }}>
                     {step.icon}
                   </div>
@@ -510,7 +510,7 @@ export default function IndustryManufacturing() {
       </section>
 
       {/* ══ 6. FAQ (DARK) ══ */}
-      <section style={{ padding: 'var(--sp-section) 0', position: 'relative', background: `linear-gradient(135deg, #170F22 0%, #140B20 100%)`, zIndex: 1, overflow: 'hidden' }}>
+      <section style={{ padding: 'var(--sp-section) 0', position: 'relative', background: `linear-gradient(135deg, #0a0a0a 0%, #080808 100%)`, zIndex: 1, overflow: 'hidden' }}>
         <DataParticles count={10} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
@@ -527,11 +527,11 @@ export default function IndustryManufacturing() {
       </section>
 
       {/* ══ 7. FINAL CTA (light — not dark) ══ */}
-      <section style={{ padding: `clamp(60px, 10vw, 120px) 0`, position: 'relative', overflow: 'hidden', zIndex: 1, background: 'linear-gradient(180deg, #F5F1F6 0%, #E8E1F0 100%)' }}>
+      <section style={{ padding: `clamp(60px, 10vw, 120px) 0`, position: 'relative', overflow: 'hidden', zIndex: 1, background: 'linear-gradient(180deg, #f3f3f3 0%, #e5e5e5 100%)' }}>
         <SectionGridBg opacity={0.18} />
         <DataParticles count={14} />
-        <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(11, 124, 147,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(147, 33, 63,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(84,84,84,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(55,55,55,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }} />
 
         <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
@@ -539,16 +539,16 @@ export default function IndustryManufacturing() {
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
               Let's De-Risk{' '}
               <br className="hero-br" />
-              <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Your Supply Chain
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your supplier or operational risk challenge. We'll give you an honest assessment of what's achievable, what it would cost, and whether it's the right fit. No pitch.
+              Book a free 30-minute call. Tell us your supplier or operational risk challenge. We'll give you an honest assessment of what's achievable, what it would cost, and whether it's the right fit — no pitch.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/book-discovery" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 52px)', borderRadius: 'var(--radius-md)', boxShadow: `0 8px 40px rgba(11, 124, 147,0.28), 0 0 80px rgba(11, 124, 147,0.10)`, border: `1px solid rgba(11, 124, 147,0.40)` }}>
+                <Link to="/book-discovery" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 52px)', borderRadius: 'var(--radius-md)', boxShadow: `0 8px 40px rgba(84,84,84,0.28), 0 0 80px rgba(84,84,84,0.10)`, border: `1px solid rgba(84,84,84,0.40)` }}>
                   <Zap size={18} /> Book a Free Consultation <ArrowRight size={18} />
                 </Link>
               </motion.div>

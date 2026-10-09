@@ -32,7 +32,7 @@ import {
 import { BIOINFORMATICS_CHILDREN } from './Bioinformaticschilddata';
 
 // ─── Brand color ──────────────────────────────────────────────────────────────
-const AC = '#1A8A72'; // bioinformatics teal/green — parent page AC
+const AC = '#616161'; // bioinformatics teal/green — parent page AC
 
 // ─── Icon resolver ─────────────────────────────────────────────────────────────
 const ICON_MAP = {
@@ -59,6 +59,7 @@ function GenomicsPipeline({ steps, accentColor }) {
   const miniStats = [
     { l: '60%',  s: 'Faster Analysis', c: color      },
     { l: '99.9%',s: 'Reproducible',    c: B.action   },
+    { l: '25+',  s: 'Publications',    c: B.primary   },
   ];
 
   return (
@@ -69,7 +70,7 @@ function GenomicsPipeline({ steps, accentColor }) {
       style={{
         padding: 'clamp(20px, 3vw, 32px)',
         borderRadius: 'var(--radius-xl)',
-        background: 'linear-gradient(145deg, rgba(255,255,255,0.92) 0%, rgba(240,248,245,0.88) 100%)',
+        background: 'linear-gradient(145deg, rgba(255,255,255,0.92) 0%, rgba(245,245,245,0.88) 100%)',
         border: `2px solid ${color}30`,
         boxShadow: `0 20px 60px -10px ${color}25, 0 4px 20px rgba(0,0,0,0.08)`,
         backdropFilter: 'blur(12px)',
@@ -411,9 +412,9 @@ function TechBadge({ label, color }) {
 // ─── Shared Styles ────────────────────────────────────────────────────────────
 const SharedStyles = () => (
   <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
     .section-h2 {
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
       font-size: var(--fs-section-h2);
       color: var(--c-text-main); line-height: 1.15; margin-bottom: 14px;
     }
@@ -427,8 +428,8 @@ const SharedStyles = () => (
     .btn-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       padding: clamp(12px, 2vw, 18px) clamp(20px, 4vw, 40px);
-      border-radius: 12px; background: #1A8A72; color: #ffffff;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      border-radius: 12px; background: #616161; color: #ffffff;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
       font-size: clamp(0.85rem, 1.8vw, 1.2rem);
       letter-spacing: 0.10em; text-transform: uppercase; text-decoration: none;
       transition: opacity 0.2s, transform 0.2s;
@@ -436,11 +437,11 @@ const SharedStyles = () => (
     .btn-secondary {
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       padding: clamp(10px, 1.8vw, 16px) clamp(20px, 4vw, 40px);
-      border-radius: 12px; background: transparent; color: #93213F;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      border-radius: 12px; background: transparent; color: #373737;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
       font-size: clamp(0.85rem, 1.8vw, 1.2rem);
       letter-spacing: 0.10em; text-decoration: none;
-      border: 2px solid #93213F; transition: background 0.2s, transform 0.2s;
+      border: 2px solid #373737; transition: background 0.2s, transform 0.2s;
     }
     .grid-stats    { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 24px); }
     .grid-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 24px); }
@@ -500,14 +501,14 @@ export default function BioinformaticsChildPage() {
 
   return (
     <div style={{
-      background: B.bgLight, minHeight: '100vh',
+      background: B.bgLight, minHeight: '100svh',
       overflowX: 'clip', position: 'relative',
       fontFamily: 'var(--font-body, sans-serif)',
     }}>
 
       {/* ══════════ 1. HERO (LIGHT) ══════════ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden', zIndex: 1,
         background: B.heroBg,
@@ -643,7 +644,7 @@ export default function BioinformaticsChildPage() {
                   background: 'rgba(255,255,255,0.6)',
                   border: `1px solid ${B.primaryBorder}`,
                   fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
-                  boxShadow: '0 4px 12px rgba(107, 46, 116, 0.05)',
+                  boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
                   <CheckCircle size={14} color={B.action} /> {t}
@@ -659,7 +660,7 @@ export default function BioinformaticsChildPage() {
       <section ref={statsRef} style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #140B20 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.09} />
@@ -700,7 +701,7 @@ export default function BioinformaticsChildPage() {
       {/* ══════════ 3. LIGHT: CAPABILITIES + PROCESS ══════════ */}
       <section style={{
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(180deg, #EBE6EB 0%, #E5DCF0 50%, #D9D3E8 100%)',
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 50%, #d7d7d7 100%)',
         overflow: 'hidden', padding: 0,
       }}>
         <SectionGridBg opacity={0.25} />
@@ -811,7 +812,7 @@ export default function BioinformaticsChildPage() {
       {/* <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #1F1236 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.07} />
@@ -863,6 +864,12 @@ export default function BioinformaticsChildPage() {
                 }}>
                   {tier.name}
                 </div>
+                <div style={{
+                  fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
+                  color: B.textDark, marginBottom: 6,
+                }}>
+                  {tier.price}
+                </div>
                 <p style={{
                   fontSize: 'clamp(0.85rem, 1.4vw, 1.05rem)',
                   color: B.textDarkMid, lineHeight: 1.6,
@@ -908,7 +915,7 @@ export default function BioinformaticsChildPage() {
       <section style={{
         padding: 'clamp(60px, 10vw, 120px) 0',
         position: 'relative', overflow: 'hidden', zIndex: 1,
-        background: 'linear-gradient(180deg, #F5F1F6 0%, #E8E1F0 100%)',
+        background: 'linear-gradient(180deg, #f3f3f3 0%, #e5e5e5 100%)',
       }}>
         <SectionGridBg opacity={0.2} />
         <DataParticles count={14} />
@@ -921,7 +928,7 @@ export default function BioinformaticsChildPage() {
         <div style={{
           position: 'absolute', bottom: '10%', right: '8%',
           width: 300, height: 300, borderRadius: '50%',
-          background: `radial-gradient(circle, rgba(11, 124, 147,0.06) 0%, transparent 70%)`,
+          background: `radial-gradient(circle, rgba(84,84,84,0.06) 0%, transparent 70%)`,
           pointerEvents: 'none',
         }} />
 
@@ -953,7 +960,7 @@ export default function BioinformaticsChildPage() {
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
                 borderRadius: 'var(--radius-md)',
-                background: `linear-gradient(135deg, ${pageAC}, #14705C)`,
+                background: `linear-gradient(135deg, ${pageAC}, #464646)`,
                 color: B.white, fontWeight: 700,
                 fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
                 letterSpacing: '0.10em', textTransform: 'uppercase',

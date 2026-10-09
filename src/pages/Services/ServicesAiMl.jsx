@@ -195,12 +195,12 @@ export default function ServiceAiMl() {
   }, []);
 
   const features = [
-    { icon: <Cpu/>, title: 'Predictive Analytics', desc: 'Turn historical data into precise forecasts. Demand planning, churn prediction, and risk scoring models built on your real data, not generic templates.', color: B.action },
+    { icon: <Cpu/>, title: 'Predictive Analytics', desc: 'Turn historical data into precise forecasts. Demand planning, churn prediction, and risk scoring models built on your real data — not generic templates.', color: B.action },
     { icon: <Brain/>, title: 'NLP & Text Intelligence', desc: 'Sentiment analysis, document classification, entity extraction, and conversational AI. Unstructured text transformed into structured business intelligence.', color: B.primary },
     { icon: <Eye/>, title: 'Computer Vision', desc: 'Object detection, image segmentation, and video analytics for healthcare diagnostics, quality control, and real-time surveillance applications.', color: B.accent },
     { icon: <GitBranch/>, title: 'Recommendation Systems', desc: 'Collaborative filtering and deep-learning recommendation engines that personalise user experience at scale across content, products, and services.', color: B.secondary },
-    { icon: <Zap/>, title: 'Process Automation + AI', desc: 'Intelligent RPA that goes beyond rule-based scripting: AI decision-making layered on automation for complex, dynamic workflows.', color: '#00B4D8' },
-    { icon: <Database/>, title: 'Data Engineering & MLOps', desc: 'Feature stores, ETL pipelines, model registries, and retraining pipelines. The infrastructure that keeps your models production-healthy.', color: '#FF9F1C' },
+    { icon: <Zap/>, title: 'Process Automation + AI', desc: 'Intelligent RPA that goes beyond rule-based scripting — AI decision-making layered on automation for complex, dynamic workflows.', color: '#828282' },
+    { icon: <Database/>, title: 'Data Engineering & MLOps', desc: 'Feature stores, ETL pipelines, model registries, and retraining pipelines. The infrastructure that keeps your models production-healthy.', color: '#adadad' },
   ];
 
   const processes = [
@@ -258,27 +258,27 @@ export default function ServiceAiMl() {
   ];
 
   const stats = [
-    { target: 98,  suffix: '%', label: 'Model Accuracy',    icon: <BarChart3 size={20}/>, theme: { color: '#00BBF9', bg: 'rgba(0,187,249,0.1)'   } },
-    { target: 45,  suffix: '+', label: 'AI Models Deployed',icon: <Brain size={20}/>,    theme: { color: '#9D4EDD', bg: 'rgba(157,78,221,0.1)'  } },
-    { target: 30,  suffix: 'x', label: 'Faster Processing', icon: <Zap size={20}/>,      theme: { color: '#FF9F1C', bg: 'rgba(255,159,28,0.1)'  } },
-    { target: 100, suffix: '%', label: 'Data Security',     icon: <Shield size={20}/>,   theme: { color: '#00F5D4', bg: 'rgba(0,245,212,0.1)'   } },
+    { target: 98,  suffix: '%', label: 'Model Accuracy',    icon: <BarChart3 size={20}/>, theme: { color: '#8a8a8a', bg: 'rgba(138,138,138,0.1)'   } },
+    { target: 45,  suffix: '+', label: 'AI Models Deployed',icon: <Brain size={20}/>,    theme: { color: '#767676', bg: 'rgba(118,118,118,0.1)'  } },
+    { target: 30,  suffix: 'x', label: 'Faster Processing', icon: <Zap size={20}/>,      theme: { color: '#adadad', bg: 'rgba(173,173,173,0.1)'  } },
+    { target: 100, suffix: '%', label: 'Data Security',     icon: <Shield size={20}/>,   theme: { color: '#a8a8a8', bg: 'rgba(168,168,168,0.1)'   } },
   ];
 
   const processColors = [B.action, B.primary, B.accent, B.secondary];
 
   return (
-    <div style={{ background: B.bgLight, minHeight: '100vh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
+    <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
 
       {/* ══════════ 1. HERO ══════════ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden', zIndex: 1,
         background: B.heroBg,
         paddingTop: 'clamp(40px, 5vw, 50px)',
       }}>
         <HeroGridBg opacity={0.35}/>
-        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(127,32,55,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }}/>
+        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(47,47,47,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }}/>
         <DataParticles count={18}/>
 
         <div style={{
@@ -311,14 +311,14 @@ export default function ServiceAiMl() {
                     marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark,
                   }}>
                   Intelligence Embedded<br/>
-                  <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                  <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                     Into Your DNA
                   </span>
                 </motion.h1>
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.88rem, 1.8vw, 1.15rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  WellMind Data Solutions designs and deploys Machine Learning systems that act as a cognitive extension of your business. Our work ranges from exploratory proof-of-concept to production-grade, monitored deployments trusted by healthcare organisations and enterprises across five countries.
+                  WellMind Data Solutions designs and deploys Machine Learning systems that act as a cognitive extension of your business — from exploratory proof-of-concept to production-grade, monitored deployments trusted by healthcare organisations and enterprises across five countries.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -376,13 +376,13 @@ export default function ServiceAiMl() {
                 borderTop: `1px solid ${B.primaryBorder}40`
               }}
             >
-              {['Fixed-Fee Projects', 'Full Code Ownership'].map((t, i) => (
+              {['Starting at $3,500', 'Fixed-Fee Projects', 'Full Code Ownership'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)', border: `1px solid ${B.primaryBorder}`,
                   fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
-                  boxShadow: '0 4px 12px rgba(107, 46, 116, 0.05)',
+                  boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   // Continuous floating animation
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
@@ -399,7 +399,7 @@ export default function ServiceAiMl() {
       <section ref={statsRef} style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #140B20 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.09}/>
@@ -429,7 +429,7 @@ export default function ServiceAiMl() {
       <section style={{
         position: 'relative', zIndex: 1,
         // DARKER BG as requested
-        background: 'linear-gradient(180deg, #EBE6EB 0%, #E5DCF0 50%, #D9D3E8 100%)',
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 50%, #d7d7d7 100%)',
         overflow: 'hidden', padding: 0,
       }}>
         <SectionGridBg opacity={0.25}/>
@@ -443,7 +443,7 @@ export default function ServiceAiMl() {
               End-to-End AI Capabilities
             </h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              From raw data to intelligent decisions, we cover the full ML spectrum so your team stays focused on outcomes, not infrastructure.
+              From raw data to intelligent decisions — we cover the full ML spectrum so your team stays focused on outcomes, not infrastructure.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -504,7 +504,7 @@ export default function ServiceAiMl() {
       {/* <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #1F1236 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.07}/>
@@ -514,7 +514,7 @@ export default function ServiceAiMl() {
             <SectionBadge dark style={{ color: B.textDarkMuted }}>Transparent Pricing</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 14 }}>Investment</h2>
             <p className="section-lead dark" style={{ maxWidth: 1200 }}>
-              Fixed-fee engagements. Scope agreed in writing before we start. No surprise invoices, ever.
+              Fixed-fee engagements. Scope agreed in writing before we start. No surprise invoices — ever.
             </p>
           </div>
           <div className="grid-pricing">
@@ -533,6 +533,7 @@ export default function ServiceAiMl() {
               >
                 {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: B.action, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
                 <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: B.action, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
+                <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>{tier.price}</div>
                 <p style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
                 <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
                   {tier.features.map((f, fi) => (
@@ -564,34 +565,34 @@ export default function ServiceAiMl() {
       <section style={{
         padding: `clamp(60px, 10vw, 120px) 0`,
         position: 'relative', overflow: 'hidden', zIndex: 1,
-        background: 'linear-gradient(180deg, #F5F1F6 0%, #E8E1F0 100%)',
+        background: 'linear-gradient(180deg, #f3f3f3 0%, #e5e5e5 100%)',
       }}>
         <SectionGridBg opacity={0.2}/>
         <DataParticles count={14}/>
-        <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(107, 46, 116,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
-        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(11, 124, 147,0.06) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(57,57,57,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(84,84,84,0.06) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
 
         <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
               Let's Build Something<br/>
-              <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Genuinely Intelligent.
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it costs, and whether ML is even the right tool. No sales pitch.
+              Book a free 30-minute call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it costs, and whether ML is even the right tool — no sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/contact" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
-                borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #0A5F75)`,
+                borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #393939)`,
                 color: B.white, fontWeight: 700, fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
                 letterSpacing: '0.10em', textTransform: 'uppercase', textDecoration: 'none',
-                boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(11, 124, 147,0.15)`,
-                border: '1px solid rgba(11, 124, 147,0.40)', transition: 'all 0.2s',
+                boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
+                border: '1px solid rgba(84,84,84,0.40)', transition: 'all 0.2s',
               }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>

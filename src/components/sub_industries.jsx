@@ -141,7 +141,7 @@ export default function IndustriesMegaMenu({ onClose }) {
               paddingRight:   20,
               paddingLeft:    DT.leftPadInline,
               background:     activeId === section.id
-                ? `linear-gradient(90deg, rgba(74,43,95,0.10) 0%, rgba(74,43,95,0.03) 100%)`
+                ? `linear-gradient(90deg, rgba(42,42,42,0.10) 0%, rgba(42,42,42,0.03) 100%)`
                 : 'transparent',
               borderLeft:   `3px solid ${activeId === section.id ? B.primaryMid : 'transparent'}`,
               borderTop:    'none',
@@ -156,7 +156,7 @@ export default function IndustriesMegaMenu({ onClose }) {
           >
             <div>
               <div style={{
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontFamily: "'Space Grotesk', sans-serif",
                 fontSize:   18,
                 fontWeight: activeId === section.id ? 700 : 500,
                 color:      activeId === section.id ? B.primaryMid : B.textMid,
@@ -170,7 +170,7 @@ export default function IndustriesMegaMenu({ onClose }) {
                 color:      B.action,
                 marginTop:  2,
                 
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontFamily: "'Space Grotesk', sans-serif",
               }}>
                 {section.stat.value} {section.stat.label}
               </div>
@@ -200,7 +200,7 @@ export default function IndustriesMegaMenu({ onClose }) {
                 alignItems:     'flex-start',
                 justifyContent: 'space-between',
                 gap:             20,
-                background:     `linear-gradient(135deg, rgba(74,43,95,0.03) 0%, rgba(255,255,255,0) 60%)`,
+                background:     `linear-gradient(135deg, rgba(42,42,42,0.03) 0%, rgba(255,255,255,0) 60%)`,
               }}>
                 <div style={{ flex: 1 }}>
                   {/* Industry pill */}
@@ -220,7 +220,7 @@ export default function IndustriesMegaMenu({ onClose }) {
                       letterSpacing: '0.10em',
                       textTransform: 'uppercase',
                       color:         B.primaryMid,
-                      fontFamily:    "'Plus Jakarta Sans', sans-serif",
+                      fontFamily:    "'Space Grotesk', sans-serif",
                     }}>Industry</span>
                   </div>
                   <PanelHeading heading={currentSection.heading} tagline={currentSection.tagline} />
@@ -233,7 +233,7 @@ export default function IndustriesMegaMenu({ onClose }) {
                     fontWeight:    900,
                     color:         B.primaryMid,
                     lineHeight:    1,
-                    fontFamily:    "'Plus Jakarta Sans', sans-serif",
+                    fontFamily:    "'Space Grotesk', sans-serif",
                     letterSpacing: '-0.02em',
                   }}>
                     {currentSection.stat.value}
@@ -241,7 +241,7 @@ export default function IndustriesMegaMenu({ onClose }) {
                   <div style={{
                     fontSize:   DT.smallLabelSize,
                     color:      B.textMuted,
-                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    fontFamily: "'Space Grotesk', sans-serif",
                     fontWeight: 600,
                     textAlign:  'right',
                   }}>
@@ -281,7 +281,7 @@ export default function IndustriesMegaMenu({ onClose }) {
                       borderRadius:   DT.chipRadius,
                       textDecoration: 'none',
                       border:         `1px solid ${DT.thinBorder}`,
-                      background:     'rgba(74,43,95,0.025)',
+                      background:     'rgba(42,42,42,0.025)',
                       transition:     'all 0.16s',
                     }}
                   >
@@ -294,7 +294,7 @@ export default function IndustriesMegaMenu({ onClose }) {
                       flexShrink:    0,
                     }} />
                     <span style={{
-                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      fontFamily: "'Space Grotesk', sans-serif",
                       fontSize:   DT.itemSize,
                       fontWeight: 500,
                       color:      B.textMain,

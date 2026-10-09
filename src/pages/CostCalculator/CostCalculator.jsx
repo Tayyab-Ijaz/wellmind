@@ -1,93 +1,246 @@
 /**
- * CostCalculator.jsx — AI Cost Optimization Calculator
- * A WellMind-themed page wrapping the standalone "ai-cost-calculator" tool.
- * Runs fully client-side (see calculatorEngine.js) — same math as the
- * original FastAPI backend, no server required.
+ * CostCalculator.jsx — AI ROI / Cost Optimization Calculator
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Runs fully client-side (see calculatorEngine.js) — nothing is sent anywhere.
+ *
+ * Layout (all responsive, class-driven — see the CSS string at the bottom):
+ *   1. Hero            – value proposition + key trust points
+ *   2. How it works    – 3 short steps
+ *   3. Calculator      – form (left)  +  live results (right, sticky on desktop)
+ *   4. Methodology     – what the numbers are based on
+ *   5. FAQ
+ *   6. CTA
  */
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Calculator, Users, Cpu, DollarSign, TrendingDown, ArrowRight,
-  Zap, Info, CheckCircle2, AlertCircle, Sparkles, Clock, ChevronDown,
+  Calculator, Users, Cpu, DollarSign, TrendingDown, ArrowRight, Zap, Info,
+  CheckCircle2, AlertCircle, Sparkles, Clock, ChevronDown, ShieldCheck,
+  Server, RotateCcw, Lock,
 } from 'lucide-react';
-import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge } from '../../theme';
+import { fadeUp, SectionBadge } from '../../theme';
 import { HeroGridBg } from '../../components/BgGrid';
 import { AI_PROVIDERS, USAGE_RATES } from './calculatorData';
 import { calculate } from './calculatorEngine';
 import aiRoiHero from '../../assets/ai-roi-calculator.webp';
 
-const inputStyle = {
-  width: '100%',
-  padding: 'clamp(11px,1.6vw,14px) clamp(14px,1.8vw,16px)',
-  borderRadius: 12,
-  border: `1.5px solid ${B.primaryBorder}`,
-  background: 'rgba(255,255,255,0.75)',
-  color: B.textMain,
-  fontFamily: 'var(--font-main)',
-  fontSize: 'clamp(0.85rem,1.3vw,0.95rem)',
-  fontWeight: 600,
-  outline: 'none',
-  transition: 'border-color .25s ease, box-shadow .25s ease',
-  appearance: 'none',
+/* ─── helpers ──────────────────────────────────────────────────────────────── */
+const fmt = (n) => `$${Number(n).toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
+const fmtCompact = (n) => {
+  const a = Math.abs(n);
+  if (a >= 1e6) return `$${(n / 1e6).toFixed(a >= 1e7 ? 0 : 1)}M`;
+  if (a >= 1e3) return `$${(n / 1e3).toFixed(a >= 1e4 ? 0 : 1)}k`;
+  return `$${Math.round(n)}`;
 };
 
-function Field({ label, children, hint }) {
+/* ─── form pieces ──────────────────────────────────────────────────────────── */
+function Field({ label, hint, children, htmlFor }) {
   return (
-    <div style={{ marginBottom: 20 }}>
-      <label style={{ display: 'block', fontWeight: 700, fontSize: 'clamp(0.78rem,1.1vw,0.86rem)', color: B.primaryDark, marginBottom: 8, letterSpacing: '0.01em' }}>
-        {label}
-      </label>
+    <div className="roi-field">
+      <label className="roi-label" htmlFor={htmlFor}>{label}</label>
       {children}
-      {hint && <p style={{ fontSize: 12, color: B.textMuted, marginTop: 6, lineHeight: 1.5 }}>{hint}</p>}
+      {hint && <p className="roi-hint">{hint}</p>}
     </div>
   );
 }
 
-function FocusInput(props) {
-  const [focused, setFocused] = useState(false);
+function Select({ id, children, ...rest }) {
   return (
-    <input
-      {...props}
-      onFocus={(e) => { setFocused(true); props.onFocus?.(e); }}
-      onBlur={(e) => { setFocused(false); props.onBlur?.(e); }}
-      style={{ ...inputStyle, borderColor: focused ? B.action : B.primaryBorder, boxShadow: focused ? `0 0 0 4px ${B.actionLight}` : 'none' }}
-    />
-  );
-}
-
-function FocusSelect(props) {
-  const [focused, setFocused] = useState(false);
-  return (
-    <div style={{ position: 'relative' }}>
-      <select
-        {...props}
-        onFocus={(e) => { setFocused(true); props.onFocus?.(e); }}
-        onBlur={(e) => { setFocused(false); props.onBlur?.(e); }}
-        style={{ ...inputStyle, borderColor: focused ? B.action : B.primaryBorder, boxShadow: focused ? `0 0 0 4px ${B.actionLight}` : 'none', cursor: 'pointer', paddingRight: 36 }}
-      >
-        {props.children}
-      </select>
-      <ChevronDown size={16} style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', color: B.primaryMid, pointerEvents: 'none' }} />
+    <div className="roi-select">
+      <select id={id} className="roi-input" {...rest}>{children}</select>
+      <ChevronDown size={16} aria-hidden="true" />
     </div>
   );
 }
 
-function ResultCard({ label, value, icon, color }) {
+function StepHead({ n, title, sub }) {
   return (
-    <motion.div whileHover={{ y: -3, boxShadow: '0 12px 26px -12px rgba(43,22,54,0.28)' }} transition={{ duration: 0.2 }}
-      style={{ background: '#fff', borderRadius: 16, padding: 'clamp(16px,2vw,20px)', border: `1px solid ${B.primaryBorder}`, boxShadow: '0 6px 18px -10px rgba(43,22,54,0.16)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-        <div style={{ width: 26, height: 26, borderRadius: 8, background: `${color}18`, color, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          {icon}
-        </div>
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: B.textMuted }}>{label}</span>
+    <div className="roi-step-head">
+      <span className="roi-step-num">{n}</span>
+      <div>
+        <h3>{title}</h3>
+        {sub && <p>{sub}</p>}
       </div>
-      <div style={{ fontSize: 'clamp(1.5rem,2.8vw,1.95rem)', fontWeight: 800, color: B.textMain, letterSpacing: '-0.02em' }}>{value}</div>
+    </div>
+  );
+}
+
+/* ─── 3-year cumulative cost chart (responsive SVG, no chart library) ───────── */
+function useWidth(ref) {
+  const [w, setW] = useState(560);
+  useEffect(() => {
+    if (!ref.current) return undefined;
+    const ro = new ResizeObserver(([e]) => setW(Math.max(240, Math.round(e.contentRect.width))));
+    ro.observe(ref.current);
+    return () => ro.disconnect();
+  }, [ref]);
+  return w;
+}
+
+function CostChart({ cloudMonthly, oneTime, recurring, payback }) {
+  const box = useRef(null);
+  const W = useWidth(box);
+  const H = Math.max(200, Math.min(280, Math.round(W * 0.55)));
+  const pl = 48, pr = 14, pt = 14, pb = 30, months = 36;
+
+  const cloudEnd = cloudMonthly * months;
+  const selfEnd = oneTime + recurring * months;
+  const maxV = Math.max(cloudEnd, selfEnd, 1) * 1.08;
+  const x = (m) => pl + (m / months) * (W - pl - pr);
+  const y = (v) => pt + (1 - v / maxV) * (H - pt - pb);
+  const yTicks = [0, 0.25, 0.5, 0.75, 1].map((t) => t * maxV);
+  const showBE = payback && payback <= months;
+
+  return (
+    <div ref={box} className="roi-chart">
+      <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} role="img"
+        aria-label="Cumulative cost over 36 months: cloud subscription versus self-hosted">
+        {yTicks.map((v, i) => (
+          <g key={i}>
+            <line x1={pl} x2={W - pr} y1={y(v)} y2={y(v)} stroke="rgba(0,0,0,0.08)" />
+            <text x={pl - 8} y={y(v) + 4} textAnchor="end" fontSize="11" fill="rgba(0,0,0,0.55)">{fmtCompact(v)}</text>
+          </g>
+        ))}
+        {[0, 12, 24, 36].map((m) => (
+          <text key={m} x={x(m)} y={H - 8} textAnchor={m === 0 ? 'start' : m === 36 ? 'end' : 'middle'} fontSize="11" fill="rgba(0,0,0,0.55)">
+            {m === 0 ? 'Now' : `${m} mo`}
+          </text>
+        ))}
+        <polygon fill="rgba(0,0,0,0.05)"
+          points={`${x(0)},${y(oneTime)} ${x(months)},${y(selfEnd)} ${x(months)},${y(0)} ${x(0)},${y(0)}`} />
+        <line x1={x(0)} y1={y(0)} x2={x(months)} y2={y(cloudEnd)} stroke="#9a9a9a" strokeWidth="2.5" strokeDasharray="6 5" strokeLinecap="round" />
+        <line x1={x(0)} y1={y(oneTime)} x2={x(months)} y2={y(selfEnd)} stroke="#000" strokeWidth="2.5" strokeLinecap="round" />
+        {showBE && (
+          <g>
+            <line x1={x(payback)} x2={x(payback)} y1={y(cloudMonthly * payback)} y2={H - pb} stroke="rgba(0,0,0,0.35)" strokeDasharray="3 3" />
+            <circle cx={x(payback)} cy={y(cloudMonthly * payback)} r="6" fill="#fff" stroke="#000" strokeWidth="2.5" />
+          </g>
+        )}
+      </svg>
+      <div className="roi-legend">
+        <span><i style={{ background: '#9a9a9a' }} />Cloud subscription</span>
+        <span><i style={{ background: '#000' }} />Self-hosted (incl. hardware)</span>
+        {showBE && <span><i className="ring" />Break-even · month {Math.ceil(payback)}</span>}
+      </div>
+    </div>
+  );
+}
+
+/* ─── results ──────────────────────────────────────────────────────────────── */
+function Kpi({ icon, label, value, sub }) {
+  return (
+    <div className="roi-kpi">
+      <div className="roi-kpi-top"><span className="roi-kpi-icon">{icon}</span><span>{label}</span></div>
+      <strong>{value}</strong>
+      {sub && <em>{sub}</em>}
+    </div>
+  );
+}
+
+function Results({ result }) {
+  const c = result.comparison;
+  const cloudAnnual = c.cloud_year2_onwards_annual;
+  const selfAnnual = c.self_hosted_year2_onwards_annual;
+  const pct = cloudAnnual > 0 ? Math.round(((cloudAnnual - selfAnnual) / cloudAnnual) * 100) : null;
+  const saves = pct !== null && pct > 0;
+  const threeYearDelta = (result.current_monthly_cost * 36) - (result.one_time_investment + result.self_hosted_monthly_recurring * 36);
+
+  return (
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}>
+      <div className="roi-headline">
+        <span className="roi-eyebrow">{pct === null ? 'Result' : saves ? 'Projected annual saving (year 2+)' : 'Projected change (year 2+)'}</span>
+        {pct === null ? (
+          <div className="roi-big">No cloud spend</div>
+        ) : (
+          <div className="roi-big">{saves ? `${pct}%` : `${Math.abs(pct)}% more`}</div>
+        )}
+        <p>
+          {pct === null
+            ? 'Your current spend is $0, so there is nothing to offset — self-hosting only makes sense for privacy or control.'
+            : saves
+              ? <>That is <b>{fmt(result.annual_savings_year2_onwards)}</b> a year{result.payback_period_months ? <>, with the hardware paid back in <b>{result.payback_period_months} months</b></> : null}.</>
+              : 'At this usage level the cloud subscription is cheaper than running your own hardware.'}
+        </p>
+      </div>
+
+      {result.usage_source_note && (
+        <div className="roi-note">
+          <CheckCircle2 size={14} /> <span>{result.usage_source_note}</span>
+        </div>
+      )}
+
+      <div className="roi-kpis">
+        <Kpi icon={<DollarSign size={14} />} label="Cloud / month" value={fmt(result.current_monthly_cost)} />
+        <Kpi icon={<Cpu size={14} />} label="Self-hosted / month" value={fmt(result.self_hosted_monthly_recurring)} sub="power + maintenance" />
+        <Kpi icon={<Server size={14} />} label="One-time investment" value={fmt(result.one_time_investment)} sub="hardware + setup" />
+        <Kpi icon={<Clock size={14} />} label="Payback period" value={result.payback_period_months ? `${result.payback_period_months} mo` : 'N/A'} />
+      </div>
+
+      <div className="roi-card-inner">
+        <div className="roi-card-title">
+          <span>Cumulative cost over 3 years</span>
+          <b className={threeYearDelta >= 0 ? 'pos' : 'neg'}>
+            {threeYearDelta >= 0 ? 'Saves ' : 'Costs '}{fmtCompact(Math.abs(threeYearDelta))}
+          </b>
+        </div>
+        <CostChart
+          cloudMonthly={result.current_monthly_cost}
+          oneTime={result.one_time_investment}
+          recurring={result.self_hosted_monthly_recurring}
+          payback={result.payback_period_months}
+        />
+      </div>
+
+      <div className="roi-card-inner roi-table-wrap">
+        <table>
+          <thead>
+            <tr><th /><th>Cloud API</th><th>Self-hosted</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Year 1 total</td><td>{fmt(c.cloud_year1_total)}</td><td className="accent">{fmt(c.self_hosted_year1_total)}</td></tr>
+            <tr><td>Year 2+ (per year)</td><td>{fmt(cloudAnnual)}</td><td className="accent">{fmt(selfAnnual)}</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div className="roi-hardware">
+        <Server size={18} />
+        <p>
+          Recommended hardware: <b>{result.recommended_gpu_tier} × {result.recommended_gpu_count}</b>
+          <span> — sized for about {result.estimated_monthly_requests.toLocaleString()} requests per month.</span>
+        </p>
+      </div>
+
+      <Link to="/book-discovery" className="btn-primary roi-full">
+        Discuss this with our team <ArrowRight size={16} />
+      </Link>
     </motion.div>
   );
 }
 
+/* ─── static content ───────────────────────────────────────────────────────── */
+const STEPS = [
+  { icon: <Users size={20} />, title: 'Describe your setup', text: 'Team size, the AI provider you pay for today, and either your last 3 bills or your plan.' },
+  { icon: <Cpu size={20} />, title: 'We size the hardware', text: 'Usage is converted to requests per month and matched to the cheapest GPU tier that can carry the load.' },
+  { icon: <TrendingDown size={20} />, title: 'See your break-even', text: 'Compare 3 years of cloud spend with self-hosting, including power, maintenance and setup.' },
+];
+
+const FAQ = [
+  { q: 'How accurate are these numbers?', a: 'They are planning estimates built from published provider pricing, manufacturer GPU specs and typical usage benchmarks. If you enter your last three bills, usage is derived from your real spend; otherwise we use industry benchmarks. Always validate against current vendor quotes before buying hardware.' },
+  { q: 'What is included in the self-hosted cost?', a: 'GPU hardware, a one-time setup / model-deployment allowance, electricity for the hardware you need, and an annual maintenance allowance. Staff time for ongoing operations is not included.' },
+  { q: 'Is my data stored or sent anywhere?', a: 'No. The calculation runs entirely in your browser. Nothing you type is transmitted or saved.' },
+  { q: 'When does self-hosting NOT make sense?', a: 'For very small teams, light usage, or flat-rate plans that are already cheap, the payback period can be long or never arrive. The calculator will tell you when the cloud option is the better deal.' },
+];
+
+const METHOD = [
+  ['Cloud cost', "Your real average bill × team size — or, for new teams, plan price × users (flat plans) or benchmark usage × the provider's published per-token / per-image rate."],
+  ['Hardware sizing', 'We pick the lowest-cost GPU tier that satisfies both your monthly request volume and the number of people who need to be served at the same time.'],
+  ['Self-hosted cost', 'One-time: GPUs plus a setup allowance. Recurring: electricity for the hardware you need, plus an annual maintenance allowance.'],
+  ['Break-even', 'One-time investment ÷ (cloud monthly cost − self-hosted monthly cost). If self-hosting is not cheaper, no payback is shown.'],
+];
+
+/* ═════════════════════════════════ PAGE ═════════════════════════════════════ */
 export default function CostCalculator() {
   const [teamSize, setTeamSize] = useState('');
   const [category, setCategory] = useState('');
@@ -97,277 +250,416 @@ export default function CostCalculator() {
   const [bills, setBills] = useState({ m1: '', m2: '', m3: '' });
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
+  const resultsRef = useRef(null);
 
   const providersInCategory = AI_PROVIDERS.categories.find((c) => c.category === category)?.providers || [];
   const selectedProvider = providersInCategory.find((p) => p.provider === provider);
   const isUsageBased = !!USAGE_RATES[provider];
   const availablePlans = selectedProvider?.plans?.filter((p) => !/free|included/i.test(p)) || [];
 
-  const canCalculate = teamSize && provider && (!useFallback || isUsageBased || plan);
+  const teamOk = Number(teamSize) >= 1;
+  const billsFilled = [bills.m1, bills.m2, bills.m3].filter((v) => v !== '').length;
+  const billsOk = billsFilled === 3 || (billsFilled === 0 && isUsageBased);
+  const canCalculate = teamOk && !!provider && (useFallback ? (isUsageBased || !!plan) : billsOk);
 
   function handleCalculate() {
     setError('');
     setResult(null);
     try {
-      const r = calculate({ teamSize: Number(teamSize), provider, plan, bills, useFallback });
+      const r = calculate({ teamSize: Math.floor(Number(teamSize)), provider, plan, bills, useFallback });
       setResult(r);
+      // On phones the results sit below the form — bring them into view.
+      if (window.matchMedia('(max-width: 960px)').matches) {
+        requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      }
     } catch (e) {
       setError(e.message);
     }
   }
 
-  const fmt = (n) => `$${Number(n).toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
+  function handleReset() {
+    setTeamSize(''); setCategory(''); setProvider(''); setPlan('');
+    setBills({ m1: '', m2: '', m3: '' }); setUseFallback(false);
+    setResult(null); setError('');
+  }
 
-  const cloudAnnual = result?.comparison?.cloud_year2_onwards_annual ?? 0;
-  const selfHostedAnnual = result?.comparison?.self_hosted_year2_onwards_annual ?? 0;
-  const savingsPct = result && cloudAnnual > 0 ? Math.round(((cloudAnnual - selfHostedAnnual) / cloudAnnual) * 100) : null;
+  const setBill = (k) => (e) => setBills((b) => ({ ...b, [k]: e.target.value }));
 
   return (
-    <div style={{ background: B.bgLight, minHeight: '100vh', overflowX: 'clip', position: 'relative' }}>
-
-      {/* ══ HERO ══ */}
-      <section style={{ position: 'relative', minHeight: '50vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', zIndex: 1, paddingTop: 'clamp(60px,8vw,100px)', background: B.heroBg }}>
+    <div className="roi-page">
+      {/* ══ 1. HERO ══ */}
+      <section className="roi-hero">
         <HeroGridBg uid="CalcHero" opacity={0.30} />
-        <DataParticles count={16} />
-        <div style={{ flex: 1, position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center', padding: 'clamp(48px,6vw,72px) clamp(28px,5vw,76px) clamp(70px,8vw,100px)' }}>
-          <div className="grid-2col calc-hero-grid" style={{ width: '100%', maxWidth: 1500, margin: '0 auto', gridTemplateColumns: 'minmax(0,1fr) minmax(340px,1fr)', gap: 'clamp(24px,3.5vw,56px)', alignItems: 'center' }}>
-            <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.11 } } }} style={{ width: '100%', textAlign: 'left' }}>
-              <motion.div variants={fadeUp} custom={0}>
-                <SectionBadge><Calculator size={12} style={{ marginRight: 2 }} />Free Interactive Tool</SectionBadge>
-              </motion.div>
-              <motion.h1 variants={fadeUp} custom={0.05} className="hero-h1" style={{ marginBottom: 'clamp(16px,2.5vw,24px)' }}>
-                <span style={{ color: B.primaryDark }}>What Is Your AI Stack </span>
-                <span style={{ background: B.gradientGold, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Really Costing You?</span>
-              </motion.h1>
-              <motion.p variants={fadeUp} custom={0.2} className="hero-sub" style={{ color: B.textMid, maxWidth: 650, margin: 0, letterSpacing: '0.01em' }}>
-                Enter your team size and current AI provider — we'll estimate your real monthly spend, size the self-hosted hardware you'd need, and show your break-even point.
-              </motion.p>
+        <div className="roi-wrap roi-hero-grid">
+          <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}>
+            <motion.div variants={fadeUp} custom={0}>
+              <SectionBadge><Calculator size={12} /> Free interactive tool</SectionBadge>
             </motion.div>
+            <motion.h1 variants={fadeUp} custom={0.05} className="roi-h1">
+              What is your AI stack <span>really costing you?</span>
+            </motion.h1>
+            <motion.p variants={fadeUp} custom={0.15} className="roi-lead">
+              Enter your team size and current AI provider. We estimate your real monthly spend, size the self-hosted hardware you would need, and show your break-even point.
+            </motion.p>
+            <motion.div variants={fadeUp} custom={0.25} className="roi-hero-cta">
+              <a href="#roi-calculator" className="btn-primary">Start calculating <ArrowRight size={16} /></a>
+              <Link to="/book-discovery" className="btn-outline-action">Talk to an expert</Link>
+            </motion.div>
+            <motion.ul variants={fadeUp} custom={0.35} className="roi-trust">
+              <li><Lock size={15} /> Runs in your browser</li>
+              <li><ShieldCheck size={15} /> No sign-up or email</li>
+              <li><Zap size={15} /> Results in seconds</li>
+            </motion.ul>
+          </motion.div>
 
-            <motion.div className="calc-hero-visual" initial={{ opacity: 0, x: 35, scale: 0.96 }} animate={{ opacity: 1, x: 0, scale: 1 }} transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }} style={{ width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', paddingRight: 'clamp(28px,5vw,72px)' }}>
-              <img src={aiRoiHero} alt="AI ROI cost comparison illustration" className="calc-hero-img" style={{ width: 'min(145%, 980px)', maxHeight: 900, objectFit: 'contain', display: 'block', filter: 'drop-shadow(0 24px 45px rgba(83,42,140,0.18))' }} />
-            </motion.div>
-          </div>
+          <motion.div className="roi-hero-visual" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}>
+            <img src={aiRoiHero} alt="AI ROI cost comparison illustration" decoding="async" />
+          </motion.div>
         </div>
       </section>
 
-      {/* ══ CALCULATOR ══ */}
-      <section style={{ position: 'relative', zIndex: 1, padding: `0 0 var(--sp-section)` }}>
-        <div style={{ ...PX }}>
-          <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            style={{ marginTop: 'clamp(-44px,-3.4vw,-28px)', position: 'relative', zIndex: 5, background: 'linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(250,247,251,0.96) 100%)', backdropFilter: 'blur(20px)', borderRadius: 'var(--radius-xl)', border: `1.5px solid rgba(107,46,116,0.35)`, boxShadow: '0 36px 90px -28px rgba(43,22,54,0.30), 0 1px 0 rgba(255,255,255,0.8) inset', overflow: 'hidden' }}>
-
-            <div style={{ height: 5, background: B.gradientGold }} />
-
-            <div style={{ padding: 'clamp(26px,4vw,52px)' }}>
-            <div className="grid-2col" style={{ gap: 'clamp(28px,3.4vw,48px)', alignItems: 'start' }}>
-
-              {/* ── Left: Form ── */}
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 26 }}>
-                  <div style={{ width: 42, height: 42, borderRadius: 12, background: B.gradientPrimary, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0, boxShadow: `0 8px 20px -6px ${B.primaryGlow}` }}>
-                    <Users size={19} />
-                  </div>
-                  <h3 className="card-title" style={{ margin: 0 }}>Tell Us About Your Setup</h3>
+      {/* ══ 2. HOW IT WORKS ══ */}
+      <section className="roi-steps-sec">
+        <div className="roi-wrap">
+          <ol className="roi-steps">
+            {STEPS.map((s, i) => (
+              <li key={s.title}>
+                <span className="roi-steps-icon">{s.icon}</span>
+                <div>
+                  <small>Step {i + 1}</small>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
                 </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-                <Field label="How many people use AI tools?">
-                  <FocusInput type="number" min="1" placeholder="e.g. 10" value={teamSize} onChange={(e) => setTeamSize(e.target.value)} />
-                </Field>
+      {/* ══ 3. CALCULATOR ══ */}
+      <section className="roi-calc-sec" id="roi-calculator">
+        <div className="roi-wrap">
+          <div className="roi-section-head">
+            <h2>Run your numbers</h2>
+            <p>Takes about a minute. Your comparison updates on the right as soon as you calculate.</p>
+          </div>
 
-                <Field label="AI Category">
-                  <FocusSelect value={category} onChange={(e) => { setCategory(e.target.value); setProvider(''); }}>
-                    <option value="">Select a category...</option>
-                    {AI_PROVIDERS.categories.map((c) => <option key={c.category} value={c.category}>{c.category}</option>)}
-                  </FocusSelect>
-                </Field>
+          <div className="roi-calc">
+            {/* — form — */}
+            <div className="roi-panel">
+              <StepHead n="1" title="Your team" sub="How many people use AI tools today?" />
+              <Field label="Number of users" htmlFor="roi-team">
+                <input id="roi-team" className="roi-input" type="number" inputMode="numeric" min="1" step="1" placeholder="e.g. 10"
+                  value={teamSize} onChange={(e) => setTeamSize(e.target.value)} />
+              </Field>
 
-                <Field label="Provider">
-                  <FocusSelect value={provider} disabled={!category} onChange={(e) => setProvider(e.target.value)}>
-                    <option value="">Select a provider...</option>
-                    {providersInCategory.map((p) => <option key={p.provider} value={p.provider}>{p.provider}</option>)}
-                  </FocusSelect>
-                </Field>
+              <StepHead n="2" title="Your provider" sub="Which AI service do you pay for?" />
+              <Field label="AI category" htmlFor="roi-cat">
+                <Select id="roi-cat" value={category} onChange={(e) => { setCategory(e.target.value); setProvider(''); setPlan(''); }}>
+                  <option value="">Select a category…</option>
+                  {AI_PROVIDERS.categories.map((c) => <option key={c.category} value={c.category}>{c.category}</option>)}
+                </Select>
+              </Field>
+              <Field label="Provider" htmlFor="roi-prov">
+                <Select id="roi-prov" value={provider} disabled={!category} onChange={(e) => { setProvider(e.target.value); setPlan(''); }}>
+                  <option value="">Select a provider…</option>
+                  {providersInCategory.map((p) => <option key={p.provider} value={p.provider}>{p.provider}</option>)}
+                </Select>
+              </Field>
 
-                <AnimatePresence mode="wait">
-                  {!useFallback ? (
-                    <motion.div key="bills" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      <Field label="Last 3 months' bill (per person, USD)">
-                        <div style={{ display: 'flex', gap: 8 }}>
-                          <FocusInput type="number" placeholder="Month 1" value={bills.m1} onChange={(e) => setBills({ ...bills, m1: e.target.value })} />
-                          <FocusInput type="number" placeholder="Month 2" value={bills.m2} onChange={(e) => setBills({ ...bills, m2: e.target.value })} />
-                          <FocusInput type="number" placeholder="Month 3" value={bills.m3} onChange={(e) => setBills({ ...bills, m3: e.target.value })} />
-                        </div>
-                      </Field>
-                      <button onClick={() => setUseFallback(true)} style={{ background: B.actionLight, border: `1px solid ${B.actionBorder}`, color: B.action, fontWeight: 700, fontSize: 12.5, cursor: 'pointer', padding: '8px 14px', borderRadius: 10 }}>
-                        New company / not sure — pick a plan instead →
-                      </button>
-                    </motion.div>
-                  ) : (
-                    <motion.div key="plan" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      {isUsageBased ? (
-                        <div style={{ fontSize: 13, color: B.textMid, marginBottom: 12, padding: 12, background: B.actionLight, borderRadius: 10, lineHeight: 1.6 }}>
-                          <Info size={14} style={{ verticalAlign: -2, marginRight: 4, color: B.action }} />
-                          {provider} is pay-as-you-go — no plan to pick. Team size alone is enough; usage is estimated from an industry benchmark, priced at {provider}'s real per-usage rate.
-                        </div>
-                      ) : (
-                        <Field label="Which plan are you on?">
-                          <FocusSelect value={plan} onChange={(e) => setPlan(e.target.value)} disabled={!provider}>
-                            <option value="">Select a plan...</option>
-                            {availablePlans.map((p) => <option key={p} value={p}>{p}</option>)}
-                          </FocusSelect>
-                        </Field>
-                      )}
-                      <button onClick={() => setUseFallback(false)} style={{ background: B.actionLight, border: `1px solid ${B.actionBorder}`, color: B.action, fontWeight: 700, fontSize: 12.5, cursor: 'pointer', padding: '8px 14px', borderRadius: 10 }}>
-                        ← I have my last 3 months' bills instead
-                      </button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                <motion.button
-                  whileHover={canCalculate ? { scale: 1.015, y: -2 } : {}}
-                  whileTap={canCalculate ? { scale: 0.98 } : {}}
-                  onClick={handleCalculate}
-                  disabled={!canCalculate}
-                  className="btn-primary"
-                  style={{
-                    width: '100%', marginTop: 26, fontSize: 'clamp(0.86rem,1.4vw,0.98rem)', padding: 'clamp(14px,2vw,17px) 20px',
-                    background: canCalculate ? `linear-gradient(120deg, ${B.action} 0%, ${B.primaryMid} 100%)` : 'linear-gradient(120deg, #DCD6E4 0%, #CFC7DA 100%)',
-                    color: canCalculate ? '#fff' : B.textMuted,
-                    boxShadow: canCalculate ? `0 16px 34px -12px ${B.actionGlow}` : 'none',
-                    cursor: canCalculate ? 'pointer' : 'not-allowed',
-                  }}
-                >
-                  <Zap size={17} /> Calculate My Savings
-                </motion.button>
-
-                {error && (
-                  <div style={{ display: 'flex', gap: 8, marginTop: 14, padding: 12, background: 'rgba(200,50,50,0.08)', borderRadius: 10, color: '#A82D2D', fontSize: 13 }}>
-                    <AlertCircle size={16} style={{ flexShrink: 0, marginTop: 1 }} /> {error}
-                  </div>
-                )}
-              </div>
-
-              {/* ── Right: Results ── */}
-              <div style={{ background: 'linear-gradient(160deg, rgba(11,124,147,0.05) 0%, rgba(107,46,116,0.05) 100%)', border: `1px solid ${B.primaryBorder}`, borderRadius: 20, padding: 'clamp(20px,2.6vw,28px)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 26 }}>
-                  <div style={{ width: 42, height: 42, borderRadius: 12, background: B.gradientAction, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0, boxShadow: `0 8px 20px -6px ${B.actionGlow}` }}>
-                    <TrendingDown size={19} />
-                  </div>
-                  <h3 className="card-title" style={{ margin: 0 }}>Your Savings Breakdown</h3>
-                </div>
-
-                {!result ? (
-                  <div style={{ minHeight: 300, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '24px 12px' }}>
-                    <div style={{ width: 60, height: 60, borderRadius: '50%', background: B.gradientAction, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18, boxShadow: `0 14px 30px -10px ${B.actionGlow}` }}>
-                      <Sparkles size={24} color="#fff" />
-                    </div>
-                    <p style={{ fontSize: 14, color: B.textMid, lineHeight: 1.65, maxWidth: 260, fontWeight: 500 }}>Fill in your team size and provider, then hit calculate — your cost comparison will appear here.</p>
-                  </div>
-                ) : (
-                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}>
-
-                    {savingsPct !== null && (
-                      <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        style={{ background: B.gradientAction, borderRadius: 16, padding: 'clamp(16px,2.2vw,22px)', marginBottom: 16, textAlign: 'center', boxShadow: `0 16px 34px -12px ${B.actionGlow}` }}>
-                        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.80)', marginBottom: 4 }}>
-                          {savingsPct > 0 ? 'You could save' : 'Projected change'}
-                        </div>
-                        <div style={{ fontSize: 'clamp(2.2rem,4.2vw,2.8rem)', fontWeight: 800, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>
-                          {savingsPct > 0 ? `${savingsPct}%` : `${Math.abs(savingsPct)}% more`}
-                        </div>
-                        <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', marginTop: 6, fontWeight: 500 }}>
-                          on your AI spend, once self-hosted{result.payback_period_months ? ` — pays for itself in ${result.payback_period_months} mo` : ''}
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {result.usage_confidence && (
-                      <div style={{ fontSize: 12, marginBottom: 14, padding: '7px 11px', borderRadius: 8, background: result.usage_confidence === 'actual_from_billing' ? 'rgba(20,140,80,0.10)' : 'rgba(200,138,70,0.12)', color: result.usage_confidence === 'actual_from_billing' ? '#147C50' : '#8A5A00', display: 'flex', gap: 6, alignItems: 'center', lineHeight: 1.4 }}>
-                        <CheckCircle2 size={13} style={{ flexShrink: 0 }} />
-                        <span>{result.usage_source_note}</span>
+              <StepHead n="3" title="Your current spend" sub={useFallback ? 'No billing history? Pick your plan instead.' : 'Average monthly bill per person, last 3 months.'} />
+              <AnimatePresence mode="wait" initial={false}>
+                {!useFallback ? (
+                  <motion.div key="bills" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
+                    <Field
+                      label="Monthly bill per person (USD)"
+                      hint={billsFilled > 0 && billsFilled < 3 ? 'Enter all three months, or clear them to use a plan instead.' : isUsageBased ? 'Optional for pay-as-you-go providers.' : undefined}
+                    >
+                      <div className="roi-bills">
+                        <input className="roi-input" type="number" inputMode="decimal" min="0" placeholder="Month 1" aria-label="Month 1 bill" value={bills.m1} onChange={setBill('m1')} />
+                        <input className="roi-input" type="number" inputMode="decimal" min="0" placeholder="Month 2" aria-label="Month 2 bill" value={bills.m2} onChange={setBill('m2')} />
+                        <input className="roi-input" type="number" inputMode="decimal" min="0" placeholder="Month 3" aria-label="Month 3 bill" value={bills.m3} onChange={setBill('m3')} />
                       </div>
+                    </Field>
+                    <button type="button" className="roi-link" onClick={() => setUseFallback(true)}>
+                      New company or not sure? Pick a plan instead →
+                    </button>
+                  </motion.div>
+                ) : (
+                  <motion.div key="plan" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
+                    {isUsageBased ? (
+                      <div className="roi-info">
+                        <Info size={15} />
+                        <span>{provider} is pay-as-you-go, so there is no plan to pick. Team size is enough — usage is estimated from an industry benchmark and priced at {provider}'s real per-use rate.</span>
+                      </div>
+                    ) : (
+                      <Field label="Plan you are on" htmlFor="roi-plan">
+                        <Select id="roi-plan" value={plan} disabled={!provider} onChange={(e) => setPlan(e.target.value)}>
+                          <option value="">Select a plan…</option>
+                          {availablePlans.map((p) => <option key={p} value={p}>{p}</option>)}
+                        </Select>
+                      </Field>
                     )}
-
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
-                      {[
-                        { label: 'Cloud / Month', value: fmt(result.current_monthly_cost), icon: <DollarSign size={14} />, color: B.secondary },
-                        { label: 'Self-Hosted / Month', value: fmt(result.self_hosted_monthly_recurring), icon: <Cpu size={14} />, color: B.action },
-                        { label: 'One-Time Investment', value: fmt(result.one_time_investment), icon: <DollarSign size={14} />, color: B.accent },
-                        { label: 'Payback Period', value: result.payback_period_months ? `${result.payback_period_months} mo` : 'N/A', icon: <Clock size={14} />, color: B.primary },
-                      ].map((c, i) => (
-                        <motion.div key={c.label} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.08 * i }}>
-                          <ResultCard {...c} />
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    <div style={{ background: '#fff', borderRadius: 16, padding: 'clamp(16px,2vw,20px)', marginBottom: 16, border: `1px solid ${B.primaryBorder}` }}>
-                      <table style={{ width: '100%', fontSize: 14, borderCollapse: 'collapse' }}>
-                        <thead>
-                          <tr style={{ textAlign: 'left', color: B.textMuted }}>
-                            <th style={{ paddingBottom: 10, fontWeight: 700, fontSize: 11, letterSpacing: '0.06em', textTransform: 'uppercase' }}></th>
-                            <th style={{ paddingBottom: 10, fontWeight: 700, fontSize: 11, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Cloud API</th>
-                            <th style={{ paddingBottom: 10, fontWeight: 700, fontSize: 11, letterSpacing: '0.06em', textTransform: 'uppercase', color: B.action }}>Self-Hosted</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr style={{ borderTop: `1px solid ${B.primaryBorder}` }}>
-                            <td style={{ padding: '10px 0', color: B.textMuted, fontWeight: 600 }}>Year 1 total</td>
-                            <td style={{ padding: '10px 0', fontWeight: 800 }}>{fmt(result.comparison.cloud_year1_total)}</td>
-                            <td style={{ padding: '10px 0', fontWeight: 800, color: B.action }}>{fmt(result.comparison.self_hosted_year1_total)}</td>
-                          </tr>
-                          <tr style={{ borderTop: `1px solid ${B.primaryBorder}` }}>
-                            <td style={{ padding: '10px 0', color: B.textMuted, fontWeight: 600 }}>Year 2+ (annual)</td>
-                            <td style={{ padding: '10px 0', fontWeight: 800 }}>{fmt(result.comparison.cloud_year2_onwards_annual)}</td>
-                            <td style={{ padding: '10px 0', fontWeight: 800, color: B.action }}>{fmt(result.comparison.self_hosted_year2_onwards_annual)}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <p style={{ fontSize: 14, color: B.textMid, lineHeight: 1.65, marginBottom: 10, fontWeight: 500 }}>
-                      Recommended hardware: <b style={{ color: B.primaryDark }}>{result.recommended_gpu_tier} × {result.recommended_gpu_count}</b> — sized for ~{result.estimated_monthly_requests.toLocaleString()} requests/month.
-                    </p>
-
-                    <Link to="/book-discovery" className="btn-outline-action" style={{ width: '100%', marginTop: 8 }}>
-                      Discuss This With Our Team <ArrowRight size={16} />
-                    </Link>
+                    <button type="button" className="roi-link" onClick={() => setUseFallback(false)}>
+                      ← I have my last 3 months' bills instead
+                    </button>
                   </motion.div>
                 )}
-              </div>
-            </div>
-            </div>
-          </motion.div>
+              </AnimatePresence>
 
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', gap: 7, marginTop: 22, maxWidth: 620, marginLeft: 'auto', marginRight: 'auto' }}>
-            <Info size={13} style={{ color: B.textMuted, flexShrink: 0, marginTop: 2 }} />
-            <p style={{ textAlign: 'left', fontSize: 12, color: B.textMuted, lineHeight: 1.6 }}>
-              Figures are illustrative estimates based on published pricing and manufacturer specs — verify against current rates before making a purchasing decision. This tool does not store or transmit your inputs anywhere.
-            </p>
+              <div className="roi-actions">
+                <button type="button" className="btn-primary roi-calc-btn" onClick={handleCalculate} disabled={!canCalculate}>
+                  <Zap size={17} /> Calculate my savings
+                </button>
+                <button type="button" className="roi-reset" onClick={handleReset} aria-label="Reset form" title="Reset">
+                  <RotateCcw size={16} />
+                </button>
+              </div>
+
+              {error && (
+                <div className="roi-error" role="alert"><AlertCircle size={16} /> <span>{error}</span></div>
+              )}
+            </div>
+
+            {/* — results — */}
+            <div className="roi-panel roi-results" ref={resultsRef}>
+              <div className="roi-results-head">
+                <span className="roi-results-icon"><TrendingDown size={18} /></span>
+                <h3>Your savings breakdown</h3>
+              </div>
+              {!result ? (
+                <div className="roi-empty">
+                  <span><Sparkles size={22} /></span>
+                  <p>Fill in your team size and provider, then press <b>Calculate</b> — your cost comparison will appear here.</p>
+                </div>
+              ) : (
+                <Results result={result} />
+              )}
+            </div>
+          </div>
+
+          <p className="roi-disclaimer">
+            <Info size={13} />
+            <span>Figures are illustrative estimates based on published pricing and manufacturer specs. Verify current rates before making a purchasing decision. This tool does not store or transmit your inputs.</span>
+          </p>
+        </div>
+      </section>
+
+      {/* ══ 4. METHODOLOGY ══ */}
+      <section className="roi-method-sec">
+        <div className="roi-wrap">
+          <div className="roi-section-head">
+            <h2>How we calculate it</h2>
+            <p>Transparent assumptions, so you can sanity-check every line.</p>
+          </div>
+          <div className="roi-method">
+            {METHOD.map(([t, d]) => (
+              <div key={t} className="roi-method-card"><h3>{t}</h3><p>{d}</p></div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ══ CTA ══ */}
-      <section style={{ padding: 'var(--sp-section) 0', paddingTop: 'clamp(48px,8vw,90px)', paddingBottom: 'clamp(48px,8vw,90px)', position: 'relative', overflow: 'clip', zIndex: 1, background: `linear-gradient(180deg, ${B.bgLight} 0%, #E8E1F0 100%)` }}>
-        <DataParticles count={14} />
-        <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center' }}>
-          <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
-            <SectionBadge>Not Sure Where To Start?</SectionBadge>
-            <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 16 }}>
-              We'll Help You Read The Numbers.
-            </h2>
-            <p className="section-lead" style={{ maxWidth: 700, margin: '0 auto clamp(24px,3vw,40px)' }}>
-              Book a free 30-minute call and we'll walk through your specific stack, team size, and growth plans — no pitch, just an honest read on whether self-hosting makes sense for you yet.
-            </p>
-            <Link to="/book-discovery" className="btn-primary">
-              <Zap size={16} /> Book Your Free Consultation <ArrowRight size={16} />
-            </Link>
-          </motion.div>
+      {/* ══ 5. FAQ ══ */}
+      <section className="roi-faq-sec">
+        <div className="roi-wrap roi-faq-wrap">
+          <div className="roi-section-head">
+            <h2>Frequently asked questions</h2>
+          </div>
+          <div className="roi-faq">
+            {FAQ.map((f) => (
+              <details key={f.q}>
+                <summary>{f.q}<ChevronDown size={18} aria-hidden="true" /></summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* ══ 6. CTA ══ */}
+      <section className="roi-cta-sec">
+        <div className="roi-wrap">
+          <div className="roi-cta">
+            <h2>We'll help you read the numbers.</h2>
+            <p>Book a free 30-minute call. We'll walk through your stack, team size and growth plans — an honest read on whether self-hosting makes sense for you yet, with no sales pitch.</p>
+            <Link to="/book-discovery" className="roi-cta-btn">
+              <Zap size={16} /> Book your free consultation <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <style>{CSS}</style>
     </div>
   );
 }
+
+/* ═══════════════════════════════ STYLES ═════════════════════════════════════
+   Plain CSS so breakpoints actually work — the previous version used inline
+   grid styles that media queries couldn't override.
+   Breakpoints: 1100 (method grid), 960 (stack calculator), 900 (stack hero), 640, 420.
+   ───────────────────────────────────────────────────────────────────────── */
+const CSS = `
+.roi-page{background:#fff;color:#000;font-family:var(--font-main);overflow-x:clip;position:relative}
+.roi-page *{box-sizing:border-box}
+.roi-wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.roi-section-head{text-align:center;max-width:680px;margin:0 auto clamp(24px,4vw,44px)}
+.roi-section-head h2{font-size:clamp(1.55rem,3.4vw,2.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:0 0 10px}
+.roi-section-head p{color:rgba(0,0,0,.62);font-size:clamp(.92rem,1.4vw,1.05rem);line-height:1.6;margin:0}
+
+/* hero */
+.roi-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#fff 55%,#f3f3f3 100%);
+  padding:calc(66px + clamp(32px,6vw,84px)) 0 clamp(40px,6vw,84px)}
+.roi-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(24px,4.5vw,72px);align-items:center}
+.roi-h1{font-family:var(--font-main);font-weight:800;letter-spacing:-.03em;line-height:1.08;font-size:clamp(2rem,4.6vw,3.7rem);margin:0 0 clamp(14px,2vw,22px)}
+.roi-h1 span{background:linear-gradient(90deg,#000 20%,#777 85%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.roi-lead{color:rgba(0,0,0,.7);font-size:clamp(.98rem,1.5vw,1.2rem);line-height:1.65;max-width:560px;margin:0 0 clamp(20px,3vw,30px)}
+.roi-hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:clamp(20px,3vw,28px)}
+.roi-trust{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;margin:0;padding:0;font-size:13.5px;font-weight:600;color:rgba(0,0,0,.7)}
+.roi-trust li{display:inline-flex;align-items:center;gap:7px}
+.roi-hero-visual{display:flex;justify-content:center;min-width:0}
+.roi-hero-visual img{width:100%;max-width:640px;height:auto;max-height:520px;object-fit:contain;display:block;filter:drop-shadow(0 24px 40px rgba(0,0,0,.16))}
+
+/* steps */
+.roi-steps-sec{padding:clamp(24px,4vw,44px) 0;background:#fff;border-bottom:1px solid rgba(0,0,0,.07)}
+.roi-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.5vw,32px)}
+.roi-steps li{display:flex;gap:14px;align-items:flex-start}
+.roi-steps-icon{flex:0 0 auto;width:46px;height:46px;border-radius:14px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center}
+.roi-steps small{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,.5);margin-bottom:2px}
+.roi-steps h3{margin:0 0 4px;font-size:1.02rem;font-weight:800}
+.roi-steps p{margin:0;font-size:.9rem;line-height:1.55;color:rgba(0,0,0,.64)}
+
+/* calculator */
+.roi-calc-sec{padding:clamp(40px,6vw,88px) 0 clamp(32px,5vw,64px);background:#fafafa;scroll-margin-top:70px}
+.roi-calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:clamp(16px,2.4vw,28px);align-items:start}
+.roi-panel{background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:22px;padding:clamp(18px,3vw,34px);box-shadow:0 20px 50px -26px rgba(0,0,0,.22);min-width:0}
+.roi-results{position:sticky;top:calc(66px + 20px)}
+.roi-step-head{display:flex;gap:12px;align-items:center;margin:0 0 14px}
+.roi-step-head:not(:first-child){margin-top:clamp(18px,2.4vw,26px);padding-top:clamp(18px,2.4vw,26px);border-top:1px solid rgba(0,0,0,.08)}
+.roi-step-num{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:#000;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.roi-step-head h3{margin:0;font-size:1.02rem;font-weight:800;line-height:1.2}
+.roi-step-head p{margin:2px 0 0;font-size:.82rem;color:rgba(0,0,0,.58)}
+.roi-field{margin-bottom:16px}
+.roi-label{display:block;font-size:.82rem;font-weight:700;margin-bottom:7px}
+.roi-hint{margin:6px 0 0;font-size:12px;line-height:1.45;color:rgba(0,0,0,.58)}
+.roi-input{width:100%;min-width:0;height:48px;padding:0 14px;border-radius:12px;border:1.5px solid rgba(0,0,0,.18);background:#fff;color:#000;
+  font:600 .95rem var(--font-main);outline:none;appearance:none;-webkit-appearance:none;transition:border-color .2s,box-shadow .2s}
+.roi-input:focus{border-color:#000;box-shadow:0 0 0 4px rgba(0,0,0,.08)}
+.roi-input:disabled{background:#f3f3f3;color:rgba(0,0,0,.4);cursor:not-allowed}
+.roi-input::placeholder{color:rgba(0,0,0,.38);font-weight:500}
+.roi-select{position:relative}
+.roi-select select{padding-right:40px;cursor:pointer;text-overflow:ellipsis}
+.roi-select svg{position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;color:rgba(0,0,0,.6)}
+.roi-bills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.roi-bills .roi-input{padding:0 10px}
+.roi-link{background:none;border:0;padding:6px 0;font:700 .84rem var(--font-main);color:#000;text-decoration:underline;text-underline-offset:3px;cursor:pointer;text-align:left}
+.roi-info{display:flex;gap:10px;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.05);font-size:.85rem;line-height:1.55;color:rgba(0,0,0,.72);margin-bottom:12px}
+.roi-info svg{flex:0 0 auto;margin-top:2px}
+.roi-actions{display:flex;gap:10px;margin-top:clamp(20px,3vw,28px)}
+.roi-calc-btn{flex:1;min-height:52px}
+.roi-calc-btn:disabled{background:#dcdcdc;color:rgba(0,0,0,.45);cursor:not-allowed;box-shadow:none;transform:none}
+.roi-reset{flex:0 0 52px;height:52px;border-radius:12px;border:1.5px solid rgba(0,0,0,.18);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+.roi-reset:hover{background:#f3f3f3;border-color:#000}
+.roi-error{display:flex;gap:10px;margin-top:14px;padding:12px 14px;border-radius:12px;background:#fdecec;color:#8a1c1c;font-size:.86rem;line-height:1.5}
+.roi-error svg{flex:0 0 auto;margin-top:2px}
+
+/* results */
+.roi-results-head{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.roi-results-head h3{margin:0;font-size:1.1rem;font-weight:800}
+.roi-results-icon{width:40px;height:40px;border-radius:12px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.roi-empty{min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 8px;border:1.5px dashed rgba(0,0,0,.16);border-radius:16px}
+.roi-empty span{width:56px;height:56px;border-radius:50%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.roi-empty p{max-width:280px;margin:0;font-size:.92rem;line-height:1.6;color:rgba(0,0,0,.66)}
+.roi-headline{background:#000;color:#fff;border-radius:18px;padding:clamp(18px,2.6vw,26px);text-align:center;margin-bottom:14px}
+.roi-eyebrow{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px}
+.roi-big{font-size:clamp(2.3rem,5vw,3.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.roi-headline p{margin:8px 0 0;font-size:.9rem;line-height:1.55;color:rgba(255,255,255,.82)}
+.roi-headline b{color:#fff}
+.roi-note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.45;color:rgba(0,0,0,.66);background:rgba(0,0,0,.05);padding:9px 12px;border-radius:10px;margin-bottom:14px}
+.roi-note svg{flex:0 0 auto;margin-top:2px}
+.roi-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.roi-kpi{border:1px solid rgba(0,0,0,.12);border-radius:14px;padding:14px;min-width:0}
+.roi-kpi-top{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(0,0,0,.58);margin-bottom:8px}
+.roi-kpi-icon{width:24px;height:24px;border-radius:7px;background:rgba(0,0,0,.07);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.roi-kpi strong{display:block;font-size:clamp(1.25rem,2.4vw,1.65rem);font-weight:800;letter-spacing:-.02em;overflow-wrap:anywhere}
+.roi-kpi em{display:block;font-style:normal;font-size:11.5px;color:rgba(0,0,0,.5);margin-top:2px}
+.roi-card-inner{border:1px solid rgba(0,0,0,.12);border-radius:16px;padding:clamp(12px,2vw,18px);margin-bottom:14px;min-width:0}
+.roi-card-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:.86rem;font-weight:800;margin-bottom:8px}
+.roi-card-title b{font-size:.78rem;padding:4px 10px;border-radius:99px}
+.roi-card-title b.pos{background:#000;color:#fff}
+.roi-card-title b.neg{background:#eee;color:#444}
+.roi-chart{width:100%;min-width:0}
+.roi-chart svg{display:block;max-width:100%}
+.roi-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px;font-size:12px;color:rgba(0,0,0,.66)}
+.roi-legend span{display:inline-flex;align-items:center;gap:7px}
+.roi-legend i{width:16px;height:3px;border-radius:2px;display:inline-block}
+.roi-legend i.ring{width:10px;height:10px;border-radius:50%;border:2.5px solid #000;background:#fff}
+.roi-table-wrap{overflow-x:auto}
+.roi-table-wrap table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:300px}
+.roi-table-wrap th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:rgba(0,0,0,.55);padding:0 8px 10px 0}
+.roi-table-wrap td{padding:11px 8px 11px 0;border-top:1px solid rgba(0,0,0,.09);font-weight:800;white-space:nowrap}
+.roi-table-wrap td:first-child{font-weight:600;color:rgba(0,0,0,.6);white-space:normal}
+.roi-table-wrap td.accent{color:#000}
+.roi-hardware{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:14px;background:rgba(0,0,0,.05);margin-bottom:16px}
+.roi-hardware svg{flex:0 0 auto;margin-top:2px}
+.roi-hardware p{margin:0;font-size:.9rem;line-height:1.6}
+.roi-hardware span{color:rgba(0,0,0,.66)}
+.roi-full{width:100%}
+.roi-disclaimer{display:flex;gap:8px;align-items:flex-start;justify-content:center;max-width:720px;margin:22px auto 0;font-size:12px;line-height:1.6;color:rgba(0,0,0,.55);text-align:left}
+.roi-disclaimer svg{flex:0 0 auto;margin-top:3px}
+
+/* methodology */
+.roi-method-sec{padding:clamp(40px,6vw,80px) 0;background:#fff}
+.roi-method{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,20px)}
+.roi-method-card{border:1px solid rgba(0,0,0,.12);border-radius:18px;padding:clamp(16px,2vw,24px);background:#fff}
+.roi-method-card h3{margin:0 0 8px;font-size:1rem;font-weight:800}
+.roi-method-card p{margin:0;font-size:.88rem;line-height:1.6;color:rgba(0,0,0,.66)}
+
+/* faq */
+.roi-faq-sec{padding:clamp(36px,5vw,72px) 0;background:#fafafa}
+.roi-faq-wrap{max-width:860px}
+.roi-faq details{background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.roi-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 18px;font-weight:700;font-size:.98rem}
+.roi-faq summary::-webkit-details-marker{display:none}
+.roi-faq summary svg{flex:0 0 auto;transition:transform .25s}
+.roi-faq details[open] summary svg{transform:rotate(180deg)}
+.roi-faq details p{margin:0;padding:0 18px 18px;font-size:.92rem;line-height:1.7;color:rgba(0,0,0,.68)}
+
+/* cta */
+.roi-cta-sec{padding:clamp(36px,6vw,80px) 0 clamp(48px,7vw,96px);background:#fff}
+.roi-cta{background:#000;color:#fff;border-radius:clamp(20px,3vw,32px);padding:clamp(28px,5vw,64px) clamp(20px,4vw,56px);text-align:center}
+.roi-cta h2{margin:0 0 12px;font-size:clamp(1.5rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.roi-cta p{max-width:640px;margin:0 auto clamp(20px,3vw,32px);color:rgba(255,255,255,.78);line-height:1.65;font-size:clamp(.92rem,1.4vw,1.05rem)}
+.roi-cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:#000;text-decoration:none;font-weight:800;
+  font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;padding:15px 28px;border-radius:12px;transition:transform .25s,box-shadow .25s}
+.roi-cta-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(255,255,255,.18)}
+
+/* ── breakpoints ── */
+@media (max-width:1100px){
+  .roi-method{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:960px){
+  .roi-calc{grid-template-columns:minmax(0,1fr)}
+  .roi-results{position:static;scroll-margin-top:84px}
+}
+@media (max-width:900px){
+  .roi-hero-grid{grid-template-columns:minmax(0,1fr)}
+  .roi-hero-visual{order:2}
+  .roi-hero-visual img{max-width:520px;max-height:380px}
+  .roi-steps{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  .roi-hero-cta .btn-primary,.roi-hero-cta .btn-outline-action{width:100%}
+  .roi-method{grid-template-columns:minmax(0,1fr)}
+  .roi-cta-btn{width:100%;white-space:normal;text-align:center}
+}
+@media (max-width:420px){
+  .roi-bills{grid-template-columns:minmax(0,1fr)}
+  .roi-kpis{grid-template-columns:minmax(0,1fr)}
+  .roi-panel{border-radius:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .roi-faq summary svg,.roi-cta-btn{transition:none}
+}
+`;

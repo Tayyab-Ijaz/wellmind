@@ -116,6 +116,7 @@ function PricingCard({ tier, accentColor, i }) {
     >
       {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: color, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
       <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: color, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
+      <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>{tier.price}</div>
       <p style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
       <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
         {tier.features.map((f, fi) => (
@@ -144,7 +145,7 @@ function PricingCard({ tier, accentColor, i }) {
 // ─── Shared Styles (AiMl Matching) ─────────────────────────────────────────
 const SharedStyles = () => (
   <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');    .section-badge {
+        .section-badge {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 6px clamp(14px, 2vw, 20px); border-radius: 99px;
       font-size: var(--fs-badge); font-weight: 700;
@@ -153,7 +154,7 @@ const SharedStyles = () => (
     .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--c-action); flexShrink: 0; }
 
     .section-h2 {
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
       font-size: var(--fs-section-h2);
       color: var(--c-text-main); line-height: 1.15; margin-bottom: 14px;
     }
@@ -172,8 +173,8 @@ const SharedStyles = () => (
       justify-content: center;
       gap: 10px;
       padding: clamp(12px, 2vw, 18px) clamp(20px, 4vw, 40px);
-      border-radius: 12px; background: #0B7C93; color: #ffffff;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      border-radius: 12px; background: #545454; color: #ffffff;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
       font-size: clamp(0.85rem, 1.8vw, 1.2rem);
       letter-spacing: 0.10em; text-transform: uppercase; text-decoration: none;
       transition: opacity 0.2s, transform 0.2s;
@@ -185,11 +186,11 @@ const SharedStyles = () => (
       justify-content: center;
       gap: 10px;
       padding: clamp(10px, 1.8vw, 16px) clamp(20px, 4vw, 40px);
-      border-radius: 12px; background: transparent; color: #93213F;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      border-radius: 12px; background: transparent; color: #373737;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
       font-size: clamp(0.85rem, 1.8vw, 1.2rem);
       letter-spacing: 0.10em; textTransform: uppercase; text-decoration: none;
-      border: 2px solid #93213F; transition: background 0.2s, transform 0.2s;
+      border: 2px solid #373737; transition: background 0.2s, transform 0.2s;
     }
 
     /* Grid Layouts */
@@ -390,12 +391,12 @@ const features = [
   { icon: <TrendingUp/>, title: 'Predictive Analytics', desc: 'Revenue forecasting, demand planning, churn modelling. Statistical models that turn historical data into future insights.', color: B.primary },
   { icon: <Database/>, title: 'Data Warehousing', desc: 'Clean data architecture with automated ETL/ELT pipelines. Snowflake, BigQuery warehouses built for speed.', color: B.accent },
   { icon: <Filter/>, title: 'Data Quality Eng', desc: 'Profiling, deduplication, schema validation. We turn messy, siloed data sources into a single trusted foundation.', color: B.secondary },
-  { icon: <Search/>, title: 'Statistical Analysis', desc: 'A/B testing, regression analysis, cohort studies. Rigorous methodology with plain-language reporting.', color: '#00B4D8' },
-  { icon: <FileText/>, title: 'Executive Reporting', desc: 'Automated report generation and data narratives that translate complex analysis into board-ready decisions.', color: '#FF9F1C' },
+  { icon: <Search/>, title: 'Statistical Analysis', desc: 'A/B testing, regression analysis, cohort studies. Rigorous methodology with plain-language reporting.', color: '#828282' },
+  { icon: <FileText/>, title: 'Executive Reporting', desc: 'Automated report generation and data narratives that translate complex analysis into board-ready decisions.', color: '#adadad' },
 ];
 
 const processes = [
-  { step: '01', title: 'Data Audit & Strategy', desc: 'We map your data sources, assess quality, identify gaps, and agree on the metrics that will drive real decisions before any building starts.' },
+  { step: '01', title: 'Data Audit & Strategy', desc: 'We map your data sources, assess quality, identify gaps, and agree on the metrics that will drive real decisions — before building anything.' },
   { step: '02', title: 'Data Architecture', desc: 'Schema design, warehouse selection, and pipeline architecture. We build for scalability and analyst self-service.' },
   { step: '03', title: 'Analysis & Visualisation', desc: 'Statistical analysis, model development, and dashboard build. Every visualisation is reviewed for clarity and actionability.' },
   { step: '04', title: 'Handoff & Enablement', desc: 'Dashboard handoff with documentation, a training session for your team, and 30 days of support for independence.' },
@@ -418,10 +419,10 @@ const tiers = [
 ];
 
 const stats = [
-  { target: 50,  suffix: '+', label: 'Dashboards Delivered', theme: { color: B.action,         bg: 'rgba(11, 124, 147,0.1)'  } },
-  { target: 3,   suffix: 'x', label: 'Faster Insights',      theme: { color: '#9D4EDD',  bg: 'rgba(157,78,221,0.1)' } },
-  { target: 99,  suffix: '%', label: 'Data Accuracy',         theme: { color: '#FF9F1C',  bg: 'rgba(255,159,28,0.1)' } },
-  { target: 40,  suffix: '%', label: 'Cost Reduction',        theme: { color: '#00F5D4',  bg: 'rgba(0,245,212,0.1)'  } },
+  { target: 50,  suffix: '+', label: 'Dashboards Delivered', theme: { color: B.action,         bg: 'rgba(84,84,84,0.1)'  } },
+  { target: 3,   suffix: 'x', label: 'Faster Insights',      theme: { color: '#767676',  bg: 'rgba(118,118,118,0.1)' } },
+  { target: 99,  suffix: '%', label: 'Data Accuracy',         theme: { color: '#adadad',  bg: 'rgba(173,173,173,0.1)' } },
+  { target: 40,  suffix: '%', label: 'Cost Reduction',        theme: { color: '#a8a8a8',  bg: 'rgba(168,168,168,0.1)'  } },
 ];
 
 const processColors = [B.action, B.primary, B.accent, B.secondary];
@@ -449,11 +450,11 @@ export default function ServicesDataAnalytics() {
   ];
 
   return (
-    <div style={{ background: B.bgLight, minHeight: '100vh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
+    <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
 
       {/* ══════════ 1. HERO ══════════ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden', zIndex: 1,
         background: B.heroBg,
@@ -461,7 +462,7 @@ export default function ServicesDataAnalytics() {
       }}>
         {/* CHANGE: Added HeroGridBg for consistency */}
         <HeroGridBg opacity={0.35}/>
-        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(127,32,55,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }}/>
+        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(47,47,47,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }}/>
         <DataParticles count={18}/>
 
         <div style={{
@@ -494,7 +495,7 @@ export default function ServicesDataAnalytics() {
                     marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark,
                   }}>
                   Data That Answers<br/>
-                  <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                  <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                     The Right Questions.
                   </span>
                 </motion.h1>
@@ -502,7 +503,7 @@ export default function ServicesDataAnalytics() {
                 {/* CHANGE: Text size synced with AiMl (1.8vw) */}
                 <motion.p custom={0.15}
                   style={{ fontSize: 'clamp(0.88rem, 1.8vw, 1.15rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  WellMind Data Solutions designs and deploys Analytics systems that act as a strategic extension of your business. Our work ranges from audits to full production-grade platforms trusted by enterprises globally.
+                  WellMind Data Solutions designs and deploys Analytics systems that act as a strategic extension of your business — from audit to full production-grade platforms trusted by enterprises globally.
                 </motion.p>
 
                 <motion.div custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -552,13 +553,13 @@ export default function ServicesDataAnalytics() {
                 borderTop: `1px solid ${B.primaryBorder}40`
               }}
             >
-              {['Self-Service Dashboards', 'Fixed-Fee Projects'].map((t, i) => (
+              {['Starting at $1,200', 'Self-Service Dashboards', 'Fixed-Fee Projects'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)', border: `1px solid ${B.primaryBorder}`,
                   fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
-                  boxShadow: '0 4px 12px rgba(107, 46, 116, 0.05)',
+                  boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
                   <CheckCircle size={14} color={B.action}/> {t}
@@ -574,7 +575,7 @@ export default function ServicesDataAnalytics() {
       <section ref={statsRef} style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #140B20 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.09}/>
@@ -603,7 +604,7 @@ export default function ServicesDataAnalytics() {
       {/* ══════════ 3. LIGHT: CAPABILITIES + PROCESS ══════════ */}
       <section style={{
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(180deg, #EBE6EB 0%, #E5DCF0 50%, #D9D3E8 100%)',
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 50%, #d7d7d7 100%)',
         overflow: 'hidden', padding: 0,
       }}>
         {/* CHANGE: Added SectionGridBg for consistency */}
@@ -618,7 +619,7 @@ export default function ServicesDataAnalytics() {
               End-to-End Analytics Capabilities
             </h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              From raw data to intelligent decisions, we cover the full analytics spectrum so your team stays focused on outcomes, not infrastructure.
+              From raw data to intelligent decisions — we cover the full analytics spectrum so your team stays focused on outcomes, not infrastructure.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -666,7 +667,7 @@ export default function ServicesDataAnalytics() {
       {/* <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #1F1236 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.07}/>
@@ -676,7 +677,7 @@ export default function ServicesDataAnalytics() {
             <SectionBadge dark style={{ color: B.textDarkMuted }}>Transparent Pricing</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 14 }}>Investment</h2>
             <p className="section-lead dark" style={{ maxWidth: 480 }}>
-              Fixed-fee engagements. Scope agreed in writing before we start. No surprise invoices, ever.
+              Fixed-fee engagements. Scope agreed in writing before we start. No surprise invoices — ever.
             </p>
           </div>
           <div className="grid-pricing">
@@ -689,33 +690,33 @@ export default function ServicesDataAnalytics() {
       <section style={{
         padding: `clamp(60px, 10vw, 120px) 0`,
         position: 'relative', overflow: 'hidden', zIndex: 1,
-        background: 'linear-gradient(180deg, #F5F1F6 0%, #E8E1F0 100%)',
+        background: 'linear-gradient(180deg, #f3f3f3 0%, #e5e5e5 100%)',
       }}>
         <DataParticles count={14}/>
-        <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(107, 46, 116,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
-        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(11, 124, 147,0.06) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(57,57,57,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(84,84,84,0.06) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
 
         <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
               Let's Turn Data Into<br/>
-              <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Actionable Intelligence.
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it costs, and whether Analytics is even the right tool. No sales pitch.
+              Book a free 30-minute call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it costs, and whether Analytics is even the right tool — no sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/contact" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
-                borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #0A5F75)`,
+                borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #393939)`,
                 color: B.white, fontWeight: 700, fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
                 letterSpacing: '0.10em', textTransform: 'uppercase', textDecoration: 'none',
-                boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(11, 124, 147,0.15)`,
-                border: '1px solid rgba(11, 124, 147,0.40)', transition: 'all 0.2s',
+                boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
+                border: '1px solid rgba(84,84,84,0.40)', transition: 'all 0.2s',
               }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>

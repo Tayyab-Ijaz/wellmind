@@ -72,7 +72,7 @@ function FilterRow({ item, onClose }) {
         padding:        '10px 14px',
         borderRadius:   DT.itemRadius,
         textDecoration: 'none',
-        fontFamily:     "'Plus Jakarta Sans', sans-serif",
+        fontFamily:     "'Space Grotesk', sans-serif",
         fontSize:       DT.itemSize,
         fontWeight:     500,
         color:          B.textMid,
@@ -81,8 +81,8 @@ function FilterRow({ item, onClose }) {
         border:         '1px solid transparent',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background  = 'rgba(74,43,95,0.03)';
-        e.currentTarget.style.borderColor = 'rgba(74,43,95,0.08)';
+        e.currentTarget.style.background  = 'rgba(42,42,42,0.03)';
+        e.currentTarget.style.borderColor = 'rgba(42,42,42,0.08)';
         e.currentTarget.style.color       = B.textMain;
       }}
       onMouseLeave={(e) => {
@@ -126,7 +126,7 @@ function FeaturedCard({ cs, onClose }) {
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = B.primaryMid;
-        e.currentTarget.style.boxShadow   = '0 4px 12px rgba(74,43,95,0.08)';
+        e.currentTarget.style.boxShadow   = '0 4px 12px rgba(42,42,42,0.08)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = B.primaryBorder;
@@ -138,7 +138,7 @@ function FeaturedCard({ cs, onClose }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16 }}>
           <div style={{ flex: 1 }}>
             <span style={{
-              fontFamily:   "'Plus Jakarta Sans', sans-serif",
+              fontFamily:   "'Space Grotesk', sans-serif",
               fontSize:      17,
               fontWeight:    700,
               color:         B.textMain,
@@ -149,7 +149,7 @@ function FeaturedCard({ cs, onClose }) {
               {cs.title}
             </span>
             <p style={{
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               fontSize:    14,
               color:       B.textMuted,
               margin:      0,
@@ -162,7 +162,7 @@ function FeaturedCard({ cs, onClose }) {
           {/* Metric */}
           <div style={{ flexShrink: 0, textAlign: 'right' }}>
             <div style={{
-              fontFamily:    "'Plus Jakarta Sans', sans-serif",
+              fontFamily:    "'Space Grotesk', sans-serif",
               fontSize:       17,
               fontWeight:     800,
               color:         B.action,
@@ -194,9 +194,9 @@ function FeaturedCard({ cs, onClose }) {
             fontWeight:    600,
             padding:       '3px 9px',
             borderRadius:  4,
-            background:    '#F0FAFB',
+            background:    '#f7f7f7',
             color:         B.action,
-            border:        `1px solid rgba(11, 124, 147,0.15)`,
+            border:        `1px solid rgba(84,84,84,0.15)`,
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
           }}>
@@ -238,7 +238,7 @@ export default function CaseStudiesMegaMenu({ onClose }) {
         paddingBottom: 28,
         paddingRight:  32,
         paddingLeft:   DT.leftPadInline,
-        background:    'rgba(74,43,95,0.015)',
+        background:    'rgba(42,42,42,0.015)',
         display:       'flex',
         flexDirection: 'column',
         gap:            0,
@@ -276,7 +276,7 @@ export default function CaseStudiesMegaMenu({ onClose }) {
                   display:        'flex',
                   alignItems:     'center',
                   gap:             6,
-                  fontFamily:     "'Plus Jakarta Sans', sans-serif",
+                  fontFamily:     "'Space Grotesk', sans-serif",
                 }}
               >
                 View All Case Studies <ArrowRight size={13} />

@@ -1,16 +1,4 @@
-/**
- * ServiceChildPage.jsx — WellMind Data Solutions
- * Generic child service page — reads :childId from URL params,
- * fetches data from aiMlChildData.js, renders full page.
- *
- * Route example:  /services-ai-ml/predictive-modeling
- *                 /services-ai-ml/nlp
- *                 /services-ai-ml/rag
- *
- * Design mirrors ServicesAiMl.jsx exactly.
- * Drop this into your router:
- *   <Route path="/services-ai-ml/:childId" element={<ServiceChildPage />} />
- */
+
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
@@ -45,6 +33,9 @@ function Icon({ name, size = 22 }) {
 }
 
 // ─── Feature Card (identical to ServicesAiMl.jsx) ─────────────────────────────
+// Every card uses the SAME hover colour (the per-card `color` only tints the idle icon),
+// so all cells look identical after hover.
+const CARD_HOVER = B.primaryMid;
 function FeatureCard({ iconName, title, desc, i, color }) {
   const [hovered, setHovered] = useState(false);
   return (
@@ -57,11 +48,11 @@ function FeatureCard({ iconName, title, desc, i, color }) {
       onMouseLeave={() => setHovered(false)}
       whileHover={{ y: -6 }}
       style={{
-        background: hovered ? color : B.cardBg,
+        background: hovered ? CARD_HOVER : B.cardBg,
         backdropFilter: 'blur(8px)',
         borderRadius: 'var(--radius-xl)',
-        border: `3px solid ${hovered ? color : B.primaryBorder}`,
-        boxShadow: hovered ? `0 12px 24px -8px ${color}40` : B.cardShadow,
+        border: `3px solid ${hovered ? CARD_HOVER : B.primaryBorder}`,
+        boxShadow: hovered ? `0 12px 24px -8px ${CARD_HOVER}66` : B.cardShadow,
         padding: 'clamp(20px, 2.5vw, 30px) clamp(16px, 2vw, 24px)',
         textAlign: 'center',
         transition: 'all 0.3s ease', height: '100%',
@@ -72,7 +63,7 @@ function FeatureCard({ iconName, title, desc, i, color }) {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         margin: '0 auto clamp(14px, 2vw, 20px)',
         background: hovered ? B.white : `${color}15`,
-        color, transition: 'all 0.3s ease',
+        color: hovered ? CARD_HOVER : color, transition: 'all 0.3s ease',
       }}>
         <Icon name={iconName} size={22} />
       </div>
@@ -229,14 +220,14 @@ export default function ServiceChildPage() {
 
   return (
     <div style={{
-      background: B.bgLight, minHeight: '100vh',
+      background: B.bgLight, minHeight: '100svh',
       overflowX: 'clip', position: 'relative',
       fontFamily: 'var(--font-body, sans-serif)',
     }}>
 
       {/* ══════════ 1. HERO ══════════ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden', zIndex: 1,
         background: B.heroBg,
@@ -245,7 +236,7 @@ export default function ServiceChildPage() {
         <HeroGridBg opacity={0.35} />
         <div style={{
           position: 'absolute', left: 0, top: 0, width: '45%', height: '100%',
-          background: 'linear-gradient(90deg, rgba(127,32,55,0.06) 0%, transparent 80%)',
+          background: 'linear-gradient(90deg, rgba(47,47,47,0.06) 0%, transparent 80%)',
           pointerEvents: 'none', zIndex: 1,
         }} />
         <DataParticles count={18} />
@@ -369,7 +360,7 @@ export default function ServiceChildPage() {
                   background: 'rgba(255,255,255,0.6)',
                   border: `1px solid ${B.primaryBorder}`,
                   fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
-                  boxShadow: '0 4px 12px rgba(107, 46, 116, 0.05)',
+                  boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
                   <CheckCircle size={14} color={data.accentColor} /> {t}
@@ -385,7 +376,7 @@ export default function ServiceChildPage() {
       <section ref={statsRef} style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #140B20 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.09} />
@@ -426,7 +417,7 @@ export default function ServiceChildPage() {
       {/* ══════════ 3. LIGHT: CAPABILITIES + PROCESS ══════════ */}
       <section style={{
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(180deg, #EBE6EB 0%, #E5DCF0 50%, #D9D3E8 100%)',
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 50%, #d7d7d7 100%)',
         overflow: 'hidden', padding: 0,
       }}>
         <SectionGridBg opacity={0.25} />
@@ -536,7 +527,7 @@ export default function ServiceChildPage() {
       {/* <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #1F1236 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.07} />
@@ -588,6 +579,12 @@ export default function ServiceChildPage() {
                 }}>
                   {tier.name}
                 </div>
+                <div style={{
+                  fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
+                  color: B.textDark, marginBottom: 6,
+                }}>
+                  {tier.price}
+                </div>
                 <p style={{
                   fontSize: 'clamp(12px, 1.4vw, 13.5px)',
                   color: B.textDarkMid, lineHeight: 1.6,
@@ -626,7 +623,7 @@ export default function ServiceChildPage() {
       <section style={{
         padding: 'clamp(60px, 10vw, 120px) 0',
         position: 'relative', overflow: 'hidden', zIndex: 1,
-        background: 'linear-gradient(180deg, #F5F1F6 0%, #E8E1F0 100%)',
+        background: 'linear-gradient(180deg, #f3f3f3 0%, #e5e5e5 100%)',
       }}>
         <SectionGridBg opacity={0.2} />
         <DataParticles count={14} />
@@ -639,7 +636,7 @@ export default function ServiceChildPage() {
         <div style={{
           position: 'absolute', bottom: '10%', right: '8%',
           width: 300, height: 300, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(11, 124, 147,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(84,84,84,0.06) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
 
@@ -654,7 +651,7 @@ export default function ServiceChildPage() {
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
               Let's Build Something<br />
               <span style={{
-                background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)',
+                background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               }}>
                 Genuinely Intelligent.
@@ -671,13 +668,13 @@ export default function ServiceChildPage() {
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
                 borderRadius: 'var(--radius-md)',
-                background: `linear-gradient(135deg, ${data.accentColor}, #0A5F75)`,
+                background: `linear-gradient(135deg, ${data.accentColor}, #393939)`,
                 color: B.white, fontWeight: 700,
                 fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
                 letterSpacing: '0.10em', textTransform: 'uppercase',
                 textDecoration: 'none',
-                boxShadow: `0 8px 40px ${data.accentColor}60, 0 0 80px rgba(11, 124, 147,0.15)`,
-                border: '1px solid rgba(11, 124, 147,0.40)', transition: 'all 0.2s',
+                boxShadow: `0 8px 40px ${data.accentColor}60, 0 0 80px rgba(84,84,84,0.15)`,
+                border: '1px solid rgba(84,84,84,0.40)', transition: 'all 0.2s',
               }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>

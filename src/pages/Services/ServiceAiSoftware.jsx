@@ -236,18 +236,18 @@ function ArchDiagram() {
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const features = [
-  { icon: <Cpu/>, title: 'AI-Native Architecture', desc: 'Systems designed from the ground up with intelligence baked in, not bolted on afterward. Every component knows how to serve the model layer.', color: AC },
-  { icon: <Server/>, title: 'Production-Grade APIs', desc: 'FastAPI, REST, and GraphQL endpoints built for real traffic, with auth, rate-limiting, versioning, and monitoring included by default.', color: B.action },
+  { icon: <Cpu/>, title: 'AI-Native Architecture', desc: 'Systems designed from the ground up with intelligence baked in — not bolted on afterward. Every component knows how to serve the model layer.', color: AC },
+  { icon: <Server/>, title: 'Production-Grade APIs', desc: 'FastAPI, REST, and GraphQL endpoints built for real traffic — with auth, rate-limiting, versioning, and monitoring included by default.', color: B.action },
   { icon: <GitBranch/>, title: 'ML Pipeline Integration', desc: 'Training, evaluation, and inference pipelines wired into your application. Model versioning, A/B testing, and automated retraining loops.', color: B.accent },
-  { icon: <Layers/>, title: 'Full-Stack Capability', desc: 'We can own the entire stack (from React frontend to Python backend to cloud infrastructure) or slot into your existing architecture.', color: B.secondary },
+  { icon: <Layers/>, title: 'Full-Stack Capability', desc: 'We can own the entire stack — from React frontend to Python backend to cloud infrastructure — or slot into your existing architecture.', color: B.secondary },
   { icon: <ShieldCheck/>, title: 'Security & Compliance', desc: 'HIPAA, GDPR, and SOC 2 readiness built into the design. Encryption at rest and in transit, role-based access, full audit trails.', color: AC },
-  { icon: <Rocket/>, title: 'Deployed & Monitored', desc: 'Docker, Kubernetes, AWS/GCP. Not just "it works locally": delivered with CI/CD, alerting, and a monitoring dashboard from day one.', color: B.action },
+  { icon: <Rocket/>, title: 'Deployed & Monitored', desc: 'Docker, Kubernetes, AWS/GCP. Not just "it works locally" — delivered with CI/CD, alerting, and a monitoring dashboard from day one.', color: B.action },
 ];
 
 const processes = [
   { step: '01', title: 'Discovery & Architecture', desc: 'We audit your existing stack, define the AI integration points, and produce a system architecture doc before a single line of code is written.' },
-  { step: '02', title: 'Prototype & Validate', desc: 'A working prototype with your real data in hand, usually within two weeks. Validation before full build prevents expensive pivots later.' },
-  { step: '03', title: 'Build & Integrate', desc: 'Sprint-based development with weekly demos. Your team reviews real working software, no PowerPoints, no vague promises.' },
+  { step: '02', title: 'Prototype & Validate', desc: 'A working prototype with your real data in hand — usually within two weeks. Validation before full build prevents expensive pivots later.' },
+  { step: '03', title: 'Build & Integrate', desc: 'Sprint-based development with weekly demos. Your team reviews real working software — no PowerPoints, no vague promises.' },
   { step: '04', title: 'Deploy & Handoff', desc: 'Production deployment with CI/CD, monitoring, and a documented handoff. We stay available for 30 days post-launch for any issues.' },
 ];
 
@@ -278,7 +278,7 @@ const tiers = [
   {
     name: 'Prototype',
     price: 'From $3,500',
-    desc: 'A working proof-of-concept: AI feature integrated, deployed, demo-ready.',
+    desc: 'A working proof-of-concept — AI feature integrated, deployed, demo-ready.',
     features: ['Single AI feature integration', 'REST API endpoint', 'Basic auth + deployment', 'Docker setup', '2–3 week delivery'],
     featured: false,
   },
@@ -299,10 +299,10 @@ const tiers = [
 ];
 
 const stats = [
-  { target: 50,  suffix: '+', label: 'Systems Shipped',    icon: <Rocket size={20}/>,   theme: { color: '#00BBF9', bg: 'rgba(0,187,249,0.1)'   } },
-  { target: 99,  suffix: '%', label: 'Uptime Guarantee',   icon: <Activity size={20}/>, theme: { color: '#9D4EDD', bg: 'rgba(157,78,221,0.1)'  } },
-  { target: 10,  suffix: 'x', label: 'Faster to Market',   icon: <Zap size={20}/>,      theme: { color: '#FF9F1C', bg: 'rgba(255,159,28,0.1)'  } },
-  { target: 100, suffix: '%', label: 'Code Ownership',     icon: <ShieldCheck size={20}/>, theme: { color: '#00F5D4', bg: 'rgba(0,245,212,0.1)' } },
+  { target: 50,  suffix: '+', label: 'Systems Shipped',    icon: <Rocket size={20}/>,   theme: { color: '#8a8a8a', bg: 'rgba(138,138,138,0.1)'   } },
+  { target: 99,  suffix: '%', label: 'Uptime Guarantee',   icon: <Activity size={20}/>, theme: { color: '#767676', bg: 'rgba(118,118,118,0.1)'  } },
+  { target: 10,  suffix: 'x', label: 'Faster to Market',   icon: <Zap size={20}/>,      theme: { color: '#adadad', bg: 'rgba(173,173,173,0.1)'  } },
+  { target: 100, suffix: '%', label: 'Code Ownership',     icon: <ShieldCheck size={20}/>, theme: { color: '#a8a8a8', bg: 'rgba(168,168,168,0.1)' } },
 ];
 
 const processColors = [B.action, B.primary, B.accent, B.secondary];
@@ -319,18 +319,18 @@ export default function ServiceAiSoftware() {
   }, []);
 
   return (
-    <div style={{ background: B.bgLight, minHeight: '100vh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
+    <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
 
       {/* ══════════ 1. HERO (LIGHT) ══════════ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden', zIndex: 1,
         background: B.heroBg,
         paddingTop: 'clamp(40px, 5vw, 50px)',
       }}>
         <HeroGridBg opacity={0.35}/>
-        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(71,35,79,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }}/>
+        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(34,34,34,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }}/>
         <DataParticles count={18}/>
 
         <div style={{
@@ -368,7 +368,7 @@ export default function ServiceAiSoftware() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  We build custom software architectures deeply integrated with AI capabilities, from intelligent APIs and ML pipelines to full-stack applications that learn from your data and scale with your business.
+                  We build custom software architectures deeply integrated with AI capabilities — from intelligent APIs and ML pipelines to full-stack applications that learn from your data and scale with your business.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.5vw, 16px)' }}>
@@ -428,13 +428,13 @@ export default function ServiceAiSoftware() {
                 borderTop: `1px solid ${B.primaryBorder}40`,
               }}
             >
-              {['From Prototype to Production', 'Full-Stack Ownership'].map((t, i) => (
+              {['Starting at $3,500', 'From Prototype to Production', 'Full-Stack Ownership'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)', border: `1px solid ${B.primaryBorder}`,
                   fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
-                  boxShadow: '0 4px 12px rgba(107, 46, 116, 0.05)',
+                  boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
                   <CheckCircle size={14} color={AC}/> {t}
@@ -450,7 +450,7 @@ export default function ServiceAiSoftware() {
       <section ref={statsRef} style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #140B20 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.09}/>
@@ -479,7 +479,7 @@ export default function ServiceAiSoftware() {
       {/* ══════════ 3. LIGHT: CAPABILITIES + PROCESS ══════════ */}
       <section style={{
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(180deg, #EBE6EB 0%, #E5DCF0 50%, #D9D3E8 100%)',
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 50%, #d7d7d7 100%)',
         overflow: 'hidden', padding: 0,
       }}>
         <SectionGridBg opacity={0.25}/>
@@ -493,7 +493,7 @@ export default function ServiceAiSoftware() {
               End-to-End AI Software Capabilities
             </h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              Production-ready AI software engineered for scale, security, and real business impact, from intelligent APIs to full-stack systems.
+              Production-ready AI software engineered for scale, security, and real business impact — from intelligent APIs to full-stack systems.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -536,7 +536,7 @@ export default function ServiceAiSoftware() {
               <SectionBadge>What You Get</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>Full Ownership. Zero Black Boxes.</h2>
               <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
-                Everything you need to own and operate your system independently, no black boxes, no dependency on us.
+                Everything you need to own and operate your system independently — no black boxes, no dependency on us.
               </p>
               {deliverables.map((d, i) => {
                 const color = processColors[i % processColors.length];
@@ -551,7 +551,7 @@ export default function ServiceAiSoftware() {
       {/* <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #1F1236 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.07}/>
@@ -561,7 +561,7 @@ export default function ServiceAiSoftware() {
             <SectionBadge dark style={{ color: B.textDarkMuted }}>Transparent Pricing</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 14 }}>Investment</h2>
             <p className="section-lead dark" style={{ maxWidth: 1200 }}>
-              Fixed-fee engagements. No hourly billing surprises. Scope is agreed in writing before we ever start.
+              Fixed-fee engagements. No hourly billing surprises. Scope is agreed in writing before we start — ever.
             </p>
           </div>
           <div className="grid-pricing">
@@ -580,6 +580,7 @@ export default function ServiceAiSoftware() {
               >
                 {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: B.action, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
                 <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: B.action, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
+                <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>{tier.price}</div>
                 <p style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
                 <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
                   {tier.features.map((f, fi) => (
@@ -611,34 +612,34 @@ export default function ServiceAiSoftware() {
       <section style={{
         padding: `clamp(60px, 10vw, 120px) 0`,
         position: 'relative', overflow: 'hidden', zIndex: 1,
-        background: 'linear-gradient(180deg, #F5F1F6 0%, #E8E1F0 100%)',
+        background: 'linear-gradient(180deg, #f3f3f3 0%, #e5e5e5 100%)',
       }}>
         <SectionGridBg opacity={0.2}/>
         <DataParticles count={14}/>
-        <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(71,35,79,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
-        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(11, 124, 147,0.06) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(34,34,34,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(84,84,84,0.06) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
 
         <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
               Let's Build Something<br/>
-              <span style={{ background: 'linear-gradient(90deg, #C47B8A 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <span style={{ background: 'linear-gradient(90deg, #939393 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Genuinely Intelligent.
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Tell us what you're building. We'll scope it, price it honestly, and start within a week of agreement. No sales pitch.
+              Tell us what you're building. We'll scope it, price it honestly, and start within a week of agreement — no sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/contact" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
-                borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #0A5F75)`,
+                borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #393939)`,
                 color: B.white, fontWeight: 700, fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
                 letterSpacing: '0.10em', textTransform: 'uppercase', textDecoration: 'none',
-                boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(11, 124, 147,0.15)`,
-                border: '1px solid rgba(11, 124, 147,0.40)', transition: 'all 0.2s',
+                boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
+                border: '1px solid rgba(84,84,84,0.40)', transition: 'all 0.2s',
               }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>

@@ -42,34 +42,34 @@ import imgHealthcareFraudBilling from '../assets/case-studies/healthcare-fraud-b
 
 // ─── Card accent palette (cycles across cards) ────────────────────────────────
 const CARD_ACCENTS = [
-  { border: B.action,     glow: 'rgba(11, 124, 147,0.35)',    tag: B.action,    tagBg: 'rgba(11, 124, 147,0.12)',  tagBorder: 'rgba(11, 124, 147,0.25)'  },
-  { border: B.secondary,  glow: 'rgba(147, 33, 63,0.35)',     tag: '#C47B8A',   tagBg: 'rgba(147, 33, 63,0.12)',   tagBorder: 'rgba(147, 33, 63,0.25)'   },
-  { border: B.primary,    glow: 'rgba(107, 46, 116,0.35)',     tag: '#C59AD4',   tagBg: 'rgba(107, 46, 116,0.12)',   tagBorder: 'rgba(107, 46, 116,0.25)'   },
-  { border: B.accent,     glow: 'rgba(200, 138, 70,0.35)',    tag: B.accent,    tagBg: 'rgba(200, 138, 70,0.12)',  tagBorder: 'rgba(200, 138, 70,0.25)'  },
-  { border: '#1A8A6E',    glow: 'rgba(26,138,110,0.35)',    tag: '#3AB896',   tagBg: 'rgba(26,138,110,0.12)',  tagBorder: 'rgba(26,138,110,0.25)'  },
-  { border: '#7B52B5',    glow: 'rgba(123,82,181,0.35)',    tag: '#A07EE0',   tagBg: 'rgba(123,82,181,0.12)',  tagBorder: 'rgba(123,82,181,0.25)'  },
-  { border: '#C0584A',    glow: 'rgba(192,88,74,0.35)',     tag: '#E08070',   tagBg: 'rgba(192,88,74,0.12)',   tagBorder: 'rgba(192,88,74,0.25)'   },
-  { border: '#2A7AB5',    glow: 'rgba(42,122,181,0.35)',    tag: '#5BA5D8',   tagBg: 'rgba(42,122,181,0.12)',  tagBorder: 'rgba(42,122,181,0.25)'  },
+  { border: B.action,     glow: 'rgba(84,84,84,0.35)',    tag: B.action,    tagBg: 'rgba(84,84,84,0.12)',  tagBorder: 'rgba(84,84,84,0.25)'  },
+  { border: B.secondary,  glow: 'rgba(55,55,55,0.35)',     tag: '#939393',   tagBg: 'rgba(55,55,55,0.12)',   tagBorder: 'rgba(55,55,55,0.25)'   },
+  { border: B.primary,    glow: 'rgba(57,57,57,0.35)',     tag: '#adadad',   tagBg: 'rgba(57,57,57,0.12)',   tagBorder: 'rgba(57,57,57,0.25)'   },
+  { border: B.accent,     glow: 'rgba(149,149,149,0.35)',    tag: B.accent,    tagBg: 'rgba(149,149,149,0.12)',  tagBorder: 'rgba(149,149,149,0.25)'  },
+  { border: '#616161',    glow: 'rgba(97,97,97,0.35)',    tag: '#8e8e8e',   tagBg: 'rgba(97,97,97,0.12)',  tagBorder: 'rgba(97,97,97,0.25)'  },
+  { border: '#676767',    glow: 'rgba(103,103,103,0.35)',    tag: '#939393',   tagBg: 'rgba(103,103,103,0.12)',  tagBorder: 'rgba(103,103,103,0.25)'  },
+  { border: '#767676',    glow: 'rgba(118,118,118,0.35)',     tag: '#9b9b9b',   tagBg: 'rgba(118,118,118,0.12)',   tagBorder: 'rgba(118,118,118,0.25)'   },
+  { border: '#666666',    glow: 'rgba(102,102,102,0.35)',    tag: '#959595',   tagBg: 'rgba(102,102,102,0.12)',  tagBorder: 'rgba(102,102,102,0.25)'  },
 ];
 
 // ─── Services & Industries taxonomy ──────────────────────────────────────────
 const SERVICES = [
-  { id: 'ai-ml',          label: 'AI & ML',       icon: <Brain size={15}/>,     color: B.primary,   bg: 'rgba(107, 46, 116,0.10)', border: 'rgba(107, 46, 116,0.30)',  route: '/services-ai-ml' },
-  { id: 'data-analytics', label: 'Data Science',  icon: <BarChart3 size={15}/>, color: B.action,    bg: 'rgba(11, 124, 147,0.10)', border: 'rgba(11, 124, 147,0.30)', route: '/services-data-analytics' },
-  { id: 'ai-software',    label: 'AI Software',   icon: <Code size={15}/>,      color: B.secondary, bg: 'rgba(147, 33, 63,0.10)',  border: 'rgba(147, 33, 63,0.30)',  route: '/services-ai-software' },
-  { id: 'automation',     label: 'Automation',    icon: <Settings2 size={15}/>, color: B.accent,    bg: 'rgba(200, 138, 70,0.12)', border: 'rgba(200, 138, 70,0.35)', route: '/services-automation' },
-  { id: 'ui-ux',          label: 'UI/UX',         icon: <Palette size={15}/>,   color: '#7B52B5',   bg: 'rgba(123,82,181,0.10)', border: 'rgba(123,82,181,0.30)', route: '/services-ui-ux' },
-  { id: 'bioinformatics', label: 'Bioinformatics',icon: <Dna size={15}/>,       color: '#1A8A6E',   bg: 'rgba(26,138,110,0.10)', border: 'rgba(26,138,110,0.30)', route: '/services-bioinformatics' },
+  { id: 'ai-ml',          label: 'AI & ML',       icon: <Brain size={15}/>,     color: B.primary,   bg: 'rgba(57,57,57,0.10)', border: 'rgba(57,57,57,0.30)',  route: '/services-ai-ml' },
+  { id: 'data-analytics', label: 'Data Science',  icon: <BarChart3 size={15}/>, color: B.action,    bg: 'rgba(84,84,84,0.10)', border: 'rgba(84,84,84,0.30)', route: '/services-data-analytics' },
+  { id: 'ai-software',    label: 'AI Software',   icon: <Code size={15}/>,      color: B.secondary, bg: 'rgba(55,55,55,0.10)',  border: 'rgba(55,55,55,0.30)',  route: '/services-ai-software' },
+  { id: 'automation',     label: 'Automation',    icon: <Settings2 size={15}/>, color: B.accent,    bg: 'rgba(149,149,149,0.12)', border: 'rgba(149,149,149,0.35)', route: '/services-automation' },
+  { id: 'ui-ux',          label: 'UI/UX',         icon: <Palette size={15}/>,   color: '#676767',   bg: 'rgba(103,103,103,0.10)', border: 'rgba(103,103,103,0.30)', route: '/services-ui-ux' },
+  { id: 'bioinformatics', label: 'Bioinformatics',icon: <Dna size={15}/>,       color: '#616161',   bg: 'rgba(97,97,97,0.10)', border: 'rgba(97,97,97,0.30)', route: '/services-bioinformatics' },
 ];
 
 // ─── ✅ UPDATED: Agriculture + Education added ────────────────────────────────
 const INDUSTRIES = [
-  { id: 'financial',     label: 'Financial',     icon: <TrendingUp size={15}/>,    color: B.secondary, bg: 'rgba(147, 33, 63,0.10)',  border: 'rgba(147, 33, 63,0.30)',  route: '/industry-financial-service' },
-  { id: 'healthcare',    label: 'Healthcare',    icon: <Brain size={15}/>,         color: B.primary,   bg: 'rgba(107, 46, 116,0.10)',  border: 'rgba(107, 46, 116,0.30)',  route: '/industry-healthcare' },
-  { id: 'retail',        label: 'Retail',        icon: <Layers size={15}/>,        color: B.accent,    bg: 'rgba(200, 138, 70,0.12)', border: 'rgba(200, 138, 70,0.35)', route: '/industry-retail-ecommerce' },
-  { id: 'manufacturing', label: 'Manufacturing', icon: <Cpu size={15}/>,           color: B.action,    bg: 'rgba(11, 124, 147,0.10)', border: 'rgba(11, 124, 147,0.30)', route: '/industry-manufacturing' },
-  { id: 'agriculture',   label: 'Agriculture',   icon: <Leaf size={15}/>,          color: '#1A8A6E',   bg: 'rgba(26,138,110,0.10)', border: 'rgba(26,138,110,0.30)', route: '/industry-agriculture' },
-  { id: 'education',     label: 'Education',     icon: <GraduationCap size={15}/>, color: '#7B52B5',   bg: 'rgba(123,82,181,0.10)', border: 'rgba(123,82,181,0.30)', route: '/industry-education' },
+  { id: 'financial',     label: 'Financial',     icon: <TrendingUp size={15}/>,    color: B.secondary, bg: 'rgba(55,55,55,0.10)',  border: 'rgba(55,55,55,0.30)',  route: '/industry-financial-service' },
+  { id: 'healthcare',    label: 'Healthcare',    icon: <Brain size={15}/>,         color: B.primary,   bg: 'rgba(57,57,57,0.10)',  border: 'rgba(57,57,57,0.30)',  route: '/industry-healthcare' },
+  { id: 'retail',        label: 'Retail',        icon: <Layers size={15}/>,        color: B.accent,    bg: 'rgba(149,149,149,0.12)', border: 'rgba(149,149,149,0.35)', route: '/industry-retail-ecommerce' },
+  { id: 'manufacturing', label: 'Manufacturing', icon: <Cpu size={15}/>,           color: B.action,    bg: 'rgba(84,84,84,0.10)', border: 'rgba(84,84,84,0.30)', route: '/industry-manufacturing' },
+  { id: 'agriculture',   label: 'Agriculture',   icon: <Leaf size={15}/>,          color: '#616161',   bg: 'rgba(97,97,97,0.10)', border: 'rgba(97,97,97,0.30)', route: '/industry-agriculture' },
+  { id: 'education',     label: 'Education',     icon: <GraduationCap size={15}/>, color: '#676767',   bg: 'rgba(103,103,103,0.10)', border: 'rgba(103,103,103,0.30)', route: '/industry-education' },
 ];
 
 // ─── ✅ UPDATED: Case Studies Data — Agriculture + Education added ─────────────
@@ -80,11 +80,11 @@ const caseStudies = [
     serviceLabel: 'AI & Machine Learning', industryLabel: 'Healthcare',
     timeline: '1 commit', investment: 'Concept (README)',
     title: "ICD-10 & CPT Coding Recommendation Engine",
-    summary: "Reads a clinical note and retrieves, ranks, and recommends the most relevant ICD-10 diagnosis and CPT procedure codes, combining keyword matching, embeddings, and semantic similarity with a confidence score and clinical rationale for every suggestion.",
+    summary: "Reads a clinical note and retrieves, ranks, and recommends the most relevant ICD-10 diagnosis and CPT procedure codes — combining keyword matching, embeddings, and semantic similarity with a confidence score and clinical rationale for every suggestion.",
     result: "Concept: coder-ready ICD-10/CPT recommendations",
     resultIcon: <BookOpen size={14}/>,
     metrics: [{ label: 'Approach', value: 'NLP + Embeddings' }, { label: 'Codes', value: 'ICD-10 + CPT' }, { label: 'Stage', value: 'Concept / README' }],
-    accentColor: '#1A8A6E',
+    accentColor: '#616161',
     tags: ['NLP', 'Embeddings', 'Healthcare'],
     image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/ICD-10-CPT-coding-recommendation-engine',
@@ -96,7 +96,7 @@ const caseStudies = [
     serviceLabel: 'Data Science & Analytics', industryLabel: 'Healthcare',
     timeline: '12 commits', investment: 'Full-Stack Build',
     title: "AR Prioritization & Underpayment Recovery Engine",
-    summary: "A public-CMS-data proof of concept that estimates what a Medicare claim should have paid, flags claims that look materially underpaid, and ranks them into a prioritized AR workqueue, backed by a LightGBM classifier and a live FastAPI + React dashboard.",
+    summary: "A public-CMS-data proof of concept that estimates what a Medicare claim should have paid, flags claims that look materially underpaid, and ranks them into a prioritized AR workqueue — backed by a LightGBM classifier and a live FastAPI + React dashboard.",
     result: "6.1M Medicare claims analyzed to flag underpayments for AR review",
     resultIcon: <BarChart3 size={14}/>,
     metrics: [{ label: 'PR-AUC', value: '0.875' }, { label: 'Rows Modeled', value: '6.1M' }, { label: 'Critical-Tier Claims', value: '9,114' }],
@@ -112,7 +112,7 @@ const caseStudies = [
     serviceLabel: 'Data Science & Analytics', industryLabel: 'Retail & E-Commerce',
     timeline: '4 commits', investment: 'Full-Stack Build',
     title: "Conversational Analytics Platform",
-    summary: "A full-stack conversational BI engine that turns plain-language questions like \"show me total sales for laptops in Faisalabad last month\" into structured queries and automatically renders the right chart: bar, line, pie, scatter, KPI cards, or table.",
+    summary: "A full-stack conversational BI engine that turns plain-language questions like \"show me total sales for laptops in Faisalabad last month\" into structured queries and automatically renders the right chart — bar, line, pie, scatter, KPI cards, or table.",
     result: "Plain-language questions auto-rendered as live charts",
     resultIcon: <Zap size={14}/>,
     metrics: [{ label: 'Chart Types', value: '6 Auto-Rendered' }, { label: 'LLM Engine', value: 'Gemini Pro' }, { label: 'Data Layer', value: 'Real-time Firestore' }],
@@ -128,7 +128,7 @@ const caseStudies = [
     serviceLabel: 'AI & Machine Learning', industryLabel: 'Healthcare',
     timeline: '38 commits', investment: 'Full-Stack Build',
     title: "Claim Denial Prediction & Root-Cause Classifier",
-    summary: "An end-to-end Revenue Cycle Management system that predicts a Medicare claim's denial probability before submission and, given a denial remark, classifies the operational root cause with a recommended first-pass fix, served through a FastAPI + Streamlit demo.",
+    summary: "An end-to-end Revenue Cycle Management system that predicts a Medicare claim's denial probability before submission and, given a denial remark, classifies the operational root cause with a recommended first-pass fix — served through a FastAPI + Streamlit demo.",
     result: "Pre-submission denial risk + root-cause classification",
     resultIcon: <CheckCircle size={14}/>,
     metrics: [{ label: 'Risk Tiers', value: '3-Tier' }, { label: 'Root-Cause NLP', value: 'TF-IDF + DistilBERT' }, { label: 'Explainability', value: 'SHAP' }],
@@ -143,8 +143,8 @@ const caseStudies = [
     service: 'ai-software', industry: 'retail',
     serviceLabel: 'AI Software', industryLabel: 'Retail & E-Commerce',
     timeline: '1 commit', investment: 'Live Deployed Build',
-    title: "Command Center: Multi-Branch Restaurant Operations Platform",
-    summary: "A unified operations platform connecting face-verified, geo-fenced staff attendance, order and kitchen tracking, and an automated fraud-detection engine, pushing real-time alerts straight to the owner's WhatsApp across every branch.",
+    title: "Command Center — Multi-Branch Restaurant Operations Platform",
+    summary: "A unified operations platform connecting face-verified, geo-fenced staff attendance, order and kitchen tracking, and an automated fraud-detection engine — pushing real-time alerts straight to the owner's WhatsApp across every branch.",
     result: "Live multi-branch ops platform with real-time fraud alerts",
     resultIcon: <CheckCircle size={14}/>,
     metrics: [{ label: 'Portals', value: '5 Role-Based' }, { label: 'Alerts', value: 'Real-Time WhatsApp' }, { label: 'Verification', value: 'Face + Geo-Fence' }],
@@ -160,12 +160,12 @@ const caseStudies = [
     service: 'data-analytics', industry: 'manufacturing',
     serviceLabel: 'Data Science & Analytics', industryLabel: 'Manufacturing',
     timeline: '8 commits', investment: 'Full-Stack Build',
-    title: "SupplyGuard: Supply Chain Disruption Alert System",
-    summary: "A predictive risk-monitoring system that turns operational health metrics and environmental risk signals into a continuous 0–100 supplier disruption score, helping procurement teams move from reactive to proactive risk management.",
+    title: "SupplyGuard — Supply Chain Disruption Alert System",
+    summary: "A predictive risk-monitoring system that turns operational health metrics and environmental risk signals into a continuous 0–100 supplier disruption score — helping procurement teams move from reactive to proactive risk management.",
     result: "Continuous 0–100 disruption risk scoring per supplier",
     resultIcon: <Zap size={14}/>,
     metrics: [{ label: 'Risk Score', value: '0–100 Scale' }, { label: 'Model', value: 'Logistic Regression' }, { label: 'Risk Tiers', value: 'Low / Med / High' }],
-    accentColor: '#2A7AB5',
+    accentColor: '#666666',
     tags: ['Logistic Regression', 'Flask', 'Risk Scoring'],
     image: imgSupplyGuard,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Supply-Chain-Disruption-Alerts',
@@ -177,11 +177,11 @@ const caseStudies = [
     serviceLabel: 'AI & Machine Learning', industryLabel: 'Financial Services',
     timeline: '3 commits', investment: 'Full-Stack Build',
     title: "Insurance Risk Scoring",
-    summary: "A Gradient Boosting model that scores insurance customers across 45 financial, demographic, health, lifestyle, and behavioral features, classifying each into Low, Medium, or High risk through an interactive Streamlit prediction app.",
+    summary: "A Gradient Boosting model that scores insurance customers across 45 financial, demographic, health, lifestyle, and behavioral features — classifying each into Low, Medium, or High risk through an interactive Streamlit prediction app.",
     result: "45-feature Gradient Boosting risk classifier",
     resultIcon: <CheckCircle size={14}/>,
     metrics: [{ label: 'Model Features', value: '45' }, { label: 'Model', value: 'Gradient Boosting' }, { label: 'Risk Tiers', value: '3' }],
-    accentColor: '#7B52B5',
+    accentColor: '#676767',
     tags: ['Gradient Boosting', 'Streamlit', 'Insurance'],
     image: imgInsuranceRiskScoring,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Insurance-Risk-Scoring',
@@ -193,11 +193,11 @@ const caseStudies = [
     serviceLabel: 'AI & Machine Learning', industryLabel: 'Retail & E-Commerce',
     timeline: '13 commits', investment: 'ML Pipeline Build',
     title: "Telecom Customer Churn Prediction",
-    summary: "A Random Forest churn model (chosen from five algorithms compared head-to-head) that reduces 150 raw features to 25 with SHAP-explained predictions, reaching 86.4% accuracy and a 0.91 AUC-ROC on real telecom behavioral data.",
+    summary: "A Random Forest churn model — chosen from five algorithms compared head-to-head — that reduces 150 raw features to 25 with SHAP-explained predictions, reaching 86.4% accuracy and a 0.91 AUC-ROC on real telecom behavioral data.",
     result: "86.4% accuracy, 0.91 AUC-ROC churn model",
     resultIcon: <BarChart3 size={14}/>,
     metrics: [{ label: 'Accuracy', value: '86.4%' }, { label: 'AUC-ROC', value: '0.91' }, { label: 'Top 20% Capture', value: '65%+ Churners' }],
-    accentColor: '#C0584A',
+    accentColor: '#767676',
     tags: ['Random Forest', 'SHAP', 'SMOTE'],
     image: imgTelecomChurn,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Telecom-Customer_Churn_Prediction',
@@ -209,7 +209,7 @@ const caseStudies = [
     serviceLabel: 'Data Science & Analytics', industryLabel: 'Retail & E-Commerce',
     timeline: '3 commits', investment: 'Concept (README)',
     title: "Retail Demand Forecasting",
-    summary: "A demand-forecasting and analytics concept that analyzes historical retail sales patterns and seasonality to predict future product demand, designed to reduce stockouts and overstock through better inventory planning.",
+    summary: "A demand-forecasting and analytics concept that analyzes historical retail sales patterns and seasonality to predict future product demand — designed to reduce stockouts and overstock through better inventory planning.",
     result: "Concept pipeline for seasonal demand forecasting",
     resultIcon: <TrendingUp size={14}/>,
     metrics: [{ label: 'Approach', value: 'Time-Series' }, { label: 'Focus', value: 'Seasonality' }, { label: 'Stage', value: 'Concept / README' }],
@@ -241,7 +241,7 @@ const caseStudies = [
     serviceLabel: 'Automation & Workflows', industryLabel: 'Financial Services',
     timeline: '6 commits', investment: 'Notebook Prototype',
     title: "Accounts Payable Invoice Extraction",
-    summary: "A document-processing system that extracts key invoice fields (customer details, dates, amounts, charges) from invoice documents and converts them into validated, structured data for accounts payable processing.",
+    summary: "A document-processing system that extracts key invoice fields — customer details, dates, amounts, charges — from invoice documents and converts them into validated, structured data for accounts payable processing.",
     result: "Automated invoice-to-structured-data extraction",
     resultIcon: <CheckCircle size={14}/>,
     metrics: [{ label: 'Fields Extracted', value: '6+ Core Fields' }, { label: 'Output', value: 'Structured Data' }, { label: 'Stage', value: 'Notebook Prototype' }],
@@ -261,7 +261,7 @@ const caseStudies = [
     result: "Concept pipeline for email-to-order automation",
     resultIcon: <CheckCircle size={14}/>,
     metrics: [{ label: 'Channels', value: 'Email + Attachments' }, { label: 'Validation', value: 'Rule-Based' }, { label: 'Stage', value: 'Concept / README' }],
-    accentColor: '#3AB896',
+    accentColor: '#8e8e8e',
     tags: ['Email Automation', 'Python', 'RPA'],
     image: imgEmailOrderIntake,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Email-Based-Order-Intake-System',
@@ -273,11 +273,11 @@ const caseStudies = [
     serviceLabel: 'AI & Machine Learning', industryLabel: 'Agriculture',
     timeline: '1 commit', investment: 'Concept (README)',
     title: "Satellite, Weather & Crop Yield Prediction",
-    summary: "A geospatial pipeline fusing Sentinel-2, MODIS, and Landsat satellite imagery with weather and ground-truth data into one unified dataset, designed to predict crop yield at the location and time level.",
+    summary: "A geospatial pipeline fusing Sentinel-2, MODIS, and Landsat satellite imagery with weather and ground-truth data into one unified dataset — designed to predict crop yield at the location and time level.",
     result: "Concept: multi-source geospatial yield prediction",
     resultIcon: <CheckCircle size={14}/>,
     metrics: [{ label: 'Data Sources', value: '3 Fused' }, { label: 'Models Compared', value: '5' }, { label: 'Stage', value: 'Concept / README' }],
-    accentColor: '#1A8A6E',
+    accentColor: '#616161',
     tags: ['Satellite Data', 'XGBoost', 'LSTM'],
     image: imgSatelliteCropYield,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/satellite-weather-crop-yield',
@@ -289,11 +289,11 @@ const caseStudies = [
     serviceLabel: 'AI & Machine Learning', industryLabel: 'Education',
     timeline: '2 commits', investment: 'Concept (README)',
     title: "Adaptive Learning Engine",
-    summary: "A per-skill mastery engine designed to track each student's progress at the individual math skill level, adjust question difficulty in real time, and recommend the next best exercise. Every student follows a path suited to their own pace.",
+    summary: "A per-skill mastery engine designed to track each student's progress at the individual math skill level, adjust question difficulty in real time, and recommend the next best exercise — so every student follows a path suited to their own pace.",
     result: "Concept: real-time adaptive math mastery tracking",
     resultIcon: <Zap size={14}/>,
     metrics: [{ label: 'Approach', value: 'Bayesian Mastery' }, { label: 'Adjustment', value: 'Real-Time' }, { label: 'Stage', value: 'Concept / README' }],
-    accentColor: '#7B52B5',
+    accentColor: '#676767',
     tags: ['EdTech', 'Bayesian ML', 'Personalization'],
     image: imgAdaptiveLearning,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/adaptive-learning-engine',
@@ -321,7 +321,7 @@ const caseStudies = [
     serviceLabel: 'Bioinformatics & Health Sci', industryLabel: 'Healthcare',
     timeline: '1 commit', investment: 'Concept (README)',
     title: "Single-Cell RNA-seq Automation",
-    summary: "A pipeline designed to automate PCA/t-SNE/UMAP dimensionality reduction and BIC-optimized GMM + DBSCAN clustering, turning noisy, high-dimensional single-cell RNA-seq data into clear, interpretable cell-state groupings.",
+    summary: "A pipeline designed to automate PCA/t-SNE/UMAP dimensionality reduction and BIC-optimized GMM + DBSCAN clustering — turning noisy, high-dimensional single-cell RNA-seq data into clear, interpretable cell-state groupings.",
     result: "Concept: automated clustering for scRNA-seq data",
     resultIcon: <Dna size={14}/>,
     metrics: [{ label: 'Reduction', value: 'PCA / t-SNE / UMAP' }, { label: 'Clustering', value: 'GMM + DBSCAN' }, { label: 'Selection', value: 'BIC-Optimized' }],
@@ -337,7 +337,7 @@ const caseStudies = [
     serviceLabel: 'AI & Machine Learning', industryLabel: 'Financial Services',
     timeline: '1 commit', investment: 'Concept (README)',
     title: "Real-Time Fraud Detection System",
-    summary: "A concept for scoring every incoming transaction in real time: combining a supervised fraud classifier with unsupervised anomaly detection to catch both known and novel fraud patterns, and returning an approve, review, or block decision instantly.",
+    summary: "A concept for scoring every incoming transaction in real time — combining a supervised fraud classifier with unsupervised anomaly detection to catch both known and novel fraud patterns, and returning an approve, review, or block decision instantly.",
     result: "Concept: real-time 0–100 transaction risk scoring",
     resultIcon: <Zap size={14}/>,
     metrics: [{ label: 'Risk Score', value: '0–100 Scale' }, { label: 'Decisioning', value: '3-Tier' }, { label: 'Stage', value: 'Concept / README' }],
@@ -353,11 +353,11 @@ const caseStudies = [
     serviceLabel: 'AI Software', industryLabel: 'Financial Services',
     timeline: '2 commits', investment: 'Mobile App Build',
     title: "Insurance Policy Document Classification System",
-    summary: "A domain-trained document intelligence platform (shipped as a React Native/Expo mobile app) that automatically classifies incoming insurance documents by policy type and extracts key fields, including from scanned, multi-page PDFs.",
+    summary: "A domain-trained document intelligence platform — shipped as a React Native/Expo mobile app — that automatically classifies incoming insurance documents by policy type and extracts key fields, including from scanned, multi-page PDFs.",
     result: "Domain-trained document classification + OCR",
     resultIcon: <CheckCircle size={14}/>,
     metrics: [{ label: 'Platform', value: 'React Native / Expo' }, { label: 'OCR', value: 'Scanned + Multi-Page' }, { label: 'Review', value: 'Human-in-the-Loop' }],
-    accentColor: '#2A7AB5',
+    accentColor: '#666666',
     tags: ['React Native', 'OCR', 'Insurance'],
     image: imgInsurancePolicyClassification,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Insurance-Policy-Document-Classification-System',
@@ -369,7 +369,7 @@ const caseStudies = [
     serviceLabel: 'Automation & Workflows', industryLabel: 'Financial Services',
     timeline: '5 commits', investment: 'Full-Stack Build',
     title: "Regulatory Form Auto-Completion (RPA)",
-    summary: "An AI-powered RPA bot that automatically fills regulatory and government forms from client data stored in Supabase (pausing only for CAPTCHAs or missing information) with a Playwright bot engine and a React human-in-the-loop dashboard.",
+    summary: "An AI-powered RPA bot that automatically fills regulatory and government forms from client data stored in Supabase — pausing only for CAPTCHAs or missing information — with a Playwright bot engine and a React human-in-the-loop dashboard.",
     result: "AI-mapped RPA form-filling with human-in-the-loop review",
     resultIcon: <CheckCircle size={14}/>,
     metrics: [{ label: 'Automation', value: 'Full Field-Fill' }, { label: 'HITL', value: 'CAPTCHA + Missing Data' }, { label: 'Stack', value: 'Playwright + Groq' }],
@@ -385,7 +385,7 @@ const caseStudies = [
     serviceLabel: 'AI & Machine Learning', industryLabel: 'Healthcare',
     timeline: '16 commits', investment: 'ML Notebook Pipeline',
     title: "Healthcare Fraud Detection System (Medicare Billing)",
-    summary: "An ML pipeline analyzing Medicare billing data to surface suspicious providers: combining peer-group Z-score benchmarking, Isolation Forest anomaly detection, E&M upcoding detection, and OIG federal exclusion-list cross-referencing into one composite Fraud Risk Score.",
+    summary: "An ML pipeline analyzing Medicare billing data to surface suspicious providers — combining peer-group Z-score benchmarking, Isolation Forest anomaly detection, E&M upcoding detection, and OIG federal exclusion-list cross-referencing into one composite Fraud Risk Score.",
     result: "3,842 high-risk providers flagged from 44,528 analyzed",
     resultIcon: <Shield size={14}/>,
     metrics: [{ label: 'Providers Analyzed', value: '44,528' }, { label: 'High-Risk Flagged', value: '3,842' }, { label: 'Classifier Accuracy', value: '~96%' }],
@@ -455,7 +455,7 @@ function UnifiedFilterBar({ activeService, activeIndustry, onFilterClick }) {
           fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 800,
           letterSpacing: '0.18em', textTransform: 'uppercase',
           color: B.textMuted, padding: '5px 10px',
-          background: 'rgba(107, 46, 116,0.06)', borderRadius: 6,
+          background: 'rgba(57,57,57,0.06)', borderRadius: 6,
           border: `1px solid ${B.primaryBorder}`,
         }}>
           <SlidersHorizontal size={12} color={B.primary} strokeWidth={2.5} />
@@ -476,7 +476,7 @@ function UnifiedFilterBar({ activeService, activeIndustry, onFilterClick }) {
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
               padding: '5px 12px', borderRadius: 'var(--radius-sm)',
-              background: 'rgba(200, 138, 70,0.12)', border: `1px solid ${B.accent}50`,
+              background: 'rgba(149,149,149,0.12)', border: `1px solid ${B.accent}50`,
               color: B.accent, fontWeight: 700, fontSize: 12,
               cursor: 'pointer', letterSpacing: '0.04em',
             }}
@@ -507,7 +507,7 @@ function UnifiedFilterBar({ activeService, activeIndustry, onFilterClick }) {
                   background: item.color, borderColor: item.color, color: '#fff',
                   boxShadow: `0 4px 16px ${item.border || item.color}55`,
                 } : {
-                  borderColor: item.border || 'rgba(107, 46, 116,0.25)',
+                  borderColor: item.border || 'rgba(57,57,57,0.25)',
                   color: item.color, background: item.bg,
                 }}
               >
@@ -542,7 +542,7 @@ function UnifiedFilterBar({ activeService, activeIndustry, onFilterClick }) {
                   background: item.color, borderColor: item.color, color: '#fff',
                   boxShadow: `0 4px 16px ${item.border || item.color}55`,
                 } : {
-                  borderColor: item.border || 'rgba(107, 46, 116,0.25)',
+                  borderColor: item.border || 'rgba(57,57,57,0.25)',
                   color: item.color, background: item.bg,
                 }}
               >
@@ -581,8 +581,8 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
           style={{
             position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden',
             height: '100%', minHeight: 'clamp(300px, 32vw, 400px)',
-            background: '#0D0A15',
-            border: `1.5px solid ${hovered ? accent.border : 'rgba(107, 46, 116,0.20)'}`,
+            background: '#060606',
+            border: `1.5px solid ${hovered ? accent.border : 'rgba(57,57,57,0.20)'}`,
             boxShadow: hovered
               ? `0 24px 60px -12px ${accent.glow}, 0 0 0 1px ${accent.border}40`
               : '0 8px 32px -8px rgba(0,0,0,0.25)',
@@ -600,7 +600,7 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
               transition: 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
               filter: hovered ? 'brightness(0.75)' : 'brightness(0.68)',
             }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(13,10,21,0) 45%, rgba(13,10,21,0.88) 100%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(6,6,6,0) 45%, rgba(6,6,6,0.88) 100%)' }} />
             <div style={{
               position: 'absolute', top: 0, left: 0, right: 0, height: 3,
               background: `linear-gradient(90deg, ${accent.border}, ${accent.border}60, transparent)`,
@@ -637,7 +637,7 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
           <div style={{
             padding: 'clamp(18px, 2.5vw, 28px)',
             display: 'flex', flexDirection: 'column', flexGrow: 1,
-            background: 'linear-gradient(to bottom, rgba(13,10,21,1) 0%, rgba(20,12,32,1) 100%)',
+            background: 'linear-gradient(to bottom, rgba(6,6,6,1) 0%, rgba(8,8,8,1) 100%)',
           }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
               <span style={{
@@ -748,9 +748,9 @@ export default function CaseStudies() {
   const featuredStudies = caseStudies.filter(cs => cs.featured).slice(0, 3);
 
   const heroTrustItems = [
-    { icon: <SquareCode size={16} />,    label: 'Public GitHub Portfolio', accent: '#3AB896' },
-    { icon: <Layers size={16} />,    label: '6 Service Domains',       accent: '#5BB8CC' },
-    { icon: <BarChart3 size={16} />, label: '20 Projects Shipped',     accent: '#C0A87A' },
+    { icon: <SquareCode size={16} />,    label: 'Public GitHub Portfolio', accent: '#8e8e8e' },
+    { icon: <Layers size={16} />,    label: '6 Service Domains',       accent: '#9e9e9e' },
+    { icon: <BarChart3 size={16} />, label: '20 Projects Shipped',     accent: '#aaaaaa' },
   ];
 
   useEffect(() => {
@@ -778,19 +778,19 @@ export default function CaseStudies() {
   });
 
   return (
-    <div style={{ background: B.bgLight, minHeight: '100vh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-main)' }}>
+    <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-main)' }}>
 
       {/* ═══ 1. HERO ═══ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden', zIndex: 1,
         paddingTop: 'clamp(40px, 5vw, 50px)',
         background: B.heroBg,
       }}>
         <HeroGridBg opacity={0.3} />
-        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(127,32,55,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }} />
-        <div style={{ position: 'absolute', right: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(270deg, rgba(127,32,55,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }} />
+        <div style={{ position: 'absolute', left: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(90deg, rgba(47,47,47,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }} />
+        <div style={{ position: 'absolute', right: 0, top: 0, width: '45%', height: '100%', background: 'linear-gradient(270deg, rgba(47,47,47,0.06) 0%, transparent 80%)', pointerEvents: 'none', zIndex: 1 }} />
         <DataParticles count={18} />
 
         <div style={{
@@ -819,7 +819,7 @@ export default function CaseStudies() {
             >
               <span style={{ color: B.primaryDark }}>Our Work in Action. </span>
               <br className="hero-br" />
-              <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Real Projects & Real Results.
               </span>
             </motion.h1>
@@ -867,12 +867,12 @@ export default function CaseStudies() {
               variants={fadeUp} custom={0.20}
               style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, paddingTop: 10 }}
             >
-              <div style={{ padding: '4px 16px', borderRadius: 99, background: 'rgba(147, 33, 63,0.08)', color: B.secondary, fontSize: 'clamp(10px, 1.8vw, 16px)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em', border: '1px solid rgba(147, 33, 63,0.2)' }}>
+              <div style={{ padding: '4px 16px', borderRadius: 99, background: 'rgba(55,55,55,0.08)', color: B.secondary, fontSize: 'clamp(10px, 1.8vw, 16px)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em', border: '1px solid rgba(55,55,55,0.2)' }}>
                 Highlights
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(8px, 1.5vw, 12px)', justifyContent: 'center', alignItems: 'center' }}>
                 {heroTrustItems.map((item, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: 'clamp(8px, 1.2vw, 10px) clamp(12px, 2vw, 18px)', fontSize: 'clamp(12px, 1.8vw, 18px)', fontWeight: 600, color: 'rgba(58,32,59,0.8)', background: 'rgba(255,255,255,0.5)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(127,32,55,0.1)' }}>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: 'clamp(8px, 1.2vw, 10px) clamp(12px, 2vw, 18px)', fontSize: 'clamp(12px, 1.8vw, 18px)', fontWeight: 600, color: 'rgba(27,27,27,0.8)', background: 'rgba(255,255,255,0.5)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(47,47,47,0.1)' }}>
                     <div style={{ width: 22, height: 22, borderRadius: 5, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${item.accent}15` }}>
                       {React.cloneElement(item.icon, { size: 14, color: item.accent, strokeWidth: 2.5 })}
                     </div>
@@ -896,7 +896,7 @@ export default function CaseStudies() {
       {/* ═══ 2. DARK STATS ═══ */}
       <section style={{
         padding: 'var(--sp-section) 0', position: 'relative', zIndex: 1,
-        background: `linear-gradient(135deg, #170F22 0%, #140B20 100%)`,
+        background: `linear-gradient(135deg, #0a0a0a 0%, #080808 100%)`,
       }}>
         <DataParticles count={10} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
@@ -916,7 +916,7 @@ export default function CaseStudies() {
       {/* ═══ 3. MAIN LIGHT SECTION ═══ */}
       <section style={{
         position: 'relative', zIndex: 2,
-        background: `linear-gradient(180deg, ${B.bgLight} 0%, #F2EBF9 50%, #E8E1F0 100%)`,
+        background: `linear-gradient(180deg, ${B.bgLight} 0%, #efefef 50%, #e5e5e5 100%)`,
         overflow: 'clip', padding: 0,
       }}>
         <SectionGridBg opacity={0.2} />
@@ -968,7 +968,7 @@ export default function CaseStudies() {
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ textAlign: 'center', marginBottom: 40 }}>
               {activeService || activeIndustry ? (
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 16, padding: 'clamp(10px, 1.5vw, 12px) clamp(20px, 3vw, 28px)', borderRadius: 16, background: B.primaryDark, boxShadow: '0 8px 30px rgba(44, 22, 54,0.25)', border: `1px solid rgba(255,255,255,0.1)` }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 16, padding: 'clamp(10px, 1.5vw, 12px) clamp(20px, 3vw, 28px)', borderRadius: 16, background: B.primaryDark, boxShadow: '0 8px 30px rgba(19,19,19,0.25)', border: `1px solid rgba(255,255,255,0.1)` }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <Filter size={18} color={B.accent} />
                     <span style={{ fontSize: 'clamp(13px, 1.6vw, 16px)', fontWeight: 700, color: B.white }}>Showing {filtered.length} result{filtered.length !== 1 ? 's' : ''}</span>
@@ -1011,8 +1011,8 @@ export default function CaseStudies() {
 
         {/* ── 3c. CTA ── */}
         <div style={{ position: 'relative', zIndex: 2, padding: 'var(--sp-section) 0', paddingTop: 'clamp(48px, 8vw, 100px)', paddingBottom: 'clamp(48px, 8vw, 100px)' }}>
-          <div style={{ position: 'absolute', top: '15%', left: '8%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(107, 46, 116,0.10) 0%, transparent 70%)`, pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(11, 124, 147,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: '15%', left: '8%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, rgba(57,57,57,0.10) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(84,84,84,0.08) 0%, transparent 70%)`, pointerEvents: 'none' }} />
 
           <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center' }}>
             <motion.div
@@ -1022,7 +1022,7 @@ export default function CaseStudies() {
               <SectionBadge style={{ color: B.primary }}>Have a similar challenge?</SectionBadge>
               <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
                 Let's Build Your<br />
-                <span style={{ background: 'linear-gradient(90deg, #B02A48 25%, #93213F 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                   Success Story Next
                 </span>
               </h2>
@@ -1033,12 +1033,12 @@ export default function CaseStudies() {
                 <Link to="/book-discovery" style={{
                   display: 'inline-flex', alignItems: 'center', gap: 12,
                   padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
-                  borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #0A5F75)`,
+                  borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #393939)`,
                   color: B.white, fontFamily: 'var(--font-main)', fontWeight: 700,
                   fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)', letterSpacing: '0.10em',
                   textTransform: 'uppercase', textDecoration: 'none',
-                  boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(11, 124, 147,0.15)`,
-                  border: `1px solid rgba(11, 124, 147,0.40)`,
+                  boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
+                  border: `1px solid rgba(84,84,84,0.40)`,
                 }}>
                   <Zap size={18} /> Book a Free Consultation <ArrowRight size={18} />
                 </Link>

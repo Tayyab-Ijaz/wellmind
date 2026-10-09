@@ -31,10 +31,10 @@ function CursorGrid({
   opacity,
   aspectRatio,
   posStyle,
-  baseColor   = 'rgba(127,32,55,0.55)',
-  brightColor = 'rgba(147, 33, 63,1.0)',
-  lineColor1  = 'rgba(107, 46, 116,0.95)',
-  lineColor2  = 'rgba(11, 124, 147,0.85)',
+  baseColor   = 'rgba(47,47,47,0.55)',
+  brightColor = 'rgba(55,55,55,1.0)',
+  lineColor1  = 'rgba(57,57,57,0.95)',
+  lineColor2  = 'rgba(84,84,84,0.85)',
 }) {
   const [ref, cur] = useCursorOnElement();
   const targetRadius = cur.moving ? 260 : 80;
@@ -49,8 +49,8 @@ function CursorGrid({
         <defs>
           <pattern id={`hexBase${uid}`} x="0" y="0" width="132" height="118" patternUnits="userSpaceOnUse">
             <polyline points="66,4 132,37 132,81 66,114 0,81 0,37 66,4" fill="none" stroke={baseColor} strokeWidth="1.4" />
-            <line x1="66" y1="4" x2="66" y2="114" stroke="rgba(127,32,55,0.38)" strokeWidth="1.0" />
-            <line x1="0" y1="59" x2="132" y2="59" stroke="rgba(127,32,55,0.32)" strokeWidth="0.95" />
+            <line x1="66" y1="4" x2="66" y2="114" stroke="rgba(47,47,47,0.38)" strokeWidth="1.0" />
+            <line x1="0" y1="59" x2="132" y2="59" stroke="rgba(47,47,47,0.32)" strokeWidth="0.95" />
           </pattern>
 
           <pattern id={`hexBright${uid}`} x="0" y="0" width="132" height="118" patternUnits="userSpaceOnUse">
@@ -98,7 +98,7 @@ function CursorGrid({
             style={{ opacity: cur.moving ? 1 : 0.25, transition: 'opacity 800ms ease' }}
           />
         )}
-        <rect width="100%" height="100%" fill="rgba(127,32,55,0.04)" mask={`url(#sideMask${uid})`} />
+        <rect width="100%" height="100%" fill="rgba(47,47,47,0.04)" mask={`url(#sideMask${uid})`} />
       </svg>
     </div>
   );

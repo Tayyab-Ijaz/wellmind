@@ -183,17 +183,17 @@ function PipelineFlow() {
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const features = [
-  { icon: <Repeat/>, title: 'End-to-End Workflow Automation', desc: 'Map, digitise, and automate entire business workflows, from data ingestion to reporting. We identify the 20% of manual steps causing 80% of delays.', color: AC },
+  { icon: <Repeat/>, title: 'End-to-End Workflow Automation', desc: 'Map, digitise, and automate entire business workflows — from data ingestion to reporting. We identify the 20% of manual steps causing 80% of delays.', color: AC },
   { icon: <Webhook/>, title: 'API & System Integration', desc: 'Connect your CRM, ERP, data warehouse, and 50+ other tools into a single automated data flow. Webhooks, polling, and event-driven triggers all covered.', color: B.action },
   { icon: <GitMerge/>, title: 'Pipeline Orchestration', desc: 'Airflow, Prefect, and Nextflow-based pipelines for data engineering and bioinformatics. Dependency management, retries, and alerting built-in.', color: B.primary },
   { icon: <AlertTriangle/>, title: 'Monitoring & Error Handling', desc: 'Every automation we build includes alerting for failures, structured logging, and auto-retry logic. You get notified before your users notice anything.', color: B.secondary },
   { icon: <Database/>, title: 'Data Pipeline Engineering', desc: 'ETL/ELT pipelines from messy source data to clean, queryable warehouses. Incremental loading, deduplication, schema validation included.', color: AC },
-  { icon: <Settings2/>, title: 'Intelligent RPA', desc: 'Rule-based automation upgraded with AI: document extraction, form classification, decision routing. RPA that adapts to changing inputs.', color: B.action },
+  { icon: <Settings2/>, title: 'Intelligent RPA', desc: 'Rule-based automation upgraded with AI — document extraction, form classification, decision routing. RPA that adapts to changing inputs.', color: B.action },
 ];
 
 const processes = [
   { step: '01', title: 'Workflow Audit', desc: 'We map your existing manual processes end-to-end, identify automation candidates, and rank them by ROI potential before touching any code.' },
-  { step: '02', title: 'Architecture Design', desc: 'Choose the right tool for each workflow: Airflow, Prefect, Python scripts, or API integrations. Over-engineering wastes money; we scope precisely.' },
+  { step: '02', title: 'Architecture Design', desc: 'Choose the right tool for each workflow — Airflow, Prefect, Python scripts, or API integrations. Over-engineering wastes money; we scope precisely.' },
   { step: '03', title: 'Build & Test with Real Data', desc: 'Automation is only as reliable as its testing. We build with your actual data and edge cases, not synthetic test fixtures.' },
   { step: '04', title: 'Monitor & Iterate', desc: 'Post-launch we review alerting thresholds, tune retry logic, and optimise for the failure modes that only appear in production.' },
 ];
@@ -212,7 +212,7 @@ const tiers = [
   {
     name: 'Single Workflow',
     price: 'From $2,500',
-    desc: 'Automate one defined, high-value manual process, end to end.',
+    desc: 'Automate one defined, high-value manual process — end to end.',
     features: ['1 workflow automated', 'API or script-based', 'Basic monitoring + alerts', 'Handoff documentation', '2–3 week delivery'],
     featured: false,
   },
@@ -227,7 +227,7 @@ const tiers = [
     name: 'Retainer',
     price: 'From $1,500',
     priceSuffix: '/ month',
-    desc: 'Ongoing automation engineering: new workflows, maintenance, optimisation.',
+    desc: 'Ongoing automation engineering — new workflows, maintenance, optimisation.',
     features: ['Monthly automation budget', 'Priority response SLA', 'Quarterly workflow review', 'On-call troubleshooting', 'Cancel anytime'],
     featured: false,
   },
@@ -235,9 +235,9 @@ const tiers = [
 
 const stats = [
   { target: 70,  suffix: '%', label: 'Time Saved',        icon: <TrendingDown size={20}/>, theme: { color: AC,         bg: `${AC}15`              } },
-  { target: 97,  suffix: '%', label: 'Pipeline Uptime',   icon: <Activity size={20}/>,     theme: { color: B.action,   bg: 'rgba(11, 124, 147,0.1)' } },
-  { target: 6,   suffix: 'wk', label: 'Avg. Delivery',   icon: <Timer size={20}/>,         theme: { color: '#FF9F1C',  bg: 'rgba(255,159,28,0.1)' } },
-  { target: 0,   suffix: '$',  label: 'Surprise Invoices',icon: <Shield size={20}/>,        theme: { color: '#00F5D4',  bg: 'rgba(0,245,212,0.1)'  } },
+  { target: 97,  suffix: '%', label: 'Pipeline Uptime',   icon: <Activity size={20}/>,     theme: { color: B.action,   bg: 'rgba(84,84,84,0.1)' } },
+  { target: 6,   suffix: 'wk', label: 'Avg. Delivery',   icon: <Timer size={20}/>,         theme: { color: '#adadad',  bg: 'rgba(173,173,173,0.1)' } },
+  { target: 0,   suffix: '$',  label: 'Surprise Invoices',icon: <Shield size={20}/>,        theme: { color: '#a8a8a8',  bg: 'rgba(168,168,168,0.1)'  } },
 ];
 
 const processColors = [AC, B.action, B.primary, B.secondary];
@@ -254,11 +254,11 @@ export default function ServicesAutomation() {
   }, []);
 
   return (
-    <div style={{ background: B.bgLight, minHeight: '100vh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
+    <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
 
       {/* ══════════ 1. HERO (LIGHT) ══════════ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden', zIndex: 1,
         background: B.heroBg,
@@ -298,7 +298,7 @@ export default function ServicesAutomation() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  Intelligent RPA and end-to-end workflow automation that replaces repetitive manual tasks with reliable, monitored pipelines, delivering measurable ROI within weeks, not months.
+                  Intelligent RPA and end-to-end workflow automation that replaces repetitive manual tasks with reliable, monitored pipelines — delivering measurable ROI within weeks, not months.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.5vw, 16px)' }}>
@@ -343,13 +343,13 @@ export default function ServicesAutomation() {
               transition={{ delay: 0.5, duration: 0.5 }}
               style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(12px, 2vw, 20px)', justifyContent: 'center', width: '100%', paddingTop: 'clamp(10px, 2vw, 20px)', borderTop: `1px solid ${B.primaryBorder}40` }}
             >
-              {['Fixed-Fee Delivery', 'ROI in Weeks, Not Months'].map((t, i) => (
+              {['Starting at $2,500', 'Fixed-Fee Delivery', 'ROI in Weeks, Not Months'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)', border: `1px solid ${B.primaryBorder}`,
                   fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
-                  boxShadow: '0 4px 12px rgba(107, 46, 116, 0.05)',
+                  boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
                   <CheckCircle size={14} color={AC}/> {t}
@@ -364,7 +364,7 @@ export default function ServicesAutomation() {
       <section ref={statsRef} style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #140B20 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.09}/>
@@ -385,7 +385,7 @@ export default function ServicesAutomation() {
       {/* ══════════ 3. LIGHT: CAPABILITIES + PROCESS ══════════ */}
       <section style={{
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(180deg, #EBE6EB 0%, #E5DCF0 50%, #D9D3E8 100%)',
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 50%, #d7d7d7 100%)',
         overflow: 'hidden', padding: 0,
       }}>
         <SectionGridBg opacity={0.25}/>
@@ -397,7 +397,7 @@ export default function ServicesAutomation() {
             <SectionBadge>Services</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 12 }}>What We Automate</h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              From a single bottleneck to an entire operations stack, we scope to where the ROI is and build pipelines that run without babysitting.
+              From a single bottleneck to an entire operations stack — we scope to where the ROI is and build pipelines that run without babysitting.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -440,7 +440,7 @@ export default function ServicesAutomation() {
               <SectionBadge>What You Get</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>Documented, Monitored, Yours.</h2>
               <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
-                Every automation is documented, monitored, and fully owned by you on handoff. There's no dependency on us to keep it running.
+                Every automation is documented, monitored, and fully owned by you on handoff — no dependency on us to keep it running.
               </p>
               {deliverables.map((d, i) => {
                 const color = processColors[i % processColors.length];
@@ -455,7 +455,7 @@ export default function ServicesAutomation() {
       {/* <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #1F1236 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.07}/>
@@ -465,7 +465,7 @@ export default function ServicesAutomation() {
             <SectionBadge dark style={{ color: B.textDarkMuted }}>Transparent Pricing</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 14 }}>Investment</h2>
             <p className="section-lead dark" style={{ maxWidth: 1200 }}>
-              Fixed fees. Scope agreed before we start. No surprise invoices, ever.
+              Fixed fees. Scope agreed before we start. No surprise invoices — ever.
             </p>
           </div>
           <div className="grid-pricing">
@@ -484,6 +484,9 @@ export default function ServicesAutomation() {
               >
                 {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: B.action, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
                 <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: B.action, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
+                <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>
+                  {tier.price}{tier.priceSuffix && <span style={{ fontSize: '0.45em', fontWeight: 600, color: B.textDarkMid }}> {tier.priceSuffix}</span>}
+                </div>
                 <p style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
                 <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
                   {tier.features.map((f, fi) => (
@@ -515,34 +518,34 @@ export default function ServicesAutomation() {
       <section style={{
         padding: `clamp(60px, 10vw, 120px) 0`,
         position: 'relative', overflow: 'hidden', zIndex: 1,
-        background: 'linear-gradient(180deg, #F5F1F6 0%, #E8E1F0 100%)',
+        background: 'linear-gradient(180deg, #f3f3f3 0%, #e5e5e5 100%)',
       }}>
         <SectionGridBg opacity={0.2}/>
         <DataParticles count={14}/>
         <div style={{ position: 'absolute', top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, ${AC}08 0%, transparent 70%)`, pointerEvents: 'none' }}/>
-        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(11, 124, 147,0.06) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', bottom: '10%', right: '8%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(84,84,84,0.06) 0%, transparent 70%)`, pointerEvents: 'none' }}/>
 
         <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
               Stop the Manual Work.<br/>
-              <span style={{ background: `linear-gradient(90deg, #D4954E 25%, #C88A46 75%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <span style={{ background: `linear-gradient(90deg, #a0a0a0 25%, #959595 75%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Start Automating Today.
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. We'll audit your biggest manual bottleneck and tell you what it would take to automate it. No sales pitch.
+              Book a free 30-minute call. We'll audit your biggest manual bottleneck and tell you what it would take to automate it — no sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/contact" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
-                borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #0A5F75)`,
+                borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #393939)`,
                 color: B.white, fontWeight: 700, fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
                 letterSpacing: '0.10em', textTransform: 'uppercase', textDecoration: 'none',
-                boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(11, 124, 147,0.15)`,
-                border: '1px solid rgba(11, 124, 147,0.40)', transition: 'all 0.2s',
+                boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
+                border: '1px solid rgba(84,84,84,0.40)', transition: 'all 0.2s',
               }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>

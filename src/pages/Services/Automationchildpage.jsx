@@ -294,9 +294,9 @@ function TechBadge({ label, color }) {
 // ─── Shared Styles ────────────────────────────────────────────────────────────
 const SharedStyles = () => (
   <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
     .section-h2 {
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
       font-size: var(--fs-section-h2);
       color: var(--c-text-main); line-height: 1.15; margin-bottom: 14px;
     }
@@ -310,8 +310,8 @@ const SharedStyles = () => (
     .btn-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       padding: clamp(12px, 2vw, 18px) clamp(20px, 4vw, 40px);
-      border-radius: 12px; background: #B45309; color: #ffffff;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      border-radius: 12px; background: #646464; color: #ffffff;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
       font-size: clamp(0.85rem, 1.8vw, 1.2rem);
       letter-spacing: 0.10em; text-transform: uppercase; text-decoration: none;
       transition: opacity 0.2s, transform 0.2s;
@@ -319,11 +319,11 @@ const SharedStyles = () => (
     .btn-secondary {
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       padding: clamp(10px, 1.8vw, 16px) clamp(20px, 4vw, 40px);
-      border-radius: 12px; background: transparent; color: #93213F;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      border-radius: 12px; background: transparent; color: #373737;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
       font-size: clamp(0.85rem, 1.8vw, 1.2rem);
       letter-spacing: 0.10em; text-decoration: none;
-      border: 2px solid #93213F; transition: background 0.2s, transform 0.2s;
+      border: 2px solid #373737; transition: background 0.2s, transform 0.2s;
     }
     .grid-stats    { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 24px); }
     .grid-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 24px); }
@@ -383,18 +383,18 @@ export default function AutomationChildPage() {
   if (!data) return null;
 
   const AC = data.accentColor;
-  const processColors = [AC, '#0B7C93', '#633068', '#1B6B3A'];
+  const processColors = [AC, '#545454', '#363636', '#404040'];
 
   return (
     <div style={{
-      background: B.bgLight, minHeight: '100vh',
+      background: B.bgLight, minHeight: '100svh',
       overflowX: 'clip', position: 'relative',
       fontFamily: 'var(--font-body, sans-serif)',
     }}>
 
       {/* ══════════ 1. HERO (LIGHT) ══════════ */}
       <section style={{
-        position: 'relative', minHeight: '100vh',
+        position: 'relative', minHeight: '100svh',
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden', zIndex: 1,
         background: B.heroBg,
@@ -540,7 +540,7 @@ export default function AutomationChildPage() {
                   background: 'rgba(255,255,255,0.6)',
                   border: `1px solid ${B.primaryBorder}`,
                   fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
-                  boxShadow: '0 4px 12px rgba(107, 46, 116, 0.05)',
+                  boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
                   <CheckCircle size={14} color={AC} /> {t}
@@ -556,7 +556,7 @@ export default function AutomationChildPage() {
       <section ref={statsRef} style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #140B20 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.09} />
@@ -597,7 +597,7 @@ export default function AutomationChildPage() {
       {/* ══════════ 3. LIGHT: CAPABILITIES + PROCESS ══════════ */}
       <section style={{
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(180deg, #EBE6EB 0%, #E5DCF0 50%, #D9D3E8 100%)',
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 50%, #d7d7d7 100%)',
         overflow: 'hidden', padding: 0,
       }}>
         <SectionGridBg opacity={0.25} />
@@ -708,7 +708,7 @@ export default function AutomationChildPage() {
       {/* <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #170F22 0%, #1F1236 100%)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
         display: 'flex', alignItems: 'center',
       }}>
         <CircuitBg opacity={0.07} />
@@ -760,6 +760,17 @@ export default function AutomationChildPage() {
                 }}>
                   {tier.name}
                 </div>
+                <div style={{
+                  fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
+                  color: B.textDark, marginBottom: 6,
+                }}>
+                  {tier.price}
+                  {tier.priceSuffix && (
+                    <span style={{ fontSize: '0.45em', fontWeight: 600, color: B.textDarkMid }}>
+                      {' '}{tier.priceSuffix}
+                    </span>
+                  )}
+                </div>
                 <p style={{
                   fontSize: 'clamp(12px, 1.4vw, 13.5px)',
                   color: B.textDarkMid, lineHeight: 1.6,
@@ -798,7 +809,7 @@ export default function AutomationChildPage() {
       <section style={{
         padding: 'clamp(60px, 10vw, 120px) 0',
         position: 'relative', overflow: 'hidden', zIndex: 1,
-        background: 'linear-gradient(180deg, #F5F1F6 0%, #E8E1F0 100%)',
+        background: 'linear-gradient(180deg, #f3f3f3 0%, #e5e5e5 100%)',
       }}>
         <SectionGridBg opacity={0.2} />
         <DataParticles count={14} />
@@ -811,7 +822,7 @@ export default function AutomationChildPage() {
         <div style={{
           position: 'absolute', bottom: '10%', right: '8%',
           width: 300, height: 300, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(11, 124, 147,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(84,84,84,0.06) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
 
@@ -826,7 +837,7 @@ export default function AutomationChildPage() {
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
               Stop the Manual Work.<br />
               <span style={{
-                background: 'linear-gradient(90deg, #D4954E 25%, #B45309 75%)',
+                background: 'linear-gradient(90deg, #a0a0a0 25%, #646464 75%)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               }}>
                 Start Automating Today.
@@ -843,13 +854,13 @@ export default function AutomationChildPage() {
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
                 borderRadius: 'var(--radius-md)',
-                background: `linear-gradient(135deg, ${B.action}, #0A5F75)`,
+                background: `linear-gradient(135deg, ${B.action}, #393939)`,
                 color: B.white, fontWeight: 700,
                 fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
                 letterSpacing: '0.10em', textTransform: 'uppercase',
                 textDecoration: 'none',
-                boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(11, 124, 147,0.15)`,
-                border: '1px solid rgba(11, 124, 147,0.40)', transition: 'all 0.2s',
+                boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
+                border: '1px solid rgba(84,84,84,0.40)', transition: 'all 0.2s',
               }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>

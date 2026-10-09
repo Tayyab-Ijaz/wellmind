@@ -24,7 +24,7 @@ const SERVICES_DATA = {
       heading:     'AI & Machine Learning',
       tagline:     'End-to-end ML pipelines from data to production.',
       link:        '/services-ai-ml',
-      accentColor: '#6226A0',
+      accentColor: '#373737',
       categories: [
         {
           name: 'Modeling & Prediction',
@@ -69,7 +69,7 @@ const SERVICES_DATA = {
       heading:     'Data Science & Analytics',
       tagline:     'Transform raw data into competitive intelligence.',
       link:        '/services-data-analytics',
-      accentColor: '#0B7C93',
+      accentColor: '#545454',
       categories: [
         {
           name: 'Business Intelligence',
@@ -114,7 +114,7 @@ const SERVICES_DATA = {
       heading:     'AI-Powered Software',
       tagline:     'Custom products with ML capabilities built into the core.',
       link:        '/services-ai-software',
-      accentColor: '#1B6B3A',
+      accentColor: '#404040',
       categories: [
         {
           name: 'Product Development',
@@ -159,7 +159,7 @@ const SERVICES_DATA = {
       heading:     'Automation & Workflows',
       tagline:     'Intelligent automation that eliminates manual operations.',
       link:        '/services-automation',
-      accentColor: '#B45309',
+      accentColor: '#646464',
       categories: [
         {
           name: 'Process Automation',
@@ -204,7 +204,7 @@ const SERVICES_DATA = {
       heading:     'UI/UX & Digital Design',
       tagline:     'Human-centric interfaces for complex data-heavy products.',
       link:        '/services-ui-ux',
-      accentColor: '#C2185B',
+      accentColor: '#464646',
       categories: [
         {
           name: 'Product Design',
@@ -249,7 +249,7 @@ const SERVICES_DATA = {
       heading:     'Bioinformatics & Health AI',
       tagline:     'Genomic pipelines, multi-omics analysis & clinical AI tools.',
       link:        '/services-bioinformatics',
-      accentColor: '#0F766E',
+      accentColor: '#4b4b4b',
       categories: [
         {
           name: 'Genomic & Sequencing',
@@ -323,7 +323,7 @@ export default function ServicesMegaMenu({ onClose }) {
               paddingRight:   DT.leftPanelPadR,
               paddingLeft:    DT.leftPadInline,
               background:     activeId === section.id
-                ? `linear-gradient(90deg, rgba(74,43,95,0.10) 0%, rgba(74,43,95,0.04) 100%)`
+                ? `linear-gradient(90deg, rgba(42,42,42,0.10) 0%, rgba(42,42,42,0.04) 100%)`
                 : 'transparent',
               borderLeft:   `3px solid ${activeId === section.id ? B.primaryMid : 'transparent'}`,
               borderTop:    'none',
@@ -337,7 +337,7 @@ export default function ServicesMegaMenu({ onClose }) {
             }}
           >
             <span style={{
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               fontSize:   18,
               fontWeight: activeId === section.id ? 700 : 500,
               color:      activeId === section.id ? B.primaryMid : B.textMid,
@@ -395,7 +395,7 @@ export default function ServicesMegaMenu({ onClose }) {
                 alignItems:   'flex-start',
                 justifyContent: 'space-between',
                 gap:           20,
-                background:   `linear-gradient(135deg, rgba(74,43,95,0.03) 0%, rgba(255,255,255,0) 60%)`,
+                background:   `linear-gradient(135deg, rgba(42,42,42,0.03) 0%, rgba(255,255,255,0) 60%)`,
               }}>
                 <div style={{ flex: 1 }}>
                   <PillBadge label="Service" accentColor={currentSection.accentColor} />
@@ -444,7 +444,7 @@ export default function ServicesMegaMenu({ onClose }) {
                             padding:        `8px 10px`,
                             borderRadius:   DT.itemRadius,
                             textDecoration: 'none',
-                            fontFamily:     "'Plus Jakarta Sans', sans-serif",
+                            fontFamily:     "'Space Grotesk', sans-serif",
                             fontSize:       DT.itemSize,
                             fontWeight:     500,
                             color:          B.textMid,

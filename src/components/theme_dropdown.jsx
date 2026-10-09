@@ -7,22 +7,22 @@
 
 // ─── COLOR PALETTE ────────────────────────────────────────────────────────────
 export const B = {
-  primary:        '#6B2E74',
-  primaryDark:    '#2C1636',
-  primaryMid:     '#47234F',
-  primaryLight:   'rgba(74,43,95,0.08)',
-  secondary:      '#93213F',
-  secondaryLight: '#8a1c3730',
-  primaryBorder:  'rgba(74,43,95,0.12)',
-  textMain:       '#1A0F2E',
-  textMid:        'rgba(26,15,46,0.62)',
-  textMuted:      'rgba(26, 15, 46, 0.67)',
+  primary:        '#393939',
+  primaryDark:    '#131313',
+  primaryMid:     '#222222',
+  primaryLight:   'rgba(42,42,42,0.08)',
+  secondary:      '#373737',
+  secondaryLight: '#30303030',
+  primaryBorder:  'rgba(42,42,42,0.12)',
+  textMain:       '#0b0b0b',
+  textMid:        'rgba(11,11,11,0.62)',
+  textMuted:      'rgba(11,11,11,0.67)',
   glass:          'rgba(255,255,255,0.85)',
-  glassBorder:    'rgba(74,43,95,0.12)',
-  action:         '#0B7C93',
-  actionLight:    'rgba(11, 124, 147,0.08)',
+  glassBorder:    'rgba(42,42,42,0.12)',
+  action:         '#545454',
+  actionLight:    'rgba(84,84,84,0.08)',
   surface:        '#FAFAFA',
-  surfaceHover:   'rgba(74,43,95,0.055)',
+  surfaceHover:   'rgba(42,42,42,0.055)',
 };
 
 // ─── LAYOUT / SPACING TOKENS ──────────────────────────────────────────────────
@@ -61,8 +61,8 @@ export const DT = {
   accentBarHeight:  16,
 
   // Borders
-  subtleBorder:     'rgba(74,43,95,0.07)',
-  thinBorder:       'rgba(74,43,95,0.09)',
+  subtleBorder:     'rgba(42,42,42,0.07)',
+  thinBorder:       'rgba(42,42,42,0.09)',
 };
 
 // ─── ANIMATION VARIANTS ───────────────────────────────────────────────────────
@@ -102,7 +102,7 @@ export function OverlineLabel({ children, style = {} }) {
       textTransform: 'uppercase',
       color:         B.primaryMid,
       opacity:       0.55,
-      fontFamily:    "'Plus Jakarta Sans', sans-serif",
+      fontFamily:    "'Space Grotesk', sans-serif",
       ...style,
     }}>
       {children}
@@ -145,7 +145,7 @@ export function PillBadge({ label, accentColor, style = {} }) {
         letterSpacing: '0.10em',
         textTransform: 'uppercase',
         color:         B.primaryMid,
-        fontFamily:    "'Plus Jakarta Sans', sans-serif",
+        fontFamily:    "'Space Grotesk', sans-serif",
       }}>
         {label}
       </span>
@@ -158,7 +158,7 @@ export function PanelHeading({ heading, tagline }) {
   return (
     <div style={{ flex: 1 }}>
       <h3 style={{
-        fontFamily:    "'Plus Jakarta Sans', sans-serif",
+        fontFamily:    "'Space Grotesk', sans-serif",
         fontWeight:    800,
         fontSize:      DT.headingSize,
         color:         B.primaryDark,
@@ -169,7 +169,7 @@ export function PanelHeading({ heading, tagline }) {
         {heading}
       </h3>
       <p style={{
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: "'Space Grotesk', sans-serif",
         fontSize:   DT.taglineSize,
         color:      B.textMid,
         margin:     '6px 0 0',
@@ -192,7 +192,7 @@ export function LeftPanel({ children, style = {} }) {
       flexDirection:  'column',
       paddingTop:     8,
       paddingBottom:  20,
-      background:     'rgba(74,43,95,0.022)',
+      background:     'rgba(42,42,42,0.022)',
       ...style,
     }}>
       {children}
@@ -208,7 +208,7 @@ export function RightStrip({ children, style = {} }) {
       flexShrink:     0,
       borderLeft:     `1px solid ${B.primaryBorder}`,
       padding:        `${DT.rightStripPadY}px ${DT.rightStripPadX}px`,
-      background:     `linear-gradient(180deg, rgba(74,43,95,0.04) 0%, rgba(74,43,95,0.015) 100%)`,
+      background:     `linear-gradient(180deg, rgba(42,42,42,0.04) 0%, rgba(42,42,42,0.015) 100%)`,
       display:        'flex',
       flexDirection:  'column',
       ...style,
