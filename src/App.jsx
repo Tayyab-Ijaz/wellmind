@@ -118,6 +118,9 @@ function App() {
               <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
               <Route path="/terms-of-service" element={<TermsOfService/>}/>
               <Route path="/cookie-policy" element={<CookiePolicy/>}/>
+              <Route path="/contact" element={<Navigate to="/book-discovery" replace/>}/>
+              <Route path="/services" element={<Navigate to="/services-ai-ml" replace/>}/>
+              <Route path="/services-ui-ux/:childId" element={<Navigate to="/services-ui-ux" replace/>}/>
               <Route path="/industries" element={<Navigate to="/industry-healthcare" replace/>}/>
 
               <Route path="/industry-financial-service" element={<IndustryFinancial/>}/>

@@ -253,42 +253,13 @@ function CalendlyEmbed() {
         </div>
       </div>
 
-      <div style={{
-        borderRadius: 16, border: `1.5px dashed ${B.actionBorder}`,
-        background: `linear-gradient(135deg, ${B.actionLight}, rgba(84,84,84,0.05))`,
-        display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center',
-        padding: 'clamp(32px, 5vw, 56px) clamp(24px, 4vw, 36px)',
-        textAlign: 'center', minHeight: 280,
-      }}>
-        <div style={{
-          width: 'clamp(56px, 6vw, 68px)', height: 'clamp(56px, 6vw, 68px)',
-          borderRadius: '50%', background: B.action,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          marginBottom: 20, boxShadow: `0 8px 28px ${B.actionGlow}`,
-        }}>
-          <Calendar size={26} color={B.white}/>
-        </div>
-        <div style={{ fontWeight: 700, fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: B.textMain, marginBottom: 10 }}>
-          Calendly Embed Goes Here
-        </div>
-        <div style={{ fontSize: 'clamp(13px, 1.5vw, 15px)', color: B.textMid, lineHeight: 1.7, marginBottom: 28, maxWidth: 340 }}>
-          Replace this block with your Calendly or Cal.com inline widget to let clients pick a slot instantly.
-        </div>
-        <a href="https://calendly.com" target="_blank" rel="noopener noreferrer"
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: 'clamp(11px, 1.5vw, 13px) clamp(20px, 3vw, 28px)', borderRadius: 10,
-            background: B.action, color: B.white,
-            fontWeight: 700, fontSize: 'clamp(12px, 1.5vw, 14px)', letterSpacing: '0.08em',
-            textTransform: 'uppercase', textDecoration: 'none',
-            boxShadow: `0 4px 20px ${B.actionGlow}`, transition: 'opacity 0.2s',
-          }}
-          onMouseEnter={e => e.currentTarget.style.opacity = '0.88'}
-          onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-        >
-          <Zap size={14}/> Open Scheduling Link
-        </a>
+      <div style={{ borderRadius: 16, overflow: 'hidden', border: `1.5px solid ${B.actionBorder}`, background: '#fff' }}>
+        <iframe
+          title="Book a free 30-minute call with WellMind Data Solutions"
+          src="https://calendly.com/tayyabijaz/special-request?hide_gdpr_banner=1"
+          loading="lazy"
+          style={{ display: 'block', width: '100%', height: 'clamp(620px, 80vh, 720px)', border: 0 }}
+        />
       </div>
 
       <div style={{ marginTop: 18, padding: 'clamp(12px, 2vw, 16px)', borderRadius: 'var(--radius-md)', background: B.primaryLight, border: `1px solid ${B.primaryBorder}`, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
@@ -777,7 +748,8 @@ export default function BookDiscovery() {
                 viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.08 }}
                 style={{ display: 'flex', flexDirection: 'column', gap: 0 }}
               >
-                <DirectItem icon={<Mail/>}       label="Email"     value="wellminddatasolutions@gmail.com"        href="mailto:wellminddatasolutions@gmail.com"/>
+                <DirectItem icon={<Mail/>}       label="General Enquiries" value="info@wellminddatasolutions.com" href="mailto:info@wellminddatasolutions.com"/>
+                <DirectItem icon={<Mail/>}       label="Contact Us" value="contact@wellminddatasolutions.com" href="mailto:contact@wellminddatasolutions.com"/>
                 <DirectItem icon={<FaWhatsapp/>} label="WhatsApp"  value="+92 323 6787087"              href="https://wa.me/923236787087" badge="Fastest for PK clients"/>
                 <DirectItem icon={<FaLinkedin/>} label="LinkedIn"  value="WellMind Data Solutions"       href="https://www.linkedin.com/company/wellmind-data-solutions"/>
                 <DirectItem icon={<MapPin/>}     label="Location"  value="Based in Pakistan — Working globally" href="#"/>

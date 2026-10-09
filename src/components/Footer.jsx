@@ -470,7 +470,12 @@ export default function Footer() {
               {[
                 {
                   icon: <Mail size={18} />,
-                  val: 'wellminddatasolutions@gmail.com',
+                  val: 'info@wellminddatasolutions.com',
+                  className: 'wm-footer-email',
+                },
+                {
+                  icon: <Mail size={18} />,
+                  val: 'contact@wellminddatasolutions.com',
                   className: 'wm-footer-email',
                 },
                 {

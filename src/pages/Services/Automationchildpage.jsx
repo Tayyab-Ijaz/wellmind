@@ -476,7 +476,7 @@ export default function AutomationChildPage() {
                   display: 'flex', flexDirection: 'column',
                   gap: 'clamp(12px, 1.5vw, 16px)',
                 }}>
-                  <Link to="/contact" className="btn-primary" style={{ width: '100%' }}
+                  <Link to="/book-discovery" className="btn-primary" style={{ width: '100%' }}
                     onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                     onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>
                     <Zap size={16} /> Automate My Workflows
@@ -786,7 +786,7 @@ export default function AutomationChildPage() {
                     </div>
                   ))}
                 </div>
-                <Link to="/contact" style={{
+                <Link to="/book-discovery" style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                   padding: 'clamp(10px, 1.5vw, 13px) 20px', borderRadius: 10,
                   background: tier.featured ? AC : 'transparent',
@@ -850,7 +850,7 @@ export default function AutomationChildPage() {
               Book a free 30-minute call. We'll audit your biggest manual bottleneck and tell you what it would take to automate it — no sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
-              <Link to="/contact" style={{
+              <Link to="/book-discovery" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
                 borderRadius: 'var(--radius-md)',

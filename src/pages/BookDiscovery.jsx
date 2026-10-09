@@ -17,6 +17,7 @@ import {
 import { FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 import { HeroGridBg, SectionGridBg } from '../components/BgGrid';
+import { CALENDLY_URL } from '../components/BookDemoButton';
 import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../theme';
 
 // ─── Form Field ─────────────────────────────────────────────────────────────────
@@ -105,7 +106,7 @@ function ContactForm() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company || '—'}\nService: ${form.service}\nTimeline: ${form.timeline || '—'}\n\nMessage:\n${form.message}`
     );
-    window.location.href = `mailto:wellminddatasolutions@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:contact@wellminddatasolutions.com?subject=${subject}&body=${body}`;
     await new Promise(r => setTimeout(r, 700));
     setLoading(false);
     setSubmitted(true);
@@ -133,7 +134,7 @@ function ContactForm() {
           Your email app should have opened!
         </h3>
         <p style={{ fontSize: 'clamp(13px, 1.6vw, 16px)', color: B.textMid, lineHeight: 1.7, marginBottom: 28 }}>
-          Just hit send from there. If nothing opened, email us directly at <strong>wellminddatasolutions@gmail.com</strong> — we'll get back to you within 24 hours on business days.
+          Just hit send from there. If nothing opened, email us directly at <strong>contact@wellminddatasolutions.com</strong> or <strong>info@wellminddatasolutions.com</strong> — we'll get back to you within 24 hours on business days.
         </p>
         <Link to="/book-discovery" style={{
           display: 'inline-flex', alignItems: 'center', gap: 7,
@@ -236,7 +237,7 @@ function ContactForm() {
   );
 }
 
-// ─── Instant Booking (WhatsApp) ───────────────────────────────────────────────
+// ─── Instant Booking (Calendly) ───────────────────────────────────────────────
 function InstantBooking() {
   return (
     <div style={{
@@ -253,48 +254,29 @@ function InstantBooking() {
         </div>
         <div>
           <div style={{ fontWeight: 700, fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: B.textMain }}>Book a Free 30-Min Call</div>
-          <div style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textMuted, marginTop: 2 }}>We'll lock in a time that works for you.</div>
+          <div style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textMuted, marginTop: 2 }}>Pick a slot below — you'll get an instant confirmation.</div>
         </div>
       </div>
 
-      {/* Compact WhatsApp panel — icon + copy side by side, no oversized centered block */}
+      {/* Calendly inline scheduler — falls back to the "open in new tab" link if the iframe is blocked */}
       <div style={{
-        flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        borderRadius: 14, border: `1.5px solid ${B.actionBorder}`,
-        background: `linear-gradient(135deg, ${B.actionLight}, rgba(84,84,84,0.04))`,
-        padding: 'clamp(16px, 2.5vw, 20px)',
+        flex: 1, borderRadius: 14, overflow: 'hidden',
+        border: `1.5px solid ${B.actionBorder}`, background: '#fff',
       }}>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
-          <div style={{
-            width: 40, height: 40, flexShrink: 0,
-            borderRadius: '50%', background: '#939393',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 4px 14px rgba(147,147,147,0.35)',
-          }}>
-            <FaWhatsapp size={19} color="#fff"/>
-          </div>
-          <div>
-            <div style={{ fontWeight: 700, fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)', color: B.textMain, marginBottom: 5 }}>
-              Fastest way to book — WhatsApp
-            </div>
-            <div style={{ fontSize: 'clamp(12.5px, 1.4vw, 13.5px)', color: B.textMid, lineHeight: 1.6 }}>
-              Send your name and what you'd like to discuss — we'll reply with time slots the same day.
-            </div>
-          </div>
-        </div>
-        <a href="https://wa.me/923236787087?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20discovery%20call." target="_blank" rel="noopener noreferrer"
-          style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-            width: '100%', padding: 'clamp(11px, 1.5vw, 13px)', borderRadius: 10,
-            background: '#939393', color: '#fff',
-            fontWeight: 700, fontSize: 'clamp(12px, 1.5vw, 13.5px)', letterSpacing: '0.06em',
-            textTransform: 'uppercase', textDecoration: 'none',
-            boxShadow: '0 4px 16px rgba(147,147,147,0.30)', transition: 'opacity 0.2s, transform 0.2s',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-          onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}
-        >
-          <FaWhatsapp size={14}/> Message Us on WhatsApp
+        <iframe
+          title="Book a free 30-minute call with WellMind Data Solutions"
+          src={`${CALENDLY_URL}?hide_gdpr_banner=1`}
+          loading="lazy"
+          style={{ display: 'block', width: '100%', height: 'clamp(620px, 80vh, 720px)', border: 0 }}
+        />
+      </div>
+
+      <div style={{ marginTop: 12, display: 'flex', flexWrap: 'wrap', gap: '8px 18px', justifyContent: 'center', fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textMid }}>
+        <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" style={{ color: B.action, fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <Calendar size={14}/> Open scheduler in a new tab
+        </a>
+        <a href="https://wa.me/923236787087?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20discovery%20call." target="_blank" rel="noopener noreferrer" style={{ color: B.action, fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <FaWhatsapp size={14}/> Prefer WhatsApp?
         </a>
       </div>
 
@@ -312,8 +294,8 @@ function InstantBooking() {
 function DirectItem({ icon, label, value, href, badge }) {
   const [hovered, setHovered] = useState(false);
   return (
-    <a href={href} target={href.startsWith('http') ? '_blank' : undefined}
-      rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}
+    <a href={href || undefined} target={href?.startsWith('http') ? '_blank' : undefined}
+      rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block', cursor: href ? 'pointer' : 'default' }}
       onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
     >
       <div style={{
@@ -389,10 +371,11 @@ const TRUST_ITEMS = [
 
 // ─── Direct contact data ──────────────────────────────────────────────────────
 const DIRECT_CONTACTS = [
-  { icon: <Mail size={18}/>,      label: 'Email',    value: 'wellminddatasolutions@gmail.com', href: 'mailto:wellminddatasolutions@gmail.com' },
+  { icon: <Mail size={18}/>,      label: 'General Enquiries', value: 'info@wellminddatasolutions.com', href: 'mailto:info@wellminddatasolutions.com' },
+  { icon: <Mail size={18}/>,      label: 'Contact Us', value: 'contact@wellminddatasolutions.com', href: 'mailto:contact@wellminddatasolutions.com' },
   { icon: <FaWhatsapp size={18}/>,label: 'WhatsApp',  value: '+92 323 6787087', href: 'https://wa.me/923236787087', badge: 'Fastest for PK clients' },
   { icon: <FaLinkedin size={18}/>,label: 'LinkedIn',  value: 'WellMind Data Solutions', href: 'https://www.linkedin.com/company/wellmind-data-solutions' },
-  { icon: <MapPin size={18}/>,    label: 'Location',  value: 'Based in Pakistan — Working globally', href: '#' },
+  { icon: <MapPin size={18}/>,    label: 'Location',  value: 'Based in Pakistan — Working globally' },
 ];
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────

@@ -671,7 +671,8 @@ export default function Home() {
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px 28px', justifyContent: 'center', alignItems: 'center', maxWidth: 1100, margin: '0 auto' }}>
               {[
-                { icon: <Mail size={16} />, label: 'wellminddatasolutions@gmail.com', href: 'mailto:wellminddatasolutions@gmail.com' },
+                { icon: <Mail size={16} />, label: 'info@wellminddatasolutions.com', href: 'mailto:info@wellminddatasolutions.com' },
+                { icon: <Mail size={16} />, label: 'contact@wellminddatasolutions.com', href: 'mailto:contact@wellminddatasolutions.com' },
                 { icon: <MessageCircle size={16} />, label: 'WhatsApp: +92 323 6787087', href: 'https://wa.me/923236787087' },
                 { icon: <Phone size={16} />, label: 'Call: +92 323 6787087', href: 'tel:+923236787087' },
                 { icon: <FaLinkedin size={16} />, label: 'LinkedIn', href: 'https://www.linkedin.com/company/wellmind-data-solutions' },

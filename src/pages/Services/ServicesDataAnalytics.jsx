@@ -126,7 +126,7 @@ function PricingCard({ tier, accentColor, i }) {
           </div>
         ))}
       </div>
-      <Link to="/contact" style={{
+      <Link to="/book-discovery" style={{
         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
         padding: 'clamp(10px, 1.5vw, 13px) 20px', borderRadius: 10,
         background: tier.featured ? color : 'transparent',
@@ -507,7 +507,7 @@ export default function ServicesDataAnalytics() {
                 </motion.p>
 
                 <motion.div custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
-                  <Link to="/contact" className="btn-primary" style={{ width: '100%' }}
+                  <Link to="/book-discovery" className="btn-primary" style={{ width: '100%' }}
                     onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                     onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>
                     <Zap size={16}/> Start Your Project
@@ -709,7 +709,7 @@ export default function ServicesDataAnalytics() {
               Book a free 30-minute call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it costs, and whether Analytics is even the right tool — no sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
-              <Link to="/contact" style={{
+              <Link to="/book-discovery" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
                 borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #393939)`,
