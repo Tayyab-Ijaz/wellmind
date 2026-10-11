@@ -6,10 +6,10 @@
  * - Ensured Process section matches MaxWidth 1250px and darker BG logic.
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { B, PX, useCounter, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../../theme';
+import { B, PX, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../../theme';
 
 // ─── IMPORTING BACKGROUNDS (Synced with AiMl) ─────────────────────────────
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
@@ -95,52 +95,7 @@ function ProcessStep({ step, title, desc, color, i }) {
 }
 
 // ─── Pricing Card (Synced with AiMl) ───────────────────────────────────────
-function PricingCard({ tier, accentColor, i }) {
-  const [hovered, setHovered] = useState(false);
-  const color = accentColor || B.action;
-  return (
-    <motion.div key={i}
-      initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.09 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        background: tier.featured ? `linear-gradient(145deg, ${color}18, ${color}08)` : B.bgDarkCard,
-        backdropFilter: 'blur(12px)', borderRadius: 'var(--radius-xl)',
-        border: `2px solid ${tier.featured ? color : 'rgba(255,255,255,0.08)'}`,
-        boxShadow: tier.featured ? `0 20px 56px -14px ${color}30` : 'none',
-        padding: 'clamp(22px, 3vw, 32px) clamp(18px, 2.5vw, 28px)',
-        position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column',
-        transition: 'all 0.3s ease'
-      }}
-    >
-      {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: color, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
-      <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: color, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
-      <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>{tier.price}</div>
-      <p style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
-      <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
-        {tier.features.map((f, fi) => (
-          <div key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 10 }}>
-            <CheckCircle size={15} color={color} style={{ flexShrink: 0, marginTop: 1 }}/>
-            <span style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid }}>{f}</span>
-          </div>
-        ))}
-      </div>
-      <Link to="/book-discovery" style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-        padding: 'clamp(10px, 1.5vw, 13px) 20px', borderRadius: 10,
-        background: tier.featured ? color : 'transparent',
-        color: tier.featured ? B.white : color,
-        border: `1.5px solid ${color}`,
-        fontWeight: 700, fontSize: 'clamp(11px, 1.4vw, 13px)', textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.2s',
-      }}
-        onMouseEnter={e => { if (!tier.featured) e.currentTarget.style.background = `${color}20`; }}
-        onMouseLeave={e => { if (!tier.featured) e.currentTarget.style.background = 'transparent'; }}>
-        Get Started <ArrowRight size={13}/>
-      </Link>
-    </motion.div>
-  );
-}
+
 
 // ─── Shared Styles (AiMl Matching) ─────────────────────────────────────────
 const SharedStyles = () => (
@@ -196,22 +151,18 @@ const SharedStyles = () => (
     /* Grid Layouts */
     .grid-stats    { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 24px); }
     .grid-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 24px); }
-    .grid-pricing  { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2.5vw, 24px); }
 
     /* Responsive Breakpoints */
     @media (max-width: 1024px) {
       .grid-features { grid-template-columns: repeat(2, 1fr); }
-      .grid-pricing  { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       .grid-stats    { grid-template-columns: repeat(2, 1fr); gap: 14px; }
       .grid-features { grid-template-columns: repeat(2, 1fr); }
-      .grid-pricing  { grid-template-columns: 1fr; }
     }
     @media (max-width: 425px) {
       .grid-stats    { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .grid-features { grid-template-columns: 1fr; }
-      .grid-pricing  { grid-template-columns: 1fr; }
       .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
     }
     @media (max-width: 320px) {
@@ -237,40 +188,7 @@ const SharedStyles = () => (
 );
 
 // ─── Stat Card (AiMl Style) ─────────────────────────────────────────────────
-function StatCard({ target, suffix, label, icon, start, delay = 0, theme }) {
-  const val = useCounter(target, 2000, start);
-  const [hovered, setHovered] = useState(false);
-  const t = theme || { color: B.primary, bg: B.primaryLight };
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
-      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-      whileHover={{ y: -5 }}
-      style={{
-        background: hovered ? `linear-gradient(145deg, ${t.bg}, rgba(255,255,255,0.02))` : 'rgba(255,255,255,0.02)',
-        backdropFilter: 'blur(12px)',
-        border: `1.5px solid ${hovered ? t.color : 'rgba(255,255,255,0.08)'}`,
-        boxShadow: hovered ? `0 0 25px ${t.color}40, inset 0 0 10px ${t.color}10` : 'none',
-        borderRadius: 'var(--radius-lg)', padding: 'clamp(16px, 2.5vw, 28px) clamp(10px, 2vw, 20px)', textAlign: 'center',
-        cursor: 'default', position: 'relative',
-        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)', overflow: 'hidden',
-      }}
-    >
-      <div style={{ width: 'clamp(40px, 5vw, 54px)', height: 'clamp(40px, 5vw, 54px)', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto clamp(12px, 2vw, 20px)', background: hovered ? `linear-gradient(135deg, ${t.color}, ${t.darkColor || t.color})` : 'rgba(255,255,255,0.05)', color: hovered ? '#fff' : t.color, border: `1px solid ${hovered ? 'transparent' : 'rgba(255,255,255,0.1)'}`, transition: 'all 0.4s ease', boxShadow: hovered ? `0 10px 20px ${t.color}40` : 'none' }}>
-        <motion.div animate={{ rotate: hovered ? 360 : 0 }} transition={{ duration: 0.6 }}>
-          {React.cloneElement(icon, { size: 22, strokeWidth: 2 })}
-        </motion.div>
-      </div>
-      <div style={{ fontFamily: 'var(--font-main)', fontWeight: 800, fontSize: 'clamp(1.5rem, 3.5vw, 2.8rem)', color: hovered ? 'transparent' : B.textDark, background: hovered ? `linear-gradient(180deg, #fff 30%, ${t.color} 100%)` : 'none', WebkitBackgroundClip: hovered ? 'text' : 'none', backgroundClip: hovered ? 'text' : 'none', marginBottom: 8, letterSpacing: '-0.03em', transition: 'all 0.3s ease' }}>
-        {val}<span style={{ fontSize: '0.5em' }}>{suffix}</span>
-      </div>
-      <div style={{ fontSize: 'clamp(11px, 1.2vw, 13px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textDarkMuted, fontWeight: 700 }}>
-        {label}
-      </div>
-    </motion.div>
-  );
-}
+
 
 // ─── Deliverable Item (AiMl Style: Dark BG on Hover) ───────────────────────
 function DeliverableItem({ text, color }) {
@@ -333,11 +251,11 @@ function TechBadge({ label, color }) {
 function DashboardPreview() {
   const [activeMetric, setActiveMetric] = useState(0);
   const metrics = [
-    { label: 'Revenue',    value: '+24%', color: B.action,          bars: [40, 55, 48, 72, 65, 88, 76] },
-    { label: 'Retention',  value: '94.2%', color: B.primary,  bars: [80, 83, 79, 91, 88, 94, 92] },
-    { label: 'Conversion', value: '8.7%', color: B.accent,    bars: [5, 7, 6, 9, 8, 10, 9] },
+    { label: 'Revenue',    value: '', color: B.action,          bars: [40, 55, 48, 72, 65, 88, 76] },
+    { label: 'Retention',  value: '', color: B.primary,  bars: [80, 83, 79, 91, 88, 94, 92] },
+    { label: 'Conversion', value: '', color: B.accent,    bars: [5, 7, 6, 9, 8, 10, 9] },
   ];
-  useEffect(() => { const t = setInterval(() => setActiveMetric(p => (p + 1) % metrics.length), 2000); return () => clearInterval(t); }, []);
+  useEffect(() => { const t = setInterval(() => setActiveMetric(p => (p + 1) % metrics.length), 2000); return () => clearInterval(t); }, [metrics.length]);
   const m = metrics[activeMetric];
 
   return (
@@ -374,7 +292,7 @@ function DashboardPreview() {
       </div>
       {/* Stats row */}
       <div style={{ display: 'flex', gap: 'clamp(8px, 1.2vw, 10px)' }}>
-        {[{ l: '50+', s: 'Dashboards', c: B.action }, { l: '3x', s: 'Faster', c: B.primary }, { l: '99%', s: 'Accuracy', c: B.accent }].map((stat, i) => (
+        {[{ l: 'BI', s: 'Dashboards', c: B.action }, { l: 'ETL', s: 'Pipelines', c: B.primary }, { l: 'Stats', s: 'Analysis', c: B.accent }].map((stat, i) => (
           <div key={i} style={{ fontSize: 'clamp(14px, 1.1vw, 14.5px)', flex: 1, textAlign: 'center', padding: 'clamp(7px, 1.2vw, 10px) 6px', borderRadius: 9, background: B.bgLight, border: `1px solid ${B.primaryBorder}` }}>
             <div style={{ fontWeight: 800, fontSize: 'clamp(13px, 2vw, 17px)', color: stat.c, marginBottom: 2 }}>{stat.l}</div>
             <div style={{ fontSize: 'clamp(9px, 1.1vw, 10px)', color: B.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{stat.s}</div>
@@ -399,7 +317,7 @@ const processes = [
   { step: '01', title: 'Data Audit & Strategy', desc: 'We map your data sources, assess quality, identify gaps, and agree on the metrics that will drive real decisions — before building anything.' },
   { step: '02', title: 'Data Architecture', desc: 'Schema design, warehouse selection, and pipeline architecture. We build for scalability and analyst self-service.' },
   { step: '03', title: 'Analysis & Visualisation', desc: 'Statistical analysis, model development, and dashboard build. Every visualisation is reviewed for clarity and actionability.' },
-  { step: '04', title: 'Handoff & Enablement', desc: 'Dashboard handoff with documentation, a training session for your team, and 30 days of support for independence.' },
+  { step: '04', title: 'Handoff & Enablement', desc: 'Dashboard handoff with documentation, a training session for your team, and post-launch support for independence.' },
 ];
 
 const deliverables = [
@@ -409,34 +327,18 @@ const deliverables = [
   'Data dictionary and schema documentation',
   'Automated report templates for recurring business reviews',
   'Team training session on using and extending the dashboard',
-  '30-day post-launch support',
+  'Post-launch support',
 ];
 
-const tiers = [
-  { name: 'Data Report', price: 'From $1,200', desc: 'A focused statistical analysis or custom report with key findings and visualisations.', features: ['One analytical question', 'Statistical methodology', 'Charts + written summary', 'Executive slide deck', '5–8 day turnaround'], featured: false },
-  { name: 'Analytics Dashboard', price: 'From $4,000', desc: 'Production-ready BI dashboard with live data connections and interactive filters.', features: ['Interactive dashboard build', 'Live data integration (2–4 sources)', 'KPI design + data modelling', 'Training + documentation', '3–5 week delivery'], featured: true },
-  { name: 'Data Platform', price: 'Custom', desc: 'Full data warehouse, multiple dashboards, automated reporting, and ongoing analytics support.', features: ['Data warehouse architecture', 'Multiple dashboards + reports', 'Automated scheduled reporting', 'Data governance setup', 'Analytics retainer option'], featured: false },
-];
 
-const stats = [
-  { target: 50,  suffix: '+', label: 'Dashboards Delivered', theme: { color: B.action,         bg: 'rgba(84,84,84,0.1)'  } },
-  { target: 3,   suffix: 'x', label: 'Faster Insights',      theme: { color: '#767676',  bg: 'rgba(118,118,118,0.1)' } },
-  { target: 99,  suffix: '%', label: 'Data Accuracy',         theme: { color: '#adadad',  bg: 'rgba(173,173,173,0.1)' } },
-  { target: 40,  suffix: '%', label: 'Cost Reduction',        theme: { color: '#a8a8a8',  bg: 'rgba(168,168,168,0.1)'  } },
-];
+
+
 
 const processColors = [B.action, B.primary, B.accent, B.secondary];
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 export default function ServicesDataAnalytics() {
-  const [statsVisible, setStatsVisible] = useState(false);
-  const statsRef = useRef(null);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStatsVisible(true); }, { threshold: 0.20 });
-    if (statsRef.current) obs.observe(statsRef.current);
-    return () => obs.disconnect();
-  }, []);
 
   const techStack = [
     { label: 'Python',          color: B.action },
@@ -503,7 +405,7 @@ export default function ServicesDataAnalytics() {
                 {/* CHANGE: Text size synced with AiMl (1.8vw) */}
                 <motion.p custom={0.15}
                   style={{ fontSize: 'clamp(0.88rem, 1.8vw, 1.15rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  WellMind Data Solutions designs and deploys Analytics systems that act as a strategic extension of your business — from audit to full production-grade platforms trusted by enterprises globally.
+                  WellMind Data Solutions designs and deploys Analytics systems that act as a strategic extension of your business — from audit to full production-grade platforms.
                 </motion.p>
 
                 <motion.div custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 1.5vw, 20px)' }}>
@@ -553,7 +455,7 @@ export default function ServicesDataAnalytics() {
                 borderTop: `1px solid ${B.primaryBorder}40`
               }}
             >
-              {['Starting at $1,200', 'Self-Service Dashboards', 'Fixed-Fee Projects'].map((t, i) => (
+              {['Self-Service Dashboards'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
@@ -572,7 +474,7 @@ export default function ServicesDataAnalytics() {
       </section>
 
       {/* ══════════ 2. STATS (DARK) ══════════ */}
-      <section ref={statsRef} style={{
+      <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
         background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
@@ -581,15 +483,6 @@ export default function ServicesDataAnalytics() {
         <CircuitBg opacity={0.09}/>
         <DataParticles count={12} dark/>
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 'clamp(36px, 5vw, 56px)' }}>
-            <SectionBadge dark style={{ color: B.textDarkMuted, marginBottom: 20 }}>Proven Excellence</SectionBadge>
-            <h2 className="section-h2 dark" style={{ textAlign: 'center', marginBottom: 'clamp(20px, 3.5vw, 40px)' }}>Measurable Analytics Impact</h2>
-            <div className="grid-stats">
-              {stats.map((s, i) => (
-                <StatCard key={i} target={s.target} suffix={s.suffix} label={s.label} icon={i === 0 ? <BarChart3 size={20}/> : i === 1 ? <Activity size={20}/> : i === 2 ? <TrendingUp size={20}/> : <Database size={20}/>} start={statsVisible} delay={i * 0.1} theme={s.theme}/>
-              ))}
-            </div>
-          </div>
 
           {/* Tech Stack */}
           <div style={{ textAlign: 'center' }}>
@@ -649,7 +542,7 @@ export default function ServicesDataAnalytics() {
             {/* Deliverables */}
             <div style={{ flex: '1 1 min(100%, 380px)' }}>
               <SectionBadge>What You Get</SectionBadge>
-              <h2 className="section-h2" style={{ marginBottom: 12 }}>Full Ownership. Zero Black Boxes.</h2>
+              <h2 className="section-h2" style={{ marginBottom: 12 }}>Documented Handover.</h2>
               <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
                 Every engagement delivers production-ready dashboards and reports that your team can maintain and extend independently.
               </p>
@@ -663,28 +556,6 @@ export default function ServicesDataAnalytics() {
         </div>
       </section>
 
-      {/* ══════════ 4. PRICING (DARK) ══════════ */}
-      {/* <section style={{
-        padding: 'var(--sp-section) 0',
-        position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
-        display: 'flex', alignItems: 'center',
-      }}>
-        <CircuitBg opacity={0.07}/>
-        <DataParticles count={8} dark/>
-        <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-          <div style={{ textAlign: 'center', marginBottom: 'clamp(32px, 4.5vw, 56px)' }}>
-            <SectionBadge dark style={{ color: B.textDarkMuted }}>Transparent Pricing</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 14 }}>Investment</h2>
-            <p className="section-lead dark" style={{ maxWidth: 480 }}>
-              Fixed-fee engagements. Scope agreed in writing before we start. No surprise invoices — ever.
-            </p>
-          </div>
-          <div className="grid-pricing">
-            {tiers.map((tier, i) => <PricingCard key={i} tier={tier} accentColor={B.action} i={i}/>)}
-          </div>
-        </div>
-      </section> */}
 
       {/* ══════════ 5. FINAL CTA (LIGHT) ══════════ */}
       <section style={{
@@ -706,7 +577,7 @@ export default function ServicesDataAnalytics() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it costs, and whether Analytics is even the right tool — no sales pitch.
+              Book a free call. Tell us your data challenge. We'll give you honest feedback on what's achievable, what it would take, and whether Analytics is even the right tool — no sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/book-discovery" style={{

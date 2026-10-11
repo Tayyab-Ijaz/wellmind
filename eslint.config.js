@@ -23,7 +23,14 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // `motion` is used only as <motion.div> in JSX, which core no-unused-vars cannot see.
+      'no-unused-vars': ['error', { varsIgnorePattern: '^([A-Z_]|motion$)' }],
     },
+  },
+  {
+    // Shared design-token / helper modules export constants and components together.
+    // react-refresh only uses this as a dev hot-reload hint; it does not affect production behaviour.
+    files: ['src/theme.jsx', 'src/components/theme_dropdown.jsx', 'src/components/BookDemoButton.jsx'],
+    rules: { 'react-refresh/only-export-components': 'off' },
   },
 ])

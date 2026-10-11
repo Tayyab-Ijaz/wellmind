@@ -70,7 +70,7 @@ function Robot({ hoveredPart, setHoveredPart, setIsOverRobot }) {
   const rKnee = useRef();
 
   const hoverStart = useRef(null);
-  const danceOffset = useRef(Math.random() * 10);
+  const danceOffset = useRef(3.7);
 
   const { viewport } = useThree();
   const scale = Math.min(1, Math.max(0.62, viewport.width / 6.2));

@@ -52,7 +52,7 @@ export function calculate({ teamSize, provider, plan, bills, useFallback }) {
     }
     costSource = 'benchmark_projection_usage_based';
     usageConfidence = 'projected_benchmark_new_user';
-    usageSourceNote = `Projected from typical usage, priced at ${provider}'s real per-use rate.`;
+    usageSourceNote = `Projected from typical usage, priced at ${provider}'s published per-use rate.`;
   } else if (plan) {
     const price = PLAN_PRICES[provider]?.[plan];
     if (price === undefined) {

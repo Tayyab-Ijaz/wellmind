@@ -12,22 +12,22 @@ import { B, DT, OverlineLabel } from './theme_dropdown';
 // ─── NAV DATA ─────────────────────────────────────────────────────────────────
 const CASE_STUDIES_DATA = {
   byService: [
-    { label: 'AI & Machine Learning', link: '/case-studies?service=ai-ml',         count: '9+' },
-    { label: 'Data Analytics',        link: '/case-studies?service=data-analytics', count: '5+'  },
-    { label: 'AI Software',           link: '/case-studies?service=ai-software',    count: '2+'  },
-    { label: 'Automation',            link: '/case-studies?service=automation',     count: '3+'  },
-    { label: 'Bioinformatics',        link: '/case-studies?service=bioinformatics', count: '1+'  },
-    { label: 'UI/UX Design',          link: '/case-studies?service=ui-ux',          count: '0'  },
+    { label: 'AI & Machine Learning', link: '/case-studies?service=ai-ml',          },
+    { label: 'Data Analytics',        link: '/case-studies?service=data-analytics',   },
+    { label: 'AI Software',           link: '/case-studies?service=ai-software',      },
+    { label: 'Automation',            link: '/case-studies?service=automation',       },
+    { label: 'Bioinformatics',        link: '/case-studies?service=bioinformatics',   },
+    { label: 'UI/UX Design',          link: '/case-studies?service=ui-ux',            },
   ],
 
   // ✅ UPDATED: Agriculture + Education added
   byIndustry: [
-    { label: 'Financial Services',    link: '/case-studies?industry=financial',     count: '5+' },
-    { label: 'Healthcare & Biotech',  link: '/case-studies?industry=healthcare',    count: '7+' },
-    { label: 'Retail & E-Commerce',   link: '/case-studies?industry=retail',        count: '5+'  },
-    { label: 'Manufacturing',         link: '/case-studies?industry=manufacturing', count: '1+'  },
-    { label: 'Agriculture & AgriTech',link: '/case-studies?industry=agriculture',   count: '1+'  },
-    { label: 'Education & EdTech',    link: '/case-studies?industry=education',     count: '1+'  },
+    { label: 'Financial Services',    link: '/case-studies?industry=financial',      },
+    { label: 'Healthcare & Biotech',  link: '/case-studies?industry=healthcare',     },
+    { label: 'Retail & E-Commerce',   link: '/case-studies?industry=retail',          },
+    { label: 'Manufacturing',         link: '/case-studies?industry=manufacturing',   },
+    { label: 'Agriculture & AgriTech',link: '/case-studies?industry=agriculture',     },
+    { label: 'Education & EdTech',    link: '/case-studies?industry=education',       },
   ],
 
   featured: [
@@ -36,7 +36,6 @@ const CASE_STUDIES_DATA = {
       tag:      'Data Analytics',
       industry: 'Healthcare',
       link:     '/case-studies/ar-prioritization-underpayment-recovery',
-      metric:   '6.1M claims analyzed',
       desc:     'LightGBM classifier + live dashboard flagging underpaid Medicare claims from public CMS data.',
     },
     {
@@ -44,16 +43,14 @@ const CASE_STUDIES_DATA = {
       tag:      'AI & Machine Learning',
       industry: 'Retail',
       link:     '/case-studies/telecom-churn-prediction',
-      metric:   '86.4% accuracy',
-      desc:     'Random Forest churn model with SHAP explainability, capturing 65%+ of churners in the top 20% risk band.',
+      desc:     'Random Forest churn model with SHAP explainability that surfaces the customers most at risk of leaving.',
     },
     {
       title:    'Healthcare Fraud Detection System',
       tag:      'AI & Machine Learning',
       industry: 'Healthcare',
       link:     '/case-studies/healthcare-fraud-detection-billing',
-      metric:   '3,842 providers flagged',
-      desc:     'Peer-benchmarking, anomaly detection, and OIG exclusion-list matching across 44,528 Medicare providers.',
+      desc:     'Peer-benchmarking, anomaly detection, and OIG exclusion-list matching across public Medicare provider data.',
     },
   ],
 };
@@ -92,17 +89,6 @@ function FilterRow({ item, onClose }) {
       }}
     >
       <span>{item.label}</span>
-      <span style={{
-        fontWeight:   800,
-        color:        B.primaryMid,
-        fontSize:     11,
-        background:   B.primaryLight,
-        padding:      '3px 8px',
-        borderRadius: DT.badgeRadius,
-        border:       `1px solid ${B.primaryBorder}`,
-      }}>
-        {item.count}
-      </span>
     </Link>
   );
 }
@@ -159,19 +145,6 @@ function FeaturedCard({ cs, onClose }) {
             </p>
           </div>
 
-          {/* Metric */}
-          <div style={{ flexShrink: 0, textAlign: 'right' }}>
-            <div style={{
-              fontFamily:    "'Space Grotesk', sans-serif",
-              fontSize:       17,
-              fontWeight:     800,
-              color:         B.action,
-              letterSpacing: '-0.02em',
-              lineHeight:     1,
-            }}>
-              {cs.metric}
-            </div>
-          </div>
         </div>
 
         {/* Tags */}

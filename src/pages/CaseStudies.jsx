@@ -8,7 +8,7 @@
  * - Agriculture & Education industries added to INDUSTRIES array + caseStudies data
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -398,46 +398,7 @@ const caseStudies = [
 ];
 
 // ─── Dark Stats Card ───────────────────────────────────────────────────────────
-function StatCard({ value, label, icon, color }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-      whileHover={{ y: -8 }}
-      transition={{ type: 'spring', stiffness: 300 }}
-      style={{
-        background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(10px)',
-        borderRadius: 'var(--radius-lg)', border: `1px solid rgba(255,255,255,0.10)`,
-        padding: 'clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 24px)', textAlign: 'center',
-        position: 'relative', overflow: 'hidden', cursor: 'default',
-      }}
-    >
-      <div style={{
-        position: 'absolute', inset: 0, background: `radial-gradient(circle, ${color}15 0%, transparent 70%)`,
-        opacity: 0.5,
-      }}/>
-      <motion.div
-        whileHover={{ rotate: 360, scale: 1.1 }}
-        transition={{ duration: 0.6, ease: 'circOut' }}
-        style={{
-          position: 'relative', zIndex: 2, marginBottom: 16,
-          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-          width: 'clamp(44px, 5vw, 60px)', height: 'clamp(44px, 5vw, 60px)',
-          borderRadius: 14, background: `${color}20`, border: `1px solid ${color}40`,
-        }}
-      >
-        {React.cloneElement(icon, { size: 24, color: color })}
-      </motion.div>
-      <div style={{ position: 'relative', zIndex: 2 }}>
-        <div style={{ fontWeight: 800, fontSize: 'var(--fs-section-h2)', color: B.textDark, letterSpacing: '-0.02em', lineHeight: 1 }}>
-          {value}
-        </div>
-        <div style={{ fontSize: 'clamp(11px, 1.2vw, 13px)', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textDarkMuted, marginTop: 8 }}>
-          {label}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+
 
 // ─── Professional Unified Filter Bar ─────────────────────────────────────────
 function UnifiedFilterBar({ activeService, activeIndustry, onFilterClick }) {
@@ -742,22 +703,12 @@ export default function CaseStudies() {
   const navigate  = useNavigate();
 
   const params = new URLSearchParams(location.search);
-  const [activeService,  setActiveService]  = useState(params.get('service')  || null);
-  const [activeIndustry, setActiveIndustry] = useState(params.get('industry') || null);
+  const activeService  = params.get('service')  || null;
+  const activeIndustry = params.get('industry') || null;
 
   const featuredStudies = caseStudies.filter(cs => cs.featured).slice(0, 3);
 
-  const heroTrustItems = [
-    { icon: <SquareCode size={16} />,    label: 'Public GitHub Portfolio', accent: '#8e8e8e' },
-    { icon: <Layers size={16} />,    label: '6 Service Domains',       accent: '#9e9e9e' },
-    { icon: <BarChart3 size={16} />, label: '20 Projects Shipped',     accent: '#aaaaaa' },
-  ];
 
-  useEffect(() => {
-    const p = new URLSearchParams(location.search);
-    setActiveService(p.get('service'));
-    setActiveIndustry(p.get('industry'));
-  }, [location.search]);
 
   const handleFilterClick = (type, id = null) => {
     const p = new URLSearchParams(location.search);
@@ -805,7 +756,7 @@ export default function CaseStudies() {
             style={{ width: '100%', textAlign: 'center' }}
           >
             <motion.div variants={fadeUp} custom={0}>
-              <SectionBadge>Proven Results</SectionBadge>
+              <SectionBadge>Our Projects</SectionBadge>
             </motion.div>
 
             <motion.h1
@@ -820,7 +771,7 @@ export default function CaseStudies() {
               <span style={{ color: B.primaryDark }}>Our Work in Action. </span>
               <br className="hero-br" />
               <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                Real Projects & Real Results.
+                Portfolio Projects.
               </span>
             </motion.h1>
 
@@ -834,7 +785,7 @@ export default function CaseStudies() {
                 letterSpacing: '0.02em', lineHeight: 1.6,
               }}
             >
-              From genomics research to fintech fraud detection, every case study below is a project we've shipped, a client we've served, and a result that's measurable.
+              From genomics research to fintech fraud detection, these are portfolio projects we built and published on our public GitHub, each showing how we approach a real data problem.
             </motion.p>
 
             <motion.div
@@ -870,16 +821,6 @@ export default function CaseStudies() {
               <div style={{ padding: '4px 16px', borderRadius: 99, background: 'rgba(55,55,55,0.08)', color: B.secondary, fontSize: 'clamp(10px, 1.8vw, 16px)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em', border: '1px solid rgba(55,55,55,0.2)' }}>
                 Highlights
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(8px, 1.5vw, 12px)', justifyContent: 'center', alignItems: 'center' }}>
-                {heroTrustItems.map((item, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: 'clamp(8px, 1.2vw, 10px) clamp(12px, 2vw, 18px)', fontSize: 'clamp(12px, 1.8vw, 18px)', fontWeight: 600, color: 'rgba(27,27,27,0.8)', background: 'rgba(255,255,255,0.5)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(47,47,47,0.1)' }}>
-                    <div style={{ width: 22, height: 22, borderRadius: 5, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${item.accent}15` }}>
-                      {React.cloneElement(item.icon, { size: 14, color: item.accent, strokeWidth: 2.5 })}
-                    </div>
-                    {item.label}
-                  </div>
-                ))}
-              </div>
             </motion.div>
           </motion.div>
 
@@ -893,25 +834,6 @@ export default function CaseStudies() {
         }
       `}</style>
 
-      {/* ═══ 2. DARK STATS ═══ */}
-      <section style={{
-        padding: 'var(--sp-section) 0', position: 'relative', zIndex: 1,
-        background: `linear-gradient(135deg, #0a0a0a 0%, #080808 100%)`,
-      }}>
-        <DataParticles count={10} dark />
-        <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <SectionBadge dark style={{ color: B.textDarkMuted, marginBottom: 20 }}>Our Impact</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 'clamp(20px, 3.5vw, 40px)', textAlign: 'center' }}>Results that Speak</h2>
-            <div className="grid-stats" style={{ width: '100%' }}>
-              <StatCard value="6"    label="Service Domains"    icon={<Cpu size={20}/>}         color={B.action}    />
-              <StatCard value="6"    label="Industries Served"  icon={<Globe size={20}/>}        color={B.accent}    />
-              <StatCard value="20"   label="GitHub Projects"    icon={<SquareCode size={20}/>}      color={B.secondary} />
-              <StatCard value="100%" label="Public Repositories" icon={<CheckCircle size={20}/>}  color={B.primary}   />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ═══ 3. MAIN LIGHT SECTION ═══ */}
       <section style={{
@@ -980,7 +902,7 @@ export default function CaseStudies() {
                   </button>
                 </div>
               ) : (
-                <span style={{ fontSize: 14, fontWeight: 600, color: B.textMuted, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Showing all {caseStudies.length} projects</span>
+                <span style={{ fontSize: 14, fontWeight: 600, color: B.textMuted, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Showing all projects</span>
               )}
             </motion.div>
 
@@ -1027,7 +949,7 @@ export default function CaseStudies() {
                 </span>
               </h2>
               <p className="section-lead" style={{ maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)' }}>
-                Book a free 30-minute discovery call. We'll assess your challenge, give you honest feedback, and outline a clear path forward.
+                Book a free discovery call. We'll assess your challenge, give you honest feedback, and outline a clear path forward.
               </p>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block', marginBottom: 48 }}>
                 <Link to="/book-discovery" style={{

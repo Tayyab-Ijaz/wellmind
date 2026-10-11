@@ -8,7 +8,7 @@
  * Dependencies: three, @react-three/fiber
  */
 
-import React, { useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -82,7 +82,7 @@ function GlowPlane({ hoverRef, colorA, colorB }) {
 
 export default function WebGLCardGlow({ hovered, colorA = '#5c5c5c', colorB = '#6c6c6c', style }) {
   const hoverRef = useRef(hovered);
-  hoverRef.current = hovered;
+  useEffect(() => { hoverRef.current = hovered; }, [hovered]);
 
   return (
     <div

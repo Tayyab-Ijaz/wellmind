@@ -1,5 +1,5 @@
 /**
- * CostCalculator.jsx — AI ROI / Cost Optimization Calculator
+ * CostCalculator.jsx — AI Cost Calculator
  * ─────────────────────────────────────────────────────────────────────────────
  * Runs fully client-side (see calculatorEngine.js) — nothing is sent anywhere.
  *
@@ -144,22 +144,27 @@ function Results({ result }) {
   const selfAnnual = c.self_hosted_year2_onwards_annual;
   const pct = cloudAnnual > 0 ? Math.round(((cloudAnnual - selfAnnual) / cloudAnnual) * 100) : null;
   const saves = pct !== null && pct > 0;
+  // A payback beyond five years is not a meaningful figure to show.
+  const payback = result.payback_period_months && result.payback_period_months <= 60 ? result.payback_period_months : null;
   const threeYearDelta = (result.current_monthly_cost * 36) - (result.one_time_investment + result.self_hosted_monthly_recurring * 36);
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}>
+      <p className="roi-label-estimate" role="note">
+        <Info size={14} aria-hidden="true" /> Illustrative estimate only. Not a quote.
+      </p>
       <div className="roi-headline">
-        <span className="roi-eyebrow">{pct === null ? 'Result' : saves ? 'Projected annual saving (year 2+)' : 'Projected change (year 2+)'}</span>
+        <span className="roi-eyebrow">{pct === null ? 'Result' : 'Estimated difference with self-hosting (year 2 onwards)'}</span>
         {pct === null ? (
           <div className="roi-big">No cloud spend</div>
         ) : (
-          <div className="roi-big">{saves ? `${pct}%` : `${Math.abs(pct)}% more`}</div>
+          <div className="roi-big">{saves ? `${pct}% lower` : `${Math.abs(pct)}% higher`}</div>
         )}
         <p>
           {pct === null
             ? 'Your current spend is $0, so there is nothing to offset — self-hosting only makes sense for privacy or control.'
             : saves
-              ? <>That is <b>{fmt(result.annual_savings_year2_onwards)}</b> a year{result.payback_period_months ? <>, with the hardware paid back in <b>{result.payback_period_months} months</b></> : null}.</>
+              ? <>On these assumptions, roughly <b>{fmt(result.annual_savings_year2_onwards)}</b> a year lower{payback ? <>, with hardware cost offset after about <b>{payback} months</b></> : null}. Actual costs will differ.</>
               : 'At this usage level the cloud subscription is cheaper than running your own hardware.'}
         </p>
       </div>
@@ -174,14 +179,14 @@ function Results({ result }) {
         <Kpi icon={<DollarSign size={14} />} label="Cloud / month" value={fmt(result.current_monthly_cost)} />
         <Kpi icon={<Cpu size={14} />} label="Self-hosted / month" value={fmt(result.self_hosted_monthly_recurring)} sub="power + maintenance" />
         <Kpi icon={<Server size={14} />} label="One-time investment" value={fmt(result.one_time_investment)} sub="hardware + setup" />
-        <Kpi icon={<Clock size={14} />} label="Payback period" value={result.payback_period_months ? `${result.payback_period_months} mo` : 'N/A'} />
+        <Kpi icon={<Clock size={14} />} label="Payback period" value={payback ? `${payback} mo` : 'N/A'} />
       </div>
 
       <div className="roi-card-inner">
         <div className="roi-card-title">
-          <span>Cumulative cost over 3 years</span>
+          <span>Cumulative cost over time</span>
           <b className={threeYearDelta >= 0 ? 'pos' : 'neg'}>
-            {threeYearDelta >= 0 ? 'Saves ' : 'Costs '}{fmtCompact(Math.abs(threeYearDelta))}
+            {fmtCompact(Math.abs(threeYearDelta))} {threeYearDelta >= 0 ? 'lower' : 'higher'} with self-hosting
           </b>
         </div>
         <CostChart
@@ -212,8 +217,12 @@ function Results({ result }) {
         </p>
       </div>
 
+      <p className="roi-quote-note">
+        This is a rough planning estimate, not a quote, and it does not predict savings or performance.
+        For a real quote based on your actual setup, book a free call.
+      </p>
       <Link to="/book-discovery" className="btn-primary roi-full">
-        Discuss this with our team <ArrowRight size={16} />
+        Book a Free Call <ArrowRight size={16} />
       </Link>
     </motion.div>
   );
@@ -221,13 +230,13 @@ function Results({ result }) {
 
 /* ─── static content ───────────────────────────────────────────────────────── */
 const STEPS = [
-  { icon: <Users size={20} />, title: 'Describe your setup', text: 'Team size, the AI provider you pay for today, and either your last 3 bills or your plan.' },
+  { icon: <Users size={20} />, title: 'Describe your setup', text: 'Team size, the AI provider you pay for today, and either your recent bills or your plan.' },
   { icon: <Cpu size={20} />, title: 'We size the hardware', text: 'Usage is converted to requests per month and matched to the cheapest GPU tier that can carry the load.' },
-  { icon: <TrendingDown size={20} />, title: 'See your break-even', text: 'Compare 3 years of cloud spend with self-hosting, including power, maintenance and setup.' },
+  { icon: <TrendingDown size={20} />, title: 'Compare over time', text: 'Compare cloud spend with self-hosting over time, including power, maintenance and setup.' },
 ];
 
 const FAQ = [
-  { q: 'How accurate are these numbers?', a: 'They are planning estimates built from published provider pricing, manufacturer GPU specs and typical usage benchmarks. If you enter your last three bills, usage is derived from your real spend; otherwise we use industry benchmarks. Always validate against current vendor quotes before buying hardware.' },
+  { q: 'How reliable are these numbers?', a: 'They are rough planning estimates built from published list prices, manufacturer GPU specs and typical usage assumptions. They are not a quote and not a promise of any saving. If you enter your recent bills, usage is derived from your spend; otherwise we use typical benchmarks. Always validate against current vendor quotes before buying hardware.' },
   { q: 'What is included in the self-hosted cost?', a: 'GPU hardware, a one-time setup / model-deployment allowance, electricity for the hardware you need, and an annual maintenance allowance. Staff time for ongoing operations is not included.' },
   { q: 'Is my data stored or sent anywhere?', a: 'No. The calculation runs entirely in your browser. Nothing you type is transmitted or saved.' },
   { q: 'When does self-hosting NOT make sense?', a: 'For very small teams, light usage, or flat-rate plans that are already cheap, the payback period can be long or never arrive. The calculator will tell you when the cloud option is the better deal.' },
@@ -299,7 +308,7 @@ export default function CostCalculator() {
               What is your AI stack <span>really costing you?</span>
             </motion.h1>
             <motion.p variants={fadeUp} custom={0.15} className="roi-lead">
-              Enter your team size and current AI provider. We estimate your real monthly spend, size the self-hosted hardware you would need, and show your break-even point.
+              Enter your team size and current AI provider. We give an illustrative estimate of your monthly spend, outline the self-hosted hardware you might need, and compare the two over time.
             </motion.p>
             <motion.div variants={fadeUp} custom={0.25} className="roi-hero-cta">
               <a href="#roi-calculator" className="btn-primary">Start calculating <ArrowRight size={16} /></a>
@@ -308,12 +317,12 @@ export default function CostCalculator() {
             <motion.ul variants={fadeUp} custom={0.35} className="roi-trust">
               <li><Lock size={15} /> Runs in your browser</li>
               <li><ShieldCheck size={15} /> No sign-up or email</li>
-              <li><Zap size={15} /> Results in seconds</li>
+              <li><Zap size={15} /> Instant results</li>
             </motion.ul>
           </motion.div>
 
           <motion.div className="roi-hero-visual" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}>
-            <img src={aiRoiHero} alt="AI ROI cost comparison illustration" decoding="async" />
+            <img src={aiRoiHero} alt="AI cost comparison illustration" decoding="async" />
           </motion.div>
         </div>
       </section>
@@ -341,7 +350,7 @@ export default function CostCalculator() {
         <div className="roi-wrap">
           <div className="roi-section-head">
             <h2>Run your numbers</h2>
-            <p>Takes about a minute. Your comparison updates on the right as soon as you calculate.</p>
+            <p>Quick to fill in. Your comparison appears on the right as soon as you calculate.</p>
           </div>
 
           <div className="roi-calc">
@@ -390,7 +399,7 @@ export default function CostCalculator() {
                     {isUsageBased ? (
                       <div className="roi-info">
                         <Info size={15} />
-                        <span>{provider} is pay-as-you-go, so there is no plan to pick. Team size is enough — usage is estimated from an industry benchmark and priced at {provider}'s real per-use rate.</span>
+                        <span>{provider} is pay-as-you-go, so there is no plan to pick. Team size is enough — usage is estimated from an industry benchmark and priced at {provider}'s published per-use rate.</span>
                       </div>
                     ) : (
                       <Field label="Plan you are on" htmlFor="roi-plan">
@@ -409,7 +418,7 @@ export default function CostCalculator() {
 
               <div className="roi-actions">
                 <button type="button" className="btn-primary roi-calc-btn" onClick={handleCalculate} disabled={!canCalculate}>
-                  <Zap size={17} /> Calculate my savings
+                  <Zap size={17} /> Calculate my estimate
                 </button>
                 <button type="button" className="roi-reset" onClick={handleReset} aria-label="Reset form" title="Reset">
                   <RotateCcw size={16} />
@@ -425,7 +434,7 @@ export default function CostCalculator() {
             <div className="roi-panel roi-results" ref={resultsRef}>
               <div className="roi-results-head">
                 <span className="roi-results-icon"><TrendingDown size={18} /></span>
-                <h3>Your savings breakdown</h3>
+                <h3>Your cost comparison</h3>
               </div>
               {!result ? (
                 <div className="roi-empty">
@@ -482,9 +491,9 @@ export default function CostCalculator() {
         <div className="roi-wrap">
           <div className="roi-cta">
             <h2>We'll help you read the numbers.</h2>
-            <p>Book a free 30-minute call. We'll walk through your stack, team size and growth plans — an honest read on whether self-hosting makes sense for you yet, with no sales pitch.</p>
+            <p>Book a free call. We'll walk through your stack, team size and growth plans — a straightforward look at whether self-hosting fits your situation.</p>
             <Link to="/book-discovery" className="roi-cta-btn">
-              <Zap size={16} /> Book your free consultation <ArrowRight size={16} />
+              <Zap size={16} /> Book a Free Call <ArrowRight size={16} />
             </Link>
           </div>
         </div>
@@ -606,6 +615,9 @@ const CSS = `
 .roi-hardware p{margin:0;font-size:.9rem;line-height:1.6}
 .roi-hardware span{color:rgba(0,0,0,.66)}
 .roi-full{width:100%}
+.roi-label-estimate{display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:10px 14px;border-radius:12px;border:1.5px solid #000;background:#fff;font-size:.88rem;font-weight:800;line-height:1.4}
+.roi-label-estimate svg{flex:0 0 auto}
+.roi-quote-note{margin:14px 0 12px;font-size:12.5px;line-height:1.6;color:rgba(0,0,0,.6)}
 .roi-disclaimer{display:flex;gap:8px;align-items:flex-start;justify-content:center;max-width:720px;margin:22px auto 0;font-size:12px;line-height:1.6;color:rgba(0,0,0,.55);text-align:left}
 .roi-disclaimer svg{flex:0 0 auto;margin-top:3px}
 

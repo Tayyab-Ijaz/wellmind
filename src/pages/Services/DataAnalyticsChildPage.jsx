@@ -12,9 +12,9 @@
  *   <Route path="/services-data-analytics/:childId" element={<DataAnalyticsChildPage />} />
  */
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import {
   Cpu, Brain, Zap, Code, Server, Database, Shield, Globe,
   CheckCircle, ArrowRight, Terminal, Layers, GitBranch,
@@ -25,10 +25,8 @@ import {
 
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
 
-import {
-  B, SECTION_PAD, PX, fadeUp, useCounter,
-  DataParticles, SectionBadge, SectionDivider, CircuitBg,
-} from '../../theme';
+import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../../theme';
+import { useSeo, childMeta } from '../../seo';
 
 import { DATA_ANALYTICS_CHILDREN } from './Dataanalyticschilddata';
 
@@ -125,57 +123,7 @@ function DeliverableItem({ text, color }) {
 }
 
 // ─── Stat Card ────────────────────────────────────────────────────────────────
-function StatCard({ target, suffix, label, iconName, start, delay = 0, color }) {
-  const val = useCounter(target, 2000, start);
-  const [hovered, setHovered] = useState(false);
-  const bg = `${color}15`;
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.5, delay }}
-      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-      whileHover={{ y: -5 }}
-      style={{
-        background: hovered ? `linear-gradient(145deg, ${bg}, rgba(255,255,255,0.02))` : 'rgba(255,255,255,0.02)',
-        backdropFilter: 'blur(12px)',
-        border: `1.5px solid ${hovered ? color : 'rgba(255,255,255,0.08)'}`,
-        boxShadow: hovered ? `0 0 25px ${color}40` : 'none',
-        borderRadius: 'var(--radius-lg)',
-        padding: 'clamp(16px, 2.5vw, 28px) clamp(10px, 2vw, 20px)',
-        textAlign: 'center', cursor: 'default',
-        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-      }}
-    >
-      <div style={{
-        width: 'clamp(40px, 5vw, 54px)', height: 'clamp(40px, 5vw, 54px)',
-        borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center',
-        margin: '0 auto clamp(12px, 2vw, 20px)',
-        background: hovered ? `linear-gradient(135deg, ${color}, ${color})` : 'rgba(255,255,255,0.05)',
-        color: hovered ? '#fff' : color,
-        border: `1px solid ${hovered ? 'transparent' : 'rgba(255,255,255,0.1)'}`,
-        transition: 'all 0.4s ease',
-      }}>
-        <Icon name={iconName} size={22} />
-      </div>
-      <div style={{
-        fontWeight: 800, fontSize: 'clamp(1.5rem, 3.5vw, 2.8rem)',
-        color: hovered ? 'transparent' : B.textDark,
-        background: hovered ? `linear-gradient(180deg, #fff 30%, ${color} 100%)` : 'none',
-        WebkitBackgroundClip: hovered ? 'text' : 'none',
-        backgroundClip: hovered ? 'text' : 'none',
-        marginBottom: 8, letterSpacing: '-0.03em', transition: 'all 0.3s ease',
-      }}>
-        {val}<span style={{ fontSize: '0.5em' }}>{suffix}</span>
-      </div>
-      <div style={{
-        fontSize: 'clamp(11px, 1.2vw, 13px)', letterSpacing: '0.12em',
-        textTransform: 'uppercase', color: B.textDarkMuted, fontWeight: 700,
-      }}>
-        {label}
-      </div>
-    </motion.div>
-  );
-}
+
 
 // ─── Tech Badge ───────────────────────────────────────────────────────────────
 function TechBadge({ label, color }) {
@@ -202,7 +150,7 @@ function TechBadge({ label, color }) {
 // ─── Shared Styles ────────────────────────────────────────────────────────────
 const SharedStyles = () => (
   <style>{`
-
+    
     .section-badge {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 6px clamp(14px, 2vw, 20px); border-radius: 99px;
@@ -242,20 +190,16 @@ const SharedStyles = () => (
     }
     .grid-stats    { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 24px); }
     .grid-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 24px); }
-    .grid-pricing  { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2.5vw, 24px); }
     @media (max-width: 1024px) {
       .grid-features { grid-template-columns: repeat(2, 1fr); }
-      .grid-pricing  { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       .grid-stats    { grid-template-columns: repeat(2, 1fr); gap: 14px; }
       .grid-features { grid-template-columns: repeat(2, 1fr); }
-      .grid-pricing  { grid-template-columns: 1fr; }
     }
     @media (max-width: 425px) {
       .grid-stats    { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .grid-features { grid-template-columns: 1fr; }
-      .grid-pricing  { grid-template-columns: 1fr; }
       .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
     }
     @media (max-width: 320px) {
@@ -273,19 +217,19 @@ const SharedStyles = () => (
 function DashboardPreview() {
   const [activeMetric, setActiveMetric] = useState(0);
   const metrics = [
-    { label: 'Revenue',    value: '+24%', color: B.action,          bars: [40, 55, 48, 72, 65, 88, 76] },
-    { label: 'Retention',  value: '94.2%', color: B.primary,  bars: [80, 83, 79, 91, 88, 94, 92] },
-    { label: 'Conversion', value: '8.7%', color: B.accent,    bars: [5, 7, 6, 9, 8, 10, 9] },
+    { label: 'Revenue',    value: '', color: B.action,          bars: [40, 55, 48, 72, 65, 88, 76] },
+    { label: 'Retention',  value: '', color: B.primary,  bars: [80, 83, 79, 91, 88, 94, 92] },
+    { label: 'Conversion', value: '', color: B.accent,    bars: [5, 7, 6, 9, 8, 10, 9] },
   ];
-  useEffect(() => { const t = setInterval(() => setActiveMetric(p => (p + 1) % metrics.length), 2000); return () => clearInterval(t); }, []);
+  useEffect(() => { const t = setInterval(() => setActiveMetric(p => (p + 1) % metrics.length), 2000); return () => clearInterval(t); }, [metrics.length]);
   const m = metrics[activeMetric];
 
   return (
-    <div style={{
-      padding: 'clamp(18px, 2.5vw, 28px)',
-      borderRadius: 'var(--radius-xl)',
-      background: B.white,
-      border: `1.5px solid ${B.primaryBorder}`,
+    <div style={{ 
+      padding: 'clamp(18px, 2.5vw, 28px)', 
+      borderRadius: 'var(--radius-xl)', 
+      background: B.white, 
+      border: `1.5px solid ${B.primaryBorder}`, 
       boxShadow: B.cardShadow,
       width: '100%',
       height: '100%',
@@ -314,7 +258,7 @@ function DashboardPreview() {
       </div>
       {/* Stats row */}
       <div style={{ display: 'flex', gap: 'clamp(8px, 1.2vw, 10px)' }}>
-        {[{ l: '50+', s: 'Dashboards', c: B.action }, { l: '3x', s: 'Faster', c: B.primary }, { l: '99%', s: 'Accuracy', c: B.accent }].map((stat, i) => (
+        {[{ l: 'BI', s: 'Dashboards', c: B.action }, { l: 'ETL', s: 'Pipelines', c: B.primary }, { l: 'Stats', s: 'Analysis', c: B.accent }].map((stat, i) => (
           <div key={i} style={{ fontSize: 'clamp(14px, 1.1vw, 14.5px)', flex: 1, textAlign: 'center', padding: 'clamp(7px, 1.2vw, 10px) 6px', borderRadius: 9, background: B.bgLight, border: `1px solid ${B.primaryBorder}` }}>
             <div style={{ fontWeight: 800, fontSize: 'clamp(13px, 2vw, 17px)', color: stat.c, marginBottom: 2 }}>{stat.l}</div>
             <div style={{ fontSize: 'clamp(9px, 1.1vw, 10px)', color: B.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{stat.s}</div>
@@ -329,25 +273,16 @@ function DashboardPreview() {
 export default function DataAnalyticsChildPage() {
   const { childId } = useParams();
   const navigate    = useNavigate();
-  const [statsVisible, setStatsVisible] = useState(false);
-  const statsRef = useRef(null);
 
   // Fetch data
   const data = DATA_ANALYTICS_CHILDREN[childId];
+  useSeo(childMeta(data, 'Data Science & Analytics', `/services-data-analytics/${childId}`));
 
   // Redirect if not found
   useEffect(() => {
     if (!data) navigate('/services-data-analytics', { replace: true });
   }, [data, navigate]);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setStatsVisible(true); },
-      { threshold: 0.2 }
-    );
-    if (statsRef.current) obs.observe(statsRef.current);
-    return () => obs.disconnect();
-  }, []);
 
   if (!data) return null;
 
@@ -456,12 +391,12 @@ export default function DataAnalyticsChildPage() {
               <motion.div
                 initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                style={{
+                style={{ 
                   flex: '1 1 clamp(260px, 40%, 600px)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  minHeight: 'clamp(300px, 42vw, 560px)',
+                  minHeight: 'clamp(300px, 42vw, 560px)', 
                   alignSelf: 'stretch',
                 }}
               >
@@ -502,7 +437,7 @@ export default function DataAnalyticsChildPage() {
       </section>
 
       {/* ══════════ 2. STATS (DARK) ══════════ */}
-      <section ref={statsRef} style={{
+      <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
         background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
@@ -511,21 +446,6 @@ export default function DataAnalyticsChildPage() {
         <CircuitBg opacity={0.09} />
         <DataParticles count={12} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 'clamp(36px, 5vw, 56px)' }}>
-            <SectionBadge dark style={{ color: B.textDarkMuted, marginBottom: 20 }}>Proven Excellence</SectionBadge>
-            <h2 className="section-h2 dark" style={{ textAlign: 'center', marginBottom: 'clamp(20px, 3.5vw, 40px)' }}>
-              Measurable Impact
-            </h2>
-            <div className="grid-stats" style={{ width: '100%' }}>
-              {data.stats.map((s, i) => (
-                <StatCard
-                  key={i} target={s.target} suffix={s.suffix}
-                  label={s.label} iconName={s.iconName}
-                  start={statsVisible} delay={i * 0.1} color={s.color}
-                />
-              ))}
-            </div>
-          </div>
 
           {/* Tech Stack */}
           <div style={{ textAlign: 'center' }}>
@@ -635,7 +555,7 @@ export default function DataAnalyticsChildPage() {
             <div style={{ flex: '1 1 min(100%, 380px)' }}>
               <SectionBadge>What You Get</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>
-                Full Ownership. Zero Black Boxes.
+                Documented Handover.
               </h2>
               <p style={{
                 fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)',
@@ -653,101 +573,6 @@ export default function DataAnalyticsChildPage() {
         </div>
       </section>
 
-      {/* ══════════ 4. PRICING (DARK) ══════════ */}
-      {/* <section style={{
-        padding: 'var(--sp-section) 0',
-        position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
-        display: 'flex', alignItems: 'center',
-      }}>
-        <CircuitBg opacity={0.07} />
-        <DataParticles count={8} dark />
-        <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-          <div style={{ textAlign: 'center', marginBottom: 'clamp(32px, 4.5vw, 56px)' }}>
-            <SectionBadge dark style={{ color: B.textDarkMuted }}>Transparent Pricing</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 14 }}>Investment</h2>
-            <p className="section-lead dark" style={{ maxWidth: 1200 }}>
-              Fixed-fee engagements. Scope agreed in writing before we start. No surprise invoices — ever.
-            </p>
-          </div>
-          <div className="grid-pricing">
-            {data.tiers.map((tier, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.09 }}
-                style={{
-                  background: tier.featured
-                    ? `linear-gradient(145deg, ${data.accentColor}18, ${data.accentColor}08)`
-                    : B.bgDarkCard,
-                  backdropFilter: 'blur(12px)',
-                  borderRadius: 'var(--radius-xl)',
-                  border: `2px solid ${tier.featured ? data.accentColor : 'rgba(255,255,255,0.08)'}`,
-                  boxShadow: tier.featured ? `0 20px 56px -14px ${data.accentColor}30` : 'none',
-                  padding: 'clamp(22px, 3vw, 32px) clamp(18px, 2.5vw, 28px)',
-                  position: 'relative', overflow: 'hidden',
-                  display: 'flex', flexDirection: 'column',
-                }}
-              >
-                {tier.featured && (
-                  <div style={{
-                    position: 'absolute', top: 16, right: 16,
-                    padding: '4px 12px', borderRadius: 99,
-                    background: data.accentColor, color: B.white,
-                    fontSize: 10, fontWeight: 800,
-                    textTransform: 'uppercase', letterSpacing: '0.1em',
-                  }}>
-                    Most Popular
-                  </div>
-                )}
-                <div style={{
-                  fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)',
-                  color: data.accentColor, letterSpacing: '0.10em',
-                  textTransform: 'uppercase', marginBottom: 10,
-                }}>
-                  {tier.name}
-                </div>
-                <div style={{
-                  fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
-                  color: B.textDark, marginBottom: 6,
-                }}>
-                  {tier.price}
-                </div>
-                <p style={{
-                  fontSize: 'clamp(12px, 1.4vw, 13.5px)',
-                  color: B.textDarkMid, lineHeight: 1.6,
-                  marginBottom: 'clamp(16px, 2.5vw, 24px)',
-                }}>
-                  {tier.desc}
-                </p>
-                <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
-                  {tier.features.map((f, fi) => (
-                    <div key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 10 }}>
-                      <CheckCircle size={15} color={data.accentColor} style={{ flexShrink: 0, marginTop: 1 }} />
-                      <span style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid }}>{f}</span>
-                    </div>
-                  ))}
-                </div>
-                <Link to="/book-discovery" style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                  padding: 'clamp(10px, 1.5vw, 13px) 20px', borderRadius: 10,
-                  background: tier.featured ? data.accentColor : 'transparent',
-                  color: tier.featured ? B.white : data.accentColor,
-                  border: `1.5px solid ${data.accentColor}`,
-                  fontWeight: 700, fontSize: 'clamp(11px, 1.4vw, 13px)',
-                  textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.2s',
-                }}
-                  onMouseEnter={e => { if (!tier.featured) e.currentTarget.style.background = `${data.accentColor}20`; }}
-                  onMouseLeave={e => { if (!tier.featured) e.currentTarget.style.background = 'transparent'; }}>
-                  Get Started <ArrowRight size={13} />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* ══════════ 5. FINAL CTA (LIGHT) ══════════ */}
       <section style={{
@@ -791,7 +616,7 @@ export default function DataAnalyticsChildPage() {
               color: B.textMid, maxWidth: 1200,
               margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75,
             }}>
-              Book a free 30-minute call. Tell us your {data.title.toLowerCase()} challenge. We'll give you honest feedback on what's achievable, what it costs, and whether this is even the right tool — no sales pitch.
+              Book a free call. Tell us your {data.title.toLowerCase()} challenge. We'll give you honest feedback on what's achievable, what it would take, and whether this is even the right tool — no sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/book-discovery" style={{

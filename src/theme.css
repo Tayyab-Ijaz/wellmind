@@ -489,3 +489,7 @@ main input, main select, main textarea, main button { max-width: 100%; }
   background: #000 !important;
   color: #fff !important;
 }
+
+/* Text on dark cards must stay light despite the monochrome overrides above. */
+.card-project-title.on-dark{color:#f0f0f0 !important}
+.card-project-body.on-dark{color:rgba(240,240,240,.75) !important}

@@ -8,7 +8,7 @@
  * ✅ FIX: ProcessTimeline grid — 2 cards per row, proper gaps
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -256,7 +256,7 @@ function CalendlyEmbed() {
       <div style={{ borderRadius: 16, overflow: 'hidden', border: `1.5px solid ${B.actionBorder}`, background: '#fff' }}>
         <iframe
           title="Book a free 30-minute call with WellMind Data Solutions"
-          src="https://calendly.com/tayyabijaz/special-request?hide_gdpr_banner=1"
+          src="https://calendly.com/tayyabijaz/special-request"
           loading="lazy"
           style={{ display: 'block', width: '100%', height: 'clamp(620px, 80vh, 720px)', border: 0 }}
         />

@@ -299,53 +299,6 @@ export default function Footer() {
               operate, compete, and grow.
             </p>
 
-            <div className="wm-footer-newsletter" style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-              <input
-                type="email"
-                placeholder="your@email.com"
-                style={{
-                  flex: 1,
-                  padding:
-                    'clamp(8px, 1.2vw, 10px) clamp(10px, 1.5vw, 14px)',
-                  fontSize: 'clamp(13px, 1vw, 15px)',
-                  minWidth: 0,
-                  background: 'rgba(255,255,255,0.05)',
-                  border: `1px solid ${B.glassBorder}`,
-                  borderRadius: 'var(--radius-sm)',
-                  color: '#FFFFFF',
-                  outline: 'none',
-                  fontFamily: 'var(--font-main)',
-                  transition: 'border-color 0.2s',
-                }}
-                onFocus={(e) => (e.target.style.borderColor = B.action)}
-                onBlur={(e) => (e.target.style.borderColor = B.glassBorder)}
-              />
-
-              <button
-                aria-label="Subscribe to newsletter"
-                style={{
-                  padding:
-                    'clamp(8px, 1.2vw, 10px) clamp(10px, 1.5vw, 14px)',
-                  flexShrink: 0,
-                  borderRadius: 'var(--radius-sm)',
-                  background: B.action,
-                  color: '#FFFFFF',
-                  border: 'none',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  transition: 'background 0.25s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = B.actionMid;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = B.action;
-                }}
-              >
-                <ArrowRight size={16} />
-              </button>
-            </div>
 
             <p
               className="wm-footer-caption"
@@ -439,8 +392,7 @@ export default function Footer() {
             <ul className="wm-footer-list">
               {[
                 { label: 'About Us', to: '/about' },
-                { label: 'AI ROI Calculator', to: '/ai-cost-calculator' },
-                { label: 'Careers', to: '/careers' },
+                { label: 'AI Cost Calculator', to: '/ai-cost-calculator' },
                 { label: 'Case Studies', to: '/case-studies' },
                 { label: 'Resources', to: '/resources' },
                 { label: 'Industries', to: '/industries' },

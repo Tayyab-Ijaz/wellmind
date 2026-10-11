@@ -5,10 +5,11 @@
  * richer content presentation, glassy cards, and strong nav section.
  */
 
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { B, SECTION_PAD, PX, NARROW, DataParticles, SectionBadge, CircuitBg } from '../theme';
+import { useSeo, SITE_NAME } from '../seo';
 import imgArPrioritization from '../assets/case-studies/ar-prioritization.png';
 import imgClaimDenial from '../assets/case-studies/claim-denial.png';
 import imgCommandCenter from '../assets/case-studies/command-center.png';
@@ -298,7 +299,7 @@ const ALL_CASE_STUDIES = {
     accentColor: B.primary,
     title: "Clinical NLP for Structuring Hospital Records",
     overview: "Most clinical information lives in free-text notes — diagnoses, medications, procedures, and outcomes buried in physician narratives rather than structured fields. This pipeline reads through hospital records, extracts clinically meaningful entities, de-identifies patient data, and organizes everything into structured data that can actually be queried and reported on.",
-    challenge: `Years of clinically valuable data sat locked in unstructured physician notes — unsearchable and unusable for research or reporting — and any extraction pipeline had to de-identify PHI before storage or analysis to stay privacy-compliant by design, not as an afterthought.`,
+    challenge: `Years of clinically valuable data sat locked in unstructured physician notes — unsearchable and unusable for research or reporting — and any extraction pipeline had to de-identify PHI before storage or analysis to protect patient privacy by design, not as an afterthought.`,
     approach: `Designed Named Entity Recognition tuned for clinical language — diagnoses, medications, procedures, symptoms — with de-identification built into the pipeline before any structuring or storage. Extracted entities are normalized against standard clinical vocabularies (ICD, SNOMED) so multi-year, multi-format hospital records land in a single structured, analyzable dataset ready for downstream analytics and reporting.`,
     results: ["Clinical NER extracts diagnoses, medications, procedures, and lab values from free text", "De-identification built into the pipeline before any storage or downstream processing", "Entity normalization against ICD/SNOMED standardizes years of disconnected notes", "Structured output designed to feed quality reporting, research, and audit requirements directly"],
     tools: ['Python', 'spaCy / NER', 'ICD/SNOMED Normalization'],
@@ -538,9 +539,10 @@ function MetricPill({ value, label, accent, delay }) {
 // ─── Nav Card ─────────────────────────────────────────────────────────────────
 function NavCard({ slug, dir }) {
   const cs = ALL_CASE_STUDIES[slug];
+  const [hovered, setHovered] = useState(false);
   if (!cs) return null;
   const tag = INDUSTRY_COLORS[cs.industry] || {};
-  const [hovered, setHovered] = useState(false);
+
   return (
     <Link to={`/case-studies/${slug}`} style={{ textDecoration: 'none', flex: 1, minWidth: 0 }}>
       <motion.div
@@ -642,7 +644,7 @@ function ReadingProgress({ accentColor }) {
 function ProfessionalBridge() {
   const items = [
     { icon: <Lock size={14}/>, text: "Client Confidentiality" },
-    { icon: <Code2 size={14}/>, text: "100% Code Ownership" },
+    { icon: <Code2 size={14}/>, text: "Code Ownership" },
     { icon: <Rocket size={14}/>, text: "Scalable Architecture" },
     { icon: <Globe2 size={14}/>, text: "Global Standards" },
   ];
@@ -719,6 +721,7 @@ function ProfessionalBridge() {
 export default function IndividualCaseStudy() {
   const { slug } = useParams();
   const cs = ALL_CASE_STUDIES[slug];
+  useSeo(cs ? { title: `${cs.title} | Case Study | ${SITE_NAME}`, description: `${cs.title} — a portfolio project by ${SITE_NAME}.`, path: `/case-studies/${slug}` } : null);
 
   useEffect(() => { window.scrollTo(0, 0); }, [slug]);
 
@@ -1150,7 +1153,7 @@ export default function IndividualCaseStudy() {
                     Have a similar challenge?
                   </h3>
                   <p style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1rem)', color: B.textMid, lineHeight: 1.7 }}>
-                    Book a free 30-minute call. We'll tell you exactly what's possible, what it would cost, and whether we're the right fit. No pitch. No pressure.
+                    Book a free call. We'll tell you exactly what's possible, what it would take, and whether we're the right fit. No pitch. No pressure.
                   </p>
                 </div>
                 <div style={{ flexShrink: 0 }}>

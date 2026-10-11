@@ -47,7 +47,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Genomic & Sequencing',
     accentColor: COLORS.bio,
     heroDesc:    'RNA-seq analysis is only as reliable as the pipeline behind it. We build end-to-end RNA-seq workflows — from raw FASTQ quality control through alignment, quantification, and differential expression analysis — using DESeq2, edgeR, or limma with rigorous statistical methodology and publication-ready outputs.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $1,800'],
+    tags:        ['Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw Reads',          sub: 'FASTQ input files',           color: COLORS.bio,       iconName: 'Dna'         },
@@ -58,12 +58,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Results & Report',   sub: 'Figures + annotated notebook', color: COLORS.bio,       iconName: 'BarChart3'   },
     ],
 
-    stats: [
-      { target: 99,  suffix: '%', label: 'Mapping Rate',             iconName: 'Activity',   color: COLORS.bio      },
-      { target: 60,  suffix: '%', label: 'Faster Than Manual',       iconName: 'Zap',        color: COLORS.action   },
-      { target: 80,  suffix: '+', label: 'RNA-seq Projects Done',    iconName: 'FlaskConical',color: COLORS.gold    },
-      { target: 100, suffix: '%', label: 'Reproducible Pipelines',   iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Dna',         title: 'Bulk RNA-seq Analysis',      color: COLORS.bio,       desc: 'Multi-sample differential expression with STAR or HISAT2 alignment, DESeq2 statistical testing, and full multiple-testing correction.' },
@@ -102,17 +96,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'clusterProfiler',color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Single Contrast',   price: 'From $1,800', featured: false,
-        desc:     'DE analysis for one comparison with QC, figures, and notebook.',
-        features: ['One condition comparison', 'QC + alignment', 'DE results + figures', '5–8 day delivery'] },
-      { name: 'Full RNA-seq Study',price: 'From $4,500', featured: true,
-        desc:     'Multi-sample study with all contrasts, pathway analysis, and pipeline.',
-        features: ['Multiple contrasts', 'Pathway enrichment + GSEA', 'Nextflow pipeline', 'Publication figures', '30-day support'] },
-      { name: 'Custom / Retainer', price: 'Custom',      featured: false,
-        desc:     'Longitudinal studies, clinical data, or ongoing analysis retainer.',
-        features: ['Longitudinal design', 'Clinical data handling', 'Grant-ready outputs', 'Authorship negotiable'] },
-    ],
   },
 
   // ── 2. DNA Variant Calling ────────────────────────────────────────────────
@@ -123,7 +106,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Genomic & Sequencing',
     accentColor: COLORS.action,
     heroDesc:    'Variant calling is only as trustworthy as the pipeline calling it. We build GATK Best Practices and DeepVariant-based workflows for SNV, indel, and structural variant detection — with clinical annotation via ClinVar, COSMIC, and gnomAD — producing VCF outputs with the documentation your clinical or publication audience requires.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,200'],
+    tags:        ['Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw Sequencing',   sub: 'FASTQ / BAM input',            color: COLORS.bio,       iconName: 'Dna'         },
@@ -134,12 +117,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Clinical Report',  sub: 'Filtered VCF + PDF summary',   color: COLORS.bio,       iconName: 'BarChart3'   },
     ],
 
-    stats: [
-      { target: 99,  suffix: '.9%',label: 'Variant Accuracy',          iconName: 'Activity',   color: COLORS.action   },
-      { target: 50,  suffix: '+',  label: 'Variant Studies Done',      iconName: 'FlaskConical',color: COLORS.bio     },
-      { target: 100, suffix: '%',  label: 'GATK Best Practices',       iconName: 'Shield',     color: COLORS.gold     },
-      { target: 15,  suffix: '+',  label: 'Annotation Databases',      iconName: 'Database',   color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Dna',        title: 'WGS / WES / Panel Analysis',  color: COLORS.action,    desc: 'Whole-genome, whole-exome, and targeted panel variant calling with appropriate depth, coverage, and quality thresholds for each data type.' },
@@ -178,17 +155,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Python / R',   color: COLORS.bio      },
     ],
 
-    tiers: [
-      { name: 'Single Sample',    price: 'From $2,200', featured: false,
-        desc:     'Variant calling for one sample with annotation and report.',
-        features: ['Single sample pipeline', 'GATK + annotation', 'VCF + summary report', '7–10 day delivery'] },
-      { name: 'Cohort Analysis',  price: 'From $5,500', featured: true,
-        desc:     'Joint variant calling across a cohort with clinical annotation.',
-        features: ['Joint genotyping', 'Cohort QC', 'ACMG classification', 'Filtered variant table', '30-day support'] },
-      { name: 'Clinical Pipeline',price: 'Custom',      featured: false,
-        desc:     'HIPAA-compliant clinical reporting pipeline with regulatory documentation.',
-        features: ['HIPAA compliance', 'Clinical PDF report', 'LIMS integration', 'Regulatory documentation'] },
-    ],
   },
 
   // ── 3. Genomic Sequencing ─────────────────────────────────────────────────
@@ -199,7 +165,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Genomic & Sequencing',
     accentColor: COLORS.primary,
     heroDesc:    'Whole-genome analysis goes beyond variant calling — from de novo assembly and comparative genomics to population-level analyses and GWAS. We handle short-read, long-read (PacBio, Nanopore), and hybrid assembly approaches, delivering annotated genomes and population-level insights with rigorous quality metrics.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,500'],
+    tags:        ['Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw Sequencing',   sub: 'Short / long-read FASTQ',      color: COLORS.bio,       iconName: 'Dna'         },
@@ -210,12 +176,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Analysis & Report',sub: 'Comparative genomics + report', color: COLORS.bio,       iconName: 'BarChart3'   },
     ],
 
-    stats: [
-      { target: 98,  suffix: '%', label: 'BUSCO Completeness',        iconName: 'Activity',   color: COLORS.primary  },
-      { target: 15,  suffix: '+', label: 'Organisms Supported',       iconName: 'Globe',      color: COLORS.bio      },
-      { target: 40,  suffix: '+', label: 'Genome Projects Done',      iconName: 'FlaskConical',color: COLORS.gold    },
-      { target: 100, suffix: '%', label: 'Reproducible Workflow',     iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Dna',        title: 'De Novo Assembly',             color: COLORS.primary,   desc: 'Short-read (SPAdes), long-read (Flye, Hifiasm), and hybrid assembly approaches — selected based on organism, coverage, and assembly quality targets.' },
@@ -254,17 +214,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Python / R', color: COLORS.bio      },
     ],
 
-    tiers: [
-      { name: 'Assembly & Annotation', price: 'From $2,500', featured: false,
-        desc:     'De novo assembly, QC, and functional annotation for one genome.',
-        features: ['Assembly + QC', 'Functional annotation', 'Quality report', '10–14 day delivery'] },
-      { name: 'Comparative Genomics',  price: 'From $5,500', featured: true,
-        desc:     'Multi-genome assembly with comparative analysis and phylogenomics.',
-        features: ['Multiple genomes', 'Comparative genomics', 'Phylogenomic tree', 'Publication figures', '30-day support'] },
-      { name: 'Population Genomics',   price: 'Custom',      featured: false,
-        desc:     'Population-scale GWAS, pangenome, or population structure analysis.',
-        features: ['GWAS / pangenome', 'Population structure', 'Grant-ready outputs', 'Authorship negotiable'] },
-    ],
   },
 
   // ── 4. Epigenomics Analysis ───────────────────────────────────────────────
@@ -275,7 +224,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Genomic & Sequencing',
     accentColor: COLORS.secondary,
     heroDesc:    'Epigenomic data requires specialist analysis that standard RNA-seq pipelines don\'t handle. We build ChIP-seq peak calling pipelines, ATAC-seq chromatin accessibility analyses, and WGBS methylation workflows — with integration against gene expression data to link regulatory changes to transcriptional outcomes.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,000'],
+    tags:        ['Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw Reads',        sub: 'FASTQ (ChIP / ATAC / BS-seq)',  color: COLORS.bio,       iconName: 'Dna'         },
@@ -286,12 +235,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Report & Figures', sub: 'IGV tracks + publication figs',color: COLORS.bio,       iconName: 'BarChart3'   },
     ],
 
-    stats: [
-      { target: 95,  suffix: '%', label: 'Peak Reproducibility',      iconName: 'Activity',   color: COLORS.secondary },
-      { target: 40,  suffix: '+', label: 'Epigenomics Projects',      iconName: 'FlaskConical',color: COLORS.bio      },
-      { target: 3,   suffix: 'x', label: 'Faster than Manual',        iconName: 'Zap',        color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'IDR-validated Peaks',       iconName: 'Shield',     color: COLORS.action   },
-    ],
 
     features: [
       { iconName: 'Activity',   title: 'ChIP-seq Peak Calling',       color: COLORS.secondary, desc: 'MACS3 peak calling with input control normalisation, IDR analysis for replicate reproducibility, and blacklist region filtering.' },
@@ -330,17 +273,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Nextflow',   color: COLORS.bio       },
     ],
 
-    tiers: [
-      { name: 'Single Assay',      price: 'From $2,000', featured: false,
-        desc:     'One epigenomics assay analysed end-to-end with report.',
-        features: ['One assay type', 'Peak calling + annotation', 'QC report + figures', '7–10 day delivery'] },
-      { name: 'Full Epigenomics',  price: 'From $5,000', featured: true,
-        desc:     'Differential analysis across conditions with multi-omics integration.',
-        features: ['Differential peaks / DMRs', 'Motif enrichment', 'RNA-seq integration', 'Publication figures', '30-day support'] },
-      { name: 'Multi-assay Study', price: 'Custom',      featured: false,
-        desc:     'ChIP + ATAC + WGBS integrated study with regulatory network analysis.',
-        features: ['Multi-assay integration', 'Regulatory network', 'Grant-ready outputs', 'Authorship negotiable'] },
-    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -355,7 +287,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Multi-omics & Systems',
     accentColor: COLORS.bio,
     heroDesc:    'Single-omics analysis answers partial questions. Multi-omics integration reveals the regulatory relationships between molecular layers — linking genetic variants to expression changes to protein abundance to metabolite levels. We design and execute integrative analyses using MOFA+, DIABLO, and custom ML approaches.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $3,500'],
+    tags:        ['Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Multi-omics Data',  sub: 'Genomics / Transcriptomics / Proteomics', color: COLORS.bio,      iconName: 'Layers'    },
@@ -366,12 +298,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Report & Figures',  sub: 'Integrated results + visualisation',       color: COLORS.bio,      iconName: 'BarChart3' },
     ],
 
-    stats: [
-      { target: 3,   suffix: 'x',  label: 'More Biological Insight',  iconName: 'Activity',   color: COLORS.bio      },
-      { target: 30,  suffix: '+',  label: 'Multi-omics Projects',     iconName: 'Layers',     color: COLORS.gold     },
-      { target: 10,  suffix: '+',  label: 'Integration Methods Used', iconName: 'GitBranch',  color: COLORS.action   },
-      { target: 100, suffix: '%',  label: 'Reproducible Analysis',    iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Layers',     title: 'Factor Analysis (MOFA+)',      color: COLORS.bio,      desc: 'Multi-Omics Factor Analysis to identify latent factors driving variation across multiple omics layers simultaneously.' },
@@ -410,17 +336,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'DESeq2',     color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Two-omics Integration', price: 'From $3,500', featured: false,
-        desc:     'Integration of two omics layers with pathway analysis and figures.',
-        features: ['Two omics modalities', 'MOFA+ / DIABLO', 'Pathway enrichment', '10–14 day delivery'] },
-      { name: 'Full Multi-omics',      price: 'From $7,500', featured: true,
-        desc:     'Three or more omics layers with network analysis and clinical correlation.',
-        features: ['3+ omics modalities', 'Network analysis', 'Clinical correlation', 'Publication figures', '30-day support'] },
-      { name: 'Custom Research',       price: 'Custom',      featured: false,
-        desc:     'Longitudinal or clinical multi-omics with regulatory submission support.',
-        features: ['Longitudinal design', 'Clinical data handling', 'Regulatory documentation', 'Authorship negotiable'] },
-    ],
   },
 
   // ── 6. Proteomics Integration ─────────────────────────────────────────────
@@ -431,7 +346,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Multi-omics & Systems',
     accentColor: COLORS.action,
     heroDesc:    'Proteomics data analysis requires specialist handling of mass spectrometry search results, peptide-protein inference, missing value imputation, and appropriate normalisation before any biological conclusion can be drawn. We build MaxQuant, Proteome Discoverer, and DIA-NN-based workflows with differential protein abundance analysis and multi-omics integration.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,500'],
+    tags:        ['Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'MS Raw Data',      sub: 'RAW / mzML / DIA files',       color: COLORS.bio,      iconName: 'FlaskConical'},
@@ -442,15 +357,9 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Report & Figures', sub: 'Volcano · heatmap · network',   color: COLORS.bio,      iconName: 'BarChart3'  },
     ],
 
-    stats: [
-      { target: 98,  suffix: '%', label: 'Peptide FDR Controlled',    iconName: 'Shield',     color: COLORS.action   },
-      { target: 35,  suffix: '+', label: 'Proteomics Projects',       iconName: 'FlaskConical',color: COLORS.bio     },
-      { target: 5,   suffix: 'k+',label: 'Proteins Quantified',      iconName: 'Database',   color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Reproducible Workflow',     iconName: 'Activity',   color: COLORS.secondary },
-    ],
 
     features: [
-      { iconName: 'FlaskConical',title: 'MaxQuant / DIA-NN Processing', color: COLORS.action,   desc: 'DDA and DIA data processed with MaxQuant, DIA-NN, or MSFragger — with FDR-controlled protein identification at 1% peptide and protein level.' },
+      { iconName: 'FlaskConical',title: 'MaxQuant / DIA-NN Processing', color: COLORS.action,   desc: 'DDA and DIA data processed with MaxQuant, DIA-NN, or MSFragger — with FDR-controlled protein identification at standard thresholds.' },
       { iconName: 'Shield',       title: 'QC & Normalisation',          color: COLORS.bio,      desc: 'Intensity distribution QC, median or VSN normalisation, missing value pattern analysis, and imputation strategy selection.' },
       { iconName: 'Activity',     title: 'Differential Abundance',      color: COLORS.primary,  desc: 'limma-based differential protein abundance analysis with multiple-testing correction, volcano plots, and contrast-level results.' },
       { iconName: 'BookOpen',     title: 'Pathway & Network Analysis',  color: COLORS.accent,   desc: 'GO, KEGG, and Reactome enrichment on differential proteins, STRING network analysis, and hub protein identification.' },
@@ -486,17 +395,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'clusterProfiler', color: COLORS.bio   },
     ],
 
-    tiers: [
-      { name: 'Single Study',       price: 'From $2,500', featured: false,
-        desc:     'Differential proteomics analysis with pathway enrichment and figures.',
-        features: ['DE protein analysis', 'GO / KEGG enrichment', 'Volcano + heatmap', '7–10 day delivery'] },
-      { name: 'Full Proteomics',    price: 'From $5,500', featured: true,
-        desc:     'Full study with PTM analysis, network analysis, and omics integration.',
-        features: ['PTM analysis', 'Network analysis', 'RNA-seq integration', 'Publication figures', '30-day support'] },
-      { name: 'Clinical Proteomics',price: 'Custom',      featured: false,
-        desc:     'Clinical biomarker discovery with HIPAA-compliant data handling.',
-        features: ['Biomarker discovery', 'Clinical data handling', 'Regulatory documentation', 'Authorship negotiable'] },
-    ],
   },
 
   // ── 7. Metabolomics Pipelines ─────────────────────────────────────────────
@@ -507,7 +405,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Multi-omics & Systems',
     accentColor: COLORS.secondary,
     heroDesc:    'Metabolomics data carries the functional fingerprint of cellular state — but only if the pre-processing, feature detection, and annotation are done correctly. We build XCMS, MZmine, and MetaboAnalyst-based workflows for untargeted LC-MS/MS and NMR metabolomics, with pathway analysis and multi-omics integration.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,500'],
+    tags:        ['Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw Spectra',       sub: 'mzML / CDF / NMR FID',        color: COLORS.bio,       iconName: 'FlaskConical'},
@@ -518,12 +416,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Pathway Analysis',  sub: 'MetaboAnalyst · mSet',         color: COLORS.bio,       iconName: 'GitBranch'  },
     ],
 
-    stats: [
-      { target: 90,  suffix: '%', label: 'Feature Reproducibility',   iconName: 'Activity',   color: COLORS.secondary },
-      { target: 30,  suffix: '+', label: 'Metabolomics Projects',     iconName: 'FlaskConical',color: COLORS.bio      },
-      { target: 500, suffix: '+', label: 'Metabolites Annotated',     iconName: 'Database',   color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Reproducible Workflow',     iconName: 'Shield',     color: COLORS.action   },
-    ],
 
     features: [
       { iconName: 'FlaskConical',title: 'Untargeted LC-MS/MS',         color: COLORS.secondary, desc: 'XCMS or MZmine-based peak detection, retention time alignment, and gap-filling for untargeted metabolomics profiling.' },
@@ -562,17 +454,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'SIRIUS',        color: COLORS.bio       },
     ],
 
-    tiers: [
-      { name: 'Single Study',       price: 'From $2,500', featured: false,
-        desc:     'Untargeted metabolomics with annotation and pathway analysis.',
-        features: ['Pre-processing', 'Annotation + pathway', 'Statistical results', '7–10 day delivery'] },
-      { name: 'Full Metabolomics',  price: 'From $5,500', featured: true,
-        desc:     'Full study with multivariate analysis and multi-omics integration.',
-        features: ['Multivariate statistics', 'MSEA / pathway', 'Omics integration', 'Publication figures', '30-day support'] },
-      { name: 'Clinical Metabolomics', price: 'Custom',  featured: false,
-        desc:     'Biomarker discovery study with clinical data and regulatory support.',
-        features: ['Biomarker discovery', 'Clinical data handling', 'Regulatory documentation', 'Authorship negotiable'] },
-    ],
   },
 
   // ── 8. Single-cell Analysis ───────────────────────────────────────────────
@@ -583,7 +464,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Multi-omics & Systems',
     accentColor: COLORS.primary,
     heroDesc:    'Single-cell RNA-seq reveals cell-type heterogeneity invisible in bulk RNA-seq — but requires careful QC, normalisation, dimensionality reduction, and cell-type annotation to draw valid biological conclusions. We build Seurat and Scanpy-based scRNA-seq workflows, including cell-type annotation, trajectory inference, and spatial transcriptomics analysis.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $2,500'],
+    tags:        ['Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Raw scRNA-seq',    sub: 'FASTQ / CellRanger output',    color: COLORS.bio,       iconName: 'Dna'        },
@@ -594,12 +475,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Report & Figures', sub: 'UMAP + DE + trajectory',       color: COLORS.bio,       iconName: 'BarChart3'  },
     ],
 
-    stats: [
-      { target: 95,  suffix: '%', label: 'Cell-type Accuracy',         iconName: 'Activity',   color: COLORS.primary  },
-      { target: 40,  suffix: '+', label: 'scRNA-seq Projects',         iconName: 'FlaskConical',color: COLORS.bio     },
-      { target: 50,  suffix: 'k+',label: 'Cells Analysed Avg',        iconName: 'Microscope', color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Reproducible Workflow',      iconName: 'Shield',     color: COLORS.action   },
-    ],
 
     features: [
       { iconName: 'Microscope',  title: 'scRNA-seq QC & Pre-processing',color: COLORS.primary,  desc: 'Ambient RNA removal (SoupX), doublet detection (DoubletFinder / Scrublet), and QC filtering with appropriate per-sample thresholds.' },
@@ -638,17 +513,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Squidpy',       color: COLORS.bio      },
     ],
 
-    tiers: [
-      { name: 'Single Dataset',    price: 'From $2,500', featured: false,
-        desc:     'scRNA-seq analysis with QC, clustering, and cell-type annotation.',
-        features: ['QC + clustering', 'Cell annotation', 'DE genes', '7–10 day delivery'] },
-      { name: 'Full scRNA-seq',    price: 'From $6,000', featured: true,
-        desc:     'Multi-sample study with trajectory, spatial, or cell communication analysis.',
-        features: ['Multi-sample integration', 'Trajectory analysis', 'Spatial / CCC analysis', 'Publication figures', '30-day support'] },
-      { name: 'Custom / Clinical', price: 'Custom',      featured: false,
-        desc:     'Clinical single-cell study with HIPAA compliance and regulatory outputs.',
-        features: ['Clinical data handling', 'HIPAA compliance', 'Regulatory documentation', 'Authorship negotiable'] },
-    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -663,7 +527,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Clinical AI',
     accentColor: COLORS.bio,
     heroDesc:    'Clinical decision support AI must be rigorously validated, explainable, and calibrated — not just accurate on a held-out test set. We build clinical prediction models with proper temporal validation, calibration assessment, SHAP-based explainability, and documentation aligned to regulatory and publication standards.',
-    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation', 'From $4,500'],
+    tags:        ['Full Code & Documentation'],
 
     pipelineSteps: [
       { label: 'Clinical Data',    sub: 'EHR / structured / omics',     color: COLORS.bio,       iconName: 'Database'   },
@@ -674,12 +538,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Clinical Report',  sub: 'SHAP + calibration + report',  color: COLORS.bio,       iconName: 'BookOpen'   },
     ],
 
-    stats: [
-      { target: 0.92, suffix: ' AUC', label: 'Avg Model Performance',  iconName: 'Activity',   color: COLORS.bio      },
-      { target: 40,   suffix: '+',    label: 'Clinical Models Built',  iconName: 'Brain',      color: COLORS.action   },
-      { target: 100,  suffix: '%',    label: 'SHAP Explained',         iconName: 'Shield',     color: COLORS.gold     },
-      { target: 100,  suffix: '%',    label: 'Calibration Assessed',   iconName: 'BarChart3',  color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Brain',      title: 'Prediction Model Development', color: COLORS.bio,       desc: 'XGBoost, LightGBM, logistic regression, and ensemble models — with hyperparameter tuning and nested cross-validation to avoid optimistic performance estimates.' },
@@ -687,7 +545,7 @@ export const BIOINFORMATICS_CHILDREN = {
       { iconName: 'Activity',   title: 'Model Calibration',            color: COLORS.primary,  desc: 'Calibration plots, Brier score, ECE assessment, and Platt scaling or isotonic regression calibration for probability outputs.' },
       { iconName: 'Database',   title: 'SHAP Explainability',          color: COLORS.accent,   desc: 'Global feature importance, per-patient SHAP waterfall plots, and interaction effects — required for clinical adoption and regulatory review.' },
       { iconName: 'Layers',     title: 'Clinical Feature Engineering', color: COLORS.secondary,desc: 'Missing data imputation, temporal feature extraction from longitudinal EHR data, and clinical domain knowledge applied to feature selection.' },
-      { iconName: 'BookOpen',   title: 'Regulatory Documentation',     color: COLORS.gold,     desc: 'Model card, intended use statement, performance report, and bias assessment aligned to FDA AI/ML guidance and TRIPOD+AI reporting standards.' },
+      { iconName: 'BookOpen',   title: 'Regulatory Documentation',     color: COLORS.gold,     desc: 'Model card, intended use statement, performance report, and bias assessment documented for transparent reporting.' },
     ],
 
     process: [
@@ -718,17 +576,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'R (survival)', color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Clinical Model',     price: 'From $4,500', featured: false,
-        desc:     'Prediction model with temporal validation and SHAP explainability.',
-        features: ['Model development', 'Temporal validation', 'SHAP report', '2–3 week delivery'] },
-      { name: 'Full Clinical AI',   price: 'From $9,000', featured: true,
-        desc:     'Multi-model study with external validation and regulatory documentation.',
-        features: ['Multiple models', 'External validation', 'Calibration', 'Model card', '30-day support'] },
-      { name: 'Regulatory Pipeline',price: 'Custom',      featured: false,
-        desc:     'FDA/CE-aligned AI model pipeline with full regulatory documentation.',
-        features: ['FDA AI/ML guidance', 'TRIPOD+AI reporting', 'Bias assessment', 'Submission support'] },
-    ],
   },
 
   // ── 10. Diagnostic AI Models ──────────────────────────────────────────────
@@ -739,7 +586,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Clinical AI',
     accentColor: COLORS.action,
     heroDesc:    'Diagnostic AI models must perform across the full performance spectrum — sensitivity, specificity, PPV, NPV — not just AUC. We build binary and multi-class diagnostic classifiers from omics, imaging features, or structured EHR data, with decision-threshold analysis, cost-sensitive evaluation, and clinical performance reporting.',
-    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation', 'From $4,000'],
+    tags:        ['Full Code & Documentation'],
 
     pipelineSteps: [
       { label: 'Clinical Data',    sub: 'Omics / EHR / imaging features',color: COLORS.bio,      iconName: 'Database'   },
@@ -750,12 +597,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Report',           sub: 'SHAP + clinical threshold rpt', color: COLORS.bio,       iconName: 'BookOpen'   },
     ],
 
-    stats: [
-      { target: 94,  suffix: '%', label: 'Avg Sensitivity',            iconName: 'Activity',   color: COLORS.action   },
-      { target: 35,  suffix: '+', label: 'Diagnostic Models Built',    iconName: 'Brain',      color: COLORS.bio      },
-      { target: 100, suffix: '%', label: 'Threshold Optimised',        iconName: 'Shield',     color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'SHAP Explained',             iconName: 'BarChart3',  color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Brain',      title: 'Binary & Multi-class Classification', color: COLORS.action,   desc: 'Random forest, XGBoost, and neural network classifiers for binary diagnosis and multi-class disease subtyping — with nested CV performance estimates.' },
@@ -794,17 +635,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'PyTorch',      color: COLORS.bio      },
     ],
 
-    tiers: [
-      { name: 'Diagnostic Model',    price: 'From $4,000', featured: false,
-        desc:     'Binary diagnostic classifier with clinical metrics and SHAP.',
-        features: ['Binary classifier', 'Clinical metrics', 'SHAP report', '2–3 week delivery'] },
-      { name: 'Full Diagnostic AI',  price: 'From $8,500', featured: true,
-        desc:     'Multi-class or biomarker panel model with clinical decision analysis.',
-        features: ['Multi-class / panel', 'Decision curve analysis', 'Threshold optimisation', 'STARD report', '30-day support'] },
-      { name: 'Regulatory Ready',    price: 'Custom',      featured: false,
-        desc:     'FDA/CE-aligned diagnostic AI with full regulatory documentation.',
-        features: ['FDA AI guidance', 'External validation', 'Bias assessment', 'Regulatory submission'] },
-    ],
   },
 
   // ── 11. Patient Risk Stratification ──────────────────────────────────────
@@ -815,7 +645,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Clinical AI',
     accentColor: COLORS.secondary,
     heroDesc:    'Patient risk stratification models — from survival analysis to readmission prediction to clinical risk scores — require proper time-to-event handling, competing risks, and external validation before any clinical claim can be made. We build Cox proportional hazards, Random Survival Forest, and deep survival models with full calibration and discrimination reporting.',
-    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation', 'From $4,000'],
+    tags:        ['Full Code & Documentation'],
 
     pipelineSteps: [
       { label: 'Clinical Data',    sub: 'EHR · survival data · omics',  color: COLORS.bio,       iconName: 'Database'  },
@@ -826,12 +656,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Nomogram & Rpt',   sub: 'Clinical score + report',      color: COLORS.bio,       iconName: 'BookOpen'  },
     ],
 
-    stats: [
-      { target: 0.82,suffix: ' C-idx',label: 'Avg Discrimination',    iconName: 'Activity',   color: COLORS.secondary },
-      { target: 35,  suffix: '+',      label: 'Risk Models Built',    iconName: 'Brain',      color: COLORS.bio       },
-      { target: 100, suffix: '%',      label: 'Calibration Assessed', iconName: 'Shield',     color: COLORS.gold      },
-      { target: 100, suffix: '%',      label: 'TRIPOD-aligned',       iconName: 'BookOpen',   color: COLORS.action    },
-    ],
 
     features: [
       { iconName: 'Brain',      title: 'Survival Analysis',             color: COLORS.secondary, desc: 'Cox proportional hazards, Kaplan-Meier, and log-rank testing for time-to-event outcomes — with assumption checks and Schoenfeld residual analysis.' },
@@ -870,17 +694,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'cmprsk (R)',    color: COLORS.bio       },
     ],
 
-    tiers: [
-      { name: 'Survival Model',     price: 'From $4,000', featured: false,
-        desc:     'Cox or RSF survival model with validation and calibration.',
-        features: ['Survival modelling', 'C-index + calibration', 'KM figures', '2–3 week delivery'] },
-      { name: 'Clinical Risk Score',price: 'From $8,000', featured: true,
-        desc:     'Full risk model with nomogram, competing risks, and TRIPOD report.',
-        features: ['Competing risks', 'Nomogram / score', 'TRIPOD+AI report', 'Temporal validation', '30-day support'] },
-      { name: 'Regulatory Risk AI', price: 'Custom',      featured: false,
-        desc:     'FDA/NICE-aligned risk model with external validation and submission support.',
-        features: ['External validation', 'Regulatory documentation', 'NICE guidelines', 'Submission support'] },
-    ],
   },
 
   // ── 12. Imaging AI (Pathology) ────────────────────────────────────────────
@@ -891,7 +704,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Clinical AI',
     accentColor: COLORS.primary,
     heroDesc:    'Computational pathology requires deep learning expertise combined with clinical domain knowledge. We build CNN and Vision Transformer-based models for whole-slide image classification, segmentation, and biomarker prediction — with rigorous pathologist-level benchmarking, tile-level attention maps, and documentation aligned to clinical and regulatory standards.',
-    tags:        ['Fixed-Fee Projects', 'Full Code & Documentation', 'From $6,000'],
+    tags:        ['Full Code & Documentation'],
 
     pipelineSteps: [
       { label: 'Slide Input',      sub: 'WSI / TIFF / DICOM',           color: COLORS.bio,       iconName: 'Microscope' },
@@ -902,12 +715,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Attention Maps',   sub: 'Grad-CAM · attention heatmaps',color: COLORS.bio,       iconName: 'BarChart3'  },
     ],
 
-    stats: [
-      { target: 93,  suffix: '%', label: 'Classification Accuracy',    iconName: 'Activity',   color: COLORS.primary  },
-      { target: 25,  suffix: '+', label: 'Pathology AI Projects',      iconName: 'Microscope', color: COLORS.bio      },
-      { target: 100, suffix: '%', label: 'Attention Map Visualised',   iconName: 'Eye',        color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Pathologist Benchmarked',    iconName: 'Shield',     color: COLORS.action   },
-    ],
 
     features: [
       { iconName: 'Microscope', title: 'WSI Classification',            color: COLORS.primary,  desc: 'Whole-slide image classification with CLAM, TransMIL, or ABMIL — tumour vs normal, grade classification, and molecular subtype prediction.' },
@@ -946,17 +753,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'QuPath',       color: COLORS.bio      },
     ],
 
-    tiers: [
-      { name: 'WSI Classification',price: 'From $6,000',  featured: false,
-        desc:     'Whole-slide classifier with attention maps and performance report.',
-        features: ['MIL classification', 'Attention maps', 'AUC + metrics', '3–4 week delivery'] },
-      { name: 'Full Pathology AI',  price: 'From $13,000', featured: true,
-        desc:     'Biomarker prediction or segmentation with external validation.',
-        features: ['Biomarker prediction / segmentation', 'External validation', 'Pathologist benchmark', 'Model card', '30-day support'] },
-      { name: 'Regulatory Pathology AI', price: 'Custom', featured: false,
-        desc:     'CE/FDA-aligned pathology AI with full regulatory documentation.',
-        features: ['FDA 510(k) / CE', 'Prospective validation', 'Regulatory documentation', 'Submission support'] },
-    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -971,7 +767,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Drug & Lab',
     accentColor: COLORS.bio,
     heroDesc:    'Drug discovery AI accelerates the most expensive steps in the pipeline — target identification, virtual screening, and ADMET property prediction. We build graph neural networks for molecular property prediction, virtual screening pipelines for hit identification, and ML models for ADMET prediction — with proper validation against experimental data.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $5,000'],
+    tags:        ['Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Target / Library', sub: 'Protein target · compound lib',  color: COLORS.bio,      iconName: 'FlaskConical'},
@@ -982,12 +778,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Lead List & Report',sub: 'Ranked candidates + report',    color: COLORS.bio,      iconName: 'BarChart3'  },
     ],
 
-    stats: [
-      { target: 10,  suffix: 'x', label: 'Faster Screening',           iconName: 'Zap',        color: COLORS.bio      },
-      { target: 30,  suffix: '+', label: 'Drug Discovery Projects',    iconName: 'FlaskConical',color: COLORS.action  },
-      { target: 90,  suffix: '%', label: 'ADMET Prediction Accuracy',  iconName: 'Shield',     color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Validated vs Experiment',    iconName: 'Activity',   color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Brain',        title: 'Molecular Property Prediction',color: COLORS.bio,      desc: 'Graph Neural Networks (MPNN, AttentiveFP, DimeNet) and QSAR models for activity, selectivity, and potency prediction.' },
@@ -1026,17 +816,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'AutoDock',   color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'QSAR Model',         price: 'From $5,000',  featured: false,
-        desc:     'Activity prediction model with ADMET screening and ranked hits.',
-        features: ['Activity model', 'ADMET profiling', 'Ranked hit list', '2–3 week delivery'] },
-      { name: 'Virtual Screening',  price: 'From $10,000', featured: true,
-        desc:     'Full virtual screening pipeline with GNN and molecular generation.',
-        features: ['GNN model', 'Library screening', 'Molecular generation', 'Experimental validation', '30-day support'] },
-      { name: 'Drug Discovery Programme', price: 'Custom', featured: false,
-        desc:     'Integrated AI-accelerated drug discovery from target to lead.',
-        features: ['Target ID', 'Multi-stage screening', 'Lead optimisation', 'Ongoing retainer'] },
-    ],
   },
 
   // ── 14. Molecular Docking ML ──────────────────────────────────────────────
@@ -1047,7 +826,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Drug & Lab',
     accentColor: COLORS.action,
     heroDesc:    'Traditional molecular docking is slow and often inaccurate for flexible targets. We enhance docking pipelines with ML rescoring, binding affinity prediction, and deep learning-based pose prediction — combining AutoDock Vina, Glide, or Gnina with ML models trained on your experimental binding data for target-specific accuracy.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Code', 'From $4,000'],
+    tags:        ['Full Pipeline Code'],
 
     pipelineSteps: [
       { label: 'Protein & Ligands',sub: 'PDB · SDF · SMILES',           color: COLORS.bio,      iconName: 'FlaskConical'},
@@ -1058,12 +837,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Ranked Results',   sub: 'Pose cluster + ranked report', color: COLORS.bio,      iconName: 'BarChart3'  },
     ],
 
-    stats: [
-      { target: 3,   suffix: 'x', label: 'Better Enrichment vs Docking',iconName: 'Activity',   color: COLORS.action   },
-      { target: 25,  suffix: '+', label: 'Docking ML Projects',         iconName: 'FlaskConical',color: COLORS.bio     },
-      { target: 10,  suffix: 'x', label: 'Faster than Structure-Based', iconName: 'Zap',        color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Benchmarked vs Experiment',   iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Microscope',  title: 'Molecular Docking Pipeline',    color: COLORS.action,  desc: 'AutoDock Vina, Gnina (CNN-based), and Glide docking pipelines — with grid preparation, ligand conformer generation, and pose clustering.' },
@@ -1102,17 +875,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'HTMD',          color: COLORS.bio      },
     ],
 
-    tiers: [
-      { name: 'Docking Campaign',   price: 'From $4,000', featured: false,
-        desc:     'Docking + ML rescoring for one target with ranked compound list.',
-        features: ['Docking pipeline', 'ML rescoring', 'Ranked results', '2–3 week delivery'] },
-      { name: 'Full Docking ML',    price: 'From $8,500', featured: true,
-        desc:     'Library screening with affinity prediction and experimental benchmarking.',
-        features: ['Library screening', 'Affinity prediction', 'Experimental validation', 'Pose analysis', '30-day support'] },
-      { name: 'Drug Discovery Integration', price: 'Custom', featured: false,
-        desc:     'Integrated docking + ADMET + activity prediction pipeline.',
-        features: ['Multi-stage pipeline', 'Target flexibility', 'Lead optimisation', 'Ongoing retainer'] },
-    ],
   },
 
   // ── 15. LIMS Integration ──────────────────────────────────────────────────
@@ -1123,7 +885,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Drug & Lab',
     accentColor: COLORS.secondary,
     heroDesc:    'Laboratory Information Management Systems hold the metadata that makes bioinformatics analyses interpretable — sample provenance, QC metrics, experimental conditions, and clinical annotations. We build LIMS integrations that automatically route sample data into analysis pipelines, return results to LIMS, and eliminate the manual CSV export that wastes lab staff time.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:        ['Full Code Ownership'],
 
     pipelineSteps: [
       { label: 'LIMS Data',        sub: 'Sample metadata · results',     color: COLORS.bio,       iconName: 'Database'   },
@@ -1134,19 +896,13 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'Audit & Notify',   sub: 'Audit log + team notification', color: COLORS.bio,       iconName: 'Shield'     },
     ],
 
-    stats: [
-      { target: 90,  suffix: '%', label: 'Manual Steps Eliminated',   iconName: 'TrendingDown',color: COLORS.secondary },
-      { target: 30,  suffix: '+', label: 'LIMS Integrations Built',   iconName: 'Database',   color: COLORS.bio       },
-      { target: 99,  suffix: '%', label: 'Integration Uptime',        iconName: 'Activity',   color: COLORS.gold      },
-      { target: 100, suffix: '%', label: 'Audit Trail Included',      iconName: 'Shield',     color: COLORS.action    },
-    ],
 
     features: [
       { iconName: 'Database',    title: 'LIMS API Connectivity',         color: COLORS.secondary,desc: 'LabVantage, LabWare, Benchling, STARLIMS, and custom LIMS systems connected via REST, SOAP, or SFTP — with auth, retry, and error handling.' },
       { iconName: 'GitBranch',   title: 'Metadata Mapping',              color: COLORS.bio,      desc: 'Sample metadata mapped to bioinformatics pipeline parameters — organism, tissue, protocol, batch, and QC flags routed automatically.' },
       { iconName: 'Activity',    title: 'Automated Pipeline Triggering', color: COLORS.action,   desc: 'Analysis pipelines launched automatically when LIMS status changes — no manual data export, no email to the bioinformatician.' },
       { iconName: 'RefreshCw',   title: 'Results Write-back',            color: COLORS.primary,  desc: 'Analysis results — quality metrics, variant counts, expression values — written back to LIMS automatically with provenance tracking.' },
-      { iconName: 'Shield',      title: 'Audit Trail',                   color: COLORS.accent,   desc: 'Every data transfer and pipeline execution logged with timestamps, data hashes, and user context for GxP and ISO compliance.' },
+      { iconName: 'Shield',      title: 'Audit Trail',                   color: COLORS.accent,   desc: 'Every data transfer and pipeline execution logged with timestamps, data hashes, and user context for traceability and audit.' },
       { iconName: 'Activity',    title: 'Monitoring & Alerting',         color: COLORS.gold,     desc: 'Integration health monitoring, failed transfer alerting, and a lab operations dashboard showing pipeline status by sample.' },
     ],
 
@@ -1154,7 +910,7 @@ export const BIOINFORMATICS_CHILDREN = {
       { step: '01', title: 'LIMS & Workflow Audit',  desc: 'Current LIMS system, data flows, manual steps, and integration points mapped before architecture design.' },
       { step: '02', title: 'Integration Build',       desc: 'LIMS API connector, metadata mapper, and pipeline trigger built and tested against staging LIMS environment.' },
       { step: '03', title: 'Results & Audit',         desc: 'Results write-back, audit logging, and monitoring deployed and validated.' },
-      { step: '04', title: 'Handoff & Training',      desc: 'Integration documentation, runbook, lab staff training, and 30-day support window begins.' },
+      { step: '04', title: 'Handoff & Training',      desc: 'Integration documentation, runbook, lab staff training, and support window begins.' },
     ],
 
     deliverables: [
@@ -1164,7 +920,7 @@ export const BIOINFORMATICS_CHILDREN = {
       'Results write-back implementation',
       'Audit trail setup',
       'Monitoring + alerting configuration',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -1178,17 +934,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'REST / SFTP', color: COLORS.bio       },
     ],
 
-    tiers: [
-      { name: 'LIMS Connector',    price: 'From $4,000', featured: false,
-        desc:     'LIMS API integration with metadata mapping and pipeline trigger.',
-        features: ['LIMS connection', 'Metadata mapping', 'Pipeline trigger', '3–4 week delivery'] },
-      { name: 'Full LIMS Platform',price: 'From $9,000', featured: true,
-        desc:     'Bidirectional LIMS integration with results write-back and monitoring.',
-        features: ['Bidirectional integration', 'Results write-back', 'Audit trail', 'Monitoring', '30-day support'] },
-      { name: 'GxP LIMS Integration',price: 'Custom',   featured: false,
-        desc:     'GxP-compliant LIMS integration with full validation and documentation.',
-        features: ['GxP compliance', 'Validation documentation', 'CSV template', 'IQ/OQ/PQ support'] },
-    ],
   },
 
   // ── 16. Clinical Trial Analytics ──────────────────────────────────────────
@@ -1199,7 +944,7 @@ export const BIOINFORMATICS_CHILDREN = {
     badge:       'Drug & Lab',
     accentColor: COLORS.primary,
     heroDesc:    'Clinical trial analysis requires domain-specific statistical expertise — ANCOVA, mixed models, survival analysis, and multiple-testing correction strategies that satisfy regulatory reviewers. We provide statistical analysis plan execution, primary and secondary endpoint analysis, subgroup analysis, and ICH E9(R1) estimand-aligned reporting for Phase I–III trials.',
-    tags:        ['Fixed-Fee Projects', 'Full Documentation', 'From $5,000'],
+    tags:        ['Full Documentation'],
 
     pipelineSteps: [
       { label: 'Trial Data',       sub: 'EDC / SAS / CDISC ADAM',       color: COLORS.bio,       iconName: 'Database'   },
@@ -1210,12 +955,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'CSR & Tables',     sub: 'RTF / PDF tables + CSR text',  color: COLORS.bio,       iconName: 'BookOpen'   },
     ],
 
-    stats: [
-      { target: 100, suffix: '%', label: 'ICH E9(R1) Aligned',        iconName: 'Shield',     color: COLORS.primary  },
-      { target: 30,  suffix: '+', label: 'Trial Analyses Delivered',   iconName: 'Activity',   color: COLORS.bio      },
-      { target: 100, suffix: '%', label: 'SAP-executed Analysis',      iconName: 'BookOpen',   color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Reproducible & Auditable',   iconName: 'Database',   color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Activity',   title: 'Primary Endpoint Analysis',     color: COLORS.primary,  desc: 'ANCOVA, MMRM, GLMM, and logistic regression for continuous, repeated-measures, and binary endpoints — following the pre-specified SAP.' },
@@ -1254,17 +993,6 @@ export const BIOINFORMATICS_CHILDREN = {
       { label: 'CDISC ADaM',    color: COLORS.bio      },
     ],
 
-    tiers: [
-      { name: 'Single Endpoint',   price: 'From $5,000',  featured: false,
-        desc:     'Primary endpoint analysis with sensitivity analysis and tables.',
-        features: ['Primary endpoint', 'Sensitivity analysis', 'CSR tables', '2–3 week delivery'] },
-      { name: 'Full Trial Analysis',price: 'From $12,000', featured: true,
-        desc:     'Complete SAP-executed analysis with all endpoints and CSR outputs.',
-        features: ['All endpoints', 'Subgroup analysis', 'Estimand framework', 'CSR outputs', '30-day support'] },
-      { name: 'Regulatory Submission',price: 'Custom',   featured: false,
-        desc:     'Full regulatory submission support with FDA/EMA-aligned outputs.',
-        features: ['FDA / EMA submission', 'CDISC datasets', 'Reviewer response support', 'Ongoing retainer'] },
-    ],
   },
 
 };

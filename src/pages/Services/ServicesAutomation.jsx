@@ -10,9 +10,9 @@
  * 3. Text sizes, margins, colours, BG styling fully synced with ServicesAiMl.jsx.
  */
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   Settings2, Repeat, GitMerge, ClipboardList, Timer,
   Zap, ArrowRight, CheckCircle, TrendingDown, BarChart3,
@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
-import { B, SECTION_PAD, PX, fadeUp, useCounter, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../../theme';
+import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../../theme';
 
 // ─── Brand Tokens (Synced with ServicesAiMl.jsx) ─────────────────────────────
 // Page-specific accent — warm amber/gold, operations / efficiency vibe
@@ -98,37 +98,7 @@ function DeliverableItem({ text, color }) {
 }
 
 // ─── Stat Card (dark section — Synced with AiMl) ─────────────────────────────
-function StatCard({ target, suffix, label, icon, start, delay = 0, theme }) {
-  const val = useCounter(target, 2000, start);
-  const [hovered, setHovered] = useState(false);
-  const t = theme || { color: B.primary, bg: B.primaryLight };
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
-      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-      whileHover={{ y: -5 }}
-      style={{
-        background: hovered ? `linear-gradient(145deg, ${t.bg}, rgba(255,255,255,0.02))` : 'rgba(255,255,255,0.02)',
-        backdropFilter: 'blur(12px)',
-        border: `1.5px solid ${hovered ? t.color : 'rgba(255,255,255,0.08)'}`,
-        boxShadow: hovered ? `0 0 25px ${t.color}40, inset 0 0 10px ${t.color}10` : 'none',
-        borderRadius: 'var(--radius-lg)', padding: 'clamp(16px, 2.5vw, 28px) clamp(10px, 2vw, 20px)', textAlign: 'center',
-        cursor: 'default', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)', overflow: 'hidden',
-      }}
-    >
-      <div style={{ width: 'clamp(40px, 5vw, 54px)', height: 'clamp(40px, 5vw, 54px)', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto clamp(12px, 2vw, 20px)', background: hovered ? `linear-gradient(135deg, ${t.color}, ${t.color})` : 'rgba(255,255,255,0.05)', color: hovered ? '#fff' : t.color, border: `1px solid ${hovered ? 'transparent' : 'rgba(255,255,255,0.1)'}`, transition: 'all 0.4s ease', boxShadow: hovered ? `0 10px 20px ${t.color}40` : 'none' }}>
-        <motion.div animate={{ rotate: hovered ? 360 : 0 }} transition={{ duration: 0.6 }}>
-          {React.cloneElement(icon, { size: 22, strokeWidth: 2 })}
-        </motion.div>
-      </div>
-      <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3.5vw, 2.8rem)', color: hovered ? 'transparent' : B.textDark, background: hovered ? `linear-gradient(180deg, #fff 30%, ${t.color} 100%)` : 'none', WebkitBackgroundClip: hovered ? 'text' : 'none', backgroundClip: hovered ? 'text' : 'none', marginBottom: 8, letterSpacing: '-0.03em', transition: 'all 0.3s ease' }}>
-        {val}<span style={{ fontSize: '0.5em' }}>{suffix}</span>
-      </div>
-      <div style={{ fontSize: 'clamp(11px, 1.2vw, 13px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textDarkMuted, fontWeight: 700 }}>{label}</div>
-    </motion.div>
-  );
-}
+
 
 // ─── Section Divider ──────────────────────────────────────────────────────────
 // ─── Animated Pipeline Flow Visual ───────────────────────────────────────────
@@ -183,8 +153,8 @@ function PipelineFlow() {
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const features = [
-  { icon: <Repeat/>, title: 'End-to-End Workflow Automation', desc: 'Map, digitise, and automate entire business workflows — from data ingestion to reporting. We identify the 20% of manual steps causing 80% of delays.', color: AC },
-  { icon: <Webhook/>, title: 'API & System Integration', desc: 'Connect your CRM, ERP, data warehouse, and 50+ other tools into a single automated data flow. Webhooks, polling, and event-driven triggers all covered.', color: B.action },
+  { icon: <Repeat/>, title: 'End-to-End Workflow Automation', desc: 'Map, digitise, and automate entire business workflows — from data ingestion to reporting. We identify the manual steps causing most of the delays.', color: AC },
+  { icon: <Webhook/>, title: 'API & System Integration', desc: 'Connect your CRM, ERP, data warehouse, and many other tools into a single automated data flow. Webhooks, polling, and event-driven triggers all covered.', color: B.action },
   { icon: <GitMerge/>, title: 'Pipeline Orchestration', desc: 'Airflow, Prefect, and Nextflow-based pipelines for data engineering and bioinformatics. Dependency management, retries, and alerting built-in.', color: B.primary },
   { icon: <AlertTriangle/>, title: 'Monitoring & Error Handling', desc: 'Every automation we build includes alerting for failures, structured logging, and auto-retry logic. You get notified before your users notice anything.', color: B.secondary },
   { icon: <Database/>, title: 'Data Pipeline Engineering', desc: 'ETL/ELT pipelines from messy source data to clean, queryable warehouses. Incremental loading, deduplication, schema validation included.', color: AC },
@@ -204,54 +174,19 @@ const deliverables = [
   'Monitoring dashboard with alerting rules',
   'Runbook for failure scenarios and manual overrides',
   'Integration credentials documented in secure vault',
-  'Training session for internal team (1 hour)',
-  '30-day post-launch support',
+  'Training session for internal team',
+  'Post-launch support',
 ];
 
-const tiers = [
-  {
-    name: 'Single Workflow',
-    price: 'From $2,500',
-    desc: 'Automate one defined, high-value manual process — end to end.',
-    features: ['1 workflow automated', 'API or script-based', 'Basic monitoring + alerts', 'Handoff documentation', '2–3 week delivery'],
-    featured: false,
-  },
-  {
-    name: 'Full Pipeline Suite',
-    price: 'From $6,500',
-    desc: 'Multiple workflows integrated into a coherent, monitored automation system.',
-    features: ['3–5 workflows automated', 'Orchestration layer (Airflow/Prefect)', 'Dashboard + alerting', 'Error handling + retries', '6–8 week delivery', '30-day support'],
-    featured: true,
-  },
-  {
-    name: 'Retainer',
-    price: 'From $1,500',
-    priceSuffix: '/ month',
-    desc: 'Ongoing automation engineering — new workflows, maintenance, optimisation.',
-    features: ['Monthly automation budget', 'Priority response SLA', 'Quarterly workflow review', 'On-call troubleshooting', 'Cancel anytime'],
-    featured: false,
-  },
-];
 
-const stats = [
-  { target: 70,  suffix: '%', label: 'Time Saved',        icon: <TrendingDown size={20}/>, theme: { color: AC,         bg: `${AC}15`              } },
-  { target: 97,  suffix: '%', label: 'Pipeline Uptime',   icon: <Activity size={20}/>,     theme: { color: B.action,   bg: 'rgba(84,84,84,0.1)' } },
-  { target: 6,   suffix: 'wk', label: 'Avg. Delivery',   icon: <Timer size={20}/>,         theme: { color: '#adadad',  bg: 'rgba(173,173,173,0.1)' } },
-  { target: 0,   suffix: '$',  label: 'Surprise Invoices',icon: <Shield size={20}/>,        theme: { color: '#a8a8a8',  bg: 'rgba(168,168,168,0.1)'  } },
-];
+
+
 
 const processColors = [AC, B.action, B.primary, B.secondary];
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 export default function ServicesAutomation() {
-  const [statsVisible, setStatsVisible] = useState(false);
-  const statsRef = useRef(null);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStatsVisible(true); }, { threshold: 0.20 });
-    if (statsRef.current) obs.observe(statsRef.current);
-    return () => obs.disconnect();
-  }, []);
 
   return (
     <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', position: 'relative', fontFamily: 'var(--font-body, sans-serif)' }}>
@@ -298,7 +233,7 @@ export default function ServicesAutomation() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  Intelligent RPA and end-to-end workflow automation that replaces repetitive manual tasks with reliable, monitored pipelines — delivering measurable ROI within weeks, not months.
+                  Intelligent RPA and end-to-end workflow automation that replaces repetitive manual tasks with reliable, monitored pipelines — built to run reliably without constant supervision.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.5vw, 16px)' }}>
@@ -343,7 +278,7 @@ export default function ServicesAutomation() {
               transition={{ delay: 0.5, duration: 0.5 }}
               style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(12px, 2vw, 20px)', justifyContent: 'center', width: '100%', paddingTop: 'clamp(10px, 2vw, 20px)', borderTop: `1px solid ${B.primaryBorder}40` }}
             >
-              {['Starting at $2,500', 'Fixed-Fee Delivery', 'ROI in Weeks, Not Months'].map((t, i) => (
+              {['Intelligent RPA', 'Monitored Pipelines'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
@@ -361,7 +296,7 @@ export default function ServicesAutomation() {
       </section>
 
       {/* ══════════ 2. STATS (DARK) ══════════ */}
-      <section ref={statsRef} style={{
+      <section style={{
         padding: 'var(--sp-section) 0',
         position: 'relative', zIndex: 1,
         background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
@@ -370,15 +305,6 @@ export default function ServicesAutomation() {
         <CircuitBg opacity={0.09}/>
         <DataParticles count={12} dark/>
         <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 'clamp(36px, 5vw, 56px)' }}>
-            <SectionBadge dark style={{ color: B.textDarkMuted, marginBottom: 20 }}>Measured Outcomes</SectionBadge>
-            <h2 className="section-h2 dark" style={{ textAlign: 'center', marginBottom: 'clamp(20px, 3.5vw, 40px)' }}>Results From Real Projects</h2>
-            <div className="grid-stats" style={{ width: '100%' }}>
-              {stats.map((s, i) => (
-                <StatCard key={i} target={s.target} suffix={s.suffix} label={s.label} icon={s.icon} start={statsVisible} delay={i * 0.1} theme={s.theme}/>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -397,7 +323,7 @@ export default function ServicesAutomation() {
             <SectionBadge>Services</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 12 }}>What We Automate</h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              From a single bottleneck to an entire operations stack — we scope to where the ROI is and build pipelines that run without babysitting.
+              From a single bottleneck to an entire operations stack — we scope to where it matters most and build pipelines that run without babysitting.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -451,68 +377,6 @@ export default function ServicesAutomation() {
         </div>
       </section>
 
-      {/* ══════════ 4. PRICING (DARK) ══════════ */}
-      {/* <section style={{
-        padding: 'var(--sp-section) 0',
-        position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 100%)',
-        display: 'flex', alignItems: 'center',
-      }}>
-        <CircuitBg opacity={0.07}/>
-        <DataParticles count={8} dark/>
-        <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-          <div style={{ textAlign: 'center', marginBottom: 'clamp(32px, 4.5vw, 56px)' }}>
-            <SectionBadge dark style={{ color: B.textDarkMuted }}>Transparent Pricing</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 14 }}>Investment</h2>
-            <p className="section-lead dark" style={{ maxWidth: 1200 }}>
-              Fixed fees. Scope agreed before we start. No surprise invoices — ever.
-            </p>
-          </div>
-          <div className="grid-pricing">
-            {tiers.map((tier, i) => (
-              <motion.div key={i}
-                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.09 }}
-                style={{
-                  background: tier.featured ? `linear-gradient(145deg, ${B.action}18, ${B.action}08)` : 'rgba(255,255,255,0.03)',
-                  backdropFilter: 'blur(12px)', borderRadius: 'var(--radius-xl)',
-                  border: `2px solid ${tier.featured ? B.action : 'rgba(255,255,255,0.08)'}`,
-                  boxShadow: tier.featured ? `0 20px 56px -14px ${B.action}30` : 'none',
-                  padding: 'clamp(22px, 3vw, 32px) clamp(18px, 2.5vw, 28px)',
-                  position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column',
-                }}
-              >
-                {tier.featured && <div style={{ position: 'absolute', top: 16, right: 16, padding: '4px 12px', borderRadius: 99, background: B.action, color: B.white, fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Most Popular</div>}
-                <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', color: B.action, letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 10 }}>{tier.name}</div>
-                <div style={{ fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: B.textDark, marginBottom: 6 }}>
-                  {tier.price}{tier.priceSuffix && <span style={{ fontSize: '0.45em', fontWeight: 600, color: B.textDarkMid }}> {tier.priceSuffix}</span>}
-                </div>
-                <p style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid, lineHeight: 1.6, marginBottom: 'clamp(16px, 2.5vw, 24px)' }}>{tier.desc}</p>
-                <div style={{ flex: 1, marginBottom: 'clamp(18px, 2.5vw, 28px)' }}>
-                  {tier.features.map((f, fi) => (
-                    <div key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 10 }}>
-                      <CheckCircle size={15} color={B.action} style={{ flexShrink: 0, marginTop: 1 }}/>
-                      <span style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textDarkMid }}>{f}</span>
-                    </div>
-                  ))}
-                </div>
-                <Link to="/book-discovery" style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                  padding: 'clamp(10px, 1.5vw, 13px) 20px', borderRadius: 10,
-                  background: tier.featured ? B.action : 'transparent',
-                  color: tier.featured ? B.white : B.action,
-                  border: `1.5px solid ${B.action}`,
-                  fontWeight: 700, fontSize: 'clamp(11px, 1.4vw, 13px)', textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.2s',
-                }}
-                  onMouseEnter={e => { if (!tier.featured) e.currentTarget.style.background = `${B.action}20`; }}
-                  onMouseLeave={e => { if (!tier.featured) e.currentTarget.style.background = 'transparent'; }}>
-                  Get Started <ArrowRight size={13}/>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* ══════════ 5. FINAL CTA (LIGHT) ══════════ */}
       <section style={{
@@ -535,7 +399,7 @@ export default function ServicesAutomation() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. We'll audit your biggest manual bottleneck and tell you what it would take to automate it — no sales pitch.
+              Book a free call. We'll audit your biggest manual bottleneck and tell you what it would take to automate it — no sales pitch.
             </p>
             <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
               <Link to="/book-discovery" style={{

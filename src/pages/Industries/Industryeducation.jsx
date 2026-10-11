@@ -13,7 +13,7 @@
  * 7. Final CTA (light)
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -23,44 +23,10 @@ import {
 } from 'lucide-react';
 
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
-import { B, SECTION_PAD, PX, fadeUp, useCounter, DataParticles, SectionBadge } from '../../theme';
+import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge } from '../../theme';
 
 // ─── Stat Card (Dark Section) ─────────────────────────────────────────────────
-function StatCard({ prefix = '', target, suffix, label, icon, start, delay = 0, theme }) {
-  const val = useCounter(target, 2200, start);
-  const [hovered, setHovered] = useState(false);
-  const t = theme || { color: B.action, bg: B.actionLight };
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
-      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-      whileHover={{ y: -5 }}
-      style={{
-        background: hovered ? `linear-gradient(145deg, ${t.bg}, rgba(255,255,255,0.02))` : 'rgba(255,255,255,0.02)',
-        backdropFilter: 'blur(12px)',
-        border: `1.5px solid ${hovered ? t.color : 'rgba(255,255,255,0.08)'}`,
-        boxShadow: hovered ? `0 0 25px ${t.color}40, inset 0 0 10px ${t.color}10` : 'none',
-        borderRadius: 'var(--radius-lg)', padding: 'clamp(16px, 2.5vw, 28px) clamp(10px, 2vw, 20px)', textAlign: 'center',
-        cursor: 'default', position: 'relative',
-        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)', overflow: 'hidden',
-      }}
-    >
-      <div style={{ position: 'absolute', top: -20, right: -20, width: 80, height: 80, background: `radial-gradient(circle, ${t.color} 0%, transparent 70%)`, opacity: hovered ? 0.18 : 0, filter: 'blur(20px)', transition: 'opacity 0.4s ease', pointerEvents: 'none' }} />
-      <div style={{ width: 'clamp(40px, 5vw, 52px)', height: 'clamp(40px, 5vw, 52px)', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto clamp(10px, 1.5vw, 18px)', background: hovered ? t.color : 'rgba(255,255,255,0.05)', color: hovered ? '#fff' : t.color, border: `1px solid ${hovered ? 'transparent' : 'rgba(255,255,255,0.1)'}`, transition: 'all 0.4s ease', boxShadow: hovered ? `0 10px 20px ${t.color}40` : 'none' }}>
-        <motion.div animate={{ rotate: hovered ? 360 : 0 }} transition={{ duration: 0.6 }}>
-          {React.cloneElement(icon, { size: 20, strokeWidth: 2 })}
-        </motion.div>
-      </div>
-      <div style={{ fontFamily: 'var(--font-main)', fontWeight: 800, fontSize: 'clamp(1.4rem, 3.2vw, 2.6rem)', color: hovered ? 'transparent' : B.textDark, background: hovered ? `linear-gradient(180deg, #fff 30%, ${t.color} 100%)` : 'none', WebkitBackgroundClip: hovered ? 'text' : 'none', backgroundClip: hovered ? 'text' : 'none', marginBottom: 6, letterSpacing: '-0.03em', transition: 'all 0.3s ease' }}>
-        {prefix}{val}<span style={{ fontSize: '0.5em' }}>{suffix}</span>
-      </div>
-      <div style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textDarkMuted, fontWeight: 700 }}>
-        {label}
-      </div>
-    </motion.div>
-  );
-}
+
 
 // ─── Capability Card ─────────────────────────────────────────────────────────
 function CapabilityCard({ icon, color, title, desc, delay = 0 }) {
@@ -179,15 +145,8 @@ function FaqItem({ q, a, isOpen, onClick, index, color }) {
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 export default function IndustryEducation() {
-  const [statsVisible, setStatsVisible] = useState(false);
-  const statsRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(-1);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStatsVisible(true); }, { threshold: 0.20 });
-    if (statsRef.current) obs.observe(statsRef.current);
-    return () => obs.disconnect();
-  }, []);
 
   const capabilities = [
     { icon: <Brain size={22} />,         color: B.primary,   title: 'Mastery & Prerequisite Intelligence', desc: 'Bayesian/probabilistic modeling (BKT/IRT) tracks mastery at the individual skill and sub-skill level, while automatic prerequisite-gap detection closes foundational gaps before students advance to new concepts.' },
@@ -301,59 +260,10 @@ export default function IndustryEducation() {
             </div>
 
             {/* BOTTOM ROW: Floating Tags */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: 'clamp(12px, 2vw, 20px)',
-                justifyContent: 'center',
-                width: '100%',
-                paddingTop: 'clamp(10px, 2vw, 20px)',
-                borderTop: `1px solid ${B.primaryBorder}40`
-              }}
-            >
-              {[
-                { val: '1',       label: 'Real Project Delivered' },
-                { val: 'Bayesian',  label: 'Mastery Modeling' },
-                { val: 'Real-Time', label: 'Difficulty Adjustment' },
-                { val: 'Concept', label: 'Current Stage' },
-              ].map((s, i) => (
-                <div key={i} style={{
-                  display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10,
-                  padding: 'clamp(8px, 1.5vw, 12px) clamp(18px, 2.5vw, 28px)',
-                  borderRadius: 50,
-                  background: 'rgba(255,255,255,0.7)', border: `2px solid ${B.primaryBorder}`,
-                  boxShadow: '0 4px 12px rgba(57,57,57,0.08)',
-                  animation: `wmFloat ${3.5 + i * 0.5}s ease-in-out infinite`,
-                }}>
-                  <span style={{ fontSize: 'clamp(1rem, 1.8vw, 1.4rem)', fontWeight: 800, color: B.secondary, lineHeight: 1 }}>{s.val}</span>
-                  <span style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, color: B.textMuted }}>{s.label}</span>
-                </div>
-              ))}
-            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ══ 2. STATS STRIP (dark) ══ */}
-      <section ref={statsRef} style={{ padding: 'var(--sp-section) 0', position: 'relative', zIndex: 1, background: `linear-gradient(135deg, #0a0a0a 0%, #080808 100%)`, overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-        <DataParticles count={12} dark />
-        <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-          <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
-            <SectionBadge dark>Real, Verifiable Work</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>What We've Actually Built</h2>
-          </div>
-          <div className="grid-stats">
-            <StatCard target={1}  suffix=""   label="Real Project Delivered"  icon={<GraduationCap />} start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
-            <StatCard target={2}  suffix=""   label="Approaches Considered (BKT/IRT)"        icon={<Brain />}  start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
-            <StatCard target={3}  suffix=""   label="Difficulty Adjustment Signals"    icon={<Zap />}   start={statsVisible} delay={0.2} theme={{ color: B.primary, bg: B.primaryLight }} />
-            <StatCard target={100} suffix="%"  label="Explainable Mastery Path"         icon={<Target />}        start={statsVisible} delay={0.3} theme={{ color: B.accent, bg: B.accentLight }} />
-          </div>
-        </div>
-      </section>
 
       {/* ══ 3. MERGED: CAPABILITIES + CASE STUDIES (Light) ══ */}
       <section style={{
@@ -527,10 +437,10 @@ export default function IndustryEducation() {
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${B.action}, ${B.primary}, ${B.accent})` }} />
               <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textMuted, marginBottom: 24 }}>Engagement Overview</div>
               {[
-                { label: 'Discovery & Data Audit',   duration: '2 weeks',   color: B.action,    icon: <Eye size={16} /> },
-                { label: 'Model Development',           duration: '4–8 weeks', color: B.secondary, icon: <Brain size={16} /> },
-                { label: 'Pilot & Validation',              duration: '2–4 weeks',color: B.primary,   icon: <BookOpen size={16} /> },
-                { label: 'Deployment & Support',    duration: '30 days',   color: B.accent,    icon: <Activity size={16} /> },
+                { label: 'Discovery & Data Audit',   color: B.action,    icon: <Eye size={16} /> },
+                { label: 'Model Development', color: B.secondary, icon: <Brain size={16} /> },
+                { label: 'Pilot & Validation',color: B.primary,   icon: <BookOpen size={16} /> },
+                { label: 'Deployment & Support',   color: B.accent,    icon: <Activity size={16} /> },
               ].map((step, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderBottom: i < 3 ? `1px solid rgba(57,57,57,0.10)` : 'none' }}>
                   <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: `${step.color}12`, color: step.color, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${step.color}25`, flexShrink: 0 }}>
@@ -539,12 +449,11 @@ export default function IndustryEducation() {
                   <div style={{ flex: 1 }}>
                     <div style={{ fontWeight: 700, fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', color: B.primaryDark }}>{step.label}</div>
                   </div>
-                  <div style={{ fontSize: 'clamp(11px, 1.3vw, 13px)', fontWeight: 700, color: step.color, background: `${step.color}10`, padding: '4px 12px', borderRadius: 99, border: `1px solid ${step.color}25`, whiteSpace: 'nowrap' }}>{step.duration}</div>
                 </div>
               ))}
               <div style={{ marginTop: 24, padding: '16px 20px', background: `linear-gradient(135deg, ${B.action}10, ${B.primary}08)`, borderRadius: 16, border: `1px solid ${B.action}20`, display: 'flex', alignItems: 'center', gap: 12 }}>
                 <RefreshCw size={18} color={B.action} />
-                <span style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', color: B.textMain, fontWeight: 600 }}>Fixed-fee scoping · No surprise invoices</span>
+                <span style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', color: B.textMain, fontWeight: 600 }}>Clear scoping · clear deliverables upfront</span>
               </div>
             </motion.div>
           </div>
@@ -586,7 +495,7 @@ export default function IndustryEducation() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your student success or personalized-learning challenge. We'll tell you exactly what's possible — no pitch, no pressure.
+              Book a free call. Tell us your student success or personalized-learning challenge. We'll tell you exactly what's possible — no pitch, no pressure.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>

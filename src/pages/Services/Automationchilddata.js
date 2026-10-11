@@ -40,7 +40,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Process Automation',
     accentColor: COLORS.amber,
     heroDesc:    'Robotic Process Automation works best when it replaces highly repetitive, rule-based tasks — login-navigate-extract-submit loops that eat hours of analyst time every week. We build RPA bots and Python scripts that are maintainable, monitored, and documented — not fragile macros that break on the first UI change.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $2,500'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Trigger',    sub: 'Schedule / UI event',    color: COLORS.amber,   x: '5%',  y: '20%' },
@@ -50,12 +50,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Deliver',    sub: 'DB / Email / API output',color: COLORS.amber,   x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 70,  suffix: '%', label: 'Time Saved Per Task',  iconName: 'TrendingDown', color: COLORS.amber   },
-      { target: 100, suffix: '+', label: 'Bots Deployed',        iconName: 'Settings2',    color: COLORS.action  },
-      { target: 97,  suffix: '%', label: 'Bot Uptime',           iconName: 'Activity',     color: COLORS.gold    },
-      { target: 100, suffix: '%', label: 'Code Ownership',       iconName: 'Shield',       color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Repeat',       title: 'Browser & Desktop RPA',    color: COLORS.amber,    desc: 'Selenium, Playwright, and PyAutoGUI-based bots that replicate human browser and desktop interactions — with headless operation for server deployment.' },
@@ -70,7 +64,7 @@ export const AUTOMATION_CHILDREN = {
       { step: '01', title: 'Task Audit',            desc: 'We document the exact manual steps, edge cases, and exceptions before writing a single line of automation code.' },
       { step: '02', title: 'Script Build & Testing',desc: 'Bot built against real systems, tested across all known edge cases, and deployed to a staging environment first.' },
       { step: '03', title: 'Monitoring Setup',       desc: 'Scheduler, alerting, and run-history dashboard configured so failures are caught automatically.' },
-      { step: '04', title: 'Handoff & Training',     desc: 'Runbook delivered, team trained on restarting and updating the bot, and 30-day support window begins.' },
+      { step: '04', title: 'Handoff & Training',     desc: 'Runbook delivered, team trained on restarting and updating the bot, and support window begins.' },
     ],
 
     deliverables: [
@@ -79,8 +73,8 @@ export const AUTOMATION_CHILDREN = {
       'Error handling + alert configuration',
       'Run history dashboard',
       'Maintenance runbook',
-      'Team training session (1 hour)',
-      '30-day post-launch support',
+      'Team training session',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -94,17 +88,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Docker',       color: COLORS.action  },
     ],
 
-    tiers: [
-      { name: 'Single Bot',      price: 'From $2,500', featured: false,
-        desc:     'One task automated end-to-end with monitoring and documentation.',
-        features: ['Single automation', 'Scheduling + alerts', 'Runbook', '2–3 week delivery'] },
-      { name: 'Bot Suite',       price: 'From $6,000', featured: true,
-        desc:     'Three to five bots with shared scheduling and a monitoring dashboard.',
-        features: ['3–5 automations', 'Shared monitoring dashboard', 'Error alerting', 'Training session', '30-day support'] },
-      { name: 'Retainer',        price: 'From $1,500 / mo', featured: false,
-        desc:     'Ongoing bot maintenance, new automations, and priority support.',
-        features: ['Monthly automation budget', 'Priority response SLA', 'Bot maintenance', 'Cancel anytime'] },
-    ],
   },
 
   // ── 2. Workflow Orchestration ─────────────────────────────────────────────
@@ -115,7 +98,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Process Automation',
     accentColor: COLORS.action,
     heroDesc:    'When a workflow has more than three steps, dependencies, retries, and SLAs, a cron job isn\'t enough. We design and build orchestrated pipelines using Airflow, Prefect, or Dagster — with dependency management, automated retries, backfill capability, and dashboards that show exactly where a failed run went wrong.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'DAG Trigger', sub: 'Schedule / API / Sensor', color: COLORS.action,   x: '5%',  y: '20%' },
@@ -125,12 +108,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Load',        sub: 'Warehouse / API sink',    color: COLORS.action,   x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 97,  suffix: '%', label: 'Pipeline Uptime',       iconName: 'Activity',     color: COLORS.action  },
-      { target: 60,  suffix: '+', label: 'Pipelines Delivered',   iconName: 'GitMerge',     color: COLORS.amber   },
-      { target: 80,  suffix: '%', label: 'Faster Failure Recovery',iconName: 'RefreshCw',   color: COLORS.gold    },
-      { target: 100, suffix: '%', label: 'Code Ownership',        iconName: 'Shield',       color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'GitMerge',     title: 'DAG Design & Build',        color: COLORS.action,   desc: 'Directed Acyclic Graphs that model your business process — with explicit dependency ordering, parallelism where safe, and retry policies per task.' },
@@ -155,7 +132,7 @@ export const AUTOMATION_CHILDREN = {
       'Monitoring dashboard',
       'Runbook and incident playbook',
       'Team training session',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -169,17 +146,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Kubernetes',     color: COLORS.amber   },
     ],
 
-    tiers: [
-      { name: 'Single Pipeline',   price: 'From $4,000', featured: false,
-        desc:     'One orchestrated pipeline with retries, alerting, and monitoring.',
-        features: ['DAG build', 'Retry + alerting', 'Monitoring dashboard', '3–4 week delivery'] },
-      { name: 'Pipeline Suite',    price: 'From $9,000', featured: true,
-        desc:     'Multi-pipeline orchestration environment with full monitoring.',
-        features: ['3–6 pipelines', 'Shared orchestrator', 'SLA alerting', 'Backfill capability', '30-day support'] },
-      { name: 'Orchestration Retainer', price: 'From $2,000 / mo', featured: false,
-        desc:     'Ongoing pipeline engineering, maintenance, and new workflow delivery.',
-        features: ['Monthly pipeline budget', 'Priority SLA', 'Quarterly review', 'Cancel anytime'] },
-    ],
   },
 
   // ── 3. Business Process Mapping ───────────────────────────────────────────
@@ -189,8 +155,8 @@ export const AUTOMATION_CHILDREN = {
     tagline:     'Understand your processes before you automate the wrong ones.',
     badge:       'Process Automation',
     accentColor: COLORS.primary,
-    heroDesc:    'Automating a broken process makes it break faster. We run structured business process mapping engagements — swimlane diagrams, process mining, bottleneck analysis, and automation opportunity scoring — so you invest automation effort in the 20% of steps causing 80% of delays and errors.',
-    tags:        ['Fixed-Fee Projects', 'Full Documentation', 'From $2,000'],
+    heroDesc:    'Automating a broken process makes it break faster. We run structured business process mapping engagements — swimlane diagrams, process mining, bottleneck analysis, and automation opportunity scoring — so you invest automation effort in the steps causing most delays and errors.',
+    tags:        ['Full Documentation'],
 
     pipelineNodes: [
       { id: 0, label: 'Capture',   sub: 'Interviews & walkthroughs', color: COLORS.primary,  x: '5%',  y: '20%' },
@@ -200,12 +166,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Roadmap',   sub: 'Automation priority plan',  color: COLORS.primary,  x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 80,  suffix: '%', label: 'Time Waste Identified',  iconName: 'TrendingDown', color: COLORS.primary  },
-      { target: 50,  suffix: '+', label: 'Processes Mapped',       iconName: 'ClipboardList',color: COLORS.amber    },
-      { target: 3,   suffix: 'x', label: 'ROI vs Blind Automation',iconName: 'TrendingUp',  color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Documented Output',      iconName: 'FileText',    color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'ClipboardList', title: 'Process Discovery',        color: COLORS.primary,  desc: 'Structured interviews and process walkthroughs with stakeholders across all affected teams — capturing the real process, not the assumed one.' },
@@ -230,7 +190,7 @@ export const AUTOMATION_CHILDREN = {
       'Phased automation roadmap',
       'Process documentation package',
       'Stakeholder presentation deck',
-      '30-day Q&A support window',
+      'Q&A support window',
     ],
 
     techStack: [
@@ -244,17 +204,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Process Mining (Celonis)', color: COLORS.amber },
     ],
 
-    tiers: [
-      { name: 'Process Audit',   price: 'From $2,000', featured: false,
-        desc:     'Single process mapped and scored with automation recommendations.',
-        features: ['One process', 'Swimlane diagram', 'Opportunity scorecard', '1 week turnaround'] },
-      { name: 'Full BPM Package',price: 'From $5,500', featured: true,
-        desc:     'Multiple processes mapped with bottleneck analysis and automation roadmap.',
-        features: ['3–6 processes', 'BPMN diagrams', 'Bottleneck analysis', 'Automation roadmap', '30-day support'] },
-      { name: 'Process Mining',  price: 'Custom',      featured: false,
-        desc:     'Data-driven process mining from event logs with automated bottleneck discovery.',
-        features: ['Event log analysis', 'Automated discovery', 'Variant analysis', 'Continuous monitoring'] },
-    ],
   },
 
   // ── 4. End-to-End Automation ──────────────────────────────────────────────
@@ -265,7 +214,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Process Automation',
     accentColor: COLORS.secondary,
     heroDesc:    'Single-step automation creates new manual handoffs at the boundaries. End-to-end automation eliminates the entire manual chain — from trigger to outcome — with each step validated, monitored, and connected. We design and build full-operation automation that runs without human intervention from start to finish.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,500'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Input',      sub: 'Any trigger / source',     color: COLORS.secondary,x: '5%',  y: '20%' },
@@ -275,12 +224,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Output',     sub: 'All downstream systems',   color: COLORS.secondary,x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 95,  suffix: '%', label: 'Manual Steps Eliminated', iconName: 'TrendingDown', color: COLORS.secondary },
-      { target: 40,  suffix: '+', label: 'E2E Automations Built',   iconName: 'Repeat',       color: COLORS.amber     },
-      { target: 10,  suffix: 'x', label: 'Throughput Increase',     iconName: 'Zap',          color: COLORS.gold      },
-      { target: 100, suffix: '%', label: 'Code Ownership',          iconName: 'Shield',       color: COLORS.action    },
-    ],
 
     features: [
       { iconName: 'Repeat',       title: 'Full-chain Automation Design', color: COLORS.secondary, desc: 'Every step from trigger to outcome designed as a connected system — no manual handoffs at integration boundaries.' },
@@ -295,7 +238,7 @@ export const AUTOMATION_CHILDREN = {
       { step: '01', title: 'End-to-end Process Map', desc: 'The full operation documented from first input to last output — all systems touched, all decision points, all exception paths.' },
       { step: '02', title: 'Architecture Design',    desc: 'Trigger design, integration architecture, AI decision points, and validation gate strategy agreed before build.' },
       { step: '03', title: 'Sprint Build',           desc: 'Built step-by-step — each integration tested before the next is added. No big-bang delivery that only works in theory.' },
-      { step: '04', title: 'Deploy & Monitor',       desc: 'Production deployment with monitoring, alerting, and a 30-day period to tune edge cases that only appear under real volume.' },
+      { step: '04', title: 'Deploy & Monitor',       desc: 'Production deployment with monitoring, alerting, and a period to tune edge cases that only appear under real volume.' },
     ],
 
     deliverables: [
@@ -305,7 +248,7 @@ export const AUTOMATION_CHILDREN = {
       'AI model / decision logic',
       'Monitoring + alerting dashboard',
       'Exception handling runbook',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -319,17 +262,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Docker',    color: COLORS.amber     },
     ],
 
-    tiers: [
-      { name: 'E2E Starter',    price: 'From $6,500',  featured: false,
-        desc:     'One end-to-end automated process covering 2–4 connected systems.',
-        features: ['Full chain automation', '2–4 system integration', 'Monitoring + alerting', '5–6 week delivery'] },
-      { name: 'Full Operation', price: 'From $14,000', featured: true,
-        desc:     'Complex E2E automation with AI decision points and multi-system integration.',
-        features: ['AI decision layer', 'Unlimited systems', 'Exception handling', 'Full monitoring', '30-day support'] },
-      { name: 'Operations Retainer', price: 'Custom',  featured: false,
-        desc:     'Ongoing automation expansion and operations management.',
-        features: ['Monthly expansion budget', 'Performance optimisation', 'New workflow delivery', 'SLA agreement'] },
-    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -344,7 +276,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Document & Data',
     accentColor: COLORS.amber,
     heroDesc:    'Document-heavy operations waste analyst time on extraction that AI can handle reliably. We build document processing pipelines — PDF parsing, invoice extraction, contract analysis, and classification — with validation logic and confidence thresholds that decide automatically when a document needs human review and when it can proceed.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Ingest',    sub: 'Email / Upload / API',     color: COLORS.amber,    x: '5%',  y: '20%' },
@@ -354,12 +286,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Route',     sub: 'System / Human review',    color: COLORS.amber,    x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 90,  suffix: '%', label: 'Manual Review Eliminated',iconName: 'TrendingDown',color: COLORS.amber    },
-      { target: 98,  suffix: '%', label: 'Extraction Accuracy',     iconName: 'Activity',   color: COLORS.action   },
-      { target: 50,  suffix: '+', label: 'Doc Types Supported',     iconName: 'FileText',   color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',          iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'FileText',  title: 'Multi-format Parsing',        color: COLORS.amber,    desc: 'PDF, DOCX, XLSX, HTML, and scanned image parsing — with layout-aware extraction that handles tables, headers, and multi-column formats.' },
@@ -371,10 +297,10 @@ export const AUTOMATION_CHILDREN = {
     ],
 
     process: [
-      { step: '01', title: 'Document Audit',          desc: 'Sample of 100+ real documents reviewed — format variations, edge cases, and field accuracy requirements documented before build.' },
+      { step: '01', title: 'Document Audit',          desc: 'A sample of real documents is reviewed — format variations, edge cases, and field accuracy requirements documented before build.' },
       { step: '02', title: 'Extraction Model Build',   desc: 'Parsing and extraction pipeline built and evaluated against held-out document samples. Accuracy targets agreed and measured.' },
       { step: '03', title: 'Validation & Routing',     desc: 'Confidence thresholds set, routing rules implemented, and human-review queue configured for low-confidence documents.' },
-      { step: '04', title: 'Deploy & Monitor',         desc: 'Production pipeline deployed with processing dashboard, accuracy monitoring, and 30-day support to tune edge cases.' },
+      { step: '04', title: 'Deploy & Monitor',         desc: 'Production pipeline deployed with processing dashboard, accuracy monitoring, and support to tune edge cases.' },
     ],
 
     deliverables: [
@@ -384,7 +310,7 @@ export const AUTOMATION_CHILDREN = {
       'Human-review queue interface',
       'Structured output to your systems',
       'Processing accuracy dashboard',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -398,17 +324,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Celery',         color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Single Doc Type', price: 'From $4,000', featured: false,
-        desc:     'One document type extracted and routed with validation.',
-        features: ['One doc type', 'AI extraction', 'Validation + routing', '3–4 week delivery'] },
-      { name: 'Doc Processing Hub',price: 'From $9,000',featured: true,
-        desc:     'Multi-format processing with classification, validation, and dashboard.',
-        features: ['Multiple doc types', 'Auto-classification', 'Human-review queue', 'Processing dashboard', '30-day support'] },
-      { name: 'Enterprise DocAI', price: 'Custom',      featured: false,
-        desc:     'High-volume document intelligence with custom model training.',
-        features: ['Custom model training', 'High-volume throughput', 'ERP integration', 'SLA agreement'] },
-    ],
   },
 
   // ── 6. OCR & Extraction ───────────────────────────────────────────────────
@@ -419,7 +334,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Document & Data',
     accentColor: COLORS.action,
     heroDesc:    'Scanned documents, handwritten forms, and image-based PDFs are dead data until an OCR pipeline makes them machine-readable. We build OCR and extraction pipelines that handle real-world scan quality — skew, noise, mixed fonts, handwriting — and output validated, structured data ready for your systems.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Upload',    sub: 'Scan / Image / PDF',       color: COLORS.action,   x: '5%',  y: '20%' },
@@ -429,12 +344,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Output',    sub: 'DB / JSON / CSV / API',    color: COLORS.action,   x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 98,  suffix: '%', label: 'OCR Accuracy',            iconName: 'Eye',        color: COLORS.action   },
-      { target: 80,  suffix: '%', label: 'Manual Entry Eliminated', iconName: 'TrendingDown',color: COLORS.amber   },
-      { target: 40,  suffix: '+', label: 'Doc Formats Supported',   iconName: 'FileText',   color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',          iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Eye',       title: 'High-accuracy OCR',          color: COLORS.action,   desc: 'Tesseract, AWS Textract, Google Document AI, and Azure Form Recognizer — selected by document type and quality requirements.' },
@@ -446,9 +355,9 @@ export const AUTOMATION_CHILDREN = {
     ],
 
     process: [
-      { step: '01', title: 'Sample Analysis',     desc: 'Review of 100+ real document samples — quality distribution, format variations, and target fields documented.' },
+      { step: '01', title: 'Sample Analysis',     desc: 'Review of real document samples — quality distribution, format variations, and target fields documented.' },
       { step: '02', title: 'Pipeline Build',       desc: 'Pre-processing, OCR engine selection, and field extraction built and evaluated against held-out samples.' },
-      { step: '03', title: 'Accuracy Validation',  desc: 'Ground-truth comparison on 200+ documents — accuracy targets measured and tuning applied until targets are met.' },
+      { step: '03', title: 'Accuracy Validation',  desc: 'Ground-truth comparison on a held-out document set — accuracy measured against agreed targets and tuning applied.' },
       { step: '04', title: 'Deploy & Monitor',     desc: 'Production pipeline deployed with accuracy monitoring and human-review queue for below-threshold extractions.' },
     ],
 
@@ -459,7 +368,7 @@ export const AUTOMATION_CHILDREN = {
       'Accuracy evaluation report',
       'Human-review queue interface',
       'Processing dashboard',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -473,17 +382,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Celery',           color: COLORS.amber    },
     ],
 
-    tiers: [
-      { name: 'OCR Pipeline',    price: 'From $3,500', featured: false,
-        desc:     'OCR extraction pipeline for one document type with structured output.',
-        features: ['One doc type', 'OCR + field extraction', 'Structured output', '2–3 week delivery'] },
-      { name: 'OCR Hub',         price: 'From $8,000', featured: true,
-        desc:     'Multi-format OCR with pre-processing, NER, and review queue.',
-        features: ['Multiple doc types', 'Handwriting support', 'Human-review queue', 'Accuracy dashboard', '30-day support'] },
-      { name: 'Enterprise OCR',  price: 'Custom',      featured: false,
-        desc:     'High-volume OCR with custom model training and ERP integration.',
-        features: ['Custom HTR models', 'Batch processing', 'ERP integration', 'SLA agreement'] },
-    ],
   },
 
   // ── 7. Form Intelligence ──────────────────────────────────────────────────
@@ -494,7 +392,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Document & Data',
     accentColor: COLORS.primary,
     heroDesc:    'Forms are where data enters your business — and where the most manual work happens. We build intelligent form processing systems: structured web forms with validation and downstream routing, intelligent intake of unstructured submissions, and AI-powered classification that decides where each submission goes without human triage.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,000'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Submit',    sub: 'Web / Email / PDF form',   color: COLORS.primary,  x: '5%',  y: '20%' },
@@ -504,12 +402,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Confirm',   sub: 'Notification + audit log', color: COLORS.primary,  x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 85,  suffix: '%', label: 'Manual Triage Eliminated',iconName: 'TrendingDown',color: COLORS.primary  },
-      { target: 60,  suffix: '+', label: 'Form Systems Built',      iconName: 'ClipboardList',color: COLORS.amber   },
-      { target: 3,   suffix: 'min',label: 'Avg Routing Latency',   iconName: 'Timer',       color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',         iconName: 'Shield',      color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'ClipboardList',title: 'Dynamic Form Builder',       color: COLORS.primary,  desc: 'Multi-step, conditional web forms with field validation, file upload, and e-signature integration — embedded in your existing site or portal.' },
@@ -524,7 +416,7 @@ export const AUTOMATION_CHILDREN = {
       { step: '01', title: 'Form & Routing Design', desc: 'Current intake process mapped, form fields defined, routing logic specified, and downstream system connections agreed.' },
       { step: '02', title: 'Form & AI Build',       desc: 'Form built, AI classification trained or prompted on real submission samples, and routing logic implemented.' },
       { step: '03', title: 'Integration & Test',     desc: 'CRM/ERP integration tested end-to-end, routing validated against edge cases, and submission tracking live.' },
-      { step: '04', title: 'Deploy & Monitor',       desc: 'Production launch with submission dashboard and 30-day support to tune classification and routing rules.' },
+      { step: '04', title: 'Deploy & Monitor',       desc: 'Production launch with submission dashboard and support to tune classification and routing rules.' },
     ],
 
     deliverables: [
@@ -534,7 +426,7 @@ export const AUTOMATION_CHILDREN = {
       'CRM / ERP integration',
       'Submission tracking dashboard',
       'Validation rules documentation',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -548,17 +440,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Twilio',      color: COLORS.amber    },
     ],
 
-    tiers: [
-      { name: 'Smart Form',      price: 'From $3,000', featured: false,
-        desc:     'Validated form with CRM integration and basic routing.',
-        features: ['Form build', 'Validation rules', 'CRM integration', '2–3 week delivery'] },
-      { name: 'Intelligent Intake',price: 'From $7,000',featured: true,
-        desc:     'AI-powered intake with classification, routing, and tracking dashboard.',
-        features: ['AI classification', 'Intelligent routing', 'Submission tracking', 'Multi-system integration', '30-day support'] },
-      { name: 'Enterprise Intake', price: 'Custom',     featured: false,
-        desc:     'High-volume intake platform with custom models and compliance.',
-        features: ['Custom AI models', 'HIPAA / GDPR ready', 'Multi-portal support', 'SLA agreement'] },
-    ],
   },
 
   // ── 8. Report Generation ──────────────────────────────────────────────────
@@ -568,8 +449,8 @@ export const AUTOMATION_CHILDREN = {
     tagline:     'Automated reports that go out without anyone building them.',
     badge:       'Document & Data',
     accentColor: COLORS.secondary,
-    heroDesc:    'Recurring reports that take an analyst two hours to build every week are a solved problem. We automate report generation end-to-end — data collection, transformation, formatting, and distribution — so Monday morning\'s board report lands in inboxes at 8am without anyone touching a spreadsheet.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,000'],
+    heroDesc:    'Recurring reports that take an analyst hours to build every week are a solved problem. We automate report generation end-to-end — data collection, transformation, formatting, and distribution — so Monday morning\'s board report lands in inboxes at 8am without anyone touching a spreadsheet.',
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Schedule',  sub: 'Time / Event trigger',     color: COLORS.secondary,x: '5%',  y: '20%' },
@@ -579,12 +460,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Distribute',sub: 'Email / Slack / Portal',   color: COLORS.secondary,x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 100, suffix: '%', label: 'Fully Automated Reports',  iconName: 'FileText',    color: COLORS.secondary },
-      { target: 40,  suffix: '+', label: 'Report Systems Delivered', iconName: 'BarChart3',   color: COLORS.amber     },
-      { target: 8,   suffix: 'hr',label: 'Weekly Time Saved Avg',   iconName: 'TrendingDown',color: COLORS.gold      },
-      { target: 100, suffix: '%', label: 'Code Ownership',           iconName: 'Shield',      color: COLORS.action    },
-    ],
 
     features: [
       { iconName: 'BarChart3',  title: 'Scheduled Data Collection',   color: COLORS.secondary, desc: 'Automated extraction from databases, APIs, spreadsheets, and BI tools — every data source collected and reconciled before formatting.' },
@@ -609,7 +484,7 @@ export const AUTOMATION_CHILDREN = {
       'Distribution configuration',
       'Monitoring + failure alerting',
       'Runbook for adding new reports',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -623,17 +498,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Airflow',      color: COLORS.amber     },
     ],
 
-    tiers: [
-      { name: 'Single Report',    price: 'From $3,000', featured: false,
-        desc:     'One recurring report automated end-to-end with distribution.',
-        features: ['One report type', 'Data collection + formatting', 'Scheduled distribution', '2–3 week delivery'] },
-      { name: 'Report Suite',     price: 'From $7,500', featured: true,
-        desc:     'Multiple reports with AI narrative and multi-channel distribution.',
-        features: ['3–6 report types', 'AI commentary', 'Multi-channel distribution', 'Validation gates', '30-day support'] },
-      { name: 'Reporting Platform',price: 'Custom',    featured: false,
-        desc:     'Organisation-wide automated reporting with self-service templates.',
-        features: ['Unlimited reports', 'Self-service templates', 'Executive portal', 'Ongoing retainer option'] },
-    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -648,7 +512,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Integration & Alerts',
     accentColor: COLORS.amber,
     heroDesc:    'Most automation projects fail at the integration boundary — one system can\'t talk to another, the API rate limits everything, or an auth token expires at 2am. We build robust integration middleware with proper OAuth flows, rate-limit handling, retry logic, and monitoring so your systems stay connected reliably.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,000'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Source',    sub: 'CRM / ERP / API',          color: COLORS.amber,    x: '5%',  y: '20%' },
@@ -658,16 +522,10 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Sink',      sub: 'Target system + log',      color: COLORS.amber,    x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 120, suffix: '+', label: 'Integrations Built',      iconName: 'Webhook',     color: COLORS.amber    },
-      { target: 99,  suffix: '%', label: 'Integration Uptime',      iconName: 'Activity',    color: COLORS.action   },
-      { target: 50,  suffix: '+', label: 'SaaS Tools Supported',    iconName: 'Globe',       color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',          iconName: 'Shield',      color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Webhook',   title: 'Webhook Architecture',        color: COLORS.amber,    desc: 'Inbound and outbound webhooks with signature verification, idempotency keys, retry queuing, and dead-letter handling.' },
-      { iconName: 'Globe',     title: 'SaaS Connector Library',      color: COLORS.action,   desc: 'Salesforce, HubSpot, Slack, Stripe, Jira, Google Workspace, and 50+ tools — built with proper OAuth and schema normalisation.' },
+      { iconName: 'Globe',     title: 'SaaS Connector Library',      color: COLORS.action,   desc: 'Salesforce, HubSpot, Slack, Stripe, Jira, Google Workspace, and many other tools — built with proper OAuth and schema normalisation.' },
       { iconName: 'RefreshCw', title: 'Token Refresh & Auth',        color: COLORS.primary,  desc: 'OAuth token refresh, API key rotation, and per-tenant credential isolation — auth failures are caught and resolved automatically.' },
       { iconName: 'Database',  title: 'Field Mapping',               color: COLORS.secondary,desc: 'Source-to-target field mapping with type coercion, default value logic, and transformation rules for schema mismatches.' },
       { iconName: 'Activity',  title: 'Integration Monitoring',      color: COLORS.gold,     desc: 'Per-integration health dashboards, latency tracking, and alerting when a third-party API degrades or returns unexpected schemas.' },
@@ -678,7 +536,7 @@ export const AUTOMATION_CHILDREN = {
       { step: '01', title: 'Integration Inventory', desc: 'All required connections mapped — API quality, rate limits, auth pattern, and schema documented before build.' },
       { step: '02', title: 'Adapter Design',         desc: 'Standardised adapter interface designed — normalising third-party data into your internal model.' },
       { step: '03', title: 'Build & Test',            desc: 'Each integration built with unit tests and sandbox testing against real API responses before production.' },
-      { step: '04', title: 'Monitor & Document',      desc: 'Per-integration monitoring deployed, runbook written, and 30-day support window begins.' },
+      { step: '04', title: 'Monitor & Document',      desc: 'Per-integration monitoring deployed, runbook written, and support window begins.' },
     ],
 
     deliverables: [
@@ -688,7 +546,7 @@ export const AUTOMATION_CHILDREN = {
       'Field mapping documentation',
       'Per-integration monitoring',
       'Runbook for each connector',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -702,17 +560,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Pytest',     color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Single Integration', price: 'From $3,000', featured: false,
-        desc:     'One integration with monitoring and documentation.',
-        features: ['One integration', 'Auth + retry logic', 'Monitoring', '1–2 week delivery'] },
-      { name: 'Integration Suite',  price: 'From $7,500', featured: true,
-        desc:     'Three to six integrations with webhook architecture and dashboard.',
-        features: ['3–6 integrations', 'Webhook architecture', 'Per-integration monitoring', 'Runbooks', '30-day support'] },
-      { name: 'Integration Hub',    price: 'Custom',      featured: false,
-        desc:     'Full iPaaS-style hub for unlimited integrations and multi-tenancy.',
-        features: ['Unlimited integrations', 'Per-tenant credentials', 'Custom connectors', 'SLA agreement'] },
-    ],
   },
 
   // ── 10. Alert & Notification Systems ──────────────────────────────────────
@@ -723,7 +570,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Integration & Alerts',
     accentColor: COLORS.action,
     heroDesc:    'Alert fatigue is as dangerous as no alerts. We design and build notification systems with intelligent severity tiering, suppression rules, and escalation logic — so on-call engineers are woken up for real incidents, not false positives, and stakeholders get the context they need to act, not just a number.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $2,500'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Detect',    sub: 'Metric / log / event',     color: COLORS.action,   x: '5%',  y: '20%' },
@@ -733,12 +580,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Escalate',  sub: 'If unacknowledged',        color: COLORS.action,   x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 90,  suffix: '%', label: 'False Positive Reduction', iconName: 'AlertTriangle',color: COLORS.action  },
-      { target: 70,  suffix: '+', label: 'Alert Systems Built',     iconName: 'Activity',     color: COLORS.amber   },
-      { target: 5,   suffix: 'min',label: 'Avg Detection-to-Alert', iconName: 'Timer',        color: COLORS.gold    },
-      { target: 100, suffix: '%', label: 'Code Ownership',          iconName: 'Shield',       color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'AlertTriangle',title: 'Severity Classification',   color: COLORS.action,   desc: 'P1/P2/P3/P4 severity tiers with distinct routing, escalation windows, and suppression rules — calibrated to minimise false positives.' },
@@ -752,8 +593,8 @@ export const AUTOMATION_CHILDREN = {
     process: [
       { step: '01', title: 'Alert Audit',          desc: 'Current alert landscape reviewed — volume, false positive rate, and gaps in coverage documented.' },
       { step: '02', title: 'Severity & Routing Design',desc: 'Severity framework, routing rules, escalation chains, and suppression logic designed with your on-call team.' },
-      { step: '03', title: 'Build & Calibrate',     desc: 'Alert rules implemented and thresholds calibrated against 30 days of historical data to minimise false positives.' },
-      { step: '04', title: 'Monitor & Tune',         desc: 'Alert analytics dashboard live, weekly review for the first month, and 30-day support window for tuning.' },
+      { step: '03', title: 'Build & Calibrate',     desc: 'Alert rules implemented and thresholds calibrated against historical data to minimise false positives.' },
+      { step: '04', title: 'Monitor & Tune',         desc: 'Alert analytics dashboard live, weekly review for the first month, and support window for tuning.' },
     ],
 
     deliverables: [
@@ -763,7 +604,7 @@ export const AUTOMATION_CHILDREN = {
       'Suppression + deduplication rules',
       'Alert analytics dashboard',
       'On-call runbook',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -777,17 +618,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'AWS SNS',     color: COLORS.amber    },
     ],
 
-    tiers: [
-      { name: 'Alert Setup',       price: 'From $2,500', featured: false,
-        desc:     'Severity framework and routing for one system or service.',
-        features: ['Severity framework', 'Routing setup', 'Basic suppression', '1–2 week delivery'] },
-      { name: 'Alert Platform',    price: 'From $6,000', featured: true,
-        desc:     'Full alert platform with escalation, enrichment, and analytics.',
-        features: ['Multi-channel routing', 'Escalation chains', 'Context enrichment', 'Alert analytics', '30-day support'] },
-      { name: 'Enterprise Alerts', price: 'Custom',      featured: false,
-        desc:     'Organisation-wide alerting with custom ML-based anomaly detection.',
-        features: ['ML anomaly detection', 'Multi-system coverage', 'SLA reporting', 'SLA agreement'] },
-    ],
   },
 
   // ── 11. Scheduling Systems ────────────────────────────────────────────────
@@ -798,7 +628,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Integration & Alerts',
     accentColor: COLORS.primary,
     heroDesc:    'A missed scheduled job is often invisible until someone notices the data is stale. We build scheduling systems with proper job tracking, missed-run alerting, distributed locking for jobs that must not run twice, and dashboards that make the next-scheduled and last-successful run visible to the team.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $2,500'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Schedule',  sub: 'Cron / interval / event',  color: COLORS.primary,  x: '5%',  y: '20%' },
@@ -808,12 +638,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Alert',     sub: 'On miss / failure / delay',color: COLORS.primary,  x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 99,  suffix: '.9%',label: 'Scheduled Job Reliability',iconName: 'Timer',     color: COLORS.primary  },
-      { target: 80,  suffix: '+',  label: 'Scheduling Systems Built', iconName: 'Settings2', color: COLORS.amber    },
-      { target: 100, suffix: '%',  label: 'Missed-run Alerting',      iconName: 'AlertTriangle',color: COLORS.gold  },
-      { target: 100, suffix: '%',  label: 'Code Ownership',           iconName: 'Shield',    color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Timer',        title: 'Cron & Interval Scheduling', color: COLORS.primary,  desc: 'Cron expressions, interval-based schedules, and event-triggered jobs — with timezone support and daylight-saving-safe execution.' },
@@ -828,7 +652,7 @@ export const AUTOMATION_CHILDREN = {
       { step: '01', title: 'Schedule Audit',       desc: 'Inventory of all existing scheduled jobs — frequency, SLA requirements, failure impact, and current monitoring gaps.' },
       { step: '02', title: 'Architecture Design',  desc: 'Scheduling infrastructure design: tool selection, locking strategy, alerting thresholds, and dashboard spec.' },
       { step: '03', title: 'Build & Test',          desc: 'Scheduler built, distributed locking tested under concurrent load, and alerting validated against simulated missed runs.' },
-      { step: '04', title: 'Monitor & Handoff',     desc: 'Dashboard live, alerting configured, runbook written, and 30-day support window begins.' },
+      { step: '04', title: 'Monitor & Handoff',     desc: 'Dashboard live, alerting configured, runbook written, and support window begins.' },
     ],
 
     deliverables: [
@@ -838,7 +662,7 @@ export const AUTOMATION_CHILDREN = {
       'Run history dashboard',
       'Job management runbook',
       'SLA monitoring configuration',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -852,17 +676,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'GitHub CI',  color: COLORS.amber    },
     ],
 
-    tiers: [
-      { name: 'Scheduler Setup',  price: 'From $2,500', featured: false,
-        desc:     'Scheduling infrastructure with missed-run alerting and run history.',
-        features: ['Scheduling setup', 'Missed-run alerting', 'Run history', '1–2 week delivery'] },
-      { name: 'Full Scheduler',   price: 'From $5,500', featured: true,
-        desc:     'Distributed scheduler with locking, dashboard, and SLA monitoring.',
-        features: ['Distributed locking', 'Run history dashboard', 'SLA monitoring', 'Retry logic', '30-day support'] },
-      { name: 'Enterprise Scheduler',price: 'Custom',  featured: false,
-        desc:     'High-availability scheduler with multi-region and compliance.',
-        features: ['Multi-region setup', 'HA configuration', 'Audit trail', 'SLA agreement'] },
-    ],
   },
 
   // ── 12. Pipeline Monitoring ───────────────────────────────────────────────
@@ -873,7 +686,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'Integration & Alerts',
     accentColor: COLORS.secondary,
     heroDesc:    'Silent automation failures cost more than visible ones. We build monitoring stacks for automation pipelines — freshness checks, throughput dashboards, error rate tracking, and SLA alerting — so your operations team knows a pipeline failed before the downstream team raises a ticket.',
-    tags:        ['Fixed-Fee Projects', 'Full Monitoring Ownership', 'From $3,000'],
+    tags:        ['Full Monitoring Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Instrument', sub: 'Logs / metrics / traces',  color: COLORS.secondary,x: '5%',  y: '20%' },
@@ -883,12 +696,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Dashboard',  sub: 'Ops visibility layer',     color: COLORS.secondary,x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 90,  suffix: '%', label: 'Faster Issue Detection',   iconName: 'Activity',   color: COLORS.secondary },
-      { target: 50,  suffix: '+', label: 'Monitoring Stacks Built',  iconName: 'BarChart3',  color: COLORS.amber     },
-      { target: 99,  suffix: '%', label: 'Alert Accuracy',           iconName: 'Shield',     color: COLORS.gold      },
-      { target: 100, suffix: '%', label: 'Monitoring Ownership',     iconName: 'Settings2',  color: COLORS.action    },
-    ],
 
     features: [
       { iconName: 'Activity',     title: 'Pipeline Health Dashboard',  color: COLORS.secondary,desc: 'Unified view of every automation pipeline: last run status, throughput, error rate, and next scheduled execution.' },
@@ -902,8 +709,8 @@ export const AUTOMATION_CHILDREN = {
     process: [
       { step: '01', title: 'Coverage Assessment', desc: 'All automation pipelines inventoried, classified by business impact, and SLA requirements defined for each tier.' },
       { step: '02', title: 'Monitor Design',      desc: 'Dashboard spec, alert thresholds, and incident playbook structure agreed before implementation.' },
-      { step: '03', title: 'Build & Calibrate',   desc: 'Monitoring stack built, thresholds calibrated against 30 days of historical run data, and alerting validated.' },
-      { step: '04', title: 'Handoff & Runbooks',  desc: 'Dashboard live, alerting routed to on-call system, runbooks written, and 30-day support window begins.' },
+      { step: '03', title: 'Build & Calibrate',   desc: 'Monitoring stack built, thresholds calibrated against historical run data, and alerting validated.' },
+      { step: '04', title: 'Handoff & Runbooks',  desc: 'Dashboard live, alerting routed to on-call system, runbooks written, and support window begins.' },
     ],
 
     deliverables: [
@@ -913,7 +720,7 @@ export const AUTOMATION_CHILDREN = {
       'Log aggregation configuration',
       'Data freshness monitors',
       'Per-pipeline incident runbooks',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -927,17 +734,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Soda',         color: COLORS.amber     },
     ],
 
-    tiers: [
-      { name: 'Monitoring Starter', price: 'From $3,000', featured: false,
-        desc:     'Health dashboard and SLA alerting for up to five pipelines.',
-        features: ['Health dashboard', 'SLA alerting', 'Basic runbooks', '2–3 week delivery'] },
-      { name: 'Full Monitoring Stack',price: 'From $7,000',featured: true,
-        desc:     'Complete monitoring with log aggregation, freshness, and incident playbooks.',
-        features: ['Log aggregation', 'Freshness monitoring', 'Incident playbooks', 'Full dashboard', '30-day support'] },
-      { name: 'Enterprise Monitoring',price: 'Custom',    featured: false,
-        desc:     'Organisation-wide automation observability with SLA reporting.',
-        features: ['Multi-system coverage', 'SLA reporting', 'Custom dashboards', 'Ongoing retainer'] },
-    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -952,7 +748,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'AI Automation',
     accentColor: COLORS.amber,
     heroDesc:    'Traditional RPA breaks when a UI changes or an input varies unexpectedly. Intelligent RPA combines rule-based automation with AI perception — computer vision for UI understanding, LLMs for content interpretation, and adaptive decision logic — so bots handle real-world variability instead of requiring constant maintenance.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Perceive',  sub: 'Vision + OCR + LLM',       color: COLORS.amber,    x: '5%',  y: '20%' },
@@ -962,12 +758,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Learn',     sub: 'Feedback + correction log', color: COLORS.amber,    x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 80,  suffix: '%', label: 'Maintenance Reduction',   iconName: 'Settings2',   color: COLORS.amber    },
-      { target: 95,  suffix: '%', label: 'Handling Accuracy',       iconName: 'Activity',    color: COLORS.action   },
-      { target: 40,  suffix: '+', label: 'Intelligent Bots Shipped',iconName: 'Brain',       color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',          iconName: 'Shield',      color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Eye',       title: 'Computer Vision Navigation',  color: COLORS.amber,    desc: 'Vision-based UI element detection that doesn\'t break on minor layout changes — the bot understands what it sees, not just where to click.' },
@@ -982,7 +772,7 @@ export const AUTOMATION_CHILDREN = {
       { step: '01', title: 'Process & Variability Analysis', desc: 'Task analysed for input variability, exception types, and the AI capability needed to handle each variation reliably.' },
       { step: '02', title: 'Bot Architecture',              desc: 'Vision, LLM, and decision components designed — with fallback logic and human escalation paths for unhandled cases.' },
       { step: '03', title: 'Build & Accuracy Testing',     desc: 'Bot built and tested against real input samples including edge cases — accuracy benchmarked against agreed targets.' },
-      { step: '04', title: 'Deploy & Monitor',              desc: 'Production deployment with confidence monitoring, correction feedback loop, and 30-day accuracy optimisation window.' },
+      { step: '04', title: 'Deploy & Monitor',              desc: 'Production deployment with confidence monitoring, correction feedback loop, and accuracy optimisation window.' },
     ],
 
     deliverables: [
@@ -992,7 +782,7 @@ export const AUTOMATION_CHILDREN = {
       'Correction feedback system',
       'Confidence monitoring dashboard',
       'Maintenance runbook',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -1006,17 +796,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Docker',       color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Intelligent Bot', price: 'From $5,000',  featured: false,
-        desc:     'One intelligent RPA bot with vision and LLM-based decision logic.',
-        features: ['Vision navigation', 'LLM interpretation', 'Monitoring', '3–4 week delivery'] },
-      { name: 'Intelligent Bot Suite',price: 'From $11,000',featured: true,
-        desc:     'Three to five intelligent bots with shared monitoring and feedback loops.',
-        features: ['3–5 bots', 'Shared monitoring', 'Correction feedback loop', 'Accuracy tracking', '30-day support'] },
-      { name: 'Enterprise AI RPA', price: 'Custom',     featured: false,
-        desc:     'Organisation-wide intelligent automation with custom models.',
-        features: ['Custom model training', 'Enterprise scale', 'Compliance audit trail', 'SLA agreement'] },
-    ],
   },
 
   // ── 14. LLM Automation ────────────────────────────────────────────────────
@@ -1027,7 +806,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'AI Automation',
     accentColor: COLORS.action,
     heroDesc:    'Large language models unlock automation for tasks that previously required human judgment — reading long documents, drafting responses, summarising calls, classifying support tickets. We build reliable LLM automation with prompt versioning, output validation, cost controls, and fallback logic so AI-powered workflows are production-grade.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Input',     sub: 'Text / Doc / Email / Data', color: COLORS.action,   x: '5%',  y: '20%' },
@@ -1037,12 +816,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Act',       sub: 'Write / Route / Notify',   color: COLORS.action,   x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 85,  suffix: '%', label: 'Knowledge Tasks Automated',iconName: 'Brain',       color: COLORS.action   },
-      { target: 60,  suffix: '+', label: 'LLM Workflows Built',      iconName: 'Settings2',   color: COLORS.amber    },
-      { target: 40,  suffix: '%', label: 'LLM Cost Reduction',       iconName: 'TrendingDown',color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',           iconName: 'Shield',      color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Brain',     title: 'Prompt Engineering',           color: COLORS.action,   desc: 'Structured prompt design with few-shot examples, output format specification, and systematic evaluation against real task samples.' },
@@ -1057,7 +830,7 @@ export const AUTOMATION_CHILDREN = {
       { step: '01', title: 'Task Analysis',         desc: 'Task analysed for LLM suitability, output variability, and quality requirements. Human baseline accuracy established.' },
       { step: '02', title: 'Prompt Engineering',    desc: 'Prompts developed iteratively against real task samples — evaluated on accuracy, consistency, and edge-case handling.' },
       { step: '03', title: 'Pipeline Build',         desc: 'LLM calls integrated into an orchestrated pipeline with validation, fallback logic, and cost controls.' },
-      { step: '04', title: 'Deploy & Monitor',       desc: 'Production deployment with quality monitoring and 30-day accuracy optimisation window.' },
+      { step: '04', title: 'Deploy & Monitor',       desc: 'Production deployment with quality monitoring and accuracy optimisation window.' },
     ],
 
     deliverables: [
@@ -1067,7 +840,7 @@ export const AUTOMATION_CHILDREN = {
       'Cost management configuration',
       'Quality monitoring dashboard',
       'Human-review queue (where needed)',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -1081,17 +854,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Redis',        color: COLORS.amber    },
     ],
 
-    tiers: [
-      { name: 'LLM Task',       price: 'From $5,000',  featured: false,
-        desc:     'One LLM-powered task automated with monitoring and cost controls.',
-        features: ['Single LLM task', 'Prompt library', 'Cost controls', '3–4 week delivery'] },
-      { name: 'LLM Workflow Suite',price: 'From $11,000',featured: true,
-        desc:     'Multiple LLM automation tasks with quality monitoring and human review.',
-        features: ['3–5 LLM tasks', 'Quality monitoring', 'Human-review queue', 'Cost dashboard', '30-day support'] },
-      { name: 'Enterprise LLM Ops',price: 'Custom',    featured: false,
-        desc:     'Organisation-wide LLM automation with fine-tuning and governance.',
-        features: ['Custom fine-tuning', 'Governance framework', 'Audit trail', 'SLA agreement'] },
-    ],
   },
 
   // ── 15. Decision Engines ──────────────────────────────────────────────────
@@ -1102,7 +864,7 @@ export const AUTOMATION_CHILDREN = {
     badge:       'AI Automation',
     accentColor: COLORS.primary,
     heroDesc:    'Most automation stops at data movement and leaves the decisions to humans. We build decision engines — rules-based, ML-powered, or hybrid — that make routing, approval, pricing, and classification decisions automatically, with full audit trails, explainability, and human-override capability built in.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    tags:        ['Full Code Ownership'],
 
     pipelineNodes: [
       { id: 0, label: 'Input',     sub: 'Case / Record / Event',    color: COLORS.primary,  x: '5%',  y: '20%' },
@@ -1112,12 +874,6 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Act',       sub: 'Route / approve / notify', color: COLORS.primary,  x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 90,  suffix: '%', label: 'Decisions Automated',     iconName: 'Brain',       color: COLORS.primary  },
-      { target: 40,  suffix: '+', label: 'Decision Engines Built',  iconName: 'Settings2',   color: COLORS.amber    },
-      { target: 99,  suffix: '%', label: 'Decision Accuracy',       iconName: 'Activity',    color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Full Audit Trail',        iconName: 'Shield',      color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Brain',      title: 'Rules Engine Design',        color: COLORS.primary,  desc: 'Structured decision tables and rule chains that encode business logic — readable by non-engineers, versioned, and testable.' },
@@ -1132,7 +888,7 @@ export const AUTOMATION_CHILDREN = {
       { step: '01', title: 'Decision Mapping',     desc: 'Every decision point in the process documented — inputs, options, business rules, and the data currently used by humans.' },
       { step: '02', title: 'Engine Architecture',  desc: 'Rules vs ML selection per decision type, explainability approach, and human escalation thresholds agreed.' },
       { step: '03', title: 'Build & Validate',     desc: 'Engine built and back-tested against historical decisions. Accuracy and false-positive rates measured before production.' },
-      { step: '04', title: 'Deploy & Monitor',     desc: 'Decision dashboard live, audit trail active, and 30-day monitoring window to tune thresholds.' },
+      { step: '04', title: 'Deploy & Monitor',     desc: 'Decision dashboard live, audit trail active, and monitoring window to tune thresholds.' },
     ],
 
     deliverables: [
@@ -1142,7 +898,7 @@ export const AUTOMATION_CHILDREN = {
       'Decision audit trail database',
       'Explainability output',
       'Human override interface',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -1156,28 +912,17 @@ export const AUTOMATION_CHILDREN = {
       { label: 'React',          color: COLORS.amber    },
     ],
 
-    tiers: [
-      { name: 'Rules Engine',      price: 'From $6,000',  featured: false,
-        desc:     'Decision engine for one process with audit trail and human override.',
-        features: ['Rules engine', 'Audit trail', 'Override interface', '4–5 week delivery'] },
-      { name: 'AI Decision Engine', price: 'From $13,000', featured: true,
-        desc:     'Hybrid rules + ML decision engine with explainability and monitoring.',
-        features: ['Rules + ML hybrid', 'SHAP explainability', 'Human escalation', 'Decision dashboard', '30-day support'] },
-      { name: 'Enterprise Decision Platform', price: 'Custom', featured: false,
-        desc:     'Organisation-wide decision automation with governance and compliance.',
-        features: ['Multi-process coverage', 'Regulatory compliance', 'Model governance', 'SLA agreement'] },
-    ],
   },
 
   // ── 16. Audit Trail Systems ───────────────────────────────────────────────
   'audit-trail': {
     id:          'audit-trail',
     title:       'Audit Trail Systems',
-    tagline:     'Every automated action logged, queryable, and compliant.',
+    tagline:     'Every automated action logged and queryable.',
     badge:       'AI Automation',
     accentColor: COLORS.secondary,
     heroDesc:    'Automated systems are invisible without audit trails. Compliance teams, regulators, and internal reviewers need to understand exactly what happened, when, why, and who or what triggered it. We build immutable audit trail systems that capture every automated action with the context needed to reconstruct a decision months later.',
-    tags:        ['Fixed-Fee Projects', 'Compliance Documentation', 'From $4,000'],
+    tags:        ['Compliance Documentation'],
 
     pipelineNodes: [
       { id: 0, label: 'Action',    sub: 'Any automated event',      color: COLORS.secondary,x: '5%',  y: '20%' },
@@ -1187,18 +932,12 @@ export const AUTOMATION_CHILDREN = {
       { id: 4, label: 'Query',     sub: 'Search + export + report', color: COLORS.secondary,x: '65%', y: '64%' },
     ],
 
-    stats: [
-      { target: 100, suffix: '%', label: 'Action Coverage',          iconName: 'Shield',      color: COLORS.secondary },
-      { target: 40,  suffix: '+', label: 'Audit Systems Delivered',  iconName: 'FileText',    color: COLORS.amber     },
-      { target: 100, suffix: '%', label: 'Tamper-proof Logging',     iconName: 'Lock',        color: COLORS.gold      },
-      { target: 100, suffix: '%', label: 'Code Ownership',           iconName: 'Settings2',   color: COLORS.action    },
-    ],
 
     features: [
       { iconName: 'Shield',    title: 'Immutable Event Log',          color: COLORS.secondary,desc: 'Append-only event store with cryptographic hash chaining — any tampering with historical records is detectable.' },
       { iconName: 'FileText',  title: 'Rich Event Context',           color: COLORS.amber,    desc: 'Every log entry captures: actor (human or bot), action type, input state, output state, timestamp, and triggering context.' },
       { iconName: 'Search',    title: 'Queryable Audit Interface',    color: COLORS.action,   desc: 'Compliance team-friendly search interface — filter by actor, date, action type, or record ID without DBA involvement.' },
-      { iconName: 'Database',  title: 'GDPR & HIPAA Compliance',     color: COLORS.primary,  desc: 'Retention policies, right-to-erasure handling for PII, and data export formats aligned to GDPR and HIPAA audit requirements.' },
+      { iconName: 'Database',  title: 'Retention & Privacy Controls',     color: COLORS.primary,  desc: 'Retention policies, right-to-erasure handling for PII, and data export formats for audit requests.' },
       { iconName: 'Activity',  title: 'Real-time Audit Streaming',   color: COLORS.gold,     desc: 'Events streamed in real-time to a SIEM or compliance monitoring system — suspicious patterns flagged as they occur.' },
       { iconName: 'BarChart3', title: 'Compliance Reporting',        color: COLORS.cyan,     desc: 'Pre-built compliance reports — action summaries, user activity reports, and exception logs — exportable on demand or scheduled.' },
     ],
@@ -1207,7 +946,7 @@ export const AUTOMATION_CHILDREN = {
       { step: '01', title: 'Compliance Requirements', desc: 'Regulatory and internal audit requirements mapped to specific events, retention periods, and access controls.' },
       { step: '02', title: 'Event Schema Design',     desc: 'Event taxonomy, field standards, and hash-chain architecture designed and reviewed before implementation.' },
       { step: '03', title: 'Integration Build',       desc: 'Audit hooks integrated into all automation systems, immutable store provisioned, and query interface built.' },
-      { step: '04', title: 'Compliance Validation',   desc: 'Audit system validated against compliance requirements, reporting templates built, and 30-day support begins.' },
+      { step: '04', title: 'Compliance Validation',   desc: 'Audit system validated against compliance requirements, reporting templates built, and support begins.' },
     ],
 
     deliverables: [
@@ -1216,8 +955,7 @@ export const AUTOMATION_CHILDREN = {
       'Event capture integrations',
       'Compliance query interface',
       'Compliance report templates',
-      'GDPR / HIPAA documentation',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -1231,17 +969,6 @@ export const AUTOMATION_CHILDREN = {
       { label: 'Splunk',       color: COLORS.amber     },
     ],
 
-    tiers: [
-      { name: 'Audit Trail',       price: 'From $4,000', featured: false,
-        desc:     'Immutable audit log for one automation system with query interface.',
-        features: ['Immutable log', 'Event capture', 'Query interface', '2–3 week delivery'] },
-      { name: 'Compliance Platform',price: 'From $9,000',featured: true,
-        desc:     'Full audit system across all automations with reporting and GDPR support.',
-        features: ['Multi-system coverage', 'GDPR / HIPAA support', 'Compliance reports', 'Real-time streaming', '30-day support'] },
-      { name: 'Enterprise Compliance',price: 'Custom',  featured: false,
-        desc:     'SOC 2 / ISO 27001 ready audit infrastructure with SIEM integration.',
-        features: ['SIEM integration', 'SOC 2 / ISO 27001', 'Multi-region storage', 'SLA agreement'] },
-    ],
   },
 
 };

@@ -4,9 +4,9 @@
  * Structure: Hero (Light) -> Dark Strip (Stats) -> Light Section (Values) -> Light Section (Team) -> Light CTA.
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   ArrowRight, Zap, Target, FlaskConical, Package, Globe,
   BookOpen, BarChart3, Users, Award, CheckCircle, Star,
@@ -25,10 +25,10 @@ import SalmanPhoto from '../assets/team/salman-raza.png';
 function ValueCard({ title, desc, icon, color, i }) {
   const [hov, setHov] = useState(false);
   return (
-    <motion.div
-      initial={{ opacity:0, y:30 }}
-      whileInView={{ opacity:1, y:0 }}
-      viewport={{ once:true }}
+    <motion.div 
+      initial={{ opacity:0, y:30 }} 
+      whileInView={{ opacity:1, y:0 }} 
+      viewport={{ once:true }} 
       transition={{ duration:0.5, delay:i*0.1, ease:[0.16,1,0.3,1] }}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
@@ -58,10 +58,10 @@ function ValueCard({ title, desc, icon, color, i }) {
 function TeamMember({ member, i }) {
   const [hov, setHov] = useState(false);
   return (
-    <motion.div
-      initial={{ opacity:0, y:35 }}
-      whileInView={{ opacity:1, y:0 }}
-      viewport={{ once:true }}
+    <motion.div 
+      initial={{ opacity:0, y:35 }} 
+      whileInView={{ opacity:1, y:0 }} 
+      viewport={{ once:true }} 
       transition={{ duration:0.6, delay:i*0.12, ease:[0.16,1,0.3,1] }}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
@@ -149,12 +149,12 @@ function TeamMember({ member, i }) {
 
 /* ─── MAIN ──────────────────────────────────────────────────────────────── */
 export default function About() {
-
+  
   const values = [
     { title: 'Bioinformatics First', desc: 'Our DNA is technical rigor. We don\'t just clean data; we understand the biology, the chemistry, and the clinical implications behind every dataset.', icon:<Dna size={24}/>, color:B.action },
     { title: 'Global Standards', desc: 'Our workflows are modeled after top-tier research institutions. We bring publication-quality reproducibility to enterprise problems.', icon:<Globe size={24}/>, color:B.primary },
     { title: 'Full-Stack Ownership', desc: 'From wet-lab strategy to production-grade MLOps deployment. We don\'t hand off a CSV and walk away; we see it through to value.', icon:<Package size={24}/>, color:B.secondary },
-    { title: 'Transparent Pricing', desc: 'No hidden billable hours. We scope projects with fixed fees and clear deliverables. You know exactly what you are paying for.', icon:<Target size={24}/>, color:B.accent },
+    { title: 'Clear Scoping', desc: 'We agree scope and deliverables in writing before work begins, so you always know exactly what you are getting.', icon:<Target size={24}/>, color:B.accent },
   ];
 
   const team = [
@@ -164,13 +164,8 @@ export default function About() {
       featured: true,
       image: TayyabPhoto,
       linkedin: 'https://www.linkedin.com/in/tayyab-ijaz/',
-      bio: "Tayyab Ijaz is the Founder and AI Head at WellMind Data Solutions, where he leads the design and deployment of production-ready AI systems, data-driven pipelines, and scalable intelligent solutions for clients across industries. With 7+ years of experience and 500+ delivered projects spanning AI, machine learning, and data science, his expertise sits at the intersection of Healthcare AI and business systems — turning complex research and business challenges into practical, real-world outcomes for WellMind's clients.",
+      bio: "Tayyab Ijaz is the Founder and AI Head at WellMind Data Solutions, where he leads the design and deployment of production-ready AI systems, data-driven pipelines, and scalable intelligent solutions for clients across industries. His expertise spans AI, machine learning, and data science, sitting at the intersection of Healthcare AI and business systems — turning complex research and business challenges into practical, real-world outcomes for WellMind's clients.",
       skills: ['Artificial Intelligence', 'Machine Learning', 'Data Science & Analytics', 'Healthcare AI', 'Biometrics & Voice AI', 'AI Team Leadership'],
-      stats: [
-        { value:'7+', label:'Years Experience', icon:<Clock size={18}/> },
-        { value:'2000+', label:'Students Mentored', icon:<Users size={18}/> },
-        { value:'4.9', label:'Client Rating', icon:<Star size={18}/> },
-      ],
     },
     {
       name: 'Salman Raza',
@@ -179,10 +174,6 @@ export default function About() {
       linkedin: 'https://www.linkedin.com/in/salmanrazaaso/',
       bio: "Salman Raza is the Co-Founder of WellMind Data Solutions, where he drives the company's strategy, brand direction, and growth roadmap. Alongside building WellMind, he serves as Marketing & Managing Director at WAPEXP and Co-Founder of ATS Digital Agency, bringing hands-on experience in marketing, business development, and client-facing operations. He's especially passionate about career guidance — connecting students, universities, and the tech industry through mentorship, seminars, and hands-on roadmaps for breaking into IT.",
       skills: ['Business Strategy', 'Marketing & Branding', 'Business Development', 'Career Guidance & Mentorship', 'Digital Solutions', 'Client Relations'],
-      stats: [
-        { value:'17+', label:'Years Experience', icon:<Clock size={18}/> },
-        { value:'4.9', label:'Client Rating', icon:<Star size={18}/> },
-      ],
     },
   ];
 
@@ -232,26 +223,6 @@ export default function About() {
       </section>
 
       {/* ══ 2. DARK STRIP — Stats ══ */}
-      <section style={{ padding:`clamp(40px,5vw,60px) 0`, position:'relative', zIndex:1, background:`linear-gradient(135deg,#0a0a0a 0%,#080808 100%)` }}>
-        <DataParticles count={8} dark/>
-        <div style={{ ...PX, position:'relative', zIndex:2 }}>
-          <div className="grid-stats-compact">
-            {[
-              { val:'7',    suf:'+', lbl:'Years Experience',        color:'#767676' },
-              { val:'50',   suf:'+', lbl:'Projects Delivered',      color:'#8a8a8a' },
-              { val:'4',    suf:'',  lbl:'Industries Served',      color:'#adadad' },
-              { val:'100',  suf:'%', lbl:'Client Satisfaction',    color:'#a7a7a7' },
-              { val:'24/7', suf:'',  lbl:'Global Support',         color:'#9d9d9d' },
-            ].map((s,i) => (
-              <motion.div key={i} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.05, ease:[0.16,1,0.3,1] }}
-                style={{ background:'rgba(255,255,255,0.02)', backdropFilter:'blur(12px)', border:'1.5px solid rgba(255,255,255,0.08)', borderRadius:16, padding:'clamp(14px,1.5vw,20px) 10px', textAlign:'center', height:'100%' }}>
-                <div style={{ fontWeight:800, fontSize:'clamp(1.4rem,3.5vw,2.2rem)', color:B.textDark, marginBottom:4, letterSpacing:'-0.03em' }}>{s.val}<span style={{ fontSize:'0.5em' }}>{s.suf}</span></div>
-                <div style={{ fontSize:'clamp(10px,1.1vw,12px)', letterSpacing:'0.10em', textTransform:'uppercase', color:B.textDarkMuted, fontWeight:700, lineHeight:1.2 }}>{s.lbl}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ══ 3. MAIN LIGHT — Our Story & Values ══ */}
       <section style={{ position:'relative', zIndex:1, background:`linear-gradient(180deg,${B.bgLight} 0%,#efefef 50%,#e5e5e5 100%)`, overflow:'clip', padding:0 }}>
@@ -260,7 +231,7 @@ export default function About() {
 
         <div style={{ position:'relative', zIndex:2, padding:`${SECTION_PAD} 0` }}>
           <div style={{ ...PX }}>
-
+            
             <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }} style={{ textAlign:'center', marginBottom:60 }}>
               <SectionBadge>Our DNA</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom:12 }}>More Than Just Consultants</h2>
@@ -280,7 +251,7 @@ export default function About() {
       <section style={{ position:'relative', zIndex:1, background:`linear-gradient(180deg,#e5e5e5 0%,#f3f3f3 100%)`, padding:`${SECTION_PAD} 0` }}>
         <HeroGridBg uid="TeamGrid" opacity={0.15}/>
         <DataParticles count={12}/>
-
+        
         <div style={{ ...PX, position:'relative', zIndex:2 }}>
           <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }} style={{ textAlign:'center', marginBottom:60 }}>
             <SectionBadge>Meet The Minds</SectionBadge>
@@ -323,7 +294,7 @@ export default function About() {
 
       {/* ══ SHARED CSS ══ */}
       <style>{`
-
+        
 *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth}
         body{font-family:'Space Grotesk',sans-serif;-webkit-font-smoothing:antialiased}
@@ -345,9 +316,8 @@ export default function About() {
         .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:clamp(12px,2vw,18px) clamp(20px,4vw,40px);border-radius:12px;background:linear-gradient(135deg,#5c5c5c 0%,#545454 100%);color:#ffffff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(0.85rem,1.8vw,1.2rem);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s,box-shadow 0.2s}
         .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(92,92,92,0.35)}
         .btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:clamp(10px,1.8vw,16px) clamp(20px,4vw,40px);border-radius:12px;background:transparent;color:#373737;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(0.85rem,1.8vw,1.2rem);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:2px solid #373737;cursor:pointer;transition:background 0.2s,transform 0.2s}
-
+        
         /* Grid Layouts */
-        .grid-stats-compact{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,1.5vw,20px)}
         .grid-projects{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,28px)}
         .grid-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.2vw,24px)}
         .grid-2col{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.5vw,28px)}
@@ -358,10 +328,8 @@ export default function About() {
           .grid-3col{grid-template-columns:repeat(2,1fr)}
           .grid-projects{grid-template-columns:repeat(2,1fr)}
           .grid-values{grid-template-columns:repeat(2,1fr)}
-          .grid-stats-compact{grid-template-columns:repeat(3,1fr)}
         }
         @media(max-width:768px){
-          .grid-stats-compact{grid-template-columns:repeat(2,1fr);gap:14px}
           .grid-projects{grid-template-columns:repeat(2,1fr);gap:16px}
           .grid-values{grid-template-columns:repeat(2,1fr);gap:16px}
           .grid-team-two{grid-template-columns:1fr}
@@ -374,7 +342,6 @@ export default function About() {
           .about-hero-visual{max-width:420px;margin:0 auto;order:-1}
         }
         @media(max-width:425px){
-          .grid-stats-compact{grid-template-columns:1fr}
           .grid-projects{grid-template-columns:1fr}
           .grid-values{grid-template-columns:repeat(2,1fr)}
           .grid-3col{grid-template-columns:1fr}

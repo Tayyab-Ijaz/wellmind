@@ -25,7 +25,6 @@ const MAX_POLAR = 1.25;
 // linear data and the renderer's sRGB output pass washes every colour out.
 function srgb(t) {
   if ('colorSpace' in t && THREE.SRGBColorSpace) t.colorSpace = THREE.SRGBColorSpace;
-  else if (THREE.sRGBEncoding) t.encoding = THREE.sRGBEncoding;
   t.anisotropy = 4;
   return t;
 }

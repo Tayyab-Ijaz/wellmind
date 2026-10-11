@@ -23,7 +23,6 @@ const INDUSTRIES_DATA = {
       heading: 'Financial Services',
       tagline: 'AI-powered risk management and intelligent compliance.',
       link:    '/industry-financial-service',
-      stat:    { value: '5', label: 'Real-World Projects' },
       capabilities: [
         { label: 'Insurance Risk Scoring', link: '/case-studies/insurance-risk-scoring' },
         { label: 'Automated Invoice Extraction', link: '/case-studies/accounts-payable-invoice-extraction' },
@@ -37,7 +36,6 @@ const INDUSTRIES_DATA = {
       heading: 'Healthcare & Biotech',
       tagline: 'AI-powered revenue cycle management and clinical intelligence.',
       link:    '/industry-healthcare',
-      stat:    { value: '7', label: 'Real-World Projects' },
       capabilities: [
         { label: 'ICD-10 & CPT Coding Automation', link: '/case-studies/icd10-cpt-coding-engine' },
         { label: 'Underpayment Recovery (AR)', link: '/case-studies/ar-prioritization-underpayment-recovery' },
@@ -53,7 +51,6 @@ const INDUSTRIES_DATA = {
       heading: 'Retail & E-Commerce',
       tagline: 'AI-driven demand forecasting and operational intelligence.',
       link:    '/industry-retail-ecommerce',
-      stat:    { value: '5', label: 'Real-World Projects' },
       capabilities: [
         { label: 'Conversational BI Analytics', link: '/case-studies/conversational-analytics-platform' },
         { label: 'Multi-Branch Ops & Fraud Detection', link: '/case-studies/restaurant-command-center' },
@@ -67,7 +64,6 @@ const INDUSTRIES_DATA = {
       heading: 'Manufacturing',
       tagline: 'Predictive risk monitoring across the supply chain.',
       link:    '/industry-manufacturing',
-      stat:    { value: '1', label: 'Real-World Project' },
       capabilities: [
         { label: 'Supply Chain Disruption Alerts', link: '/case-studies/supplyguard-disruption-alerts' },
         { label: 'Operational Risk Scoring', link: '/case-studies/supplyguard-disruption-alerts' },
@@ -79,7 +75,6 @@ const INDUSTRIES_DATA = {
       heading: 'Agriculture & AgriTech',
       tagline: 'Precision agriculture driven by AI and Earth observation.',
       link:    '/industry-agriculture',
-      stat:    { value: '1', label: 'Real-World Project' },
       capabilities: [
         { label: 'Satellite & Weather Data Fusion', link: '/case-studies/satellite-weather-crop-yield' },
         { label: 'Vegetation Index Analysis (NDVI/EVI)', link: '/case-studies/satellite-weather-crop-yield' },
@@ -91,7 +86,6 @@ const INDUSTRIES_DATA = {
       heading: 'Education & EdTech',
       tagline: 'Personalised learning powered by adaptive AI.',
       link:    '/industry-education',
-      stat:    { value: '1', label: 'Real-World Project' },
       capabilities: [
         { label: 'Per-Skill Mastery Tracking', link: '/case-studies/adaptive-learning-engine' },
         { label: 'Real-Time Difficulty Adjustment', link: '/case-studies/adaptive-learning-engine' },
@@ -102,11 +96,7 @@ const INDUSTRIES_DATA = {
 };
 
 // ─── REACH STATS ──────────────────────────────────────────────────────────────
-const REACH_STATS = [
-  { value: '5+',  label: 'Countries' },
-  { value: '20',  label: 'Projects Delivered' },
-  { value: '6',   label: 'Industries Served' },
-];
+
 
 // ─── COMPONENT ────────────────────────────────────────────────────────────────
 export default function IndustriesMegaMenu({ onClose }) {
@@ -124,7 +114,7 @@ export default function IndustriesMegaMenu({ onClose }) {
           paddingRight:  20,
           paddingLeft:   DT.leftPadInline,
         }}>
-          Industries Served
+          Industries
         </OverlineLabel>
 
         {INDUSTRIES_DATA.sections.map(section => (
@@ -164,15 +154,6 @@ export default function IndustriesMegaMenu({ onClose }) {
                 transition: 'all 0.15s',
               }}>
                 {section.heading}
-              </div>
-              <div style={{
-                fontSize:   DT.smallLabelSize,
-                color:      B.action,
-                marginTop:  2,
-                
-                fontFamily: "'Space Grotesk', sans-serif",
-              }}>
-                {section.stat.value} {section.stat.label}
               </div>
             </div>
             {activeId === section.id && (
@@ -226,28 +207,6 @@ export default function IndustriesMegaMenu({ onClose }) {
                   <PanelHeading heading={currentSection.heading} tagline={currentSection.tagline} />
                 </div>
 
-                {/* Stat block */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4, flexShrink: 0 }}>
-                  <div style={{
-                    fontSize:      28,
-                    fontWeight:    900,
-                    color:         B.primaryMid,
-                    lineHeight:    1,
-                    fontFamily:    "'Space Grotesk', sans-serif",
-                    letterSpacing: '-0.02em',
-                  }}>
-                    {currentSection.stat.value}
-                  </div>
-                  <div style={{
-                    fontSize:   DT.smallLabelSize,
-                    color:      B.textMuted,
-                    fontFamily: "'Space Grotesk', sans-serif",
-                    fontWeight: 600,
-                    textAlign:  'right',
-                  }}>
-                    {currentSection.stat.label}
-                  </div>
-                </div>
               </div>
 
               {/* Capabilities 2-col grid */}

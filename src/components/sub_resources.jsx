@@ -90,17 +90,6 @@ function ArticleCard({ article, onClose }) {
             {article.cat}
           </span>
           
-          <span style={{
-            fontSize:   12,
-            color:      B.textMuted,
-            fontFamily: "'Space Grotesk', sans-serif",
-            fontWeight: 600,
-            display:    'flex',
-            alignItems: 'center',
-            gap: 4,
-          }}>
-            <span>{article.rt}</span>
-          </span>
         </div>
       </div>
     </Link>
@@ -113,21 +102,19 @@ const RESOURCES_DATA = [
     id:          'featured',
     heading:     'Featured Articles',
     tagline:     'Deep dives into AI, Bioinformatics, and MLOps methodologies.',
-    link:        '/resources#featured',
+    link:        '/resources',
     accentColor: B.action,
     articles: [
       {
-        title: 'The Complete RNA-seq Analysis Pipeline (2026)',
+        title: 'The Complete RNA-seq Analysis Pipeline',
         cat:   'Bioinformatics',
-        link:  '/resources/rna-seq-analysis-guide',
-        rt:    '14 min',
+        link:  '/resources',
         desc:  'Step-by-step guide covering alignment, quantification, and differential expression for modern genomic workflows.',
       },
       {
         title: 'Why Explainable AI Matters in Healthcare',
         cat:   'Healthcare AI',
-        link:  '/resources/explainable-ai-healthcare',
-        rt:    '9 min',
+        link:  '/resources',
         desc:  'SHAP, LIME, and model interpretability frameworks for regulated clinical environments.',
       },
     ],
@@ -136,38 +123,35 @@ const RESOURCES_DATA = [
     id:          'guides',
     heading:     'Quick Guides & Checklists',
     tagline:     'Actionable roadmaps for rapid implementation.',
-    link:        '/resources#guides',
+    link:        '/resources',
     accentColor: B.primaryMid,
     guides: [
-      { label: 'Getting Started with MLOps',        link: '/resources/getting-started-mlops' },
-      { label: 'Enterprise AI Readiness Checklist',  link: '/resources/ai-readiness-checklist' },
-      { label: 'Building a Data Lakehouse',         link: '/resources/guide-data-lakehouse' },
-      { label: 'LLM Security Best Practices',       link: '/resources/guide-llm-security' },
-      { label: 'Choosing the Right Cloud Database',  link: '/resources/guide-cloud-db' },
-      { label: 'HIPAA Compliant Data Pipelines',    link: '/resources/guide-hipaa-pipelines' },
-      { label: 'Fine-tuning vs. RAG',                link: '/resources/guide-finetuning-rag' },
-      { label: 'Kubernetes for Data Science',       link: '/resources/guide-k8s-ml' },
+      { label: 'Getting Started with MLOps',        link: '/resources' },
+      { label: 'Enterprise AI Readiness Checklist',  link: '/resources' },
+      { label: 'Building a Data Lakehouse',         link: '/resources' },
+      { label: 'LLM Security Best Practices',       link: '/resources' },
+      { label: 'Choosing the Right Cloud Database',  link: '/resources' },
+      { label: 'Fine-tuning vs. RAG',                link: '/resources' },
+      { label: 'Kubernetes for Data Science',       link: '/resources' },
     ],
   },
   {
     id:          'bio',
     heading:     'Bioinformatics',
     tagline:     'Genomic pipelines, variant calling, and clinical analysis.',
-    link:        '/resources#bioinformatics',
+    link:        '/resources',
     accentColor: '#4b4b4b',
     articles: [
       {
         title: 'RNA-seq Analysis Guide',
         cat:   'Tutorial',
-        link:  '/resources/rna-seq-analysis-guide',
-        rt:    '14 min',
+        link:  '/resources',
         desc:  'From raw FASTQ files to differentially expressed genes.'
       },
       {
-        title: 'Single-Cell RNA-seq 101',
+        title: 'Single-Cell RNA-seq Basics',
         cat:   'Analysis',
-        link:  '/resources/single-cell-101',
-        rt:    '18 min',
+        link:  '/resources',
         desc:  'Introduction to Seurat and Scanpy workflows.'
       }
     ]
@@ -176,14 +160,13 @@ const RESOURCES_DATA = [
     id:          'health',
     heading:     'Healthcare AI',
     tagline:     'Diagnostics, patient stratification, and clinical decision support.',
-    link:        '/resources#healthcare-ai',
+    link:        '/resources',
     accentColor: '#545454',
     articles: [
       {
         title: 'Explainable AI in Diagnostics',
         cat:   'XAI',
-        link:  '/resources/explainable-ai-healthcare',
-        rt:    '9 min',
+        link:  '/resources',
         desc:  'Interpreting black-box models for clinical trust.'
       }
     ]
@@ -192,14 +175,13 @@ const RESOURCES_DATA = [
     id:          'genai',
     heading:     'LLMs & GenAI',
     tagline:     'Transformers, embeddings, and generative applications.',
-    link:        '/resources#genai',
+    link:        '/resources',
     accentColor: '#373737',
     articles: [
       {
         title: 'RAG Architecture Patterns',
         cat:   'Engineering',
-        link:  '/resources/rag-patterns',
-        rt:    '15 min',
+        link:  '/resources',
         desc:  'Vector databases, retrieval strategies, and prompt optimization.'
       }
     ]
@@ -208,14 +190,13 @@ const RESOURCES_DATA = [
     id:          'mlops',
     heading:     'MLOps',
     tagline:     'Lifecycle management, monitoring, and deployment.',
-    link:        '/resources#mlops',
+    link:        '/resources',
     accentColor: '#646464',
     articles: [
       {
         title: 'Model Monitoring Strategies',
         cat:   'Operations',
-        link:  '/resources/model-monitoring',
-        rt:    '10 min',
+        link:  '/resources',
         desc:  'Tracking data drift and performance degradation in prod.'
       }
     ]
@@ -357,7 +338,7 @@ export default function ResourcesMegaMenu({ onClose }) {
                     gap:                 20,
                   }}>
                     {currentSection.articles.map(article => (
-                      <ArticleCard key={article.link} article={article} onClose={onClose} />
+                      <ArticleCard key={article.title} article={article} onClose={onClose} />
                     ))}
                   </div>
                 )}

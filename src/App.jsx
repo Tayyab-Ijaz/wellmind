@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { useSeo } from './seo';
+import { ROUTE_META } from './seoRoutes';
 
 // Home is loaded eagerly since it's the landing page most visitors hit first.
 import Home from './pages/Home/Home';
@@ -15,7 +17,6 @@ const IndividualCaseStudy = lazy(() => import('./pages/IndividualCaseStudy'));
 const Resources = lazy(() => import('./pages/Resources'));
 const BookDiscovery = lazy(() => import('./pages/BookDiscovery'));
 const CostCalculator = lazy(() => import('./pages/CostCalculator/CostCalculator'));
-const Careers = lazy(() => import('./pages/Careers'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
@@ -78,10 +79,19 @@ function ScrollTop() {
   return null;
 }
 
+// Applies the per-route title/description/canonical. Child pages (services, case studies) set their own.
+function RouteSeo() {
+  const { pathname } = useLocation();
+  const meta = ROUTE_META[pathname];
+  useSeo(meta ? { ...meta, path: pathname } : null);
+  return null;
+}
+
 function App() {
   return (
     <BrowserRouter>
       <ScrollTop/>
+      <RouteSeo/>
       <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column' }}>
         <Header/>
         {/*
@@ -114,7 +124,7 @@ function App() {
               <Route path="/resources" element={<Resources/>}/>
               <Route path="/book-discovery" element={<BookDiscovery/>}/>
               <Route path="/ai-cost-calculator" element={<CostCalculator/>}/>
-              <Route path="/careers" element={<Careers/>}/>
+              <Route path="/careers" element={<Navigate to="/book-discovery" replace/>}/>
               <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
               <Route path="/terms-of-service" element={<TermsOfService/>}/>
               <Route path="/cookie-policy" element={<CookiePolicy/>}/>

@@ -5,7 +5,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Cpu, TrendingUp, Code, Settings2, Palette, Dna,
   ArrowRight, CheckCircle, Wrench, Rocket, Activity,
@@ -15,7 +15,7 @@ import {
   Mail, MessageCircle, Share2, Phone, DollarSign, Clock,
   Lock, Repeat,
 } from 'lucide-react';
-import { B, SECTION_PAD, PX, fadeUp, useCounter, DataParticles, SectionBadge, SectionDivider, CircuitBg, FAQItem, InViewSection } from '../../theme';
+import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge, SectionDivider, CircuitBg, FAQItem, InViewSection } from '../../theme';
 import { FaLinkedin } from 'react-icons/fa';
 
 import SystemDrivenDelivery from '../../assets/System-Driven Delivery.webp';
@@ -38,106 +38,7 @@ const FONT_ACCENT   = "'Space Grotesk', var(--font-main)";
 
 
 
-function StatCard({ target, suffix, label, index, start, delay = 0 }) {
-  const val = useCounter(target, 2000, start);
-  const [hovered, setHovered] = useState(false);
-  const ref = useRef(null);
 
-  // cursor-following light (pure CSS variables, no re-render)
-  const onMove = (e) => {
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    el.style.setProperty('--mx', `${e.clientX - r.left}px`);
-    el.style.setProperty('--my', `${e.clientY - r.top}px`);
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
-      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-      onMouseMove={onMove}
-      whileHover={{ y: -5 }}
-      style={{
-        '--mx': '50%', '--my': '0%',
-        position: 'relative', borderRadius: 22, padding: 1, cursor: 'default',
-        // hairline bevel: bright top-left edge, faint everywhere else
-        background: 'linear-gradient(155deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.07) 32%, rgba(255,255,255,0.03) 62%, rgba(255,255,255,0.13) 100%)',
-        boxShadow: hovered
-          ? '0 30px 60px -20px rgba(0,0,0,0.9), 0 12px 24px -12px rgba(0,0,0,0.8)'
-          : '0 22px 44px -22px rgba(0,0,0,0.9), 0 8px 16px -10px rgba(0,0,0,0.7)',
-        transition: 'box-shadow 0.4s ease',
-      }}
-    >
-      {/* edge light that follows the cursor */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', inset: 0, borderRadius: 22, pointerEvents: 'none',
-        background: 'radial-gradient(220px circle at var(--mx) var(--my), rgba(255,255,255,0.55), transparent 65%)',
-        opacity: hovered ? 1 : 0, transition: 'opacity 0.35s ease',
-        WebkitMask: 'linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0)',
-        mask: 'linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0)',
-        padding: 1,
-      }} />
-
-      {/* the card surface */}
-      <div style={{
-        position: 'relative', overflow: 'hidden', borderRadius: 21,
-        padding: 'clamp(20px, 2.6vw, 34px) clamp(18px, 2.2vw, 30px) clamp(18px, 2.2vw, 28px)',
-        minHeight: 'clamp(190px, 17vw, 250px)',
-        display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-        background: 'linear-gradient(180deg, #17171a 0%, #0e0e10 45%, #08080a 100%)',
-        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.09), inset 0 -18px 30px -18px rgba(0,0,0,0.9)',
-      }}>
-        {/* soft top sheen, like light falling on a machined surface */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', left: 0, right: 0, top: 0, height: '55%', pointerEvents: 'none',
-          background: 'radial-gradient(120% 100% at 50% 0%, rgba(255,255,255,0.07), transparent 70%)',
-        }} />
-        {/* cursor spotlight */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: 'radial-gradient(320px circle at var(--mx) var(--my), rgba(255,255,255,0.075), transparent 65%)',
-          opacity: hovered ? 1 : 0, transition: 'opacity 0.35s ease',
-        }} />
-        {/* fine grain so the surface doesn't look like a flat CSS gradient */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.5, mixBlendMode: 'overlay',
-          backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
-        }} />
-
-        <div style={{
-          position: 'relative', zIndex: 1, fontFamily: FONT_ACCENT, fontSize: 12, fontWeight: 500,
-          letterSpacing: '0.18em', color: 'rgba(255,255,255,0.34)',
-        }}>
-          {index}
-        </div>
-
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{
-            fontFamily: "'Manrope', var(--font-main)", fontWeight: 600, fontVariantNumeric: 'tabular-nums',
-            fontSize: 'clamp(2.6rem, 5.2vw, 4.6rem)', lineHeight: 1, letterSpacing: '-0.045em',
-            color: '#F4F4F5',
-            textShadow: '0 1px 0 rgba(255,255,255,0.12), 0 12px 30px rgba(0,0,0,0.6)',
-          }}>
-            {val}<span style={{ fontSize: '0.52em', marginLeft: 2, fontWeight: 500, color: 'rgba(255,255,255,0.55)', letterSpacing: '-0.02em' }}>{suffix}</span>
-          </div>
-          <div style={{
-            height: 1, margin: 'clamp(14px, 1.6vw, 20px) 0 clamp(10px, 1.2vw, 14px)',
-            background: 'linear-gradient(90deg, rgba(255,255,255,0.22), rgba(255,255,255,0.04))',
-          }} />
-          <div style={{
-            fontFamily: FONT_ACCENT, fontSize: 'clamp(11px, 1.05vw, 13px)', fontWeight: 600,
-            letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.62)',
-          }}>
-            {label}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
 
 // ─── Feature Block ─────────────────────────────────────────────────────────────
 function FeatureBlock({ title, desc, imgUrl, isActive }) {
@@ -290,61 +191,17 @@ function ProjectCard({ proj, i }) {
   );
 }
 
-// ─── Testimonials ─────────────────────────────────────────────────────────────
-function TestimonialsSection({ testimonials }) {
-  const dupTestimonials = [...testimonials, ...testimonials];
-  return (
-    <div style={{ position: 'relative', padding: 'var(--sp-section) 0', zIndex: 2 }}>
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-        style={{ ...PX, marginBottom: 48, textAlign: 'center', position: 'relative', zIndex: 2 }}>
-        <SectionBadge dark>Client Stories</SectionBadge>
-        <h2 className="section-h2 dark">What Our Clients Say</h2>
-        <p className="section-lead dark" style={{ marginTop: 12, maxWidth: 1200 }}>Trusted by innovative teams worldwide.</p>
-      </motion.div>
-      <div style={{ maskImage: 'linear-gradient(90deg, transparent, black 8%, black 92%, transparent)', WebkitMaskImage: 'linear-gradient(90deg, transparent, black 8%, black 92%, transparent)', position: 'relative', zIndex: 2 }}>
-        <div className="testimonial-scroll-track" style={{ display: 'flex', gap: 24, animation: 'wmScrollLeft 36s linear infinite', width: 'max-content' }}>
-          {dupTestimonials.map((t, i) => (
-            <div key={i}
-              style={{
-                width: 'clamp(260px, 75vw, 460px)', flexShrink: 0,
-                background: B.white, borderRadius: 'var(--radius-xl)', border: `2px solid ${B.primaryBorder}`,
-                display: 'flex', flexDirection: 'column',
-                padding: 'clamp(20px, 3.5vw, 40px)',
-                boxShadow: `0 4px 30px rgba(57,57,57,0.08)`, transition: 'border-color 0.3s ease',
-              }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = B.primary}
-              onMouseLeave={e => e.currentTarget.style.borderColor = B.primaryBorder}
-            >
-              <div style={{ display: 'flex', gap: 4, marginBottom: 20 }}>
-                {[...Array(5)].map((_, si) => <Star key={si} size={16} fill={B.accent} color={B.accent} />)}
-              </div>
-              <p className="testimonial-text" style={{ flexGrow: 1, marginBottom: 24 }}>&ldquo;{t.text}&rdquo;</p>
-              <div style={{ borderTop: `1px solid ${B.primaryBorder}`, paddingTop: 20, display: 'flex', alignItems: 'center', gap: 18, marginTop: 'auto' }}>
-                <div style={{ width: 'clamp(44px, 5vw, 56px)', height: 'clamp(44px, 5vw, 56px)', borderRadius: '50%', flexShrink: 0, background: t.avatarBg, border: `2px solid ${t.avatarColor}40`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 16px ${t.avatarColor}25` }}>
-                  <span style={{ fontSize: 'clamp(16px, 2vw, 20px)', fontWeight: 800, color: t.avatarColor }}>{t.initials}</span>
-                </div>
-                <div>
-                  <div className="testimonial-name" style={{ fontSize: 'clamp(14px, 1.8vw, 18px)', fontWeight: 800 }}>{t.name}</div>
-                  <div style={{ fontSize: 'clamp(12px, 1.5vw, 15px)', color: t.avatarColor, marginTop: 4, fontWeight: 600, letterSpacing: '0.06em' }}>{t.role}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+
 
 
 
 // ─── Why WellMind — Responsive Scroll / Stack ──────────────────────────────────
 function WhyWellmindScroll() {
   const features = [
-    { title: 'System-Driven Delivery', desc: 'Consistent outcomes via battle-tested SOPs and proven delivery frameworks that eliminate guesswork.', imgUrl: SystemDrivenDelivery, color: B.action },
-    { title: 'Enterprise Security',    desc: 'ISO 27001 & 42001 compliant end-to-end encryption keeping your data protected at every layer.',     imgUrl: EnterpriseSecurity,    color: B.primary },
-    { title: 'Scalable Architecture',  desc: 'Systems engineered to handle millions of requests without performance degradation or downtime.',       imgUrl: ScalableArchitecture,  color: B.accent },
-    { title: 'Rapid Deployment',       desc: 'From validated concept to production-ready system in weeks, not months — with zero compromise.',       imgUrl: RapidDeployment,       color: B.secondary },
+    { title: 'System-Driven Delivery', desc: 'Consistent outcomes via documented SOPs and clear delivery frameworks that reduce guesswork.', imgUrl: SystemDrivenDelivery, color: B.action },
+    { title: 'Enterprise Security',    desc: 'Confidentiality agreements and secure data handling, so your data stays protected throughout the engagement.',     imgUrl: EnterpriseSecurity,    color: B.primary },
+    { title: 'Scalable Architecture',  desc: 'Systems designed with growth in mind, so they can scale as your usage does.',       imgUrl: ScalableArchitecture,  color: B.accent },
+    { title: 'Rapid Deployment',       desc: 'A clear path from validated concept to a production-ready system.',       imgUrl: RapidDeployment,       color: B.secondary },
   ];
 
   const [activeIdx, setActiveIdx] = useState(0);
@@ -448,43 +305,25 @@ function WhyWellmindScroll() {
 
 // ─── MAIN ──────────────────────────────────────────────────────────────────────
 export default function Home() {
-  const [statsVisible, setStatsVisible] = useState(false);
-  const statsRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(-1);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStatsVisible(true); }, { threshold: 0.20 });
-    if (statsRef.current) obs.observe(statsRef.current);
-    return () => obs.disconnect();
-  }, []);
 
   const projects = [
-    { title: 'AR Prioritization & Underpayment Recovery Engine', desc: 'LightGBM classifier + live dashboard flagging underpaid Medicare claims across 6.1M rows from public CMS data.', tags: ['Data Analytics'], tools: ['Python', 'LightGBM', 'FastAPI', 'React', 'Isolation Forest'], imgUrl: imgArPrioritization, icon: <TrendingUp />, slug: 'ar-prioritization-underpayment-recovery', link: '/case-studies/ar-prioritization-underpayment-recovery' },
-    { title: 'Telecom Customer Churn Prediction', desc: 'Random Forest churn model with SHAP explainability, reaching 86.4% accuracy and capturing 65%+ of churners in the top-risk band.', tags: ['AI & Machine Learning'], tools: ['Random Forest', 'XGBoost', 'SHAP', 'SMOTE'], imgUrl: imgTelecomChurn, icon: <BarChart3 />, slug: 'telecom-churn-prediction', link: '/case-studies/telecom-churn-prediction' },
-    { title: 'Healthcare Fraud Detection System', desc: 'Peer-benchmarking, anomaly detection, and OIG exclusion-list matching flagged 3,842 high-risk providers from 44,528 analyzed.', tags: ['AI & Machine Learning'], tools: ['Isolation Forest', 'Random Forest', 'Z-score Analysis'], imgUrl: imgHealthcareFraudBilling, icon: <Shield />, slug: 'healthcare-fraud-detection-billing', link: '/case-studies/healthcare-fraud-detection-billing' },
+    { title: 'AR Prioritization & Underpayment Recovery Engine', desc: 'LightGBM classifier + live dashboard flagging underpaid Medicare claims from public CMS data.', tags: ['Data Analytics'], tools: ['Python', 'LightGBM', 'FastAPI', 'React', 'Isolation Forest'], imgUrl: imgArPrioritization, icon: <TrendingUp />, slug: 'ar-prioritization-underpayment-recovery', link: '/case-studies/ar-prioritization-underpayment-recovery' },
+    { title: 'Telecom Customer Churn Prediction', desc: 'Random Forest churn model with SHAP explainability that surfaces the customers most at risk of leaving.', tags: ['AI & Machine Learning'], tools: ['Random Forest', 'XGBoost', 'SHAP', 'SMOTE'], imgUrl: imgTelecomChurn, icon: <BarChart3 />, slug: 'telecom-churn-prediction', link: '/case-studies/telecom-churn-prediction' },
+    { title: 'Healthcare Fraud Detection System', desc: 'Peer-benchmarking, anomaly detection, and OIG exclusion-list matching to flag high-risk Medicare providers from public data.', tags: ['AI & Machine Learning'], tools: ['Isolation Forest', 'Random Forest', 'Z-score Analysis'], imgUrl: imgHealthcareFraudBilling, icon: <Shield />, slug: 'healthcare-fraud-detection-billing', link: '/case-studies/healthcare-fraud-detection-billing' },
   ];
 
   const faqs = [
-    { q: 'How much does a typical project cost?',        a: 'Projects start at $1,000 for focused data science work and scale to $15,000+ for multi-omics integration or full ML deployments. Starting prices are published on every service page, and we scope fixed-fee proposals after a free discovery call.' },
-    { q: 'How long does a project take?',                a: 'Most projects take 2–6 weeks end-to-end. Small focused analyses can deliver in under 10 days. Multi-omics or custom pipeline work typically takes 6–8 weeks. We give you a firm timeline in proposal.' },
+    { q: 'How much does a typical project cost?',        a: "Every project is different, so we don't publish prices. After a free discovery call we scope your project and send a clear written quote." },
+    { q: 'How long does a project take?',                a: 'Timelines depend on scope and data. We agree a clear timeline with you in a written proposal after a free discovery call.' },
     { q: 'Do you work with academic labs?',              a: "Yes, frequently. We can invoice through university procurement systems, support grant-funded projects, and deliver publication-ready outputs. We're comfortable with authorship arrangements when scope warrants it." },
-    { q: 'Is my data confidential?',                     a: "Always. We sign NDAs before any data is shared and use secure transfer protocols. For clinical or health data, we follow HIPAA and GDPR requirements. We never use client data in our own research or training without explicit permission." },
-    { q: 'Can you join our team part-time or on retainer?', a: "Yes. Beyond fixed-fee projects, we offer monthly retainers for ongoing analysis support — ideal for research labs or startups that need flexible expert access without hiring full-time." },
-    { q: 'Where are you based and which time zones do you cover?', a: "Our team is based in Pakistan (PKT, UTC+5) with clients across US, UK, Europe, MENA, and Asia. We work fully remote and overlap working hours to fit your time zone — usually 3–5 hours of live overlap every day." },
+    { q: 'Is my data confidential?',                     a: "Always. We sign NDAs before any data is shared and use secure transfer protocols. We never use client data in our own research or training without explicit permission." },
+    { q: 'Can you join our team part-time or on retainer?', a: "Yes. Beyond project work, we offer ongoing retainers for ongoing analysis support — ideal for research labs or startups that need flexible expert access without hiring full-time." },
+    { q: 'Where are you based and which time zones do you cover?', a: "Our team is based in Pakistan and works fully remote with clients internationally. We overlap working hours to fit your time zone." },
   ];
 
-  const heroTrustItems = [
-    { icon: <BarChart3 size={16} />,    label: '50+ Projects Delivered', accent: '#9e9e9e' },
-    { icon: <Globe size={16} />,        label: 'Clients in 5+ Countries', accent: '#aeaeae' },
-    { icon: <FlaskConical size={16} />, label: '6 Industries Served',     accent: '#aaaaaa' },
-  ];
 
-  const testimonials = [
-    { text: "WellMind's bioinformatics team delivered what two previous consultants couldn't — a clean pipeline, a real answer, and code I could actually hand off to my grad students.", name: 'Principal Investigator', role: 'Research University',    initials: 'PI', avatarBg: B.primaryLight,   avatarColor: B.primary   },
-    { text: "They flagged a data quality issue we'd missed for months. That one catch saved our model — and probably our product launch.",                                              name: 'CTO',                    role: 'Healthcare AI Startup', initials: 'CT', avatarBg: B.actionLight,    avatarColor: B.action    },
-    { text: "Clear communication, honest timelines, and kind of technical depth you rarely find in consulting. We've already booked our next project.",                                name: 'Head of Research',       role: 'Biotech SME',           initials: 'HR', avatarBg: B.accentLight,    avatarColor: B.accent    },
-    { text: "WellMind Data Solutions cut our model deployment time by 70%. Their system-driven approach is unlike anything we've seen before.",                                        name: 'Sarah Chen',             role: 'CTO, NexaFinance',      initials: 'SC', avatarBg: B.secondaryLight, avatarColor: B.secondary },
-  ];
 
   return (
     <div style={{ background: '#010101', color: '#fff', minHeight: '100svh', overflowX: 'clip', position: 'relative' }}>
@@ -504,7 +343,7 @@ export default function Home() {
           <motion.div variants={fadeUp} custom={0.12} className="wm-hero-divider" style={{ width: 72, height: 4, borderRadius: 99, background: 'linear-gradient(90deg, #ababab, #a7a7a7)', margin: 'clamp(12px, 1.6vw, 22px) auto' }} />
 
           <motion.p variants={fadeUp} custom={0.18} style={{ fontFamily: 'var(--font-main)', fontSize: 'clamp(0.85rem, 1.25vw, 1.15rem)', color: 'rgba(255,255,255,0.68)', maxWidth: 620, margin: '0 0 clamp(16px, 2vw, 28px)', letterSpacing: '0.005em', lineHeight: 1.65 }}>
-            WellMind Data Solutions delivers specialist bioinformatics, healthcare AI, & data science consulting. Trusted by researchers, startups, and enterprises across five countries.
+            WellMind Data Solutions delivers specialist bioinformatics, healthcare AI, & data science consulting.
           </motion.p>
 
           <motion.div variants={fadeUp} custom={0.22} style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 'clamp(16px, 2.2vw, 30px)', justifyContent: 'center' }}>
@@ -522,37 +361,10 @@ export default function Home() {
               <span style={{ color: '#a7a7a7', fontSize: 12, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Recognized For</span>
               <span style={{ height: 1, width: 42, background: 'rgba(255,255,255,0.28)' }} />
             </div>
-            <div className="wm-hero-trust-items" style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
-              {heroTrustItems.map((item, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 12px', fontSize: 'clamp(11px, 1.05vw, 14px)', fontWeight: 700, color: 'rgba(255,255,255,0.88)', background: 'rgba(255,255,255,0.05)', borderRadius: 12, border: '1px solid rgba(255,255,255,0.14)' }}>
-                  <span style={{ width: 24, height: 24, borderRadius: 7, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${item.accent}18` }}>
-                    {React.cloneElement(item.icon, { size: 14, color: item.accent, strokeWidth: 2.5 })}
-                  </span>
-                  {item.label}
-                </div>
-              ))}
-            </div>
           </motion.div>
         </motion.div>
       </ScrollFrameIntro>
 
-      {/* ══ 2. STATS ══ */}
-      <section ref={statsRef} style={{ padding: 'var(--sp-section) 0', position: 'relative', zIndex: 1, background: '#010101', display: 'flex', alignItems: 'center' }}>
-        <CircuitBg opacity={0.1} />
-        <DataParticles count={6} dark />
-        <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <SectionBadge dark>Our Impact</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 'clamp(20px, 3.5vw, 40px)', textAlign: 'center' }}>Results that Speak</h2>
-            <div className="grid-stats" style={{ width: '100%' }}>
-              <StatCard index="01" target={40} suffix="%" label="Cost Reduction"     start={statsVisible} delay={0}   />
-              <StatCard index="02" target={3}  suffix="x" label="Faster Delivery"    start={statsVisible} delay={0.1} />
-              <StatCard index="03" target={50} suffix="+" label="Enterprise Models"  start={statsVisible} delay={0.2} />
-              <StatCard index="04" target={99} suffix="%" label="Uptime SLA"         start={statsVisible} delay={0.3} />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ══ 3. MAIN LIGHT SECTION ══ */}
       <section style={{ position: 'relative', zIndex: 1, background: '#010101', overflow: 'clip', padding: 0 }}>
@@ -564,9 +376,9 @@ export default function Home() {
             <SectionBadge dark>Why WellMind Data Solutions</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 12 }}>
               Built for enterprise.<br />
-              <span style={{ background: 'linear-gradient(90deg, #ababab 25%, #a7a7a7 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Proven at scale.</span>
+              <span style={{ background: 'linear-gradient(90deg, #ababab 25%, #a7a7a7 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Clear and reliable.</span>
             </h2>
-            <p className="section-lead dark" style={{ maxWidth: 1200 }}>We don't just build algorithms, we build business value. Every solution is architected for reliability, security, and measurable ROI.</p>
+            <p className="section-lead dark" style={{ maxWidth: 1200 }}>We don't just build algorithms, we build business value. Every solution is architected for reliability and security.</p>
           </div>
           <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
             <WhyWellmindScroll />
@@ -596,8 +408,8 @@ export default function Home() {
           <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 48 }}>
               <SectionBadge dark>Portfolio</SectionBadge>
-              <h2 className="section-h2 dark">Real Projects. Real Results.</h2>
-              <p className="section-lead dark" style={{ marginTop: 12, maxWidth: 1200 }}>Explore how we've helped industries transform data into decisions.</p>
+              <h2 className="section-h2 dark">Selected Projects.</h2>
+              <p className="section-lead dark" style={{ marginTop: 12, maxWidth: 1200 }}>Explore portfolio projects that turn data into decisions across industries.</p>
             </motion.div>
 
             <div className="grid-projects" style={{ width: '100%' }}>
@@ -614,10 +426,7 @@ export default function Home() {
           </div>
         </div>
 
-        <SectionDivider />
 
-        {/* Testimonials */}
-        <TestimonialsSection testimonials={testimonials} />
       </section>
 
       {/* ══ 4. FAQ ══ */}
@@ -656,7 +465,7 @@ export default function Home() {
             </h2>
 
             <p className="section-lead dark" style={{ maxWidth: 900, margin: '0 auto clamp(28px, 3.5vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your challenge. We'll give you honest feedback on what's possible, what it would cost, and whether we're the right fit. No pitch. No pressure.
+              Book a free call. Tell us your challenge. We'll give you honest feedback on what's possible, what it would take, and whether we're the right fit. No pitch. No pressure.
             </p>
 
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 'clamp(32px, 5vw, 52px)' }}>

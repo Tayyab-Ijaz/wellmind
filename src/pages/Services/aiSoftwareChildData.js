@@ -36,7 +36,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Product Development',
     accentColor: COLORS.secondary,
     heroDesc:    'We build SaaS products that ship fast and scale reliably. Multi-tenancy, subscription billing, role-based access, and AI capabilities designed as product features — not afterthoughts. From database schema to deployment pipeline, we own the full build so you can focus on selling.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $9,000'],
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'React Frontend',    color: COLORS.accent,    icons: ['React', 'Next.js', 'Tailwind'] },
@@ -45,12 +45,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Multi-tenant DB',   color: COLORS.purple,    icons: ['PostgreSQL', 'Redis'] },
     ],
 
-    stats: [
-      { target: 30,  suffix: '+', label: 'SaaS Products Shipped',  iconName: 'Rocket',     color: COLORS.secondary },
-      { target: 10,  suffix: 'x', label: 'Faster to Market',       iconName: 'Zap',        color: COLORS.gold      },
-      { target: 99,  suffix: '%', label: 'Uptime Delivered',       iconName: 'Activity',   color: COLORS.cyan      },
-      { target: 100, suffix: '%', label: 'Code Ownership',         iconName: 'ShieldCheck', color: COLORS.action   },
-    ],
 
     features: [
       { iconName: 'Boxes',      title: 'Multi-tenant Architecture',  color: COLORS.secondary, desc: 'Isolated tenant data, configurable feature flags, and billing plans — designed correctly from day one so you never have to re-platform.' },
@@ -65,7 +59,7 @@ export const AI_SOFTWARE_CHILDREN = {
       { step: '01', title: 'Product Scoping',       desc: 'User stories, data model, API spec, and architecture doc agreed before build starts. We define what\'s in scope — and what isn\'t.' },
       { step: '02', title: 'Sprint Build',           desc: 'Two-week sprint cycles with working software demos. You review real features, not slide decks.' },
       { step: '03', title: 'AI Integration',         desc: 'AI features built and validated against real product data — with fallback logic for when models degrade or APIs are unavailable.' },
-      { step: '04', title: 'Launch & Handoff',       desc: 'Production deployment, CI/CD live, monitoring configured, and full codebase handed to your repo with 30 days of post-launch support.' },
+      { step: '04', title: 'Launch & Handoff',       desc: 'Production deployment, CI/CD live, monitoring configured, and full codebase handed to your repo with post-launch support.' },
     ],
 
     deliverables: [
@@ -75,7 +69,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'CI/CD pipeline (GitHub Actions or equivalent)',
       'Auth + billing integration',
       'Monitoring dashboard + alerting',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -89,17 +83,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'GitHub CI',   color: COLORS.action    },
     ],
 
-    tiers: [
-      { name: 'MVP',            price: 'From $9,000',  featured: false,
-        desc:     'Core product with one AI feature, auth, and deployment.',
-        features: ['Core product build', 'One AI integration', 'Auth + deployment', '6–8 week delivery'] },
-      { name: 'Full SaaS',      price: 'From $18,000', featured: true,
-        desc:     'Full SaaS with billing, multi-tenancy, AI features, and analytics.',
-        features: ['Multi-tenant architecture', 'Stripe billing', 'Multiple AI features', 'Product analytics', '30-day support'] },
-      { name: 'Enterprise SaaS',price: 'Custom',       featured: false,
-        desc:     'Complex SaaS with SSO, compliance, and ongoing engineering support.',
-        features: ['SSO / SAML', 'HIPAA / SOC 2 readiness', 'Custom integrations', 'Ongoing retainer option'] },
-    ],
   },
 
   // ── 2. Rapid Prototyping ──────────────────────────────────────────────────
@@ -109,8 +92,8 @@ export const AI_SOFTWARE_CHILDREN = {
     tagline:     'A working demo in weeks — not months.',
     badge:       'Product Development',
     accentColor: COLORS.action,
-    heroDesc:    'The fastest way to validate an AI product idea is to build a real one and put it in front of users. We design and build functional prototypes — connected to real APIs, running real models — in 2–3 weeks. You get something to demo to investors, test with customers, and use to raise funding or internal approval.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    heroDesc:    'The fastest way to validate an AI product idea is to build a real one and put it in front of users. We design and build functional prototypes — connected to real APIs, running real models — quickly. You get something to demo to investors, test with customers, and use to raise funding or internal approval.',
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'UI / Demo Layer',   color: COLORS.accent,    icons: ['React', 'Vite', 'Tailwind'] },
@@ -119,12 +102,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Storage',           color: COLORS.purple,    icons: ['SQLite', 'Supabase'] },
     ],
 
-    stats: [
-      { target: 2,   suffix: 'wk', label: 'Avg Delivery Time',     iconName: 'Zap',        color: COLORS.action   },
-      { target: 50,  suffix: '+',  label: 'Prototypes Shipped',    iconName: 'Rocket',     color: COLORS.secondary },
-      { target: 3,   suffix: 'x',  label: 'Faster to Demo-Ready', iconName: 'Activity',   color: COLORS.gold     },
-      { target: 100, suffix: '%',  label: 'Code Ownership',        iconName: 'ShieldCheck',color: COLORS.cyan     },
-    ],
 
     features: [
       { iconName: 'Zap',       title: 'Two-Week Build Cycle',       color: COLORS.action,    desc: 'Scope defined on day one, prototype demo-ready by end of week two. No scope creep — what\'s agreed is what gets built.' },
@@ -137,8 +114,8 @@ export const AI_SOFTWARE_CHILDREN = {
 
     process: [
       { step: '01', title: 'Scope & Design',      desc: 'One-day scoping session. We define the three core AI interactions, UI flows, and tech stack. Written brief confirmed before build starts.' },
-      { step: '02', title: 'Build (Week 1)',       desc: 'Backend, AI integrations, and data layer complete. Internal review on day five.' },
-      { step: '03', title: 'UI & Polish (Week 2)', desc: 'Frontend built, integrated, and deployed. User-facing flows tested end-to-end.' },
+      { step: '02', title: 'Build',       desc: 'Backend, AI integrations, and data layer complete. Internal review before the UI work starts.' },
+      { step: '03', title: 'UI & Polish', desc: 'Frontend built, integrated, and deployed. User-facing flows tested end-to-end.' },
       { step: '04', title: 'Demo & Handoff',       desc: 'Walkthrough session, codebase in your repo, and a deployment guide. Revision round included.' },
     ],
 
@@ -148,7 +125,6 @@ export const AI_SOFTWARE_CHILDREN = {
       'Deployment guide',
       'One feedback-driven revision round',
       'Architecture notes for production path',
-      'Two-week delivery guarantee',
     ],
 
     techStack: [
@@ -162,17 +138,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Tailwind',    color: COLORS.secondary },
     ],
 
-    tiers: [
-      { name: 'Demo Prototype',   price: 'From $3,500', featured: false,
-        desc:     'Core AI interaction, deployed, demo-ready in two weeks.',
-        features: ['Single AI feature', 'Basic UI', 'Deployed URL', '2 week delivery'] },
-      { name: 'Investor Prototype',price: 'From $6,500', featured: true,
-        desc:     'Polished multi-feature prototype with real AI and user flows.',
-        features: ['Multiple AI features', 'Polished UI', 'Auth + data persistence', 'Revision round', '30-day access'] },
-      { name: 'Production Handoff',price: 'Custom',      featured: false,
-        desc:     'Prototype built to production standards — ready to scale immediately.',
-        features: ['Production architecture', 'Test coverage', 'CI/CD setup', 'Full handoff package'] },
-    ],
   },
 
   // ── 3. MVP Engineering ────────────────────────────────────────────────────
@@ -182,8 +147,8 @@ export const AI_SOFTWARE_CHILDREN = {
     tagline:     'Ship to real users. Learn fast. Build the right thing.',
     badge:       'Product Development',
     accentColor: COLORS.accent,
-    heroDesc:    'An MVP is not a prototype and not a full product — it\'s the minimum set of features that lets real users tell you what to build next. We design MVPs with discipline: no scope creep, no gold-plating, no features that can\'t be validated. You get something real in the market within 6–8 weeks.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    heroDesc:    'An MVP is not a prototype and not a full product — it\'s the minimum set of features that lets real users tell you what to build next. We design MVPs with discipline: no scope creep, no gold-plating, no features that can\'t be validated. You get something real in the market fast.',
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'User Interface',    color: COLORS.accent,    icons: ['React', 'Next.js'] },
@@ -192,12 +157,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Database',          color: COLORS.purple,    icons: ['PostgreSQL', 'Supabase'] },
     ],
 
-    stats: [
-      { target: 6,   suffix: 'wk', label: 'Avg MVP Delivery',    iconName: 'Zap',         color: COLORS.accent   },
-      { target: 40,  suffix: '+',  label: 'MVPs Launched',       iconName: 'Rocket',      color: COLORS.secondary },
-      { target: 80,  suffix: '%',  label: 'Reach Validation',    iconName: 'Activity',    color: COLORS.gold     },
-      { target: 100, suffix: '%',  label: 'Code Ownership',      iconName: 'ShieldCheck', color: COLORS.action   },
-    ],
 
     features: [
       { iconName: 'Brain',      title: 'AI-First Feature Design',   color: COLORS.accent,    desc: 'AI capabilities defined as product bets — each with a validation hypothesis so you know what success looks like before you build.' },
@@ -210,9 +169,9 @@ export const AI_SOFTWARE_CHILDREN = {
 
     process: [
       { step: '01', title: 'MVP Definition Workshop', desc: 'One session to define the core user journey, the AI bets, and the three metrics that tell us if the MVP works.' },
-      { step: '02', title: 'Sprint 1–2: Foundation',  desc: 'Backend, database, auth, and AI integrations built and internally tested.' },
-      { step: '03', title: 'Sprint 3–4: UI & Polish', desc: 'Frontend built, user flows tested end-to-end, and deployed to staging for your review.' },
-      { step: '04', title: 'Launch & Measure',        desc: 'Production deployment, analytics live, and a 30-day check-in to review early user data with you.' },
+      { step: '02', title: 'Foundation',  desc: 'Backend, database, auth, and AI integrations built and internally tested.' },
+      { step: '03', title: 'UI & Polish', desc: 'Frontend built, user flows tested end-to-end, and deployed to staging for your review.' },
+      { step: '04', title: 'Launch & Measure',        desc: 'Production deployment, analytics live, and a check-in to review early user data with you.' },
     ],
 
     deliverables: [
@@ -222,7 +181,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'In-product analytics + feedback hooks',
       'User documentation',
       'Monitoring + alerting configuration',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -236,28 +195,17 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'GitHub CI',   color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Lean MVP',      price: 'From $6,000',  featured: false,
-        desc:     'Core user journey with one AI feature, auth, and deployment.',
-        features: ['Core user journey', 'One AI feature', 'Auth + deployment', '6 week delivery'] },
-      { name: 'Full MVP',      price: 'From $12,000', featured: true,
-        desc:     'Complete MVP with AI features, analytics, and feedback loops.',
-        features: ['Multiple AI features', 'Analytics + feedback hooks', 'CI/CD + monitoring', 'Staging environment', '30-day support'] },
-      { name: 'MVP + Scale',   price: 'Custom',       featured: false,
-        desc:     'MVP built to scale — production-grade architecture from day one.',
-        features: ['Enterprise architecture', 'Multi-region deploy', 'Load testing', 'Ongoing retainer option'] },
-    ],
   },
 
   // ── 4. Product Scaling ────────────────────────────────────────────────────
   'scaling': {
     id:          'scaling',
     title:       'Product Scaling',
-    tagline:     'Your product works. Now make it work for 100x more users.',
+    tagline:     'Your product works. Now make it work for far more users.',
     badge:       'Product Development',
     accentColor: COLORS.purple,
     heroDesc:    'Scaling is an engineering discipline, not just throwing more servers at the problem. We audit your current architecture, identify the constraints, and redesign the bottlenecks — database queries, caching strategy, API throughput, AI inference costs — so your product can grow without re-platforming.',
-    tags:        ['Fixed-Fee Audits', 'Performance Guaranteed', 'From $5,000'],
+    tags:        [],
 
     archLayers: [
       { label: 'Load Balancer',     color: COLORS.accent,    icons: ['AWS ALB', 'Nginx', 'Cloudflare'] },
@@ -266,12 +214,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Scalable DB',       color: COLORS.purple,    icons: ['Postgres', 'Read Replicas'] },
     ],
 
-    stats: [
-      { target: 10,  suffix: 'x',  label: 'Avg Throughput Gain',  iconName: 'Zap',         color: COLORS.purple   },
-      { target: 60,  suffix: '%',  label: 'Avg Cost Reduction',   iconName: 'Activity',    color: COLORS.gold     },
-      { target: 99,  suffix: '.9%',label: 'Uptime Post-Scale',    iconName: 'ShieldCheck', color: COLORS.action   },
-      { target: 100, suffix: '%',  label: 'Code Ownership',       iconName: 'Rocket',      color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Activity',  title: 'Performance Audit',          color: COLORS.purple,    desc: 'Profiling of database queries, API response times, and memory usage — with a ranked list of what to fix first for the highest impact.' },
@@ -279,14 +221,14 @@ export const AI_SOFTWARE_CHILDREN = {
       { iconName: 'Server',    title: 'Horizontal Scaling',         color: COLORS.secondary, desc: 'Stateless API design, Kubernetes autoscaling, and load balancer configuration for traffic that spikes unpredictably.' },
       { iconName: 'Zap',       title: 'Caching Architecture',       color: COLORS.accent,    desc: 'Redis caching for expensive computations, CDN configuration for static assets, and response caching at the API layer.' },
       { iconName: 'Brain',     title: 'AI Inference Optimisation',  color: COLORS.gold,      desc: 'Model quantisation, batching strategy, async inference queuing, and GPU cost management for AI features under load.' },
-      { iconName: 'GitBranch', title: 'Load Testing & Validation',  color: COLORS.cyan,      desc: 'Locust or k6 load tests run at 2–5x your current peak — changes validated before they reach production.' },
+      { iconName: 'GitBranch', title: 'Load Testing & Validation',  color: COLORS.cyan,      desc: 'Locust or k6 load tests run well above your current peak — changes validated before they reach production.' },
     ],
 
     process: [
       { step: '01', title: 'Architecture Audit',    desc: 'Profiling of current stack: database, API, cache, and AI layer. We find the real bottlenecks, not the assumed ones.' },
       { step: '02', title: 'Fix Plan & Prioritise', desc: 'Ranked list of changes by impact and effort. You decide what to fix in this engagement vs defer.' },
       { step: '03', title: 'Implement & Test',      desc: 'Changes implemented and load-tested at target scale before any production deployment.' },
-      { step: '04', title: 'Deploy & Monitor',      desc: 'Staged rollout, performance dashboards live, and a 30-day monitoring window to confirm gains hold under real traffic.' },
+      { step: '04', title: 'Deploy & Monitor',      desc: 'Staged rollout, performance dashboards live, and a monitoring window to confirm gains hold under real traffic.' },
     ],
 
     deliverables: [
@@ -296,7 +238,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Kubernetes / Docker configuration',
       'Load test results (before and after)',
       'Performance monitoring dashboard',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -310,17 +252,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'AWS / GCP',   color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Scaling Audit',   price: 'From $5,000',  featured: false,
-        desc:     'Full performance audit with a prioritised fix roadmap.',
-        features: ['Architecture audit', 'Benchmark report', 'Fix roadmap', '1–2 week turnaround'] },
-      { name: 'Scaling Sprint',  price: 'From $12,000', featured: true,
-        desc:     'Audit + implementation of the top performance improvements.',
-        features: ['Audit + implementation', 'Load testing', 'Kubernetes config', 'Monitoring setup', '30-day support'] },
-      { name: 'Scale Partnership',price: 'Custom',      featured: false,
-        desc:     'Embedded engineering for complex re-architecture and migration.',
-        features: ['Full re-architecture', 'Zero-downtime migration', 'Multi-region setup', 'SLA agreement'] },
-    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -335,7 +266,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Integration & APIs',
     accentColor: COLORS.action,
     heroDesc:    'A poorly designed API becomes a permanent liability — hard to maintain, painful to integrate, and expensive to version. We design and build production-grade REST and GraphQL APIs with OpenAPI documentation, auth, rate-limiting, versioning, and monitoring included by default.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'API Gateway',       color: COLORS.accent,    icons: ['Auth', 'Rate Limit', 'CORS'] },
@@ -344,12 +275,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Data Layer',        color: COLORS.purple,    icons: ['PostgreSQL', 'SQLAlchemy'] },
     ],
 
-    stats: [
-      { target: 80,  suffix: '+', label: 'APIs Delivered',        iconName: 'Server',      color: COLORS.action   },
-      { target: 99,  suffix: '%', label: 'Uptime SLA',            iconName: 'Activity',    color: COLORS.secondary },
-      { target: 100, suffix: 'ms',label: 'P99 Latency Target',   iconName: 'Zap',         color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'OpenAPI Documented',   iconName: 'ShieldCheck', color: COLORS.cyan     },
-    ],
 
     features: [
       { iconName: 'Server',    title: 'REST & GraphQL APIs',       color: COLORS.action,    desc: 'Endpoint design, schema definition, and query optimisation. REST for simplicity, GraphQL where flexible querying matters.' },
@@ -364,7 +289,7 @@ export const AI_SOFTWARE_CHILDREN = {
       { step: '01', title: 'API Design Review',   desc: 'Resource modelling, endpoint inventory, and contract-first design reviewed with your team before a line of code is written.' },
       { step: '02', title: 'Stub & Validate',     desc: 'OpenAPI spec generated and validated against consumer requirements. Integration partners can begin building against the stub.' },
       { step: '03', title: 'Build & Test',         desc: 'Implementation with unit, integration, and contract tests. Performance baseline established against agreed latency targets.' },
-      { step: '04', title: 'Deploy & Document',    desc: 'Production deployment with monitoring, developer documentation, and a 30-day support window for integration partners.' },
+      { step: '04', title: 'Deploy & Document',    desc: 'Production deployment with monitoring, developer documentation, and a support window for integration partners.' },
     ],
 
     deliverables: [
@@ -374,7 +299,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Unit + integration test suite',
       'Developer documentation portal',
       'Monitoring + alerting configuration',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -388,17 +313,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Docker',       color: COLORS.secondary },
     ],
 
-    tiers: [
-      { name: 'API Build',         price: 'From $4,000',  featured: false,
-        desc:     'Single-service REST API with auth, docs, and deployment.',
-        features: ['REST API build', 'Auth + rate-limiting', 'OpenAPI docs', '3–4 week delivery'] },
-      { name: 'API Platform',      price: 'From $9,000',  featured: true,
-        desc:     'Multi-service API with GraphQL, async endpoints, and full monitoring.',
-        features: ['REST + GraphQL', 'Async endpoints', 'Full monitoring', 'Versioning strategy', '30-day support'] },
-      { name: 'Enterprise API',    price: 'Custom',       featured: false,
-        desc:     'High-traffic API with SLA, multi-region, and developer portal.',
-        features: ['Multi-region deploy', 'Developer portal', 'SLA agreement', 'Dedicated engineer'] },
-    ],
   },
 
   // ── 6. Third-party Integrations ───────────────────────────────────────────
@@ -409,7 +323,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Integration & APIs',
     accentColor: COLORS.secondary,
     heroDesc:    'Third-party integrations are where AI products live or die — connecting to CRMs, ERPs, data warehouses, and external AI APIs without creating a maintenance nightmare. We build clean, monitored, and documented integrations that handle rate limits, auth flows, schema changes, and error states gracefully.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,000'],
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'Integration Hub',   color: COLORS.accent,    icons: ['Webhooks', 'OAuth', 'API Keys'] },
@@ -418,15 +332,9 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Core Application',  color: COLORS.purple,    icons: ['Your App', 'Database'] },
     ],
 
-    stats: [
-      { target: 120, suffix: '+', label: 'Integrations Built',     iconName: 'Boxes',       color: COLORS.secondary },
-      { target: 99,  suffix: '%', label: 'Integration Uptime',    iconName: 'Activity',    color: COLORS.action   },
-      { target: 50,  suffix: '+', label: 'SaaS Tools Supported',  iconName: 'Globe',       color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',        iconName: 'ShieldCheck', color: COLORS.cyan     },
-    ],
 
     features: [
-      { iconName: 'Globe',     title: 'SaaS Connector Library',    color: COLORS.secondary, desc: 'Salesforce, HubSpot, Slack, Stripe, Google Workspace, Jira, and 50+ SaaS tools — built with proper OAuth flows and schema mapping.' },
+      { iconName: 'Globe',     title: 'SaaS Connector Library',    color: COLORS.secondary, desc: 'Salesforce, HubSpot, Slack, Stripe, Google Workspace, Jira, and many other SaaS tools — built with proper OAuth flows and schema mapping.' },
       { iconName: 'Brain',     title: 'AI API Integrations',       color: COLORS.action,    desc: 'OpenAI, Anthropic, Google Gemini, and open-source model APIs — with fallback logic, cost tracking, and rate-limit handling.' },
       { iconName: 'Database',  title: 'Data System Integrations',  color: COLORS.accent,    desc: 'Snowflake, BigQuery, Redshift, and Postgres connections with credential management, query optimisation, and CDC support.' },
       { iconName: 'RefreshCw', title: 'Webhook Architecture',      color: COLORS.purple,    desc: 'Inbound and outbound webhooks with signature verification, retry logic, idempotency keys, and dead-letter queue handling.' },
@@ -438,7 +346,7 @@ export const AI_SOFTWARE_CHILDREN = {
       { step: '01', title: 'Integration Inventory',  desc: 'We map all required integrations, assess API quality, rate limits, and authentication patterns before scoping.' },
       { step: '02', title: 'Adapter Design',          desc: 'A standardised adapter interface that normalises third-party data into your internal model — reducing integration-specific code.' },
       { step: '03', title: 'Build & Test',            desc: 'Each integration built with unit tests, retry logic, and a staging sandbox environment to validate against real API responses.' },
-      { step: '04', title: 'Monitor & Document',      desc: 'Integration monitoring deployed, runbooks written for each connector, and a 30-day support window for post-launch issues.' },
+      { step: '04', title: 'Monitor & Document',      desc: 'Integration monitoring deployed, runbooks written for each connector, and a support window for post-launch issues.' },
     ],
 
     deliverables: [
@@ -448,7 +356,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Per-integration monitoring configuration',
       'Runbook for each integration',
       'Credential management setup',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -462,17 +370,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Docker',      color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Single Integration', price: 'From $3,000', featured: false,
-        desc:     'One third-party integration with monitoring and documentation.',
-        features: ['One integration', 'OAuth / auth flow', 'Monitoring', '1–2 week delivery'] },
-      { name: 'Integration Suite',  price: 'From $7,500', featured: true,
-        desc:     'Three to six integrations with webhook architecture and monitoring.',
-        features: ['3–6 integrations', 'Webhook architecture', 'Retry + idempotency', 'Per-integration monitoring', '30-day support'] },
-      { name: 'Integration Platform',price: 'Custom',     featured: false,
-        desc:     'Full integration hub for multi-tenant SaaS with per-customer auth.',
-        features: ['Unlimited integrations', 'Per-tenant credentials', 'Integration marketplace', 'SLA agreement'] },
-    ],
   },
 
   // ── 7. Microservices Architecture ─────────────────────────────────────────
@@ -483,7 +380,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Integration & APIs',
     accentColor: COLORS.accent,
     heroDesc:    'Microservices are a solution to a specific problem — not a default architecture choice. We assess whether decomposition is right for your stage, design service boundaries that reflect actual business domains, and build or migrate to a microservices architecture that can be owned by small teams and deployed independently.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $8,000'],
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'API Gateway',       color: COLORS.accent,    icons: ['Auth', 'Routing', 'Rate Limit'] },
@@ -492,12 +389,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Data Stores',       color: COLORS.purple,    icons: ['Per-service DBs', 'Event Bus'] },
     ],
 
-    stats: [
-      { target: 20,  suffix: '+', label: 'Microservice Migrations', iconName: 'Boxes',       color: COLORS.accent   },
-      { target: 5,   suffix: 'x', label: 'Independent Deploys',    iconName: 'Rocket',      color: COLORS.gold     },
-      { target: 99,  suffix: '%', label: 'Service Uptime',         iconName: 'Activity',    color: COLORS.action   },
-      { target: 100, suffix: '%', label: 'Code Ownership',         iconName: 'ShieldCheck', color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'GitBranch',  title: 'Domain-Driven Design',        color: COLORS.accent,    desc: 'Service boundaries defined by business domains — not technical layers. Each service owns its data and can be deployed independently.' },
@@ -522,7 +413,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Event bus setup',
       'Distributed tracing (OpenTelemetry)',
       'Per-service monitoring dashboards',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -536,17 +427,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'AWS / GCP',    color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Service Extraction', price: 'From $8,000',  featured: false,
-        desc:     'One service extracted from monolith with API gateway and monitoring.',
-        features: ['Single service', 'API gateway', 'Distributed tracing', '4–5 week delivery'] },
-      { name: 'Full Decomposition', price: 'From $18,000', featured: true,
-        desc:     'Full microservices migration with event bus and observability.',
-        features: ['Multiple services', 'Event bus', 'Database-per-service', 'Full observability', '30-day support'] },
-      { name: 'Enterprise Platform', price: 'Custom',      featured: false,
-        desc:     'Large-scale decomposition with service mesh and SLA support.',
-        features: ['Service mesh (Istio)', 'Multi-region', 'HIPAA / SOC 2 ready', 'SLA agreement'] },
-    ],
   },
 
   // ── 8. Event-driven Systems ───────────────────────────────────────────────
@@ -557,7 +437,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Integration & APIs',
     accentColor: COLORS.purple,
     heroDesc:    'Event-driven architecture makes systems resilient, scalable, and decoupled. We design and build event-driven systems using Kafka, RabbitMQ, or AWS SNS/SQS — with event schemas, consumer groups, dead-letter queues, and the observability to understand what\'s happening across the entire event graph.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $7,000'],
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'Event Producers',   color: COLORS.accent,    icons: ['APIs', 'Webhooks', 'CDC'] },
@@ -566,12 +446,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Dead Letter Queue', color: COLORS.purple,    icons: ['DLQ', 'Replay', 'Alerts'] },
     ],
 
-    stats: [
-      { target: 25,  suffix: '+', label: 'Event Systems Built',   iconName: 'Boxes',       color: COLORS.purple   },
-      { target: 99,  suffix: '%', label: 'Message Delivery Rate', iconName: 'Activity',    color: COLORS.action   },
-      { target: 10,  suffix: 'ms',label: 'P99 Processing Time', iconName: 'Zap',         color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',        iconName: 'ShieldCheck', color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Server',    title: 'Event Schema Registry',      color: COLORS.purple,    desc: 'Avro or JSON Schema registry ensuring producers and consumers evolve safely — no silent breaking changes in event contracts.' },
@@ -596,7 +470,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'DLQ handling + replay tooling',
       'Consumer lag monitoring dashboard',
       'Event system runbook',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -610,17 +484,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Kubernetes',  color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Event Bus Setup',     price: 'From $7,000',  featured: false,
-        desc:     'Kafka/RabbitMQ provisioned with one producer-consumer pair.',
-        features: ['Broker setup', 'Schema registry', 'One producer + consumer', 'DLQ handling', '4 week delivery'] },
-      { name: 'Event Platform',      price: 'From $15,000', featured: true,
-        desc:     'Full event-driven platform with multiple consumers and observability.',
-        features: ['Multiple consumers', 'Event sourcing', 'Consumer lag monitoring', 'Replay tooling', '30-day support'] },
-      { name: 'Enterprise Events',   price: 'Custom',       featured: false,
-        desc:     'High-throughput event platform with multi-region and compliance.',
-        features: ['Multi-region replication', 'HIPAA / GDPR readiness', 'Exactly-once semantics', 'SLA agreement'] },
-    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -635,7 +498,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'AI Feature Engineering',
     accentColor: COLORS.action,
     heroDesc:    'Most products don\'t need a new AI product — they need AI features added to what already works. We embed LLM-powered capabilities, computer vision, or ML predictions directly into your existing application — with clean API boundaries, fallback logic, and cost controls from day one.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'Your Existing App',  color: COLORS.accent,    icons: ['React', 'Django', 'Rails'] },
@@ -644,12 +507,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Model Providers',    color: COLORS.purple,    icons: ['OpenAI', 'Anthropic', 'GCP'] },
     ],
 
-    stats: [
-      { target: 60,  suffix: '+', label: 'AI Features Shipped',    iconName: 'Brain',       color: COLORS.action   },
-      { target: 3,   suffix: 'x', label: 'Engagement Lift',        iconName: 'Activity',    color: COLORS.gold     },
-      { target: 40,  suffix: '%', label: 'Avg Cost Reduction',     iconName: 'Zap',         color: COLORS.secondary },
-      { target: 100, suffix: '%', label: 'Code Ownership',         iconName: 'ShieldCheck', color: COLORS.cyan     },
-    ],
 
     features: [
       { iconName: 'Brain',     title: 'LLM Integration',             color: COLORS.action,    desc: 'GPT-4, Claude, Gemini, or open-source models integrated into your product with prompt versioning, output validation, and fallback logic.' },
@@ -664,7 +521,7 @@ export const AI_SOFTWARE_CHILDREN = {
       { step: '01', title: 'Feature Design',       desc: 'Define the AI capability, integration point in your existing app, quality metrics, and latency/cost targets.' },
       { step: '02', title: 'Prototype & Validate', desc: 'AI feature built against your real data in isolation — quality validated before integration into the production app.' },
       { step: '03', title: 'Integrate & Test',     desc: 'Feature integrated into your existing codebase with unit tests, fallback logic, and staging environment validation.' },
-      { step: '04', title: 'Deploy & Monitor',     desc: 'Production deployment with cost dashboards, quality monitoring, and a 30-day window to tune and optimise.' },
+      { step: '04', title: 'Deploy & Monitor',     desc: 'Production deployment with cost dashboards, quality monitoring, and a window to tune and optimise.' },
     ],
 
     deliverables: [
@@ -674,7 +531,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Cost + quality monitoring dashboard',
       'Unit + integration test suite',
       'AI feature runbook',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -688,17 +545,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Pytest',      color: COLORS.secondary },
     ],
 
-    tiers: [
-      { name: 'Single AI Feature', price: 'From $5,000', featured: false,
-        desc:     'One AI capability embedded into your existing product.',
-        features: ['One AI feature', 'Fallback logic', 'Cost monitoring', '2–3 week delivery'] },
-      { name: 'AI Feature Suite',  price: 'From $11,000',featured: true,
-        desc:     'Three to five AI features with monitoring and cost controls.',
-        features: ['3–5 AI features', 'Prompt library', 'Quality monitoring', 'Cost dashboard', '30-day support'] },
-      { name: 'AI Product Layer',  price: 'Custom',      featured: false,
-        desc:     'Full AI capability layer across your entire product surface.',
-        features: ['Full product integration', 'Model A/B testing', 'Custom fine-tuning', 'Ongoing optimisation'] },
-    ],
   },
 
   // ── 10. Recommendation Engines ────────────────────────────────────────────
@@ -708,8 +554,8 @@ export const AI_SOFTWARE_CHILDREN = {
     tagline:     'Show the right thing to the right person at the right time.',
     badge:       'AI Feature Engineering',
     accentColor: COLORS.secondary,
-    heroDesc:    'Recommendation systems are one of the highest-ROI AI investments a product can make — but they fail when built on the wrong algorithm for the data density and business context. We design, train, and deploy recommendation engines matched to your product: collaborative filtering, content-based, or hybrid approaches depending on what your data supports.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    heroDesc:    'Recommendation systems are one of the most valuable AI features a product can offer — but they fail when built on the wrong algorithm for the data density and business context. We design, train, and deploy recommendation engines matched to your product: collaborative filtering, content-based, or hybrid approaches depending on what your data supports.',
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'Product UI',        color: COLORS.accent,    icons: ['React', 'Mobile', 'Email'] },
@@ -718,19 +564,13 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Interaction Store', color: COLORS.purple,    icons: ['Events', 'User Profiles'] },
     ],
 
-    stats: [
-      { target: 25,  suffix: '+', label: 'Rec Engines Shipped',   iconName: 'Brain',       color: COLORS.secondary },
-      { target: 35,  suffix: '%', label: 'Avg CTR Improvement',   iconName: 'TrendingUp',  color: COLORS.gold     },
-      { target: 20,  suffix: '%', label: 'Avg Revenue Lift',      iconName: 'Activity',    color: COLORS.action   },
-      { target: 100, suffix: '%', label: 'Code Ownership',        iconName: 'ShieldCheck', color: COLORS.cyan     },
-    ],
 
     features: [
       { iconName: 'Users',     title: 'Collaborative Filtering',     color: COLORS.secondary, desc: 'User-based and item-based collaborative filtering for products with rich interaction history. Matrix factorisation via ALS or SVD.' },
       { iconName: 'Database',  title: 'Content-Based Filtering',     color: COLORS.action,    desc: 'Item attribute-based recommendations for cold-start situations — no interaction history required to serve useful recommendations.' },
       { iconName: 'Brain',     title: 'Neural Collaborative Filtering',color: COLORS.accent,  desc: 'Deep learning approaches (NCF, two-tower models) for high-dimensional interaction data at scale.' },
       { iconName: 'Layers',    title: 'Hybrid Approach',             color: COLORS.purple,    desc: 'Blended models that use collaborative signals where available and content-based fallback where interactions are sparse.' },
-      { iconName: 'Activity',  title: 'Real-time Serving',           color: COLORS.gold,      desc: 'Pre-computed candidate retrieval + online scoring pipeline for sub-100ms recommendation latency in production.' },
+      { iconName: 'Activity',  title: 'Real-time Serving',           color: COLORS.gold,      desc: 'Pre-computed candidate retrieval + online scoring pipeline for low-latency recommendations in production.' },
       { iconName: 'GitBranch', title: 'A/B Testing Framework',       color: COLORS.cyan,      desc: 'Built-in experiment infrastructure to measure the actual business impact of recommendation improvements.' },
     ],
 
@@ -748,7 +588,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Offline evaluation report',
       'A/B test setup',
       'Performance monitoring dashboard',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -762,17 +602,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'AWS',         color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Rec Engine PoC',    price: 'From $6,000',  featured: false,
-        desc:     'One recommendation approach, offline-evaluated, with a scoring API.',
-        features: ['Single algorithm', 'Offline evaluation', 'Scoring API', '3–4 week delivery'] },
-      { name: 'Production Rec Engine', price: 'From $12,000', featured: true,
-        desc:     'Full recommendation system with real-time serving and A/B testing.',
-        features: ['Hybrid approach', 'Real-time serving', 'A/B test setup', 'Monitoring', '30-day support'] },
-      { name: 'Enterprise Rec Platform', price: 'Custom',  featured: false,
-        desc:     'Large-scale recommendation with multi-context personalisation.',
-        features: ['Multi-context recs', 'Deep learning models', 'Real-time features', 'Ongoing optimisation'] },
-    ],
   },
 
   // ── 11. Intelligent Search ────────────────────────────────────────────────
@@ -783,7 +612,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'AI Feature Engineering',
     accentColor: COLORS.accent,
     heroDesc:    'Keyword search fails when users don\'t know the exact terms to use. We build semantic and hybrid search systems — embedding-based retrieval, re-ranking, and query understanding — that surface the right results even when the query is vague, misspelled, or in natural language.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'Search UI',         color: COLORS.accent,    icons: ['React', 'Autocomplete'] },
@@ -792,12 +621,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Index + Re-rank',   color: COLORS.purple,    icons: ['Embeddings', 'Cross-Enc'] },
     ],
 
-    stats: [
-      { target: 40,  suffix: '+', label: 'Search Systems Built',   iconName: 'Search',      color: COLORS.accent   },
-      { target: 60,  suffix: '%', label: 'Better Relevance',       iconName: 'Activity',    color: COLORS.gold     },
-      { target: 50,  suffix: 'ms',label: 'P99 Query Latency',     iconName: 'Zap',         color: COLORS.action   },
-      { target: 100, suffix: '%', label: 'Code Ownership',         iconName: 'ShieldCheck', color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Search',    title: 'Semantic Search',            color: COLORS.accent,    desc: 'Embedding-based retrieval using Sentence Transformers or OpenAI embeddings — finds conceptually relevant results even with zero keyword overlap.' },
@@ -812,7 +635,7 @@ export const AI_SOFTWARE_CHILDREN = {
       { step: '01', title: 'Query Analysis',         desc: 'Real query log analysis to understand query types, failure modes, and the vocabulary gap between users and content.' },
       { step: '02', title: 'Architecture Design',    desc: 'Retrieval strategy, embedding model selection, index design, and re-ranking approach agreed before build.' },
       { step: '03', title: 'Build & Evaluate',       desc: 'Search system built and evaluated against held-out query-relevance pairs. NDCG and MRR benchmarks established.' },
-      { step: '04', title: 'Deploy & Analyse',       desc: 'Production deployment with search analytics dashboard and a 30-day period to monitor and tune based on real query traffic.' },
+      { step: '04', title: 'Deploy & Analyse',       desc: 'Production deployment with search analytics dashboard and a period to monitor and tune based on real query traffic.' },
     ],
 
     deliverables: [
@@ -822,7 +645,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Re-ranking implementation',
       'Offline relevance evaluation report',
       'Search analytics dashboard',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -836,17 +659,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'React',             color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Semantic Search',     price: 'From $5,000',  featured: false,
-        desc:     'Vector search over your content with a clean search API.',
-        features: ['Embedding pipeline', 'Vector index', 'Search API', '2–3 week delivery'] },
-      { name: 'Hybrid Search System',price: 'From $10,000', featured: true,
-        desc:     'Full hybrid search with query understanding and re-ranking.',
-        features: ['Hybrid retrieval', 'Query rewriting', 'Re-ranking', 'Search analytics', '30-day support'] },
-      { name: 'Enterprise Search',   price: 'Custom',       featured: false,
-        desc:     'Large-scale search with personalisation and continuous learning.',
-        features: ['Personalised ranking', 'Feedback loops', 'Multi-lingual support', 'SLA agreement'] },
-    ],
   },
 
   // ── 12. Personalisation Layers ────────────────────────────────────────────
@@ -857,7 +669,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'AI Feature Engineering',
     accentColor: COLORS.purple,
     heroDesc:    'Personalisation goes beyond recommendations — it\'s about adapting the entire product experience: content ordering, feature prominence, messaging tone, and journey sequencing based on real signals about each user. We design and build personalisation systems that improve over time and respect privacy from day one.',
-    tags:        ['Fixed-Fee Projects', 'Full Code Ownership', 'From $7,000'],
+    tags:        ['Full Code Ownership'],
 
     archLayers: [
       { label: 'Personalised UI',    color: COLORS.accent,    icons: ['React', 'Dynamic Content'] },
@@ -866,19 +678,13 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'User Profile Store', color: COLORS.purple,    icons: ['Redis', 'Event Stream'] },
     ],
 
-    stats: [
-      { target: 20,  suffix: '+', label: 'Personalisation Systems', iconName: 'Users',       color: COLORS.purple   },
-      { target: 25,  suffix: '%', label: 'Avg Engagement Lift',    iconName: 'Activity',    color: COLORS.gold     },
-      { target: 15,  suffix: '%', label: 'Avg Conversion Lift',    iconName: 'TrendingUp',  color: COLORS.action   },
-      { target: 100, suffix: '%', label: 'Code Ownership',         iconName: 'ShieldCheck', color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Users',     title: 'User Profile Architecture',   color: COLORS.purple,    desc: 'Real-time user preference model built from behavioural signals, explicit preferences, and contextual data — updated with each interaction.' },
       { iconName: 'Layers',    title: 'Content Personalisation',     color: COLORS.action,    desc: 'Dynamic content ordering, item surfacing, and layout adaptation based on user interest signals and predicted intent.' },
       { iconName: 'Brain',     title: 'LLM-based Personalised Copy', color: COLORS.secondary, desc: 'Dynamically generated email subject lines, push notification text, and UI messaging tailored to each user\'s language and context.' },
       { iconName: 'Activity',  title: 'Contextual Bandits',          color: COLORS.accent,    desc: 'Online learning approaches that continuously adapt personalisation decisions based on observed outcomes — no offline retraining cycle.' },
-      { iconName: 'Shield',    title: 'Privacy-First Design',        color: COLORS.gold,      desc: 'Differential privacy, on-device personalisation options, and GDPR-compliant consent flows built into the architecture from day one.' },
+      { iconName: 'Shield',    title: 'Privacy-First Design',        color: COLORS.gold,      desc: 'Differential privacy, on-device personalisation options, and consent flows built into the architecture from day one.' },
       { iconName: 'GitBranch', title: 'Experimentation Framework',   color: COLORS.cyan,      desc: 'A/B and multi-armed bandit experiments to measure the actual business impact of each personalisation decision.' },
     ],
 
@@ -886,7 +692,7 @@ export const AI_SOFTWARE_CHILDREN = {
       { step: '01', title: 'Signal Mapping',           desc: 'Identify the user signals available, the personalisation surfaces to target, and the business metric to optimise.' },
       { step: '02', title: 'User Model Design',         desc: 'User profile schema, feature engineering pipeline, and real-time update architecture designed and documented.' },
       { step: '03', title: 'Build & Integrate',         desc: 'Personalisation API built and integrated into your product surfaces with a feature flag layer for safe rollout.' },
-      { step: '04', title: 'Launch & Experiment',       desc: 'Production deployment, A/B experiment live, and business metrics tracked. 30-day optimisation window included.' },
+      { step: '04', title: 'Launch & Experiment',       desc: 'Production deployment, A/B experiment live, and business metrics tracked. optimisation window included.' },
     ],
 
     deliverables: [
@@ -896,7 +702,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Feature flag integration',
       'A/B experiment setup',
       'Impact measurement dashboard',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -910,17 +716,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'React',       color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Content Personalisation', price: 'From $7,000',  featured: false,
-        desc:     'Content ordering and surfacing personalised by user behaviour.',
-        features: ['User profile model', 'Content personalisation API', 'A/B test', '4–5 week delivery'] },
-      { name: 'Full Personalisation Layer',price: 'From $14,000',featured: true,
-        desc:     'End-to-end personalisation across content, copy, and journeys.',
-        features: ['Multi-surface personalisation', 'LLM copy adaptation', 'Contextual bandits', 'Privacy-first design', '30-day support'] },
-      { name: 'Enterprise Personalisation',price: 'Custom',     featured: false,
-        desc:     'Organisation-wide personalisation with advanced ML and compliance.',
-        features: ['Differential privacy', 'On-device ML', 'Multi-market support', 'SLA agreement'] },
-    ],
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -935,7 +730,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Infrastructure',
     accentColor: COLORS.action,
     heroDesc:    'Architecture decisions made early are the ones you live with longest. We design systems that fit your current stage and scale with your growth — not over-engineered for problems you don\'t have yet. From data flow diagrams to ADRs to hands-on prototyping, we make the architecture concrete before a line of production code is written.',
-    tags:        ['Fixed-Fee Engagements', 'Full Documentation', 'From $4,000'],
+    tags:        ['Full Documentation'],
 
     archLayers: [
       { label: 'Frontend / Clients', color: COLORS.accent,    icons: ['Web', 'Mobile', 'API Clients'] },
@@ -944,12 +739,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Infrastructure',     color: COLORS.purple,    icons: ['AWS', 'GCP', 'K8s', 'CI/CD'] },
     ],
 
-    stats: [
-      { target: 60,  suffix: '+', label: 'Systems Architected',    iconName: 'Server',      color: COLORS.action   },
-      { target: 3,   suffix: 'x', label: 'Fewer Re-platforms',    iconName: 'Activity',    color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Written & Documented',  iconName: 'ShieldCheck', color: COLORS.secondary },
-      { target: 10,  suffix: 'x', label: 'Cheaper than Rebuilds', iconName: 'Zap',         color: COLORS.cyan     },
-    ],
 
     features: [
       { iconName: 'Layers',    title: 'Architecture Design Sessions', color: COLORS.action,   desc: 'Structured workshops with your engineering team to surface requirements, constraints, and trade-offs before committing to a design.' },
@@ -964,7 +753,7 @@ export const AI_SOFTWARE_CHILDREN = {
       { step: '01', title: 'Discovery & Requirements', desc: 'Technical requirements, non-functional requirements, constraints, and scale targets documented before any design work.' },
       { step: '02', title: 'Architecture Design',      desc: 'Multiple options designed, evaluated, and a recommended approach presented with trade-offs documented.' },
       { step: '03', title: 'ADRs & PoC',               desc: 'Architecture Decision Records written for key decisions. Proof-of-concept code built to validate the riskiest assumptions.' },
-      { step: '04', title: 'Handoff & Review',          desc: 'Architecture package handed off with a review session for the engineering team and a 30-day Q&A window.' },
+      { step: '04', title: 'Handoff & Review',          desc: 'Architecture package handed off with a review session for the engineering team and a Q&A window.' },
     ],
 
     deliverables: [
@@ -974,7 +763,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Technology selection rationale',
       'Proof-of-concept codebase',
       'Security threat model',
-      '30-day Q&A and review support',
+      'Q&A and review support',
     ],
 
     techStack: [
@@ -988,17 +777,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Docker',       color: COLORS.secondary },
     ],
 
-    tiers: [
-      { name: 'Architecture Review',  price: 'From $4,000', featured: false,
-        desc:     'Review of existing architecture with risk assessment and improvement roadmap.',
-        features: ['Architecture audit', 'Risk register', 'Improvement roadmap', '1–2 week turnaround'] },
-      { name: 'Full Architecture',    price: 'From $9,000', featured: true,
-        desc:     'End-to-end architecture design with ADRs, PoC, and documentation.',
-        features: ['Full system design', 'ADRs', 'PoC codebase', 'Security model', '30-day support'] },
-      { name: 'Embedded Architect',   price: 'Custom',      featured: false,
-        desc:     'Senior architect embedded in your team for a quarter.',
-        features: ['Sprint-by-sprint guidance', 'Real-time ADRs', 'Engineering mentorship', 'Retainer pricing'] },
-    ],
   },
 
   // ── 14. Cloud Deployment ──────────────────────────────────────────────────
@@ -1009,7 +787,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Infrastructure',
     accentColor: COLORS.secondary,
     heroDesc:    '"Works locally" is not a product. We design and execute cloud deployments on AWS or GCP — Kubernetes clusters, managed databases, CDN configuration, auto-scaling, and cost controls — so your application is production-grade from the first deployment, not retrofitted after the first outage.',
-    tags:        ['Fixed-Fee Projects', 'Full IaC Ownership', 'From $4,500'],
+    tags:        ['Full IaC Ownership'],
 
     archLayers: [
       { label: 'CDN / Edge',         color: COLORS.accent,    icons: ['CloudFront', 'Cloudflare'] },
@@ -1018,12 +796,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'IaC (Terraform)',    color: COLORS.purple,    icons: ['Modules', 'State', 'CI'] },
     ],
 
-    stats: [
-      { target: 70,  suffix: '+', label: 'Cloud Deployments',     iconName: 'Rocket',      color: COLORS.secondary },
-      { target: 99,  suffix: '.9%',label: 'Uptime Achieved',      iconName: 'Activity',    color: COLORS.action   },
-      { target: 40,  suffix: '%', label: 'Avg Cost Reduction',    iconName: 'Zap',         color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'IaC Ownership',         iconName: 'ShieldCheck', color: COLORS.cyan     },
-    ],
 
     features: [
       { iconName: 'Server',    title: 'Kubernetes Cluster Setup',   color: COLORS.secondary, desc: 'EKS, GKE, or self-managed Kubernetes — provisioned, configured, and with node groups, HPA, and network policies set up correctly.' },
@@ -1048,7 +820,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Cost management dashboard',
       'Cloud architecture documentation',
       'Deployment runbook',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -1062,17 +834,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'GitHub CI',    color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Cloud Setup',        price: 'From $4,500',  featured: false,
-        desc:     'Core cloud infrastructure provisioned with IaC and monitoring.',
-        features: ['K8s cluster', 'Managed DB', 'Terraform IaC', 'Basic monitoring', '3–4 week delivery'] },
-      { name: 'Production Platform', price: 'From $10,000', featured: true,
-        desc:     'Full production platform with auto-scaling, CDN, and cost controls.',
-        features: ['Auto-scaling', 'CDN setup', 'Cost management', 'Full monitoring', '30-day support'] },
-      { name: 'Multi-Region Platform',price: 'Custom',     featured: false,
-        desc:     'Multi-region, high-availability infrastructure with SLA support.',
-        features: ['Multi-region failover', 'Global load balancing', 'HIPAA / SOC 2 ready', 'SLA agreement'] },
-    ],
   },
 
   // ── 15. DevOps & CI/CD ────────────────────────────────────────────────────
@@ -1083,7 +844,7 @@ export const AI_SOFTWARE_CHILDREN = {
     badge:       'Infrastructure',
     accentColor: COLORS.accent,
     heroDesc:    'A missing CI/CD pipeline is a hidden tax on every engineer on your team. We design and implement deployment pipelines, environment management, and observability stacks that let engineers ship confidently multiple times per day — with automated tests, zero-downtime deployments, and rollback in under two minutes.',
-    tags:        ['Fixed-Fee Projects', 'Full Pipeline Ownership', 'From $4,000'],
+    tags:        ['Full Pipeline Ownership'],
 
     archLayers: [
       { label: 'Code + PR',          color: COLORS.accent,    icons: ['GitHub', 'PR Checks'] },
@@ -1092,12 +853,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'Observability',      color: COLORS.purple,    icons: ['Metrics', 'Logs', 'Traces'] },
     ],
 
-    stats: [
-      { target: 80,  suffix: '+', label: 'Pipelines Built',         iconName: 'GitBranch',   color: COLORS.accent   },
-      { target: 10,  suffix: 'x', label: 'Faster Deploy Cycle',    iconName: 'Zap',         color: COLORS.gold     },
-      { target: 99,  suffix: '%', label: 'Zero-downtime Deploys',  iconName: 'Activity',    color: COLORS.action   },
-      { target: 2,   suffix: 'min',label: 'Avg Rollback Time',     iconName: 'RefreshCw',   color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'GitBranch',  title: 'CI Pipeline Design',         color: COLORS.accent,    desc: 'GitHub Actions or GitLab CI pipelines with linting, unit tests, integration tests, security scans, and container builds on every PR.' },
@@ -1122,7 +877,7 @@ export const AI_SOFTWARE_CHILDREN = {
       'Security scanning integration',
       'Database migration safety gates',
       'Pipeline runbook and on-call playbook',
-      '30-day post-launch support',
+      'Post-launch support',
     ],
 
     techStack: [
@@ -1136,17 +891,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'ArgoCD',         color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'CI/CD Setup',        price: 'From $4,000',  featured: false,
-        desc:     'CI pipeline + basic CD with staging and production environments.',
-        features: ['CI pipeline', 'Staging + prod environments', 'Basic monitoring', '2–3 week delivery'] },
-      { name: 'Full DevOps Platform',price: 'From $9,000', featured: true,
-        desc:     'Full DevOps stack with observability, security scanning, and zero-downtime deploys.',
-        features: ['Zero-downtime deploys', 'Observability stack', 'Security scanning', 'DB migration safety', '30-day support'] },
-      { name: 'DevOps Transformation',price: 'Custom',    featured: false,
-        desc:     'Embedded DevOps engineering to transform a team\'s delivery capability.',
-        features: ['Pipeline + culture', 'Team coaching', 'SRE practices', 'Retainer pricing'] },
-    ],
   },
 
   // ── 16. Security & Compliance ─────────────────────────────────────────────
@@ -1156,29 +900,23 @@ export const AI_SOFTWARE_CHILDREN = {
     tagline:     'Build secure by design — before the breach, not after.',
     badge:       'Infrastructure',
     accentColor: COLORS.purple,
-    heroDesc:    'Security built in late costs ten times more than security built in early. We design and implement security architectures for AI software products — threat modelling, auth systems, network security, secrets management, and compliance frameworks for HIPAA, GDPR, or SOC 2 — so you\'re secure from the first deployment.',
-    tags:        ['Fixed-Fee Projects', 'Compliance Documentation', 'From $5,000'],
+    heroDesc:    'Security built in late costs far more than security built in early. We design and implement security architectures for AI software products — threat modelling, auth systems, network security, secrets management, and security reviews — so you\'re secure from the first deployment.',
+    tags:        ['Security Documentation'],
 
     archLayers: [
       { label: 'Auth & Identity',   color: COLORS.accent,    icons: ['OAuth', 'MFA', 'RBAC'] },
       { label: 'Network Security',  color: COLORS.action,    icons: ['WAF', 'VPC', 'Zero Trust'] },
       { label: 'Data Security',     color: COLORS.secondary, icons: ['Encryption', 'Masking'] },
-      { label: 'Compliance',        color: COLORS.purple,    icons: ['HIPAA', 'GDPR', 'SOC 2'] },
+      { label: 'Monitoring',        color: COLORS.purple,    icons: ['SIEM', 'Alerting'] },
     ],
 
-    stats: [
-      { target: 40,  suffix: '+', label: 'Security Audits Completed', iconName: 'ShieldCheck',  color: COLORS.purple   },
-      { target: 100, suffix: '%', label: 'Zero Breaches Post-Audit',  iconName: 'Activity',     color: COLORS.action   },
-      { target: 30,  suffix: '+', label: 'Compliance Frameworks',     iconName: 'FileText',     color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Documentation Included',    iconName: 'Shield',       color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Lock',      title: 'Auth Architecture',            color: COLORS.purple,    desc: 'OAuth 2.0, OIDC, SAML, MFA, and RBAC designed to your compliance requirements — with session management and token refresh handled correctly.' },
       { iconName: 'Shield',    title: 'Threat Modelling',             color: COLORS.action,    desc: 'STRIDE threat model for your application — identifying attack vectors, trust boundaries, and mitigations before they become incidents.' },
       { iconName: 'Server',    title: 'Network Security',             color: COLORS.secondary, desc: 'VPC design, security group rules, WAF configuration, and zero-trust network access for services that should never be public.' },
       { iconName: 'Database',  title: 'Data Encryption & Masking',   color: COLORS.accent,    desc: 'Encryption at rest and in transit, field-level encryption for PII, and data masking for non-production environments.' },
-      { iconName: 'FileText',  title: 'HIPAA / GDPR / SOC 2',        color: COLORS.gold,      desc: 'Gap analysis, technical control implementation, policy documentation, and audit trail configuration for your target compliance framework.' },
+      { iconName: 'FileText',  title: 'Security Policies & Audit Trails', color: COLORS.gold,      desc: 'Gap analysis, technical control implementation, policy documentation, and audit trail configuration.' },
       { iconName: 'Eye',       title: 'Security Monitoring',          color: COLORS.cyan,      desc: 'SIEM integration, anomaly detection, failed auth alerting, and a security dashboard that surfaces incidents before they escalate.' },
     ],
 
@@ -1210,17 +948,6 @@ export const AI_SOFTWARE_CHILDREN = {
       { label: 'AWS / GCP',         color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Security Audit',      price: 'From $5,000',  featured: false,
-        desc:     'Full security assessment with threat model and prioritised fix plan.',
-        features: ['Security assessment', 'Threat model', 'Fix roadmap', '1–2 week turnaround'] },
-      { name: 'Security Implementation',price: 'From $11,000',featured: true,
-        desc:     'Audit + implementation of security controls and compliance framework.',
-        features: ['Auth + network security', 'Encryption', 'Compliance framework', 'Security monitoring', '30-day support'] },
-      { name: 'Compliance Programme', price: 'Custom',      featured: false,
-        desc:     'Full HIPAA / GDPR / SOC 2 compliance programme with ongoing support.',
-        features: ['Evidence collection', 'Audit preparation', 'Ongoing monitoring', 'Compliance retainer'] },
-    ],
   },
 
 };

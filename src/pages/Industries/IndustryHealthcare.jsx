@@ -4,7 +4,7 @@
  * Fully responsive: 1440 | 1024 | 768 | 425 | 320 px
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
-import { B, SECTION_PAD, PX, fadeUp, useCounter, DataParticles, SectionBadge } from '../../theme';
+import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge } from '../../theme';
 import healthImage from '../../assets/illustrations/Health.png';
 
 // ─── Brand Tokens (Synced with IndustryFinancial.jsx) ─────────────────────
@@ -22,41 +22,7 @@ import healthImage from '../../assets/illustrations/Health.png';
 // ─── Data Particles ───────────────────────────────────────────────────────────
 // ─── SectionBadge ────────────────────────────────────────────────────────────
 // ─── Stat Card (Dark Section) ─────────────────────────────────────────────────
-function StatCard({ prefix = '', target, suffix, label, icon, start, delay = 0, theme }) {
-  const val = useCounter(target, 2200, start);
-  const [hovered, setHovered] = useState(false);
-  const t = theme || { color: B.action, bg: B.actionLight };
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
-      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-      whileHover={{ y: -5 }}
-      style={{
-        background: hovered ? `linear-gradient(145deg, ${t.bg}, rgba(255,255,255,0.02))` : 'rgba(255,255,255,0.02)',
-        backdropFilter: 'blur(12px)',
-        border: `1.5px solid ${hovered ? t.color : 'rgba(255,255,255,0.08)'}`,
-        boxShadow: hovered ? `0 0 25px ${t.color}40, inset 0 0 10px ${t.color}10` : 'none',
-        borderRadius: 'var(--radius-lg)', padding: 'clamp(16px, 2.5vw, 28px) clamp(10px, 2vw, 20px)', textAlign: 'center',
-        cursor: 'default', position: 'relative',
-        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)', overflow: 'hidden',
-      }}
-    >
-      <div style={{ position: 'absolute', top: -20, right: -20, width: 80, height: 80, background: `radial-gradient(circle, ${t.color} 0%, transparent 70%)`, opacity: hovered ? 0.18 : 0, filter: 'blur(20px)', transition: 'opacity 0.4s ease', pointerEvents: 'none' }} />
-      <div style={{ width: 'clamp(40px, 5vw, 52px)', height: 'clamp(40px, 5vw, 52px)', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto clamp(10px, 1.5vw, 18px)', background: hovered ? t.color : 'rgba(255,255,255,0.05)', color: hovered ? '#fff' : t.color, border: `1px solid ${hovered ? 'transparent' : 'rgba(255,255,255,0.1)'}`, transition: 'all 0.4s ease', boxShadow: hovered ? `0 10px 20px ${t.color}40` : 'none' }}>
-        <motion.div animate={{ rotate: hovered ? 360 : 0 }} transition={{ duration: 0.6 }}>
-          {React.cloneElement(icon, { size: 20, strokeWidth: 2 })}
-        </motion.div>
-      </div>
-      <div style={{ fontFamily: 'var(--font-main)', fontWeight: 800, fontSize: 'clamp(1.4rem, 3.2vw, 2.6rem)', color: hovered ? 'transparent' : B.textDark, background: hovered ? `linear-gradient(180deg, #fff 30%, ${t.color} 100%)` : 'none', WebkitBackgroundClip: hovered ? 'text' : 'none', backgroundClip: hovered ? 'text' : 'none', marginBottom: 6, letterSpacing: '-0.03em', transition: 'all 0.3s ease' }}>
-        {prefix}{val}<span style={{ fontSize: '0.5em' }}>{suffix}</span>
-      </div>
-      <div style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textDarkMuted, fontWeight: 700 }}>
-        {label}
-      </div>
-    </motion.div>
-  );
-}
+
 
 // ─── Capability Card ─────────────────────────────────────────────────────────
 function CapabilityCard({ icon, color, title, desc, delay = 0 }) {
@@ -136,49 +102,42 @@ function UseCaseRow({ icon, color, title, desc, metrics, index, slug }) {
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 export default function IndustryHealthcare() {
-  const [statsVisible, setStatsVisible] = useState(false);
-  const statsRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(-1);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStatsVisible(true); }, { threshold: 0.20 });
-    if (statsRef.current) obs.observe(statsRef.current);
-    return () => obs.disconnect();
-  }, []);
 
   const capabilities = [
-    { icon: <DollarSign size={22} />, color: B.primary, title: 'AR Prioritization & Underpayment Recovery', desc: 'A LightGBM classifier trained on public CMS data that flags underpaid Medicare claims and ranks them into a prioritized AR workqueue — surfacing a $15B recovery opportunity across 6.1M claims.' },
+    { icon: <DollarSign size={22} />, color: B.primary, title: 'AR Prioritization & Underpayment Recovery', desc: 'A LightGBM classifier trained on public CMS data that flags underpaid Medicare claims and ranks them into a prioritized AR workqueue — surfacing underpayment recovery opportunities across a large public CMS claims dataset.' },
     { icon: <Activity size={22} />, color: B.accent, title: 'Claim Denial Prediction', desc: 'A boosted-tree risk model plus a DistilBERT root-cause classifier that predicts denial probability before submission and identifies the operational fix behind existing denials.' },
-    { icon: <TrendingUp size={22} />, color: B.secondary, title: 'RCM & Prior-Auth Forecasting', desc: 'A 90-day Medicare Advantage enrollment forecast (0.048% holdout MAPE) built entirely on public CMS data, flagging prior-authorization exposure directly from CMS benefit fields.' },
+    { icon: <TrendingUp size={22} />, color: B.secondary, title: 'RCM & Prior-Auth Forecasting', desc: 'A Medicare Advantage enrollment forecast built entirely on public CMS data, flagging prior-authorization exposure directly from CMS benefit fields.' },
     { icon: <Brain size={22} />, color: B.primary, title: 'Clinical NLP for Hospital Records', desc: 'A named-entity-recognition pipeline that extracts diagnoses, medications, and procedures from unstructured notes, with de-identification built in before any storage.' },
     { icon: <FlaskConical size={22} />, color: B.accent, title: 'Single-Cell RNA-seq Analysis', desc: 'An automated clustering pipeline combining PCA/t-SNE/UMAP dimensionality reduction with BIC-optimized GMM and DBSCAN for scRNA-seq cell-state discovery.' },
-    { icon: <ShieldCheck size={22} />, color: B.secondary, title: 'Medicare Fraud Detection', desc: 'A composite Fraud Risk Score combining peer-benchmarking, anomaly detection, and OIG exclusion-list matching — analyzed 44,528 Medicare providers and flagged 3,842 as high-risk.' },
+    { icon: <ShieldCheck size={22} />, color: B.secondary, title: 'Medicare Fraud Detection', desc: 'A composite Fraud Risk Score combining peer-benchmarking, anomaly detection, and OIG exclusion-list matching — applied to public Medicare provider data to flag high-risk providers.' },
   ];
 
   const useCases = [
     {
       icon: <DollarSign />, color: B.primary, slug: 'ar-prioritization-underpayment-recovery',
       title: 'AR Prioritization & Underpayment Recovery Engine',
-      desc: 'A LightGBM classifier (PR-AUC 0.875) plus an Isolation Forest anomaly layer, built on public CMS Medicare data, that flags underpaid claims and ranks them into a prioritized AR workqueue via a live FastAPI + React dashboard.',
-      metrics: [{ val: '$15B', label: 'Recovery Opportunity' }, { val: '6.1M', label: 'Claims Modeled' }, { val: '0.875', label: 'Test PR-AUC' }],
+      desc: 'A LightGBM classifier plus an Isolation Forest anomaly layer, built on public CMS Medicare data, that flags underpaid claims and ranks them into a prioritized AR workqueue via a live FastAPI + React dashboard.',
+      metrics: [],
     },
     {
       icon: <ShieldCheck />, color: B.secondary, slug: 'healthcare-fraud-detection-billing',
       title: 'Healthcare Fraud Detection System (Medicare Billing)',
       desc: 'Peer-group Z-score benchmarking, Isolation Forest anomaly detection, E&M upcoding rules, and OIG exclusion-list cross-referencing combined into one composite Fraud Risk Score across the 2023 CMS Medicare billing dataset.',
-      metrics: [{ val: '44,528', label: 'Providers Analyzed' }, { val: '3,842', label: 'Flagged High-Risk' }, { val: '~96%', label: 'Classifier Accuracy' }],
+      metrics: [],
     },
     {
       icon: <Activity />, color: B.action,
       title: 'Claim Denial Prediction & Root-Cause Classifier', slug: 'claim-denial-prediction',
       desc: 'A boosted-tree denial-risk model (Optuna-tuned, SHAP-explained) predicts denial probability before submission, while a parallel TF-IDF vs. DistilBERT NLP pipeline classifies the operational root cause behind existing denials.',
-      metrics: [{ val: '3-Tier', label: 'Risk Classification' }, { val: 'SHAP', label: 'Explainability' }, { val: 'FastAPI', label: '+ Streamlit Demo' }],
+      metrics: [{ val: 'SHAP', label: 'Explainability' }, { val: 'FastAPI', label: '+ Streamlit Demo' }],
     },
     {
       icon: <TrendingUp />, color: B.primary, slug: 'rcm-prior-authorization-intelligence',
       title: 'RCM Opportunity Forecasting & Prior Authorization Intelligence',
-      desc: 'A 90-day Medicare Advantage enrollment forecast built entirely on public CMS data, tracking national enrollment from ~33.5M to 36.1M and flagging prior-authorization exposure directly from CMS PBP benefit fields.',
-      metrics: [{ val: '0.048%', label: 'Holdout MAPE' }, { val: '90-Day', label: 'Forecast Horizon' }, { val: 'Streamlit', label: 'Executive Dashboard' }],
+      desc: 'A Medicare Advantage enrollment forecast built entirely on public CMS data, tracking national enrollment and flagging prior-authorization exposure directly from CMS PBP benefit fields.',
+      metrics: [{ val: 'Streamlit', label: 'Executive Dashboard' }],
     },
     {
       icon: <Brain />, color: B.secondary, slug: 'ehr-clinical-nlp-automation',
@@ -269,7 +228,7 @@ export default function IndustryHealthcare() {
               <motion.div
                 initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                style={{
+                style={{ 
                   flex: '1 1 clamp(300px, 48%, 720px)',
                   display: 'flex',
                   alignItems: 'center',
@@ -277,9 +236,9 @@ export default function IndustryHealthcare() {
                   minHeight: '420px',
                 }}
               >
-                <img
+                <img 
                   src={healthImage}
-                  alt="Healthcare AI Visual"
+                  alt="Healthcare AI Visual" 
                   style={{
                     width: '100%',
                     maxWidth: 1080,
@@ -290,71 +249,21 @@ export default function IndustryHealthcare() {
               </motion.div>
             </div>
 
-            {/* BOTTOM ROW: Tags (Centered) */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: 'clamp(12px, 2vw, 20px)',
-                justifyContent: 'center',
-                width: '100%',
-                paddingTop: 'clamp(10px, 2vw, 20px)',
-                borderTop: `1px solid ${B.primaryBorder}40`
-              }}
-            >
-              {[
-                { val: '7', label: 'Real Projects Delivered' },
-                { val: '$15B', label: 'Recovery Opportunity Surfaced' },
-                { val: '44.5K+', label: 'Providers Analyzed' },
-                { val: '~96%', label: 'Fraud Classifier Accuracy' }
-              ].map((s, i) => (
-                <div key={i} style={{
-                  display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10,
-                  padding: 'clamp(8px, 1.5vw, 12px) clamp(18px, 2.5vw, 28px)',
-                  borderRadius: 50,
-                  background: 'rgba(255,255,255,0.7)', border: `2px solid ${B.primaryBorder}`,
-                  boxShadow: '0 4px 12px rgba(57,57,57,0.08)',
-                  animation: `wmFloat ${3.5 + i * 0.5}s ease-in-out infinite`,
-                }}>
-                  <span style={{ fontSize: 'clamp(1rem, 1.8vw, 1.4rem)', fontWeight: 800, color: B.secondary, lineHeight: 1 }}>{s.val}</span>
-                  <span style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, color: B.textMuted }}>{s.label}</span>
-                </div>
-              ))}
-            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ══ 2. STATS STRIP (dark) ══ */}
-      <section ref={statsRef} style={{ padding: 'var(--sp-section) 0', position: 'relative', zIndex: 1, background: `linear-gradient(135deg, #0a0a0a 0%, #080808 100%)`, overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-        <DataParticles count={12} dark />
-        <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-          <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
-            <SectionBadge dark>Real, Verifiable Work</SectionBadge>
-            <h2 className="section-h2 dark" style={{ marginBottom: 0 }}>What We've Actually Built</h2>
-          </div>
-          <div className="grid-stats">
-            <StatCard target={7}   suffix=""    label="Real Projects Delivered"    icon={<Layers />}     start={statsVisible} delay={0}   theme={{ color: B.action, bg: B.actionLight }} />
-            <StatCard prefix="$" target={15}  suffix="B"   label="Recovery Opportunity Surfaced" icon={<DollarSign />}  start={statsVisible} delay={0.1} theme={{ color: B.secondary, bg: B.secondaryLight }} />
-            <StatCard target={44.5}  suffix="K+"  label="Medicare Providers Analyzed" icon={<Activity />}  start={statsVisible} delay={0.2} theme={{ color: B.primary, bg: B.primaryLight }} />
-            <StatCard target={96}  suffix="%"   label="Fraud Classifier Accuracy" icon={<ShieldCheck />} start={statsVisible} delay={0.3} theme={{ color: B.accent, bg: B.accentLight }} />
-          </div>
-        </div>
-      </section>
 
       {/* ══ 3. MERGED: CAPABILITIES + CASE STUDIES (Light) ══ */}
-      <section style={{
-        padding: 'var(--sp-section) 0',
-        position: 'relative',
-        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 100%)',
-        overflow: 'hidden', zIndex: 1
+      <section style={{ 
+        padding: 'var(--sp-section) 0', 
+        position: 'relative', 
+        background: 'linear-gradient(180deg, #e8e8e8 0%, #e1e1e1 100%)', 
+        overflow: 'hidden', zIndex: 1 
       }}>
         <SectionGridBg opacity={0.14} />
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
-
+          
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vw, 56px)' }}>
             <SectionBadge>Capabilities & Impact</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark }}>
@@ -399,7 +308,7 @@ export default function IndustryHealthcare() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }} style={{ textAlign: 'center' }}>
             <Link
               to="/case-studies?industry=healthcare"
-              className="btn-primary"
+              className="btn-primary" 
               style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: 'clamp(14px, 2vw, 18px) clamp(28px, 4vw, 48px)', borderRadius: 'var(--radius-md)', border: 'none', boxShadow: '0 4px 14px rgba(55,55,55,0.25)' }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}
@@ -411,11 +320,11 @@ export default function IndustryHealthcare() {
       </section>
 
       {/* ══ 4. TECH STACK (PrimaryDark BG) ══ */}
-      <section style={{
-        padding: `clamp(40px, 6vw, 80px) 0`,
-        position: 'relative',
-        background: `linear-gradient(135deg, ${B.primaryDark} 0%, #080808 100%)`,
-        zIndex: 1, overflow: 'hidden'
+      <section style={{ 
+        padding: `clamp(40px, 6vw, 80px) 0`, 
+        position: 'relative', 
+        background: `linear-gradient(135deg, ${B.primaryDark} 0%, #080808 100%)`, 
+        zIndex: 1, overflow: 'hidden' 
       }}>
         <DataParticles count={10} dark />
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
@@ -435,12 +344,12 @@ export default function IndustryHealthcare() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.09 }}
-                style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: `1.5px solid ${col.color}40`,
-                  borderRadius: 'var(--radius-lg)',
-                  padding: 'clamp(20px, 3vw, 32px)',
-                  position: 'relative',
+                style={{ 
+                  background: 'rgba(255,255,255,0.04)', 
+                  border: `1.5px solid ${col.color}40`, 
+                  borderRadius: 'var(--radius-lg)', 
+                  padding: 'clamp(20px, 3vw, 32px)', 
+                  position: 'relative', 
                   overflow: 'hidden',
                   boxShadow: '0 10px 30px -10px rgba(0,0,0,0.3)'
                 }}
@@ -470,9 +379,9 @@ export default function IndustryHealthcare() {
       <section style={{ padding: 'var(--sp-section) 0', position: 'relative', background: `linear-gradient(180deg, ${B.bgLight} 0%, #ebebeb 100%)`, zIndex: 1, overflow: 'hidden' }}>
         <SectionGridBg opacity={0.16} />
         <DataParticles count={10} />
-
+        
         <div style={{ maxWidth: 1250, margin: '0 auto', padding: '0 clamp(16px, 4vw, 24px)', position: 'relative', zIndex: 2 }}>
-
+          
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(32px, 5vw, 64px)', alignItems: 'center' }}>
             {/* Left — text */}
             <div style={{ flex: '1 1 320px' }}>
@@ -517,10 +426,10 @@ export default function IndustryHealthcare() {
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${B.action}, ${B.primary}, ${B.accent})` }} />
               <div style={{ fontWeight: 700, fontSize: 'clamp(11px, 1.3vw, 13px)', letterSpacing: '0.12em', textTransform: 'uppercase', color: B.textMuted, marginBottom: 24 }}>Engagement Overview</div>
               {[
-                { label: 'Discovery & Data Audit', duration: '2 weeks', color: B.action,  icon: <Eye size={16} /> },
-                { label: 'Model Development', duration: '6–10 weeks', color: B.secondary, icon: <Brain size={16} /> },
-                { label: 'Clinical Validation', duration: '2–4 weeks', color: B.primary, icon: <Activity size={16} /> },
-                { label: 'Production Deployment', duration: '1–2 weeks', color: B.accent, icon: <Zap size={16} /> },
+                { label: 'Discovery & Data Audit', color: B.action,  icon: <Eye size={16} /> },
+                { label: 'Model Development', color: B.secondary, icon: <Brain size={16} /> },
+                { label: 'Clinical Validation', color: B.primary, icon: <Activity size={16} /> },
+                { label: 'Production Deployment', color: B.accent, icon: <Zap size={16} /> },
               ].map((step, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderBottom: i < 3 ? `1px solid rgba(57,57,57,0.10)` : 'none' }}>
                   <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: `${step.color}12`, color: step.color, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${step.color}25`, flexShrink: 0 }}>
@@ -529,12 +438,11 @@ export default function IndustryHealthcare() {
                   <div style={{ flex: 1 }}>
                     <div style={{ fontWeight: 700, fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', color: B.primaryDark }}>{step.label}</div>
                   </div>
-                  <div style={{ fontSize: 'clamp(11px, 1.3vw, 13px)', fontWeight: 700, color: step.color, background: `${step.color}10`, padding: '4px 12px', borderRadius: 99, border: `1px solid ${step.color}25`, whiteSpace: 'nowrap' }}>{step.duration}</div>
                 </div>
               ))}
               <div style={{ marginTop: 24, padding: '16px 20px', background: `linear-gradient(135deg, ${B.action}10, ${B.primary}08)`, borderRadius: 16, border: `1px solid ${B.action}20`, display: 'flex', alignItems: 'center', gap: 12 }}>
                 <Activity size={18} color={B.action} />
-                <span style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', color: B.textMain, fontWeight: 600 }}>BAA-ready · HIPAA-compliant infrastructure</span>
+                <span style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', color: B.textMain, fontWeight: 600 }}>Clear scoping · clear deliverables upfront</span>
               </div>
             </motion.div>
           </div>
@@ -576,7 +484,7 @@ export default function IndustryHealthcare() {
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(28px, 4vw, 48px)', lineHeight: 1.75 }}>
-              Book a free 30-minute call. Tell us your clinical challenge — imaging, risk stratification, documentation, or trials. We'll give you an honest feasibility assessment. No pitch, no pressure.
+              Book a free call. Tell us your clinical challenge — imaging, risk stratification, documentation, or trials. We'll give you an honest feasibility assessment. No pitch, no pressure.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 2vw, 16px)', justifyContent: 'center' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>

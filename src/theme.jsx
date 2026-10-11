@@ -12,7 +12,7 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 
@@ -144,34 +144,35 @@ export function useCounter(target, duration = 2000, start = false) {
 
 // ─── Shared Components ────────────────────────────────────────────────────────
 
+const LIGHT_COLORS = [
+  'rgba(84,84,84,0.50)',
+  'rgba(47,47,47,0.40)',
+  'rgba(185,185,185,0.60)',
+  'rgba(55,55,55,0.35)',
+];
+const DARK_COLORS = [
+  'rgba(103,103,103,0.55)',
+  'rgba(84,84,84,0.45)',
+  'rgba(149,149,149,0.40)',
+  'rgba(255,255,255,0.20)',
+];
+
+// Deterministic pseudo-random values keep the render pure (same particles every render).
+const rand = (n) => { const v = Math.sin(n * 12.9898 + 78.233) * 43758.5453; return v - Math.floor(v); };
+
 /**
  * DataParticles — ambient floating dots
  * @param {number} count   number of particles (default 24)
  * @param {boolean} dark   use dark-background palette
  */
 export function DataParticles({ count = 24, dark = false }) {
-  const LIGHT_COLORS = [
-    'rgba(84,84,84,0.50)',
-    'rgba(47,47,47,0.40)',
-    'rgba(185,185,185,0.60)',
-    'rgba(55,55,55,0.35)',
-  ];
-  const DARK_COLORS = [
-    'rgba(103,103,103,0.55)',
-    'rgba(84,84,84,0.45)',
-    'rgba(149,149,149,0.40)',
-    'rgba(255,255,255,0.20)',
-  ];
-
-  const particles = useRef(
-    Array.from({ length: count }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100, y: Math.random() * 100,
-      size: Math.random() * 2.5 + 0.8,
-      dur: Math.random() * 7 + 5, delay: Math.random() * 4,
-      color: (dark ? DARK_COLORS : LIGHT_COLORS)[Math.floor(Math.random() * 4)],
-    }))
-  ).current;
+  const particles = useMemo(() => Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: rand(i * 5 + 1) * 100, y: rand(i * 5 + 2) * 100,
+    size: rand(i * 5 + 3) * 2.5 + 0.8,
+    dur: rand(i * 5 + 4) * 7 + 5, delay: rand(i * 5 + 5) * 4,
+    color: (dark ? DARK_COLORS : LIGHT_COLORS)[Math.floor(rand(i * 5 + 6) * 4)],
+  })), [count, dark]);
 
   return (
     <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>

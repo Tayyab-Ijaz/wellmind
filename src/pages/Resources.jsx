@@ -8,7 +8,7 @@
  * ✅ Responsive 320px → 1440px via same clamp() values
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge } from '../theme';
@@ -34,27 +34,26 @@ const ALL_FILTERS = ['All',...Object.keys(CATS)];
 
 /* Articles */
 const articles = [
-  { slug:'rna-seq-analysis-guide',         cat:'Bioinformatics', featured:true,  date:'Apr 2026', rt:'14 min', title:'The Complete RNA-seq Analysis Pipeline (2026 Guide)',                        excerpt:'From raw FASTQ to differentially expressed genes — QC, alignment, quantification, downstream analysis with real code.',         tags:['RNA-seq','DESeq2','Bioinformatics'], img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80' },
-  { slug:'explainable-ai-healthcare',       cat:'Healthcare AI',  featured:true,  date:'Apr 2026', rt:'9 min',  title:'Why Explainable AI Matters More Than Accuracy in Healthcare',               excerpt:'A 96% accurate model no clinician trusts is worthless. Why interpretability must come first — and how to achieve it.',          tags:['XAI','SHAP','Clinical AI'],          img:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80' },
-  { slug:'ai-readiness-sme',                cat:'AI Strategy',    featured:false, date:'Mar 2026', rt:'8 min',  title:'5 Signs Your Business Is Ready for AI (And 3 Signs You\'re Not)',           excerpt:'Most AI projects fail not because of bad models — but because the organisation wasn\'t ready. An honest checklist.',           tags:['Strategy','SMB','Readiness'],        img:'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80' },
-  { slug:'scrna-seq-tutorial',              cat:'Bioinformatics', featured:false, date:'Mar 2026', rt:'11 min', title:'Single-Cell RNA-seq: Tools, Tutorials, and Common Mistakes',                excerpt:'scRNA-seq unlocks cell-by-cell resolution — but the analysis is notoriously error-prone. Scanpy, Seurat, clustering pitfalls.',  tags:['scRNA-seq','Scanpy','Seurat'],       img:'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80' },
-  { slug:'nextflow-pipeline-bioinformatics',cat:'Bioinformatics', featured:false, date:'Feb 2026', rt:'10 min', title:'How We Cut a 3-Week Analysis to 4 Hours with Nextflow',                     excerpt:'Rebuilding a manual notebook workflow into a containerised, parallelised Nextflow pipeline — with code and lessons learned.',    tags:['Nextflow','Docker','Automation'],    img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80' },
-  { slug:'multi-omics-integration',         cat:'Bioinformatics', featured:false, date:'Feb 2026', rt:'11 min', title:'Multi-Omics Integration: A Practical Framework for Research Teams',         excerpt:'Combining genomics, transcriptomics, and proteomics — the framework we use without losing biological signal.',                  tags:['Multi-Omics','Integration'],        img:'https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&w=800&q=80' },
-  { slug:'fraud-detection-ml-guide',        cat:'Fintech AI',     featured:false, date:'Jan 2026', rt:'12 min', title:'Building Production-Grade Fraud Detection: Data to Deployment',             excerpt:'Feature engineering, model selection, threshold tuning, and monitoring a real-time fraud classifier in production.',            tags:['XGBoost','Feature Engineering'],    img:'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80' },
-  { slug:'mlops-small-teams',               cat:'MLOps',          featured:false, date:'Jan 2026', rt:'9 min',  title:'MLOps for Small Teams: What to Build, Buy, or Skip',                       excerpt:'Enterprise MLOps stacks are overkill for teams under 10. The pragmatic minimum — CI/CD, monitoring, retraining patterns.',     tags:['MLOps','Production','CI/CD'],       img:'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
-  { slug:'crop-yield-ai',                   cat:'Agriculture AI', featured:false, date:'Dec 2025', rt:'10 min', title:'AI-Driven Crop Yield Prediction: Satellite, Soil & ML',                    excerpt:'How to fuse satellite NDVI, weather data, and IoT soil sensors into a single predictive model. Architecture and deployment.',   tags:['NDVI','LightGBM','AgriTech'],       img:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80' },
+  { slug:'rna-seq-analysis-guide',         cat:'Bioinformatics', featured:true,  title:'The Complete RNA-seq Analysis Pipeline',                        excerpt:'From raw FASTQ to differentially expressed genes — QC, alignment, quantification, downstream analysis with real code.',         tags:['RNA-seq','DESeq2','Bioinformatics'], img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80' },
+  { slug:'explainable-ai-healthcare',       cat:'Healthcare AI',  featured:true,  title:'Why Explainable AI Matters More Than Accuracy in Healthcare',               excerpt:'An accurate model no clinician trusts is worthless. Why interpretability must come first — and how to achieve it.',          tags:['XAI','SHAP','Clinical AI'],          img:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80' },
+  { slug:'ai-readiness-sme',                cat:'AI Strategy',    featured:false, title:'Signs Your Business Is Ready for AI (And Signs You\'re Not)',           excerpt:'Most AI projects fail not because of bad models — but because the organisation wasn\'t ready. An honest checklist.',           tags:['Strategy','SMB','Readiness'],        img:'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80' },
+  { slug:'scrna-seq-tutorial',              cat:'Bioinformatics', featured:false, title:'Single-Cell RNA-seq: Tools, Tutorials, and Common Mistakes',                excerpt:'scRNA-seq unlocks cell-by-cell resolution — but the analysis is notoriously error-prone. Scanpy, Seurat, clustering pitfalls.',  tags:['scRNA-seq','Scanpy','Seurat'],       img:'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80' },
+  { slug:'nextflow-pipeline-bioinformatics',cat:'Bioinformatics', featured:false, title:'Rebuilding a Manual Analysis as a Nextflow Pipeline',                     excerpt:'Rebuilding a manual notebook workflow into a containerised, parallelised Nextflow pipeline — with code and lessons learned.',    tags:['Nextflow','Docker','Automation'],    img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80' },
+  { slug:'multi-omics-integration',         cat:'Bioinformatics', featured:false, title:'Multi-Omics Integration: A Practical Framework for Research Teams',         excerpt:'Combining genomics, transcriptomics, and proteomics — the framework we use without losing biological signal.',                  tags:['Multi-Omics','Integration'],        img:'https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&w=800&q=80' },
+  { slug:'fraud-detection-ml-guide',        cat:'Fintech AI',     featured:false, title:'Building Production-Grade Fraud Detection: Data to Deployment',             excerpt:'Feature engineering, model selection, threshold tuning, and monitoring a real-time fraud classifier in production.',            tags:['XGBoost','Feature Engineering'],    img:'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80' },
+  { slug:'mlops-small-teams',               cat:'MLOps',          featured:false, title:'MLOps for Small Teams: What to Build, Buy, or Skip',                       excerpt:'Enterprise MLOps stacks are overkill for small teams. The pragmatic minimum — CI/CD, monitoring, retraining patterns.',     tags:['MLOps','Production','CI/CD'],       img:'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
+  { slug:'crop-yield-ai',                   cat:'Agriculture AI', featured:false, title:'AI-Driven Crop Yield Prediction: Satellite, Soil & ML',                    excerpt:'How to fuse satellite NDVI, weather data, and IoT soil sensors into a single predictive model. Architecture and deployment.',   tags:['NDVI','LightGBM','AgriTech'],       img:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80' },
 ];
 
 /* ─── Background helpers — identical to Home.jsx ─────────────────────────── */
 /* Featured card — dark overlay exactly like Home ProjectCard */
 function FeaturedCard({ article, i }) {
-  const [hov, setHov] = useState(false);
-  const cat = CATS[article.cat] || {};
+  const hov = false;
   return (
     <motion.div initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6, delay:i*0.1, ease:[0.16,1,0.3,1] }}>
-      <Link to={`/resources/${article.slug}`} style={{ textDecoration:'none', display:'block', height:'100%' }}>
+      <div style={{ display:'block', height:'100%' }}>
         <div
-          onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+         
           style={{
             position:'relative', borderRadius:28, overflow:'hidden',
             height:'100%', minHeight:'clamp(360px,40vw,480px)',
@@ -74,35 +73,27 @@ function FeaturedCard({ article, i }) {
             </div>
           </div>
           <div style={{ padding:'clamp(18px,2.5vw,28px)', display:'flex', flexDirection:'column', flexGrow:1, background:'linear-gradient(to bottom,rgba(6,6,6,1) 0%,rgba(8,8,8,1) 100%)' }}>
-            <h3 className="card-project-title" style={{ color:B.textDark, marginBottom:14 }}>{article.title}</h3>
-            <p className="card-project-body" style={{ color:B.textDarkMid, marginBottom:20, flexGrow:1 }}>{article.excerpt}</p>
+            <h3 className="card-project-title on-dark" style={{ color:B.textDark, marginBottom:14 }}>{article.title}</h3>
+            <p className="card-project-body on-dark" style={{ color:B.textDarkMid, marginBottom:20, flexGrow:1 }}>{article.excerpt}</p>
             <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginBottom:24 }}>
               {article.tags.map((tag,ti) => <span key={ti} className="tool-tag" style={{ color:B.action, background:'rgba(84,84,84,0.12)', border:'1px solid rgba(84,84,84,0.25)', padding:'4px 12px', borderRadius:6 }}>{tag}</span>)}
             </div>
-            <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', paddingTop:20, borderTop:'1px solid rgba(255,255,255,0.07)' }}>
-              <span className="cta-link-text" style={{ display:'flex', alignItems:'center', gap:8, color:hov?B.action:B.textDarkMuted, transition:'color 0.3s ease' }}>
-                Read Article <ArrowRight size={14} style={{ transform:hov?'translateX(5px)':'translateX(0)', transition:'transform 0.3s ease' }}/>
-              </span>
-              <div style={{ display:'flex', alignItems:'center', gap:6, fontSize:'clamp(10px,1.2vw,11px)', color:B.textDarkMuted, fontWeight:600 }}>
-                <Clock size={11}/>{article.rt} · {article.date}
-              </div>
-            </div>
           </div>
         </div>
-      </Link>
+      </div>
     </motion.div>
   );
 }
 
 /* Regular card — light glass exactly like Home's light section cards */
 function ArticleCard({ article, i }) {
-  const [hov, setHov] = useState(false);
+  const hov = false;
   const cat = CATS[article.cat] || {};
   return (
     <motion.div initial={{ opacity:0, y:28 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.07, ease:[0.16,1,0.3,1] }} layout>
-      <Link to={`/resources/${article.slug}`} style={{ textDecoration:'none', display:'block', height:'100%' }}>
+      <div style={{ display:'block', height:'100%' }}>
         <div
-          onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+         
           style={{
             background: hov ? 'linear-gradient(135deg,rgba(255,255,255,0.95) 0%,rgba(243,243,243,0.85) 100%)' : B.cardBg,
             backdropFilter:'blur(12px)', borderRadius:24,
@@ -119,24 +110,15 @@ function ArticleCard({ article, i }) {
               <div style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'5px 12px', borderRadius:99, background:cat.bg, border:`1px solid ${cat.border}`, fontSize:'clamp(10px,1.1vw,11px)', fontWeight:700, letterSpacing:'0.10em', textTransform:'uppercase', color:cat.color }}>
                 {cat.icon} {article.cat}
               </div>
-              <span style={{ display:'flex', alignItems:'center', gap:5, fontSize:'clamp(11px,1.2vw,12px)', color:B.textMuted, fontWeight:600 }}>
-                <Clock size={11} color={B.textMuted}/>{article.rt}
-              </span>
             </div>
             <h3 className="card-title" style={{ transition:'color 0.3s', ...(hov && {color:B.primaryDark}) }}>{article.title}</h3>
             <p className="card-body" style={{ marginBottom:20, flexGrow:1 }}>{article.excerpt}</p>
             <div style={{ display:'flex', flexWrap:'wrap', gap:6, marginBottom:20 }}>
               {article.tags.map((tag,ti) => <span key={ti} style={{ fontSize:'clamp(10px,1.1vw,11px)', fontWeight:600, padding:'3px 9px', borderRadius:6, background:B.primaryLight, border:`1px solid ${B.primaryBorder}`, color:B.primary, letterSpacing:'0.04em' }}>{tag}</span>)}
             </div>
-            <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', paddingTop:16, borderTop:`1px solid ${B.primaryBorder}` }}>
-              <span style={{ fontSize:'clamp(11px,1.2vw,12px)', color:B.textMuted, fontWeight:600 }}>{article.date}</span>
-              <span className="cta-link-text" style={{ display:'flex', alignItems:'center', gap:6, color:hov?(cat.color||B.action):B.primary, transition:'color 0.3s', fontSize:'clamp(11px,1.2vw,13px)' }}>
-                Read more <ArrowRight size={12} style={{ transform:hov?'translateX(4px)':'none', transition:'transform 0.3s' }}/>
-              </span>
-            </div>
           </div>
         </div>
-      </Link>
+      </div>
     </motion.div>
   );
 }
@@ -163,35 +145,7 @@ function FilterChip({ label, active, onClick }) {
   );
 }
 
-function NewsletterBlock() {
-  const [email, setEmail] = useState('');
-  const [done, setDone] = useState(false);
-  return (
-    <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }}
-      style={{ padding:'clamp(32px,4.5vw,56px) clamp(28px,4.5vw,64px)', borderRadius:28, background:`linear-gradient(135deg,${B.primaryLight} 0%,${B.actionLight} 100%)`, border:`2px solid ${B.primaryBorder}`, backdropFilter:'blur(12px)', textAlign:'center', boxShadow:B.cardShadow }}>
-      <div style={{ width:54, height:54, borderRadius:16, background:B.action, display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 20px', boxShadow:`0 8px 24px rgba(84,84,84,0.35)` }}>
-        <Mail size={22} color={B.white}/>
-      </div>
-      <SectionBadge style={{ marginBottom:16 }}>Newsletter</SectionBadge>
-      <h3 className="section-h2" style={{ fontSize:'clamp(1.3rem,3vw,2rem)', marginBottom:14 }}>Data Science Insights, Twice a Month</h3>
-      <p className="section-lead" style={{ marginBottom:32, maxWidth:520 }}>No fluff. Practical bioinformatics guides, AI strategy breakdowns, and case studies — delivered to your inbox.</p>
-      {done ? (
-        <div style={{ display:'inline-flex', alignItems:'center', gap:10, padding:'clamp(12px,2vw,16px) clamp(20px,3.5vw,32px)', borderRadius:12, background:B.actionLight, border:`1px solid ${B.actionBorder}`, color:B.action, fontWeight:700, fontSize:'clamp(13px,1.6vw,15px)' }}>
-          <CheckCircle size={18}/>You're on the list!
-        </div>
-      ) : (
-        <div style={{ display:'flex', gap:10, maxWidth:480, margin:'0 auto', flexWrap:'wrap', justifyContent:'center' }}>
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com"
-            style={{ flex:1, minWidth:200, padding:'clamp(12px,1.8vw,15px) clamp(14px,2vw,18px)', borderRadius:10, border:`1.5px solid ${B.primaryBorder}`, background:'rgba(255,255,255,0.85)', fontSize:'clamp(13px,1.5vw,15px)', color:B.textMain, outline:'none', fontFamily:'Space Grotesk,sans-serif' }}/>
-          <button onClick={() => { if(email) setDone(true); }} className="btn-primary" style={{ padding:'clamp(12px,1.8vw,15px) clamp(18px,3vw,28px)', flexShrink:0 }}>
-            <Mail size={14}/>Subscribe
-          </button>
-        </div>
-      )}
-      <p style={{ marginTop:16, fontSize:'clamp(11px,1.2vw,12px)', color:B.textMuted, fontWeight:500 }}>No spam. Unsubscribe anytime. ~500 subscribers.</p>
-    </motion.div>
-  );
-}
+
 
 /* ─── MAIN ──────────────────────────────────────────────────────────────── */
 export default function Resources() {
@@ -240,64 +194,10 @@ export default function Resources() {
               In-depth tutorials, case study breakdowns, and AI strategy articles written by practitioners, not content marketers. Free! No login required.
             </motion.p>
 
-            {/* Trust Pills — Infinite Animation */}
-            <motion.div variants={fadeUp} custom={0.20} style={{ marginTop:'clamp(24px,4vw,48px)', width:'100%', position:'relative' }}>
-              <div style={{ padding:'4px 16px', borderRadius:99, background:'rgba(55,55,55,0.08)', color:B.secondary, fontSize:'clamp(10px,1.8vw,16px)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.15em', border:'1px solid rgba(55,55,55,0.2)', display:'inline-block', marginBottom:20 }}>
-                Free Resources
-              </div>
-
-              {/* Marquee Wrapper */}
-              <div style={{ overflow:'hidden', position:'relative', width:'100%', maskImage:'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
-                <div className="marquee-content">
-                  {[...Array(4)].fill().map((_, setIdx) => (
-                    <div key={setIdx} style={{ display:'flex', gap:'clamp(12px,2vw,24px)', paddingRight:'clamp(20px,3vw,40px)' }}>
-                      {[
-                        { icon:<BookOpen size={16}/>, label:`${articles.length} Free Articles`, accent:'#9e9e9e' },
-                        { icon:<Users size={16}/>,      label:'500+ Subscribers', accent:'#aeaeae' },
-                        { icon:<Globe size={16}/>,      label:'Read in 40+ Countries', accent:'#aaaaaa' },
-                      ].map((item,i) => (
-                        <div key={i} style={{ display:'flex', alignItems:'center', gap:8, padding:'clamp(8px,1.2vw,10px) clamp(12px,2vw,18px)', fontSize:'clamp(12px,1.8vw,18px)', fontWeight:600, color:'rgba(27,27,27,0.8)', background:'rgba(255,255,255,0.5)', borderRadius:8, border:'1px solid rgba(47,47,47,0.1)', whiteSpace:'nowrap' }}>
-                          <div style={{ width:22, height:22, borderRadius:5, flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background:`${item.accent}15` }}>
-                            {React.cloneElement(item.icon, { size:14, color:item.accent, strokeWidth:2.5 })}
-                          </div>
-                          {item.label}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* ══ 2. DARK STRIP — Topics We Cover (Compact 1 Row) ══ */}
-      <section style={{ padding:`clamp(32px,4.5vw,52px) 0`, position:'relative', zIndex:1, background:`linear-gradient(135deg,#0a0a0a 0%,#080808 100%)` }}>
-        <DataParticles count={8} dark/>
-        <div style={{ ...PX, position:'relative', zIndex:2 }}>
-          <div style={{ textAlign:'center', marginBottom:30 }}>
-            <SectionBadge dark style={{ color:B.textDarkMuted, marginBottom:12 }}>Topics We Cover</SectionBadge>
-            <h2 className="section-h2 dark" style={{ fontSize:'clamp(1.2rem,2.5vw,2rem)' }}>Expertise Areas</h2>
-          </div>
-          <div className="grid-stats-compact">
-            {[
-              { val:'9',    suf:'+', lbl:'Free Articles',        color:'#767676' },
-              { val:'500',  suf:'+', lbl:'Newsletter Subscribers',color:'#8a8a8a' },
-              { val:'40',   suf:'+', lbl:'Countries Reached',     color:'#a8a8a8' },
-              { val:'7',    suf:'',  lbl:'Topics Covered',        color:'#adadad' },
-              { val:'100',  suf:'%', lbl:'Free, No Login',        color:'#a7a7a7' },
-              { val:'2026', suf:'',  lbl:'Updated Regularly',     color:'#9d9d9d' },
-            ].map((s,i) => (
-              <motion.div key={i} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.05, ease:[0.16,1,0.3,1] }}
-                style={{ background:'rgba(255,255,255,0.02)', backdropFilter:'blur(12px)', border:'1.5px solid rgba(255,255,255,0.08)', borderRadius:16, padding:'clamp(14px,1.5vw,20px) 10px', textAlign:'center', height:'100%' }}>
-                <div style={{ fontWeight:800, fontSize:'clamp(1.4rem,3.5vw,2.2rem)', color:B.textDark, marginBottom:4, letterSpacing:'-0.03em' }}>{s.val}<span style={{ fontSize:'0.5em' }}>{s.suf}</span></div>
-                <div style={{ fontSize:'clamp(10px,1.1vw,12px)', letterSpacing:'0.10em', textTransform:'uppercase', color:B.textDarkMuted, fontWeight:700, lineHeight:1.2 }}>{s.lbl}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ══ 3. MAIN LIGHT — Featured + Controls + All Articles ══ */}
       <section style={{ position:'relative', zIndex:1, background:`linear-gradient(180deg,${B.bgLight} 0%,#efefef 50%,#e5e5e5 100%)`, overflow:'clip', padding:0 }}>
@@ -323,13 +223,13 @@ export default function Resources() {
         {/* SEARCH + FILTER + GRID */}
         <div style={{ position:'relative', zIndex:2, padding:`${SECTION_PAD} 0` }}>
           <div style={{ ...PX }}>
-
+            
             {/* Controls Section */}
             <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }} style={{ textAlign:'center', marginBottom:48 }}>
               <SectionBadge>{showFeatured ? 'All Articles' : 'Search Results'}</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom:12 }}>{showFeatured ? 'Browse Our Articles' : 'Search Results'}</h2>
               <p className="section-lead" style={{ maxWidth:600, margin:'0 auto 24px' }}>
-                {filtered.length} guides across bioinformatics, AI, MLOps, and data strategy.
+                Guides across bioinformatics, AI, MLOps, and data strategy.
               </p>
 
               {/* Search Bar (Moved Here) */}
@@ -377,10 +277,6 @@ export default function Resources() {
               </div>
             )}
 
-            {/* Newsletter */}
-            <div style={{ marginTop:'clamp(48px,7vw,80px)', maxWidth:720, margin:'clamp(48px,7vw,80px) auto 0' }}>
-              <NewsletterBlock/>
-            </div>
           </div>
         </div>
       </section>
@@ -399,7 +295,7 @@ export default function Resources() {
               <span style={{ background:'linear-gradient(90deg,#4a4a4a 25%,#373737 75%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Let's Build Something Real.</span>
             </h2>
             <p className="section-lead" style={{ color:B.textMid, maxWidth:1200, margin:'0 auto clamp(24px,3.5vw,48px)', lineHeight:1.75 }}>
-              Book a free 30-minute call and we'll show you how these techniques apply to your data, your industry, and your goals. No pitch. No pressure.
+              Book a free call and we'll show you how these techniques apply to your data, your industry, and your goals. No pitch. No pressure.
             </p>
             <motion.div whileHover={{ scale:1.04, y:-3 }} whileTap={{ scale:0.97 }} style={{ display:'inline-block' }}>
               <Link to="/book-discovery" className="btn-primary" style={{ background:`linear-gradient(135deg,${B.action},#393939)`, boxShadow:`0 8px 40px ${B.actionGlow},0 0 80px rgba(84,84,84,0.15)`, border:`1px solid rgba(84,84,84,0.40)`, padding:'clamp(14px,2.5vw,20px) clamp(24px,5vw,56px)' }}>
@@ -412,7 +308,7 @@ export default function Resources() {
 
       {/* ══ SHARED CSS ══ */}
       <style>{`
-
+        
 *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth}
         body{font-family:'Space Grotesk',sans-serif;-webkit-font-smoothing:antialiased}
@@ -433,12 +329,11 @@ export default function Resources() {
         .label-text{font-size:clamp(10px,1.2vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase}
         .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:clamp(12px,2vw,18px) clamp(20px,4vw,40px);border-radius:12px;background:#545454;color:#ffffff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(0.85rem,1.8vw,1.2rem);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s}
         .btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:clamp(10px,1.8vw,16px) clamp(20px,4vw,40px);border-radius:12px;background:transparent;color:#373737;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(0.85rem,1.8vw,1.2rem);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:2px solid #373737;cursor:pointer;transition:background 0.2s,transform 0.2s}
-
+        
         /* Scrollbar Hiding Class */
         .scroll-container-hide::-webkit-scrollbar { display: none; }
-
+        
         /* Grid Layouts */
-        .grid-stats-compact{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(10px,1.5vw,20px)}
         .grid-projects{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,28px)}
         .grid-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.2vw,24px)}
         .grid-2col{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.5vw,28px)}
@@ -451,16 +346,13 @@ export default function Resources() {
         @media(max-width:1024px){
           .grid-3col{grid-template-columns:repeat(2,1fr)}
           .grid-projects{grid-template-columns:repeat(2,1fr)}
-          .grid-stats-compact{grid-template-columns:repeat(3,1fr)} /* 2 rows on tablet */
         }
         @media(max-width:768px){
-          .grid-stats-compact{grid-template-columns:repeat(2,1fr);gap:14px}
           .grid-projects{grid-template-columns:repeat(2,1fr);gap:16px}
           .grid-2col{grid-template-columns:1fr}
           .hero-br{display:none}
         }
         @media(max-width:425px){
-          .grid-stats-compact{grid-template-columns:1fr} /* Stacked on mobile */
           .grid-projects{grid-template-columns:1fr}
           .grid-3col{grid-template-columns:1fr}
           .btn-primary,.btn-secondary{width:100%;justify-content:center}

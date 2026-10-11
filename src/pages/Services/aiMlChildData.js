@@ -29,14 +29,8 @@ export const AI_ML_CHILDREN = {
     badge:        'Modeling & Prediction',
     accentColor:  COLORS.action,
     heroDesc:     'We build end-to-end predictive systems — from raw feature engineering to production-deployed APIs — that give your business a quantified view of what happens next. Demand forecasting, churn prevention, revenue projection, and risk scoring models trained on your actual data.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 94,  suffix: '%', label: 'Forecast Accuracy',  iconName: 'BarChart3', color: COLORS.action  },
-      { target: 30,  suffix: '+', label: 'Models Shipped',     iconName: 'Cpu',       color: COLORS.primary },
-      { target: 3,   suffix: 'x', label: 'ROI on Avg',         iconName: 'TrendingUp',color: COLORS.gold    },
-      { target: 100, suffix: '%', label: 'Code Ownership',     iconName: 'Shield',    color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'TrendingUp', title: 'Demand & Sales Forecasting',   color: COLORS.action,    desc: 'Time-series models (ARIMA, Prophet, LSTMs) that project inventory needs, revenue, and demand shifts weeks or months ahead.' },
@@ -61,7 +55,7 @@ export const AI_ML_CHILDREN = {
       'Model evaluation report (RMSE, MAE, AUC, SHAP)',
       'Annotated Jupyter Notebooks',
       'Retraining pipeline + drift alert config',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -75,17 +69,6 @@ export const AI_ML_CHILDREN = {
       { label: 'AWS SageMaker', color: COLORS.primary   },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $3,500', featured: false,
-        desc: 'One model, your data, clear accuracy benchmarks.',
-        features: ['Single model architecture', 'EDA & feature engineering', 'Notebook delivery', 'Performance benchmark report', '2–3 week turnaround'] },
-      { name: 'Production Model', price: 'From $7,000', featured: true,
-        desc: 'Deployed, monitored, production-ready prediction API.',
-        features: ['Model training + tuning', 'Production REST API', 'Retraining pipeline', 'Drift monitoring alerts', '30-day support'] },
-      { name: 'Enterprise Suite', price: 'Custom', featured: false,
-        desc: 'Multi-model systems with SLA-backed support.',
-        features: ['Ensemble architectures', 'Real-time inference', 'HIPAA / GDPR readiness', 'Dedicated data scientist', 'SLA agreement'] },
-    ],
   },
 
   // ── 2. Classification Systems ─────────────────────────────────────────────
@@ -95,22 +78,16 @@ export const AI_ML_CHILDREN = {
     tagline:      'Automated, accurate categorisation at any scale.',
     badge:        'Modeling & Prediction',
     accentColor:  COLORS.primary,
-    heroDesc:     'From binary fraud detection to 500-class product taxonomies, we design classification systems that match your data complexity. We handle imbalanced classes, multi-label problems, and real-time inference requirements that generic AutoML tools can\'t address.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    heroDesc:     'From binary fraud detection to large product taxonomies, we design classification systems that match your data complexity. We handle imbalanced classes, multi-label problems, and real-time inference requirements that generic AutoML tools can\'t address.',
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 97,  suffix: '%', label: 'Avg F1-Score',        iconName: 'BarChart3',  color: COLORS.primary  },
-      { target: 25,  suffix: '+', label: 'Classifiers Built',   iconName: 'Layers',     color: COLORS.action   },
-      { target: 10,  suffix: 'x', label: 'Faster Triage',       iconName: 'Zap',        color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',      iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Shield',     title: 'Fraud & Anomaly Detection',    color: COLORS.primary,   desc: 'Binary classifiers with calibrated probability outputs — tuned for precision-recall trade-offs that match your business cost of false positives.' },
       { iconName: 'Layers',     title: 'Multi-class Categorisation',   color: COLORS.action,    desc: 'Product cataloguing, support ticket routing, document classification — hundreds of categories handled cleanly with hierarchical approaches.' },
-      { iconName: 'Activity',   title: 'Medical & Clinical Triage',    color: COLORS.accent,    desc: 'HIPAA-aware classification models for patient risk stratification, diagnosis coding, and clinical document labelling.' },
+      { iconName: 'Activity',   title: 'Medical & Clinical Triage',    color: COLORS.accent,    desc: 'Classification models for patient risk stratification, diagnosis coding, and clinical document labelling.' },
       { iconName: 'MessageSquare', title: 'Intent & Topic Tagging',   color: COLORS.secondary, desc: 'Customer intent classification for chatbots, support desks, and product discovery — integrates with NLP pipelines.' },
-      { iconName: 'Database',   title: 'Imbalanced Class Handling',    color: COLORS.gold,      desc: 'SMOTE, class weighting, focal loss, and threshold calibration strategies for when your negative class is 99% of the data.' },
+      { iconName: 'Database',   title: 'Imbalanced Class Handling',    color: COLORS.gold,      desc: 'SMOTE, class weighting, focal loss, and threshold calibration strategies for when your negative class dominates the data.' },
       { iconName: 'TrendingUp', title: 'Explainable Decisions',        color: COLORS.cyan,      desc: 'SHAP and LIME explanations so your compliance team, customers, and regulators understand every classification decision.' },
     ],
 
@@ -128,7 +105,7 @@ export const AI_ML_CHILDREN = {
       'SHAP explainability outputs',
       'Confusion matrix + per-class metrics',
       'Active learning retraining pipeline',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -142,17 +119,6 @@ export const AI_ML_CHILDREN = {
       { label: 'MLflow',         color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $3,500', featured: false,
-        desc: 'Single-task classifier, benchmarked and documented.',
-        features: ['One classification task', 'Class analysis & EDA', 'Notebook + metrics report', '2–3 week turnaround'] },
-      { name: 'Production Classifier', price: 'From $7,500', featured: true,
-        desc: 'Deployed classifier with explainability and retraining pipeline.',
-        features: ['Full model training + tuning', 'Production API endpoint', 'SHAP explanations', 'Active learning pipeline', '30-day support'] },
-      { name: 'Enterprise Suite', price: 'Custom', featured: false,
-        desc: 'Multi-label, hierarchical, or compliance-grade systems.',
-        features: ['Complex taxonomy support', 'HIPAA / GDPR readiness', 'Human-in-the-loop workflows', 'Dedicated data scientist', 'SLA agreement'] },
-    ],
   },
 
   // ── 3. Regression & Forecasting ──────────────────────────────────────────
@@ -163,14 +129,8 @@ export const AI_ML_CHILDREN = {
     badge:        'Modeling & Prediction',
     accentColor:  COLORS.accent,
     heroDesc:     'Regression and time-series forecasting that deliver not just a point estimate but a calibrated confidence interval — so your team knows when to act boldly and when to hedge. From linear baselines to deep temporal models, we match complexity to your data.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 92,  suffix: '%', label: 'Interval Coverage',   iconName: 'Activity',   color: COLORS.accent   },
-      { target: 20,  suffix: '+', label: 'Forecasting Projects', iconName: 'TrendingUp', color: COLORS.action   },
-      { target: 40,  suffix: '%', label: 'Avg Error Reduction',  iconName: 'BarChart3',  color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',      iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'TrendingUp', title: 'Time-Series Forecasting',     color: COLORS.accent,    desc: 'ARIMA, SARIMA, Prophet, and N-BEATS models for seasonality, trend decomposition, and multi-step ahead prediction.' },
@@ -190,12 +150,12 @@ export const AI_ML_CHILDREN = {
 
     deliverables: [
       'Trained forecasting model + documentation',
-      'Prediction intervals (80% & 95% coverage)',
+      'Calibrated prediction intervals',
       'Walk-forward validation report',
       'Production REST API',
       'Feature importance analysis',
       'Automated retraining pipeline',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -209,17 +169,6 @@ export const AI_ML_CHILDREN = {
       { label: 'Apache Airflow', color: COLORS.primary },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $3,500', featured: false,
-        desc: 'One forecasting target, benchmarked and documented.',
-        features: ['Single model benchmark', 'Walk-forward validation', 'Notebook delivery', '2–3 week turnaround'] },
-      { name: 'Production Forecast', price: 'From $7,000', featured: true,
-        desc: 'Deployed forecasting API with monitoring and retraining.',
-        features: ['Full pipeline training', 'Prediction interval API', 'Monitoring dashboard', 'Retraining automation', '30-day support'] },
-      { name: 'Enterprise Forecasting', price: 'Custom', featured: false,
-        desc: 'Hierarchical, multi-horizon, high-frequency systems.',
-        features: ['Hierarchical reconciliation', 'Real-time inference', 'HIPAA / GDPR readiness', 'Dedicated data scientist', 'SLA agreement'] },
-    ],
   },
 
   // ── 4. Anomaly Detection ─────────────────────────────────────────────────
@@ -230,14 +179,8 @@ export const AI_ML_CHILDREN = {
     badge:        'Modeling & Prediction',
     accentColor:  COLORS.secondary,
     heroDesc:     'Rule-based alerting flags what you already know to look for. Anomaly detection finds the unexpected — the subtle transaction pattern, the equipment signal, the metric drift that precedes failure by days. We build unsupervised and semi-supervised detectors trained on your normal behaviour.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 99,  suffix: '%', label: 'Detection Rate',      iconName: 'Eye',        color: COLORS.secondary },
-      { target: 60,  suffix: '%', label: 'False Positive Drop', iconName: 'Shield',     color: COLORS.action    },
-      { target: 15,  suffix: '+', label: 'Detectors Deployed',  iconName: 'Activity',   color: COLORS.primary   },
-      { target: 100, suffix: '%', label: 'Code Ownership',      iconName: 'Shield',     color: COLORS.gold      },
-    ],
 
     features: [
       { iconName: 'Activity',   title: 'Time-Series Anomalies',        color: COLORS.secondary, desc: 'Isolation Forest, LSTM Autoencoders, and statistical control charts for metric, IoT, and log data streams.' },
@@ -262,7 +205,7 @@ export const AI_ML_CHILDREN = {
       'Alert integration (Slack, PagerDuty, email)',
       'SHAP contribution explanations',
       'Analyst feedback retraining pipeline',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -276,17 +219,6 @@ export const AI_ML_CHILDREN = {
       { label: 'MLflow',          color: COLORS.action    },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $4,000', featured: false,
-        desc: 'Single data stream, anomaly detector benchmarked.',
-        features: ['One detector type', 'Threshold calibration', 'Notebook delivery', '2–3 week turnaround'] },
-      { name: 'Production Detector', price: 'From $8,500', featured: true,
-        desc: 'Real-time API with alert integration and feedback loop.',
-        features: ['Multi-source detector', 'Real-time scoring API', 'Alert integrations', 'Feedback retraining', '30-day support'] },
-      { name: 'Enterprise Monitoring', price: 'Custom', featured: false,
-        desc: 'Multi-stream, high-frequency, compliance-grade detection.',
-        features: ['Complex sensor fusion', 'Sub-100ms inference', 'HIPAA / GDPR readiness', 'Dedicated engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 5. NLP & Text Analytics ──────────────────────────────────────────────
@@ -297,14 +229,8 @@ export const AI_ML_CHILDREN = {
     badge:        'Language & Vision',
     accentColor:  COLORS.action,
     heroDesc:     'Every support ticket, clinical note, legal document, and customer review contains signal your business isn\'t using. We build NLP pipelines that extract entities, classify intent, summarise documents, and surface insights — at the scale and speed your operations require.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,500'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 96,  suffix: '%', label: 'Entity Accuracy',     iconName: 'Brain',      color: COLORS.action   },
-      { target: 35,  suffix: '+', label: 'NLP Systems Built',   iconName: 'MessageSquare', color: COLORS.primary },
-      { target: 80,  suffix: '%', label: 'Manual Review Cut',   iconName: 'Zap',        color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',      iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Search',       title: 'Named Entity Recognition',    color: COLORS.action,    desc: 'Custom NER models for medical terms, legal clauses, financial entities, and proprietary taxonomies that off-the-shelf models miss.' },
@@ -329,7 +255,7 @@ export const AI_ML_CHILDREN = {
       'Per-entity / per-class evaluation report',
       'Data pipeline scripts',
       'Active learning retraining setup',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -343,17 +269,6 @@ export const AI_ML_CHILDREN = {
       { label: 'MLflow',         color: COLORS.primary   },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $4,500', featured: false,
-        desc: 'One NLP task, benchmarked on your data.',
-        features: ['Single NLP task', 'Annotation sample', 'Notebook delivery', '2–3 week turnaround'] },
-      { name: 'Production NLP', price: 'From $9,000', featured: true,
-        desc: 'Deployed NLP API with active learning pipeline.',
-        features: ['Fine-tuned transformer', 'Production API', 'Active learning setup', 'Evaluation dashboard', '30-day support'] },
-      { name: 'Enterprise NLP', price: 'Custom', featured: false,
-        desc: 'Multi-task, multilingual, high-throughput systems.',
-        features: ['Multi-task pipelines', 'Multilingual support', 'HIPAA / GDPR readiness', 'Dedicated NLP engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 6. Sentiment Analysis ────────────────────────────────────────────────
@@ -364,14 +279,8 @@ export const AI_ML_CHILDREN = {
     badge:        'Language & Vision',
     accentColor:  COLORS.primary,
     heroDesc:     'Beyond positive / negative / neutral. We build aspect-level sentiment systems that tell you customers love your onboarding but hate your billing — and track how that changes week over week across every channel you operate.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $3,500'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 95,  suffix: '%', label: 'Sentiment Accuracy',  iconName: 'Brain',      color: COLORS.primary  },
-      { target: 20,  suffix: '+', label: 'Sentiment Systems',   iconName: 'MessageSquare', color: COLORS.action },
-      { target: 5,   suffix: 'x', label: 'Faster Insights',     iconName: 'Zap',        color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',      iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'MessageSquare', title: 'Aspect-Level Sentiment',      color: COLORS.primary,   desc: 'Granular sentiment tied to specific product features, service attributes, or topics — not just an overall score.' },
@@ -396,7 +305,7 @@ export const AI_ML_CHILDREN = {
       'Live dashboard (Looker Studio or Power BI)',
       'Weekly/monthly trend report template',
       'Retraining pipeline',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -410,17 +319,6 @@ export const AI_ML_CHILDREN = {
       { label: 'MLflow',         color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $3,500', featured: false,
-        desc: 'Document-level sentiment on one data source.',
-        features: ['Single-source analysis', 'Overall sentiment model', 'Notebook + report', '2–3 week turnaround'] },
-      { name: 'Production Sentiment', price: 'From $7,500', featured: true,
-        desc: 'Aspect-level, multi-source, with live dashboard.',
-        features: ['Aspect-level model', 'Real-time API', 'BI dashboard', 'Trend alerts', '30-day support'] },
-      { name: 'Enterprise Suite', price: 'Custom', featured: false,
-        desc: 'Multi-language, competitive intel, and SLA support.',
-        features: ['Multilingual models', 'Competitor benchmarking', 'HIPAA / GDPR readiness', 'Dedicated engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 7. Computer Vision ───────────────────────────────────────────────────
@@ -431,22 +329,16 @@ export const AI_ML_CHILDREN = {
     badge:        'Language & Vision',
     accentColor:  COLORS.accent,
     heroDesc:     'Object detection, image classification, segmentation, and video analytics for industries where seeing is deciding — healthcare diagnostics, manufacturing quality control, retail analytics, and security. We deliver models that run accurately at production inference speeds.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 98,  suffix: '%', label: 'Detection mAP',       iconName: 'Eye',        color: COLORS.accent   },
-      { target: 20,  suffix: '+', label: 'CV Systems Built',    iconName: 'Cpu',        color: COLORS.action   },
-      { target: 50,  suffix: 'x', label: 'Faster Inspection',   iconName: 'Zap',        color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',      iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Eye',        title: 'Object Detection & Tracking',  color: COLORS.accent,    desc: 'YOLOv8, Faster R-CNN, and DETR models for real-time detection across video streams and static images.' },
       { iconName: 'Layers',     title: 'Semantic Segmentation',        color: COLORS.action,    desc: 'Pixel-level understanding for medical imaging, satellite imagery, and precision agriculture applications.' },
       { iconName: 'Activity',   title: 'Quality Control Inspection',   color: COLORS.primary,   desc: 'Defect detection on manufacturing lines — trained on your product images, deployed to edge devices.' },
-      { iconName: 'Brain',      title: 'Medical Image Analysis',       color: COLORS.secondary, desc: 'HIPAA-compliant diagnostic support models for radiology, pathology, and dermatology image classification.' },
+      { iconName: 'Brain',      title: 'Medical Image Analysis',       color: COLORS.secondary, desc: 'Diagnostic support models for radiology, pathology, and dermatology image classification.' },
       { iconName: 'Database',   title: 'Video Analytics',              color: COLORS.gold,      desc: 'Crowd density, queue length, behaviour anomaly, and people counting from CCTV and IP camera feeds.' },
-      { iconName: 'Cpu',        title: 'Edge Deployment',              color: COLORS.cyan,      desc: 'ONNX and TensorRT optimisation so your models run at 30fps+ on Jetson Nano, Raspberry Pi, or custom hardware.' },
+      { iconName: 'Cpu',        title: 'Edge Deployment',              color: COLORS.cyan,      desc: 'ONNX and TensorRT optimisation so your models can run on Jetson Nano, Raspberry Pi, or custom hardware.' },
     ],
 
     process: [
@@ -463,7 +355,7 @@ export const AI_ML_CHILDREN = {
       'mAP, IoU, and per-class evaluation report',
       'Data augmentation pipeline',
       'Inference latency benchmark report',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -477,17 +369,6 @@ export const AI_ML_CHILDREN = {
       { label: 'Label Studio',   color: COLORS.action    },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $5,000', featured: false,
-        desc: 'One CV task, benchmarked on your images.',
-        features: ['Single model task', 'Annotation sample', 'Evaluation report', '3–4 week turnaround'] },
-      { name: 'Production CV', price: 'From $10,000', featured: true,
-        desc: 'Deployed CV system, edge or cloud, with monitoring.',
-        features: ['Full model training', 'API or edge package', 'Monitoring integration', 'Retraining pipeline', '30-day support'] },
-      { name: 'Enterprise Vision', price: 'Custom', featured: false,
-        desc: 'Multi-camera, video analytics, HIPAA-grade systems.',
-        features: ['Video analytics pipeline', 'Sub-50ms inference', 'HIPAA compliance', 'Dedicated CV engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 8. Document Intelligence ─────────────────────────────────────────────
@@ -498,20 +379,14 @@ export const AI_ML_CHILDREN = {
     badge:        'Language & Vision',
     accentColor:  COLORS.secondary,
     heroDesc:     'Contracts, invoices, clinical forms, and reports contain structured data trapped in unstructured formats. We build document AI systems that extract, classify, and route information with human-level accuracy — at machine speed.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 97,  suffix: '%', label: 'Extraction Accuracy', iconName: 'FileText',   color: COLORS.secondary },
-      { target: 15,  suffix: '+', label: 'Doc AI Systems',      iconName: 'Database',   color: COLORS.action    },
-      { target: 90,  suffix: '%', label: 'Processing Time Cut', iconName: 'Zap',        color: COLORS.gold      },
-      { target: 100, suffix: '%', label: 'Code Ownership',      iconName: 'Shield',     color: COLORS.primary   },
-    ],
 
     features: [
       { iconName: 'FileText',  title: 'Intelligent OCR',            color: COLORS.secondary, desc: 'Beyond raw OCR — layout-aware extraction that understands tables, multi-column text, and handwritten annotations.' },
       { iconName: 'Database',  title: 'Invoice & Form Processing',  color: COLORS.action,    desc: 'Automated extraction of line items, totals, dates, and vendor details from invoices and structured forms.' },
-      { iconName: 'Shield',    title: 'Contract Analysis',          color: COLORS.primary,   desc: 'Clause extraction, obligation identification, and risk flagging in legal agreements — GDPR and compliance ready.' },
-      { iconName: 'Brain',     title: 'Clinical Document AI',       color: COLORS.accent,    desc: 'HIPAA-compliant extraction from clinical notes, discharge summaries, and pathology reports for EHR integration.' },
+      { iconName: 'Shield',    title: 'Contract Analysis',          color: COLORS.primary,   desc: 'Clause extraction, obligation identification, and risk flagging in legal agreements.' },
+      { iconName: 'Brain',     title: 'Clinical Document AI',       color: COLORS.accent,    desc: 'Extraction from clinical notes, discharge summaries, and pathology reports for EHR integration.' },
       { iconName: 'Layers',    title: 'Document Classification',    color: COLORS.gold,      desc: 'Automatic routing of incoming documents to the right workflow — by type, priority, department, or action required.' },
       { iconName: 'RefreshCw', title: 'Human-in-the-Loop Review',  color: COLORS.cyan,      desc: 'Review interface for low-confidence extractions, with corrections feeding a continuous retraining pipeline.' },
     ],
@@ -530,7 +405,7 @@ export const AI_ML_CHILDREN = {
       'Per-field accuracy report',
       'Workflow integration guide',
       'Retraining pipeline',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -544,17 +419,6 @@ export const AI_ML_CHILDREN = {
       { label: 'MLflow',       color: COLORS.action    },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $5,000', featured: false,
-        desc: 'One document type, extraction benchmarked.',
-        features: ['Single doc type', 'Field extraction model', 'Accuracy report', '3–4 week turnaround'] },
-      { name: 'Production Doc AI', price: 'From $10,000', featured: true,
-        desc: 'Multi-template extraction API with human review.',
-        features: ['Multi-template support', 'Production API', 'Review interface', 'Retraining pipeline', '30-day support'] },
-      { name: 'Enterprise Doc AI', price: 'Custom', featured: false,
-        desc: 'High-volume, compliance-grade document processing.',
-        features: ['Unlimited templates', 'High-throughput batch', 'HIPAA / GDPR readiness', 'Dedicated engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 9. LLM Fine-tuning ───────────────────────────────────────────────────
@@ -565,21 +429,15 @@ export const AI_ML_CHILDREN = {
     badge:        'Generative AI & LLMs',
     accentColor:  COLORS.gold,
     heroDesc:     'General-purpose LLMs hallucinate on your domain, use the wrong tone, and don\'t know your products. Fine-tuned models do. We align foundation models to your data, vocabulary, and task — delivering consistent, reliable outputs that off-the-shelf models can\'t match.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 40,  suffix: '%', label: 'Hallucination Reduction', iconName: 'Brain',   color: COLORS.gold     },
-      { target: 15,  suffix: '+', label: 'LLMs Fine-tuned',         iconName: 'Cpu',     color: COLORS.action   },
-      { target: 3,   suffix: 'x', label: 'Task Accuracy Gain',      iconName: 'TrendUp', color: COLORS.primary  },
-      { target: 100, suffix: '%', label: 'Code Ownership',          iconName: 'Shield',  color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Brain',     title: 'Domain Adaptation',           color: COLORS.gold,      desc: 'LoRA and QLoRA fine-tuning on Llama, Mistral, and Phi — adapted to your industry vocabulary and documentation.' },
       { iconName: 'Settings2', title: 'Instruction Fine-tuning',     color: COLORS.action,    desc: 'Supervised fine-tuning on curated instruction datasets that teach the model exactly how you want it to respond.' },
       { iconName: 'Activity',  title: 'RLHF & Preference Learning',  color: COLORS.primary,   desc: 'Reinforcement Learning from Human Feedback to align model outputs with your team\'s quality preferences.' },
       { iconName: 'Shield',    title: 'Safety & Guardrail Training', color: COLORS.accent,    desc: 'Refusal training and constitutional AI techniques to prevent harmful, off-topic, or brand-inconsistent outputs.' },
-      { iconName: 'Zap',       title: 'Quantisation & Optimisation', color: COLORS.secondary, desc: '4-bit and 8-bit quantisation for cost-efficient inference without meaningful accuracy loss.' },
+      { iconName: 'Zap',       title: 'Quantisation & Optimisation', color: COLORS.secondary, desc: '4-bit and 8-bit quantisation for cost-efficient inference, with accuracy checked against your baseline.' },
       { iconName: 'Database',  title: 'Dataset Curation',            color: COLORS.cyan,      desc: 'We structure your raw documents, conversations, and knowledge into high-quality fine-tuning datasets.' },
     ],
 
@@ -597,7 +455,7 @@ export const AI_ML_CHILDREN = {
       'Inference API (vLLM / TGI)',
       'Quantised model for cost-efficient serving',
       'Prompt engineering guide',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -611,17 +469,6 @@ export const AI_ML_CHILDREN = {
       { label: 'FastAPI',          color: COLORS.action    },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $6,000', featured: false,
-        desc: 'LoRA fine-tune, one task, benchmarked.',
-        features: ['LoRA fine-tuning', 'Dataset curation', 'Eval vs baseline', '3–4 week turnaround'] },
-      { name: 'Production LLM', price: 'From $12,000', featured: true,
-        desc: 'Fine-tuned model with serving API and guardrails.',
-        features: ['Full fine-tuning pipeline', 'vLLM serving API', 'Safety training', 'Quantised model', '30-day support'] },
-      { name: 'Enterprise LLM', price: 'Custom', featured: false,
-        desc: 'RLHF, multi-task, compliance-grade deployment.',
-        features: ['RLHF pipeline', 'Multi-task training', 'HIPAA / GDPR readiness', 'Dedicated LLM engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 10. RAG Architectures ────────────────────────────────────────────────
@@ -632,14 +479,8 @@ export const AI_ML_CHILDREN = {
     badge:        'Generative AI & LLMs',
     accentColor:  COLORS.cyan,
     heroDesc:     'Retrieval-Augmented Generation connects the generative power of LLMs to your proprietary knowledge base — policies, documents, product data, clinical records. Answers grounded in your content, with citations, no hallucination on your domain, and full access control.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,500'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 90,  suffix: '%', label: 'Hallucination Drop',   iconName: 'Shield',    color: COLORS.cyan     },
-      { target: 20,  suffix: '+', label: 'RAG Systems Built',    iconName: 'Database',  color: COLORS.action   },
-      { target: 5,   suffix: 'x', label: 'Faster Knowledge QA',  iconName: 'Zap',       color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',       iconName: 'Shield',    color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Database',  title: 'Vector Store Design',         color: COLORS.cyan,      desc: 'Pinecone, Weaviate, Chroma, or pgvector — chosen and configured for your document volume and query latency requirements.' },
@@ -664,7 +505,7 @@ export const AI_ML_CHILDREN = {
       'Production API with citation output',
       'Access control integration',
       'Continuous indexing pipeline',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -678,17 +519,6 @@ export const AI_ML_CHILDREN = {
       { label: 'Ragas',         color: COLORS.action    },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $5,500', featured: false,
-        desc: 'Single corpus RAG, evaluated and documented.',
-        features: ['One knowledge source', 'Vector store setup', 'Ragas evaluation', '3–4 week turnaround'] },
-      { name: 'Production RAG', price: 'From $11,000', featured: true,
-        desc: 'Multi-source RAG with access control and monitoring.',
-        features: ['Multi-source indexing', 'Hybrid search', 'Access control', 'Citation API', '30-day support'] },
-      { name: 'Enterprise RAG', price: 'Custom', featured: false,
-        desc: 'High-volume, compliance-grade knowledge systems.',
-        features: ['Unlimited sources', 'Sub-2s latency SLA', 'HIPAA / GDPR readiness', 'Dedicated engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 11. AI Agents & Copilots ─────────────────────────────────────────────
@@ -699,14 +529,8 @@ export const AI_ML_CHILDREN = {
     badge:        'Generative AI & LLMs',
     accentColor:  COLORS.primary,
     heroDesc:     'Copilots that assist. Agents that execute. We build LLM-powered systems that use tools, browse systems, write code, and complete multi-step workflows — freeing your team from repetitive cognitive work at a scale no hiring plan can match.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $7,000'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 70,  suffix: '%', label: 'Manual Task Reduction', iconName: 'Zap',      color: COLORS.primary  },
-      { target: 12,  suffix: '+', label: 'Agents Deployed',       iconName: 'Brain',    color: COLORS.action   },
-      { target: 24,  suffix: '/7', label: 'Always On',            iconName: 'Activity', color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',        iconName: 'Shield',   color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Brain',    title: 'ReAct & Tool-Use Agents',     color: COLORS.primary,   desc: 'Agents that reason step-by-step and invoke APIs, databases, and code interpreters to complete complex tasks autonomously.' },
@@ -731,7 +555,7 @@ export const AI_ML_CHILDREN = {
       'Audit logging + oversight dashboard',
       'Guardrail configuration',
       'Human escalation workflow',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -745,17 +569,6 @@ export const AI_ML_CHILDREN = {
       { label: 'PostgreSQL',    color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $7,000', featured: false,
-        desc: 'Single-task agent, evaluated on defined workflow.',
-        features: ['One agent type', 'Tool integrations', 'Evaluation report', '3–4 week turnaround'] },
-      { name: 'Production Agent', price: 'From $14,000', featured: true,
-        desc: 'Multi-tool agent with guardrails and monitoring.',
-        features: ['Full tool integration', 'Oversight dashboard', 'Audit logging', 'Escalation workflows', '30-day support'] },
-      { name: 'Enterprise Agents', price: 'Custom', featured: false,
-        desc: 'Multi-agent systems with compliance and SLA support.',
-        features: ['Multi-agent orchestration', 'Long-horizon planning', 'HIPAA / GDPR readiness', 'Dedicated engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 12. Generative AI Apps ───────────────────────────────────────────────
@@ -766,14 +579,8 @@ export const AI_ML_CHILDREN = {
     badge:        'Generative AI & LLMs',
     accentColor:  COLORS.action,
     heroDesc:     'We build complete generative AI applications — not prompts wrapped in a UI, but production-grade products with proper evaluation, safety, scalability, and the business logic that makes AI genuinely useful. From internal tools to customer-facing products.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $8,000'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 15,  suffix: '+', label: 'GenAI Apps Built',    iconName: 'Sparkles',   color: COLORS.action   },
-      { target: 60,  suffix: '%', label: 'Content Cost Cut',    iconName: 'TrendingUp', color: COLORS.primary  },
-      { target: 10,  suffix: 'x', label: 'Output Speed',        iconName: 'Zap',        color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',      iconName: 'Shield',     color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Sparkles', title: 'Content Generation Engines',  color: COLORS.action,    desc: 'Brand-consistent copy, reports, and personalised content generated at scale — with tone controls and quality guardrails.' },
@@ -798,7 +605,7 @@ export const AI_ML_CHILDREN = {
       'Prompt engineering documentation',
       'Cost optimisation configuration',
       'Usage analytics dashboard',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -812,17 +619,6 @@ export const AI_ML_CHILDREN = {
       { label: 'PostgreSQL',    color: COLORS.primary  },
     ],
 
-    tiers: [
-      { name: 'Proof of Concept', price: 'From $8,000', featured: false,
-        desc: 'Single GenAI workflow, built and evaluated.',
-        features: ['One GenAI use case', 'Safety evaluation', 'Delivery as API or UI', '3–4 week turnaround'] },
-      { name: 'Production App', price: 'From $15,000', featured: true,
-        desc: 'Full GenAI application with safety, logging, and monitoring.',
-        features: ['Complete app build', 'Safety guardrails', 'Usage analytics', 'Cost optimisation', '30-day support'] },
-      { name: 'Enterprise GenAI', price: 'Custom', featured: false,
-        desc: 'Multi-model, high-scale, compliance-grade applications.',
-        features: ['Multi-model routing', 'High-volume serving', 'HIPAA / GDPR readiness', 'Dedicated engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 13. MLOps & Deployment ───────────────────────────────────────────────
@@ -833,14 +629,8 @@ export const AI_ML_CHILDREN = {
     badge:        'MLOps & Lifecycle',
     accentColor:  COLORS.secondary,
     heroDesc:     'A model in a Jupyter Notebook isn\'t a product. We build the MLOps infrastructure that turns trained models into reliable, scalable production services — with CI/CD, monitoring, retraining, and the operational discipline your business requires.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $5,000'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 99,  suffix: '%', label: 'Uptime SLA',            iconName: 'Activity',  color: COLORS.secondary },
-      { target: 10,  suffix: 'x', label: 'Deployment Speed',      iconName: 'Zap',       color: COLORS.action    },
-      { target: 80,  suffix: '%', label: 'Ops Cost Reduction',    iconName: 'BarChart3', color: COLORS.gold      },
-      { target: 100, suffix: '%', label: 'Code Ownership',        iconName: 'Shield',    color: COLORS.primary   },
-    ],
 
     features: [
       { iconName: 'Settings2',  title: 'CI/CD for ML Pipelines',    color: COLORS.secondary, desc: 'GitHub Actions, GitLab CI, or Jenkins pipelines that automatically test, validate, and deploy new model versions.' },
@@ -865,7 +655,7 @@ export const AI_ML_CHILDREN = {
       'Retraining pipeline with drift detection',
       'Model registry setup (MLflow / W&B)',
       'Architecture documentation + runbooks',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -879,17 +669,6 @@ export const AI_ML_CHILDREN = {
       { label: 'GitHub Actions',  color: COLORS.action    },
     ],
 
-    tiers: [
-      { name: 'MLOps Starter', price: 'From $5,000', featured: false,
-        desc: 'One model containerised and deployed with basic monitoring.',
-        features: ['Docker deployment', 'Basic monitoring', 'Model registry', '2–3 week turnaround'] },
-      { name: 'Production MLOps', price: 'From $10,000', featured: true,
-        desc: 'Full MLOps stack with CI/CD, retraining, and monitoring.',
-        features: ['CI/CD pipeline', 'Auto-retraining', 'Full monitoring', 'Drift detection', '30-day support'] },
-      { name: 'Enterprise MLOps', price: 'Custom', featured: false,
-        desc: 'Multi-model platform with SLA-backed operations.',
-        features: ['Multi-model serving', 'High-availability K8s', 'HIPAA / GDPR readiness', 'Dedicated MLOps engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 14. Model Monitoring ─────────────────────────────────────────────────
@@ -900,14 +679,8 @@ export const AI_ML_CHILDREN = {
     badge:        'MLOps & Lifecycle',
     accentColor:  COLORS.gold,
     heroDesc:     'Production ML models degrade silently. Data distributions shift. Features change. Labels drift. We build monitoring systems that watch your models continuously and alert your team the moment performance starts to slip.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,000'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 95,  suffix: '%', label: 'Drift Caught Early',   iconName: 'Eye',       color: COLORS.gold     },
-      { target: 24,  suffix: '/7', label: 'Continuous Watching', iconName: 'Activity',  color: COLORS.action   },
-      { target: 60,  suffix: '%', label: 'MTTR Reduction',       iconName: 'RefreshCw', color: COLORS.primary  },
-      { target: 100, suffix: '%', label: 'Code Ownership',       iconName: 'Shield',    color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Activity',   title: 'Data Drift Detection',       color: COLORS.gold,      desc: 'PSI, KS-test, and Wasserstein distance metrics tracking input feature distributions against your training baseline.' },
@@ -932,7 +705,7 @@ export const AI_ML_CHILDREN = {
       'Retraining trigger pipeline',
       'Baseline statistical profiles',
       'Runbook for alert triage',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -946,17 +719,6 @@ export const AI_ML_CHILDREN = {
       { label: 'FastAPI',         color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Monitoring Starter', price: 'From $4,000', featured: false,
-        desc: 'One model monitored with dashboard and basic alerts.',
-        features: ['Single model monitoring', 'Drift detection', 'Basic alerting', '2–3 week turnaround'] },
-      { name: 'Production Monitoring', price: 'From $8,000', featured: true,
-        desc: 'Multi-model monitoring with retraining triggers.',
-        features: ['Multi-model support', 'Full drift suite', 'Alert integrations', 'Retraining triggers', '30-day support'] },
-      { name: 'Enterprise Monitoring', price: 'Custom', featured: false,
-        desc: 'Platform-wide model observability with SLA support.',
-        features: ['Unlimited models', 'Real-time streaming', 'HIPAA / GDPR readiness', 'Dedicated engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 15. A/B Testing Frameworks ───────────────────────────────────────────
@@ -967,14 +729,8 @@ export const AI_ML_CHILDREN = {
     badge:        'MLOps & Lifecycle',
     accentColor:  COLORS.primary,
     heroDesc:     'Most ML teams ship models and hope for the best. We build A/B testing infrastructure that compares model versions, feature variants, and business logic changes with statistical rigour — so every deployment decision is backed by evidence, not opinion.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $4,500'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 100, suffix: '%', label: 'Decision Confidence',  iconName: 'BarChart3', color: COLORS.primary  },
-      { target: 15,  suffix: '+', label: 'A/B Platforms Built',  iconName: 'GitBranch', color: COLORS.action   },
-      { target: 30,  suffix: '%', label: 'Avg Metric Lift',      iconName: 'TrendingUp',color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',       iconName: 'Shield',    color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'GitBranch',  title: 'Traffic Splitting',           color: COLORS.primary,   desc: 'Percentage-based, user-segment, and canary rollout strategies with deterministic assignment and full reproducibility.' },
@@ -989,7 +745,7 @@ export const AI_ML_CHILDREN = {
       { step: '01', title: 'Metric & Hypothesis Design',  desc: 'We define the primary and guardrail metrics, sample size requirements, and success criteria before anything goes live.' },
       { step: '02', title: 'Assignment Infrastructure',   desc: 'Consistent user assignment with hash-based bucketing, holdout groups, and full logging for post-hoc analysis.' },
       { step: '03', title: 'Analysis & Significance',    desc: 'Frequentist and Bayesian analysis options with multiple comparison corrections and confidence interval reporting.' },
-      { step: '04', title: 'Rollout Automation',          desc: 'Winner auto-promotion pipelines so validated improvements deploy to 100% of traffic without manual intervention.' },
+      { step: '04', title: 'Rollout Automation',          desc: 'Winner auto-promotion pipelines so validated improvements deploy to all traffic without manual intervention.' },
     ],
 
     deliverables: [
@@ -999,7 +755,7 @@ export const AI_ML_CHILDREN = {
       'Real-time metrics dashboard',
       'Guardrail alert configuration',
       'Winner rollout automation',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -1013,17 +769,6 @@ export const AI_ML_CHILDREN = {
       { label: 'Airflow',      color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'A/B Starter', price: 'From $4,500', featured: false,
-        desc: 'Two-variant testing for one model or feature.',
-        features: ['Binary A/B setup', 'Statistical analysis', 'Dashboard', '2–3 week turnaround'] },
-      { name: 'Production A/B Platform', price: 'From $9,000', featured: true,
-        desc: 'Full experimentation platform with registry and automation.',
-        features: ['Multi-variant support', 'Experiment registry', 'Guardrail alerts', 'Winner automation', '30-day support'] },
-      { name: 'Enterprise Experimentation', price: 'Custom', featured: false,
-        desc: 'Organisation-wide experimentation with governance.',
-        features: ['Unlimited experiments', 'Multi-armed bandit', 'HIPAA / GDPR readiness', 'Dedicated engineer', 'SLA agreement'] },
-    ],
   },
 
   // ── 16. Feature Stores ───────────────────────────────────────────────────
@@ -1034,18 +779,12 @@ export const AI_ML_CHILDREN = {
     badge:        'MLOps & Lifecycle',
     accentColor:  COLORS.accent,
     heroDesc:     'Without a feature store, every data scientist recomputes the same features differently. Models trained in notebooks diverge from models in production. We build centralised feature stores that ensure consistency, reduce duplication, and accelerate every future model you build.',
-    tags:         ['Fixed-Fee Projects', 'Full Code Ownership', 'From $6,000'],
+    tags:         ['Full Code Ownership'],
 
-    stats: [
-      { target: 70,  suffix: '%', label: 'Feature Reuse Rate',   iconName: 'RefreshCw', color: COLORS.accent   },
-      { target: 10,  suffix: '+', label: 'Feature Stores Built', iconName: 'Database',  color: COLORS.action   },
-      { target: 3,   suffix: 'x', label: 'Faster Experiments',   iconName: 'Zap',       color: COLORS.gold     },
-      { target: 100, suffix: '%', label: 'Code Ownership',       iconName: 'Shield',    color: COLORS.secondary },
-    ],
 
     features: [
       { iconName: 'Database',   title: 'Offline Feature Store',       color: COLORS.accent,    desc: 'Historical feature retrieval for model training — point-in-time correct to prevent data leakage.' },
-      { iconName: 'Zap',        title: 'Online Feature Serving',      color: COLORS.action,    desc: 'Low-latency feature retrieval for real-time inference — Redis or DynamoDB backed, sub-10ms P99.' },
+      { iconName: 'Zap',        title: 'Online Feature Serving',      color: COLORS.action,    desc: 'Low-latency feature retrieval for real-time inference — Redis or DynamoDB backed.' },
       { iconName: 'Layers',     title: 'Feature Registry & Discovery',color: COLORS.primary,   desc: 'Centralised catalogue so data scientists can find, understand, and reuse features rather than rebuilding them.' },
       { iconName: 'Shield',     title: 'Point-in-Time Correctness',   color: COLORS.secondary, desc: 'Training-serving skew eliminated — every training sample uses only features available at the time of that event.' },
       { iconName: 'Activity',   title: 'Feature Monitoring',          color: COLORS.gold,      desc: 'Automated freshness checks, null rate monitoring, and distribution drift alerts for every served feature.' },
@@ -1066,7 +805,7 @@ export const AI_ML_CHILDREN = {
       'Ingestion pipelines (batch + streaming)',
       'Point-in-time retrieval validation',
       'Feature monitoring configuration',
-      '30-day post-deployment support',
+      'Post-deployment support',
     ],
 
     techStack: [
@@ -1080,16 +819,5 @@ export const AI_ML_CHILDREN = {
       { label: 'Airflow',       color: COLORS.action   },
     ],
 
-    tiers: [
-      { name: 'Feature Store Starter', price: 'From $6,000', featured: false,
-        desc: 'Offline store with registry for one model team.',
-        features: ['Offline store setup', 'Basic registry', 'Batch ingestion', '3–4 week turnaround'] },
-      { name: 'Production Feature Store', price: 'From $12,000', featured: true,
-        desc: 'Full offline + online store with monitoring.',
-        features: ['Offline + online store', 'Streaming ingestion', 'Feature monitoring', 'Full registry', '30-day support'] },
-      { name: 'Enterprise Feature Platform', price: 'Custom', featured: false,
-        desc: 'Organisation-wide feature platform with SLA support.',
-        features: ['Multi-team governance', 'Sub-10ms serving SLA', 'HIPAA / GDPR readiness', 'Dedicated engineer', 'SLA agreement'] },
-    ],
   },
 };

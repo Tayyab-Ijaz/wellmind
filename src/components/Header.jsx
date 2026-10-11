@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Zap } from 'lucide-react';
 
 // ── Theme & animation variants ────────────────────────────────────────────────
-import { B, DT, dropdownVariants, drawerVariants } from './theme_dropdown';
+import { B, DT, drawerVariants } from './theme_dropdown';
 
 // ── Mega-menu panels ──────────────────────────────────────────────────────────
 import ServicesMegaMenu    from './sub_services';
@@ -60,11 +60,7 @@ const MOBILE_SECTIONS = [
     key:   'res',
     label: 'Resources',
     items: [
-      { to: '/resources#bioinformatics', label: 'Bioinformatics' },
-      { to: '/resources#healthcare-ai',  label: 'Healthcare AI' },
-      { to: '/resources#fintech-ai',     label: 'Fintech AI' },
-      { to: '/resources#mlops',          label: 'MLOps' },
-      { to: '/resources#data-science',   label: 'Data Science' },
+      { to: '/resources', label: 'All Resources' },
     ],
   },
 ];
@@ -200,8 +196,12 @@ export default function Header() {
   const handleDropdownMouseLeave = ()   => { hoverTimerRef.current = setTimeout(() => setActiveMenu(null), 80); };
 
   // ── Route change reset ─────────────────────────────────────────────────────
-  useEffect(() => {
+  const [prevPath, setPrevPath] = useState(location.pathname);
+  if (prevPath !== location.pathname) {
+    setPrevPath(location.pathname);
     setMobileOpen(false); setActiveMenu(null); setMobileExpanded('');
+  }
+  useEffect(() => {
     clearTimeout(hoverTimerRef.current);
   }, [location.pathname]);
 
@@ -334,7 +334,7 @@ export default function Header() {
 
             <li style={{ flexShrink: 0 }}>
               <Link to="/ai-cost-calculator" className="wm-nav-link">
-                AI ROI Calculator<span className="wm-underline" />
+                AI Cost Calculator<span className="wm-underline" />
               </Link>
             </li>
 
@@ -559,7 +559,7 @@ export default function Header() {
                   borderBottom:   `1px solid ${B.primaryBorder}`,
                 }}
               >
-                AI ROI Calculator
+                AI Cost Calculator
               </Link>
 
               <Link
@@ -596,7 +596,7 @@ export default function Header() {
 
       {/* ═══════════════════════ GLOBAL STYLES ══════════════════════════════ */}
       <style>{`
-
+        
 
         .wm-logo-img { transition: filter 0.25s ease, opacity 0.25s ease; }
         .wm-logo-img { filter: brightness(0) invert(1); }

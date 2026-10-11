@@ -6,7 +6,7 @@
  * - Final CTA in Dark Theme
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -134,7 +134,7 @@ function ContactForm() {
           Your email app should have opened!
         </h3>
         <p style={{ fontSize: 'clamp(13px, 1.6vw, 16px)', color: B.textMid, lineHeight: 1.7, marginBottom: 28 }}>
-          Just hit send from there. If nothing opened, email us directly at <strong>contact@wellminddatasolutions.com</strong> or <strong>info@wellminddatasolutions.com</strong> — we'll get back to you within 24 hours on business days.
+          Just hit send from there. If nothing opened, email us directly at <strong>contact@wellminddatasolutions.com</strong> or <strong>info@wellminddatasolutions.com</strong> — we'll get back to you promptly on business days.
         </p>
         <Link to="/book-discovery" style={{
           display: 'inline-flex', alignItems: 'center', gap: 7,
@@ -253,7 +253,7 @@ function InstantBooking() {
           <Clock size={20} color={B.action}/>
         </div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: B.textMain }}>Book a Free 30-Min Call</div>
+          <div style={{ fontWeight: 700, fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: B.textMain }}>Book a Free Call</div>
           <div style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textMuted, marginTop: 2 }}>Pick a slot below — you'll get an instant confirmation.</div>
         </div>
       </div>
@@ -264,8 +264,8 @@ function InstantBooking() {
         border: `1.5px solid ${B.actionBorder}`, background: '#fff',
       }}>
         <iframe
-          title="Book a free 30-minute call with WellMind Data Solutions"
-          src={`${CALENDLY_URL}?hide_gdpr_banner=1`}
+          title="Book a free call with WellMind Data Solutions"
+          src={`${CALENDLY_URL}`}
           loading="lazy"
           style={{ display: 'block', width: '100%', height: 'clamp(620px, 80vh, 720px)', border: 0 }}
         />
@@ -275,7 +275,7 @@ function InstantBooking() {
         <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" style={{ color: B.action, fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
           <Calendar size={14}/> Open scheduler in a new tab
         </a>
-        <a href="https://wa.me/923236787087?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20discovery%20call." target="_blank" rel="noopener noreferrer" style={{ color: B.action, fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <a href="https://wa.me/923236787087?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20discovery%20call." target="_blank" rel="noopener noreferrer" style={{ color: B.action, fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
           <FaWhatsapp size={14}/> Prefer WhatsApp?
         </a>
       </div>
@@ -338,8 +338,8 @@ function DirectItem({ icon, label, value, href, badge }) {
 // ─── Response Promise Strip ───────────────────────────────────────────────────
 function ResponsePromise() {
   const items = [
-    { icon: <Clock size={16}/>, text: '24-hour response on business days' },
-    { icon: <CheckCircle size={16}/>, text: 'Proposal within 48 hours of discovery call' },
+    { icon: <Clock size={16}/>, text: 'Prompt response on business days' },
+    { icon: <CheckCircle size={16}/>, text: 'Clear written proposal after the discovery call' },
     { icon: <Mail size={16}/>, text: 'Check spam if you haven\'t heard from us' },
   ];
   return (
@@ -349,7 +349,7 @@ function ResponsePromise() {
       border: `1.5px solid ${B.primaryBorder}`, boxShadow: B.cardShadow,
     }}>
       <div style={{ fontWeight: 800, fontSize: 'clamp(10px, 1.3vw, 13px)', letterSpacing: '0.18em', textTransform: 'uppercase', color: B.action, marginBottom: 18 }}>
-        ⏱ Response Time Promise
+        ⏱ What to Expect
       </div>
       {items.map((item, i) => (
         <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: i < items.length - 1 ? 14 : 0 }}>
@@ -360,14 +360,6 @@ function ResponsePromise() {
     </div>
   );
 }
-
-// ─── Trust Badges ─────────────────────────────────────────────────────────────
-const TRUST_ITEMS = [
-  { icon: <Shield size={15}/>,    label: 'No Hidden Fees',          accent: B.action    },
-  { icon: <Users size={15}/>,     label: '20 Real Projects Delivered', accent: '#8e8e8e'   },
-  { icon: <Star size={15}/>,      label: '6 Industries Served',    accent: B.accent    },
-  { icon: <TrendingUp size={15}/>,label: 'Fixed-Fee Guarantee',     accent: B.secondary },
-];
 
 // ─── Direct contact data ──────────────────────────────────────────────────────
 const DIRECT_CONTACTS = [
@@ -437,7 +429,7 @@ export default function BookDiscovery() {
                 letterSpacing: '0.02em', lineHeight: 1.6,
               }}
             >
-              30 minutes. No pressure. No obligations.<br className="hero-br" />
+              No pressure. No obligations.<br className="hero-br" />
               We'll assess your challenge, share honest feedback, and outline a clear path forward — for free.
             </motion.p>
 
@@ -465,18 +457,6 @@ export default function BookDiscovery() {
         </div>
       </section>
 
-      {/* ═══ 2. TRUST STRIP (dark) ═══ */}
-      <section style={{ padding: 'clamp(28px, 4vw, 44px) 0', position: 'relative', zIndex: 1, background: `linear-gradient(135deg, #0a0a0a 0%, #080808 100%)`, overflow: 'hidden' }}>
-        <DataParticles count={10} dark />
-        <div style={{ ...PX, position: 'relative', zIndex: 2, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(16px, 3vw, 40px)' }}>
-          {TRUST_ITEMS.map((item, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ color: item.accent }}>{item.icon}</span>
-              <span style={{ fontSize: 'clamp(12px, 1.4vw, 14px)', fontWeight: 700, color: B.textDarkMid, letterSpacing: '0.03em' }}>{item.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ═══ 3. BOOK SECTION — Instant Booking + Direct Contact ═══ */}
       <section id="book-section" style={{ padding: 'var(--sp-section) 0', position: 'relative', background: B.bgLight, zIndex: 1, overflow: 'hidden' }}>
