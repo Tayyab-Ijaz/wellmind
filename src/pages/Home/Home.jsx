@@ -331,10 +331,6 @@ export default function Home() {
       {/* ══ 0. INTRO VIDEO → FRAMED TUNNEL + HERO TEXT (scroll-driven) ══ */}
       <ScrollFrameIntro>
         <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.10 } } }} style={{ minWidth: 0, maxWidth: 760, margin: '0 auto', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <motion.div variants={fadeUp} custom={0.02} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 14px', borderRadius: 99, background: 'rgba(255,255,255,0.06)', color: '#cfcfcf', fontFamily: FONT_ACCENT, fontSize: 'clamp(10px, 1vw, 13px)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', border: '1px solid rgba(255,255,255,0.16)', marginBottom: 'clamp(12px, 1.6vw, 22px)' }}>
-            <Sparkles size={14} /> AI + DATA + IMPACT
-          </motion.div>
-
           <motion.h1 variants={fadeUp} custom={0.05} style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 'clamp(1.5rem, 3.3vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0 }}>
             <span style={{ color: '#FFFFFF' }}>We Turn Complex Data </span><br />
             <span style={{ background: 'linear-gradient(90deg, #ababab 0%, #a7a7a7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Into Intelligent Decisions</span>
@@ -355,13 +351,6 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          <motion.div variants={fadeUp} custom={0.28} className="wm-hero-trust">
-            <div className="wm-hero-trust-label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 12 }}>
-              <span style={{ height: 1, width: 42, background: 'rgba(255,255,255,0.28)' }} />
-              <span style={{ color: '#a7a7a7', fontSize: 12, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Recognized For</span>
-              <span style={{ height: 1, width: 42, background: 'rgba(255,255,255,0.28)' }} />
-            </div>
-          </motion.div>
         </motion.div>
       </ScrollFrameIntro>
 

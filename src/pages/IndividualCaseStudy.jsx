@@ -734,7 +734,6 @@ export default function IndividualCaseStudy() {
     );
   }
 
-  const tag = INDUSTRY_COLORS[cs.industry] || {};
 
   return (
     <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', fontFamily: 'var(--font-main)' }}>
@@ -785,24 +784,6 @@ export default function IndividualCaseStudy() {
 
             {/* LEFT: full narrative */}
             <div style={{ minWidth: 0 }}>
-              {/* Industry + meta row */}
-              <motion.div
-                initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.06 }}
-                style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 10, marginBottom: 'clamp(18px, 2.8vw, 30px)' }}
-              >
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 7,
-                  padding: '5px clamp(12px, 1.8vw, 18px)', borderRadius: 99,
-                  background: tag.bg || B.primaryLight,
-                  border: `1px solid ${tag.border || B.primaryBorder}`,
-                  fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 700,
-                  letterSpacing: '0.12em', textTransform: 'uppercase',
-                  color: tag.text || B.primary,
-                }}>
-                  {tag.icon} {cs.industry}
-                </div>
-              </motion.div>
 
               {/* H1 */}
               <motion.h1

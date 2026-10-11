@@ -814,14 +814,6 @@ export default function CaseStudies() {
               </a>
             </motion.div>
 
-            <motion.div
-              variants={fadeUp} custom={0.20}
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, paddingTop: 10 }}
-            >
-              <div style={{ padding: '4px 16px', borderRadius: 99, background: 'rgba(55,55,55,0.08)', color: B.secondary, fontSize: 'clamp(10px, 1.8vw, 16px)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em', border: '1px solid rgba(55,55,55,0.2)' }}>
-                Highlights
-              </div>
-            </motion.div>
           </motion.div>
 
           </div>

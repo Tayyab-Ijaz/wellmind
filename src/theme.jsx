@@ -190,23 +190,12 @@ export function DataParticles({ count = 24, dark = false }) {
 }
 
 /**
- * SectionBadge — pill label above section headings
- * @param {boolean} dark   dark-background variant
- * @param {object} style   additional inline style overrides
+ * SectionBadge — eyebrow pill label above section headings.
+ * Intentionally renders nothing: the site no longer shows these tags.
+ * Call sites are left in place so the component can be restored if needed.
  */
-export function SectionBadge({ children, dark = false, style = {} }) {
-  // dark look lives in theme.css (.section-badge--dark); light look stays inline
-  const light = dark ? {} : {
-    background: B.primaryLight,
-    border: `1px solid ${B.primaryBorder}`,
-    color: style.color || B.primary,
-  };
-  return (
-    <div className={`section-badge${dark ? ' section-badge--dark' : ''}`} style={{ ...light, ...style }}>
-      <span className="badge-dot" />
-      {children}
-    </div>
-  );
+export function SectionBadge() {
+  return null;
 }
 
 /**

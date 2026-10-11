@@ -440,34 +440,6 @@ export default function ServicesDataAnalytics() {
               </motion.div>
             </div>
 
-            {/* BOTTOM ROW: Tags (Centered) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }} 
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              style={{ 
-                display: 'flex', 
-                flexWrap: 'wrap', 
-                gap: 'clamp(12px, 2vw, 20px)', 
-                justifyContent: 'center',
-                width: '100%',
-                paddingTop: 'clamp(10px, 2vw, 20px)',
-                borderTop: `1px solid ${B.primaryBorder}40`
-              }}
-            >
-              {['Self-Service Dashboards'].map((t, i) => (
-                <div key={i} style={{
-                  display: 'flex', alignItems: 'center', gap: 8,
-                  padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
-                  background: 'rgba(255,255,255,0.6)', border: `1px solid ${B.primaryBorder}`,
-                  fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
-                  boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
-                  animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
-                }}>
-                  <CheckCircle size={14} color={B.action}/> {t}
-                </div>
-              ))}
-            </motion.div>
 
           </div>
         </div>
