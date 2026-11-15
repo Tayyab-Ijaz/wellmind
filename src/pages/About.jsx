@@ -144,7 +144,7 @@ function TeamMember({ member, i }) {
 export default function About() {
   
   const values = [
-    { title: 'Bioinformatics First', desc: 'Our DNA is technical rigor. We don\'t just clean data; we understand the biology, the chemistry, and the clinical implications behind every dataset.', icon:<Dna size={24}/>, color:B.action },
+    { title: 'Science First', desc: 'Our DNA is technical rigor. We don\'t just clean data; we understand the biology, the chemistry, and the clinical implications behind every dataset.', icon:<Dna size={24}/>, color:B.action },
     { title: 'Global Standards', desc: 'Our workflows are modeled after top-tier research institutions. We bring publication-quality reproducibility to enterprise problems.', icon:<Globe size={24}/>, color:B.primary },
     { title: 'Full-Stack Ownership', desc: 'From wet-lab strategy to production-grade MLOps deployment. We don\'t hand off a CSV and walk away; we see it through to value.', icon:<Package size={24}/>, color:B.secondary },
     { title: 'Clear Scoping', desc: 'We agree scope and deliverables in writing before work begins, so you always know exactly what you are getting.', icon:<Target size={24}/>, color:B.accent },
@@ -197,7 +197,7 @@ export default function About() {
               </motion.h1>
 
               <motion.p variants={fadeUp} custom={0.2} className="hero-sub" style={{ color:B.textMid, maxWidth:600, margin:'0 0 clamp(24px,3vw,40px)', letterSpacing:'0.02em' }}>
-                We are WellMind Data Solutions. A team of bioinformaticians, data scientists, and AI engineers dedicated to solving the world's toughest biological and business challenges.
+                We are WellMind Data Solutions. A team of biomedical data scientists and AI engineers dedicated to solving the world's toughest biological and business challenges.
               </motion.p>
 
               <motion.div variants={fadeUp} custom={0.3}>
@@ -272,7 +272,7 @@ export default function About() {
               <span style={{ background:'linear-gradient(90deg,#4a4a4a 25%,#373737 75%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Let's Build Together.</span>
             </h2>
             <p className="section-lead" style={{ color:B.textMid, maxWidth:760, margin:'0 auto clamp(24px,3.5vw,48px)', lineHeight:1.75 }}>
-              Whether you need a full-scale bioinformatics pipeline, a custom AI model, or a strategic consultation on how to handle your data, we are ready to listen.
+              Whether you need a full-scale genomics analysis pipeline, a custom AI model, or a strategic consultation on how to handle your data, we are ready to listen.
             </p>
             <motion.div whileHover={{ scale:1.04, y:-3 }} whileTap={{ scale:0.97 }} style={{ display:'inline-block' }}>
               <Link to="/book-discovery" className="btn-primary" style={{ background:`linear-gradient(135deg,${B.action},#393939)`, boxShadow:`0 8px 40px ${B.actionGlow},0 0 80px rgba(84,84,84,0.15)`, border:`1px solid rgba(84,84,84,0.40)`, padding:'clamp(14px,2.5vw,20px) clamp(24px,5vw,56px)' }}>

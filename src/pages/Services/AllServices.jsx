@@ -7,7 +7,7 @@ import imgData from '../../assets/data-science-service.webp';
 import imgSoftware from '../../assets/services-page-ai-powered.webp';
 import imgDesign from '../../assets/services-page-ui.webp';
 import imgAutomation from '../../assets/services-page-automation.webp';
-import imgBio from '../../assets/bioinformatics-service.webp';
+import imgBio from '../../assets/health-ai-service.webp';
 
 
 const SERVICES = [
@@ -47,8 +47,8 @@ const SERVICES = [
     img: imgDesign,
   },
   {
-    to: '/services-bioinformatics',
-    title: 'Bioinformatics & Health AI',
+    to: '/services-health-ai',
+    title: 'Health AI & Biomedical Data Science',
     tags: ['Genomics', 'Health AI'],
     desc: 'Apply data science and AI to biological, clinical, and health research challenges.',
     img: imgBio,
@@ -92,7 +92,7 @@ export default function AllServices() {
     <div className="as-page">
       <header className="as-head">
         <h1>All services</h1>
-        <p>Six service areas, from machine learning to bioinformatics. Pick one to see how we work.</p>
+        <p>Six service areas, from machine learning to health AI. Pick one to see how we work.</p>
       </header>
 
       <div className="as-grid">

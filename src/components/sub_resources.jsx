@@ -101,13 +101,13 @@ const RESOURCES_DATA = [
   {
     id:          'featured',
     heading:     'Featured Articles',
-    tagline:     'Deep dives into AI, Bioinformatics, and MLOps methodologies.',
+    tagline:     'Deep dives into AI, biomedical data science, and MLOps methodologies.',
     link:        '/resources',
     accentColor: B.action,
     articles: [
       {
         title: 'The Complete RNA-seq Analysis Pipeline',
-        cat:   'Bioinformatics',
+        cat:'Biomedical Data Science',
         link:  '/resources',
         desc:  'Step-by-step guide covering alignment, quantification, and differential expression for modern genomic workflows.',
       },
@@ -137,7 +137,7 @@ const RESOURCES_DATA = [
   },
   {
     id:          'bio',
-    heading:     'Bioinformatics',
+    heading:     'Biomedical Data Science',
     tagline:     'Genomic pipelines, variant calling, and clinical analysis.',
     link:        '/resources',
     accentColor: '#4b4b4b',

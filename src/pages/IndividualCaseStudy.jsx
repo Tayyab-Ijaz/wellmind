@@ -38,7 +38,7 @@ import {
 
 // ─── Industry config ──────────────────────────────────────────────────────────
 const INDUSTRY_COLORS = {
-  'Bioinformatics': { bg: B.actionLight,   border: B.actionBorder,          text: B.action,    icon: <Dna size={12}/> },
+  'Biomedical Data Science': { bg: B.actionLight,   border: B.actionBorder,          text: B.action,    icon: <Dna size={12}/> },
   'Fintech AI':     { bg: B.secondaryLight, border: 'rgba(55,55,55,0.30)', text: B.secondary, icon: <TrendingUp size={12}/> },
   'Healthcare AI':  { bg: B.primaryLight,   border: B.primaryBorder,        text: B.primary,   icon: <Brain size={12}/> },
   'Agriculture AI': { bg: B.accentLight,    border: B.accentBorder,         text: B.accent,    icon: <Leaf size={12}/> },
@@ -311,7 +311,7 @@ const ALL_CASE_STUDIES = {
     nextSlug: 'single-cell-rnaseq-automation', prevSlug: 'adaptive-learning-engine',
   },
   'single-cell-rnaseq-automation': {
-    slug: 'single-cell-rnaseq-automation', industry: 'Bioinformatics',
+    slug: 'single-cell-rnaseq-automation', industry: 'Biomedical Data Science',
     timeline: '1 commit', investment: 'Concept (README)',
     accentColor: B.action,
     title: "Single-Cell RNA-seq Automation",

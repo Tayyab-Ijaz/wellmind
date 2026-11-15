@@ -33,7 +33,7 @@ const services = [
   { title: 'AI Software',     path: '/services-ai-software',    items: ['Custom AI Applications', 'API Integration', 'Scalable Architecture', 'AI Copilots', 'Cloud Delivery'] },
   { title: 'Automation',      path: '/services-automation',     items: ['Intelligent RPA', 'Workflow Automation', 'Document Processing', 'System Integration', 'ROI Tracking'] },
   { title: 'UI/UX Design',    path: '/services-ui-ux',          items: ['Design Systems', 'Product Prototyping', 'User Research', 'AI Product UX', 'Usability Testing'] },
-  { title: 'Bio informatics', path: '/services-bioinformatics', items: ['Genomics Pipelines', 'Clinical Diagnostic Models', 'Health AI', 'Data Validation', 'Compliance'] },
+  { title: 'Health AI', path: '/services-health-ai', items: ['Genomics Pipelines', 'Clinical Diagnostic Models', 'Biomedical Analytics', 'Data Validation', 'Compliance'] },
 ];
 
 /* ─── Card back: white line-art on black ───────────────────────────── */

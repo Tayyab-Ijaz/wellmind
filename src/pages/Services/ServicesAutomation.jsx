@@ -115,7 +115,7 @@ const PIPELINE_NODES = [
 const features = [
   { icon: <Repeat/>, title: 'End-to-End Workflow Automation', desc: 'Map, digitise, and automate entire business workflows — from data ingestion to reporting. We identify the manual steps causing most of the delays.', color: AC },
   { icon: <Webhook/>, title: 'API & System Integration', desc: 'Connect your CRM, ERP, data warehouse, and many other tools into a single automated data flow. Webhooks, polling, and event-driven triggers all covered.', color: B.action },
-  { icon: <GitMerge/>, title: 'Pipeline Orchestration', desc: 'Airflow, Prefect, and Nextflow-based pipelines for data engineering and bioinformatics. Dependency management, retries, and alerting built-in.', color: B.primary },
+  { icon: <GitMerge/>, title: 'Pipeline Orchestration', desc: 'Airflow, Prefect, and Nextflow-based pipelines for data engineering and genomics workloads. Dependency management, retries, and alerting built-in.', color: B.primary },
   { icon: <AlertTriangle/>, title: 'Monitoring & Error Handling', desc: 'Every automation we build includes alerting for failures, structured logging, and auto-retry logic. You get notified before your users notice anything.', color: B.secondary },
   { icon: <Database/>, title: 'Data Pipeline Engineering', desc: 'ETL/ELT pipelines from messy source data to clean, queryable warehouses. Incremental loading, deduplication, schema validation included.', color: AC },
   { icon: <Settings2/>, title: 'Intelligent RPA', desc: 'Rule-based automation upgraded with AI — document extraction, form classification, decision routing. RPA that adapts to changing inputs.', color: B.action },

@@ -183,7 +183,7 @@ function ContactForm() {
             <FormSelect name="service" value={form.service} onChange={handleChange}
               options={[
                 { value: '', label: 'Select a service…' },
-                { value: 'bioinformatics', label: 'Bioinformatics & Genomics' },
+                { value: 'health-ai', label: 'Biomedical Data Science & Genomics' },
                 { value: 'healthcare-ai', label: 'Healthcare AI' },
                 { value: 'ml', label: 'AI & Machine Learning' },
                 { value: 'data-science', label: 'Data Science & Analytics' },

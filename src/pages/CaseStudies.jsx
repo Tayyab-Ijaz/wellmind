@@ -59,7 +59,7 @@ const SERVICES = [
   { id: 'ai-software',    label: 'AI Software',   icon: <Code size={15}/>,      color: B.secondary, bg: 'rgba(55,55,55,0.10)',  border: 'rgba(55,55,55,0.30)',  route: '/services-ai-software' },
   { id: 'automation',     label: 'Automation',    icon: <Settings2 size={15}/>, color: B.accent,    bg: 'rgba(149,149,149,0.12)', border: 'rgba(149,149,149,0.35)', route: '/services-automation' },
   { id: 'ui-ux',          label: 'UI/UX',         icon: <Palette size={15}/>,   color: '#676767',   bg: 'rgba(103,103,103,0.10)', border: 'rgba(103,103,103,0.30)', route: '/services-ui-ux' },
-  { id: 'bioinformatics', label: 'Bioinformatics',icon: <Dna size={15}/>,       color: '#616161',   bg: 'rgba(97,97,97,0.10)', border: 'rgba(97,97,97,0.30)', route: '/services-bioinformatics' },
+  { id: 'health-ai', label: 'Biomedical Data Science',icon: <Dna size={15}/>,       color: '#616161',   bg: 'rgba(97,97,97,0.10)', border: 'rgba(97,97,97,0.30)', route: '/services-health-ai' },
 ];
 
 // ─── ✅ UPDATED: Agriculture + Education added ────────────────────────────────
@@ -317,8 +317,8 @@ const caseStudies = [
   },
   {
     slug: 'single-cell-rnaseq-automation',
-    service: 'bioinformatics', industry: 'healthcare',
-    serviceLabel: 'Bioinformatics & Health Sci', industryLabel: 'Healthcare',
+    service: 'health-ai', industry: 'healthcare',
+    serviceLabel: 'Biomedical Data Science', industryLabel: 'Healthcare',
     timeline: '1 commit', investment: 'Concept (README)',
     title: "Single-Cell RNA-seq Automation",
     summary: "A pipeline designed to automate PCA/t-SNE/UMAP dimensionality reduction and BIC-optimized GMM + DBSCAN clustering — turning noisy, high-dimensional single-cell RNA-seq data into clear, interpretable cell-state groupings.",

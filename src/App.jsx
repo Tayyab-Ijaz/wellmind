@@ -35,7 +35,7 @@ const ServicesDataAnalytics = lazy(() => import('./pages/Services/ServicesDataAn
 const ServicesAiSoftware = lazy(() => import('./pages/Services/ServiceAiSoftware'));
 const ServicesAutomation = lazy(() => import('./pages/Services/ServicesAutomation'));
 const ServicesUiUx = lazy(() => import('./pages/Services/ServicesUiUx'));
-const ServicesBioinformatics = lazy(() => import('./pages/Services/ServicesBioinformatics'));
+const ServicesHealthAI = lazy(() => import('./pages/Services/ServicesHealthAI'));
 
 // Fallback shown while a lazy page chunk downloads. It is a full screen tall on
 // purpose: if it were shorter than the page we just left, the browser would clamp
@@ -105,7 +105,7 @@ function App() {
             /case-studies?service=ai-software
             /case-studies?service=automation
             /case-studies?service=ui-ux
-            /case-studies?service=bioinformatics
+            /case-studies?service=health-ai
             /case-studies?industry=financial
             /case-studies?industry=healthcare
             /case-studies?industry=retail
@@ -148,13 +148,15 @@ function App() {
               <Route path="/services-ai-software" element={<ServicesAiSoftware/>}/>
               <Route path="/services-automation" element={<ServicesAutomation/>}/>
               <Route path="/services-ui-ux" element={<ServicesUiUx/>}/>
-              <Route path="/services-bioinformatics" element={<ServicesBioinformatics/>}/>
+              <Route path="/services-health-ai" element={<ServicesHealthAI/>}/>
 
               <Route path="/services-ai-ml/:childId" element={<Navigate to="/services-ai-ml" replace/>}/>
               <Route path="/services-data-analytics/:childId" element={<Navigate to="/services-data-analytics" replace/>}/>
               <Route path="/services-ai-software/:childId" element={<Navigate to="/services-ai-software" replace/>}/>
               <Route path="/services-automation/:childId" element={<Navigate to="/services-automation" replace/>}/>
-              <Route path="/services-bioinformatics/:childId" element={<Navigate to="/services-bioinformatics" replace/>}/>
+              <Route path="/services-health-ai/:childId" element={<Navigate to="/services-health-ai" replace/>}/>
+              <Route path="/services-bioinformatics" element={<Navigate to="/services-health-ai" replace/>}/>
+              <Route path="/services-bioinformatics/:childId" element={<Navigate to="/services-health-ai" replace/>}/>
 
               <Route path="*" element={<Navigate to="/" replace/>}/>
             </Routes>

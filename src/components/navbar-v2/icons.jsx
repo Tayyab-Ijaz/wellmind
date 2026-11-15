@@ -3,7 +3,7 @@ const P = {
   analytics: <><path d="M4 20V4M4 20h16" /><path d="M8 16v-4M12 16V8M16 16v-6" /></>,
   'ai-software': <path d="m9 8-4 4 4 4M15 8l4 4-4 4M13 6l-2 12" />,
   automation: <><path d="M20 12a8 8 0 1 1-2.5-5.8" /><path d="M20 4v4.5h-4.5" /></>,
-  bioinformatics: <><path d="M8 3c0 4.5 8 4.5 8 9s-8 4.5-8 9" /><path d="M16 3c0 4.5-8 4.5-8 9s8 4.5 8 9" /><path d="M9 6.5h6M9 17.5h6" /></>,
+  'health-ai': <><path d="M8 3c0 4.5 8 4.5 8 9s-8 4.5-8 9" /><path d="M16 3c0 4.5-8 4.5-8 9s8 4.5 8 9" /><path d="M9 6.5h6M9 17.5h6" /></>,
   uiux: <><rect x="3.5" y="4.5" width="17" height="15" rx="2.5" /><path d="M3.5 9h17M9 9v10.5" /></>,
   finance: <path d="M3 9.5 12 4l9 5.5M5 10v7M9.5 10v7M14.5 10v7M19 10v7M3.5 20h17" />,
   healthcare: <path d="M3 12h4l2.5-6 4 12 2.5-6H21" />,

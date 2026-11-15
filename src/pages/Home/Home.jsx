@@ -339,7 +339,7 @@ export default function Home() {
           <motion.div variants={fadeUp} custom={0.12} className="wm-hero-divider" style={{ width: 72, height: 4, borderRadius: 99, background: 'linear-gradient(90deg, #ababab, #a7a7a7)', margin: 'clamp(12px, 1.6vw, 22px) auto' }} />
 
           <motion.p variants={fadeUp} custom={0.18} style={{ fontFamily: 'var(--font-main)', fontSize: 'var(--fs-card-title)', color: 'rgba(255,255,255,0.68)', maxWidth: 620, margin: '0 0 clamp(16px, 2vw, 28px)', letterSpacing: '0.005em', lineHeight: 1.65 }}>
-            WellMind Data Solutions delivers specialist bioinformatics, healthcare AI, & data science consulting.
+            WellMind Data Solutions delivers specialist healthcare AI, biomedical data science, & data consulting.
           </motion.p>
 
           <motion.div variants={fadeUp} custom={0.22} style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 'clamp(16px, 2.2vw, 30px)', justifyContent: 'center' }}>

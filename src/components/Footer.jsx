@@ -375,7 +375,7 @@ export default function Footer() {
                 { label: 'AI-Powered Software', to: '/services-ai-software' },
                 { label: 'Automation', to: '/services-automation' },
                 { label: 'UI/UX Design', to: '/services-ui-ux' },
-                { label: 'Bioinformatics', to: '/services-bioinformatics' },
+                { label: 'Biomedical Data Science', to: '/services-health-ai' },
               ].map((l) => (
                 <li key={l.to}>
                   <Link to={l.to} className="wm-footer-link">

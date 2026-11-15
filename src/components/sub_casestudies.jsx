@@ -16,7 +16,7 @@ const CASE_STUDIES_DATA = {
     { label: 'Data Analytics',        link: '/case-studies?service=data-analytics',   },
     { label: 'AI Software',           link: '/case-studies?service=ai-software',      },
     { label: 'Automation',            link: '/case-studies?service=automation',       },
-    { label: 'Bioinformatics',        link: '/case-studies?service=bioinformatics',   },
+    { label: 'Biomedical Data Science',        link: '/case-studies?service=health-ai',   },
     { label: 'UI/UX Design',          link: '/case-studies?service=ui-ux',            },
   ],
 

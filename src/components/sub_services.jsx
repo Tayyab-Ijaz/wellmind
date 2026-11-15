@@ -44,9 +44,9 @@ const SERVICES = [
   },
   {
     id: 'bio',
-    heading: 'Bioinformatics & Health AI',
+    heading: 'Health AI & Biomedical Data Science',
     tagline: 'Genomic pipelines, multi-omics analysis & clinical AI tools.',
-    link: '/services-bioinformatics',
+    link: '/services-health-ai',
     accentColor: '#4b4b4b',
     description: 'Apply data science and AI to biological, clinical, and health research challenges.',
   },

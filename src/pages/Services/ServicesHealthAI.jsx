@@ -1,6 +1,6 @@
 /**
- * ServicesBioinformatics.jsx — WellMind Data Solutions
- * /services/bioinformatics — Genomics, omics pipelines, clinical data science
+ * ServicesHealthAI.jsx — WellMind Data Solutions
+ * /services/health-ai — Genomics, omics pipelines, clinical data science
  * Fully responsive: 1440 | 1024 | 768 | 425 | 320 px
  * 
  * CHANGES:
@@ -25,7 +25,7 @@ import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
 import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../../theme';
 
 // ─── Brand Tokens (Synced with ServicesAiMl / Home.jsx) ──────────────────────
-const AC = '#616161'; // bioinformatics teal/green
+const AC = '#616161'; // health AI accent
 
 // ─── Layout Constants ────────────────────────────────────────────────────────
 // ─── Counter Hook ─────────────────────────────────────────────────────────────
@@ -371,7 +371,7 @@ const features = [
   { icon: <FlaskConical/>,title: 'Transcriptomics & RNA-seq',      desc: 'Differential expression analysis, alternative splicing, and single-cell RNA-seq workflows using DESeq2, edgeR, Seurat, and Scanpy. From raw reads to biological insight.', accentColor: B.action },
   { icon: <Layers/>,     title: 'Multi-Omics Integration',         desc: 'Cross-modal integration of genomics, transcriptomics, proteomics, and metabolomics data. Dimensionality reduction, clustering, and pathway enrichment across data types.', accentColor: B.primary },
   { icon: <Brain/>,      title: 'ML for Clinical Prediction',      desc: 'Survival models, diagnostic classifiers, and biomarker discovery pipelines built on omics data. SHAP-based explainability reports for clinical and regulatory audiences.', accentColor: B.accent },
-  { icon: <GitBranch/>,  title: 'Nextflow & Snakemake Pipelines',  desc: 'Production-grade bioinformatics pipelines with containerised environments (Docker/Singularity), HPC compatibility, and nf-core standards for full reproducibility.', accentColor: B.secondary },
+  { icon: <GitBranch/>,  title: 'Nextflow & Snakemake Pipelines',  desc: 'Production-grade genomics pipelines with containerised environments (Docker/Singularity), HPC compatibility, and nf-core standards for full reproducibility.', accentColor: B.secondary },
   { icon: <BarChart3/>,  title: 'Visualisation & Reporting',        desc: 'Interactive dashboards, publication-quality figures (matplotlib, ggplot2, Plotly), and clinical-grade PDF reports. Results your PI, clinician, or regulator can act on.', accentColor: AC },
 ];
 
@@ -412,7 +412,7 @@ const techStack = [
 const processColors = [B.action, B.primary, B.accent, B.secondary];
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
-export default function ServicesBioinformatics() {
+export default function ServicesHealthAI() {
 
 
   return (
@@ -448,7 +448,7 @@ export default function ServicesBioinformatics() {
                 style={{ flex: '1 1 clamp(280px, 45%, 600px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
               >
                 <motion.div variants={fadeUp} custom={0}>
-                  <SectionBadge color={AC}>Bioinformatics &amp; Genomics</SectionBadge>
+                  <SectionBadge color={AC}>Biomedical Data Science &amp; Genomics</SectionBadge>
                 </motion.div>
 
                 <motion.h1 variants={fadeUp} custom={0.05}
@@ -466,7 +466,7 @@ export default function ServicesBioinformatics() {
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'var(--fs-h3)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  WellMind Data Solutions delivers end-to-end bioinformatics analysis pipelines for genomics, transcriptomics, and multi-omics research. From FASTQ to publication-ready figures — we produce clean code, reproducible results, and findings your PI and collaborators can act on.
+                  WellMind Data Solutions delivers end-to-end analysis pipelines for genomics, transcriptomics, and multi-omics research. From FASTQ to publication-ready figures — we produce clean code, reproducible results, and findings your PI and collaborators can act on.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.5vw, 16px)' }}>
