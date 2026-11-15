@@ -10,7 +10,7 @@ export const NAV = [
 ];
 
 export const SERVICES = [
-  { id: 'ai-ml', ai: true, label: 'AI & Machine Learning', href: '/services-ai-ml', desc: 'Machine learning, language, vision, and generative AI.', img: new URL('../../assets/ai-ml-service.webp', import.meta.url).href, imgStyle: { objectFit: 'cover', objectPosition: 'center' } },
+  { id: 'ai-ml', ai: true, label: 'AI & Machine Learning', href: '/services-ai-ml', desc: 'Machine learning, language, vision, and generative AI.', img: new URL('../../assets/ai-ml-thumb.webp', import.meta.url).href, imgStyle: { objectFit: 'cover', objectPosition: 'center' } },
   { id: 'data-analytics', label: 'Data Science & Analytics', href: '/services-data-analytics', desc: 'Build a trusted data foundation and actionable insights.', img: new URL('../../assets/data-science-service.webp', import.meta.url).href, imgStyle: { objectFit: 'cover', objectPosition: 'center' } },
   { id: 'ai-software', ai: true, label: 'AI-Powered Software', href: '/services-ai-software', desc: 'Custom software products with intelligent features.', img: new URL('../../assets/ai-software-square.webp', import.meta.url).href, imgStyle: { objectFit: 'cover', objectPosition: 'center' } },
   { id: 'automation', label: 'Automation & Workflows', href: '/services-automation', desc: 'Connect systems and streamline repeatable workflows.', img: new URL('../../assets/workflows-square.webp', import.meta.url).href, imgStyle: { objectFit: 'cover', objectPosition: 'center' } },
@@ -24,7 +24,7 @@ export const INDUSTRIES = [
   { id: 'retail', label: 'Retail & E-Commerce', href: '/industry-retail-ecommerce', desc: 'Demand, churn, and pricing.', img: new URL('../../assets/retail.webp', import.meta.url).href },
   { id: 'manufacturing', label: 'Manufacturing', href: '/industry-manufacturing', desc: 'Quality and throughput on the line.', img: new URL('../../assets/manufacturing.webp', import.meta.url).href },
   { id: 'agriculture', label: 'Agriculture & AgriTech', href: '/industry-agriculture', desc: 'Yield and field monitoring.', img: new URL('../../assets/agriculture.webp', import.meta.url).href },
-  { id: 'education', label: 'Education & EdTech', href: '/industry-education', desc: 'Learner insight at scale.', img: new URL('../../assets/edu.webp', import.meta.url).href },
+  { id: 'education', label: 'Education & EdTech', href: '/industry-education', desc: 'Learner insight at scale.', img: new URL('../../assets/edu-thumb.webp', import.meta.url).href },
 ];
 
 export const RESOURCES = [

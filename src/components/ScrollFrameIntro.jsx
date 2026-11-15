@@ -1,8 +1,11 @@
 /**
  * ScrollFrameIntro — WellMind Data Solutions (home hero)
  *
- *  1. INTRO VIDEO: full-screen, plays once, nothing else on screen (header,
- *     text and scrolling are all hidden/locked until it ends), then fades out.
+ *  1. INTRO VIDEO: full-screen, plays once per browser session, nothing else on
+ *     screen (header, text and scrolling are hidden/locked until it ends or the
+ *     visitor clicks "Skip intro" / presses Esc), then fades out. It is skipped
+ *     automatically for reduced-motion / data-saver / 2G visitors and when the
+ *     video can't start within a few seconds.
  *  2. WELLMIND HERO: live particle field behind the giant white "WELLMIND"
  *     title, "+" crop marks and "Scroll to explore".
  *  3. TUNNEL SECTION (with a gap above it, one pinned stage):
@@ -13,12 +16,15 @@
  *       end    → the pin releases and the next section of the page scrolls in
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import ParticleField from './ParticleField';
 
 const PAGE_BLACK = '#010101';
-const INTRO_VIDEO_SRC = '/hero-video.mp4';          // file lives in /public
+// Files live in /public. Cached for a year (immutable) → rename (e.g. -v2) if you ever replace them.
+const INTRO_VIDEO_SRC = '/hero-intro-1080.mp4';     // desktop: 1080p, no audio, streaming-ready
+const INTRO_VIDEO_SRC_SMALL = '/hero-intro-720.mp4'; // phones / small screens
+const INTRO_POSTER_SRC = '/hero-intro-poster.jpg';  // shown instantly while the video loads
 
 const TITLE = 'WELLMIND';
 const TITLE_FONT = "'Space Grotesk', sans-serif";
@@ -34,6 +40,30 @@ const CARD_COLOR = '#1f1f23';                       // solid card border (no gra
 const STACK_BELOW = 860;                            // stage width (px) under which text goes below the frame
 
 let introPlayed = false;                            // once per page load (not again when re-visiting Home)
+
+/* Intro helpers ----------------------------------------------------------- */
+const SEEN_KEY = 'wm-intro-seen';                   // sessionStorage: intro plays once per browser session
+const START_TIMEOUT_MS = 3500;                      // video must be playing by now, else skip the intro
+const STALL_MS = 3000;                              // …or skip if playback freezes (buffering) this long
+const SAFETY_MS = 15000;                            // hard stop (the clip is ~10 s)
+
+function introShouldSkip() {
+  if (introPlayed) return true;
+  try { if (sessionStorage.getItem(SEEN_KEY)) return true; } catch { /* storage blocked: just play it */ }
+  try {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true;
+    const c = navigator.connection;                 // data-saver or 2G → don't force a video on them
+    if (c && (c.saveData || /(^|-)2g$/.test(c.effectiveType || ''))) return true;
+  } catch { /* unsupported: just play it */ }
+  return false;
+}
+function markIntroSeen() {
+  try { sessionStorage.setItem(SEEN_KEY, '1'); } catch { /* storage blocked */ }
+}
+function pickIntroSrc() {
+  const small = typeof window !== 'undefined' && window.matchMedia('(max-width: 820px), (max-height: 500px)').matches;
+  return small ? INTRO_VIDEO_SRC_SMALL : INTRO_VIDEO_SRC;
+}
 
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -108,10 +138,12 @@ function HeroTitle() {
   );
 }
 
-/* ─── 1. Intro video: plays once, alone ──────────────────────────────────── */
+/* ─── 1. Intro video: plays once per session, alone ─────────────────────── */
 function IntroVideo({ onDone }) {
   const vRef = useRef(null);
+  const finishRef = useRef(null);
   const [fading, setFading] = useState(false);
+  const [src] = useState(pickIntroSrc);                    // phones get the lighter 720p file
 
   useEffect(() => {
     const v = vRef.current;
@@ -120,31 +152,47 @@ function IntroVideo({ onDone }) {
     root.style.overflow = 'hidden';                       // no scrolling while it plays
     window.scrollTo({ top: 0, behavior: 'instant' });
 
-    let finished = false, t1 = 0;
+    let finished = false, t1 = 0, startTimer = 0, stallTimer = 0;
     const finish = () => {
       if (finished) return;
       finished = true;
+      clearTimeout(startTimer); clearTimeout(stallTimer);
       root.style.overflow = prevOverflow;
+      markIntroSeen();
       setFading(true);
       t1 = setTimeout(() => { introPlayed = true; onDone(); }, 700);
     };
-    const safety = setTimeout(finish, 20000);             // never trap the visitor
+    finishRef.current = finish;
+
+    const safety = setTimeout(finish, SAFETY_MS);         // never trap the visitor
+    startTimer = setTimeout(finish, START_TIMEOUT_MS);    // video never started (slow network) → skip
+    const onPlaying = () => { clearTimeout(startTimer); clearTimeout(stallTimer); };
+    const onWaiting = () => { clearTimeout(stallTimer); stallTimer = setTimeout(finish, STALL_MS); };
+    const onKey = (e) => { if (e.key === 'Escape') finish(); };
+
+    v?.addEventListener('playing', onPlaying);
+    v?.addEventListener('waiting', onWaiting);
     v?.addEventListener('ended', finish);
     v?.addEventListener('error', finish);
+    window.addEventListener('keydown', onKey);
     const p = v?.play?.();
     if (p && p.catch) p.catch(finish);                    // autoplay blocked → skip straight to the site
 
     return () => {
-      clearTimeout(safety); clearTimeout(t1);
+      clearTimeout(safety); clearTimeout(startTimer); clearTimeout(stallTimer); clearTimeout(t1);
+      v?.removeEventListener('playing', onPlaying);
+      v?.removeEventListener('waiting', onWaiting);
       v?.removeEventListener('ended', finish);
       v?.removeEventListener('error', finish);
+      window.removeEventListener('keydown', onKey);
       root.style.overflow = prevOverflow;
     };
   }, [onDone]);
 
   return (
     <div
-      aria-hidden="true"
+      role="group"
+      aria-label="Intro video"
       className="wm-intro-wrap"
       style={{
         position: 'fixed', inset: 0, zIndex: 100000, background: PAGE_BLACK,
@@ -153,10 +201,13 @@ function IntroVideo({ onDone }) {
       }}
     >
       <video
-        ref={vRef} className="wm-intro-video"
-        src={INTRO_VIDEO_SRC} muted playsInline preload="auto" autoPlay
+        ref={vRef} className="wm-intro-video" aria-hidden="true"
+        src={src} poster={INTRO_POSTER_SRC} muted playsInline preload="auto" autoPlay
         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
       />
+      <button type="button" className="wm-intro-skip" onClick={() => finishRef.current?.()}>
+        Skip intro
+      </button>
     </div>
   );
 }
@@ -316,12 +367,15 @@ const CSS = `
 @media (max-height:720px){ .wm-stage-text .wm-hero-trust{display:none} }
 @media (orientation:portrait), (max-width:900px){ .wm-intro-video{object-fit:contain !important} }
 @media (max-width:900px){ .wm-intro-wrap{height:100vh;height:100dvh !important;bottom:auto !important} }
+.wm-intro-skip{position:absolute;right:max(16px,3vw);bottom:max(18px,env(safe-area-inset-bottom));z-index:2;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.35);background:rgba(255,255,255,0.12);color:#fff;font:600 13px/1 'Space Grotesk',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .2s ease,border-color .2s ease}
+.wm-intro-skip:hover,.wm-intro-skip:focus-visible{background:rgba(255,255,255,0.28);border-color:rgba(255,255,255,0.7);outline:none}
 `;
 
 /* ─── Section ────────────────────────────────────────────────────────────── */
 export default function ScrollFrameIntro({ children }) {
   const seqRef = useRef(null);
-  const [introDone, setIntroDone] = useState(introPlayed);
+  const [introDone, setIntroDone] = useState(introShouldSkip);
+  const handleIntroDone = useCallback(() => setIntroDone(true), []);
   const stageH = useScreenHeight();
   const tall = Math.round(stageH * (1 + SCRUB_SCREENS));
 
@@ -332,7 +386,7 @@ export default function ScrollFrameIntro({ children }) {
   return (
     <>
       <style>{CSS}</style>
-      {!introDone && <IntroVideo onDone={() => setIntroDone(true)} />}
+      {!introDone && <IntroVideo onDone={handleIntroDone} />}
 
       {/* 1 ── WELLMIND HERO: particles behind the title, title low on the screen */}
       <section

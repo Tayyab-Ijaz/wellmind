@@ -1,12 +1,6 @@
 @import "tailwindcss";
 
-/* ── Home-page-only display fonts ─────────────────────────────────────────
-   Loaded globally for reliability, but only ever referenced (via inline
-   fontFamily) from src/pages/Home/Home.jsx — every other page keeps the
-   original --font-display / --font-body from theme.css untouched.
-   For best load performance, move this to two <link rel="preconnect"> +
-   <link rel="stylesheet"> tags in index.html instead. */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+/* Web fonts (Space Grotesk) are loaded from <link> tags in index.html. */
 
 :root {
   --clr-bg: #FFFFFF;

@@ -164,7 +164,7 @@ function CaseStudiesPane({ filter, setFilter }) {
 function Photo({ it, i }) {
   const style = it.imgStyle || { objectFit: 'cover', objectPosition: 'center' };
   return it.img
-    ? <img src={it.img} alt="" loading="lazy" decoding="async" style={style} />
+    ? <img src={it.img} alt="" loading="lazy" decoding="async" fetchPriority="low" style={style} />
     : <span className="ph-fb" style={{ '--h': i }} />;
 }
 

@@ -69,7 +69,7 @@ function FeatureBlock({ title, desc, imgUrl, isActive }) {
         borderRadius: 18, overflow: 'hidden', background: '#f0f0f0',
         marginBottom: 16, position: 'relative',
       }}>
-        <img src={imgUrl} alt={title} style={{
+        <img src={imgUrl} alt={title} loading="lazy" decoding="async" style={{
           width: '100%', height: '100%', objectFit: 'cover',
           transition: 'transform 0.6s ease',
           transform: hovered ? 'scale(1.05)' : 'scale(1)',
@@ -122,7 +122,7 @@ function ProjectCard({ proj, i }) {
       {/* Image */}
       <div style={{ position: 'relative', padding: 10, paddingBottom: 0 }}>
         <div style={{ position: 'relative', height: 'clamp(160px, 20vw, 220px)', borderRadius: 18, overflow: 'hidden' }}>
-          <img src={proj.imgUrl} alt={proj.title} style={{
+          <img src={proj.imgUrl} alt={proj.title} loading="lazy" decoding="async" style={{
             width: '100%', height: '100%', objectFit: 'cover',
             transform: hovered ? 'scale(1.05)' : 'scale(1)',
             transition: 'transform 0.7s cubic-bezier(0.16,1,0.3,1)',
@@ -258,7 +258,7 @@ function WhyWellmindScroll() {
             }}
           >
             <div style={{ width: '100%', height: 'clamp(140px, 35vw, 220px)', borderRadius: 14, overflow: 'hidden', marginBottom: 14 }}>
-              <img src={f.imgUrl} alt={f.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={f.imgUrl} alt={f.title} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <h3 style={{ fontSize: 'var(--fs-card-title)', fontWeight: 700, color: B.textMain, marginBottom: 8, fontFamily: 'var(--font-main)' }}>{f.title}</h3>
             <p style={{ fontSize: 'var(--fs-card-body)', color: B.textMid, lineHeight: 1.6 }}>{f.desc}</p>
