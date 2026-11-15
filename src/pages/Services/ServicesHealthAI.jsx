@@ -1,6 +1,6 @@
 /**
  * ServicesHealthAI.jsx — WellMind Data Solutions
- * /services/health-ai — Genomics, omics pipelines, clinical data science
+ * /services/health-ai — Healthcare analytics, clinical NLP, biomedical data science
  * Fully responsive: 1440 | 1024 | 768 | 425 | 320 px
  * 
  * CHANGES:
@@ -8,7 +8,7 @@
  * 2. Section layout: Hero (light) → Dark stats → Light capabilities + process → Dark pricing → Light CTA
  *    Matches AiMl: hero → dark → light → dark → light
  * 3. Text sizes, margins, coloring, bg styling synced with ServicesAiMl.
- * 4. Hero right panel (GenomicsPipeline) upgraded: larger text, animations, colors, hovers, bg.
+ * 4. Hero right panel (HealthDataPipeline) upgraded: larger text, animations, colors, hovers, bg.
  */
 
 import React, { useState, useEffect } from 'react';
@@ -141,18 +141,18 @@ function TechBadge({ label }) {
 }
 
 // ─── Section Divider ──────────────────────────────────────────────────────────
-// ─── Hero Visual: Enhanced Genomics Pipeline ─────────────────────────────────
-function GenomicsPipeline() {
+// ─── Hero Visual: Health Data Pipeline ─────────────────────────────────
+function HealthDataPipeline() {
   const [activeStep, setActiveStep] = useState(0);
   const [hoveredStep, setHoveredStep] = useState(null);
 
   const steps = [
-    { label: 'Raw Sequencing',  sub: 'FASTQ / BAM files',       color: AC,          icon: <Dna size={16}/> },
-    { label: 'Quality Control', sub: 'FastQC · Trimmomatic',     color: B.action,    icon: <Shield size={16}/> },
-    { label: 'Alignment',       sub: 'BWA · STAR · HISAT2',      color: B.primary,   icon: <GitBranch size={16}/> },
-    { label: 'Variant Calling', sub: 'GATK · DeepVariant',       color: B.accent,    icon: <Activity size={16}/> },
-    { label: 'Annotation',      sub: 'VEP · ANNOVAR · ClinVar',  color: B.secondary, icon: <BookOpen size={16}/> },
-    { label: 'Clinical Report', sub: 'Visualisation + PDF',      color: AC,          icon: <BarChart3 size={16}/> },
+    { label: 'Data Intake',        sub: 'Claims · Records · Research data', color: AC,          icon: <Layers size={16}/> },
+    { label: 'Validation',         sub: 'Schema · Missing-value checks',    color: B.action,    icon: <Shield size={16}/> },
+    { label: 'Feature Design',     sub: 'Python · SQL',                      color: B.primary,   icon: <GitBranch size={16}/> },
+    { label: 'Model Training',     sub: 'Gradient boosting · NLP',           color: B.accent,    icon: <Activity size={16}/> },
+    { label: 'Explainability',     sub: 'SHAP · Error review',               color: B.secondary, icon: <BookOpen size={16}/> },
+    { label: 'Dashboard & Report', sub: 'Visualisation + PDF',               color: AC,          icon: <BarChart3 size={16}/> },
   ];
 
   useEffect(() => {
@@ -161,9 +161,9 @@ function GenomicsPipeline() {
   }, [steps.length]);
 
   const miniStats = [
-    { l: 'NGS', s: 'Pipelines', c: AC },
-    { l: 'RNA-seq', s: 'Analysis', c: B.action },
-    { l: 'Variants', s: 'Calling', c: B.primary },
+    { l: 'Claims', s: 'Analytics', c: AC },
+    { l: 'Clinical', s: 'NLP', c: B.action },
+    { l: 'Risk', s: 'Models', c: B.primary },
   ];
 
   return (
@@ -193,7 +193,7 @@ function GenomicsPipeline() {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
           <div style={{ fontSize: 'var(--fs-small)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color: AC, marginBottom: 2 }}>
-            Variant Calling Pipeline
+            Health Data Pipeline
           </div>
           <div style={{ fontSize: 'var(--fs-label)', color: B.textMuted, fontWeight: 500 }}>
             Live Processing Simulation
@@ -367,28 +367,28 @@ function GenomicsPipeline() {
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const features = [
-  { icon: <Dna/>,        title: 'Genomics & Variant Analysis',    desc: 'WGS, WES, and targeted panel analysis pipelines using GATK, DeepVariant, and STAR. Publication-ready VCF outputs with clinical annotation via VEP, ANNOVAR, and ClinVar.', accentColor: AC },
-  { icon: <FlaskConical/>,title: 'Transcriptomics & RNA-seq',      desc: 'Differential expression analysis, alternative splicing, and single-cell RNA-seq workflows using DESeq2, edgeR, Seurat, and Scanpy. From raw reads to biological insight.', accentColor: B.action },
-  { icon: <Layers/>,     title: 'Multi-Omics Integration',         desc: 'Cross-modal integration of genomics, transcriptomics, proteomics, and metabolomics data. Dimensionality reduction, clustering, and pathway enrichment across data types.', accentColor: B.primary },
-  { icon: <Brain/>,      title: 'ML for Clinical Prediction',      desc: 'Survival models, diagnostic classifiers, and biomarker discovery pipelines built on omics data. SHAP-based explainability reports for clinical and regulatory audiences.', accentColor: B.accent },
-  { icon: <GitBranch/>,  title: 'Nextflow & Snakemake Pipelines',  desc: 'Production-grade genomics pipelines with containerised environments (Docker/Singularity), HPC compatibility, and nf-core standards for full reproducibility.', accentColor: B.secondary },
-  { icon: <BarChart3/>,  title: 'Visualisation & Reporting',        desc: 'Interactive dashboards, publication-quality figures (matplotlib, ggplot2, Plotly), and clinical-grade PDF reports. Results your PI, clinician, or regulator can act on.', accentColor: AC },
+  { icon: <Activity/>,    title: 'Healthcare Analytics',            desc: 'Claims, revenue-cycle, and operational analytics on healthcare data. Payment patterns, denials, and underpayment signals surfaced in dashboards your team can use.', accentColor: AC },
+  { icon: <BookOpen/>,    title: 'Clinical NLP',                    desc: 'Extracting and structuring information from clinical notes and records, with human-review steps where accuracy matters most.', accentColor: B.action },
+  { icon: <Shield/>,      title: 'Risk & Anomaly Models',           desc: 'Fraud, anomaly, and risk-scoring models on provider and claims data, with explainability so reviewers can see why a record was flagged.', accentColor: B.primary },
+  { icon: <Brain/>,       title: 'ML for Clinical Prediction',      desc: 'Predictive and diagnostic models built on clinical and biomedical datasets, with SHAP-based explainability reports for clinical and review audiences.', accentColor: B.accent },
+  { icon: <FlaskConical/>,title: 'Biomedical Research Data',        desc: 'Analysis support for research datasets, including genomics and other omics data. Statistics, clean code, and containerised environments so results can be re-run.', accentColor: B.secondary },
+  { icon: <BarChart3/>,   title: 'Visualisation & Reporting',       desc: 'Interactive dashboards, clear figures, and PDF reports. Results your clinician, analyst, or research lead can act on.', accentColor: AC },
 ];
 
 const processes = [
-  { step: '01', title: 'Data Review & QC',         desc: 'We assess raw data quality, flag coverage issues, contamination, or batch effects, and agree on the analysis approach — before a single pipeline run.' },
-  { step: '02', title: 'Pipeline Configuration',   desc: 'Tool selection, parameter tuning for your organism and experimental design, and containerised environment setup to ensure full reproducibility across runs.' },
-  { step: '03', title: 'Analysis & Interpretation',desc: 'Variant calling, differential expression, pathway enrichment, and statistical analysis with domain expertise guiding biological interpretation at each stage.' },
-  { step: '04', title: 'Delivery & Documentation', desc: 'Publication-ready outputs, annotated code notebooks, pipeline documentation, and a findings summary written for your intended audience — lab, clinic, or journal.' },
+  { step: '01', title: 'Data Review & Validation', desc: 'We assess data quality, flag gaps, inconsistencies, or bias, and agree on the analysis approach before any modelling starts.' },
+  { step: '02', title: 'Pipeline Setup',           desc: 'Tool selection, feature design, and a containerised environment so results are reproducible across runs.' },
+  { step: '03', title: 'Analysis & Modelling',     desc: 'Statistical analysis and model development, with domain expertise guiding interpretation at each stage.' },
+  { step: '04', title: 'Delivery & Documentation', desc: 'Dashboards, annotated code notebooks, documentation, and a findings summary written for your audience: clinic, operations team, or research group.' },
 ];
 
 const deliverables = [
-  'Annotated pipeline code + containerised environment (Nextflow/Snakemake)',
-  'Quality control reports (FastQC, MultiQC, coverage summaries)',
-  'Analysis outputs: VCF, count matrices, differential expression tables',
-  'Pathway enrichment and functional annotation reports',
-  'Publication-quality figures (all source code included)',
-  'Written findings summary for scientific or clinical audience',
+  'Annotated pipeline code + containerised environment',
+  'Data quality and validation reports',
+  'Analysis outputs: cleaned datasets, model results, summary tables',
+  'Model evaluation and explainability reports',
+  'Charts and dashboards (all source code included)',
+  'Written findings summary for clinical, operational or research audiences',
   'Raw data + intermediate files returned or securely archived',
 ];
 
@@ -398,15 +398,13 @@ const deliverables = [
 
 const techStack = [
   { label: 'Python',       color: AC       },
-  { label: 'R / Bioconductor', color: B.action },
-  { label: 'Nextflow',     color: B.primary },
-  { label: 'Snakemake',    color: B.secondary },
-  { label: 'GATK',         color: B.accent  },
-  { label: 'Seurat',       color: AC       },
-  { label: 'Scanpy',       color: B.action  },
-  { label: 'Docker',       color: B.primary },
-  { label: 'AWS Batch',    color: B.secondary },
-  { label: 'nf-core',      color: AC       },
+  { label: 'R',            color: B.action },
+  { label: 'SQL',          color: B.primary },
+  { label: 'LightGBM',     color: B.secondary },
+  { label: 'SHAP',         color: B.accent  },
+  { label: 'Plotly',       color: AC       },
+  { label: 'Docker',       color: B.action  },
+  { label: 'AWS Batch',    color: B.primary },
 ];
 
 const processColors = [B.action, B.primary, B.accent, B.secondary];
@@ -448,7 +446,7 @@ export default function ServicesHealthAI() {
                 style={{ flex: '1 1 clamp(280px, 45%, 600px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
               >
                 <motion.div variants={fadeUp} custom={0}>
-                  <SectionBadge color={AC}>Biomedical Data Science &amp; Genomics</SectionBadge>
+                  <SectionBadge color={AC}>Health AI &amp; Biomedical Data Science</SectionBadge>
                 </motion.div>
 
                 <motion.h1 variants={fadeUp} custom={0.05}
@@ -458,15 +456,15 @@ export default function ServicesHealthAI() {
                     lineHeight: 1.1, letterSpacing: '-0.02em',
                     marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark,
                   }}>
-                  From Raw Sequence{' '}<br className="hero-br" />
+                  From Raw Health Data{' '}<br className="hero-br" />
                   <span style={{ background: `linear-gradient(90deg, ${AC} 25%, ${B.action} 75%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                    to Biological Insight.
+                    to Clinical Insight.
                   </span>
                 </motion.h1>
 
                 <motion.p variants={fadeUp} custom={0.15}
                   style={{ fontSize: 'var(--fs-h3)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
-                  WellMind Data Solutions delivers end-to-end analysis pipelines for genomics, transcriptomics, and multi-omics research. From FASTQ to publication-ready figures — we produce clean code, reproducible results, and findings your PI and collaborators can act on.
+                  WellMind Data Solutions builds analytics and machine learning for healthcare and biomedical data, from claims and clinical records to research datasets. We produce clean code, reproducible results, and findings your team can act on.
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={0.25} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.5vw, 16px)' }}>
@@ -475,10 +473,10 @@ export default function ServicesHealthAI() {
                     onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>
                     <Zap size={16}/> Start Your Analysis
                   </Link>
-                  <Link to="/case-studies/single-cell-rnaseq-automation" className="btn-secondary" style={{ width: '100%' }}
+                  <Link to="/case-studies?service=health-ai" className="btn-secondary" style={{ width: '100%' }}
                     onMouseEnter={e => { e.currentTarget.style.background = B.secondaryLight; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = ''; }}>
-                    See Genomics Case Study <ArrowRight size={16}/>
+                    See Health AI Case Studies <ArrowRight size={16}/>
                   </Link>
                 </motion.div>
               </motion.div>
@@ -490,7 +488,7 @@ export default function ServicesHealthAI() {
                 style={{ flex: '1 1 clamp(280px, 42%, 520px)', display: 'flex', alignItems: 'stretch' }}
               >
                 <div style={{ width: '100%', height: '100%' }}>
-                  <GenomicsPipeline/>
+                  <HealthDataPipeline/>
                 </div>
               </motion.div>
             </div>
@@ -510,7 +508,7 @@ export default function ServicesHealthAI() {
                 borderTop: `1px solid ${B.primaryBorder}40`
               }}
             >
-              {['Academic & Clinical', 'Publication-Ready'].map((t, i) => (
+              {['Clinical & Research', 'Reproducible'].map((t, i) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
@@ -566,7 +564,7 @@ export default function ServicesHealthAI() {
               What We Analyse
             </h2>
             <p className="section-lead" style={{ maxWidth: 1200 }}>
-              From variant calling to multi-omics integration — every analysis pipeline we build is reproducible, documented, and production-grade.
+              From claims analytics to clinical prediction, every pipeline we build is reproducible and documented.
             </p>
           </div>
           <div style={{ ...PX }}>
@@ -609,7 +607,7 @@ export default function ServicesHealthAI() {
               <SectionBadge color={AC}>Deliverables</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>What You Receive</h2>
               <p style={{ fontSize: 'var(--fs-card-title)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
-                Every project is delivered with reproducible code, clean documentation, and outputs written for your intended audience — from lab journals to regulatory submissions.
+                Every project is delivered with reproducible code, clean documentation, and outputs written for your intended audience — from clinical teams to research groups.
               </p>
               {deliverables.map((d, i) => {
                 const color = processColors[i % processColors.length];
@@ -636,9 +634,9 @@ export default function ServicesHealthAI() {
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge color={AC}>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-              Turn Your Sequencing Data{' '}<br className="hero-br" />
+              Turn Your Health Data{' '}<br className="hero-br" />
               <span style={{ background: `linear-gradient(90deg, ${AC} 25%, ${B.action} 75%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                Into Discovery.
+                Into Decisions.
               </span>
             </h2>
             <p className="section-lead" style={{ color: B.textMid, maxWidth: 1200, margin: '0 auto clamp(24px, 3.5vw, 48px)', lineHeight: 1.75 }}>
@@ -656,7 +654,7 @@ export default function ServicesHealthAI() {
               }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.90'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>
-                <Dna size={18}/> Book Your Free Consultation <ArrowRight size={18}/>
+                <Activity size={18}/> Book Your Free Consultation <ArrowRight size={18}/>
               </Link>
             </motion.div>
           </motion.div>

@@ -130,7 +130,7 @@ export default function IndustryHealthcare() {
       {/* ══ 1. HERO ══ */}
       <IndustryHero
         title={"AI That Saves Time,\n[[So Clinicians Can Save Lives]]"}
-        text="From revenue-cycle recovery to clinical NLP and genomics — we build practical AI systems on real CMS and clinical data. Real projects. Real code. Nothing theoretical."
+        text="From revenue-cycle recovery to clinical NLP and biomedical data — we build practical AI systems on real CMS and clinical data. Real projects. Real code. Nothing theoretical."
         image={healthImage}
         imageAlt="Healthcare AI illustration with DNA helix, insurance claim and analytics dashboard"
         primaryLabel="Book a Discovery Call"
@@ -191,7 +191,7 @@ export default function IndustryHealthcare() {
           <div className="grid-tech">
             {[
               { group: 'ML & Modeling', items: ['LightGBM', 'DistilBERT', 'Isolation Forest', 'Random Forest'], icon: <Brain size={16} />, color: B.action },
-              { group: 'NLP & Genomics', items: ['spaCy / NER', 'PCA / UMAP', 'GMM + DBSCAN', 'ICD/SNOMED Normalization'], icon: <Database size={16} />, color: B.secondary },
+              { group: 'NLP & Biomedical', items: ['spaCy / NER', 'PCA / UMAP', 'GMM + DBSCAN', 'ICD/SNOMED Normalization'], icon: <Database size={16} />, color: B.secondary },
               { group: 'Deployment', items: ['FastAPI', 'React', 'Streamlit', 'Python'], icon: <Cpu size={16} />, color: B.primary },
               { group: 'Data Sources', items: ['CMS Public Data', 'De-Identified Clinical Notes', 'Medicare Billing Records', 'OIG LEIE Exclusion Lists'], icon: <Lock size={16} />, color: B.accent },
             ].map((col, i) => (

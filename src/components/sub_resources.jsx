@@ -138,7 +138,7 @@ const RESOURCES_DATA = [
   {
     id:          'bio',
     heading:     'Biomedical Data Science',
-    tagline:     'Genomic pipelines, variant calling, and clinical analysis.',
+    tagline:     'Practical guides for biomedical and clinical data analysis.',
     link:        '/resources',
     accentColor: '#4b4b4b',
     articles: [

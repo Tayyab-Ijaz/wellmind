@@ -49,8 +49,8 @@ const SERVICES = [
   {
     to: '/services-health-ai',
     title: 'Health AI & Biomedical Data Science',
-    tags: ['Genomics', 'Health AI'],
-    desc: 'Apply data science and AI to biological, clinical, and health research challenges.',
+    tags: ['Clinical NLP', 'Health AI'],
+    desc: 'Apply data science and AI to clinical, healthcare, and biomedical research challenges.',
     img: imgBio,
   },
 ];

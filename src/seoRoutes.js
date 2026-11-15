@@ -43,5 +43,5 @@ export const ROUTE_META = {
   '/services-ai-software': { title: `AI-Powered Software Development | ${N}`, description: 'Prototypes, MVPs and production AI products, built and handed over with clear documentation.' },
   '/services-automation': { title: `Automation & Workflow Services | ${N}`, description: 'Intelligent RPA, document processing and workflow automation built to run reliably.' },
   '/services-ui-ux': { title: `UI/UX & Digital Design | ${N}`, description: 'Design for data-heavy products. This service page is being prepared; book a call to discuss your needs.' },
-  '/services-health-ai': { title: `Health AI & Biomedical Data Science Services | ${N}`, description: 'Genomics, transcriptomics and multi-omics analysis pipelines with reproducible code and clear reporting.' },
+  '/services-health-ai': { title: `Health AI & Biomedical Data Science Services | ${N}`, description: 'Healthcare analytics, clinical NLP, risk models and biomedical data science with reproducible code and clear reporting.' },
 };

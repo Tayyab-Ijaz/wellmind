@@ -272,7 +272,7 @@ export default function About() {
               <span style={{ background:'linear-gradient(90deg,#4a4a4a 25%,#373737 75%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Let's Build Together.</span>
             </h2>
             <p className="section-lead" style={{ color:B.textMid, maxWidth:760, margin:'0 auto clamp(24px,3.5vw,48px)', lineHeight:1.75 }}>
-              Whether you need a full-scale genomics analysis pipeline, a custom AI model, or a strategic consultation on how to handle your data, we are ready to listen.
+              Whether you need a full-scale analytics pipeline, a custom AI model, or a strategic consultation on how to handle your data, we are ready to listen.
             </p>
             <motion.div whileHover={{ scale:1.04, y:-3 }} whileTap={{ scale:0.97 }} style={{ display:'inline-block' }}>
               <Link to="/book-discovery" className="btn-primary" style={{ background:`linear-gradient(135deg,${B.action},#393939)`, boxShadow:`0 8px 40px ${B.actionGlow},0 0 80px rgba(84,84,84,0.15)`, border:`1px solid rgba(84,84,84,0.40)`, padding:'clamp(14px,2.5vw,20px) clamp(24px,5vw,56px)' }}>

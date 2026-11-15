@@ -45,7 +45,7 @@ const SERVICES = [
   {
     id: 'bio',
     heading: 'Health AI & Biomedical Data Science',
-    tagline: 'Genomic pipelines, multi-omics analysis & clinical AI tools.',
+    tagline: 'Healthcare analytics, clinical NLP & biomedical data science.',
     link: '/services-health-ai',
     accentColor: '#4b4b4b',
     description: 'Apply data science and AI to biological, clinical, and health research challenges.',
