@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Zap, Sparkles } from 'lucide-react';
 import { B, PX, fadeUp, SectionBadge, DataParticles } from '../../theme';
 import { HeroGridBg } from '../../components/BgGrid';
-import uiUxImage from '../../assets/ui-ux-coming-soon.webp';
+import uiUxImage from '../../assets/ui-ux-coming-soon.png';
 
 export default function ServicesUiUx() {
   return (
@@ -38,7 +38,7 @@ export default function ServicesUiUx() {
 
         .uiux-coming-grid {
           display: grid;
-          grid-template-columns: minmax(0, 0.88fr) minmax(430px, 1.12fr);
+          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
           align-items: center;
           gap: clamp(24px, 3vw, 52px);
         }
@@ -51,7 +51,7 @@ export default function ServicesUiUx() {
         .uiux-coming-title {
           font-family: ${B.fontMain};
           font-weight: 750;
-          font-size: clamp(2.55rem, 5.3vw, 5.25rem);
+          font-size: var(--fs-hero);
           color: ${B.primaryDark};
           line-height: 1.02;
           letter-spacing: -0.035em;
@@ -67,7 +67,7 @@ export default function ServicesUiUx() {
         }
 
         .uiux-coming-description {
-          font-size: clamp(1rem, 1.7vw, 1.24rem);
+          font-size: var(--fs-card-title);
           color: ${B.textMid};
           max-width: 650px;
           margin: 0 0 34px;
@@ -103,9 +103,10 @@ export default function ServicesUiUx() {
 
         .uiux-coming-image {
           position: relative;
-          width: min(120%, 780px);
-          max-height: 720px;
-          transform: translateX(20px);
+          width: 100%;
+          max-width: 640px;
+          max-height: 680px;
+          margin: 0 auto;
           object-fit: contain;
           display: block;
           filter: drop-shadow(0 26px 45px rgba(52,52,52,0.18));
@@ -122,7 +123,7 @@ export default function ServicesUiUx() {
           border-radius: 999px;
           background: rgba(255,255,255,0.58);
           color: ${B.textMid};
-          font-size: 0.84rem;
+          font-size: var(--fs-small);
           font-weight: 600;
           box-shadow: 0 10px 30px rgba(23,23,23,0.06);
         }
@@ -150,7 +151,7 @@ export default function ServicesUiUx() {
           }
 
           .uiux-coming-title {
-            font-size: clamp(2.45rem, 9vw, 4rem);
+            font-size: var(--fs-hero);
             margin-top: 18px;
           }
 
@@ -164,14 +165,7 @@ export default function ServicesUiUx() {
           }
 
           .uiux-coming-visual {
-            min-height: 420px;
-            margin-top: -8px;
-          }
-
-          .uiux-coming-image {
-            width: min(96vw, 680px);
-            max-height: 620px;
-            transform: translateX(0);
+            display: none;
           }
 
           .uiux-coming-note {
@@ -185,11 +179,11 @@ export default function ServicesUiUx() {
           }
 
           .uiux-coming-title {
-            font-size: clamp(2.15rem, 11vw, 3.15rem);
+            font-size: var(--fs-hero);
           }
 
           .uiux-coming-description {
-            font-size: 0.98rem;
+            font-size: var(--fs-card-body);
             line-height: 1.65;
           }
 
@@ -199,14 +193,6 @@ export default function ServicesUiUx() {
             box-sizing: border-box;
           }
 
-          .uiux-coming-visual {
-            min-height: 275px;
-          }
-
-          .uiux-coming-image {
-            width: 98vw;
-            max-width: 620px;
-          }
         }
       `}</style>
 

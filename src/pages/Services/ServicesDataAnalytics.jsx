@@ -83,12 +83,12 @@ function ProcessStep({ step, title, desc, color, i }) {
       transition={{ duration: 0.5, delay: i * 0.09 }}
       style={{ display: 'flex', gap: 'clamp(14px, 2vw, 24px)', position: 'relative', marginBottom: 'clamp(24px, 3.5vw, 40px)' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-        <div style={{ width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: color, color: B.white, fontWeight: 800, fontSize: 'clamp(13px, 1.6vw, 17px)', boxShadow: `0 6px 20px ${color}40`, flexShrink: 0 }}>{step}</div>
+        <div style={{ width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: color, color: B.white, fontWeight: 800, fontSize: 'var(--fs-card-body)', boxShadow: `0 6px 20px ${color}40`, flexShrink: 0 }}>{step}</div>
         {i < 3 && <div style={{ width: 2, flex: 1, minHeight: 28, background: `linear-gradient(to bottom, ${color}60, transparent)`, marginTop: 6 }}/>}
       </div>
       <div style={{ paddingTop: 8 }}>
-        <h4 style={{ fontWeight: 700, fontSize: 'clamp(1.15rem, 2vw, 1.8rem)', color: B.textMain, marginBottom: 8, lineHeight: 1.3 }}>{title}</h4>
-        <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.25rem)', lineHeight: 1.7, color: B.textMid }}>{desc}</p>
+        <h4 style={{ fontWeight: 700, fontSize: 'var(--fs-h3)', color: B.textMain, marginBottom: 8, lineHeight: 1.3 }}>{title}</h4>
+        <p style={{ fontSize: 'var(--fs-card-title)', lineHeight: 1.7, color: B.textMid }}>{desc}</p>
       </div>
     </motion.div>
   );
@@ -130,7 +130,7 @@ const SharedStyles = () => (
       padding: clamp(12px, 2vw, 18px) clamp(20px, 4vw, 40px);
       border-radius: 12px; background: #545454; color: #ffffff;
       font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+      font-size: var(--fs-btn);
       letter-spacing: 0.10em; text-transform: uppercase; text-decoration: none;
       transition: opacity 0.2s, transform 0.2s;
     }
@@ -143,7 +143,7 @@ const SharedStyles = () => (
       padding: clamp(10px, 1.8vw, 16px) clamp(20px, 4vw, 40px);
       border-radius: 12px; background: transparent; color: #373737;
       font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+      font-size: var(--fs-btn);
       letter-spacing: 0.10em; textTransform: uppercase; text-decoration: none;
       border: 2px solid #373737; transition: background 0.2s, transform 0.2s;
     }
@@ -167,7 +167,7 @@ const SharedStyles = () => (
     }
     @media (max-width: 320px) {
       .grid-stats    { grid-template-columns: 1fr; gap: 10px; }
-      .btn-primary, .btn-secondary { width: 100%; justify-content: center; font-size: 0.8rem; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; font-size: var(--fs-btn); }
     }
 
     /* Keyframes */
@@ -216,7 +216,7 @@ function DeliverableItem({ text, color }) {
     >
       <CheckCircle size={18} color={hovered ? B.textDark : color} style={{ flexShrink: 0, transition: 'color 0.3s' }}/>
       <span style={{ 
-        fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', 
+        fontSize: 'var(--fs-card-title)', 
         fontWeight: 500, 
         lineHeight: 1.5,
         color: hovered ? B.textDark : B.textMain,
@@ -227,7 +227,7 @@ function DeliverableItem({ text, color }) {
 }
 
 // ─── Tech Badge ─────────────────────────────────────────────────────────────
-function TechBadge({ label, color }) {
+function TechBadge({ label }) {
   const [h, setH] = useState(false);
   return (
     <span
@@ -235,10 +235,10 @@ function TechBadge({ label, color }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: 5,
         padding: 'clamp(5px, 1vw, 7px) clamp(10px, 1.5vw, 14px)', borderRadius: 'var(--radius-sm)',
-        background: h ? color : 'rgba(255,255,255,0.05)',
-        border: `1.5px solid ${h ? color : 'rgba(255,255,255,0.15)'}`,
-        color: h ? B.bgDark : color,
-        fontSize: 'clamp(11px, 1.3vw, 13px)', fontWeight: 700, letterSpacing: '0.04em',
+        background: h ? '#f0f0f0' : 'rgba(255,255,255,0.05)',
+        border: `1.5px solid ${h ? '#f0f0f0' : 'rgba(255,255,255,0.15)'}`,
+        color: h ? '#000000' : '#f0f0f0',
+        fontSize: 'var(--fs-small)', fontWeight: 700, letterSpacing: '0.04em',
         transition: 'all 0.22s ease', cursor: 'default',
       }}
     >
@@ -271,14 +271,14 @@ function DashboardPreview() {
       flexDirection: 'column',
       justifyContent: 'center'
     }}>
-      <div style={{ fontSize: 'clamp(14px, 1.2vw, 17px)', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: B.textMuted, textAlign: 'center', marginBottom: 16 }}>Analytics Dashboard</div>
+      <div style={{ fontSize: 'var(--fs-card-body)', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: B.textMuted, textAlign: 'center', marginBottom: 16 }}>Analytics Dashboard</div>
       {/* KPI cards */}
       <div style={{ display: 'flex', gap: 'clamp(6px, 1vw, 10px)', marginBottom: 16 }}>
         {metrics.map((met, i) => (
           <div key={i} onClick={() => setActiveMetric(i)}
             style={{ flex: 1, padding: 'clamp(8px, 1.2vw, 12px) clamp(8px, 1.3vw, 12px)', borderRadius: 10, background: activeMetric === i ? `${met.color}12` : 'rgba(255,255,255,0.6)', border: `1.5px solid ${activeMetric === i ? met.color : B.primaryBorder}`, cursor: 'pointer', transition: 'all 0.3s ease' }}>
-            <div style={{ fontSize: 'clamp(14px, 1.1vw, 14.5px)', color: B.textMuted, fontWeight: 600, marginBottom: 3 }}>{met.label}</div>
-            <div style={{ fontWeight: 800, fontSize: 'clamp(18px, 2vw, 24px)', color: met.color }}>{met.value}</div>
+            <div style={{ fontSize: 'var(--fs-small)', color: B.textMuted, fontWeight: 600, marginBottom: 3 }}>{met.label}</div>
+            <div style={{ fontWeight: 800, fontSize: 'var(--fs-h3)', color: met.color }}>{met.value}</div>
           </div>
         ))}
       </div>
@@ -293,9 +293,9 @@ function DashboardPreview() {
       {/* Stats row */}
       <div style={{ display: 'flex', gap: 'clamp(8px, 1.2vw, 10px)' }}>
         {[{ l: 'BI', s: 'Dashboards', c: B.action }, { l: 'ETL', s: 'Pipelines', c: B.primary }, { l: 'Stats', s: 'Analysis', c: B.accent }].map((stat, i) => (
-          <div key={i} style={{ fontSize: 'clamp(14px, 1.1vw, 14.5px)', flex: 1, textAlign: 'center', padding: 'clamp(7px, 1.2vw, 10px) 6px', borderRadius: 9, background: B.bgLight, border: `1px solid ${B.primaryBorder}` }}>
-            <div style={{ fontWeight: 800, fontSize: 'clamp(13px, 2vw, 17px)', color: stat.c, marginBottom: 2 }}>{stat.l}</div>
-            <div style={{ fontSize: 'clamp(9px, 1.1vw, 10px)', color: B.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{stat.s}</div>
+          <div key={i} style={{ fontSize: 'var(--fs-small)', flex: 1, textAlign: 'center', padding: 'clamp(7px, 1.2vw, 10px) 6px', borderRadius: 9, background: B.bgLight, border: `1px solid ${B.primaryBorder}` }}>
+            <div style={{ fontWeight: 800, fontSize: 'var(--fs-card-body)', color: stat.c, marginBottom: 2 }}>{stat.l}</div>
+            <div style={{ fontSize: 'var(--fs-label)', color: B.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{stat.s}</div>
           </div>
         ))}
       </div>
@@ -377,7 +377,7 @@ export default function ServicesDataAnalytics() {
           <div style={{ maxWidth: 1200, width: '100%', display: 'flex', flexDirection: 'column', gap: 'clamp(40px, 5vw, 60px)' }}>
 
             {/* TOP ROW: Text + Visual */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'clamp(18px, 5vw, 44px)' }}>
+            <div className="hero-split-row" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'clamp(18px, 5vw, 44px)' }}>
 
               {/* Left — Text */}
               <motion.div
@@ -396,7 +396,7 @@ export default function ServicesDataAnalytics() {
                     lineHeight: 1.1, letterSpacing: '-0.02em',
                     marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark,
                   }}>
-                  Data That Answers<br/>
+                  Data That Answers{' '}<br className="hero-br" />
                   <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                     The Right Questions.
                   </span>
@@ -404,7 +404,7 @@ export default function ServicesDataAnalytics() {
 
                 {/* CHANGE: Text size synced with AiMl (1.8vw) */}
                 <motion.p custom={0.15}
-                  style={{ fontSize: 'clamp(0.88rem, 1.8vw, 1.15rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
+                  style={{ fontSize: 'var(--fs-card-title)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
                   WellMind Data Solutions designs and deploys Analytics systems that act as a strategic extension of your business — from audit to full production-grade platforms.
                 </motion.p>
 
@@ -458,7 +458,7 @@ export default function ServicesDataAnalytics() {
 
           {/* Tech Stack */}
           <div style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: 'clamp(10px, 1.2vw, 11px)', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: B.textDarkMuted, marginBottom: 16 }}>Our Analytics Stack</p>
+            <p style={{ fontSize: 'var(--fs-label)', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: B.textDarkMuted, marginBottom: 16 }}>Our Analytics Stack</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(8px, 1.2vw, 12px)', justifyContent: 'center' }}>
               {techStack.map((t, i) => <TechBadge key={i} {...t}/>)}
             </div>
@@ -515,7 +515,7 @@ export default function ServicesDataAnalytics() {
             <div style={{ flex: '1 1 min(100%, 380px)' }}>
               <SectionBadge>What You Get</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>Documented Handover.</h2>
-              <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
+              <p style={{ fontSize: 'var(--fs-card-title)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
                 Every engagement delivers production-ready dashboards and reports that your team can maintain and extend independently.
               </p>
               
@@ -543,7 +543,7 @@ export default function ServicesDataAnalytics() {
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-              Let's Turn Data Into<br/>
+              Let's Turn Data Into{' '}<br className="hero-br" />
               <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Actionable Intelligence.
               </span>
@@ -556,7 +556,7 @@ export default function ServicesDataAnalytics() {
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
                 borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #393939)`,
-                color: B.white, fontWeight: 700, fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
+                color: B.white, fontWeight: 700, fontSize: 'var(--fs-card-title)',
                 letterSpacing: '0.10em', textTransform: 'uppercase', textDecoration: 'none',
                 boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
                 border: '1px solid rgba(84,84,84,0.40)', transition: 'all 0.2s',

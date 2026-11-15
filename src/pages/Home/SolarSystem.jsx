@@ -379,7 +379,7 @@ const CSS = `
     pointer-events: none; white-space: nowrap; will-change: transform;
     box-shadow: 0 0 0 3px rgba(255,255,255,.12);
   }
-  @media (max-width: 560px) { .solar-lbl { padding: 2px 8px; font-size: 10px; box-shadow: 0 0 0 2px rgba(255,255,255,.12); } }
+  @media (max-width: 560px) { .solar-lbl { padding: 2px 8px; font-size: var(--fs-label); box-shadow: 0 0 0 2px rgba(255,255,255,.12); } }
   .solar-lbl.solar-core {
     background: none; box-shadow: none; color: #1fb5c9;
     letter-spacing: .12em; padding: 0;

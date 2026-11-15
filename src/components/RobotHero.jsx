@@ -53,7 +53,7 @@ export default function RobotHero({ height = 'clamp(420px, 38vw, 560px)' }) {
           padding: '7px 14px', borderRadius: 99,
           background: 'rgba(15,15,15,0.55)', backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255,255,255,0.14)',
-          fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
+          fontSize: 'var(--fs-label)', fontWeight: 700, letterSpacing: '0.08em',
           textTransform: 'uppercase', color: '#f0f0f0',
           opacity: ready ? 1 : 0,
           transition: 'opacity 0.6s ease 0.3s',

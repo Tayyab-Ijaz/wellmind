@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import OrphanGuard from './components/OrphanGuard';
 import { useSeo } from './seo';
 import { ROUTE_META } from './seoRoutes';
 
@@ -28,18 +29,13 @@ const IndustryRetail = lazy(() => import('./pages/Industries/IndustryRetail'));
 const IndustryAgriculture = lazy(() => import('./pages/Industries/Industryagriculture'));
 const IndustryEducation = lazy(() => import('./pages/Industries/Industryeducation'));
 
+const AllServices = lazy(() => import('./pages/Services/AllServices'));
 const ServicesAiMl = lazy(() => import('./pages/Services/ServicesAiMl'));
 const ServicesDataAnalytics = lazy(() => import('./pages/Services/ServicesDataAnalytics'));
 const ServicesAiSoftware = lazy(() => import('./pages/Services/ServiceAiSoftware'));
 const ServicesAutomation = lazy(() => import('./pages/Services/ServicesAutomation'));
 const ServicesUiUx = lazy(() => import('./pages/Services/ServicesUiUx'));
 const ServicesBioinformatics = lazy(() => import('./pages/Services/ServicesBioinformatics'));
-
-const ServiceChildPage = lazy(() => import('./pages/Services/ServiceChildPage'));
-const DataAnalyticsChildPage = lazy(() => import('./pages/Services/DataAnalyticsChildPage'));
-const AiSoftwareChildPage = lazy(() => import('./pages/Services/AiSoftwareChildPage'));
-const AutomationChildPage = lazy(() => import('./pages/Services/Automationchildpage'));
-const BioinformaticsChildPage = lazy(() => import('./pages/Services/Bioinformaticschildpage'));
 
 // Fallback shown while a lazy page chunk downloads. It is a full screen tall on
 // purpose: if it were shorter than the page we just left, the browser would clamp
@@ -80,6 +76,12 @@ function ScrollTop() {
 }
 
 // Applies the per-route title/description/canonical. Child pages (services, case studies) set their own.
+// The All services page has its own giant wordmark footer, so skip the global one there.
+function SiteFooter() {
+  const { pathname } = useLocation();
+  return pathname === '/services' ? null : <Footer/>;
+}
+
 function RouteSeo() {
   const { pathname } = useLocation();
   const meta = ROUTE_META[pathname];
@@ -91,6 +93,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollTop/>
+      <OrphanGuard/>
       <RouteSeo/>
       <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column' }}>
         <Header/>
@@ -129,7 +132,7 @@ function App() {
               <Route path="/terms-of-service" element={<TermsOfService/>}/>
               <Route path="/cookie-policy" element={<CookiePolicy/>}/>
               <Route path="/contact" element={<Navigate to="/book-discovery" replace/>}/>
-              <Route path="/services" element={<Navigate to="/services-ai-ml" replace/>}/>
+              <Route path="/services" element={<AllServices/>}/>
               <Route path="/services-ui-ux/:childId" element={<Navigate to="/services-ui-ux" replace/>}/>
               <Route path="/industries" element={<Navigate to="/industry-healthcare" replace/>}/>
 
@@ -147,17 +150,17 @@ function App() {
               <Route path="/services-ui-ux" element={<ServicesUiUx/>}/>
               <Route path="/services-bioinformatics" element={<ServicesBioinformatics/>}/>
 
-              <Route path="*" element={<Navigate to="/" replace/>}/>
+              <Route path="/services-ai-ml/:childId" element={<Navigate to="/services-ai-ml" replace/>}/>
+              <Route path="/services-data-analytics/:childId" element={<Navigate to="/services-data-analytics" replace/>}/>
+              <Route path="/services-ai-software/:childId" element={<Navigate to="/services-ai-software" replace/>}/>
+              <Route path="/services-automation/:childId" element={<Navigate to="/services-automation" replace/>}/>
+              <Route path="/services-bioinformatics/:childId" element={<Navigate to="/services-bioinformatics" replace/>}/>
 
-              <Route path="/services-ai-ml/:childId" element={<ServiceChildPage />}/>
-              <Route path="/services-data-analytics/:childId" element={<DataAnalyticsChildPage />} />
-              <Route path="/services-ai-software/:childId" element={<AiSoftwareChildPage />} />
-              <Route path="/services-automation/:childId" element={<AutomationChildPage />} />
-              <Route path="/services-bioinformatics/:childId" element={<BioinformaticsChildPage />} />
+              <Route path="*" element={<Navigate to="/" replace/>}/>
             </Routes>
           </Suspense>
         </main>
-        <Footer/>
+        <SiteFooter/>
       </div>
     </BrowserRouter>
   );

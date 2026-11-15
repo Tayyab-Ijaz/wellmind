@@ -106,7 +106,7 @@ function DeliverableItem({ text, color }) {
     >
       <CheckCircle size={18} color={hovered ? B.textDark : color} style={{ flexShrink: 0, transition: 'color 0.3s' }}/>
       <span style={{
-        fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)',
+        fontSize: 'var(--fs-card-title)',
         fontWeight: 500,
         lineHeight: 1.5,
         color: hovered ? B.textDark : B.textMain,
@@ -120,7 +120,7 @@ function DeliverableItem({ text, color }) {
 
 
 // ─── Tech Badge ───────────────────────────────────────────────────────────────
-function TechBadge({ label, color }) {
+function TechBadge({ label }) {
   const [h, setH] = useState(false);
   return (
     <span
@@ -128,10 +128,10 @@ function TechBadge({ label, color }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: 5,
         padding: 'clamp(5px, 1vw, 7px) clamp(10px, 1.5vw, 14px)', borderRadius: 'var(--radius-sm)',
-        background: h ? color : 'rgba(255,255,255,0.05)',
-        border: `1.5px solid ${h ? color : 'rgba(255,255,255,0.15)'}`,
-        color: h ? B.bgDark : color,
-        fontSize: 'clamp(11px, 1.3vw, 13px)', fontWeight: 700, letterSpacing: '0.04em',
+        background: h ? '#f0f0f0' : 'rgba(255,255,255,0.05)',
+        border: `1.5px solid ${h ? '#f0f0f0' : 'rgba(255,255,255,0.15)'}`,
+        color: h ? '#000000' : '#f0f0f0',
+        fontSize: 'var(--fs-small)', fontWeight: 700, letterSpacing: '0.04em',
         transition: 'all 0.22s ease', cursor: 'default',
       }}
     >
@@ -192,10 +192,10 @@ function GenomicsPipeline() {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 'clamp(11px, 1.4vw, 13px)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color: AC, marginBottom: 2 }}>
+          <div style={{ fontSize: 'var(--fs-small)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color: AC, marginBottom: 2 }}>
             Variant Calling Pipeline
           </div>
-          <div style={{ fontSize: 'clamp(9px, 1.1vw, 11px)', color: B.textMuted, fontWeight: 500 }}>
+          <div style={{ fontSize: 'var(--fs-label)', color: B.textMuted, fontWeight: 500 }}>
             Live Processing Simulation
           </div>
         </div>
@@ -275,17 +275,17 @@ function GenomicsPipeline() {
                 <div>
                   <div style={{
                     fontWeight: 700,
-                    fontSize: 'clamp(12px, 1.6vw, 15px)',
+                    fontSize: 'var(--fs-card-body)',
                     color: isActive ? step.color : isHovered ? step.color : B.textMain,
                     transition: 'color 0.3s',
                     marginBottom: 2,
                     lineHeight: 1.2,
                   }}>{step.label}</div>
                   <div style={{
-                    fontSize: 'clamp(10px, 1.2vw, 12px)',
+                    fontSize: 'var(--fs-label)',
                     color: isActive ? `${step.color}90` : B.textMuted,
                     fontWeight: 600,
-                    fontFamily: 'monospace',
+                    fontFamily: 'var(--font-main)',
                     transition: 'color 0.3s',
                   }}>{step.sub}</div>
                 </div>
@@ -296,7 +296,7 @@ function GenomicsPipeline() {
                     style={{
                       padding: '3px 10px', borderRadius: 99,
                       background: step.color,
-                      color: '#fff', fontSize: 10, fontWeight: 800,
+                      color: '#fff', fontSize: 'var(--fs-label)', fontWeight: 800,
                       letterSpacing: '0.08em', textTransform: 'uppercase',
                       whiteSpace: 'nowrap',
                     }}
@@ -311,7 +311,7 @@ function GenomicsPipeline() {
                     style={{
                       padding: '3px 10px', borderRadius: 99,
                       background: `${AC}20`, border: `1px solid ${AC}40`,
-                      color: AC, fontSize: 10, fontWeight: 800,
+                      color: AC, fontSize: 'var(--fs-label)', fontWeight: 800,
                       letterSpacing: '0.08em', textTransform: 'uppercase',
                       whiteSpace: 'nowrap',
                     }}
@@ -328,8 +328,8 @@ function GenomicsPipeline() {
       {/* Progress bar */}
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-          <span style={{ fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 700, color: B.textMuted, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Pipeline Progress</span>
-          <span style={{ fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 800, color: AC }}>{steps[activeStep]?.label}</span>
+          <span style={{ fontSize: 'var(--fs-label)', fontWeight: 700, color: B.textMuted, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Pipeline Progress</span>
+          <span style={{ fontSize: 'var(--fs-label)', fontWeight: 800, color: AC }}>{steps[activeStep]?.label}</span>
         </div>
         <div style={{ height: 6, borderRadius: 99, background: `${AC}18`, overflow: 'hidden' }}>
           <motion.div
@@ -356,8 +356,8 @@ function GenomicsPipeline() {
               transition: 'all 0.25s ease',
             }}
           >
-            <div style={{ fontWeight: 800, fontSize: 'clamp(15px, 2.2vw, 20px)', color: m.c, marginBottom: 3, lineHeight: 1 }}>{m.l}</div>
-            <div style={{ fontSize: 'clamp(9px, 1.1vw, 11px)', color: B.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', lineHeight: 1.2 }}>{m.s}</div>
+            <div style={{ fontWeight: 800, fontSize: 'var(--fs-card-title)', color: m.c, marginBottom: 3, lineHeight: 1 }}>{m.l}</div>
+            <div style={{ fontSize: 'var(--fs-label)', color: B.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', lineHeight: 1.2 }}>{m.s}</div>
           </motion.div>
         ))}
       </div>
@@ -439,7 +439,7 @@ export default function ServicesBioinformatics() {
           <div style={{ maxWidth: 1200, width: '100%', display: 'flex', flexDirection: 'column', gap: 'clamp(40px, 5vw, 60px)' }}>
 
             {/* TOP ROW: Text + Pipeline */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'stretch', gap: 'clamp(18px, 5vw, 44px)' }}>
+            <div className="hero-split-row" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'stretch', gap: 'clamp(18px, 5vw, 44px)' }}>
 
               {/* Left — Text */}
               <motion.div
@@ -458,14 +458,14 @@ export default function ServicesBioinformatics() {
                     lineHeight: 1.1, letterSpacing: '-0.02em',
                     marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark,
                   }}>
-                  From Raw Sequence<br/>
+                  From Raw Sequence{' '}<br className="hero-br" />
                   <span style={{ background: `linear-gradient(90deg, ${AC} 25%, ${B.action} 75%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                     to Biological Insight.
                   </span>
                 </motion.h1>
 
                 <motion.p variants={fadeUp} custom={0.15}
-                  style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
+                  style={{ fontSize: 'var(--fs-h3)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
                   WellMind Data Solutions delivers end-to-end bioinformatics analysis pipelines for genomics, transcriptomics, and multi-omics research. From FASTQ to publication-ready figures — we produce clean code, reproducible results, and findings your PI and collaborators can act on.
                 </motion.p>
 
@@ -515,7 +515,7 @@ export default function ServicesBioinformatics() {
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)', border: `1px solid ${B.primaryBorder}`,
-                  fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
+                  fontSize: 'var(--fs-card-body)', fontWeight: 600, color: B.textMain,
                   boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
@@ -541,7 +541,7 @@ export default function ServicesBioinformatics() {
 
           {/* Tech Stack */}
           <div style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: 'clamp(10px, 1.2vw, 11px)', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: B.textDarkMuted, marginBottom: 16 }}>Our Bio Stack</p>
+            <p style={{ fontSize: 'var(--fs-label)', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: B.textDarkMuted, marginBottom: 16 }}>Our Bio Stack</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(8px, 1.2vw, 12px)', justifyContent: 'center' }}>
               {techStack.map((t, i) => <TechBadge key={i} {...t}/>)}
             </div>
@@ -592,12 +592,12 @@ export default function ServicesBioinformatics() {
                   <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.09 }}
                     style={{ display: 'flex', gap: 'clamp(14px, 2vw, 24px)', position: 'relative', marginBottom: 'clamp(24px, 3.5vw, 40px)' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                      <div style={{ width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: color, color: B.white, fontWeight: 800, fontSize: 'clamp(13px, 1.6vw, 17px)', boxShadow: `0 6px 20px ${color}40`, flexShrink: 0 }}>{p.step}</div>
+                      <div style={{ width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: color, color: B.white, fontWeight: 800, fontSize: 'var(--fs-card-body)', boxShadow: `0 6px 20px ${color}40`, flexShrink: 0 }}>{p.step}</div>
                       {i < processes.length - 1 && <div style={{ width: 2, flex: 1, minHeight: 28, background: `linear-gradient(to bottom, ${color}60, transparent)`, marginTop: 6 }}/>}
                     </div>
                     <div style={{ paddingTop: 8 }}>
-                      <h4 style={{ fontWeight: 700, fontSize: 'clamp(1.15rem, 2vw, 1.8rem)', color: B.textMain, marginBottom: 8, lineHeight: 1.3 }}>{p.title}</h4>
-                      <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.25rem)', lineHeight: 1.7, color: B.textMid }}>{p.desc}</p>
+                      <h4 style={{ fontWeight: 700, fontSize: 'var(--fs-h3)', color: B.textMain, marginBottom: 8, lineHeight: 1.3 }}>{p.title}</h4>
+                      <p style={{ fontSize: 'var(--fs-card-title)', lineHeight: 1.7, color: B.textMid }}>{p.desc}</p>
                     </div>
                   </motion.div>
                 );
@@ -608,7 +608,7 @@ export default function ServicesBioinformatics() {
             <div style={{ flex: '1 1 min(100%, 380px)' }}>
               <SectionBadge color={AC}>Deliverables</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>What You Receive</h2>
-              <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
+              <p style={{ fontSize: 'var(--fs-card-title)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
                 Every project is delivered with reproducible code, clean documentation, and outputs written for your intended audience — from lab journals to regulatory submissions.
               </p>
               {deliverables.map((d, i) => {
@@ -636,7 +636,7 @@ export default function ServicesBioinformatics() {
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge color={AC}>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-              Turn Your Sequencing Data<br/>
+              Turn Your Sequencing Data{' '}<br className="hero-br" />
               <span style={{ background: `linear-gradient(90deg, ${AC} 25%, ${B.action} 75%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Into Discovery.
               </span>
@@ -649,7 +649,7 @@ export default function ServicesBioinformatics() {
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
                 borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${AC}, #464646)`,
-                color: B.white, fontWeight: 700, fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
+                color: B.white, fontWeight: 700, fontSize: 'var(--fs-card-title)',
                 letterSpacing: '0.10em', textTransform: 'uppercase', textDecoration: 'none',
                 boxShadow: `0 8px 40px ${AC}40, 0 0 80px ${AC}15`,
                 border: `1px solid ${AC}40`, transition: 'all 0.2s',

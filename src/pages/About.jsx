@@ -1,26 +1,19 @@
 /**
  * About.jsx — WellMind Data Solutions
- * Updated to match Resources.jsx visual language.
- * Structure: Hero (Light) -> Dark Strip (Stats) -> Light Section (Values) -> Light Section (Team) -> Light CTA.
+ * Structure: Hero -> Values -> Team -> CTA (all light, matches Resources.jsx visual language).
  */
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {
-  ArrowRight, Zap, Target, FlaskConical, Package, Globe,
-  BookOpen, BarChart3, Users, Award, CheckCircle, Star,
-  Brain, TrendingUp, Shield, Mail, ExternalLink, Dna, Clock,
-} from 'lucide-react';
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { ArrowRight, Zap, Target, Package, Globe, CheckCircle, Star, Dna } from 'lucide-react';
+import { FaLinkedin } from 'react-icons/fa';
 import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge } from '../theme';
 import { HeroGridBg } from '../components/BgGrid';
-import HeroIllustration from '../assets/illustrations/ai-data-hero.png';
+import HeroImage from '../assets/illustrations/about-hero.webp';
 import TayyabPhoto from '../assets/team/tayyab-ijaz.png';
 import SalmanPhoto from '../assets/team/salman-raza.png';
 
-/* ─── Brand Tokens — IDENTICAL to Resources.jsx ─────────────────────────────── */
-/* ─── Background helpers ─────────────────────────────────────────────────────────── */
 /* ─── Value Card Component ───────────────────────────────────────────────────── */
 function ValueCard({ title, desc, icon, color, i }) {
   const [hov, setHov] = useState(false);
@@ -47,7 +40,7 @@ function ValueCard({ title, desc, icon, color, i }) {
       </div>
       <h3 className="card-title" style={{ marginBottom:12 }}>{title}</h3>
       <p className="card-body" style={{ flex:1 }}>{desc}</p>
-      <div style={{ marginTop:16, display:'flex', alignItems:'center', gap:6, color:color, fontWeight:700, fontSize:'clamp(12px,1.3vw,14px)', letterSpacing:'0.05em' }}>
+      <div style={{ marginTop:16, display:'flex', alignItems:'center', gap:6, color:color, fontWeight:700, fontSize:'var(--fs-small)', letterSpacing:'0.05em' }}>
         <CheckCircle size={16} strokeWidth={2.5}/> Our Core Standard
       </div>
     </motion.div>
@@ -80,7 +73,7 @@ function TeamMember({ member, i }) {
           <img src={member.image} alt={member.name} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center', transform:hov?'scale(1.03)':'scale(1)', transition:'transform 0.6s ease' }} />
         ) : (
           <div style={{ width:'100%', height:'100%', background:`linear-gradient(135deg,${member.bg1||B.primary},${member.bg2||B.action})`, display:'flex', alignItems:'center', justifyContent:'center' }}>
-            <span style={{ fontSize:'clamp(3rem,5vw,4.5rem)', fontWeight:800, color:'rgba(255,255,255,0.9)' }}>
+            <span style={{ fontSize:'var(--fs-hero)', fontWeight:800, color:'rgba(255,255,255,0.9)' }}>
               {member.name.split(' ').map(n=>n[0]).join('')}
             </span>
           </div>
@@ -89,7 +82,7 @@ function TeamMember({ member, i }) {
         {/* Role Badge — two-line pill, top-left */}
         <div style={{ position:'absolute', top:16, left:16, maxWidth:'calc(100% - 32px)' }}>
           <span style={{
-            display:'inline-block', fontSize:'clamp(10px,1.1vw,12px)', fontWeight:700,
+            display:'inline-block', fontSize:'var(--fs-label)', fontWeight:700,
             textTransform:'uppercase', letterSpacing:'0.06em', lineHeight:1.4, color:'#FFFFFF',
             background:`linear-gradient(135deg,${B.primary},${B.primaryMid})`,
             padding:'8px 14px', borderRadius:12,
@@ -115,7 +108,7 @@ function TeamMember({ member, i }) {
         {/* Skills Tags */}
         <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginBottom:20 }}>
           {member.skills.slice(0,6).map((s,si) => (
-            <span key={si} style={{ fontSize:'clamp(10px,1.1vw,11px)', fontWeight:600, padding:'5px 11px', borderRadius:6, background:B.primaryLight, border:`1px solid ${B.primaryBorder}`, color:B.primary }}>
+            <span key={si} style={{ fontSize:'var(--fs-label)', fontWeight:600, padding:'5px 11px', borderRadius:6, background:B.primaryLight, border:`1px solid ${B.primaryBorder}`, color:B.primary }}>
               {s}
             </span>
           ))}
@@ -128,8 +121,8 @@ function TeamMember({ member, i }) {
               <div key={si} style={{ display:'flex', alignItems:'center', gap:8 }}>
                 <span style={{ color:B.action, flexShrink:0 }}>{st.icon}</span>
                 <div>
-                  <div style={{ fontWeight:800, fontSize:'clamp(1rem,1.6vw,1.25rem)', color:B.textMain, lineHeight:1.1 }}>{st.value}</div>
-                  <div style={{ fontSize:'clamp(9px,1vw,10.5px)', color:B.textMid, fontWeight:600, letterSpacing:'0.02em' }}>{st.label}</div>
+                  <div style={{ fontWeight:800, fontSize:'var(--fs-card-title)', color:B.textMain, lineHeight:1.1 }}>{st.value}</div>
+                  <div style={{ fontSize:'var(--fs-label)', color:B.textMid, fontWeight:600, letterSpacing:'0.02em' }}>{st.label}</div>
                 </div>
               </div>
             ))}
@@ -138,7 +131,7 @@ function TeamMember({ member, i }) {
 
         {/* Socials / Actions */}
         <div style={{ marginTop:'auto', paddingTop:member.stats?0:20, borderTop:member.stats?'none':`1px solid ${B.primaryBorder}` }}>
-          <a href={member.linkedin || '#'} target="_blank" rel="noopener noreferrer" style={{ display:'flex', alignItems:'center', gap:8, color:B.action, fontWeight:700, fontSize:'clamp(11px,1.2vw,13px)', letterSpacing:'0.06em', textDecoration:'none', textTransform:'uppercase' }}>
+          <a href={member.linkedin || '#'} target="_blank" rel="noopener noreferrer" style={{ display:'flex', alignItems:'center', gap:8, color:B.action, fontWeight:700, fontSize:'var(--fs-small)', letterSpacing:'0.06em', textDecoration:'none', textTransform:'uppercase' }}>
             <FaLinkedin size={15}/> Let's Connect on LinkedIn <ArrowRight size={14} style={{ transform:hov?'translateX(4px)':'translateX(0)', transition:'transform 0.3s' }}/>
           </a>
         </div>
@@ -187,8 +180,8 @@ export default function About() {
         <div style={{ position:'absolute', right:0, top:0, width:'45%', height:'100%', background:'linear-gradient(270deg,rgba(47,47,47,0.06) 0%,transparent 80%)', pointerEvents:'none', zIndex:1 }}/>
         <DataParticles count={18}/>
 
-        <div style={{ flex:1, position:'relative', zIndex:10, display:'flex', alignItems:'center', padding:'clamp(48px,8vw,96px) clamp(16px,4vw,24px) clamp(32px,5vw,72px)' }}>
-          <div style={{ maxWidth:1320, width:'100%', margin:'0 auto', display:'grid', gridTemplateColumns:'minmax(0,1.05fr) minmax(320px,0.95fr)', alignItems:'center', gap:'clamp(32px,5vw,60px)' }} className="about-hero-grid">
+        <div style={{ flex:1, position:'relative', zIndex:10, display:'flex', alignItems:'center', padding:'clamp(32px,6vw,72px) clamp(16px,4vw,24px) clamp(40px,6vw,80px)' }}>
+          <div style={{ maxWidth:1320, width:'100%', margin:'0 auto', display:'grid', gridTemplateColumns:'minmax(0,1fr) minmax(0,1fr)', alignItems:'center', gap:'clamp(32px,5vw,60px)' }} className="about-hero-grid">
 
             <motion.div initial="hidden" animate="visible" variants={{ hidden:{}, visible:{ transition:{ staggerChildren:0.11 } } }} style={{ textAlign:'left' }}>
 
@@ -214,17 +207,15 @@ export default function About() {
               </motion.div>
             </motion.div>
 
-            <motion.div initial={{ opacity:0, scale:0.92 }} animate={{ opacity:1, scale:1 }} transition={{ duration:0.7, ease:[0.16,1,0.3,1], delay:0.15 }} style={{ position:'relative', transform:'scale(1.18)', transformOrigin:'center' }} className="about-hero-visual">
-              <img src={HeroIllustration} alt="AI-powered data intelligence platform" style={{ width:'100%', height:'auto', display:'block', filter:'drop-shadow(0 30px 60px rgba(42,42,42,0.25))' }} />
+            <motion.div initial={{ opacity:0, scale:0.95 }} animate={{ opacity:1, scale:1 }} transition={{ duration:0.7, ease:[0.16,1,0.3,1], delay:0.15 }} className="about-hero-visual">
+              <img src={HeroImage} alt="Brain hologram surrounded by data analytics, AI insights and biomedical data screens in a research lab" width="1200" height="1200" loading="eager" decoding="async" />
             </motion.div>
 
           </div>
         </div>
       </section>
 
-      {/* ══ 2. DARK STRIP — Stats ══ */}
-
-      {/* ══ 3. MAIN LIGHT — Our Story & Values ══ */}
+      {/* ══ 2. MAIN LIGHT — Our Story & Values ══ */}
       <section style={{ position:'relative', zIndex:1, background:`linear-gradient(180deg,${B.bgLight} 0%,#efefef 50%,#e5e5e5 100%)`, overflow:'clip', padding:0 }}>
         <HeroGridBg uid="AboutLight" opacity={0.15}/>
         <DataParticles count={12}/>
@@ -232,10 +223,10 @@ export default function About() {
         <div style={{ position:'relative', zIndex:2, padding:`${SECTION_PAD} 0` }}>
           <div style={{ ...PX }}>
             
-            <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }} style={{ textAlign:'center', marginBottom:60 }}>
+            <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }} style={{ textAlign:'center', marginBottom:'clamp(32px,5vw,60px)' }}>
               <SectionBadge>Our DNA</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom:12 }}>More Than Just Consultants</h2>
-              <p className="section-lead" style={{ maxWidth:1200, margin:'0 auto' }}>
+              <p className="section-lead" style={{ maxWidth:760, margin:'0 auto' }}>
                 We don't just write code; we integrate into your process. We bring the rigor of academic publication to the speed of modern tech startups.
               </p>
             </motion.div>
@@ -247,17 +238,17 @@ export default function About() {
         </div>
       </section>
 
-      {/* ══ 4. THE TEAM ("Meat" Section) ══ */}
-      <section style={{ position:'relative', zIndex:1, background:`linear-gradient(180deg,#e5e5e5 0%,#f3f3f3 100%)`, padding:`${SECTION_PAD} 0` }}>
+      {/* ══ 3. THE TEAM ══ */}
+      <section style={{ position:'relative', zIndex:1, background:`linear-gradient(180deg,#e5e5e5 0%,#f3f3f3 100%)`, padding:`${SECTION_PAD} 0`, overflow:'clip' }}>
         <HeroGridBg uid="TeamGrid" opacity={0.15}/>
         <DataParticles count={12}/>
         
         <div style={{ ...PX, position:'relative', zIndex:2 }}>
-          <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }} style={{ textAlign:'center', marginBottom:60 }}>
+          <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }} style={{ textAlign:'center', marginBottom:'clamp(32px,5vw,60px)' }}>
             <SectionBadge>Meet The Minds</SectionBadge>
             <h2 className="section-h2">Our Global Team</h2>
-            <p className="section-lead" style={{ marginTop:12, maxWidth: 1200, }}>
-              A blend of senior scientists, engineers, and strategists working across time zones to deliver impact.
+            <p className="section-lead" style={{ marginTop:12, maxWidth:760, margin:'12px auto 0' }}>
+              The founders leading WellMind's AI engineering, strategy, and client delivery.
             </p>
           </motion.div>
 
@@ -267,7 +258,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ══ 5. LIGHT CTA (Not Dark as requested) ══ */}
+      {/* ══ 4. CTA ══ */}
       <section style={{ padding:`${SECTION_PAD} 0`, paddingTop:'clamp(48px,8vw,100px)', paddingBottom:'clamp(48px,8vw,100px)', position:'relative', overflow:'clip', zIndex:1, background:`linear-gradient(180deg,${B.bgLight} 0%,#e5e5e5 100%)` }}>
         <HeroGridBg uid="AboutFooter" opacity={0.15}/>
         <DataParticles count={16}/>
@@ -277,11 +268,11 @@ export default function About() {
           <motion.div initial={{ opacity:0, y:32 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7, ease:[0.16,1,0.3,1] }}>
             <SectionBadge>Join Us</SectionBadge>
             <h2 className="section-h2" style={{ color:B.primaryDark, marginBottom:20 }}>
-              Ready to Scale Your Vision?<br/>
+              Ready to Scale Your Vision?{' '}<br className="hero-br" />
               <span style={{ background:'linear-gradient(90deg,#4a4a4a 25%,#373737 75%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Let's Build Together.</span>
             </h2>
-            <p className="section-lead" style={{ color:B.textMid, maxWidth:1200, margin:'0 auto clamp(24px,3.5vw,48px)', lineHeight:1.75 }}>
-              Whether you need a full-scale bioinformatics pipeline, a custom AI model, or just a strategic consultation on how to handle your data. We are ready to listen.
+            <p className="section-lead" style={{ color:B.textMid, maxWidth:760, margin:'0 auto clamp(24px,3.5vw,48px)', lineHeight:1.75 }}>
+              Whether you need a full-scale bioinformatics pipeline, a custom AI model, or a strategic consultation on how to handle your data, we are ready to listen.
             </p>
             <motion.div whileHover={{ scale:1.04, y:-3 }} whileTap={{ scale:0.97 }} style={{ display:'inline-block' }}>
               <Link to="/book-discovery" className="btn-primary" style={{ background:`linear-gradient(135deg,${B.action},#393939)`, boxShadow:`0 8px 40px ${B.actionGlow},0 0 80px rgba(84,84,84,0.15)`, border:`1px solid rgba(84,84,84,0.40)`, padding:'clamp(14px,2.5vw,20px) clamp(24px,5vw,56px)' }}>
@@ -294,11 +285,6 @@ export default function About() {
 
       {/* ══ SHARED CSS ══ */}
       <style>{`
-        
-*{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth}
-        body{font-family:'Space Grotesk',sans-serif;-webkit-font-smoothing:antialiased}
-        a{text-decoration:none}
         .section-badge{display:inline-flex;align-items:center;gap:8px;padding:6px clamp(14px,2vw,20px);border-radius:99px;font-size:var(--fs-badge);font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px}
         .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--c-action);flex-shrink:0}
         .section-h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:var(--fs-section-h2);color:var(--c-text-main);line-height:1.15;margin-bottom:14px}
@@ -306,23 +292,25 @@ export default function About() {
         .section-lead{font-size:var(--fs-section-lead);color:var(--c-text-mid);max-width:720px;font-weight:500;margin:0 auto;line-height:1.6}
         .card-title{font-weight:700;font-size:var(--fs-card-title);color:var(--c-text-main);margin-bottom:14px;line-height:1.3}
         .card-body{font-size:var(--fs-card-body);line-height:1.7;color:var(--c-text-mid)}
-        .hero-h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.75rem,5.5vw,5rem);line-height:1.1;letter-spacing:-0.02em}
-        .hero-sub{font-family:'Space Grotesk',sans-serif;font-size:clamp(0.9rem,2.2vw,1.5rem);line-height:1.6;letter-spacing:0.02em}
-        .card-project-title{font-weight:700;font-size:clamp(1rem,2vw,1.6rem);line-height:1.3;font-family:'Space Grotesk',sans-serif}
-        .card-project-body{font-size:clamp(0.85rem,1.5vw,1.1rem);line-height:1.7;font-family:'Space Grotesk',sans-serif}
-        .tool-tag{font-size:clamp(10px,1.2vw,13px);font-weight:700;letter-spacing:0.04em}
-        .cta-link-text{font-weight:700;font-size:clamp(12px,1.4vw,15px);letter-spacing:0.06em;text-transform:uppercase}
-        .label-text{font-size:clamp(10px,1.2vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase}
-        .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:clamp(12px,2vw,18px) clamp(20px,4vw,40px);border-radius:12px;background:linear-gradient(135deg,#5c5c5c 0%,#545454 100%);color:#ffffff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(0.85rem,1.8vw,1.2rem);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s,box-shadow 0.2s}
+        .hero-h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:var(--fs-hero);line-height:1.1;letter-spacing:-0.02em}
+        .hero-sub{font-family:'Space Grotesk',sans-serif;font-size:var(--fs-card-title);line-height:1.6;letter-spacing:0.02em}
+        .card-project-title{font-weight:700;font-size:var(--fs-card-title);line-height:1.3;font-family:'Space Grotesk',sans-serif}
+        .card-project-body{font-size:var(--fs-card-body);line-height:1.7;font-family:'Space Grotesk',sans-serif}
+        .tool-tag{font-size:var(--fs-small);font-weight:700;letter-spacing:0.04em}
+        .cta-link-text{font-weight:700;font-size:var(--fs-card-body);letter-spacing:0.06em;text-transform:uppercase}
+        .label-text{font-size:var(--fs-small);font-weight:700;letter-spacing:0.12em;text-transform:uppercase}
+        .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:clamp(12px,2vw,18px) clamp(20px,4vw,40px);border-radius:12px;background:linear-gradient(135deg,#5c5c5c 0%,#545454 100%);color:#ffffff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:var(--fs-btn);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s,box-shadow 0.2s}
         .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(92,92,92,0.35)}
-        .btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:clamp(10px,1.8vw,16px) clamp(20px,4vw,40px);border-radius:12px;background:transparent;color:#373737;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(0.85rem,1.8vw,1.2rem);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:2px solid #373737;cursor:pointer;transition:background 0.2s,transform 0.2s}
+        .btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:clamp(10px,1.8vw,16px) clamp(20px,4vw,40px);border-radius:12px;background:transparent;color:#373737;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:var(--fs-btn);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:2px solid #373737;cursor:pointer;transition:background 0.2s,transform 0.2s}
         
         /* Grid Layouts */
         .grid-projects{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,28px)}
         .grid-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.2vw,24px)}
         .grid-2col{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.5vw,28px)}
         .grid-values{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,24px)}
-        .grid-team-two{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,2.5vw,32px);max-width:1100px;margin:0 auto}
+        .grid-team-two{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,2.5vw,32px);max-width:1100px;margin:0 auto;align-items:stretch}
+        .about-hero-visual{width:100%;max-width:560px;justify-self:center;aspect-ratio:1/1;border-radius:clamp(18px,2.4vw,28px);overflow:hidden;border:1px solid rgba(0,0,0,0.10);box-shadow:0 30px 60px -20px rgba(42,42,42,0.35)}
+        .about-hero-visual img{width:100%;height:100%;object-fit:cover;display:block}
 
         @media(max-width:1024px){
           .grid-3col{grid-template-columns:repeat(2,1fr)}
@@ -337,13 +325,16 @@ export default function About() {
           .hero-br{display:none}
         }
         @media(max-width:900px){
-          .about-hero-grid{grid-template-columns:1fr !important;text-align:center}
+          .about-hero-grid{grid-template-columns:1fr !important}
           .about-hero-grid > div:first-child{text-align:center}
-          .about-hero-visual{max-width:420px;margin:0 auto;order:-1}
+          .about-hero-grid .hero-sub{margin-left:auto !important;margin-right:auto !important}
+          .about-hero-visual{max-width:440px;justify-self:center;order:-1}
+        }
+        @media(max-width:560px){
+          .grid-values{grid-template-columns:1fr}
         }
         @media(max-width:425px){
           .grid-projects{grid-template-columns:1fr}
-          .grid-values{grid-template-columns:repeat(2,1fr)}
           .grid-3col{grid-template-columns:1fr}
           .btn-primary,.btn-secondary{width:100%;justify-content:center}
         }

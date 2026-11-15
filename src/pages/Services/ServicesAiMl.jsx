@@ -115,7 +115,7 @@ function DeliverableItem({ text, color }) {
       {/* Icon Logic: Hover par Light (B.textDark), Base par Color */}
       <CheckCircle size={18} color={hovered ? B.textDark : color} style={{ flexShrink: 0, transition: 'color 0.3s' }}/>
       <span style={{ 
-        fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', 
+        fontSize: 'var(--fs-card-title)', 
         fontWeight: 500, 
         lineHeight: 1.5,
         // Text Logic: Hover par Light (B.textDark)
@@ -129,7 +129,7 @@ function DeliverableItem({ text, color }) {
 
 
 // ─── Tech Badge ───────────────────────────────────────────────────────────────
-function TechBadge({ label, color }) {
+function TechBadge({ label }) {
   const [h, setH] = useState(false);
   return (
     <span
@@ -137,10 +137,10 @@ function TechBadge({ label, color }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: 5,
         padding: 'clamp(5px, 1vw, 7px) clamp(10px, 1.5vw, 14px)', borderRadius: 'var(--radius-sm)',
-        background: h ? color : 'rgba(255,255,255,0.05)',
-        border: `1.5px solid ${h ? color : 'rgba(255,255,255,0.15)'}`,
-        color: h ? B.bgDark : color,
-        fontSize: 'clamp(11px, 1.3vw, 13px)', fontWeight: 700, letterSpacing: '0.04em',
+        background: h ? '#f2f2f2' : 'rgba(255,255,255,0.08)',
+        border: `1.5px solid ${h ? '#f2f2f2' : 'rgba(255,255,255,0.28)'}`,
+        color: h ? '#111111' : '#ffffff',
+        fontSize: 'var(--fs-small)', fontWeight: 700, letterSpacing: '0.04em',
         transition: 'all 0.22s ease', cursor: 'default',
       }}
     >
@@ -222,7 +222,7 @@ export default function ServiceAiMl() {
           <div style={{ maxWidth: 1200, width: '100%', display: 'flex', flexDirection: 'column', gap: 'clamp(40px, 5vw, 60px)' }}>
 
             {/* TOP ROW: Text + Image */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'stretch', gap: 'clamp(18px, 5vw, 44px)' }}>
+            <div className="hero-split-row" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'stretch', gap: 'clamp(18px, 5vw, 44px)' }}>
 
               {/* Left — Text */}
               <motion.div
@@ -241,14 +241,14 @@ export default function ServiceAiMl() {
                     lineHeight: 1.1, letterSpacing: '-0.02em',
                     marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark,
                   }}>
-                  Intelligence Embedded<br/>
+                  Intelligence Embedded{' '}<br className="hero-br" />
                   <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                     Into Your DNA
                   </span>
                 </motion.h1>
 
                 <motion.p variants={fadeUp} custom={0.15}
-                  style={{ fontSize: 'clamp(0.88rem, 1.8vw, 1.15rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
+                  style={{ fontSize: 'var(--fs-card-title)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
                   WellMind Data Solutions designs and deploys Machine Learning systems that act as a cognitive extension of your business — from exploratory proof-of-concept to production-grade, monitored deployments.
                 </motion.p>
 
@@ -312,7 +312,7 @@ export default function ServiceAiMl() {
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)', border: `1px solid ${B.primaryBorder}`,
-                  fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
+                  fontSize: 'var(--fs-card-body)', fontWeight: 600, color: B.textMain,
                   boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   // Continuous floating animation
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
@@ -339,7 +339,7 @@ export default function ServiceAiMl() {
 
           {/* Tech Stack */}
           <div style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: 'clamp(10px, 1.2vw, 11px)', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: B.textDarkMuted, marginBottom: 16 }}>Our ML Stack</p>
+            <p style={{ fontSize: 'var(--fs-label)', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: B.textDarkMuted, marginBottom: 16 }}>Our ML Stack</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(8px, 1.2vw, 12px)', justifyContent: 'center' }}>
               {techStack.map((t, i) => <TechBadge key={i} {...t}/>)}
             </div>
@@ -392,12 +392,12 @@ export default function ServiceAiMl() {
                   <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.09 }}
                     style={{ display: 'flex', gap: 'clamp(14px, 2vw, 24px)', position: 'relative', marginBottom: 'clamp(24px, 3.5vw, 40px)' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                      <div style={{ width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: color, color: B.white, fontWeight: 800, fontSize: 'clamp(13px, 1.6vw, 17px)', boxShadow: `0 6px 20px ${color}40`, flexShrink: 0 }}>{p.step}</div>
+                      <div style={{ width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: color, color: B.white, fontWeight: 800, fontSize: 'var(--fs-card-body)', boxShadow: `0 6px 20px ${color}40`, flexShrink: 0 }}>{p.step}</div>
                       {i < processes.length - 1 && <div style={{ width: 2, flex: 1, minHeight: 28, background: `linear-gradient(to bottom, ${color}60, transparent)`, marginTop: 6 }}/>}
                     </div>
                     <div style={{ paddingTop: 8 }}>
-                      <h4 style={{ fontWeight: 700, fontSize: 'clamp(1.15rem, 2vw, 1.8rem)', color: B.textMain, marginBottom: 8, lineHeight: 1.3 }}>{p.title}</h4>
-                      <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.25rem)', lineHeight: 1.7, color: B.textMid }}>{p.desc}</p>
+                      <h4 style={{ fontWeight: 700, fontSize: 'var(--fs-h3)', color: B.textMain, marginBottom: 8, lineHeight: 1.3 }}>{p.title}</h4>
+                      <p style={{ fontSize: 'var(--fs-card-title)', lineHeight: 1.7, color: B.textMid }}>{p.desc}</p>
                     </div>
                   </motion.div>
                 );
@@ -408,7 +408,7 @@ export default function ServiceAiMl() {
             <div style={{ flex: '1 1 min(100%, 380px)' }}>
               <SectionBadge>What You Get</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>Documented Handover.</h2>
-              <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
+              <p style={{ fontSize: 'var(--fs-card-title)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
                 Every engagement delivers production-ready code, models, and documentation that your team can maintain and extend independently.
               </p>
               
@@ -438,7 +438,7 @@ export default function ServiceAiMl() {
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-              Let's Build Something<br/>
+              Let's Build Something{' '}<br className="hero-br" />
               <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Genuinely Intelligent.
               </span>
@@ -451,7 +451,7 @@ export default function ServiceAiMl() {
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
                 borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #393939)`,
-                color: B.white, fontWeight: 700, fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
+                color: B.white, fontWeight: 700, fontSize: 'var(--fs-card-title)',
                 letterSpacing: '0.10em', textTransform: 'uppercase', textDecoration: 'none',
                 boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
                 border: '1px solid rgba(84,84,84,0.40)', transition: 'all 0.2s',

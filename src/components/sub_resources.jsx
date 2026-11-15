@@ -48,7 +48,7 @@ function ArticleCard({ article, onClose }) {
         {/* Title */}
         <span style={{
           fontFamily: "'Space Grotesk', sans-serif",
-          fontSize:   16,
+          fontSize:   'var(--fs-card-body)',
           fontWeight: 700,
           color:      B.textMain,
           lineHeight: 1.4,
@@ -61,7 +61,7 @@ function ArticleCard({ article, onClose }) {
         {/* Description */}
         <p style={{
           fontFamily: "'Space Grotesk', sans-serif",
-          fontSize:   16,
+          fontSize:   'var(--fs-card-body)',
           color:      B.textMuted,
           margin:     0,
           lineHeight: 1.6,
@@ -249,7 +249,7 @@ export default function ResourcesMegaMenu({ onClose }) {
           >
             <span style={{
               fontFamily: "'Space Grotesk', sans-serif",
-              fontSize:   18, // Matches sub_services size
+              fontSize:   'var(--fs-card-title)', // Matches sub_services size
               fontWeight: activeId === section.id ? 700 : 500,
               color:      activeId === section.id ? B.primaryMid : B.textMid,
               lineHeight: 1.35,

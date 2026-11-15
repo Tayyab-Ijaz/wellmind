@@ -68,15 +68,15 @@ function FeaturedCard({ article, i }) {
             <div style={{ position:'absolute', inset:0, backgroundImage:`url(${article.img})`, backgroundSize:'cover', backgroundPosition:'center', transform:hov?'scale(1.06)':'scale(1)', transition:'transform 0.7s cubic-bezier(0.16,1,0.3,1)', filter:hov?'brightness(0.55)':'brightness(0.45)' }}/>
             <div style={{ position:'absolute', inset:0, background:'linear-gradient(to bottom,rgba(6,6,6,0) 30%,rgba(6,6,6,1) 100%)' }}/>
             <div style={{ position:'absolute', top:16, right:16, display:'flex', flexWrap:'wrap', gap:6, justifyContent:'flex-end', maxWidth:'80%' }}>
-              <span style={{ fontSize:'clamp(10px,1.2vw,11px)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.08em', color:B.textDark, background:'rgba(255,255,255,0.12)', backdropFilter:'blur(8px)', padding:'4px 10px', borderRadius:6, border:'1px solid rgba(255,255,255,0.15)' }}>{article.cat}</span>
-              {i===0 && <span style={{ fontSize:'clamp(10px,1.2vw,11px)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.08em', color:B.white, background:'rgba(84,84,84,0.85)', backdropFilter:'blur(8px)', padding:'4px 10px', borderRadius:6, display:'flex', alignItems:'center', gap:4 }}><Star size={9} fill={B.white}/>Featured</span>}
+              <span style={{ fontSize:'var(--fs-label)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.08em', color:B.textDark, background:'rgba(255,255,255,0.12)', backdropFilter:'blur(8px)', padding:'4px 10px', borderRadius:6, border:'1px solid rgba(255,255,255,0.15)' }}>{article.cat}</span>
+              {i===0 && <span style={{ fontSize:'var(--fs-label)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.08em', color:B.white, background:'rgba(84,84,84,0.85)', backdropFilter:'blur(8px)', padding:'4px 10px', borderRadius:6, display:'flex', alignItems:'center', gap:4 }}><Star size={9} fill={B.white}/>Featured</span>}
             </div>
           </div>
           <div style={{ padding:'clamp(18px,2.5vw,28px)', display:'flex', flexDirection:'column', flexGrow:1, background:'linear-gradient(to bottom,rgba(6,6,6,1) 0%,rgba(8,8,8,1) 100%)' }}>
             <h3 className="card-project-title on-dark" style={{ color:B.textDark, marginBottom:14 }}>{article.title}</h3>
             <p className="card-project-body on-dark" style={{ color:B.textDarkMid, marginBottom:20, flexGrow:1 }}>{article.excerpt}</p>
             <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginBottom:24 }}>
-              {article.tags.map((tag,ti) => <span key={ti} className="tool-tag" style={{ color:B.action, background:'rgba(84,84,84,0.12)', border:'1px solid rgba(84,84,84,0.25)', padding:'4px 12px', borderRadius:6 }}>{tag}</span>)}
+              {article.tags.map((tag,ti) => <span key={ti} className="tool-tag" style={{ color:'#e5e5e5', background:'rgba(255,255,255,0.10)', border:'1px solid rgba(255,255,255,0.22)', padding:'4px 12px', borderRadius:6 }}>{tag}</span>)}
             </div>
           </div>
         </div>
@@ -107,14 +107,14 @@ function ArticleCard({ article, i }) {
           <div style={{ height:3, background:`linear-gradient(90deg,${cat.color||B.action},${(cat.color||B.action)}60)`, opacity:hov?1:0.5, transition:'opacity 0.3s' }}/>
           <div style={{ padding:'clamp(20px,2.8vw,28px) clamp(20px,2.8vw,30px) clamp(18px,2.5vw,24px)', display:'flex', flexDirection:'column', flexGrow:1 }}>
             <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:18, flexWrap:'wrap', gap:8 }}>
-              <div style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'5px 12px', borderRadius:99, background:cat.bg, border:`1px solid ${cat.border}`, fontSize:'clamp(10px,1.1vw,11px)', fontWeight:700, letterSpacing:'0.10em', textTransform:'uppercase', color:cat.color }}>
+              <div style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'5px 12px', borderRadius:99, background:cat.bg, border:`1px solid ${cat.border}`, fontSize:'var(--fs-label)', fontWeight:700, letterSpacing:'0.10em', textTransform:'uppercase', color:cat.color }}>
                 {cat.icon} {article.cat}
               </div>
             </div>
             <h3 className="card-title" style={{ transition:'color 0.3s', ...(hov && {color:B.primaryDark}) }}>{article.title}</h3>
             <p className="card-body" style={{ marginBottom:20, flexGrow:1 }}>{article.excerpt}</p>
             <div style={{ display:'flex', flexWrap:'wrap', gap:6, marginBottom:20 }}>
-              {article.tags.map((tag,ti) => <span key={ti} style={{ fontSize:'clamp(10px,1.1vw,11px)', fontWeight:600, padding:'3px 9px', borderRadius:6, background:B.primaryLight, border:`1px solid ${B.primaryBorder}`, color:B.primary, letterSpacing:'0.04em' }}>{tag}</span>)}
+              {article.tags.map((tag,ti) => <span key={ti} style={{ fontSize:'var(--fs-label)', fontWeight:600, padding:'3px 9px', borderRadius:6, background:B.primaryLight, border:`1px solid ${B.primaryBorder}`, color:B.primary, letterSpacing:'0.04em' }}>{tag}</span>)}
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ function FilterChip({ label, active, onClick }) {
       background: active ? B.primary : 'rgba(255,255,255,0.6)',
       color: active ? B.white : B.textMid,
       backdropFilter:'blur(8px)', fontWeight:700,
-      fontSize:'clamp(11px,1.2vw,13px)', letterSpacing:'0.04em',
+      fontSize:'var(--fs-small)', letterSpacing:'0.04em',
       boxShadow: active ? `0 4px 20px ${B.primaryGlow}` : 'none',
       transition:'all 0.25s cubic-bezier(0.16,1,0.3,1)',
       whiteSpace:'nowrap',
@@ -237,7 +237,7 @@ export default function Resources() {
                 <div style={{ position:'relative', width:'100%' }}>
                   <Search size={16} color={B.textMuted} style={{ position:'absolute', left:16, top:'50%', transform:'translateY(-50%)', pointerEvents:'none' }}/>
                   <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search articles, topics, tags…"
-                    style={{ width:'100%', padding:'clamp(12px,1.8vw,16px) 18px clamp(12px,1.8vw,16px) 44px', borderRadius:12, border:`1.5px solid ${B.primaryBorder}`, background:'rgba(255,255,255,0.88)', fontSize:'clamp(13px,1.5vw,15px)', color:B.textMain, outline:'none', fontFamily:'Space Grotesk,sans-serif', boxShadow:'0 4px 16px rgba(57,57,57,0.06)' }}
+                    style={{ width:'100%', padding:'clamp(12px,1.8vw,16px) 18px clamp(12px,1.8vw,16px) 44px', borderRadius:12, border:`1.5px solid ${B.primaryBorder}`, background:'rgba(255,255,255,0.88)', fontSize:'var(--fs-card-body)', color:B.textMain, outline:'none', fontFamily:'Space Grotesk,sans-serif', boxShadow:'0 4px 16px rgba(57,57,57,0.06)' }}
                     onFocus={e => { e.target.style.borderColor=B.action; e.target.style.boxShadow=`0 0 0 3px ${B.actionLight}`; }}
                     onBlur={e  => { e.target.style.borderColor=B.primaryBorder; e.target.style.boxShadow='0 4px 16px rgba(57,57,57,0.06)'; }}
                   />
@@ -271,8 +271,8 @@ export default function Resources() {
               </motion.div>
             ) : (
               <div style={{ textAlign:'center', padding:'clamp(48px,8vw,80px) 24px' }}>
-                <div style={{ fontSize:48, marginBottom:18 }}>🔍</div>
-                <h3 className="section-h2" style={{ fontSize:'clamp(1.1rem,2.5vw,1.6rem)', marginBottom:10 }}>No articles found</h3>
+                <div style={{ fontSize: 48, marginBottom:18 }}>🔍</div>
+                <h3 className="section-h2" style={{ fontSize:'var(--fs-h3)', marginBottom:10 }}>No articles found</h3>
                 <p className="section-lead">Try a different filter or search term.</p>
               </div>
             )}
@@ -291,7 +291,7 @@ export default function Resources() {
           <motion.div initial={{ opacity:0, y:32 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7, ease:[0.16,1,0.3,1] }}>
             <SectionBadge>Ready to Apply This?</SectionBadge>
             <h2 className="section-h2" style={{ color:B.primaryDark, marginBottom:20 }}>
-              Reading is Just the Start.<br/>
+              Reading is Just the Start.{' '}<br className="hero-br" />
               <span style={{ background:'linear-gradient(90deg,#4a4a4a 25%,#373737 75%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Let's Build Something Real.</span>
             </h2>
             <p className="section-lead" style={{ color:B.textMid, maxWidth:1200, margin:'0 auto clamp(24px,3.5vw,48px)', lineHeight:1.75 }}>
@@ -320,15 +320,15 @@ export default function Resources() {
         .section-lead{font-size:var(--fs-section-lead);color:var(--c-text-mid);max-width:720px;font-weight:500;margin:0 auto;line-height:1.6}
         .card-title{font-weight:700;font-size:var(--fs-card-title);color:var(--c-text-main);margin-bottom:14px;line-height:1.3}
         .card-body{font-size:var(--fs-card-body);line-height:1.7;color:var(--c-text-mid)}
-        .hero-h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.75rem,5.5vw,5rem);line-height:1.1;letter-spacing:-0.02em}
-        .hero-sub{font-family:'Space Grotesk',sans-serif;font-size:clamp(0.9rem,2.2vw,1.5rem);line-height:1.6;letter-spacing:0.02em}
-        .card-project-title{font-weight:700;font-size:clamp(1rem,2vw,1.6rem);line-height:1.3;font-family:'Space Grotesk',sans-serif}
-        .card-project-body{font-size:clamp(0.85rem,1.5vw,1.1rem);line-height:1.7;font-family:'Space Grotesk',sans-serif}
-        .tool-tag{font-size:clamp(10px,1.2vw,13px);font-weight:700;letter-spacing:0.04em}
-        .cta-link-text{font-weight:700;font-size:clamp(12px,1.4vw,15px);letter-spacing:0.06em;text-transform:uppercase}
-        .label-text{font-size:clamp(10px,1.2vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase}
-        .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:clamp(12px,2vw,18px) clamp(20px,4vw,40px);border-radius:12px;background:#545454;color:#ffffff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(0.85rem,1.8vw,1.2rem);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s}
-        .btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:clamp(10px,1.8vw,16px) clamp(20px,4vw,40px);border-radius:12px;background:transparent;color:#373737;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(0.85rem,1.8vw,1.2rem);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:2px solid #373737;cursor:pointer;transition:background 0.2s,transform 0.2s}
+        .hero-h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:var(--fs-hero);line-height:1.1;letter-spacing:-0.02em}
+        .hero-sub{font-family:'Space Grotesk',sans-serif;font-size:var(--fs-card-title);line-height:1.6;letter-spacing:0.02em}
+        .card-project-title{font-weight:700;font-size:var(--fs-card-title);line-height:1.3;font-family:'Space Grotesk',sans-serif}
+        .card-project-body{font-size:var(--fs-card-body);line-height:1.7;font-family:'Space Grotesk',sans-serif}
+        .tool-tag{font-size:var(--fs-small);font-weight:700;letter-spacing:0.04em}
+        .cta-link-text{font-weight:700;font-size:var(--fs-card-body);letter-spacing:0.06em;text-transform:uppercase}
+        .label-text{font-size:var(--fs-small);font-weight:700;letter-spacing:0.12em;text-transform:uppercase}
+        .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:clamp(12px,2vw,18px) clamp(20px,4vw,40px);border-radius:12px;background:#545454;color:#ffffff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:var(--fs-btn);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s}
+        .btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:clamp(10px,1.8vw,16px) clamp(20px,4vw,40px);border-radius:12px;background:transparent;color:#373737;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:var(--fs-btn);letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;border:2px solid #373737;cursor:pointer;transition:background 0.2s,transform 0.2s}
         
         /* Scrollbar Hiding Class */
         .scroll-container-hide::-webkit-scrollbar { display: none; }

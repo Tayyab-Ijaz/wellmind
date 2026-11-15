@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
+import PipelineFlow from '../../components/PipelineFlow';
 import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../../theme';
 
 // ─── Brand Tokens (Synced with ServicesAiMl.jsx) ─────────────────────────────
@@ -92,7 +93,7 @@ function DeliverableItem({ text, color }) {
       }}
     >
       <CheckCircle size={18} color={hovered ? B.textDark : color} style={{ flexShrink: 0, transition: 'color 0.3s' }}/>
-      <span style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', fontWeight: 500, lineHeight: 1.5, color: hovered ? B.textDark : B.textMain, transition: 'color 0.3s ease' }}>{text}</span>
+      <span style={{ fontSize: 'var(--fs-card-title)', fontWeight: 500, lineHeight: 1.5, color: hovered ? B.textDark : B.textMain, transition: 'color 0.3s ease' }}>{text}</span>
     </motion.div>
   );
 }
@@ -102,54 +103,13 @@ function DeliverableItem({ text, color }) {
 
 // ─── Section Divider ──────────────────────────────────────────────────────────
 // ─── Animated Pipeline Flow Visual ───────────────────────────────────────────
-function PipelineFlow() {
-  const [activeNode, setActiveNode] = useState(null);
-  const nodes = [
-    { id: 0, label: 'Trigger',   sub: 'Schedule / Webhook / Event', color: B.action,    x: '5%',  y: '20%' },
-    { id: 1, label: 'Extract',   sub: 'Data from any source',        color: AC,           x: '35%', y: '8%'  },
-    { id: 2, label: 'Transform', sub: 'AI enrichment & clean',       color: B.primary,    x: '65%', y: '20%' },
-    { id: 3, label: 'Route',     sub: 'Conditions & branching',      color: B.secondary,  x: '35%', y: '64%' },
-    { id: 4, label: 'Deliver',   sub: 'Output to any system',        color: B.action,     x: '65%', y: '64%' },
-  ];
-  const connections = [
-    { from: 0, to: 1 }, { from: 1, to: 2 }, { from: 0, to: 3 },
-    { from: 3, to: 4 }, { from: 2, to: 4 },
-  ];
-  return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 380, height: 320, margin: '0 auto' }}>
-      <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', overflow: 'visible', pointerEvents: 'none' }}>
-        {connections.map(({ from, to }, i) => {
-          const f = nodes[from], t2 = nodes[to];
-          const fx = parseFloat(f.x) + 10, fy = parseFloat(f.y) + 16;
-          const tx = parseFloat(t2.x) + 10, ty = parseFloat(t2.y) + 16;
-          return <line key={i} x1={`${fx}%`} y1={`${fy}%`} x2={`${tx}%`} y2={`${ty}%`} stroke={`${AC}50`} strokeWidth="1.5" strokeDasharray="4 3"/>;
-        })}
-      </svg>
-      {nodes.map((node, i) => (
-        <motion.div key={i}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.15 + i * 0.12 }}
-          onMouseEnter={() => setActiveNode(i)}
-          onMouseLeave={() => setActiveNode(null)}
-          style={{
-            position: 'absolute', left: node.x, top: node.y,
-            padding: '10px 14px', borderRadius: 'var(--radius-md)', minWidth: 120,
-            background: activeNode === i ? 'rgba(255,255,255,0.96)' : 'rgba(255,255,255,0.76)',
-            backdropFilter: 'blur(8px)',
-            border: `1.5px solid ${activeNode === i ? node.color : node.color + '50'}`,
-            boxShadow: activeNode === i ? `0 8px 28px ${node.color}30` : '0 2px 10px rgba(0,0,0,0.06)',
-            transition: 'all 0.26s ease', cursor: 'default', zIndex: 2,
-          }}
-        >
-          <div style={{ fontWeight: 800, fontSize: 12.5, color: node.color, marginBottom: 3 }}>{node.label}</div>
-          <div style={{ fontSize: 10.5, color: B.textMuted, fontWeight: 500, lineHeight: 1.4 }}>{node.sub}</div>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: node.color, position: 'absolute', top: -4, right: -4, boxShadow: `0 0 8px ${node.color}80`, animation: 'wmPulse 2s ease-in-out infinite' }}/>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
+const PIPELINE_NODES = [
+  { label: 'Trigger',   sub: 'Schedule / Webhook / Event', color: B.action },
+  { label: 'Extract',   sub: 'Data from any source',       color: AC },
+  { label: 'Transform', sub: 'AI enrichment & clean',      color: B.primary },
+  { label: 'Route',     sub: 'Conditions & branching',     color: B.secondary },
+  { label: 'Deliver',   sub: 'Output to any system',       color: B.action },
+];
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const features = [
@@ -211,7 +171,7 @@ export default function ServicesAutomation() {
           <div style={{ maxWidth: 1200, width: '100%', display: 'flex', flexDirection: 'column', gap: 'clamp(40px, 5vw, 60px)' }}>
 
             {/* TOP ROW: Text + Pipeline Visual */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'stretch', gap: 'clamp(18px, 5vw, 44px)' }}>
+            <div className="hero-split-row" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'stretch', gap: 'clamp(18px, 5vw, 44px)' }}>
 
               {/* Left — Text */}
               <motion.div
@@ -225,14 +185,14 @@ export default function ServicesAutomation() {
 
                 <motion.h1 variants={fadeUp} custom={0.05}
                   style={{ fontWeight: 700, fontSize: 'var(--fs-hero)', lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 'clamp(14px, 2vw, 24px)', color: B.primaryDark }}>
-                  Stop Doing Manually<br/>
+                  Stop Doing Manually{' '}<br className="hero-br" />
                   <span style={{ background: `linear-gradient(90deg, ${AC}, ${B.secondary})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                     What Code Can Own.
                   </span>
                 </motion.h1>
 
                 <motion.p variants={fadeUp} custom={0.15}
-                  style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
+                  style={{ fontSize: 'var(--fs-h3)', fontWeight: 500, color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75 }}>
                   Intelligent RPA and end-to-end workflow automation that replaces repetitive manual tasks with reliable, monitored pipelines — built to run reliably without constant supervision.
                 </motion.p>
 
@@ -264,10 +224,10 @@ export default function ServicesAutomation() {
                   boxShadow: `0 20px 60px ${AC}15`,
                   width: '100%', maxWidth: 440,
                 }}>
-                  <div style={{ fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color: AC, textAlign: 'center', marginBottom: 24 }}>
+                  <div style={{ fontSize: 'var(--fs-label)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color: AC, textAlign: 'center', marginBottom: 24 }}>
                     Automation Pipeline
                   </div>
-                  <PipelineFlow/>
+                  <PipelineFlow nodes={PIPELINE_NODES}/>
                 </div>
               </motion.div>
             </div>
@@ -283,7 +243,7 @@ export default function ServicesAutomation() {
                   display: 'flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(8px, 1vw, 12px) clamp(14px, 2vw, 20px)', borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)', border: `1px solid ${B.primaryBorder}`,
-                  fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
+                  fontSize: 'var(--fs-card-body)', fontWeight: 600, color: B.textMain,
                   boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
@@ -349,12 +309,12 @@ export default function ServicesAutomation() {
                   <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.09 }}
                     style={{ display: 'flex', gap: 'clamp(14px, 2vw, 24px)', position: 'relative', marginBottom: 'clamp(24px, 3.5vw, 40px)' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                      <div style={{ width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: color, color: B.white, fontWeight: 800, fontSize: 'clamp(13px, 1.6vw, 17px)', boxShadow: `0 6px 20px ${color}40`, flexShrink: 0 }}>{p.step}</div>
+                      <div style={{ width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: color, color: B.white, fontWeight: 800, fontSize: 'var(--fs-card-body)', boxShadow: `0 6px 20px ${color}40`, flexShrink: 0 }}>{p.step}</div>
                       {i < processes.length - 1 && <div style={{ width: 2, flex: 1, minHeight: 28, background: `linear-gradient(to bottom, ${color}60, transparent)`, marginTop: 6 }}/>}
                     </div>
                     <div style={{ paddingTop: 8 }}>
-                      <h4 style={{ fontWeight: 700, fontSize: 'clamp(1.15rem, 2vw, 1.8rem)', color: B.textMain, marginBottom: 8, lineHeight: 1.3 }}>{p.title}</h4>
-                      <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.25rem)', lineHeight: 1.7, color: B.textMid }}>{p.desc}</p>
+                      <h4 style={{ fontWeight: 700, fontSize: 'var(--fs-h3)', color: B.textMain, marginBottom: 8, lineHeight: 1.3 }}>{p.title}</h4>
+                      <p style={{ fontSize: 'var(--fs-card-title)', lineHeight: 1.7, color: B.textMid }}>{p.desc}</p>
                     </div>
                   </motion.div>
                 );
@@ -365,7 +325,7 @@ export default function ServicesAutomation() {
             <div style={{ flex: '1 1 min(100%, 380px)' }}>
               <SectionBadge>What You Get</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom: 12 }}>Documented, Monitored, Yours.</h2>
-              <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
+              <p style={{ fontSize: 'var(--fs-card-title)', color: B.textMid, lineHeight: 1.7, marginBottom: 'clamp(24px, 3.5vw, 36px)' }}>
                 Every automation is documented, monitored, and fully owned by you on handoff — no dependency on us to keep it running.
               </p>
               {deliverables.map((d, i) => {
@@ -393,7 +353,7 @@ export default function ServicesAutomation() {
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-              Stop the Manual Work.<br/>
+              Stop the Manual Work.{' '}<br className="hero-br" />
               <span style={{ background: `linear-gradient(90deg, #a0a0a0 25%, #959595 75%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Start Automating Today.
               </span>
@@ -406,7 +366,7 @@ export default function ServicesAutomation() {
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
                 borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #393939)`,
-                color: B.white, fontWeight: 700, fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
+                color: B.white, fontWeight: 700, fontSize: 'var(--fs-card-title)',
                 letterSpacing: '0.10em', textTransform: 'uppercase', textDecoration: 'none',
                 boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
                 border: '1px solid rgba(84,84,84,0.40)', transition: 'all 0.2s',

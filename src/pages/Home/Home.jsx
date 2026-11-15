@@ -33,7 +33,7 @@ import imgHealthcareFraudBilling from '../../assets/case-studies/healthcare-frau
 import ScrollFrameIntro from '../../components/ScrollFrameIntro';
 
 // ─── Home-page-only display fonts (does not touch global site typography) ──
-const FONT_DISPLAY = "'Unbounded', var(--font-display)";
+const FONT_DISPLAY = "'Space Grotesk', sans-serif";
 const FONT_ACCENT   = "'Space Grotesk', var(--font-main)";
 
 
@@ -146,21 +146,21 @@ function ProjectCard({ proj, i }) {
       {/* Body */}
       <Link to={`/case-studies/${proj.slug}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
         <div style={{ padding: 'clamp(18px, 2.2vw, 24px)', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-          <h3 style={{ fontFamily: 'var(--font-main)', fontWeight: 800, fontSize: 'clamp(1.05rem, 1.9vw, 1.4rem)', color: '#0f0f0f', lineHeight: 1.3, margin: 0 }}>
+          <h3 style={{ fontFamily: 'var(--font-main)', fontWeight: 800, fontSize: 'var(--fs-h3)', color: '#0f0f0f', lineHeight: 1.3, margin: 0 }}>
             {proj.title}
           </h3>
           {industry && (
-            <p style={{ margin: '4px 0 16px', fontSize: 'clamp(0.85rem, 1.2vw, 1rem)', color: B.textMid, fontWeight: 500 }}>{industry}</p>
+            <p style={{ margin: '4px 0 16px', fontSize: 'var(--fs-card-body)', color: B.textMid, fontWeight: 500 }}>{industry}</p>
           )}
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(12px, 2vw, 22px)', marginBottom: 20 }}>
             {primaryTool && (
-              <span style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 'clamp(0.82rem, 1.1vw, 0.95rem)', fontWeight: 700, color: '#0f0f0f' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 'var(--fs-card-body)', fontWeight: 700, color: '#0f0f0f' }}>
                 <Wrench size={15} color={B.action} /> {primaryTool}
               </span>
             )}
             {secondaryTool && (
-              <span style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 'clamp(0.82rem, 1.1vw, 0.95rem)', fontWeight: 700, color: '#0f0f0f' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 'var(--fs-card-body)', fontWeight: 700, color: '#0f0f0f' }}>
                 {React.cloneElement(proj.icon, { size: 15, color: B.action })} {secondaryTool}
               </span>
             )}
@@ -170,7 +170,7 @@ function ProjectCard({ proj, i }) {
             <span
               style={{
                 flexGrow: 1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                padding: '13px 18px', borderRadius: 99, fontWeight: 700, fontSize: 'clamp(0.82rem, 1.1vw, 0.95rem)',
+                padding: '13px 18px', borderRadius: 99, fontWeight: 700, fontSize: 'var(--fs-card-body)',
                 color: '#fff', background: hovered ? `linear-gradient(135deg, ${B.action}, #343434)` : '#0c0c0c',
                 transition: 'background 0.3s ease',
               }}
@@ -260,8 +260,8 @@ function WhyWellmindScroll() {
             <div style={{ width: '100%', height: 'clamp(140px, 35vw, 220px)', borderRadius: 14, overflow: 'hidden', marginBottom: 14 }}>
               <img src={f.imgUrl} alt={f.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <h3 style={{ fontSize: 'clamp(1rem, 3vw, 1.3rem)', fontWeight: 700, color: B.textMain, marginBottom: 8, fontFamily: 'var(--font-main)' }}>{f.title}</h3>
-            <p style={{ fontSize: 'clamp(0.85rem, 2.5vw, 1rem)', color: B.textMid, lineHeight: 1.6 }}>{f.desc}</p>
+            <h3 style={{ fontSize: 'var(--fs-card-title)', fontWeight: 700, color: B.textMain, marginBottom: 8, fontFamily: 'var(--font-main)' }}>{f.title}</h3>
+            <p style={{ fontSize: 'var(--fs-card-body)', color: B.textMid, lineHeight: 1.6 }}>{f.desc}</p>
           </motion.div>
         ))}
       </div>
@@ -330,15 +330,15 @@ export default function Home() {
 
       {/* ══ 0. INTRO VIDEO → FRAMED TUNNEL + HERO TEXT (scroll-driven) ══ */}
       <ScrollFrameIntro>
-        <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.10 } } }} style={{ minWidth: 0, maxWidth: 760, margin: '0 auto', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <motion.h1 variants={fadeUp} custom={0.05} style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 'clamp(1.5rem, 3.3vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0 }}>
-            <span style={{ color: '#FFFFFF' }}>We Turn Complex Data </span><br />
+        <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.10 } } }} style={{ minWidth: 0, maxWidth: 760, margin: '0', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <motion.h1 variants={fadeUp} custom={0.05} style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 'var(--fs-hero)', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0 }}>
+            <span style={{ color: '#FFFFFF' }}>We Turn Complex Data </span><br className="hero-br" />
             <span style={{ background: 'linear-gradient(90deg, #ababab 0%, #a7a7a7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Into Intelligent Decisions</span>
           </motion.h1>
 
           <motion.div variants={fadeUp} custom={0.12} className="wm-hero-divider" style={{ width: 72, height: 4, borderRadius: 99, background: 'linear-gradient(90deg, #ababab, #a7a7a7)', margin: 'clamp(12px, 1.6vw, 22px) auto' }} />
 
-          <motion.p variants={fadeUp} custom={0.18} style={{ fontFamily: 'var(--font-main)', fontSize: 'clamp(0.85rem, 1.25vw, 1.15rem)', color: 'rgba(255,255,255,0.68)', maxWidth: 620, margin: '0 0 clamp(16px, 2vw, 28px)', letterSpacing: '0.005em', lineHeight: 1.65 }}>
+          <motion.p variants={fadeUp} custom={0.18} style={{ fontFamily: 'var(--font-main)', fontSize: 'var(--fs-card-title)', color: 'rgba(255,255,255,0.68)', maxWidth: 620, margin: '0 0 clamp(16px, 2vw, 28px)', letterSpacing: '0.005em', lineHeight: 1.65 }}>
             WellMind Data Solutions delivers specialist bioinformatics, healthcare AI, & data science consulting.
           </motion.p>
 
@@ -364,7 +364,7 @@ export default function Home() {
           <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 60px)' }}>
             <SectionBadge dark>Why WellMind Data Solutions</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 12 }}>
-              Built for enterprise.<br />
+              Built for enterprise.{' '}<br className="hero-br" />
               <span style={{ background: 'linear-gradient(90deg, #ababab 25%, #a7a7a7 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Clear and reliable.</span>
             </h2>
             <p className="section-lead dark" style={{ maxWidth: 1200 }}>We don't just build algorithms, we build business value. Every solution is architected for reliability and security.</p>
@@ -406,7 +406,7 @@ export default function Home() {
             </div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }} style={{ textAlign: 'center', marginTop: 48 }}>
-              <Link to="/case-studies" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: 'clamp(12px, 2vw, 18px) clamp(24px, 4vw, 48px)', borderRadius: 'var(--radius-md)', background: 'transparent', color: '#FFFFFF', fontFamily: 'var(--font-main)', fontWeight: 700, fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', border: '2px solid #FFFFFF', transition: 'all 0.25s ease' }}
+              <Link to="/case-studies" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: 'clamp(12px, 2vw, 18px) clamp(24px, 4vw, 48px)', borderRadius: 'var(--radius-md)', background: 'transparent', color: '#FFFFFF', fontFamily: 'var(--font-main)', fontWeight: 700, fontSize: 'var(--fs-card-title)', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', border: '2px solid #FFFFFF', transition: 'all 0.25s ease' }}
                 onMouseEnter={e => { e.currentTarget.style.background = '#FFFFFF'; e.currentTarget.style.color = '#000'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(255,255,255,0.2)'; }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#FFFFFF'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = 'none'; }}>
                 View All Case Studies <ArrowRight size={18} />
@@ -426,7 +426,7 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 48 }}>
             <SectionBadge dark>Common Questions</SectionBadge>
             <h2 className="section-h2 dark">Frequently Asked Questions</h2>
-            <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', color: B.textDarkMid, maxWidth: 1200, margin: '12px auto 0', lineHeight: 1.6 }}>
+            <p style={{ fontSize: 'var(--fs-h3)', color: B.textDarkMid, maxWidth: 1200, margin: '12px auto 0', lineHeight: 1.6 }}>
               Honest answers to questions clients ask before hiring us.
             </p>
           </motion.div>
@@ -449,7 +449,7 @@ export default function Home() {
             <SectionBadge dark>Ready to Start?</SectionBadge>
 
             <h2 className="section-h2 dark" style={{ marginBottom: 20 }}>
-              Ready to Turn Your Data<br />
+              Ready to Turn Your Data{' '}<br className="hero-br" />
               <span style={{ background: 'linear-gradient(90deg, #ababab 25%, #a7a7a7 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Into Impact?</span>
             </h2>
 
@@ -459,7 +459,7 @@ export default function Home() {
 
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 'clamp(32px, 5vw, 52px)' }}>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/book-discovery" aria-label="Book a Discovery Call" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 12, padding: 'clamp(14px, 2.5vw, 20px) clamp(22px, 5vw, 56px)', borderRadius: 'var(--radius-md)', background: '#FFFFFF', color: '#000000', fontFamily: 'var(--font-main)', fontWeight: 700, fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', boxShadow: '0 8px 40px rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.6)', whiteSpace: 'nowrap' }}>
+                <Link to="/book-discovery" aria-label="Book a Discovery Call" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 12, padding: 'clamp(14px, 2.5vw, 20px) clamp(22px, 5vw, 56px)', borderRadius: 'var(--radius-md)', background: '#FFFFFF', color: '#000000', fontFamily: 'var(--font-main)', fontWeight: 700, fontSize: 'var(--fs-card-title)', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', boxShadow: '0 8px 40px rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.6)', whiteSpace: 'nowrap' }}>
                   <Zap size={18} />
                   <span>Book a Discovery Call</span>
                   <ArrowRight size={18} />
@@ -475,7 +475,7 @@ export default function Home() {
                 { icon: <Phone size={16} />, label: 'Call: +92 323 6787087', href: 'tel:+923236787087' },
                 { icon: <FaLinkedin size={16} />, label: 'LinkedIn', href: 'https://www.linkedin.com/company/wellmind-data-solutions' },
               ].map((c, i) => (
-                <a key={i} href={c.href} style={{ display: 'inline-flex', alignItems: 'center', gap: 9, minWidth: 0, fontSize: 'clamp(12px, 1.6vw, 16px)', color: 'rgba(255,255,255,0.72)', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0 }}
+                <a key={i} href={c.href} style={{ display: 'inline-flex', alignItems: 'center', gap: 9, minWidth: 0, fontSize: 'var(--fs-card-body)', color: 'rgba(255,255,255,0.72)', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0 }}
                   onMouseEnter={e => e.currentTarget.style.color = '#FFFFFF'}
                   onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.72)'}>
                   <span style={{ color: '#FFFFFF', flexShrink: 0 }}>{c.icon}</span>

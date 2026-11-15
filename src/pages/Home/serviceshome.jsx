@@ -78,12 +78,12 @@ function CardFront({ svc }) {
     <span style={{
       display: 'grid', placeItems: 'center', width: '14cqw', height: '14cqw', minWidth: 22, minHeight: 22,
       background: INK, color: PAPER, borderRadius: '2.2cqw',
-      fontFamily: "'Unbounded', sans-serif", fontWeight: 800, fontSize: '7.6cqw', lineHeight: 1,
+      fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800, fontSize: '7.6cqw', lineHeight: 1,
     }}>{letter}</span>
   );
   const title = (
     <span style={{
-      fontFamily: "'Unbounded', sans-serif", fontWeight: 700, textTransform: 'uppercase',
+      fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, textTransform: 'uppercase',
       fontSize: '8.4cqw', letterSpacing: '0.01em', lineHeight: 1.1, color: INK,
     }}>{svc.title}</span>
   );
@@ -445,7 +445,7 @@ function MobileGrid({ reduce }) {
     <div style={{ background: STAGE, padding: 'clamp(28px, 6vw, 48px) clamp(16px, 4vw, 28px)' }}>
       <div style={{
         display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-        gap: 'clamp(14px, 4vw, 24px)', maxWidth: 560, margin: '0 auto',
+        gap: 'clamp(14px, 4vw, 24px)', maxWidth: 560, margin: '0',
       }}>
         {services.map((svc, i) => <MobileSlot key={svc.title} svc={svc} index={i} reduce={reduce} />)}
       </div>

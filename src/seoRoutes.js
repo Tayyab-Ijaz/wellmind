@@ -37,6 +37,7 @@ export const ROUTE_META = {
   '/industry-agriculture': { title: `Agriculture & AgriTech AI | ${N}`, description: 'Satellite and weather data pipelines and yield modelling for agriculture and AgriTech teams.' },
   '/industry-education': { title: `Education & EdTech AI | ${N}`, description: 'Adaptive learning and student-success analytics for education and EdTech teams.' },
 
+  '/services': { title: `All Services | ${N}`, description: 'AI and machine learning, data science, AI-powered software, automation, UI/UX design and bioinformatics services from WellMind.' },
   '/services-ai-ml': { title: `AI & Machine Learning Services | ${N}`, description: 'Predictive models, NLP, computer vision, LLM applications and MLOps, from proof of concept to production.' },
   '/services-data-analytics': { title: `Data Science & Analytics Services | ${N}`, description: 'Dashboards, data engineering, experimentation and governance that turn raw data into decisions.' },
   '/services-ai-software': { title: `AI-Powered Software Development | ${N}`, description: 'Prototypes, MVPs and production AI products, built and handed over with clear documentation.' },

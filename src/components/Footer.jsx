@@ -113,7 +113,7 @@ function BookDiscoveryBtn({ style = {} }) {
         borderRadius: 'var(--radius-sm)',
         padding: 'clamp(10px, 1.5vw, 12px) clamp(16px, 2vw, 22px)',
         minHeight: 42,
-        fontSize: 'clamp(13px, 1.05vw, 15px)',
+        fontSize: 'var(--fs-card-body)',
         fontWeight: 700,
         fontFamily: 'var(--font-main)',
         textDecoration: 'none',
@@ -261,7 +261,7 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-main)',
                     fontWeight: 800,
-                    fontSize: 'clamp(1.3rem, 1.8vw, 1.7rem)',
+                    fontSize: 'var(--fs-h3)',
                     color: '#FFFFFF',
                     display: 'block',
                     whiteSpace: 'nowrap',
@@ -273,7 +273,7 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-main)',
                     fontWeight: 600,
-                    fontSize: 'clamp(0.6rem, 0.8vw, 0.8rem)',
+                    fontSize: 'var(--fs-label)',
                     color: 'rgba(255,255,255,0.68)',
                     letterSpacing: '0.09em',
                     alignSelf: 'flex-end',
@@ -289,7 +289,7 @@ export default function Footer() {
             <p
               style={{
                 color: 'rgba(255,255,255,0.68)',
-                fontSize: 'clamp(13px, 1.05vw, 15px)',
+                fontSize: 'var(--fs-card-body)',
                 lineHeight: 1.8,
                 marginBottom: 22,
                 maxWidth: 260,
@@ -303,8 +303,8 @@ export default function Footer() {
             <p
               className="wm-footer-caption"
               style={{
-                fontFamily: "'Space Grotesk', monospace",
-                fontSize: 'clamp(10px, 0.8vw, 12px)',
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'var(--fs-label)',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
                 color: 'rgba(255,255,255,0.58)',
@@ -446,7 +446,7 @@ export default function Footer() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: 12,
-                    fontSize: 'clamp(13px, 1.05vw, 15px)',
+                    fontSize: 'var(--fs-card-body)',
                     color: 'rgba(255,255,255,0.72)',
                     lineHeight: 1.5,
                     minWidth: 0,
@@ -509,8 +509,8 @@ export default function Footer() {
           <p
             className="wm-footer-copy"
             style={{
-              fontFamily: "'Space Grotesk', monospace",
-              fontSize: 'clamp(11px, 0.9vw, 13px)',
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: 'var(--fs-small)',
               color: 'rgba(255,255,255,0.52)',
               margin: 0,
             }}
@@ -537,8 +537,8 @@ export default function Footer() {
                   key={l.to}
                   to={l.to}
                   style={{
-                    fontFamily: "'Space Grotesk', monospace",
-                    fontSize: 'clamp(11px, 0.9vw, 13px)',
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: 'var(--fs-small)',
                     color: 'rgba(255,255,255,0.52)',
                     textDecoration: 'none',
                     transition: 'color 0.2s',
@@ -562,8 +562,8 @@ export default function Footer() {
       <style>{`
         /* ═══ base (desktop ≥ 1181px) ═══ */
         .wm-footer-heading {
-          font-family: 'Space Grotesk', monospace;
-          font-size: clamp(12px, 0.95vw, 14px);
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: var(--fs-small);
           letter-spacing: 0.14em;
           text-transform: uppercase;
           color: #FFFFFF !important;
@@ -583,7 +583,7 @@ export default function Footer() {
 
         .wm-footer-link {
           font-family: 'Space Grotesk', sans-serif;
-          font-size: clamp(13px, 1.05vw, 15px);
+          font-size: var(--fs-card-body);
           font-weight: 500;
           color: rgba(255,255,255,0.62) !important;
           text-decoration: none;
@@ -701,11 +701,11 @@ export default function Footer() {
           /* link columns */
           .wm-footer-heading {
             margin-bottom: 10px;
-            font-size: 11px;
+            font-size: var(--fs-label);
           }
 
           .wm-footer-list { gap: 8px; }
-          .wm-footer-link { font-size: 13px; }
+          .wm-footer-link { font-size: var(--fs-small); }
 
           /* contact: single column again, email row spans the full width */
           .wm-footer-contact {
@@ -765,7 +765,7 @@ export default function Footer() {
         /* very small phones (≤ 360px) */
         @media (max-width: 360px) {
           .wm-footer-grid { gap: 20px 12px !important; }
-          .wm-footer-link { font-size: 12.5px; }
+          .wm-footer-link { font-size: var(--fs-label); }
           .wm-footer-copy, .wm-footer-legal a { font-size: 10.5px !important; }
         }
       `}</style>

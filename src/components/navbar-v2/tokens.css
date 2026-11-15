@@ -1,0 +1,38 @@
+/* All tweakable values live here. */
+:root {
+  /* Surfaces */
+  --nb-bg: #000;
+  --nb-fg: #fff;
+  --nb-muted: #a3a3a3;
+  --nb-line: rgba(255, 255, 255, 0.14);
+  --nb-glass: #010101;
+  --nb-panel-bg: #fff;
+  --nb-panel-fg: #0a0a0a;
+  --nb-panel-muted: #6b6b6b;
+  --nb-panel-line: #e8e8e8;
+  --nb-panel-hover: #f3f3f3;
+
+  /* Single accent (cool silver-blue, taken from the hero star dust) */
+  --nb-accent: #8fb3cc;      /* glows, beam, progress line on dark */
+  --nb-accent-ink: #3e6280;  /* focus ring + spotlight on white */
+  --nb-glow: rgba(62, 98, 128, 0.14);
+  --nb-ok: #3ddc84;          /* availability dot */
+
+  /* Sizes */
+  --nb-h: 80px;
+  --nb-h-scrolled: 80px;
+  --nb-radius-panel: 24px;
+  --nb-radius-card: 12px;
+  --nb-radius-btn: 14px;
+  --nb-gutter: clamp(20px, 2.4vw, 36px);
+
+  /* Motion */
+  --nb-dur-fast: 200ms;
+  --nb-dur: 300ms;
+  --nb-dur-slow: 450ms;
+  --nb-roll: 380ms;
+  --nb-ease-out: cubic-bezier(0.3, 0.9, 0.3, 1);
+  --nb-ease-morph: cubic-bezier(0.65, 0, 0.35, 1);
+  --nb-beam-speed: 6s;
+  --nb-stagger: 55ms;
+}

@@ -514,18 +514,18 @@ const CSS = `
 .roi-page *{box-sizing:border-box}
 .roi-wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
 .roi-section-head{text-align:center;max-width:680px;margin:0 auto clamp(24px,4vw,44px)}
-.roi-section-head h2{font-size:clamp(1.55rem,3.4vw,2.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:0 0 10px}
-.roi-section-head p{color:rgba(0,0,0,.62);font-size:clamp(.92rem,1.4vw,1.05rem);line-height:1.6;margin:0}
+.roi-section-head h2{font-size:var(--fs-section-h2);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:0 0 10px}
+.roi-section-head p{color:rgba(0,0,0,.62);font-size:var(--fs-card-body);line-height:1.6;margin:0}
 
 /* hero */
 .roi-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#fff 55%,#f3f3f3 100%);
   padding:calc(66px + clamp(32px,6vw,84px)) 0 clamp(40px,6vw,84px)}
 .roi-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(24px,4.5vw,72px);align-items:center}
-.roi-h1{font-family:var(--font-main);font-weight:800;letter-spacing:-.03em;line-height:1.08;font-size:clamp(2rem,4.6vw,3.7rem);margin:0 0 clamp(14px,2vw,22px)}
+.roi-h1{font-family:var(--font-main);font-weight:800;letter-spacing:-.03em;line-height:1.08;font-size:var(--fs-hero);margin:0 0 clamp(14px,2vw,22px)}
 .roi-h1 span{background:linear-gradient(90deg,#000 20%,#777 85%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.roi-lead{color:rgba(0,0,0,.7);font-size:clamp(.98rem,1.5vw,1.2rem);line-height:1.65;max-width:560px;margin:0 0 clamp(20px,3vw,30px)}
+.roi-lead{color:rgba(0,0,0,.7);font-size:var(--fs-card-title);line-height:1.65;max-width:560px;margin:0 0 clamp(20px,3vw,30px)}
 .roi-hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:clamp(20px,3vw,28px)}
-.roi-trust{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;margin:0;padding:0;font-size:13.5px;font-weight:600;color:rgba(0,0,0,.7)}
+.roi-trust{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;margin:0;padding:0;font-size:var(--fs-small);font-weight:600;color:rgba(0,0,0,.7)}
 .roi-trust li{display:inline-flex;align-items:center;gap:7px}
 .roi-hero-visual{display:flex;justify-content:center;min-width:0}
 .roi-hero-visual img{width:100%;max-width:640px;height:auto;max-height:520px;object-fit:contain;display:block;filter:drop-shadow(0 24px 40px rgba(0,0,0,.16))}
@@ -535,9 +535,9 @@ const CSS = `
 .roi-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.5vw,32px)}
 .roi-steps li{display:flex;gap:14px;align-items:flex-start}
 .roi-steps-icon{flex:0 0 auto;width:46px;height:46px;border-radius:14px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center}
-.roi-steps small{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,.5);margin-bottom:2px}
-.roi-steps h3{margin:0 0 4px;font-size:1.02rem;font-weight:800}
-.roi-steps p{margin:0;font-size:.9rem;line-height:1.55;color:rgba(0,0,0,.64)}
+.roi-steps small{display:block;font-size:var(--fs-label);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,.5);margin-bottom:2px}
+.roi-steps h3{margin:0 0 4px;font-size:var(--fs-card-body);font-weight:800}
+.roi-steps p{margin:0;font-size:var(--fs-small);line-height:1.55;color:rgba(0,0,0,.64)}
 
 /* calculator */
 .roi-calc-sec{padding:clamp(40px,6vw,88px) 0 clamp(32px,5vw,64px);background:#fafafa;scroll-margin-top:70px}
@@ -546,12 +546,12 @@ const CSS = `
 .roi-results{position:sticky;top:calc(66px + 20px)}
 .roi-step-head{display:flex;gap:12px;align-items:center;margin:0 0 14px}
 .roi-step-head:not(:first-child){margin-top:clamp(18px,2.4vw,26px);padding-top:clamp(18px,2.4vw,26px);border-top:1px solid rgba(0,0,0,.08)}
-.roi-step-num{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:#000;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
-.roi-step-head h3{margin:0;font-size:1.02rem;font-weight:800;line-height:1.2}
-.roi-step-head p{margin:2px 0 0;font-size:.82rem;color:rgba(0,0,0,.58)}
+.roi-step-num{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:#000;color:#fff;font-size:var(--fs-small);font-weight:800;display:flex;align-items:center;justify-content:center}
+.roi-step-head h3{margin:0;font-size:var(--fs-card-body);font-weight:800;line-height:1.2}
+.roi-step-head p{margin:2px 0 0;font-size:var(--fs-small);color:rgba(0,0,0,.58)}
 .roi-field{margin-bottom:16px}
-.roi-label{display:block;font-size:.82rem;font-weight:700;margin-bottom:7px}
-.roi-hint{margin:6px 0 0;font-size:12px;line-height:1.45;color:rgba(0,0,0,.58)}
+.roi-label{display:block;font-size:var(--fs-small);font-weight:700;margin-bottom:7px}
+.roi-hint{margin:6px 0 0;font-size:var(--fs-label);line-height:1.45;color:rgba(0,0,0,.58)}
 .roi-input{width:100%;min-width:0;height:48px;padding:0 14px;border-radius:12px;border:1.5px solid rgba(0,0,0,.18);background:#fff;color:#000;
   font:600 .95rem var(--font-main);outline:none;appearance:none;-webkit-appearance:none;transition:border-color .2s,box-shadow .2s}
 .roi-input:focus{border-color:#000;box-shadow:0 0 0 4px rgba(0,0,0,.08)}
@@ -563,88 +563,88 @@ const CSS = `
 .roi-bills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .roi-bills .roi-input{padding:0 10px}
 .roi-link{background:none;border:0;padding:6px 0;font:700 .84rem var(--font-main);color:#000;text-decoration:underline;text-underline-offset:3px;cursor:pointer;text-align:left}
-.roi-info{display:flex;gap:10px;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.05);font-size:.85rem;line-height:1.55;color:rgba(0,0,0,.72);margin-bottom:12px}
+.roi-info{display:flex;gap:10px;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.05);font-size:var(--fs-small);line-height:1.55;color:rgba(0,0,0,.72);margin-bottom:12px}
 .roi-info svg{flex:0 0 auto;margin-top:2px}
 .roi-actions{display:flex;gap:10px;margin-top:clamp(20px,3vw,28px)}
 .roi-calc-btn{flex:1;min-height:52px}
 .roi-calc-btn:disabled{background:#dcdcdc;color:rgba(0,0,0,.45);cursor:not-allowed;box-shadow:none;transform:none}
 .roi-reset{flex:0 0 52px;height:52px;border-radius:12px;border:1.5px solid rgba(0,0,0,.18);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
 .roi-reset:hover{background:#f3f3f3;border-color:#000}
-.roi-error{display:flex;gap:10px;margin-top:14px;padding:12px 14px;border-radius:12px;background:#fdecec;color:#8a1c1c;font-size:.86rem;line-height:1.5}
+.roi-error{display:flex;gap:10px;margin-top:14px;padding:12px 14px;border-radius:12px;background:#fdecec;color:#8a1c1c;font-size:var(--fs-small);line-height:1.5}
 .roi-error svg{flex:0 0 auto;margin-top:2px}
 
 /* results */
 .roi-results-head{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.roi-results-head h3{margin:0;font-size:1.1rem;font-weight:800}
+.roi-results-head h3{margin:0;font-size:var(--fs-card-title);font-weight:800}
 .roi-results-icon{width:40px;height:40px;border-radius:12px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .roi-empty{min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 8px;border:1.5px dashed rgba(0,0,0,.16);border-radius:16px}
 .roi-empty span{width:56px;height:56px;border-radius:50%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-.roi-empty p{max-width:280px;margin:0;font-size:.92rem;line-height:1.6;color:rgba(0,0,0,.66)}
+.roi-empty p{max-width:280px;margin:0;font-size:var(--fs-small);line-height:1.6;color:rgba(0,0,0,.66)}
 .roi-headline{background:#000;color:#fff;border-radius:18px;padding:clamp(18px,2.6vw,26px);text-align:center;margin-bottom:14px}
-.roi-eyebrow{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px}
-.roi-big{font-size:clamp(2.3rem,5vw,3.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.05}
-.roi-headline p{margin:8px 0 0;font-size:.9rem;line-height:1.55;color:rgba(255,255,255,.82)}
+.roi-eyebrow{display:block;font-size:var(--fs-label);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px}
+.roi-big{font-size:var(--fs-hero);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.roi-headline p{margin:8px 0 0;font-size:var(--fs-small);line-height:1.55;color:rgba(255,255,255,.82)}
 .roi-headline b{color:#fff}
-.roi-note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.45;color:rgba(0,0,0,.66);background:rgba(0,0,0,.05);padding:9px 12px;border-radius:10px;margin-bottom:14px}
+.roi-note{display:flex;gap:8px;align-items:flex-start;font-size:var(--fs-label);line-height:1.45;color:rgba(0,0,0,.66);background:rgba(0,0,0,.05);padding:9px 12px;border-radius:10px;margin-bottom:14px}
 .roi-note svg{flex:0 0 auto;margin-top:2px}
 .roi-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:14px}
 .roi-kpi{border:1px solid rgba(0,0,0,.12);border-radius:14px;padding:14px;min-width:0}
-.roi-kpi-top{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(0,0,0,.58);margin-bottom:8px}
+.roi-kpi-top{display:flex;align-items:center;gap:8px;font-size:var(--fs-label);font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(0,0,0,.58);margin-bottom:8px}
 .roi-kpi-icon{width:24px;height:24px;border-radius:7px;background:rgba(0,0,0,.07);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.roi-kpi strong{display:block;font-size:clamp(1.25rem,2.4vw,1.65rem);font-weight:800;letter-spacing:-.02em;overflow-wrap:anywhere}
-.roi-kpi em{display:block;font-style:normal;font-size:11.5px;color:rgba(0,0,0,.5);margin-top:2px}
+.roi-kpi strong{display:block;font-size:var(--fs-h3);font-weight:800;letter-spacing:-.02em;overflow-wrap:anywhere}
+.roi-kpi em{display:block;font-style:normal;font-size:var(--fs-label);color:rgba(0,0,0,.5);margin-top:2px}
 .roi-card-inner{border:1px solid rgba(0,0,0,.12);border-radius:16px;padding:clamp(12px,2vw,18px);margin-bottom:14px;min-width:0}
-.roi-card-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:.86rem;font-weight:800;margin-bottom:8px}
-.roi-card-title b{font-size:.78rem;padding:4px 10px;border-radius:99px}
+.roi-card-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:var(--fs-small);font-weight:800;margin-bottom:8px}
+.roi-card-title b{font-size:var(--fs-label);padding:4px 10px;border-radius:99px}
 .roi-card-title b.pos{background:#000;color:#fff}
 .roi-card-title b.neg{background:#eee;color:#444}
 .roi-chart{width:100%;min-width:0}
 .roi-chart svg{display:block;max-width:100%}
-.roi-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px;font-size:12px;color:rgba(0,0,0,.66)}
+.roi-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px;font-size:var(--fs-label);color:rgba(0,0,0,.66)}
 .roi-legend span{display:inline-flex;align-items:center;gap:7px}
 .roi-legend i{width:16px;height:3px;border-radius:2px;display:inline-block}
 .roi-legend i.ring{width:10px;height:10px;border-radius:50%;border:2.5px solid #000;background:#fff}
 .roi-table-wrap{overflow-x:auto}
-.roi-table-wrap table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:300px}
-.roi-table-wrap th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:rgba(0,0,0,.55);padding:0 8px 10px 0}
+.roi-table-wrap table{width:100%;border-collapse:collapse;font-size:var(--fs-small);min-width:300px}
+.roi-table-wrap th{text-align:left;font-size:var(--fs-label);letter-spacing:.07em;text-transform:uppercase;color:rgba(0,0,0,.55);padding:0 8px 10px 0}
 .roi-table-wrap td{padding:11px 8px 11px 0;border-top:1px solid rgba(0,0,0,.09);font-weight:800;white-space:nowrap}
 .roi-table-wrap td:first-child{font-weight:600;color:rgba(0,0,0,.6);white-space:normal}
 .roi-table-wrap td.accent{color:#000}
 .roi-hardware{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:14px;background:rgba(0,0,0,.05);margin-bottom:16px}
 .roi-hardware svg{flex:0 0 auto;margin-top:2px}
-.roi-hardware p{margin:0;font-size:.9rem;line-height:1.6}
+.roi-hardware p{margin:0;font-size:var(--fs-small);line-height:1.6}
 .roi-hardware span{color:rgba(0,0,0,.66)}
 .roi-full{width:100%}
-.roi-label-estimate{display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:10px 14px;border-radius:12px;border:1.5px solid #000;background:#fff;font-size:.88rem;font-weight:800;line-height:1.4}
+.roi-label-estimate{display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:10px 14px;border-radius:12px;border:1.5px solid #000;background:#fff;font-size:var(--fs-small);font-weight:800;line-height:1.4}
 .roi-label-estimate svg{flex:0 0 auto}
-.roi-quote-note{margin:14px 0 12px;font-size:12.5px;line-height:1.6;color:rgba(0,0,0,.6)}
-.roi-disclaimer{display:flex;gap:8px;align-items:flex-start;justify-content:center;max-width:720px;margin:22px auto 0;font-size:12px;line-height:1.6;color:rgba(0,0,0,.55);text-align:left}
+.roi-quote-note{margin:14px 0 12px;font-size:var(--fs-label);line-height:1.6;color:rgba(0,0,0,.6)}
+.roi-disclaimer{display:flex;gap:8px;align-items:flex-start;justify-content:center;max-width:720px;margin:22px auto 0;font-size:var(--fs-label);line-height:1.6;color:rgba(0,0,0,.55);text-align:left}
 .roi-disclaimer svg{flex:0 0 auto;margin-top:3px}
 
 /* methodology */
 .roi-method-sec{padding:clamp(40px,6vw,80px) 0;background:#fff}
 .roi-method{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,20px)}
 .roi-method-card{border:1px solid rgba(0,0,0,.12);border-radius:18px;padding:clamp(16px,2vw,24px);background:#fff}
-.roi-method-card h3{margin:0 0 8px;font-size:1rem;font-weight:800}
-.roi-method-card p{margin:0;font-size:.88rem;line-height:1.6;color:rgba(0,0,0,.66)}
+.roi-method-card h3{margin:0 0 8px;font-size:var(--fs-card-body);font-weight:800}
+.roi-method-card p{margin:0;font-size:var(--fs-small);line-height:1.6;color:rgba(0,0,0,.66)}
 
 /* faq */
 .roi-faq-sec{padding:clamp(36px,5vw,72px) 0;background:#fafafa}
 .roi-faq-wrap{max-width:860px}
 .roi-faq details{background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:14px;margin-bottom:10px;overflow:hidden}
-.roi-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 18px;font-weight:700;font-size:.98rem}
+.roi-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 18px;font-weight:700;font-size:var(--fs-card-body)}
 .roi-faq summary::-webkit-details-marker{display:none}
 .roi-faq summary svg{flex:0 0 auto;transition:transform .25s}
 .roi-faq details[open] summary svg{transform:rotate(180deg)}
-.roi-faq details p{margin:0;padding:0 18px 18px;font-size:.92rem;line-height:1.7;color:rgba(0,0,0,.68)}
+.roi-faq details p{margin:0;padding:0 18px 18px;font-size:var(--fs-small);line-height:1.7;color:rgba(0,0,0,.68)}
 
 /* cta */
 .roi-cta-sec{padding:clamp(36px,6vw,80px) 0 clamp(48px,7vw,96px);background:#fff}
 .roi-cta{background:#000;color:#fff;border-radius:clamp(20px,3vw,32px);padding:clamp(28px,5vw,64px) clamp(20px,4vw,56px);text-align:center}
-.roi-cta h2{margin:0 0 12px;font-size:clamp(1.5rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.02em;line-height:1.15}
-.roi-cta p{max-width:640px;margin:0 auto clamp(20px,3vw,32px);color:rgba(255,255,255,.78);line-height:1.65;font-size:clamp(.92rem,1.4vw,1.05rem)}
+.roi-cta h2{margin:0 0 12px;font-size:var(--fs-section-h2);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.roi-cta p{max-width:640px;margin:0 auto clamp(20px,3vw,32px);color:rgba(255,255,255,.78);line-height:1.65;font-size:var(--fs-card-body)}
 .roi-cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:#000;text-decoration:none;font-weight:800;
-  font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;padding:15px 28px;border-radius:12px;transition:transform .25s,box-shadow .25s}
+  font-size:var(--fs-small);letter-spacing:.08em;text-transform:uppercase;padding:15px 28px;border-radius:12px;transition:transform .25s,box-shadow .25s}
 .roi-cta-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(255,255,255,.18)}
 
 /* ── breakpoints ── */

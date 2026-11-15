@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
+import PipelineFlow from '../../components/PipelineFlow';
 
 import { B, PX, fadeUp, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../../theme';
 import { useSeo, childMeta } from '../../seo';
@@ -45,86 +46,6 @@ function Icon({ name, size = 22 }) {
 }
 
 // ─── Per-Service Pipeline Flow (mirrors ServicesAutomation.jsx exactly) ────────
-function PipelineFlow({ nodes }) {
-  const [activeNode, setActiveNode] = useState(null);
-
-  // Connections: 0→1, 1→2, 0→3, 3→4, 2→4
-  const connections = [
-    { from: 0, to: 1 }, { from: 1, to: 2 },
-    { from: 0, to: 3 }, { from: 3, to: 4 },
-    { from: 2, to: 4 },
-  ];
-
-  return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 380, height: 320, margin: '0 auto' }}>
-      {/* SVG connector lines */}
-      <svg style={{
-        position: 'absolute', inset: 0,
-        width: '100%', height: '100%',
-        overflow: 'visible', pointerEvents: 'none',
-      }}>
-        {connections.map(({ from, to }, i) => {
-          const f  = nodes[from];
-          const t2 = nodes[to];
-          const fx = parseFloat(f.x)  + 10;
-          const fy = parseFloat(f.y)  + 16;
-          const tx = parseFloat(t2.x) + 10;
-          const ty = parseFloat(t2.y) + 16;
-          return (
-            <line
-              key={i}
-              x1={`${fx}%`} y1={`${fy}%`}
-              x2={`${tx}%`} y2={`${ty}%`}
-              stroke={`${nodes[from].color}50`}
-              strokeWidth="1.5"
-              strokeDasharray="4 3"
-            />
-          );
-        })}
-      </svg>
-
-      {/* Pipeline nodes */}
-      {nodes.map((node, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.15 + i * 0.12 }}
-          onMouseEnter={() => setActiveNode(i)}
-          onMouseLeave={() => setActiveNode(null)}
-          style={{
-            position: 'absolute',
-            left: node.x, top: node.y,
-            padding: '10px 14px',
-            borderRadius: 'var(--radius-md)',
-            minWidth: 120,
-            background: activeNode === i ? 'rgba(255,255,255,0.96)' : 'rgba(255,255,255,0.76)',
-            backdropFilter: 'blur(8px)',
-            border: `1.5px solid ${activeNode === i ? node.color : node.color + '50'}`,
-            boxShadow: activeNode === i ? `0 8px 28px ${node.color}30` : '0 2px 10px rgba(0,0,0,0.06)',
-            transition: 'all 0.26s ease',
-            cursor: 'default', zIndex: 2,
-          }}
-        >
-          <div style={{ fontWeight: 800, fontSize: 12.5, color: node.color, marginBottom: 3 }}>
-            {node.label}
-          </div>
-          <div style={{ fontSize: 10.5, color: B.textMuted, fontWeight: 500, lineHeight: 1.4 }}>
-            {node.sub}
-          </div>
-          {/* Pulse dot */}
-          <div style={{
-            width: 8, height: 8, borderRadius: '50%',
-            background: node.color,
-            position: 'absolute', top: -4, right: -4,
-            boxShadow: `0 0 8px ${node.color}80`,
-            animation: 'wmPulse 2s ease-in-out infinite',
-          }} />
-        </motion.div>
-      ))}
-    </div>
-  );
-}
 
 // ─── Feature Card ─────────────────────────────────────────────────────────────
 function FeatureCard({ iconName, title, desc, i, color }) {
@@ -149,7 +70,7 @@ function FeatureCard({ iconName, title, desc, i, color }) {
         transition: 'all 0.3s ease', height: '100%',
       }}
     >
-      <div style={{
+      <div className="hero-split-row" style={{
         width: 'clamp(44px, 6vw, 54px)', height: 'clamp(44px, 6vw, 54px)',
         borderRadius: '50%',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -202,7 +123,7 @@ function DeliverableItem({ text, color }) {
         style={{ flexShrink: 0, transition: 'color 0.3s' }}
       />
       <span style={{
-        fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)',
+        fontSize: 'var(--fs-card-title)',
         fontWeight: 500, lineHeight: 1.5,
         color: hovered ? B.textDark : B.textMain,
         transition: 'color 0.3s ease',
@@ -215,7 +136,7 @@ function DeliverableItem({ text, color }) {
 
 
 // ─── Tech Badge ───────────────────────────────────────────────────────────────
-function TechBadge({ label, color }) {
+function TechBadge({ label }) {
   const [h, setH] = useState(false);
   return (
     <span
@@ -224,10 +145,10 @@ function TechBadge({ label, color }) {
         display: 'inline-flex', alignItems: 'center', gap: 5,
         padding: 'clamp(5px, 1vw, 7px) clamp(10px, 1.5vw, 14px)',
         borderRadius: 'var(--radius-sm)',
-        background: h ? color : 'rgba(255,255,255,0.05)',
-        border: `1.5px solid ${h ? color : 'rgba(255,255,255,0.15)'}`,
-        color: h ? B.bgDark : color,
-        fontSize: 'clamp(11px, 1.3vw, 13px)', fontWeight: 700, letterSpacing: '0.04em',
+        background: h ? '#f0f0f0' : 'rgba(255,255,255,0.05)',
+        border: `1.5px solid ${h ? '#f0f0f0' : 'rgba(255,255,255,0.15)'}`,
+        color: h ? '#000000' : '#f0f0f0',
+        fontSize: 'var(--fs-small)', fontWeight: 700, letterSpacing: '0.04em',
         transition: 'all 0.22s ease', cursor: 'default',
       }}
     >
@@ -257,7 +178,7 @@ const SharedStyles = () => (
       padding: clamp(12px, 2vw, 18px) clamp(20px, 4vw, 40px);
       border-radius: 12px; background: #646464; color: #ffffff;
       font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+      font-size: var(--fs-btn);
       letter-spacing: 0.10em; text-transform: uppercase; text-decoration: none;
       transition: opacity 0.2s, transform 0.2s;
     }
@@ -266,7 +187,7 @@ const SharedStyles = () => (
       padding: clamp(10px, 1.8vw, 16px) clamp(20px, 4vw, 40px);
       border-radius: 12px; background: transparent; color: #373737;
       font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+      font-size: var(--fs-btn);
       letter-spacing: 0.10em; text-decoration: none;
       border: 2px solid #373737; transition: background 0.2s, transform 0.2s;
     }
@@ -286,7 +207,7 @@ const SharedStyles = () => (
     }
     @media (max-width: 320px) {
       .grid-stats    { grid-template-columns: 1fr; gap: 10px; }
-      .btn-primary, .btn-secondary { width: 100%; font-size: 0.8rem; }
+      .btn-primary, .btn-secondary { width: 100%; font-size: var(--fs-btn); }
     }
     @keyframes wmFloat {
       0%, 100% { transform: translateY(0px); }
@@ -368,7 +289,7 @@ export default function AutomationChildPage() {
                 {/* Breadcrumb */}
                 <motion.div variants={fadeUp} custom={0} style={{ marginBottom: 12 }}>
                   <Link to="/services-automation" style={{
-                    fontSize: 'clamp(11px, 1.2vw, 13px)', fontWeight: 600,
+                    fontSize: 'var(--fs-small)', fontWeight: 600,
                     color: AC, textDecoration: 'none',
                     display: 'inline-flex', alignItems: 'center', gap: 5,
                     opacity: 0.8,
@@ -390,7 +311,7 @@ export default function AutomationChildPage() {
                 </motion.h1>
 
                 <motion.p variants={fadeUp} custom={0.1} style={{
-                  fontSize: 'clamp(0.95rem, 1.8vw, 1.25rem)', fontWeight: 600,
+                  fontSize: 'var(--fs-card-title)', fontWeight: 600,
                   color: AC, marginBottom: 'clamp(12px, 1.5vw, 18px)',
                   lineHeight: 1.4,
                 }}>
@@ -398,7 +319,7 @@ export default function AutomationChildPage() {
                 </motion.p>
 
                 <motion.p variants={fadeUp} custom={0.15} style={{
-                  fontSize: 'clamp(0.88rem, 1.8vw, 1.15rem)', fontWeight: 400,
+                  fontSize: 'var(--fs-card-title)', fontWeight: 400,
                   color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75,
                 }}>
                   {data.heroDesc}
@@ -441,7 +362,7 @@ export default function AutomationChildPage() {
                   width: '100%', maxWidth: 440,
                 }}>
                   <div style={{
-                    fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 800,
+                    fontSize: 'var(--fs-label)', fontWeight: 800,
                     letterSpacing: '0.18em', textTransform: 'uppercase',
                     color: AC, textAlign: 'center', marginBottom: 24,
                   }}>
@@ -471,7 +392,7 @@ export default function AutomationChildPage() {
                   borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)',
                   border: `1px solid ${B.primaryBorder}`,
-                  fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
+                  fontSize: 'var(--fs-card-body)', fontWeight: 600, color: B.textMain,
                   boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
@@ -498,7 +419,7 @@ export default function AutomationChildPage() {
           {/* Tech Stack */}
           <div style={{ textAlign: 'center' }}>
             <p style={{
-              fontSize: 'clamp(10px, 1.2vw, 11px)', fontWeight: 700,
+              fontSize: 'var(--fs-label)', fontWeight: 700,
               letterSpacing: '0.16em', textTransform: 'uppercase',
               color: B.textDarkMuted, marginBottom: 16,
             }}>
@@ -571,7 +492,7 @@ export default function AutomationChildPage() {
                         width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)',
                         borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
                         background: color, color: B.white,
-                        fontWeight: 800, fontSize: 'clamp(13px, 1.6vw, 17px)',
+                        fontWeight: 800, fontSize: 'var(--fs-card-body)',
                         boxShadow: `0 6px 20px ${color}40`, flexShrink: 0,
                       }}>
                         {p.step}
@@ -586,11 +507,11 @@ export default function AutomationChildPage() {
                     </div>
                     <div style={{ paddingTop: 8 }}>
                       <h4 style={{
-                        fontWeight: 700, fontSize: 'clamp(1.15rem, 2vw, 1.8rem)',
+                        fontWeight: 700, fontSize: 'var(--fs-h3)',
                         color: B.textMain, marginBottom: 8, lineHeight: 1.3,
                       }}>{p.title}</h4>
                       <p style={{
-                        fontSize: 'clamp(0.95rem, 1.6vw, 1.25rem)',
+                        fontSize: 'var(--fs-card-title)',
                         lineHeight: 1.7, color: B.textMid,
                       }}>{p.desc}</p>
                     </div>
@@ -606,7 +527,7 @@ export default function AutomationChildPage() {
                 Documented, Monitored, Yours.
               </h2>
               <p style={{
-                fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)',
+                fontSize: 'var(--fs-card-title)',
                 color: B.textMid, lineHeight: 1.7,
                 marginBottom: 'clamp(24px, 3.5vw, 36px)',
               }}>
@@ -652,7 +573,7 @@ export default function AutomationChildPage() {
           >
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-              Stop the Manual Work.<br />
+              Stop the Manual Work.{' '}<br className="hero-br" />
               <span style={{
                 background: 'linear-gradient(90deg, #a0a0a0 25%, #646464 75%)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
@@ -673,7 +594,7 @@ export default function AutomationChildPage() {
                 borderRadius: 'var(--radius-md)',
                 background: `linear-gradient(135deg, ${B.action}, #393939)`,
                 color: B.white, fontWeight: 700,
-                fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
+                fontSize: 'var(--fs-card-title)',
                 letterSpacing: '0.10em', textTransform: 'uppercase',
                 textDecoration: 'none',
                 boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,

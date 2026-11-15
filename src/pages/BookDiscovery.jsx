@@ -26,14 +26,14 @@ function Field({ label, required, children, error }) {
     <div style={{ marginBottom: 20 }}>
       <label style={{
         display: 'block', fontWeight: 700,
-        fontSize: 'clamp(12px, 1.4vw, 14px)',
+        fontSize: 'var(--fs-small)',
         color: B.textMain, marginBottom: 8, letterSpacing: '0.02em',
       }}>
         {label}{required && <span style={{ color: B.secondary, marginLeft: 3 }}>*</span>}
       </label>
       {children}
       {error && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 6, fontSize: 12, color: B.secondary, fontWeight: 600 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 6, fontSize: 'var(--fs-label)', color: B.secondary, fontWeight: 600 }}>
           <AlertCircle size={12}/> {error}
         </div>
       )}
@@ -47,7 +47,7 @@ const inputStyle = (focused) => ({
   border: `1.5px solid ${focused ? B.action : B.primaryBorder}`,
   background: focused ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.70)',
   backdropFilter: 'blur(6px)',
-  fontSize: 'clamp(13px, 1.5vw, 15px)', color: B.textMain,
+  fontSize: 'var(--fs-card-body)', color: B.textMain,
   outline: 'none', boxSizing: 'border-box',
   transition: 'border-color 0.2s, background 0.2s, box-shadow 0.2s',
   boxShadow: focused ? `0 0 0 3px ${B.actionLight}` : 'none',
@@ -130,17 +130,17 @@ function ContactForm() {
         }}>
           <CheckCircle size={32} color={B.action}/>
         </div>
-        <h3 style={{ fontWeight: 700, fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', color: B.textMain, marginBottom: 12 }}>
+        <h3 style={{ fontWeight: 700, fontSize: 'var(--fs-h3)', color: B.textMain, marginBottom: 12 }}>
           Your email app should have opened!
         </h3>
-        <p style={{ fontSize: 'clamp(13px, 1.6vw, 16px)', color: B.textMid, lineHeight: 1.7, marginBottom: 28 }}>
+        <p style={{ fontSize: 'var(--fs-card-body)', color: B.textMid, lineHeight: 1.7, marginBottom: 28 }}>
           Just hit send from there. If nothing opened, email us directly at <strong>contact@wellminddatasolutions.com</strong> or <strong>info@wellminddatasolutions.com</strong> — we'll get back to you promptly on business days.
         </p>
         <Link to="/book-discovery" style={{
           display: 'inline-flex', alignItems: 'center', gap: 7,
           padding: 'clamp(10px, 1.5vw, 13px) clamp(20px, 3vw, 28px)', borderRadius: 10,
           background: B.action, color: B.white,
-          fontWeight: 700, fontSize: 'clamp(12px, 1.5vw, 14px)', letterSpacing: '0.08em',
+          fontWeight: 700, fontSize: 'var(--fs-small)', letterSpacing: '0.08em',
           textTransform: 'uppercase', textDecoration: 'none',
           boxShadow: `0 4px 20px ${B.actionGlow}`,
         }}>
@@ -157,15 +157,15 @@ function ContactForm() {
       border: `2px solid ${B.primaryBorder}`,
       boxShadow: '0 8px 32px rgba(57,57,57,0.08)',
     }}>
-      <h3 style={{ fontWeight: 700, fontSize: 'clamp(1.1rem, 2.2vw, 1.4rem)', color: B.textMain, marginBottom: 6 }}>
+      <h3 style={{ fontWeight: 700, fontSize: 'var(--fs-h3)', color: B.textMain, marginBottom: 6 }}>
         Send Us a Message
       </h3>
-      <p style={{ fontSize: 'clamp(12px, 1.5vw, 14px)', color: B.textMuted, marginBottom: 28 }}>
+      <p style={{ fontSize: 'var(--fs-small)', color: B.textMuted, marginBottom: 28 }}>
         We'll respond with a proposal or a call — whichever fits best.
       </p>
 
       <form onSubmit={handleSubmit}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0 20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '0 20px' }}>
           <Field label="Name" required>
             <FormInput name="name" value={form.name} onChange={handleChange} placeholder="Your name"/>
           </Field>
@@ -178,7 +178,7 @@ function ContactForm() {
           <FormInput name="company" value={form.company} onChange={handleChange} placeholder="Optional"/>
         </Field>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0 20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '0 20px' }}>
           <Field label="Service Interested In" required>
             <FormSelect name="service" value={form.service} onChange={handleChange}
               options={[
@@ -217,7 +217,7 @@ function ContactForm() {
           width: '100%', padding: 'clamp(13px, 2vw, 16px)',
           borderRadius: 11, background: loading ? 'rgba(84,84,84,0.6)' : `linear-gradient(135deg, ${B.action}, #393939)`,
           color: B.white, border: 'none', cursor: loading ? 'wait' : 'pointer',
-          fontWeight: 700, fontSize: 'clamp(13px, 1.5vw, 15px)', letterSpacing: '0.10em',
+          fontWeight: 700, fontSize: 'var(--fs-card-body)', letterSpacing: '0.10em',
           textTransform: 'uppercase', fontFamily: 'var(--font-main)',
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9,
           boxShadow: loading ? 'none' : `0 6px 28px ${B.actionGlow}`,
@@ -253,8 +253,8 @@ function InstantBooking() {
           <Clock size={20} color={B.action}/>
         </div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: B.textMain }}>Book a Free Call</div>
-          <div style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textMuted, marginTop: 2 }}>Pick a slot below — you'll get an instant confirmation.</div>
+          <div style={{ fontWeight: 700, fontSize: 'var(--fs-card-title)', color: B.textMain }}>Book a Free Call</div>
+          <div style={{ fontSize: 'var(--fs-small)', color: B.textMuted, marginTop: 2 }}>Pick a slot below — you'll get an instant confirmation.</div>
         </div>
       </div>
 
@@ -271,7 +271,7 @@ function InstantBooking() {
         />
       </div>
 
-      <div style={{ marginTop: 12, display: 'flex', flexWrap: 'wrap', gap: '8px 18px', justifyContent: 'center', fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textMid }}>
+      <div style={{ marginTop: 12, display: 'flex', flexWrap: 'wrap', gap: '8px 18px', justifyContent: 'center', fontSize: 'var(--fs-small)', color: B.textMid }}>
         <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" style={{ color: B.action, fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
           <Calendar size={14}/> Open scheduler in a new tab
         </a>
@@ -282,7 +282,7 @@ function InstantBooking() {
 
       <div style={{ marginTop: 14, flexShrink: 0, padding: 'clamp(11px, 1.8vw, 14px)', borderRadius: 'var(--radius-md)', background: B.primaryLight, border: `1px solid ${B.primaryBorder}`, display: 'flex', gap: 9, alignItems: 'flex-start' }}>
         <CheckCircle size={15} color={B.primary} style={{ flexShrink: 0, marginTop: 1 }}/>
-        <div style={{ fontSize: 'clamp(11.5px, 1.3vw, 13px)', color: B.textMid, lineHeight: 1.55 }}>
+        <div style={{ fontSize: 'var(--fs-small)', color: B.textMid, lineHeight: 1.55 }}>
           <strong style={{ color: B.textMain }}>Free, no-obligation call.</strong> We'll discuss your project and tell you honestly if we're the right fit.
         </div>
       </div>
@@ -317,15 +317,15 @@ function DirectItem({ icon, label, value, href, badge }) {
           {React.cloneElement(icon, { size: 18 })}
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 700, color: B.textMuted, textTransform: 'uppercase', letterSpacing: '0.10em', marginBottom: 4 }}>
+          <div style={{ fontSize: 'var(--fs-label)', fontWeight: 700, color: B.textMuted, textTransform: 'uppercase', letterSpacing: '0.10em', marginBottom: 4 }}>
             {label}
             {badge && (
-              <span style={{ marginLeft: 8, padding: '2px 8px', borderRadius: 99, background: B.accentLight, border: `1px solid ${B.accentBorder}`, color: B.accent, fontSize: 9.5, fontWeight: 700, letterSpacing: '0.08em' }}>
+              <span style={{ marginLeft: 8, padding: '2px 8px', borderRadius: 99, background: B.accentLight, border: `1px solid ${B.accentBorder}`, color: B.accent, fontSize: 'var(--fs-label)', fontWeight: 700, letterSpacing: '0.08em' }}>
                 {badge}
               </span>
             )}
           </div>
-          <div style={{ fontSize: 'clamp(13px, 1.6vw, 15px)', fontWeight: 600, color: hovered ? B.action : B.textMain, transition: 'color 0.2s' }}>
+          <div style={{ fontSize: 'var(--fs-card-body)', fontWeight: 600, color: hovered ? B.action : B.textMain, transition: 'color 0.2s' }}>
             {value}
           </div>
         </div>
@@ -348,13 +348,13 @@ function ResponsePromise() {
       background: B.cardBg, backdropFilter: 'blur(10px)',
       border: `1.5px solid ${B.primaryBorder}`, boxShadow: B.cardShadow,
     }}>
-      <div style={{ fontWeight: 800, fontSize: 'clamp(10px, 1.3vw, 13px)', letterSpacing: '0.18em', textTransform: 'uppercase', color: B.action, marginBottom: 18 }}>
+      <div style={{ fontWeight: 800, fontSize: 'var(--fs-small)', letterSpacing: '0.18em', textTransform: 'uppercase', color: B.action, marginBottom: 18 }}>
         ⏱ What to Expect
       </div>
       {items.map((item, i) => (
         <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: i < items.length - 1 ? 14 : 0 }}>
           <span style={{ color: B.action, flexShrink: 0 }}>{item.icon}</span>
-          <span style={{ fontSize: 'clamp(12px, 1.5vw, 14px)', color: B.textMid, lineHeight: 1.5 }}>{item.text}</span>
+          <span style={{ fontSize: 'var(--fs-small)', color: B.textMid, lineHeight: 1.5 }}>{item.text}</span>
         </div>
       ))}
     </div>
@@ -423,7 +423,7 @@ export default function BookDiscovery() {
               variants={fadeUp} custom={0.2}
               style={{
                 fontFamily: 'var(--font-main)',
-                fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)',
+                fontSize: 'var(--fs-h3)',
                 color: B.textMid,
                 maxWidth: 1200, margin: '0 auto clamp(16px, 2.5vw, 36px)',
                 letterSpacing: '0.02em', lineHeight: 1.6,
@@ -474,7 +474,7 @@ export default function BookDiscovery() {
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <div>
-                <h3 style={{ fontWeight: 700, fontSize: 'clamp(1.1rem, 2vw, 1.3rem)', color: B.textMain, marginBottom: 14 }}>Or reach us directly</h3>
+                <h3 style={{ fontWeight: 700, fontSize: 'var(--fs-card-title)', color: B.textMain, marginBottom: 14 }}>Or reach us directly</h3>
                 {DIRECT_CONTACTS.map((c, i) => <DirectItem key={i} {...c} />)}
               </div>
               <ResponsePromise />
@@ -492,7 +492,7 @@ export default function BookDiscovery() {
             <h2 className="section-h2" style={{ color: B.primaryDark }}>Send Us a Message</h2>
             <p className="section-lead">Fill this out and it'll open a pre-filled email straight to our inbox.</p>
           </motion.div>
-          <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          <div style={{ maxWidth: 720, margin: '0' }}>
             <ContactForm />
           </div>
         </div>

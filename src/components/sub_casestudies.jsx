@@ -125,7 +125,7 @@ function FeaturedCard({ cs, onClose }) {
           <div style={{ flex: 1 }}>
             <span style={{
               fontFamily:   "'Space Grotesk', sans-serif",
-              fontSize:      17,
+              fontSize:      'var(--fs-card-body)',
               fontWeight:    700,
               color:         B.textMain,
               lineHeight:    1.4,
@@ -136,7 +136,7 @@ function FeaturedCard({ cs, onClose }) {
             </span>
             <p style={{
               fontFamily: "'Space Grotesk', sans-serif",
-              fontSize:    14,
+              fontSize:    'var(--fs-small)',
               color:       B.textMuted,
               margin:      0,
               lineHeight:  1.5,
@@ -268,7 +268,7 @@ export default function CaseStudiesMegaMenu({ onClose }) {
         display:       'flex',
         flexDirection: 'column',
       }}>
-        <OverlineLabel style={{ marginBottom: 18, fontSize: 12, letterSpacing: '0.08em', textTransform: 'uppercase', color: B.textMuted, fontWeight: 700 }}>
+        <OverlineLabel style={{ marginBottom: 18, fontSize: 'var(--fs-label)', letterSpacing: '0.08em', textTransform: 'uppercase', color: B.textMuted, fontWeight: 700 }}>
           Featured Projects
         </OverlineLabel>
 

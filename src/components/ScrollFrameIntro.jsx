@@ -21,7 +21,7 @@ const PAGE_BLACK = '#010101';
 const INTRO_VIDEO_SRC = '/hero-video.mp4';          // file lives in /public
 
 const TITLE = 'WELLMIND';
-const TITLE_FONT = "'Manrope', 'Inter', 'Helvetica Neue', Arial, sans-serif";
+const TITLE_FONT = "'Space Grotesk', sans-serif";
 const TITLE_WEIGHT = 600;
 const SECTION_GAP = 'clamp(56px, 9vw, 140px)';      // space between the WELLMIND hero and the tunnel section
 
@@ -69,7 +69,7 @@ function useTitleMetrics() {
       if (!dead && w > 0 && cap > 0) setM({ w, cap, x: t.actualBoundingBoxLeft });
     };
     const load = document.fonts?.load
-      ? document.fonts.load(`${TITLE_WEIGHT} 100px Manrope`).catch(() => {})
+      ? document.fonts.load(`${TITLE_WEIGHT} 100px Space Grotesk`).catch(() => {})
       : Promise.resolve();
     load.then(() => document.fonts?.ready).then(measure).catch(measure);
     return () => { dead = true; };
@@ -88,7 +88,7 @@ function HeroTitle() {
           <span key={p} style={{
             position: 'absolute', left: `${p}%`, top: 0, transform: 'translateX(-50%)',
             color: 'rgba(255,255,255,0.78)', fontFamily: 'Arial, sans-serif', fontWeight: 200,
-            fontSize: 'clamp(20px, 2.2vw, 34px)', lineHeight: 1,
+            fontSize: 'var(--fs-section-h2)', lineHeight: 1,
           }}>+</span>
         ))}
       </div>
@@ -360,7 +360,7 @@ export default function ScrollFrameIntro({ children }) {
             position: 'absolute', right: 'clamp(20px, 4.8vw, 92px)', bottom: 'clamp(14px, 1.9vw, 30px)', zIndex: 2,
             background: 'none', border: 0, padding: 0, cursor: 'pointer', color: '#fff',
             fontFamily: TITLE_FONT, fontWeight: 500, textTransform: 'uppercase',
-            fontSize: 'clamp(12px, 1.35vw, 22px)', letterSpacing: '-0.01em', whiteSpace: 'nowrap',
+            fontSize: 'var(--fs-h3)', letterSpacing: '-0.01em', whiteSpace: 'nowrap',
           }}
         >
           Scroll to explore

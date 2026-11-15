@@ -16,6 +16,15 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 
+// Lightens near-black accent colours so text/icons stay visible on dark cards.
+export const lift = (c, fallback = '#d4d4d4') => {
+  const m = /^#([0-9a-f]{6})/i.exec(c || '');
+  if (!m) return c;
+  const n = parseInt(m[1], 16);
+  const l = 0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255);
+  return l < 110 ? fallback : c;
+};
+
 // ─── Brand Colors ─────────────────────────────────────────────────────────────
 export const B = {
   // Primary purple — deepened for richer, more premium contrast
@@ -84,7 +93,7 @@ export const B = {
   shadowMd: 'rgba(0,0,0,0.15)',
   shadowLg: 'rgba(0,0,0,0.22)',
   pillRadius: 28,
-  fontDisplay: "'Unbounded', 'Space Grotesk', serif",
+  fontDisplay: "'Space Grotesk', sans-serif",
 };
 
 // ─── Layout Constants ─────────────────────────────────────────────────────────
@@ -268,15 +277,15 @@ export function FAQItem({ q, a, isOpen, onClick, index }) {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(10px, 1.5vw, 16px)', flex: 1 }}>
           <span style={{
-            fontSize: 12, fontWeight: 800, letterSpacing: '0.10em',
+            fontSize: 'var(--fs-label)', fontWeight: 800, letterSpacing: '0.10em',
             color: isOpen ? B.action : 'rgba(237,237,237,0.60)',
-            minWidth: 28, fontFamily: 'sans-serif', transition: 'color 0.3s ease',
+            minWidth: 28, fontFamily: 'var(--font-main)', transition: 'color 0.3s ease',
           }}>
             {String(index + 1).padStart(2, '0')}
           </span>
           <h3 style={{
-            fontFamily: 'sans-serif', fontWeight: 600,
-            fontSize: 'clamp(0.9rem, 1.6vw, 1.15rem)',
+            fontFamily: 'var(--font-main)', fontWeight: 600,
+            fontSize: 'var(--fs-card-title)',
             color: isOpen ? B.textDark : 'rgba(237,237,237,0.85)',
             margin: 0, lineHeight: 1.4, transition: 'color 0.3s ease',
           }}>{q}</h3>
@@ -308,7 +317,7 @@ export function FAQItem({ q, a, isOpen, onClick, index }) {
               paddingLeft: 'calc(clamp(16px, 2.5vw, 28px) + 16px + 28px)',
             }}>
               <div style={{
-                fontSize: 'clamp(0.85rem, 1.5vw, 1.05rem)', lineHeight: 1.8,
+                fontSize: 'var(--fs-card-body)', lineHeight: 1.8,
                 color: 'rgba(237,237,237,0.72)',
                 borderLeft: `2px solid rgba(92,92,92,0.40)`, paddingLeft: 20,
               }}>{a}</div>
@@ -454,8 +463,8 @@ export const S = {
   pillSecondary: { fontFamily:'var(--font-main)', fontSize:'var(--fs-badge)', fontWeight:700, letterSpacing:'0.04em', padding:'4px 10px', borderRadius:99, background:B.secondaryLight,color:B.secondary, border:'1px solid rgba(108,108,108,0.25)',         display:'inline-flex', alignItems:'center' },
   pillAccent:    { fontFamily:'var(--font-main)', fontSize:'var(--fs-badge)', fontWeight:700, letterSpacing:'0.04em', padding:'4px 10px', borderRadius:99, background:B.accentLight,   color:B.accent,    border:`1px solid ${B.accentBorder}`,           display:'inline-flex', alignItems:'center' },
   pillDark:      { fontFamily:'var(--font-main)', fontSize:'var(--fs-badge)', fontWeight:700, letterSpacing:'0.04em', padding:'4px 10px', borderRadius:99, background:'rgba(255,255,255,0.12)', color:B.textDark, border:'1px solid rgba(255,255,255,0.15)', display:'inline-flex', alignItems:'center' },
-  toolTag:       { fontSize:'clamp(9px,1.1vw,12px)', fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:6, background:B.actionLight,   color:B.action },
-  toolTagDark:   { fontSize:'clamp(9px,1.1vw,12px)', fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:6, background:'rgba(92,92,92,0.12)', color:B.action, border:'1px solid rgba(92,92,92,0.25)' },
+  toolTag:       { fontSize:'var(--fs-label)', fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:6, background:B.actionLight,   color:B.action },
+  toolTagDark:   { fontSize:'var(--fs-label)', fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:6, background:'rgba(92,92,92,0.12)', color:B.action, border:'1px solid rgba(92,92,92,0.25)' },
 
   // Dividers
   divider:     { borderTop:`1px solid ${B.primaryBorder}`,       margin:'clamp(20px,2.5vw,36px) 0' },
@@ -471,6 +480,6 @@ export const S = {
   pagePadHero: { padding:'clamp(80px,12vw,140px) 0 clamp(40px,6vw,80px)' },
 
   // Stats
-  statNum:   { fontFamily:'var(--font-main)', fontWeight:800, fontSize:'clamp(1.5rem,3.5vw,2.8rem)', letterSpacing:'-0.02em', lineHeight:1 },
-  statLabel: { fontFamily:'var(--font-main)', fontSize:'clamp(11px,1.2vw,13px)', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase' },
+  statNum:   { fontFamily:'var(--font-main)', fontWeight:800, fontSize:'var(--fs-section-h2)', letterSpacing:'-0.02em', lineHeight:1 },
+  statLabel: { fontFamily:'var(--font-main)', fontSize:'var(--fs-small)', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase' },
 };

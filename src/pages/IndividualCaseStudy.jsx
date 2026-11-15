@@ -8,7 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { B, SECTION_PAD, PX, NARROW, DataParticles, SectionBadge, CircuitBg } from '../theme';
+import { B, lift, SECTION_PAD, PX, NARROW, DataParticles, SectionBadge, CircuitBg } from '../theme';
 import { useSeo, SITE_NAME } from '../seo';
 import imgArPrioritization from '../assets/case-studies/ar-prioritization.png';
 import imgClaimDenial from '../assets/case-studies/claim-denial.png';
@@ -419,7 +419,7 @@ function BodySectionHeader({ label, icon, color, stepNum }) {
       </div>
       <div>
         <div style={{
-          fontSize: 'clamp(9px, 1vw, 11px)', fontWeight: 800,
+          fontSize: 'var(--fs-label)', fontWeight: 800,
           letterSpacing: '0.22em', textTransform: 'uppercase',
           color: color, marginBottom: 2,
         }}>
@@ -447,7 +447,7 @@ function ToolBadge({ label, accent }) {
         background: hovered ? color : `${color}12`,
         border: `1.5px solid ${hovered ? color : `${color}35`}`,
         color: hovered ? B.white : color,
-        fontSize: 'clamp(11px, 1.2vw, 13px)', fontWeight: 700, letterSpacing: '0.04em',
+        fontSize: 'var(--fs-small)', fontWeight: 700, letterSpacing: '0.04em',
         transition: 'all 0.22s ease', cursor: 'default',
         boxShadow: hovered ? `0 4px 14px ${color}35` : 'none',
       }}
@@ -489,7 +489,7 @@ function ResultItem({ text, accent, i }) {
         <CheckCircle size={15} color={hovered ? B.white : accent} strokeWidth={2.5}/>
       </div>
       <span style={{
-        fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', lineHeight: 1.75,
+        fontSize: 'var(--fs-card-body)', lineHeight: 1.75,
         color: hovered ? B.white : B.textMain, fontWeight: 500,
         transition: 'color 0.3s ease',
       }}>{text}</span>
@@ -523,12 +523,12 @@ function MetricPill({ value, label, accent, delay }) {
       }}/>
       <div style={{
         fontWeight: 800,
-        fontSize: 'clamp(1.4rem, 2.8vw, 2rem)',
+        fontSize: 'var(--fs-section-h2)',
         color: accent, letterSpacing: '-0.02em', lineHeight: 1,
         marginBottom: 5, position: 'relative', zIndex: 1,
       }}>{value}</div>
       <div style={{
-        fontSize: 'clamp(9px, 1vw, 11px)', fontWeight: 700,
+        fontSize: 'var(--fs-label)', fontWeight: 700,
         textTransform: 'uppercase', letterSpacing: '0.10em',
         color: B.textMuted, position: 'relative', zIndex: 1,
       }}>{label}</div>
@@ -542,9 +542,10 @@ function NavCard({ slug, dir }) {
   const [hovered, setHovered] = useState(false);
   if (!cs) return null;
   const tag = INDUSTRY_COLORS[cs.industry] || {};
+  const ac = lift(cs.accentColor);
 
   return (
-    <Link to={`/case-studies/${slug}`} style={{ textDecoration: 'none', flex: 1, minWidth: 0 }}>
+    <Link to={`/case-studies/${slug}`} style={{ textDecoration: 'none', flex: '1 1 260px', minWidth: 0 }}>
       <motion.div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -552,8 +553,8 @@ function NavCard({ slug, dir }) {
         style={{
           borderRadius: 22, overflow: 'hidden',
           background: hovered ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.02)',
-          border: `1.5px solid ${hovered ? cs.accentColor : 'rgba(255,255,255,0.10)'}`,
-          boxShadow: hovered ? `0 16px 48px ${cs.accentColor}28, 0 0 0 1px ${cs.accentColor}20` : 'none',
+          border: `1.5px solid ${hovered ? ac : 'rgba(255,255,255,0.10)'}`,
+          boxShadow: hovered ? `0 16px 48px ${ac}28, 0 0 0 1px ${ac}20` : 'none',
           transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)',
           cursor: 'pointer', position: 'relative',
         }}
@@ -572,13 +573,13 @@ function NavCard({ slug, dir }) {
           {/* Accent top line */}
           <div style={{
             position: 'absolute', top: 0, left: 0, right: 0, height: 3,
-            background: hovered ? `linear-gradient(90deg, ${cs.accentColor}, ${cs.accentColor}50)` : 'transparent',
+            background: hovered ? `linear-gradient(90deg, ${ac}, ${ac}50)` : 'transparent',
             transition: 'background 0.3s',
           }}/>
           {/* Direction label */}
           <div style={{
             position: 'absolute', bottom: 12, left: dir === 'prev' ? 16 : 'auto', right: dir === 'next' ? 16 : 'auto',
-            fontSize: 'clamp(9px, 1vw, 11px)', fontWeight: 700, letterSpacing: '0.15em',
+            fontSize: 'var(--fs-label)', fontWeight: 700, letterSpacing: '0.15em',
             textTransform: 'uppercase', color: B.textDarkMuted,
             display: 'flex', alignItems: 'center', gap: 5,
           }}>
@@ -593,16 +594,16 @@ function NavCard({ slug, dir }) {
           {/* Industry tag */}
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 5,
-            fontSize: 'clamp(9px, 1vw, 11px)', fontWeight: 700,
-            color: cs.accentColor, letterSpacing: '0.08em',
+            fontSize: 'var(--fs-label)', fontWeight: 700,
+            color: ac, letterSpacing: '0.08em',
             textTransform: 'uppercase', marginBottom: 8,
           }}>
-            {tag.icon && React.cloneElement(tag.icon, { size: 10, color: cs.accentColor })}
+            {tag.icon && React.cloneElement(tag.icon, { size: 10, color: ac })}
             {cs.industry}
           </div>
           {/* Title */}
           <div style={{
-            fontSize: 'clamp(0.82rem, 1.4vw, 0.95rem)', fontWeight: 700,
+            fontSize: 'var(--fs-card-body)', fontWeight: 700,
             color: hovered ? B.textDark : B.textDarkMid, lineHeight: 1.5,
             transition: 'color 0.25s',
           }}>{cs.title}</div>
@@ -668,7 +669,7 @@ function ProfessionalBridge() {
         overflow: 'hidden', whiteSpace: 'nowrap',
       }}>
         <h1 style={{
-          fontSize: 'clamp(3rem, 10vw, 12rem)',
+          fontSize: 'var(--fs-hero)',
           fontWeight: 900, color: B.white,
           textTransform: 'uppercase',
           letterSpacing: '0.05em',
@@ -699,7 +700,7 @@ function ProfessionalBridge() {
                 background: 'rgba(255,255,255,0.03)',
                 border: `1px solid rgba(255,255,255,0.10)`,
                 color: B.textDarkMid,
-                fontSize: 'clamp(11px, 1.3vw, 13px)', fontWeight: 700,
+                fontSize: 'var(--fs-small)', fontWeight: 700,
                 letterSpacing: '0.05em', textTransform: 'uppercase',
                 backdropFilter: 'blur(8px)',
                 boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
@@ -729,7 +730,7 @@ export default function IndividualCaseStudy() {
     return (
       <div style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: B.bgLight, fontFamily: 'var(--font-main)' }}>
         <h2 style={{ color: B.textMain, marginBottom: 16 }}>Case study not found.</h2>
-        <Link to="/case-studies" style={{ color: B.action, fontWeight: 700, fontSize: 14 }}>← Back to Case Studies</Link>
+        <Link to="/case-studies" style={{ color: B.action, fontWeight: 700, fontSize: 'var(--fs-small)' }}>← Back to Case Studies</Link>
       </div>
     );
   }
@@ -769,11 +770,11 @@ export default function IndividualCaseStudy() {
               <React.Fragment key={ci}>
                 {ci > 0 && <ChevronRight size={12} color={B.textMuted}/>}
                 {crumb.href ? (
-                  <Link to={crumb.href} style={{ fontSize: 'clamp(11px, 1.3vw, 13px)', color: B.textMuted, fontWeight: 600, transition: 'color 0.2s' }}
+                  <Link to={crumb.href} style={{ fontSize: 'var(--fs-small)', color: B.textMuted, fontWeight: 600, transition: 'color 0.2s' }}
                     onMouseEnter={e => e.currentTarget.style.color = B.action}
                     onMouseLeave={e => e.currentTarget.style.color = B.textMuted}>{crumb.label}</Link>
                 ) : (
-                  <span style={{ fontSize: 'clamp(11px, 1.3vw, 13px)', color: B.textMain, fontWeight: 700 }}>{crumb.label}</span>
+                  <span style={{ fontSize: 'var(--fs-small)', color: B.textMain, fontWeight: 700 }}>{crumb.label}</span>
                 )}
               </React.Fragment>
             ))}
@@ -791,7 +792,7 @@ export default function IndividualCaseStudy() {
                 transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   fontWeight: 800,
-                  fontSize: 'clamp(1.5rem, 3.5vw, 2.85rem)',
+                  fontSize: 'var(--fs-section-h2)',
                   lineHeight: 1.15, letterSpacing: '-0.025em',
                   color: B.primaryDark,
                   marginBottom: 'clamp(16px, 2.5vw, 26px)',
@@ -805,7 +806,7 @@ export default function IndividualCaseStudy() {
                 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.18 }}
                 style={{
-                  fontSize: 'clamp(0.95rem, 1.7vw, 1.2rem)',
+                  fontSize: 'var(--fs-card-title)',
                   lineHeight: 1.85, color: B.textMid,
                   marginBottom: 'clamp(28px, 4vw, 48px)', fontWeight: 500,
                 }}
@@ -828,7 +829,7 @@ export default function IndividualCaseStudy() {
                   display: 'inline-flex', alignItems: 'center', gap: 8,
                   padding: 'clamp(10px, 1.5vw, 14px) clamp(18px, 2.5vw, 26px)',
                   borderRadius: 'var(--radius-md)', background: 'transparent', color: B.textMid,
-                  fontWeight: 700, fontSize: 'clamp(0.8rem, 1.4vw, 0.95rem)',
+                  fontWeight: 700, fontSize: 'var(--fs-card-body)',
                   letterSpacing: '0.06em', textTransform: 'uppercase',
                   border: `1.5px solid ${B.primaryBorder}`,
                   transition: 'all 0.2s ease',
@@ -842,7 +843,7 @@ export default function IndividualCaseStudy() {
                     display: 'inline-flex', alignItems: 'center', gap: 8,
                     padding: 'clamp(10px, 1.5vw, 14px) clamp(18px, 2.5vw, 26px)',
                     borderRadius: 'var(--radius-md)', background: 'transparent', color: B.textMid,
-                    fontWeight: 700, fontSize: 'clamp(0.8rem, 1.4vw, 0.95rem)',
+                    fontWeight: 700, fontSize: 'var(--fs-card-body)',
                     letterSpacing: '0.06em', textTransform: 'uppercase',
                     border: `1.5px solid ${B.primaryBorder}`,
                     transition: 'all 0.2s ease', textDecoration: 'none',
@@ -857,7 +858,7 @@ export default function IndividualCaseStudy() {
                     display: 'inline-flex', alignItems: 'center', gap: 8,
                     padding: 'clamp(10px, 1.5vw, 14px) clamp(18px, 2.5vw, 26px)',
                     borderRadius: 'var(--radius-md)', background: `${cs.accentColor}12`, color: cs.accentColor,
-                    fontWeight: 700, fontSize: 'clamp(0.8rem, 1.4vw, 0.95rem)',
+                    fontWeight: 700, fontSize: 'var(--fs-card-body)',
                     letterSpacing: '0.06em', textTransform: 'uppercase',
                     border: `1.5px solid ${cs.accentColor}40`,
                     transition: 'all 0.2s ease', textDecoration: 'none',
@@ -919,7 +920,7 @@ export default function IndividualCaseStudy() {
                       }}
                     >
                       <div style={{
-                        fontSize: 'clamp(10px, 1.1vw, 12px)', fontWeight: 600,
+                        fontSize: 'var(--fs-label)', fontWeight: 600,
                         textTransform: 'uppercase', letterSpacing: '0.09em', color: B.textMuted,
                       }}>{m.label}</div>
                       <div style={{
@@ -985,7 +986,7 @@ export default function IndividualCaseStudy() {
                 userSelect: 'none', fontFamily: 'var(--font-main)',
               }}>01</div>
               <p style={{
-                fontSize: 'clamp(0.95rem, 1.65vw, 1.15rem)',
+                fontSize: 'var(--fs-card-title)',
                 lineHeight: 1.9, color: B.textMain, position: 'relative', zIndex: 1,
               }}>
                 {cs.challenge}
@@ -1022,7 +1023,7 @@ export default function IndividualCaseStudy() {
                 userSelect: 'none', fontFamily: 'var(--font-main)',
               }}>02</div>
               <p style={{
-                fontSize: 'clamp(0.95rem, 1.65vw, 1.15rem)',
+                fontSize: 'var(--fs-card-title)',
                 lineHeight: 1.9, color: B.textMain, position: 'relative', zIndex: 1,
               }}>
                 {cs.approach}
@@ -1096,12 +1097,12 @@ export default function IndividualCaseStudy() {
                 <div style={{ display: 'flex', gap: 3, marginBottom: 18, position: 'relative', zIndex: 2 }}>
                   {[...Array(5)].map((_, si) => <Star key={si} size={14} fill={cs.accentColor} color={cs.accentColor}/>)}
                 </div>
-                <p style={{ fontSize: 'clamp(0.95rem, 1.65vw, 1.1rem)', lineHeight: 1.85, color: B.textMain, fontStyle: 'italic', marginBottom: 20, position: 'relative', zIndex: 2 }}>
+                <p style={{ fontSize: 'var(--fs-card-title)', lineHeight: 1.85, color: B.textMain, fontStyle: 'italic', marginBottom: 20, position: 'relative', zIndex: 2 }}>
                   &ldquo;{cs.quote.text}&rdquo;
                 </p>
                 <div style={{ position: 'relative', zIndex: 2 }}>
-                  <div style={{ fontWeight: 700, fontSize: 'clamp(12px, 1.3vw, 14px)', color: B.textMain }}>{cs.quote.name}</div>
-                  <div style={{ fontSize: 'clamp(11px, 1.2vw, 13px)', color: cs.accentColor, fontWeight: 600, marginTop: 3 }}>{cs.quote.role}</div>
+                  <div style={{ fontWeight: 700, fontSize: 'var(--fs-small)', color: B.textMain }}>{cs.quote.name}</div>
+                  <div style={{ fontSize: 'var(--fs-small)', color: cs.accentColor, fontWeight: 600, marginTop: 3 }}>{cs.quote.role}</div>
                 </div>
               </div>
             </motion.div>
@@ -1130,10 +1131,10 @@ export default function IndividualCaseStudy() {
                   <div style={{ display: 'flex', gap: 3, marginBottom: 12 }}>
                     {[...Array(5)].map((_, si) => <Star key={si} size={12} fill={B.accent} color={B.accent}/>)}
                   </div>
-                  <h3 style={{ fontWeight: 800, fontSize: 'clamp(1rem, 2.2vw, 1.45rem)', color: B.primaryDark, marginBottom: 10, lineHeight: 1.3 }}>
+                  <h3 style={{ fontWeight: 800, fontSize: 'var(--fs-h3)', color: B.primaryDark, marginBottom: 10, lineHeight: 1.3 }}>
                     Have a similar challenge?
                   </h3>
-                  <p style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1rem)', color: B.textMid, lineHeight: 1.7 }}>
+                  <p style={{ fontSize: 'var(--fs-card-body)', color: B.textMid, lineHeight: 1.7 }}>
                     Book a free call. We'll tell you exactly what's possible, what it would take, and whether we're the right fit. No pitch. No pressure.
                   </p>
                 </div>
@@ -1144,7 +1145,7 @@ export default function IndividualCaseStudy() {
                     borderRadius: 'var(--radius-md)',
                     background: `linear-gradient(135deg, ${B.action}, #393939)`,
                     color: B.white, fontWeight: 700,
-                    fontSize: 'clamp(11px, 1.3vw, 13px)',
+                    fontSize: 'var(--fs-small)',
                     letterSpacing: '0.10em', textTransform: 'uppercase',
                     textDecoration: 'none',
                     boxShadow: `0 8px 32px ${B.actionGlow}`,
@@ -1178,7 +1179,7 @@ export default function IndividualCaseStudy() {
           <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
             <SectionBadge dark style={{ color: B.textDarkMuted }}>Continue Reading</SectionBadge>
             <h2 style={{
-              fontWeight: 700, fontSize: 'clamp(1.2rem, 2.8vw, 2rem)',
+              fontWeight: 700, fontSize: 'var(--fs-section-h2)',
               color: B.textDark, lineHeight: 1.2, marginTop: 8,
             }}>More Case Studies</h2>
           </div>
@@ -1193,7 +1194,7 @@ export default function IndividualCaseStudy() {
           <div style={{ textAlign: 'center' }}>
             <Link to="/case-studies" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              fontSize: 'clamp(11px, 1.3vw, 13px)', fontWeight: 700,
+              fontSize: 'var(--fs-small)', fontWeight: 700,
               color: B.textDarkMuted, textDecoration: 'none',
               padding: 'clamp(10px, 1.4vw, 13px) clamp(18px, 2.8vw, 28px)',
               borderRadius: 10, border: `1px solid rgba(255,255,255,0.10)`,

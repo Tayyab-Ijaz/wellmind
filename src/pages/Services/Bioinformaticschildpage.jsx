@@ -86,10 +86,10 @@ function GenomicsPipeline({ steps, accentColor }) {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 'clamp(11px, 1.4vw, 13px)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color, marginBottom: 2 }}>
+          <div style={{ fontSize: 'var(--fs-small)', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color, marginBottom: 2 }}>
             Analysis Pipeline
           </div>
-          <div style={{ fontSize: 'clamp(9px, 1.1vw, 11px)', color: B.textMuted, fontWeight: 500 }}>
+          <div style={{ fontSize: 'var(--fs-label)', color: B.textMuted, fontWeight: 500 }}>
             Live Processing Simulation
           </div>
         </div>
@@ -163,15 +163,15 @@ function GenomicsPipeline({ steps, accentColor }) {
                 }}
               >
                 <div>
-                  <div style={{
-                    fontWeight: 700, fontSize: 'clamp(12px, 1.6vw, 15px)',
+                  <div className="hero-split-row" style={{
+                    fontWeight: 700, fontSize: 'var(--fs-card-body)',
                     color: isActive ? step.color : isHovered ? step.color : B.textMain,
                     transition: 'color 0.3s', marginBottom: 2, lineHeight: 1.2,
                   }}>{step.label}</div>
                   <div style={{
-                    fontSize: 'clamp(10px, 1.2vw, 12px)',
+                    fontSize: 'var(--fs-label)',
                     color: isActive ? `${step.color}90` : B.textMuted,
-                    fontWeight: 600, fontFamily: 'monospace', transition: 'color 0.3s',
+                    fontWeight: 600, fontFamily: 'var(--font-main)', transition: 'color 0.3s',
                   }}>{step.sub}</div>
                 </div>
 
@@ -182,7 +182,7 @@ function GenomicsPipeline({ steps, accentColor }) {
                     style={{
                       padding: '3px 10px', borderRadius: 99,
                       background: step.color, color: '#fff',
-                      fontSize: 10, fontWeight: 800,
+                      fontSize: 'var(--fs-label)', fontWeight: 800,
                       letterSpacing: '0.08em', textTransform: 'uppercase', whiteSpace: 'nowrap',
                     }}
                   >
@@ -196,7 +196,7 @@ function GenomicsPipeline({ steps, accentColor }) {
                     style={{
                       padding: '3px 10px', borderRadius: 99,
                       background: `${AC}20`, border: `1px solid ${AC}40`,
-                      color: AC, fontSize: 10, fontWeight: 800,
+                      color: AC, fontSize: 'var(--fs-label)', fontWeight: 800,
                       letterSpacing: '0.08em', textTransform: 'uppercase', whiteSpace: 'nowrap',
                     }}
                   >
@@ -212,8 +212,8 @@ function GenomicsPipeline({ steps, accentColor }) {
       {/* Progress bar */}
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-          <span style={{ fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 700, color: B.textMuted, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Pipeline Progress</span>
-          <span style={{ fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 800, color }}>{steps[activeStep]?.label}</span>
+          <span style={{ fontSize: 'var(--fs-label)', fontWeight: 700, color: B.textMuted, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Pipeline Progress</span>
+          <span style={{ fontSize: 'var(--fs-label)', fontWeight: 800, color }}>{steps[activeStep]?.label}</span>
         </div>
         <div style={{ height: 6, borderRadius: 99, background: `${color}18`, overflow: 'hidden' }}>
           <motion.div
@@ -239,8 +239,8 @@ function GenomicsPipeline({ steps, accentColor }) {
               cursor: 'default', transition: 'all 0.25s ease',
             }}
           >
-            <div style={{ fontWeight: 800, fontSize: 'clamp(15px, 2.2vw, 20px)', color: m.c, marginBottom: 3, lineHeight: 1 }}>{m.l}</div>
-            <div style={{ fontSize: 'clamp(9px, 1.1vw, 11px)', color: B.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', lineHeight: 1.2 }}>{m.s}</div>
+            <div style={{ fontWeight: 800, fontSize: 'var(--fs-card-title)', color: m.c, marginBottom: 3, lineHeight: 1 }}>{m.l}</div>
+            <div style={{ fontSize: 'var(--fs-label)', color: B.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', lineHeight: 1.2 }}>{m.s}</div>
           </motion.div>
         ))}
       </div>
@@ -320,7 +320,7 @@ function DeliverableItem({ text, color }) {
     >
       <CheckCircle size={18} color={hovered ? B.textDark : color} style={{ flexShrink: 0, transition: 'color 0.3s' }} />
       <span style={{
-        fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)',
+        fontSize: 'var(--fs-card-title)',
         fontWeight: 500, lineHeight: 1.5,
         color: hovered ? B.textDark : B.textMain,
         transition: 'color 0.3s ease',
@@ -333,7 +333,7 @@ function DeliverableItem({ text, color }) {
 
 
 // ─── Tech Badge ───────────────────────────────────────────────────────────────
-function TechBadge({ label, color }) {
+function TechBadge({ label }) {
   const [h, setH] = useState(false);
   return (
     <span
@@ -342,10 +342,10 @@ function TechBadge({ label, color }) {
         display: 'inline-flex', alignItems: 'center', gap: 5,
         padding: 'clamp(5px, 1vw, 7px) clamp(10px, 1.5vw, 14px)',
         borderRadius: 'var(--radius-sm)',
-        background: h ? color : 'rgba(255,255,255,0.05)',
-        border: `1.5px solid ${h ? color : 'rgba(255,255,255,0.15)'}`,
-        color: h ? B.bgDark : color,
-        fontSize: 'clamp(11px, 1.3vw, 13px)', fontWeight: 700, letterSpacing: '0.04em',
+        background: h ? '#f0f0f0' : 'rgba(255,255,255,0.05)',
+        border: `1.5px solid ${h ? '#f0f0f0' : 'rgba(255,255,255,0.15)'}`,
+        color: h ? '#000000' : '#f0f0f0',
+        fontSize: 'var(--fs-small)', fontWeight: 700, letterSpacing: '0.04em',
         transition: 'all 0.22s ease', cursor: 'default',
       }}
     >
@@ -375,7 +375,7 @@ const SharedStyles = () => (
       padding: clamp(12px, 2vw, 18px) clamp(20px, 4vw, 40px);
       border-radius: 12px; background: #616161; color: #ffffff;
       font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+      font-size: var(--fs-btn);
       letter-spacing: 0.10em; text-transform: uppercase; text-decoration: none;
       transition: opacity 0.2s, transform 0.2s;
     }
@@ -384,7 +384,7 @@ const SharedStyles = () => (
       padding: clamp(10px, 1.8vw, 16px) clamp(20px, 4vw, 40px);
       border-radius: 12px; background: transparent; color: #373737;
       font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+      font-size: var(--fs-btn);
       letter-spacing: 0.10em; text-decoration: none;
       border: 2px solid #373737; transition: background 0.2s, transform 0.2s;
     }
@@ -404,7 +404,7 @@ const SharedStyles = () => (
     }
     @media (max-width: 320px) {
       .grid-stats    { grid-template-columns: 1fr; gap: 10px; }
-      .btn-primary, .btn-secondary { width: 100%; font-size: 0.8rem; }
+      .btn-primary, .btn-secondary { width: 100%; font-size: var(--fs-btn); }
     }
     @keyframes wmFloat {
       0%, 100% { transform: translateY(0px); }
@@ -489,7 +489,7 @@ export default function BioinformaticsChildPage() {
                 {/* Breadcrumb */}
                 <motion.div variants={fadeUp} custom={0} style={{ marginBottom: 12 }}>
                   <Link to="/services-bioinformatics" style={{
-                    fontSize: 'clamp(11px, 1.2vw, 13px)', fontWeight: 600,
+                    fontSize: 'var(--fs-small)', fontWeight: 600,
                     color: pageAC, textDecoration: 'none',
                     display: 'inline-flex', alignItems: 'center', gap: 5,
                     opacity: 0.8,
@@ -511,14 +511,14 @@ export default function BioinformaticsChildPage() {
                 </motion.h1>
 
                 <motion.p variants={fadeUp} custom={0.1} style={{
-                  fontSize: 'clamp(0.95rem, 1.8vw, 1.25rem)', fontWeight: 600,
+                  fontSize: 'var(--fs-card-title)', fontWeight: 600,
                   color: pageAC, marginBottom: 'clamp(12px, 1.5vw, 18px)', lineHeight: 1.4,
                 }}>
                   {data.tagline}
                 </motion.p>
 
                 <motion.p variants={fadeUp} custom={0.15} style={{
-                  fontSize: 'clamp(0.88rem, 1.8vw, 1.15rem)', fontWeight: 400,
+                  fontSize: 'var(--fs-card-title)', fontWeight: 400,
                   color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75,
                 }}>
                   {data.heroDesc}
@@ -575,7 +575,7 @@ export default function BioinformaticsChildPage() {
                   borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)',
                   border: `1px solid ${B.primaryBorder}`,
-                  fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
+                  fontSize: 'var(--fs-card-body)', fontWeight: 600, color: B.textMain,
                   boxShadow: '0 4px 12px rgba(57,57,57,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
@@ -602,7 +602,7 @@ export default function BioinformaticsChildPage() {
           {/* Tech Stack */}
           <div style={{ textAlign: 'center' }}>
             <p style={{
-              fontSize: 'clamp(10px, 1.2vw, 11px)', fontWeight: 700,
+              fontSize: 'var(--fs-label)', fontWeight: 700,
               letterSpacing: '0.16em', textTransform: 'uppercase',
               color: B.textDarkMuted, marginBottom: 16,
             }}>
@@ -675,7 +675,7 @@ export default function BioinformaticsChildPage() {
                         width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)',
                         borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
                         background: color, color: B.white,
-                        fontWeight: 800, fontSize: 'clamp(13px, 1.6vw, 17px)',
+                        fontWeight: 800, fontSize: 'var(--fs-card-body)',
                         boxShadow: `0 6px 20px ${color}40`, flexShrink: 0,
                       }}>
                         {p.step}
@@ -690,11 +690,11 @@ export default function BioinformaticsChildPage() {
                     </div>
                     <div style={{ paddingTop: 8 }}>
                       <h4 style={{
-                        fontWeight: 700, fontSize: 'clamp(1.15rem, 2vw, 1.8rem)',
+                        fontWeight: 700, fontSize: 'var(--fs-h3)',
                         color: B.textMain, marginBottom: 8, lineHeight: 1.3,
                       }}>{p.title}</h4>
                       <p style={{
-                        fontSize: 'clamp(0.95rem, 1.6vw, 1.25rem)',
+                        fontSize: 'var(--fs-card-title)',
                         lineHeight: 1.7, color: B.textMid,
                       }}>{p.desc}</p>
                     </div>
@@ -710,7 +710,7 @@ export default function BioinformaticsChildPage() {
                 What You Receive
               </h2>
               <p style={{
-                fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)',
+                fontSize: 'var(--fs-card-title)',
                 color: B.textMid, lineHeight: 1.7,
                 marginBottom: 'clamp(24px, 3.5vw, 36px)',
               }}>
@@ -756,7 +756,7 @@ export default function BioinformaticsChildPage() {
           >
             <SectionBadge color={pageAC}>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-              Turn Your Data Into<br />
+              Turn Your Data Into{' '}<br className="hero-br" />
               <span style={{
                 background: `linear-gradient(90deg, ${pageAC} 25%, ${B.action} 75%)`,
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
@@ -777,7 +777,7 @@ export default function BioinformaticsChildPage() {
                 borderRadius: 'var(--radius-md)',
                 background: `linear-gradient(135deg, ${pageAC}, #464646)`,
                 color: B.white, fontWeight: 700,
-                fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
+                fontSize: 'var(--fs-card-title)',
                 letterSpacing: '0.10em', textTransform: 'uppercase',
                 textDecoration: 'none',
                 boxShadow: `0 8px 40px ${pageAC}40, 0 0 80px ${pageAC}15`,

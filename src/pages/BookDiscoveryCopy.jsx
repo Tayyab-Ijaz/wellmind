@@ -27,14 +27,14 @@ function Field({ label, required, children, error }) {
     <div style={{ marginBottom: 20 }}>
       <label style={{
         display: 'block', fontWeight: 700,
-        fontSize: 'clamp(12px, 1.4vw, 14px)',
+        fontSize: 'var(--fs-small)',
         color: B.textMain, marginBottom: 8, letterSpacing: '0.02em',
       }}>
         {label}{required && <span style={{ color: B.secondary, marginLeft: 3 }}>*</span>}
       </label>
       {children}
       {error && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 6, fontSize: 12, color: B.secondary, fontWeight: 600 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 6, fontSize: 'var(--fs-label)', color: B.secondary, fontWeight: 600 }}>
           <AlertCircle size={12}/> {error}
         </div>
       )}
@@ -48,7 +48,7 @@ const inputStyle = (focused) => ({
   border: `1.5px solid ${focused ? B.action : B.primaryBorder}`,
   background: focused ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.70)',
   backdropFilter: 'blur(6px)',
-  fontSize: 'clamp(13px, 1.5vw, 15px)', color: B.textMain,
+  fontSize: 'var(--fs-card-body)', color: B.textMain,
   outline: 'none', boxSizing: 'border-box',
   transition: 'border-color 0.2s, background 0.2s, box-shadow 0.2s',
   boxShadow: focused ? `0 0 0 3px ${B.actionLight}` : 'none',
@@ -126,17 +126,17 @@ function ContactForm() {
         }}>
           <CheckCircle size={32} color={B.action}/>
         </div>
-        <h3 style={{ fontWeight: 700, fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', color: B.textMain, marginBottom: 12 }}>
+        <h3 style={{ fontWeight: 700, fontSize: 'var(--fs-h3)', color: B.textMain, marginBottom: 12 }}>
           Message sent!
         </h3>
-        <p style={{ fontSize: 'clamp(13px, 1.6vw, 16px)', color: B.textMid, lineHeight: 1.7, marginBottom: 28 }}>
+        <p style={{ fontSize: 'var(--fs-card-body)', color: B.textMid, lineHeight: 1.7, marginBottom: 28 }}>
           We'll get back to you within 24 hours on business days. Check your spam folder if you don't hear from us.
         </p>
         <Link to="/book-discovery" style={{
           display: 'inline-flex', alignItems: 'center', gap: 7,
           padding: 'clamp(10px, 1.5vw, 13px) clamp(20px, 3vw, 28px)', borderRadius: 10,
           background: B.action, color: B.white,
-          fontWeight: 700, fontSize: 'clamp(12px, 1.5vw, 14px)', letterSpacing: '0.08em',
+          fontWeight: 700, fontSize: 'var(--fs-small)', letterSpacing: '0.08em',
           textTransform: 'uppercase', textDecoration: 'none',
           boxShadow: `0 4px 20px ${B.actionGlow}`,
         }}>
@@ -153,10 +153,10 @@ function ContactForm() {
       border: `2px solid ${B.primaryBorder}`,
       boxShadow: '0 8px 32px rgba(57,57,57,0.08)',
     }}>
-      <h3 style={{ fontWeight: 700, fontSize: 'clamp(1.1rem, 2.2vw, 1.4rem)', color: B.textMain, marginBottom: 6 }}>
+      <h3 style={{ fontWeight: 700, fontSize: 'var(--fs-h3)', color: B.textMain, marginBottom: 6 }}>
         Send Us a Message
       </h3>
-      <p style={{ fontSize: 'clamp(12px, 1.5vw, 14px)', color: B.textMuted, marginBottom: 28 }}>
+      <p style={{ fontSize: 'var(--fs-small)', color: B.textMuted, marginBottom: 28 }}>
         We'll respond with a proposal or a call — whichever fits best.
       </p>
 
@@ -214,7 +214,7 @@ function ContactForm() {
           width: '100%', padding: 'clamp(13px, 2vw, 16px)',
           borderRadius: 11, background: loading ? 'rgba(84,84,84,0.6)' : `linear-gradient(135deg, ${B.action}, #393939)`,
           color: B.white, border: 'none', cursor: loading ? 'wait' : 'pointer',
-          fontWeight: 700, fontSize: 'clamp(13px, 1.5vw, 15px)', letterSpacing: '0.10em',
+          fontWeight: 700, fontSize: 'var(--fs-card-body)', letterSpacing: '0.10em',
           textTransform: 'uppercase', fontFamily: 'var(--font-main)',
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9,
           boxShadow: loading ? 'none' : `0 6px 28px ${B.actionGlow}`,
@@ -248,8 +248,8 @@ function CalendlyEmbed() {
           <Clock size={22} color={B.action}/>
         </div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 'clamp(1rem, 2vw, 1.25rem)', color: B.textMain }}>Book a Free 30-Min Call</div>
-          <div style={{ fontSize: 'clamp(12px, 1.4vw, 14px)', color: B.textMuted, marginTop: 3 }}>Pick a time that works for you. No back-and-forth.</div>
+          <div style={{ fontWeight: 700, fontSize: 'var(--fs-card-title)', color: B.textMain }}>Book a Free 30-Min Call</div>
+          <div style={{ fontSize: 'var(--fs-small)', color: B.textMuted, marginTop: 3 }}>Pick a time that works for you. No back-and-forth.</div>
         </div>
       </div>
 
@@ -264,7 +264,7 @@ function CalendlyEmbed() {
 
       <div style={{ marginTop: 18, padding: 'clamp(12px, 2vw, 16px)', borderRadius: 'var(--radius-md)', background: B.primaryLight, border: `1px solid ${B.primaryBorder}`, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
         <CheckCircle size={16} color={B.primary} style={{ flexShrink: 0, marginTop: 1 }}/>
-        <div style={{ fontSize: 'clamp(12px, 1.4vw, 13.5px)', color: B.textMid, lineHeight: 1.6 }}>
+        <div style={{ fontSize: 'var(--fs-small)', color: B.textMid, lineHeight: 1.6 }}>
           <strong style={{ color: B.textMain }}>Free, no-obligation call.</strong> We'll discuss your project, share relevant experience, and tell you honestly if we're the right fit.
         </div>
       </div>
@@ -299,15 +299,15 @@ function DirectItem({ icon, label, value, href, badge }) {
           {React.cloneElement(icon, { size: 18 })}
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 700, color: B.textMuted, textTransform: 'uppercase', letterSpacing: '0.10em', marginBottom: 4 }}>
+          <div style={{ fontSize: 'var(--fs-label)', fontWeight: 700, color: B.textMuted, textTransform: 'uppercase', letterSpacing: '0.10em', marginBottom: 4 }}>
             {label}
             {badge && (
-              <span style={{ marginLeft: 8, padding: '2px 8px', borderRadius: 99, background: B.accentLight, border: `1px solid ${B.accentBorder}`, color: B.accent, fontSize: 9.5, fontWeight: 700, letterSpacing: '0.08em' }}>
+              <span style={{ marginLeft: 8, padding: '2px 8px', borderRadius: 99, background: B.accentLight, border: `1px solid ${B.accentBorder}`, color: B.accent, fontSize: 'var(--fs-label)', fontWeight: 700, letterSpacing: '0.08em' }}>
                 {badge}
               </span>
             )}
           </div>
-          <div style={{ fontSize: 'clamp(13px, 1.6vw, 15px)', fontWeight: 600, color: hovered ? B.action : B.textMain, transition: 'color 0.2s' }}>
+          <div style={{ fontSize: 'var(--fs-card-body)', fontWeight: 600, color: hovered ? B.action : B.textMain, transition: 'color 0.2s' }}>
             {value}
           </div>
         </div>
@@ -330,13 +330,13 @@ function ResponsePromise() {
       background: B.cardBg, backdropFilter: 'blur(10px)',
       border: `1.5px solid ${B.primaryBorder}`, boxShadow: B.cardShadow,
     }}>
-      <div style={{ fontWeight: 800, fontSize: 'clamp(10px, 1.3vw, 13px)', letterSpacing: '0.18em', textTransform: 'uppercase', color: B.action, marginBottom: 18 }}>
+      <div style={{ fontWeight: 800, fontSize: 'var(--fs-small)', letterSpacing: '0.18em', textTransform: 'uppercase', color: B.action, marginBottom: 18 }}>
         ⏱ Response Time Promise
       </div>
       {items.map((item, i) => (
         <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: i < items.length - 1 ? 14 : 0 }}>
           <span style={{ color: B.action, flexShrink: 0 }}>{item.icon}</span>
-          <span style={{ fontSize: 'clamp(12px, 1.5vw, 14px)', color: B.textMid, lineHeight: 1.5 }}>{item.text}</span>
+          <span style={{ fontSize: 'var(--fs-small)', color: B.textMid, lineHeight: 1.5 }}>{item.text}</span>
         </div>
       ))}
     </div>
@@ -398,7 +398,7 @@ function StepCard({ step }) {
         padding: '5px 14px', borderRadius: 99, marginBottom: 20,
         background: hovered ? 'rgba(255,255,255,0.22)' : step.bg,
         border: `1px solid ${hovered ? 'rgba(255,255,255,0.35)' : step.border}`,
-        fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 800,
+        fontSize: 'var(--fs-label)', fontWeight: 800,
         letterSpacing: '0.12em', color: hovered ? '#fff' : step.color,
         transition: 'all 0.35s ease',
       }}>
@@ -424,7 +424,7 @@ function StepCard({ step }) {
       {/* Title */}
       <h3 style={{
         fontWeight: 700,
-        fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+        fontSize: 'var(--fs-h3)',
         color: hovered ? '#fff' : B.textMain,
         marginBottom: 14,
         lineHeight: 1.25,
@@ -435,7 +435,7 @@ function StepCard({ step }) {
 
       {/* Description */}
       <p style={{
-        fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
+        fontSize: 'var(--fs-card-body)',
         color: hovered ? 'rgba(255,255,255,0.85)' : B.textMid,
         lineHeight: 1.75,
         margin: 0,
@@ -533,7 +533,7 @@ export default function BookDiscovery() {
               variants={fadeUp} custom={0.2}
               style={{
                 fontFamily: 'var(--font-main)',
-                fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)',
+                fontSize: 'var(--fs-h3)',
                 color: B.textMid,
                 maxWidth: 1200, margin: '0 auto clamp(16px, 2.5vw, 36px)',
                 letterSpacing: '0.02em', lineHeight: 1.6,
@@ -587,7 +587,7 @@ export default function BookDiscovery() {
             <div style={{
               padding: '6px 20px', borderRadius: 99,
               background: 'rgba(84,84,84,0.15)', color: B.action,
-              fontSize: 'clamp(10px, 1.3vw, 13px)', fontWeight: 800,
+              fontSize: 'var(--fs-small)', fontWeight: 800,
               textTransform: 'uppercase', letterSpacing: '0.18em',
               border: '1px solid rgba(84,84,84,0.30)',
               marginBottom: 'clamp(24px, 4vw, 40px)', display: 'inline-block',
@@ -610,7 +610,7 @@ export default function BookDiscovery() {
                   style={{
                     display: 'flex', alignItems: 'center', gap: 10,
                     padding: 'clamp(12px, 1.5vw, 14px) clamp(20px, 2.5vw, 28px)',
-                    fontSize: 'clamp(13px, 1.8vw, 16px)', fontWeight: 600,
+                    fontSize: 'var(--fs-card-body)', fontWeight: 600,
                     color: B.textDarkMid,
                     background: 'rgba(255,255,255,0.03)', borderRadius: 'var(--radius-md)',
                     border: '1px solid rgba(255,255,255,0.08)',
@@ -661,10 +661,10 @@ export default function BookDiscovery() {
             <div style={{
               display: 'flex', justifyContent: 'center', alignItems: 'center',
               gap: 12, marginTop: 'clamp(28px, 4vw, 40px)',
-              color: B.textMuted, fontSize: 'clamp(12px, 1.4vw, 14px)', fontWeight: 600,
+              color: B.textMuted, fontSize: 'var(--fs-small)', fontWeight: 600,
             }}>
               <div style={{ height: 1, width: 60, background: `linear-gradient(to right, transparent, ${B.primaryBorder})` }}/>
-              <span style={{ letterSpacing: '0.1em', textTransform: 'uppercase', fontSize: 11 }}>Then we get to work</span>
+              <span style={{ letterSpacing: '0.1em', textTransform: 'uppercase', fontSize: 'var(--fs-label)' }}>Then we get to work</span>
               <div style={{ height: 1, width: 60, background: `linear-gradient(to left, transparent, ${B.primaryBorder})` }}/>
             </div>
           </div>
@@ -686,7 +686,7 @@ export default function BookDiscovery() {
                 background: B.actionLight, border: `1.5px solid ${B.actionBorder}`,
               }}>
                 <div style={{ width: 8, height: 8, borderRadius: '50%', background: B.action, animation: 'wmPulse 2s ease-in-out infinite' }}/>
-                <span style={{ fontSize: 'clamp(10px, 1.3vw, 13px)', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: B.action }}>
+                <span style={{ fontSize: 'var(--fs-small)', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: B.action }}>
                   Fastest Option
                 </span>
               </div>
@@ -701,7 +701,7 @@ export default function BookDiscovery() {
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.08 }}
-              style={{ maxWidth: 780, margin: '0 auto' }}
+              style={{ maxWidth: 780, margin: '0' }}
             >
               <CalendlyEmbed />
             </motion.div>
@@ -782,7 +782,7 @@ export default function BookDiscovery() {
           >
             <SectionBadge dark style={{ color: B.textDarkMuted }}>Not Ready to Book Yet?</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 20 }}>
-              Explore Our Work First.<br />
+              Explore Our Work First.{' '}<br className="hero-br" />
               <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 Then Reach Out.
               </span>
@@ -797,7 +797,7 @@ export default function BookDiscovery() {
                 borderRadius: 'var(--radius-md)',
                 background: `linear-gradient(135deg, ${B.action}, #393939)`,
                 color: B.white, fontFamily: 'var(--font-main)', fontWeight: 700,
-                fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)', letterSpacing: '0.10em',
+                fontSize: 'var(--fs-card-title)', letterSpacing: '0.10em',
                 textTransform: 'uppercase', textDecoration: 'none',
                 boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
                 border: `1px solid rgba(84,84,84,0.40)`,

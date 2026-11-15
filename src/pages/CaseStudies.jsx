@@ -42,10 +42,10 @@ import imgHealthcareFraudBilling from '../assets/case-studies/healthcare-fraud-b
 
 // ─── Card accent palette (cycles across cards) ────────────────────────────────
 const CARD_ACCENTS = [
-  { border: B.action,     glow: 'rgba(84,84,84,0.35)',    tag: B.action,    tagBg: 'rgba(84,84,84,0.12)',  tagBorder: 'rgba(84,84,84,0.25)'  },
-  { border: B.secondary,  glow: 'rgba(55,55,55,0.35)',     tag: '#939393',   tagBg: 'rgba(55,55,55,0.12)',   tagBorder: 'rgba(55,55,55,0.25)'   },
-  { border: B.primary,    glow: 'rgba(57,57,57,0.35)',     tag: '#adadad',   tagBg: 'rgba(57,57,57,0.12)',   tagBorder: 'rgba(57,57,57,0.25)'   },
-  { border: B.accent,     glow: 'rgba(149,149,149,0.35)',    tag: B.accent,    tagBg: 'rgba(149,149,149,0.12)',  tagBorder: 'rgba(149,149,149,0.25)'  },
+  { border: '#8a8a8a',     glow: 'rgba(84,84,84,0.35)',    tag: '#d4d4d4',   tagBg: 'rgba(212,212,212,0.10)',  tagBorder: 'rgba(212,212,212,0.25)'  },
+  { border: '#7a7a7a',  glow: 'rgba(55,55,55,0.35)',     tag: '#939393',   tagBg: 'rgba(55,55,55,0.12)',   tagBorder: 'rgba(55,55,55,0.25)'   },
+  { border: '#9a9a9a',    glow: 'rgba(57,57,57,0.35)',     tag: '#adadad',   tagBg: 'rgba(57,57,57,0.12)',   tagBorder: 'rgba(57,57,57,0.25)'   },
+  { border: '#b0b0b0',     glow: 'rgba(149,149,149,0.35)',    tag: '#c4c4c4',    tagBg: 'rgba(149,149,149,0.12)',  tagBorder: 'rgba(149,149,149,0.25)'  },
   { border: '#616161',    glow: 'rgba(97,97,97,0.35)',    tag: '#8e8e8e',   tagBg: 'rgba(97,97,97,0.12)',  tagBorder: 'rgba(97,97,97,0.25)'  },
   { border: '#676767',    glow: 'rgba(103,103,103,0.35)',    tag: '#939393',   tagBg: 'rgba(103,103,103,0.12)',  tagBorder: 'rgba(103,103,103,0.25)'  },
   { border: '#767676',    glow: 'rgba(118,118,118,0.35)',     tag: '#9b9b9b',   tagBg: 'rgba(118,118,118,0.12)',   tagBorder: 'rgba(118,118,118,0.25)'   },
@@ -413,7 +413,7 @@ function UnifiedFilterBar({ activeService, activeIndustry, onFilterClick }) {
       }}>
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 7,
-          fontSize: 'clamp(10px, 1.2vw, 12px)', fontWeight: 800,
+          fontSize: 'var(--fs-label)', fontWeight: 800,
           letterSpacing: '0.18em', textTransform: 'uppercase',
           color: B.textMuted, padding: '5px 10px',
           background: 'rgba(57,57,57,0.06)', borderRadius: 6,
@@ -438,7 +438,7 @@ function UnifiedFilterBar({ activeService, activeIndustry, onFilterClick }) {
               display: 'inline-flex', alignItems: 'center', gap: 6,
               padding: '5px 12px', borderRadius: 'var(--radius-sm)',
               background: 'rgba(149,149,149,0.12)', border: `1px solid ${B.accent}50`,
-              color: B.accent, fontWeight: 700, fontSize: 12,
+              color: B.accent, fontWeight: 700, fontSize: 'var(--fs-label)',
               cursor: 'pointer', letterSpacing: '0.04em',
             }}
           >
@@ -450,7 +450,7 @@ function UnifiedFilterBar({ activeService, activeIndustry, onFilterClick }) {
       {/* Services row */}
       <div style={{ marginBottom: 10 }}>
         <div style={{
-          fontSize: 'clamp(9px, 1.1vw, 11px)', fontWeight: 800, letterSpacing: '0.18em',
+          fontSize: 'var(--fs-label)', fontWeight: 800, letterSpacing: '0.18em',
           textTransform: 'uppercase', color: B.textMuted, marginBottom: 8,
           textAlign: 'center',
         }}>
@@ -485,7 +485,7 @@ function UnifiedFilterBar({ activeService, activeIndustry, onFilterClick }) {
       {/* Industries row */}
       <div>
         <div style={{
-          fontSize: 'clamp(9px, 1.1vw, 11px)', fontWeight: 800, letterSpacing: '0.18em',
+          fontSize: 'var(--fs-label)', fontWeight: 800, letterSpacing: '0.18em',
           textTransform: 'uppercase', color: B.textMuted, marginBottom: 8,
           textAlign: 'center',
         }}>
@@ -572,7 +572,7 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
                 position: 'absolute', top: 16, left: 16,
                 background: B.accent, color: '#fff',
                 padding: '4px 10px', borderRadius: 6,
-                fontSize: 10, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase',
+                fontSize: 'var(--fs-label)', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase',
                 zIndex: 10, display: 'flex', alignItems: 'center', gap: 5,
                 boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
                 backdropFilter: 'blur(4px)',
@@ -584,7 +584,7 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
             <div style={{ position: 'absolute', top: 16, right: 16, display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'flex-end', maxWidth: '80%', zIndex: 5 }}>
               {cs.tags.map((tag, tIdx) => (
                 <span key={tIdx} style={{
-                  fontSize: 'clamp(10px, 1.2vw, 11px)', fontWeight: 700,
+                  fontSize: 'var(--fs-label)', fontWeight: 700,
                   textTransform: 'uppercase', letterSpacing: '0.08em',
                   color: B.textDark, background: 'rgba(255,255,255,0.12)',
                   backdropFilter: 'blur(8px)', padding: '4px 10px', borderRadius: 6,
@@ -602,13 +602,13 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
           }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
               <span style={{
-                fontSize: 'clamp(10px, 1.1vw, 11px)', fontWeight: 700, textTransform: 'uppercase',
+                fontSize: 'var(--fs-label)', fontWeight: 700, textTransform: 'uppercase',
                 letterSpacing: '0.06em', color: accent.tag,
                 background: accent.tagBg, border: `1px solid ${accent.tagBorder}`,
                 padding: '3px 9px', borderRadius: 5,
               }}>{cs.serviceLabel}</span>
               <span style={{
-                fontSize: 'clamp(10px, 1.1vw, 11px)', fontWeight: 700, textTransform: 'uppercase',
+                fontSize: 'var(--fs-label)', fontWeight: 700, textTransform: 'uppercase',
                 letterSpacing: '0.06em', color: B.textDarkMuted,
                 background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.10)',
                 padding: '3px 9px', borderRadius: 5,
@@ -617,12 +617,12 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
 
             <h3 style={{
               fontFamily: 'var(--font-main)', fontWeight: 700,
-              fontSize: 'clamp(1rem, 2vw, 1.6rem)',
+              fontSize: 'var(--fs-h3)',
               color: B.textDark, lineHeight: 1.3, marginBottom: 14,
             }}>{cs.title}</h3>
 
             <p style={{
-              fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)', lineHeight: 1.7,
+              fontSize: 'var(--fs-card-title)', lineHeight: 1.7,
               color: B.textDarkMid, marginBottom: 20, flexGrow: 1,
             }}>{cs.summary}</p>
 
@@ -638,8 +638,8 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
                   borderRight: mIdx < cs.metrics.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
                   paddingRight: mIdx < cs.metrics.length - 1 ? 8 : 0,
                 }}>
-                  <div style={{ fontWeight: 800, fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)', color: accent.tag, lineHeight: 1.1 }}>{m.value}</div>
-                  <div style={{ fontSize: 'clamp(9px, 1vw, 10px)', fontWeight: 600, color: B.textDarkMuted, textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: 3 }}>{m.label}</div>
+                  <div style={{ fontWeight: 800, fontSize: 'var(--fs-card-title)', color: accent.tag, lineHeight: 1.1 }}>{m.value}</div>
+                  <div style={{ fontSize: 'var(--fs-label)', fontWeight: 600, color: B.textDarkMuted, textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: 3 }}>{m.label}</div>
                 </div>
               ))}
             </div>
@@ -650,7 +650,7 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
             }}>
               <span style={{
                 display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700,
-                fontSize: 'clamp(12px, 1.4vw, 15px)', letterSpacing: '0.06em',
+                fontSize: 'var(--fs-card-body)', letterSpacing: '0.06em',
                 color: hovered ? accent.border : B.textDarkMuted,
                 textTransform: 'uppercase', transition: 'color 0.3s ease',
               }}>
@@ -749,7 +749,7 @@ export default function CaseStudies() {
           display: 'flex', alignItems: 'center',
           padding: 'clamp(48px, 8vw, 96px) clamp(16px, 4vw, 24px) clamp(32px, 5vw, 72px)',
         }}>
-          <div style={{ maxWidth: 1400, width: '100%', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr', alignItems: 'center' }} className="cs-hero-grid">
+          <div style={{ maxWidth: 1400, width: '100%', margin: '0 auto', display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', alignItems: 'center', justifyItems: 'center' }} className="cs-hero-grid">
           <motion.div
             initial="hidden" animate="visible"
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.11 } } }}
@@ -779,7 +779,7 @@ export default function CaseStudies() {
               variants={fadeUp} custom={0.2}
               style={{
                 fontFamily: 'var(--font-main)',
-                fontSize: 'clamp(0.9rem, 2.2vw, 1.5rem)',
+                fontSize: 'var(--fs-h3)',
                 color: B.textMid,
                 maxWidth: 1200, margin: '0 auto clamp(16px, 2.5vw, 36px)',
                 letterSpacing: '0.02em', lineHeight: 1.6,
@@ -885,16 +885,16 @@ export default function CaseStudies() {
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: 16, padding: 'clamp(10px, 1.5vw, 12px) clamp(20px, 3vw, 28px)', borderRadius: 16, background: B.primaryDark, boxShadow: '0 8px 30px rgba(19,19,19,0.25)', border: `1px solid rgba(255,255,255,0.1)` }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <Filter size={18} color={B.accent} />
-                    <span style={{ fontSize: 'clamp(13px, 1.6vw, 16px)', fontWeight: 700, color: B.white }}>Showing {filtered.length} result{filtered.length !== 1 ? 's' : ''}</span>
+                    <span style={{ fontSize: 'var(--fs-card-body)', fontWeight: 700, color: B.white }}>Showing {filtered.length} result{filtered.length !== 1 ? 's' : ''}</span>
                   </div>
-                  <button onClick={() => handleFilterClick('all')} style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.2)', cursor: 'pointer', color: B.white, fontWeight: 700, fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, padding: '6px 14px', borderRadius: 'var(--radius-sm)', transition: 'all 0.2s' }}
+                  <button onClick={() => handleFilterClick('all')} style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.2)', cursor: 'pointer', color: B.white, fontWeight: 700, fontSize: 'var(--fs-small)', display: 'flex', alignItems: 'center', gap: 6, padding: '6px 14px', borderRadius: 'var(--radius-sm)', transition: 'all 0.2s' }}
                     onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.25)'; }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}>
                     <X size={14}/> Clear
                   </button>
                 </div>
               ) : (
-                <span style={{ fontSize: 14, fontWeight: 600, color: B.textMuted, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Showing all projects</span>
+                <span style={{ fontSize: 'var(--fs-small)', fontWeight: 600, color: B.textMuted, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Showing all projects</span>
               )}
             </motion.div>
 
@@ -909,9 +909,9 @@ export default function CaseStudies() {
                     style={{ gridColumn: '1 / -1', textAlign: 'center', padding: 'clamp(60px, 8vw, 100px) 24px', background: 'rgba(255,255,255,0.50)', borderRadius: 'var(--radius-lg)', border: `1.5px dashed ${B.primaryBorder}` }}
                   >
                     <div style={{ fontSize: 48, marginBottom: 20 }}>🔍</div>
-                    <h3 style={{ fontWeight: 700, fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', color: B.textMain, marginBottom: 12 }}>No results found</h3>
-                    <p style={{ fontSize: 'clamp(0.85rem, 1.5vw, 1rem)', color: B.textMuted, marginBottom: 24 }}>No case studies match your current filter combination.</p>
-                    <button onClick={() => handleFilterClick('all')} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '10px 24px', borderRadius: 10, background: B.primary, color: B.white, border: 'none', fontWeight: 700, fontSize: 14, cursor: 'pointer', letterSpacing: '0.06em' }}>
+                    <h3 style={{ fontWeight: 700, fontSize: 'var(--fs-h3)', color: B.textMain, marginBottom: 12 }}>No results found</h3>
+                    <p style={{ fontSize: 'var(--fs-card-body)', color: B.textMuted, marginBottom: 24 }}>No case studies match your current filter combination.</p>
+                    <button onClick={() => handleFilterClick('all')} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '10px 24px', borderRadius: 10, background: B.primary, color: B.white, border: 'none', fontWeight: 700, fontSize: 'var(--fs-small)', cursor: 'pointer', letterSpacing: '0.06em' }}>
                       <X size={16}/> Clear Filters
                     </button>
                   </motion.div>
@@ -935,7 +935,7 @@ export default function CaseStudies() {
             >
               <SectionBadge style={{ color: B.primary }}>Have a similar challenge?</SectionBadge>
               <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-                Let's Build Your<br />
+                Let's Build Your{' '}<br className="hero-br" />
                 <span style={{ background: 'linear-gradient(90deg, #4a4a4a 25%, #373737 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                   Success Story Next
                 </span>
@@ -949,7 +949,7 @@ export default function CaseStudies() {
                   padding: 'clamp(14px, 2.5vw, 20px) clamp(24px, 5vw, 56px)',
                   borderRadius: 'var(--radius-md)', background: `linear-gradient(135deg, ${B.action}, #393939)`,
                   color: B.white, fontFamily: 'var(--font-main)', fontWeight: 700,
-                  fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)', letterSpacing: '0.10em',
+                  fontSize: 'var(--fs-card-title)', letterSpacing: '0.10em',
                   textTransform: 'uppercase', textDecoration: 'none',
                   boxShadow: `0 8px 40px ${B.actionGlow}, 0 0 80px rgba(84,84,84,0.15)`,
                   border: `1px solid rgba(84,84,84,0.40)`,

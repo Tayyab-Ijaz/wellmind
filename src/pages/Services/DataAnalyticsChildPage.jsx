@@ -65,7 +65,7 @@ function FeatureCard({ iconName, title, desc, i, color }) {
         transition: 'all 0.3s ease', height: '100%',
       }}
     >
-      <div style={{
+      <div className="hero-split-row" style={{
         width: 'clamp(44px, 6vw, 54px)', height: 'clamp(44px, 6vw, 54px)', borderRadius: '50%',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         margin: '0 auto clamp(14px, 2vw, 20px)',
@@ -113,7 +113,7 @@ function DeliverableItem({ text, color }) {
     >
       <CheckCircle size={18} color={hovered ? B.textDark : color} style={{ flexShrink: 0, transition: 'color 0.3s' }} />
       <span style={{
-        fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)',
+        fontSize: 'var(--fs-card-title)',
         fontWeight: 500, lineHeight: 1.5,
         color: hovered ? B.textDark : B.textMain,
         transition: 'color 0.3s ease',
@@ -126,7 +126,7 @@ function DeliverableItem({ text, color }) {
 
 
 // ─── Tech Badge ───────────────────────────────────────────────────────────────
-function TechBadge({ label, color }) {
+function TechBadge({ label }) {
   const [h, setH] = useState(false);
   return (
     <span
@@ -135,10 +135,10 @@ function TechBadge({ label, color }) {
         display: 'inline-flex', alignItems: 'center', gap: 5,
         padding: 'clamp(5px, 1vw, 7px) clamp(10px, 1.5vw, 14px)',
         borderRadius: 'var(--radius-sm)',
-        background: h ? color : 'rgba(255,255,255,0.05)',
-        border: `1.5px solid ${h ? color : 'rgba(255,255,255,0.15)'}`,
-        color: h ? B.bgDark : color,
-        fontSize: 'clamp(11px, 1.3vw, 13px)', fontWeight: 700, letterSpacing: '0.04em',
+        background: h ? '#f2f2f2' : 'rgba(255,255,255,0.08)',
+        border: `1.5px solid ${h ? '#f2f2f2' : 'rgba(255,255,255,0.28)'}`,
+        color: h ? '#111111' : '#ffffff',
+        fontSize: 'var(--fs-small)', fontWeight: 700, letterSpacing: '0.04em',
         transition: 'all 0.22s ease', cursor: 'default',
       }}
     >
@@ -175,7 +175,7 @@ const SharedStyles = () => (
       padding: clamp(12px, 2vw, 18px) clamp(20px, 4vw, 40px);
       border-radius: 12px; background: #545454; color: #ffffff;
       font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+      font-size: var(--fs-btn);
       letter-spacing: 0.10em; text-transform: uppercase; text-decoration: none;
       transition: opacity 0.2s, transform 0.2s;
     }
@@ -184,7 +184,7 @@ const SharedStyles = () => (
       padding: clamp(10px, 1.8vw, 16px) clamp(20px, 4vw, 40px);
       border-radius: 12px; background: transparent; color: #373737;
       font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+      font-size: var(--fs-btn);
       letter-spacing: 0.10em; text-decoration: none;
       border: 2px solid #373737; transition: background 0.2s, transform 0.2s;
     }
@@ -204,7 +204,7 @@ const SharedStyles = () => (
     }
     @media (max-width: 320px) {
       .grid-stats    { grid-template-columns: 1fr; gap: 10px; }
-      .btn-primary, .btn-secondary { width: 100%; justify-content: center; font-size: 0.8rem; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; font-size: var(--fs-btn); }
     }
     @keyframes wmFloat {
       0%, 100% { transform: translateY(0px); }
@@ -237,14 +237,14 @@ function DashboardPreview() {
       flexDirection: 'column',
       justifyContent: 'center'
     }}>
-      <div style={{ fontSize: 'clamp(14px, 1.2vw, 17px)', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: B.textMuted, textAlign: 'center', marginBottom: 16 }}>Analytics Dashboard</div>
+      <div style={{ fontSize: 'var(--fs-card-body)', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: B.textMuted, textAlign: 'center', marginBottom: 16 }}>Analytics Dashboard</div>
       {/* KPI cards */}
       <div style={{ display: 'flex', gap: 'clamp(6px, 1vw, 10px)', marginBottom: 16 }}>
         {metrics.map((met, i) => (
           <div key={i} onClick={() => setActiveMetric(i)}
             style={{ flex: 1, padding: 'clamp(8px, 1.2vw, 12px) clamp(8px, 1.3vw, 12px)', borderRadius: 10, background: activeMetric === i ? `${met.color}12` : 'rgba(255,255,255,0.6)', border: `1.5px solid ${activeMetric === i ? met.color : B.primaryBorder}`, cursor: 'pointer', transition: 'all 0.3s ease' }}>
-            <div style={{ fontSize: 'clamp(14px, 1.1vw, 14.5px)', color: B.textMuted, fontWeight: 600, marginBottom: 3 }}>{met.label}</div>
-            <div style={{ fontWeight: 800, fontSize: 'clamp(18px, 2vw, 24px)', color: met.color }}>{met.value}</div>
+            <div style={{ fontSize: 'var(--fs-small)', color: B.textMuted, fontWeight: 600, marginBottom: 3 }}>{met.label}</div>
+            <div style={{ fontWeight: 800, fontSize: 'var(--fs-h3)', color: met.color }}>{met.value}</div>
           </div>
         ))}
       </div>
@@ -259,9 +259,9 @@ function DashboardPreview() {
       {/* Stats row */}
       <div style={{ display: 'flex', gap: 'clamp(8px, 1.2vw, 10px)' }}>
         {[{ l: 'BI', s: 'Dashboards', c: B.action }, { l: 'ETL', s: 'Pipelines', c: B.primary }, { l: 'Stats', s: 'Analysis', c: B.accent }].map((stat, i) => (
-          <div key={i} style={{ fontSize: 'clamp(14px, 1.1vw, 14.5px)', flex: 1, textAlign: 'center', padding: 'clamp(7px, 1.2vw, 10px) 6px', borderRadius: 9, background: B.bgLight, border: `1px solid ${B.primaryBorder}` }}>
-            <div style={{ fontWeight: 800, fontSize: 'clamp(13px, 2vw, 17px)', color: stat.c, marginBottom: 2 }}>{stat.l}</div>
-            <div style={{ fontSize: 'clamp(9px, 1.1vw, 10px)', color: B.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{stat.s}</div>
+          <div key={i} style={{ fontSize: 'var(--fs-small)', flex: 1, textAlign: 'center', padding: 'clamp(7px, 1.2vw, 10px) 6px', borderRadius: 9, background: B.bgLight, border: `1px solid ${B.primaryBorder}` }}>
+            <div style={{ fontWeight: 800, fontSize: 'var(--fs-card-body)', color: stat.c, marginBottom: 2 }}>{stat.l}</div>
+            <div style={{ fontSize: 'var(--fs-label)', color: B.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{stat.s}</div>
           </div>
         ))}
       </div>
@@ -334,7 +334,7 @@ export default function DataAnalyticsChildPage() {
                 {/* Breadcrumb */}
                 <motion.div variants={fadeUp} custom={0} style={{ marginBottom: 12 }}>
                   <Link to="/services-data-analytics" style={{
-                    fontSize: 'clamp(11px, 1.2vw, 13px)', fontWeight: 600,
+                    fontSize: 'var(--fs-small)', fontWeight: 600,
                     color: data.accentColor, textDecoration: 'none',
                     display: 'inline-flex', alignItems: 'center', gap: 5,
                     opacity: 0.8,
@@ -356,7 +356,7 @@ export default function DataAnalyticsChildPage() {
                 </motion.h1>
 
                 <motion.p variants={fadeUp} custom={0.1} style={{
-                  fontSize: 'clamp(0.95rem, 1.8vw, 1.25rem)', fontWeight: 600,
+                  fontSize: 'var(--fs-card-title)', fontWeight: 600,
                   color: data.accentColor, marginBottom: 'clamp(12px, 1.5vw, 18px)',
                   lineHeight: 1.4,
                 }}>
@@ -364,7 +364,7 @@ export default function DataAnalyticsChildPage() {
                 </motion.p>
 
                 <motion.p variants={fadeUp} custom={0.15} style={{
-                  fontSize: 'clamp(0.88rem, 1.8vw, 1.15rem)', fontWeight: 400,
+                  fontSize: 'var(--fs-card-title)', fontWeight: 400,
                   color: B.textMid, marginBottom: 'clamp(20px, 3vw, 36px)', lineHeight: 1.75,
                 }}>
                   {data.heroDesc}
@@ -423,7 +423,7 @@ export default function DataAnalyticsChildPage() {
                   borderRadius: 50,
                   background: 'rgba(255,255,255,0.6)',
                   border: `1px solid ${B.primaryBorder}`,
-                  fontSize: 'clamp(12px, 1.5vw, 15px)', fontWeight: 600, color: B.textMain,
+                  fontSize: 'var(--fs-card-body)', fontWeight: 600, color: B.textMain,
                   boxShadow: '0 4px 12px rgba(84,84,84,0.05)',
                   animation: `wmFloat ${3 + i * 0.5}s ease-in-out infinite`,
                 }}>
@@ -450,7 +450,7 @@ export default function DataAnalyticsChildPage() {
           {/* Tech Stack */}
           <div style={{ textAlign: 'center' }}>
             <p style={{
-              fontSize: 'clamp(10px, 1.2vw, 11px)', fontWeight: 700,
+              fontSize: 'var(--fs-label)', fontWeight: 700,
               letterSpacing: '0.16em', textTransform: 'uppercase',
               color: B.textDarkMuted, marginBottom: 16,
             }}>
@@ -523,7 +523,7 @@ export default function DataAnalyticsChildPage() {
                         width: 'clamp(40px, 5.5vw, 52px)', height: 'clamp(40px, 5.5vw, 52px)',
                         borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
                         background: color, color: B.white,
-                        fontWeight: 800, fontSize: 'clamp(13px, 1.6vw, 17px)',
+                        fontWeight: 800, fontSize: 'var(--fs-card-body)',
                         boxShadow: `0 6px 20px ${color}40`, flexShrink: 0,
                       }}>
                         {p.step}
@@ -538,11 +538,11 @@ export default function DataAnalyticsChildPage() {
                     </div>
                     <div style={{ paddingTop: 8 }}>
                       <h4 style={{
-                        fontWeight: 700, fontSize: 'clamp(1.15rem, 2vw, 1.8rem)',
+                        fontWeight: 700, fontSize: 'var(--fs-h3)',
                         color: B.textMain, marginBottom: 8, lineHeight: 1.3,
                       }}>{p.title}</h4>
                       <p style={{
-                        fontSize: 'clamp(0.95rem, 1.6vw, 1.25rem)',
+                        fontSize: 'var(--fs-card-title)',
                         lineHeight: 1.7, color: B.textMid,
                       }}>{p.desc}</p>
                     </div>
@@ -558,7 +558,7 @@ export default function DataAnalyticsChildPage() {
                 Documented Handover.
               </h2>
               <p style={{
-                fontSize: 'clamp(0.95rem, 1.6vw, 1.2rem)',
+                fontSize: 'var(--fs-card-title)',
                 color: B.textMid, lineHeight: 1.7,
                 marginBottom: 'clamp(24px, 3.5vw, 36px)',
               }}>
@@ -604,7 +604,7 @@ export default function DataAnalyticsChildPage() {
           >
             <SectionBadge>Ready to Start?</SectionBadge>
             <h2 className="section-h2" style={{ color: B.primaryDark, marginBottom: 20 }}>
-              Let's Turn Data Into<br />
+              Let's Turn Data Into{' '}<br className="hero-br" />
               <span style={{
                 background: 'linear-gradient(90deg, #545454 25%, #393939 75%)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
@@ -625,7 +625,7 @@ export default function DataAnalyticsChildPage() {
                 borderRadius: 'var(--radius-md)',
                 background: `linear-gradient(135deg, ${data.accentColor}, #393939)`,
                 color: B.white, fontWeight: 700,
-                fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
+                fontSize: 'var(--fs-card-title)',
                 letterSpacing: '0.10em', textTransform: 'uppercase',
                 textDecoration: 'none',
                 boxShadow: `0 8px 40px ${data.accentColor}60, 0 0 80px rgba(84,84,84,0.15)`,

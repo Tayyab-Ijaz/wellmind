@@ -41,10 +41,10 @@ export default function Careers() {
     <div style={{background:'var(--clr-bg)',minHeight: '100svh'}}>
       <section className="page-hero grid-dots">
         <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 70%,rgba(161,161,161,0.07),transparent 65%)',pointerEvents:'none'}}/>
-        <div style={{maxWidth:860,margin:'0 auto',padding:'0 20px',position:'relative',zIndex:2}}>
+        <div style={{maxWidth:860,margin:'0',padding:'0 20px',position:'relative',zIndex:2}}>
           <div className="section-label">We Are Hiring</div>
           <h1 className="hero-title" style={{color:'#fff',marginBottom:20}}>Build the Future of <span className="gradient-text">AI</span></h1>
-          <p style={{color:'var(--clr-muted)',fontSize:'clamp(1rem,2.5vw,1.15rem)',lineHeight:1.75,maxWidth:540,margin:'0 auto'}}>
+          <p style={{color:'var(--clr-muted)',fontSize:'var(--fs-card-title)',lineHeight:1.75,maxWidth:540,margin:'0'}}>
             Join a team of system-thinkers. We don't just write code; we build ecosystems that last.
           </p>
         </div>
@@ -59,8 +59,8 @@ export default function Careers() {
                 <div style={{width:48,height:48,borderRadius:12,margin:'0 auto 12px',background:`${p.color}18`,color:p.color,display:'flex',alignItems:'center',justifyContent:'center',border:`1px solid ${p.color}28`}}>
                   {p.icon}
                 </div>
-                <div style={{fontFamily:'var(--font-display)',fontWeight:800,color:'#fff',marginBottom:6,fontSize:'0.95rem'}}>{p.label}</div>
-                <div style={{color:'var(--clr-muted)',fontSize:13,lineHeight:1.55}}>{p.desc}</div>
+                <div style={{fontFamily:'var(--font-display)',fontWeight:800,color:'#fff',marginBottom:6,fontSize:'var(--fs-card-body)'}}>{p.label}</div>
+                <div style={{color:'var(--clr-muted)',fontSize:'var(--fs-small)',lineHeight:1.55}}>{p.desc}</div>
               </div>
             ))}
           </div>
@@ -95,18 +95,18 @@ export default function Careers() {
                   <div style={{flex:1,minWidth:200}}>
                     <div style={{display:'flex',flexWrap:'wrap',gap:8,marginBottom:8}}>
                       <span className="badge" style={{background:'rgba(161,161,161,0.1)',color:'var(--clr-cyan)',border:'1px solid rgba(161,161,161,0.2)'}}>{job.cat}</span>
-                      <span style={{display:'flex',alignItems:'center',gap:4,fontSize:12,color:'var(--clr-muted)'}}><MapPin size={12}/>{job.loc}</span>
-                      <span style={{display:'flex',alignItems:'center',gap:4,fontSize:12,color:'var(--clr-muted)'}}><Briefcase size={12}/>{job.type}</span>
+                      <span style={{display:'flex',alignItems:'center',gap:4,fontSize:'var(--fs-label)',color:'var(--clr-muted)'}}><MapPin size={12}/>{job.loc}</span>
+                      <span style={{display:'flex',alignItems:'center',gap:4,fontSize:'var(--fs-label)',color:'var(--clr-muted)'}}><Briefcase size={12}/>{job.type}</span>
                     </div>
-                    <h3 style={{fontFamily:'var(--font-display)',fontWeight:800,color:'#fff',fontSize:'clamp(1rem,2vw,1.15rem)',marginBottom:8}}>{job.title}</h3>
-                    <p style={{color:'var(--clr-muted)',fontSize:14,marginBottom:12,lineHeight:1.6}}>{job.desc}</p>
+                    <h3 style={{fontFamily:'var(--font-display)',fontWeight:800,color:'#fff',fontSize:'var(--fs-card-title)',marginBottom:8}}>{job.title}</h3>
+                    <p style={{color:'var(--clr-muted)',fontSize:'var(--fs-small)',marginBottom:12,lineHeight:1.6}}>{job.desc}</p>
                     <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
                       {job.tags.map(t=>(
-                        <span key={t} style={{padding:'3px 10px',borderRadius:6,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(161,161,161,0.1)',color:'var(--clr-muted)',fontFamily:'var(--font-mono)',fontSize:11}}>{t}</span>
+                        <span key={t} style={{padding:'3px 10px',borderRadius:6,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(161,161,161,0.1)',color:'var(--clr-muted)',fontFamily:'var(--font-mono)',fontSize:'var(--fs-label)'}}>{t}</span>
                       ))}
                     </div>
                   </div>
-                  <Link to="/book-discovery" className="glow-btn" style={{padding:'10px 22px',fontSize:13,flexShrink:0}}>
+                  <Link to="/book-discovery" className="glow-btn" style={{padding:'10px 22px',fontSize:'var(--fs-small)',flexShrink:0}}>
                     Apply Now <ArrowRight size={13}/>
                   </Link>
                 </div>
