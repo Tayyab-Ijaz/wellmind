@@ -339,8 +339,9 @@ function HeroTunnelStage({ sectionRef, stageH, children }) {
 
       // 3) camera flies along the tunnel once the frame is open
       const fly = clamp01((curP - EXPAND_END) / (1 - EXPAND_END));
-      camera.position.copy(curve.getPoint(fly));
-      ahead.copy(camera.position).add(curve.getTangent(fly));
+      const along = fly * 0.94;                                   // stop just short of the tube's open end so the last caption isn't over a black void
+      camera.position.copy(curve.getPoint(along));
+      ahead.copy(camera.position).add(curve.getTangent(along));
       camera.lookAt(ahead);
       renderer.render(scene, camera);
 

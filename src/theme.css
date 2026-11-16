@@ -740,7 +740,9 @@ h1, h2, h3, h4, h5, p, li { overflow-wrap: break-word; }
 img, video { max-width: 100%; }
 
 @media (max-width: 768px) {
-  html, body { max-width: 100%; overflow-x: hidden; }
+  /* clip, not hidden: overflow-x:hidden on both html and body turns body into a scroll container,
+     which breaks position:sticky (the home-page tunnel then scrolls away and leaves black) */
+  html, body { max-width: 100%; overflow-x: clip; }
 
   /* 16px inputs stop iOS Safari zooming the page on focus */
   input, select, textarea { font-size: 16px !important; }
