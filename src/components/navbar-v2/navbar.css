@@ -415,3 +415,33 @@
   .nb .cs { grid-template-columns: minmax(300px, 30%) 1fr; }
   .nb .cs__filters { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ---------- compact dropdowns: same width, noticeably less height so the page stays visible ---------- */
+.nb .pane { padding: 26px var(--nb-gutter) 30px; }
+/* Services / Industries / Resources */
+.nb .lp3__intro p { margin-top: 10px; }
+.nb .lp3__more { margin-top: 18px; }
+.nb .lp3__row { padding: 12px 16px; }
+.nb .lp3__img { aspect-ratio: 16 / 10; border-radius: 14px; }
+.nb .lp3__feat figcaption { padding: 12px 2px 0; }
+.nb .lp3__feat figcaption b { margin-top: 8px; }
+.nb .lp3__feat .lp3__more { margin-top: 8px; }
+/* Case studies */
+.nb .cs, .nb .lp { gap: 32px; }
+.nb .cs__filters, .nb .side { padding: 18px 18px 16px; border-radius: 16px; }
+.nb .cs__col .item { padding: 8px 12px; }
+.nb .cs__head { margin-bottom: 12px; }
+.nb .cs__filters .cta { margin-top: 16px; padding: 11px 18px; }
+.nb .cw { margin-bottom: 10px; }
+.nb .card__art { width: 68px; height: 68px; margin: 14px 0 14px 16px; border-radius: 12px; }
+.nb .card__body { padding: 14px 8px 14px 16px; }
+.nb .card__sum { margin-top: 4px; }
+.nb .card__tags { margin-top: 10px; gap: 6px; }
+.nb .tag { padding: 4px 10px; }
+.nb .go { width: 34px; height: 34px; }
+.nb .card__go { padding: 0 16px 0 6px; }
+@media (max-height: 760px) {
+  .nb .lp3__row { padding: 9px 16px; }
+  .nb .lp3__img { aspect-ratio: 2 / 1; }
+  .nb .card__sum { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+}
