@@ -174,7 +174,7 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
               backgroundSize: 'cover', backgroundPosition: 'center',
               transform: hovered ? 'scale(1.06)' : 'scale(1)',
               transition: 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
-              filter: hovered ? 'grayscale(1) brightness(0.75)' : 'grayscale(1) brightness(0.68)',
+              filter: hovered ? 'brightness(0.75)' : 'brightness(0.68)',
             }} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(6,6,6,0) 45%, rgba(6,6,6,0.88) 100%)' }} />
             <div style={{

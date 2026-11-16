@@ -383,7 +383,7 @@ const CSS = `
 .cs-side .cs-glance div:last-child{border-bottom:0}
 .cs-fig--inline{display:none}
 .cs-fig{margin:0 0 clamp(32px,4.5vw,56px);border-radius:20px;overflow:hidden;border:1px solid rgba(0,0,0,.1);background:#0b0b0b;line-height:0}
-.cs-fig img{width:100%;height:auto;display:block;filter:grayscale(1)}
+.cs-fig img{width:100%;height:auto;display:block}
 .cs-fig--side img{aspect-ratio:4/3;object-fit:cover}
 .cs-sec{scroll-margin-top:104px;margin-bottom:clamp(36px,5vw,64px)}
 .cs-sec h2{margin:0 0 clamp(14px,1.8vw,20px);font-size:var(--fs-h3);font-weight:800;letter-spacing:-.02em;color:#0b0b0b;text-align:left}
@@ -414,7 +414,7 @@ const CSS = `
 .cs-rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(16px,2vw,26px)}
 .cs-rcard{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);text-decoration:none;color:#fff;transition:transform .3s,border-color .3s,background .3s}
 .cs-rcard:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.07)}
-.cs-rcard img{filter:grayscale(1);width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#161616}
+.cs-rcard img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#161616}
 .cs-rbody{padding:clamp(16px,2vw,22px);display:flex;flex-direction:column;gap:10px;flex:1}
 .cs-rbody small{font-size:var(--fs-label);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .cs-rbody h3{margin:0;font-size:var(--fs-card-title);font-weight:700;line-height:1.3;color:#fff;text-align:left}
