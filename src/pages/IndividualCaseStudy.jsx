@@ -1,56 +1,39 @@
 /**
  * IndividualCaseStudy.jsx — WellMind Data Solutions
- * Full case study page — routed by /case-studies/:slug
- * Redesigned: Removed hero image, added Premium "Professional Bridge" dark section,
- * richer content presentation, glassy cards, and strong nav section.
+ * Case study page — routed by /case-studies/:slug
+ *
+ * Layout: hero (category, title, summary, tags, at-a-glance strip) → "On this page" nav →
+ * Overview → The Challenge → The Solution → Outcomes → Tech stack → related case studies → CTA.
+ * List data lives in ../data/caseStudies.jsx; the longer write-ups below (plus the newer ones in
+ * ../data/extraCaseStudies.jsx) feed this page.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { B, lift, SECTION_PAD, PX, NARROW, DataParticles, SectionBadge, CircuitBg } from '../theme';
+import { motion } from 'framer-motion';
+import { B, PX } from '../theme';
 import { useSeo, SITE_NAME } from '../seo';
-import imgArPrioritization from '../assets/case-studies/ar-prioritization.png';
-import imgClaimDenial from '../assets/case-studies/claim-denial.png';
-import imgCommandCenter from '../assets/case-studies/command-center.png';
-import imgSupplyGuard from '../assets/case-studies/supplyguard.png';
-import imgInsuranceRiskScoring from '../assets/case-studies/insurance-risk-scoring.png';
-import imgTelecomChurn from '../assets/case-studies/telecom-churn.png';
-import imgRetailDemand from '../assets/case-studies/retail-demand-forecasting.png';
-import imgRcmPriorAuth from '../assets/case-studies/rcm-prior-auth.png';
-import imgAccountsPayable from '../assets/case-studies/accounts-payable.png';
-import imgEmailOrderIntake from '../assets/case-studies/email-order-intake.png';
-import imgSatelliteCropYield from '../assets/case-studies/satellite-crop-yield.png';
-import imgAdaptiveLearning from '../assets/case-studies/adaptive-learning.png';
-import imgEhrClinicalNlp from '../assets/case-studies/ehr-clinical-nlp.png';
-import imgSingleCellRnaseq from '../assets/case-studies/single-cell-rnaseq.png';
-import imgRealTimeFraud from '../assets/case-studies/real-time-fraud-detection.png';
-import imgInsurancePolicyClassification from '../assets/case-studies/insurance-policy-classification.png';
-import imgHealthcareFraudBilling from '../assets/case-studies/healthcare-fraud-billing.png';
-import {
-  ArrowRight, ArrowLeft, Dna, TrendingUp, Brain, Leaf, Clock,
-  Zap, CheckCircle, BookOpen, BarChart3, ChevronRight, Star,
-  Code2, Database, GitBranch, Globe, Target, Lightbulb,
-  FlaskConical, Cpu, Shield, Award, Lock, Globe2, Rocket,
-  Phone, GraduationCap, UtensilsCrossed, Mail, SquareCode,
-} from 'lucide-react';
-
-
-// ─── Industry config ──────────────────────────────────────────────────────────
-const INDUSTRY_COLORS = {
-  'Biomedical Data Science': { bg: B.actionLight,   border: B.actionBorder,          text: B.action,    icon: <Dna size={12}/> },
-  'Fintech AI':     { bg: B.secondaryLight, border: 'rgba(55,55,55,0.30)', text: B.secondary, icon: <TrendingUp size={12}/> },
-  'Healthcare AI':  { bg: B.primaryLight,   border: B.primaryBorder,        text: B.primary,   icon: <Brain size={12}/> },
-  'Agriculture AI': { bg: B.accentLight,    border: B.accentBorder,         text: B.accent,    icon: <Leaf size={12}/> },
-  'Data Science':   { bg: B.primaryLight,   border: B.primaryBorder,        text: B.primary,   icon: <BarChart3 size={12}/> },
-  'Automation':     { bg: B.accentLight,    border: B.accentBorder,         text: B.accent,    icon: <Zap size={12}/> },
-  'Hospitality Tech': { bg: 'rgba(167,167,167,0.10)', border: 'rgba(167,167,167,0.25)', text: B.accent, icon: <UtensilsCrossed size={12}/> },
-  'Manufacturing AI': { bg: 'rgba(102,102,102,0.10)', border: 'rgba(102,102,102,0.30)', text: '#666666', icon: <Cpu size={12}/> },
-  'Insurance AI':     { bg: 'rgba(103,103,103,0.10)', border: 'rgba(103,103,103,0.30)', text: '#676767', icon: <Shield size={12}/> },
-  'Telecom AI':       { bg: 'rgba(118,118,118,0.10)',  border: 'rgba(118,118,118,0.30)',  text: '#767676', icon: <Phone size={12}/> },
-  'Retail AI':        { bg: B.actionLight,  border: B.actionBorder,          text: B.action,   icon: <TrendingUp size={12}/> },
-  'Education AI':     { bg: 'rgba(103,103,103,0.10)', border: 'rgba(103,103,103,0.30)', text: '#676767', icon: <GraduationCap size={12}/> },
-};
+import imgArPrioritization from '../assets/case-studies/ar-prioritization.webp';
+import imgClaimDenial from '../assets/case-studies/claim-denial.webp';
+import imgCommandCenter from '../assets/case-studies/command-center.webp';
+import imgSupplyGuard from '../assets/case-studies/supplyguard.webp';
+import imgInsuranceRiskScoring from '../assets/case-studies/insurance-risk-scoring.webp';
+import imgTelecomChurn from '../assets/case-studies/telecom-churn.webp';
+import imgRetailDemand from '../assets/case-studies/retail-demand-forecasting.webp';
+import imgRcmPriorAuth from '../assets/case-studies/rcm-prior-auth.webp';
+import imgAccountsPayable from '../assets/case-studies/accounts-payable.webp';
+import imgEmailOrderIntake from '../assets/case-studies/email-order-intake.webp';
+import imgSatelliteCropYield from '../assets/case-studies/satellite-crop-yield.webp';
+import imgAdaptiveLearning from '../assets/case-studies/adaptive-learning.webp';
+import imgEhrClinicalNlp from '../assets/case-studies/ehr-clinical-nlp.webp';
+import imgSingleCellRnaseq from '../assets/case-studies/single-cell-rnaseq.webp';
+import imgRealTimeFraud from '../assets/case-studies/real-time-fraud-detection.webp';
+import imgInsurancePolicyClassification from '../assets/case-studies/insurance-policy-classification.webp';
+import imgHealthcareFraudBilling from '../assets/case-studies/healthcare-fraud-billing.webp';
+import { ArrowRight, ArrowUpRight, CheckCircle, ChevronRight, SquareCode } from 'lucide-react';
+import { caseStudies } from '../data/caseStudies';
+import { EXTRA_CASE_STUDIES } from '../data/extraCaseStudies';
+import { challengePoints, firstSentence, leadIn, solutionSteps } from '../data/caseStudyText';
 
 // ─── Case Studies Data ────────────────────────────────────────────────────────
 const ALL_CASE_STUDIES = {
@@ -66,10 +49,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'NLP', 'Embeddings', 'Semantic Search', 'spaCy'],
     quote: null,
     metrics: [{ value: 'NLP + Embeddings', label: 'Approach' }, { value: 'ICD-10 + CPT', label: 'Codes' }, { value: 'Concept / README', label: 'Stage' }],
-    heroIcon: <FlaskConical size={52} strokeWidth={1.2}/>,
     heroImage: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/ICD-10-CPT-coding-recommendation-engine',
-    nextSlug: 'ar-prioritization-underpayment-recovery', prevSlug: 'healthcare-fraud-detection-billing',
   },
   'ar-prioritization-underpayment-recovery': {
     slug: 'ar-prioritization-underpayment-recovery', industry: 'Healthcare AI',
@@ -83,10 +64,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'LightGBM', 'Isolation Forest', 'FastAPI', 'React', 'CMS RVU Data'],
     quote: null,
     metrics: [{ value: '0.875', label: 'PR-AUC' }, { value: '6.1M', label: 'Rows Modeled' }, { value: '9,114', label: 'Critical-Tier Claims' }],
-    heroIcon: <TrendingUp size={52} strokeWidth={1.2}/>,
     heroImage: imgArPrioritization,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/AR-prioritization-underpayment-recovery-engine',
-    nextSlug: 'conversational-analytics-platform', prevSlug: 'icd10-cpt-coding-engine',
   },
   'conversational-analytics-platform': {
     slug: 'conversational-analytics-platform', industry: 'Data Science',
@@ -100,10 +79,8 @@ const ALL_CASE_STUDIES = {
     tools: ['React', 'FastAPI', 'Google Gemini Pro', 'Firebase Firestore', 'Recharts', 'Python 3.12'],
     quote: null,
     metrics: [{ value: '6 Auto-Rendered', label: 'Chart Types' }, { value: 'Gemini Pro', label: 'LLM Engine' }, { value: 'Real-time Firestore', label: 'Data Layer' }],
-    heroIcon: <Database size={52} strokeWidth={1.2}/>,
     heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Conversational-Analytics-Platform',
-    nextSlug: 'claim-denial-prediction', prevSlug: 'ar-prioritization-underpayment-recovery',
   },
   'claim-denial-prediction': {
     slug: 'claim-denial-prediction', industry: 'Healthcare AI',
@@ -117,10 +94,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'Optuna', 'DistilBERT', 'SHAP', 'FastAPI', 'Streamlit'],
     quote: null,
     metrics: [{ value: '3-Tier', label: 'Risk Tiers' }, { value: 'TF-IDF + DistilBERT', label: 'Root-Cause NLP' }, { value: 'SHAP', label: 'Explainability' }],
-    heroIcon: <Target size={52} strokeWidth={1.2}/>,
     heroImage: imgClaimDenial,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Claim-denial-prediction-root-cause-classifier',
-    nextSlug: 'restaurant-command-center', prevSlug: 'conversational-analytics-platform',
   },
   'restaurant-command-center': {
     slug: 'restaurant-command-center', industry: 'Hospitality Tech',
@@ -134,14 +109,12 @@ const ALL_CASE_STUDIES = {
     tools: ['React', 'Fraud Detection Engine', 'Face Verification', 'Geo-Fencing', 'WhatsApp Alerts'],
     quote: null,
     metrics: [{ value: '5 Role-Based', label: 'Portals' }, { value: 'Real-Time WhatsApp', label: 'Alerts' }, { value: 'Face + Geo-Fence', label: 'Verification' }],
-    heroIcon: <Rocket size={52} strokeWidth={1.2}/>,
     heroImage: imgCommandCenter,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/restaurant-management-system',
     liveDemo: 'https://nexus-rms.vercel.app',
-    nextSlug: 'supplyguard-disruption-alerts', prevSlug: 'claim-denial-prediction',
   },
   'supplyguard-disruption-alerts': {
-    slug: 'supplyguard-disruption-alerts', industry: 'Manufacturing AI',
+    slug: 'supplyguard-disruption-alerts', industry: 'Supply Chain',
     timeline: '8 commits', investment: 'Full-Stack Build',
     accentColor: '#666666',
     title: "SupplyGuard — Supply Chain Disruption Alert System",
@@ -152,10 +125,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'Logistic Regression', 'Flask', 'HTML Dashboard'],
     quote: null,
     metrics: [{ value: '0–100 Scale', label: 'Risk Score' }, { value: 'Logistic Regression', label: 'Model' }, { value: 'Low / Med / High', label: 'Risk Tiers' }],
-    heroIcon: <Globe size={52} strokeWidth={1.2}/>,
     heroImage: imgSupplyGuard,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Supply-Chain-Disruption-Alerts',
-    nextSlug: 'insurance-risk-scoring', prevSlug: 'restaurant-command-center',
   },
   'insurance-risk-scoring': {
     slug: 'insurance-risk-scoring', industry: 'Insurance AI',
@@ -169,10 +140,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'Gradient Boosting', 'Streamlit', 'scikit-learn'],
     quote: null,
     metrics: [{ value: '45', label: 'Model Features' }, { value: 'Gradient Boosting', label: 'Model' }, { value: '3', label: 'Risk Tiers' }],
-    heroIcon: <Shield size={52} strokeWidth={1.2}/>,
     heroImage: imgInsuranceRiskScoring,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Insurance-Risk-Scoring',
-    nextSlug: 'telecom-churn-prediction', prevSlug: 'supplyguard-disruption-alerts',
   },
   'telecom-churn-prediction': {
     slug: 'telecom-churn-prediction', industry: 'Telecom AI',
@@ -186,10 +155,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Random Forest', 'XGBoost', 'LightGBM', 'CatBoost', 'SHAP', 'SMOTE'],
     quote: null,
     metrics: [{ value: '86.4%', label: 'Accuracy' }, { value: '0.91', label: 'AUC-ROC' }, { value: '65%+ Churners', label: 'Top 20% Capture' }],
-    heroIcon: <TrendingUp size={52} strokeWidth={1.2}/>,
     heroImage: imgTelecomChurn,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Telecom-Customer_Churn_Prediction',
-    nextSlug: 'retail-demand-forecasting', prevSlug: 'insurance-risk-scoring',
   },
   'retail-demand-forecasting': {
     slug: 'retail-demand-forecasting', industry: 'Retail AI',
@@ -203,10 +170,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'Pandas', 'Time-Series Forecasting'],
     quote: null,
     metrics: [{ value: 'Time-Series', label: 'Approach' }, { value: 'Seasonality', label: 'Focus' }, { value: 'Concept / README', label: 'Stage' }],
-    heroIcon: <BarChart3 size={52} strokeWidth={1.2}/>,
     heroImage: imgRetailDemand,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Retail-Demand-Forecasting',
-    nextSlug: 'rcm-prior-authorization-intelligence', prevSlug: 'telecom-churn-prediction',
   },
   'rcm-prior-authorization-intelligence': {
     slug: 'rcm-prior-authorization-intelligence', industry: 'Healthcare AI',
@@ -220,10 +185,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'Time-Series Forecasting', 'Streamlit', 'CMS Public Data'],
     quote: null,
     metrics: [{ value: '0.048%', label: 'Holdout MAPE' }, { value: '33.5M → 36.1M', label: 'Enrollment Tracked' }, { value: '90 Days', label: 'Forecast Horizon' }],
-    heroIcon: <BarChart3 size={52} strokeWidth={1.2}/>,
     heroImage: imgRcmPriorAuth,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Revenue-forecasting-prior-authorization-intelligence',
-    nextSlug: 'accounts-payable-invoice-extraction', prevSlug: 'retail-demand-forecasting',
   },
   'accounts-payable-invoice-extraction': {
     slug: 'accounts-payable-invoice-extraction', industry: 'Automation',
@@ -237,10 +200,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'Jupyter Notebook', 'Document Extraction'],
     quote: null,
     metrics: [{ value: '6+ Core Fields', label: 'Fields Extracted' }, { value: 'Structured Data', label: 'Output' }, { value: 'Notebook Prototype', label: 'Stage' }],
-    heroIcon: <Code2 size={52} strokeWidth={1.2}/>,
     heroImage: imgAccountsPayable,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Accounts-Payable-Invoice-Extraction',
-    nextSlug: 'email-order-intake-system', prevSlug: 'rcm-prior-authorization-intelligence',
   },
   'email-order-intake-system': {
     slug: 'email-order-intake-system', industry: 'Automation',
@@ -254,10 +215,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'IMAP / Graph API', 'FastAPI', 'PostgreSQL (suggested)'],
     quote: null,
     metrics: [{ value: 'Email + Attachments', label: 'Channels' }, { value: 'Rule-Based', label: 'Validation' }, { value: 'Concept / README', label: 'Stage' }],
-    heroIcon: <Mail size={52} strokeWidth={1.2}/>,
     heroImage: imgEmailOrderIntake,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Email-Based-Order-Intake-System',
-    nextSlug: 'satellite-weather-crop-yield', prevSlug: 'accounts-payable-invoice-extraction',
   },
   'satellite-weather-crop-yield': {
     slug: 'satellite-weather-crop-yield', industry: 'Agriculture AI',
@@ -271,10 +230,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'Sentinel-2', 'Random Forest', 'XGBoost', 'LSTM/GRU'],
     quote: null,
     metrics: [{ value: '3 Fused', label: 'Data Sources' }, { value: '5', label: 'Models Compared' }, { value: 'Concept / README', label: 'Stage' }],
-    heroIcon: <Leaf size={52} strokeWidth={1.2}/>,
     heroImage: imgSatelliteCropYield,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/satellite-weather-crop-yield',
-    nextSlug: 'adaptive-learning-engine', prevSlug: 'email-order-intake-system',
   },
   'adaptive-learning-engine': {
     slug: 'adaptive-learning-engine', industry: 'Education AI',
@@ -288,10 +245,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'Bayesian Knowledge Tracing', 'Item Response Theory'],
     quote: null,
     metrics: [{ value: 'Bayesian Mastery', label: 'Approach' }, { value: 'Real-Time', label: 'Adjustment' }, { value: 'Concept / README', label: 'Stage' }],
-    heroIcon: <GraduationCap size={52} strokeWidth={1.2}/>,
     heroImage: imgAdaptiveLearning,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/adaptive-learning-engine',
-    nextSlug: 'ehr-clinical-nlp-automation', prevSlug: 'satellite-weather-crop-yield',
   },
   'ehr-clinical-nlp-automation': {
     slug: 'ehr-clinical-nlp-automation', industry: 'Healthcare AI',
@@ -305,10 +260,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'spaCy / NER', 'ICD/SNOMED Normalization'],
     quote: null,
     metrics: [{ value: 'Dx / Meds / Procedures', label: 'Entities' }, { value: 'De-ID Built-In', label: 'Privacy' }, { value: 'Concept / README', label: 'Stage' }],
-    heroIcon: <Brain size={52} strokeWidth={1.2}/>,
     heroImage: imgEhrClinicalNlp,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/ehr-clinical-nlp-automation',
-    nextSlug: 'single-cell-rnaseq-automation', prevSlug: 'adaptive-learning-engine',
   },
   'single-cell-rnaseq-automation': {
     slug: 'single-cell-rnaseq-automation', industry: 'Biomedical Data Science',
@@ -322,10 +275,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'PCA', 'UMAP', 'GMM', 'DBSCAN'],
     quote: null,
     metrics: [{ value: 'PCA / t-SNE / UMAP', label: 'Reduction' }, { value: 'GMM + DBSCAN', label: 'Clustering' }, { value: 'BIC-Optimized', label: 'Selection' }],
-    heroIcon: <Dna size={52} strokeWidth={1.2}/>,
     heroImage: imgSingleCellRnaseq,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/single-cell-rnaseq-automation',
-    nextSlug: 'real-time-fraud-detection', prevSlug: 'ehr-clinical-nlp-automation',
   },
   'real-time-fraud-detection': {
     slug: 'real-time-fraud-detection', industry: 'Fintech AI',
@@ -339,10 +290,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'Supervised + Unsupervised ML', 'Real-Time Scoring'],
     quote: null,
     metrics: [{ value: '0–100 Scale', label: 'Risk Score' }, { value: '3-Tier', label: 'Decisioning' }, { value: 'Concept / README', label: 'Stage' }],
-    heroIcon: <Shield size={52} strokeWidth={1.2}/>,
     heroImage: imgRealTimeFraud,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/real-time-fraud-detection',
-    nextSlug: 'insurance-policy-document-classification', prevSlug: 'single-cell-rnaseq-automation',
   },
   'insurance-policy-document-classification': {
     slug: 'insurance-policy-document-classification', industry: 'Insurance AI',
@@ -356,10 +305,8 @@ const ALL_CASE_STUDIES = {
     tools: ['React Native', 'Expo', 'OCR', 'Document AI'],
     quote: null,
     metrics: [{ value: 'React Native / Expo', label: 'Platform' }, { value: 'Scanned + Multi-Page', label: 'OCR' }, { value: 'Human-in-the-Loop', label: 'Review' }],
-    heroIcon: <Shield size={52} strokeWidth={1.2}/>,
     heroImage: imgInsurancePolicyClassification,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Insurance-Policy-Document-Classification-System',
-    nextSlug: 'regulatory-form-auto-completion', prevSlug: 'real-time-fraud-detection',
   },
   'regulatory-form-auto-completion': {
     slug: 'regulatory-form-auto-completion', industry: 'Automation',
@@ -373,10 +320,8 @@ const ALL_CASE_STUDIES = {
     tools: ['Playwright', 'FastAPI', 'React + Vite', 'Groq AI', 'Supabase'],
     quote: null,
     metrics: [{ value: 'Full Field-Fill', label: 'Automation' }, { value: 'CAPTCHA + Missing Data', label: 'HITL' }, { value: 'Playwright + Groq', label: 'Stack' }],
-    heroIcon: <Rocket size={52} strokeWidth={1.2}/>,
     heroImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Regulatory-Form-Auto-Completion',
-    nextSlug: 'healthcare-fraud-detection-billing', prevSlug: 'insurance-policy-document-classification',
   },
   'healthcare-fraud-detection-billing': {
     slug: 'healthcare-fraud-detection-billing', industry: 'Healthcare AI',
@@ -390,343 +335,165 @@ const ALL_CASE_STUDIES = {
     tools: ['Python', 'Isolation Forest', 'Random Forest', 'Z-score Analysis', 'OIG LEIE'],
     quote: null,
     metrics: [{ value: '44,528', label: 'Providers Analyzed' }, { value: '3,842', label: 'High-Risk Flagged' }, { value: '~96%', label: 'Classifier Accuracy' }],
-    heroIcon: <Shield size={52} strokeWidth={1.2}/>,
     heroImage: imgHealthcareFraudBilling,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Fraudulent-Outlier-Billing-Detection-System',
-    nextSlug: 'icd10-cpt-coding-engine', prevSlug: 'regulatory-form-auto-completion',
   },
 };
 
-// ─── Particles ────────────────────────────────────────────────────────────────
-// ─── Section Badge ─────────────────────────────────────────────────────────────
-// ─── Body Section Header ──────────────────────────────────────────────────────
-function BodySectionHeader({ label, icon, color, stepNum }) {
+const CASE_STUDIES_BY_SLUG = {
+  ...ALL_CASE_STUDIES,
+  ...Object.fromEntries(EXTRA_CASE_STUDIES.map((e) => [e.slug, { ...e, heroImage: e.image }])),
+};
+
+// ─── Page layout styles ───────────────────────────────────────────────────────
+const CSS = `
+.cs-page{background:#f4f4f4;color:#111;font-family:var(--font-main);overflow-x:clip}
+.cs-hero{position:relative;padding:clamp(96px,11vw,150px) 0 clamp(36px,5vw,64px);background:linear-gradient(180deg,#ececec 0%,#f4f4f4 100%);border-bottom:1px solid rgba(0,0,0,.08)}
+.cs-crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:clamp(22px,3.5vw,38px);font-size:var(--fs-small);font-weight:600;color:#6b6b6b}
+.cs-crumbs a{color:#6b6b6b;text-decoration:none;transition:color .2s}
+.cs-crumbs a:hover{color:#000}
+.cs-crumbs b{color:#111;font-weight:700}
+.cs-kicker{display:inline-flex;align-items:center;gap:10px;font-size:var(--fs-label);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#555;margin-bottom:16px}
+.cs-kicker i{width:4px;height:4px;border-radius:50%;background:#999}
+.cs-hero h1{margin:0 0 clamp(14px,2vw,22px);max-width:980px;font-size:var(--fs-section-h2);font-weight:800;line-height:1.12;letter-spacing:-.025em;color:#0b0b0b;text-align:left}
+.cs-sub{margin:0 0 clamp(18px,2.4vw,26px);max-width:820px;font-size:var(--fs-card-title);line-height:1.65;color:#444;text-align:left}
+.cs-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(20px,2.6vw,30px)}
+.cs-chip{padding:6px 13px;border-radius:999px;border:1px solid rgba(0,0,0,.16);background:rgba(255,255,255,.7);font-size:var(--fs-small);font-weight:600;color:#2a2a2a}
+.cs-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:clamp(26px,3.6vw,44px)}
+.cs-btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:12px;font-size:var(--fs-small);font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:transform .2s,background .2s,color .2s,border-color .2s}
+.cs-btn--solid{background:#0b0b0b;color:#fff;border:1px solid #0b0b0b}
+.cs-btn--solid:hover{background:#2a2a2a;transform:translateY(-2px)}
+.cs-btn--ghost{background:transparent;color:#0b0b0b;border:1px solid rgba(0,0,0,.35)}
+.cs-btn--ghost:hover{background:#0b0b0b;color:#fff;transform:translateY(-2px)}
+.cs-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));border:1px solid rgba(0,0,0,.12);border-radius:18px;background:#fff;overflow:hidden}
+.cs-stat{padding:clamp(16px,2vw,24px) clamp(18px,2.2vw,28px);border-right:1px solid rgba(0,0,0,.1)}
+.cs-stat:last-child{border-right:0}
+.cs-stat b{display:block;font-size:var(--fs-card-title);font-weight:800;letter-spacing:-.01em;color:#0b0b0b;line-height:1.2}
+.cs-stat span{display:block;margin-top:6px;font-size:var(--fs-label);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#777}
+.cs-wrap{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(32px,5vw,72px);padding:clamp(36px,5vw,72px) 0 clamp(48px,6vw,96px);align-items:start}
+.cs-toc{position:sticky;top:104px}
+.cs-toc p{margin:0 0 12px;font-size:var(--fs-label);font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#777}
+.cs-toc a{display:block;padding:9px 0 9px 16px;border-left:2px solid rgba(0,0,0,.12);font-size:var(--fs-small);font-weight:600;color:#666;text-decoration:none;transition:color .2s,border-color .2s}
+.cs-toc a:hover{color:#000}
+.cs-toc a.is-on{color:#000;border-left-color:#000}
+.cs-main{min-width:0;max-width:820px}
+.cs-fig{margin:0 0 clamp(32px,4.5vw,56px);border-radius:20px;overflow:hidden;border:1px solid rgba(0,0,0,.1);background:#0b0b0b;line-height:0}
+.cs-fig img{width:100%;height:auto;display:block}
+.cs-sec{scroll-margin-top:104px;margin-bottom:clamp(36px,5vw,64px)}
+.cs-sec h2{margin:0 0 clamp(14px,1.8vw,20px);font-size:var(--fs-h3);font-weight:800;letter-spacing:-.02em;color:#0b0b0b;text-align:left}
+.cs-sec p{margin:0 0 14px;font-size:var(--fs-card-title);line-height:1.8;color:#2f2f2f;text-align:left}
+.cs-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin:clamp(18px,2.4vw,28px) 0 0;border:1px solid rgba(0,0,0,.12);border-radius:16px;background:#fff;overflow:hidden}
+.cs-glance div{padding:16px 20px;border-bottom:1px solid rgba(0,0,0,.08)}
+.cs-glance dt{font-size:var(--fs-label);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#777;margin:0 0 5px}
+.cs-glance dd{margin:0;font-size:var(--fs-card-body);font-weight:600;color:#111}
+.cs-glance a{color:#111;text-decoration:underline;text-underline-offset:3px}
+.cs-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.cs-list li{position:relative;padding:16px 18px 16px 52px;border-radius:14px;background:#fff;border:1px solid rgba(0,0,0,.1);font-size:var(--fs-card-body);line-height:1.7;color:#2f2f2f;text-align:left}
+.cs-list li b{color:#0b0b0b}
+.cs-list li::before{content:"";position:absolute;left:19px;top:22px;width:8px;height:8px;border-radius:50%;background:#0b0b0b}
+.cs-steps{counter-reset:step;list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.cs-steps li{counter-increment:step;position:relative;padding:16px 18px 16px 62px;border-radius:14px;background:#fff;border:1px solid rgba(0,0,0,.1);font-size:var(--fs-card-body);line-height:1.7;color:#2f2f2f;text-align:left}
+.cs-steps li b{color:#0b0b0b}
+.cs-steps li::before{content:counter(step);position:absolute;left:16px;top:14px;width:30px;height:30px;border-radius:50%;background:#0b0b0b;color:#fff;font-size:var(--fs-small);font-weight:700;display:flex;align-items:center;justify-content:center}
+.cs-checks{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.cs-checks li{display:flex;gap:14px;align-items:flex-start;padding:15px 18px;border-radius:14px;background:#fff;border:1px solid rgba(0,0,0,.1);font-size:var(--fs-card-body);line-height:1.65;color:#2f2f2f;text-align:left}
+.cs-checks svg{flex:none;margin-top:3px;color:#0b0b0b}
+.cs-stack{display:flex;flex-wrap:wrap;gap:10px}
+.cs-stack span{padding:9px 16px;border-radius:10px;background:#0b0b0b;color:#fff;font-size:var(--fs-small);font-weight:600;letter-spacing:.02em}
+.cs-related{padding:clamp(48px,6vw,88px) 0;background:#0a0a0a;color:#fff}
+.cs-related-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:clamp(24px,3.4vw,40px)}
+.cs-related-head h2{margin:0;font-size:var(--fs-section-h2);font-weight:800;letter-spacing:-.02em;color:#fff;text-align:left}
+.cs-related-head a{color:rgba(255,255,255,.75);font-size:var(--fs-small);font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;display:inline-flex;gap:8px;align-items:center;transition:color .2s}
+.cs-related-head a:hover{color:#fff}
+.cs-rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(16px,2vw,26px)}
+.cs-rcard{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);text-decoration:none;color:#fff;transition:transform .3s,border-color .3s,background .3s}
+.cs-rcard:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.07)}
+.cs-rcard img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#161616}
+.cs-rbody{padding:clamp(16px,2vw,22px);display:flex;flex-direction:column;gap:10px;flex:1}
+.cs-rbody small{font-size:var(--fs-label);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.cs-rbody h3{margin:0;font-size:var(--fs-card-title);font-weight:700;line-height:1.3;color:#fff;text-align:left}
+.cs-rbody em{margin-top:auto;font-style:normal;font-size:var(--fs-small);font-weight:700;color:rgba(255,255,255,.85);display:inline-flex;gap:8px;align-items:center}
+.cs-cta{padding:clamp(48px,6vw,88px) 0;background:#f4f4f4}
+.cs-cta-box{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:clamp(26px,4vw,52px);border-radius:24px;background:#0b0b0b;color:#fff}
+.cs-cta-box h2{margin:0 0 10px;font-size:var(--fs-h3);font-weight:800;color:#fff;text-align:left}
+.cs-cta-box p{margin:0;max-width:640px;font-size:var(--fs-card-body);line-height:1.7;color:rgba(255,255,255,.72);text-align:left}
+.cs-cta-box .cs-btn--solid{background:#fff;color:#000;border-color:#fff}
+.cs-cta-box .cs-btn--solid:hover{background:#d9d9d9}
+@media (max-width:980px){
+  .cs-wrap{grid-template-columns:minmax(0,1fr)}
+  .cs-toc{position:static;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .cs-toc p{width:100%;margin-bottom:2px}
+  .cs-toc a{padding:8px 14px;border:1px solid rgba(0,0,0,.16);border-radius:999px;background:#fff}
+  .cs-toc a.is-on{border-color:#000}
+}
+@media (max-width:560px){ .cs-stat{border-right:0;border-bottom:1px solid rgba(0,0,0,.1)} .cs-stat:last-child{border-bottom:0} }
+`;
+
+const SECTIONS = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'challenge', label: 'The Challenge' },
+  { id: 'solution', label: 'The Solution' },
+  { id: 'outcomes', label: 'Outcomes' },
+  { id: 'stack', label: 'Tech stack' },
+];
+
+function Points({ items, className }) {
   return (
-    <div style={{
-      display: 'flex', alignItems: 'center', gap: 14,
-      marginBottom: 'clamp(18px, 2.5vw, 28px)',
-    }}>
-      {/* Step number circle */}
-      <div style={{
-        width: 'clamp(36px, 4vw, 44px)', height: 'clamp(36px, 4vw, 44px)',
-        borderRadius: '50%', flexShrink: 0,
-        background: `${color}18`,
-        border: `2px solid ${color}35`,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: color,
-      }}>
-        {icon}
+    <ul className={className}>
+      {items.map((t, i) => {
+        const { lead, rest } = leadIn(t);
+        return <li key={i}>{lead ? <><b>{lead}:</b> {rest}</> : t}</li>;
+      })}
+    </ul>
+  );
+}
+
+function RelatedCard({ item }) {
+  return (
+    <Link to={`/case-studies/${item.slug}`} className="cs-rcard">
+      <img src={item.image} alt="" loading="lazy" decoding="async" />
+      <div className="cs-rbody">
+        <small>{item.serviceLabel} · {item.industryLabel}</small>
+        <h3>{item.title}</h3>
+        <em>Read the case study <ArrowRight size={15} /></em>
       </div>
-      <div>
-        <div style={{
-          fontSize: 'var(--fs-label)', fontWeight: 800,
-          letterSpacing: '0.22em', textTransform: 'uppercase',
-          color: color, marginBottom: 2,
-        }}>
-          {stepNum && `Step ${stepNum} · `}{label}
-        </div>
-      </div>
-      {/* Decorative line */}
-      <div style={{ flex: 1, height: 1, background: `linear-gradient(to right, ${color}30, transparent)` }}/>
-    </div>
-  );
-}
-
-// ─── Tool Badge ───────────────────────────────────────────────────────────────
-function ToolBadge({ label, accent }) {
-  const [hovered, setHovered] = useState(false);
-  const color = accent || B.action;
-  return (
-    <span
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: 'inline-flex', alignItems: 'center', gap: 6,
-        padding: 'clamp(6px, 0.9vw, 9px) clamp(12px, 1.8vw, 16px)',
-        borderRadius: 'var(--radius-sm)',
-        background: hovered ? color : `${color}12`,
-        border: `1.5px solid ${hovered ? color : `${color}35`}`,
-        color: hovered ? B.white : color,
-        fontSize: 'var(--fs-small)', fontWeight: 700, letterSpacing: '0.04em',
-        transition: 'all 0.22s ease', cursor: 'default',
-        boxShadow: hovered ? `0 4px 14px ${color}35` : 'none',
-      }}
-    >
-      <Code2 size={11}/>{label}
-    </span>
-  );
-}
-
-// ─── Result Item — animated ───────────────────────────────────────────────────
-function ResultItem({ text, accent, i }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45, delay: i * 0.09 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      whileHover={{ x: 6 }}
-      style={{
-        display: 'flex', alignItems: 'flex-start', gap: 14,
-        padding: 'clamp(14px, 2vw, 20px) clamp(16px, 2.5vw, 24px)',
-        borderRadius: 16, marginBottom: 10,
-        background: hovered ? accent : `${accent}08`,
-        border: `1.5px solid ${hovered ? accent : `${accent}22`}`,
-        transition: 'all 0.3s ease',
-        boxShadow: hovered ? `0 8px 28px ${accent}30` : 'none',
-      }}
-    >
-      {/* Icon */}
-      <div style={{
-        width: 30, height: 30, borderRadius: '50%', flexShrink: 0,
-        background: hovered ? 'rgba(255,255,255,0.25)' : `${accent}15`,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        marginTop: 1, transition: 'all 0.3s ease',
-      }}>
-        <CheckCircle size={15} color={hovered ? B.white : accent} strokeWidth={2.5}/>
-      </div>
-      <span style={{
-        fontSize: 'var(--fs-card-body)', lineHeight: 1.75,
-        color: hovered ? B.white : B.textMain, fontWeight: 500,
-        transition: 'color 0.3s ease',
-      }}>{text}</span>
-    </motion.div>
-  );
-}
-
-// ─── Metric Pill (hero) ───────────────────────────────────────────────────────
-function MetricPill({ value, label, accent, delay }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.85 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
-      style={{
-        padding: 'clamp(14px, 2vw, 20px) clamp(16px, 2.5vw, 24px)',
-        borderRadius: 18,
-        background: 'rgba(255,255,255,0.82)',
-        backdropFilter: 'blur(16px)',
-        border: `1.5px solid ${accent}25`,
-        boxShadow: `0 8px 28px ${accent}15, 0 2px 8px rgba(0,0,0,0.06)`,
-        textAlign: 'center', flex: 1,
-        position: 'relative', overflow: 'hidden',
-      }}
-    >
-      {/* Subtle glow top-left */}
-      <div style={{
-        position: 'absolute', top: -10, left: -10, width: 60, height: 60,
-        borderRadius: '50%', background: `radial-gradient(circle, ${accent}25, transparent 70%)`,
-        pointerEvents: 'none',
-      }}/>
-      <div style={{
-        fontWeight: 800,
-        fontSize: 'var(--fs-section-h2)',
-        color: accent, letterSpacing: '-0.02em', lineHeight: 1,
-        marginBottom: 5, position: 'relative', zIndex: 1,
-      }}>{value}</div>
-      <div style={{
-        fontSize: 'var(--fs-label)', fontWeight: 700,
-        textTransform: 'uppercase', letterSpacing: '0.10em',
-        color: B.textMuted, position: 'relative', zIndex: 1,
-      }}>{label}</div>
-    </motion.div>
-  );
-}
-
-// ─── Nav Card ─────────────────────────────────────────────────────────────────
-function NavCard({ slug, dir }) {
-  const cs = ALL_CASE_STUDIES[slug];
-  const [hovered, setHovered] = useState(false);
-  if (!cs) return null;
-  const tag = INDUSTRY_COLORS[cs.industry] || {};
-  const ac = lift(cs.accentColor);
-
-  return (
-    <Link to={`/case-studies/${slug}`} style={{ textDecoration: 'none', flex: '1 1 260px', minWidth: 0 }}>
-      <motion.div
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        whileHover={{ y: -5 }}
-        style={{
-          borderRadius: 22, overflow: 'hidden',
-          background: hovered ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.02)',
-          border: `1.5px solid ${hovered ? ac : 'rgba(255,255,255,0.10)'}`,
-          boxShadow: hovered ? `0 16px 48px ${ac}28, 0 0 0 1px ${ac}20` : 'none',
-          transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)',
-          cursor: 'pointer', position: 'relative',
-        }}
-      >
-        {/* Hero image strip */}
-        <div style={{
-          height: 'clamp(80px, 10vw, 120px)',
-          backgroundImage: `url(${cs.heroImage})`,
-          backgroundSize: 'cover', backgroundPosition: 'center',
-          filter: hovered ? 'brightness(0.55)' : 'brightness(0.35)',
-          transition: 'filter 0.4s ease',
-          position: 'relative',
-        }}>
-          {/* Gradient overlay */}
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 20%, rgba(6,6,6,0.95) 100%)' }}/>
-          {/* Accent top line */}
-          <div style={{
-            position: 'absolute', top: 0, left: 0, right: 0, height: 3,
-            background: hovered ? `linear-gradient(90deg, ${ac}, ${ac}50)` : 'transparent',
-            transition: 'background 0.3s',
-          }}/>
-          {/* Direction label */}
-          <div style={{
-            position: 'absolute', bottom: 12, left: dir === 'prev' ? 16 : 'auto', right: dir === 'next' ? 16 : 'auto',
-            fontSize: 'var(--fs-label)', fontWeight: 700, letterSpacing: '0.15em',
-            textTransform: 'uppercase', color: B.textDarkMuted,
-            display: 'flex', alignItems: 'center', gap: 5,
-          }}>
-            {dir === 'prev' && <ArrowLeft size={10}/>}
-            {dir === 'prev' ? 'Previous' : 'Next'}
-            {dir === 'next' && <ArrowRight size={10}/>}
-          </div>
-        </div>
-
-        {/* Text area */}
-        <div style={{ padding: 'clamp(14px, 2vw, 20px) clamp(16px, 2.5vw, 24px)' }}>
-          {/* Industry tag */}
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 5,
-            fontSize: 'var(--fs-label)', fontWeight: 700,
-            color: ac, letterSpacing: '0.08em',
-            textTransform: 'uppercase', marginBottom: 8,
-          }}>
-            {tag.icon && React.cloneElement(tag.icon, { size: 10, color: ac })}
-            {cs.industry}
-          </div>
-          {/* Title */}
-          <div style={{
-            fontSize: 'var(--fs-card-body)', fontWeight: 700,
-            color: hovered ? B.textDark : B.textDarkMid, lineHeight: 1.5,
-            transition: 'color 0.25s',
-          }}>{cs.title}</div>
-        </div>
-      </motion.div>
     </Link>
   );
 }
 
-// ─── Reading Progress Bar ─────────────────────────────────────────────────────
-function ReadingProgress({ accentColor }) {
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    const onScroll = () => {
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-  return (
-    <div style={{
-      position: 'fixed', top: 0, left: 0, right: 0, height: 3,
-      background: 'rgba(0,0,0,0.08)', zIndex: 9999, pointerEvents: 'none',
-    }}>
-      <motion.div
-        style={{
-          height: '100%', width: `${progress}%`,
-          background: `linear-gradient(90deg, ${accentColor || B.action}, ${B.secondary})`,
-          boxShadow: `0 0 10px ${accentColor || B.action}80`,
-        }}
-        transition={{ duration: 0.1 }}
-      />
-    </div>
-  );
-}
-
-// ─── Professional Bridge (New Dark Section) ───────────────────────────────
-function ProfessionalBridge() {
-  const items = [
-    { icon: <Lock size={14}/>, text: "Client Confidentiality" },
-    { icon: <Code2 size={14}/>, text: "Code Ownership" },
-    { icon: <Rocket size={14}/>, text: "Scalable Architecture" },
-    { icon: <Globe2 size={14}/>, text: "Global Standards" },
-  ];
-
-  return (
-    <section style={{
-      position: 'relative', zIndex: 2,
-      background: B.bgDark,
-      padding: 'clamp(60px, 8vw, 100px) 0', // Approx 20-25vh
-      overflow: 'hidden',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-    }}>
-      <CircuitBg opacity={0.08}/>
-      <DataParticles count={12} dark/>
-
-      {/* WATERMARK TEXT */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        pointerEvents: 'none', opacity: 0.04,
-        overflow: 'hidden', whiteSpace: 'nowrap',
-      }}>
-        <h1 style={{
-          fontSize: 'var(--fs-hero)',
-          fontWeight: 900, color: B.white,
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em',
-          transform: 'rotate(-5deg)',
-        }}>
-          Presented by WellMind Data Solutions
-        </h1>
-      </div>
-
-      {/* FLOATING PILLS */}
-      <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
-        <div style={{
-          display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px, 1.5vw, 16px)',
-          justifyContent: 'center',
-        }}>
-          {items.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ scale: 1.05, borderColor: B.action }}
-              style={{
-                display: 'flex', alignItems: 'center', gap: 8,
-                padding: 'clamp(8px, 1.2vw, 12px) clamp(16px, 2.5vw, 24px)',
-                borderRadius: 'var(--radius-md)',
-                background: 'rgba(255,255,255,0.03)',
-                border: `1px solid rgba(255,255,255,0.10)`,
-                color: B.textDarkMid,
-                fontSize: 'var(--fs-small)', fontWeight: 700,
-                letterSpacing: '0.05em', textTransform: 'uppercase',
-                backdropFilter: 'blur(8px)',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-                // Floating animation
-                animation: `wmFloat ${4 + i * 0.5}s ease-in-out infinite`,
-              }}
-            >
-              <span style={{ color: B.action }}>{item.icon}</span>
-              {item.text}
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── MAIN ─────────────────────────────────────────────────────────────────────
 export default function IndividualCaseStudy() {
   const { slug } = useParams();
-  const cs = ALL_CASE_STUDIES[slug];
-  useSeo(cs ? { title: `${cs.title} | Case Study | ${SITE_NAME}`, description: `${cs.title} — a portfolio project by ${SITE_NAME}.`, path: `/case-studies/${slug}` } : null);
+  return <CaseStudyView key={slug} slug={slug} />;   // keyed: state resets when you move to another case study
+}
 
-  useEffect(() => { window.scrollTo(0, 0); }, [slug]);
+function CaseStudyView({ slug }) {
+  const cs = CASE_STUDIES_BY_SLUG[slug];
+  const meta = caseStudies.find((c) => c.slug === slug);
+  const [active, setActive] = useState('overview');
 
-  if (!cs) {
+  useSeo(cs ? { title: `${cs.title} | Case Study | ${SITE_NAME}`, description: `${cs.title}: ${firstSentence(cs.overview, 150)}`, path: `/case-studies/${slug}` } : null);
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  // highlight the section currently in view in the "On this page" list
+  useEffect(() => {
+    if (!cs) return undefined;
+    const els = SECTIONS.map((s) => document.getElementById(s.id)).filter(Boolean);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [cs, slug]);
+
+  const related = useMemo(() => {
+    if (!meta) return [];
+    const others = caseStudies.filter((c) => c.slug !== slug);
+    const score = (c) => (c.service === meta.service ? 2 : 0) + (c.industry === meta.industry ? 1 : 0);
+    return [...others].sort((a, b) => score(b) - score(a)).slice(0, 3);
+  }, [meta, slug]);
+
+  if (!cs || !meta) {
     return (
       <div style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: B.bgLight, fontFamily: 'var(--font-main)' }}>
         <h2 style={{ color: B.textMain, marginBottom: 16 }}>Case study not found.</h2>
@@ -735,479 +502,117 @@ export default function IndividualCaseStudy() {
     );
   }
 
+  const { lead, bullets } = challengePoints(cs.challenge);
+  const steps = solutionSteps(cs.approach);
+  const image = meta.image || cs.heroImage;
 
   return (
-    <div style={{ background: B.bgLight, minHeight: '100svh', overflowX: 'clip', fontFamily: 'var(--font-main)' }}>
-      <ReadingProgress accentColor={cs.accentColor}/>
+    <div className="cs-page">
+      <style>{CSS}</style>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          1. HERO (No Image Strip)
-         ═══════════════════════════════════════════════════════════════════ */}
-      <section style={{
-        position: 'relative', overflow: 'hidden',
-        background: B.heroBg,
-        paddingTop: 'clamp(90px, 12vw, 140px)',
-        paddingBottom: 'clamp(40px, 6vw, 80px)', // Reduced bottom padding since no image
-      }}>
-        {/* Decorative ambient glows */}
-        <div style={{ position: 'absolute', right: '-5%', top: '10%', width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle, ${cs.accentColor}10 0%, transparent 65%)`, pointerEvents: 'none' }}/>
-        <div style={{ position: 'absolute', left: '-8%', bottom: '0%', width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(47,47,47,0.07) 0%, transparent 70%)', pointerEvents: 'none' }}/>
-        <DataParticles count={14}/>
-
-        <div style={{ ...PX, position: 'relative', zIndex: 5 }}>
-
-          {/* Breadcrumb */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 'clamp(24px, 4vw, 44px)', flexWrap: 'wrap' }}
-          >
-            {[
-              { label: 'Home', href: '/' },
-              { label: 'Case Studies', href: '/case-studies' },
-              { label: cs.industry, href: null },
-            ].map((crumb, ci) => (
-              <React.Fragment key={ci}>
-                {ci > 0 && <ChevronRight size={12} color={B.textMuted}/>}
-                {crumb.href ? (
-                  <Link to={crumb.href} style={{ fontSize: 'var(--fs-small)', color: B.textMuted, fontWeight: 600, transition: 'color 0.2s' }}
-                    onMouseEnter={e => e.currentTarget.style.color = B.action}
-                    onMouseLeave={e => e.currentTarget.style.color = B.textMuted}>{crumb.label}</Link>
-                ) : (
-                  <span style={{ fontSize: 'var(--fs-small)', color: B.textMain, fontWeight: 700 }}>{crumb.label}</span>
-                )}
-              </React.Fragment>
-            ))}
-          </motion.div>
-
-          {/* Two-column: left text / right metrics */}
-          <div className="cs-detail-hero-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(280px, 310px)', gap: 'clamp(36px, 6vw, 88px)', alignItems: 'center' }}>
-
-            {/* LEFT: full narrative */}
-            <div style={{ minWidth: 0 }}>
-
-              {/* H1 */}
-              <motion.h1
-                initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                style={{
-                  fontWeight: 800,
-                  fontSize: 'var(--fs-section-h2)',
-                  lineHeight: 1.15, letterSpacing: '-0.025em',
-                  color: B.primaryDark,
-                  marginBottom: 'clamp(16px, 2.5vw, 26px)',
-                }}
-              >
-                {cs.title}
-              </motion.h1>
-
-              {/* Overview */}
-              <motion.p
-                initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.18 }}
-                style={{
-                  fontSize: 'var(--fs-card-title)',
-                  lineHeight: 1.85, color: B.textMid,
-                  marginBottom: 'clamp(28px, 4vw, 48px)', fontWeight: 500,
-                }}
-              >
-                {cs.overview}
-              </motion.p>
-
-              {/* CTA button */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.26 }}
-                style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 'clamp(20px, 4vw, 40px)' }}
-              >
-                <Link to="/book-discovery" className="btn-primary"
-                  onMouseEnter={e => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>
-                  <Zap size={15}/> Have a similar challenge?
-                </Link>
-                <Link to="/case-studies" style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8,
-                  padding: 'clamp(10px, 1.5vw, 14px) clamp(18px, 2.5vw, 26px)',
-                  borderRadius: 'var(--radius-md)', background: 'transparent', color: B.textMid,
-                  fontWeight: 700, fontSize: 'var(--fs-card-body)',
-                  letterSpacing: '0.06em', textTransform: 'uppercase',
-                  border: `1.5px solid ${B.primaryBorder}`,
-                  transition: 'all 0.2s ease',
-                }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = B.primary; e.currentTarget.style.color = B.primary; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = B.primaryBorder; e.currentTarget.style.color = B.textMid; }}>
-                  <ArrowLeft size={14}/> All Case Studies
-                </Link>
-                {cs.githubUrl && (
-                  <a href={cs.githubUrl} target="_blank" rel="noopener noreferrer" style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 8,
-                    padding: 'clamp(10px, 1.5vw, 14px) clamp(18px, 2.5vw, 26px)',
-                    borderRadius: 'var(--radius-md)', background: 'transparent', color: B.textMid,
-                    fontWeight: 700, fontSize: 'var(--fs-card-body)',
-                    letterSpacing: '0.06em', textTransform: 'uppercase',
-                    border: `1.5px solid ${B.primaryBorder}`,
-                    transition: 'all 0.2s ease', textDecoration: 'none',
-                  }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = B.primary; e.currentTarget.style.color = B.primary; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = B.primaryBorder; e.currentTarget.style.color = B.textMid; }}>
-                    <SquareCode size={14}/> View on GitHub
-                  </a>
-                )}
-                {cs.liveDemo && (
-                  <a href={cs.liveDemo} target="_blank" rel="noopener noreferrer" style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 8,
-                    padding: 'clamp(10px, 1.5vw, 14px) clamp(18px, 2.5vw, 26px)',
-                    borderRadius: 'var(--radius-md)', background: `${cs.accentColor}12`, color: cs.accentColor,
-                    fontWeight: 700, fontSize: 'var(--fs-card-body)',
-                    letterSpacing: '0.06em', textTransform: 'uppercase',
-                    border: `1.5px solid ${cs.accentColor}40`,
-                    transition: 'all 0.2s ease', textDecoration: 'none',
-                  }}
-                    onMouseEnter={e => { e.currentTarget.style.background = cs.accentColor; e.currentTarget.style.color = '#fff'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = `${cs.accentColor}12`; e.currentTarget.style.color = cs.accentColor; }}>
-                    <Rocket size={14}/> Live Demo
-                  </a>
-                )}
-              </motion.div>
-            </div>
-
-            {/* RIGHT: Metrics card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              style={{ minWidth: 0, width: '100%' }}
-            >
-              <div style={{
-                borderRadius: 'var(--radius-xl)',
-                background: B.glassBg,
-                backdropFilter: 'blur(20px)',
-                border: `2px solid ${cs.accentColor}28`,
-                boxShadow: `0 24px 60px ${cs.accentColor}14, 0 4px 20px rgba(0,0,0,0.07)`,
-                overflow: 'hidden',
-                position: 'relative',
-              }}>
-                {/* Accent top bar */}
-                <div style={{ height: 4, background: `linear-gradient(90deg, ${cs.accentColor}, ${cs.accentColor}50, transparent)` }}/>
-
-                {/* Icon area with subtle bg */}
-                <div style={{
-                  padding: 'clamp(24px, 3.5vw, 36px) 0 clamp(18px, 2.5vw, 26px)',
-                  background: `linear-gradient(135deg, ${cs.accentColor}08, transparent)`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: cs.accentColor, position: 'relative',
-                }}>
-                  {/* Glow behind icon */}
-                  <div style={{
-                    position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-                    width: 100, height: 100, borderRadius: '50%',
-                    background: `radial-gradient(circle, ${cs.accentColor}20, transparent 70%)`,
-                    pointerEvents: 'none',
-                  }}/>
-                  <div style={{ position: 'relative', zIndex: 1 }}>{cs.heroIcon}</div>
-                </div>
-
-                {/* Metrics */}
-                <div style={{ padding: '0 clamp(20px, 3vw, 30px) clamp(20px, 3vw, 30px)' }}>
-                  {cs.metrics.map((m, mi) => (
-                    <motion.div
-                      key={mi}
-                      initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.3 + mi * 0.09 }}
-                      style={{
-                        padding: 'clamp(13px, 1.8vw, 18px) 0',
-                        borderBottom: mi < cs.metrics.length - 1 ? `1px solid ${cs.accentColor}14` : 'none',
-                        display: 'flex', flexDirection: 'column', gap: 6,
-                      }}
-                    >
-                      <div style={{
-                        fontSize: 'var(--fs-label)', fontWeight: 600,
-                        textTransform: 'uppercase', letterSpacing: '0.09em', color: B.textMuted,
-                      }}>{m.label}</div>
-                      <div style={{
-                        fontWeight: 800,
-                        fontSize: m.value.length > 14 ? 'clamp(0.95rem, 1.6vw, 1.15rem)' : 'clamp(1.1rem, 2vw, 1.55rem)',
-                        color: cs.accentColor, letterSpacing: '-0.01em', lineHeight: 1.25,
-                        maxWidth: '100%', textAlign: 'left', wordBreak: 'break-word', overflowWrap: 'break-word',
-                      }}>{m.value}</div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          2. PROFESSIONAL BRIDGE (NEW DARK SECTION)
-         ═══════════════════════════════════════════════════════════════════ */}
-      <ProfessionalBridge />
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          3. BODY — Challenge / Approach / Results / Tools / CTA
-         ═══════════════════════════════════════════════════════════════════ */}
-      <section style={{
-        position: 'relative', zIndex: 1, overflow: 'hidden',
-        background: 'linear-gradient(180deg, #eaeaea 0%, #e1e1e1 40%, #dadada 100%)',
-        padding: 'var(--sp-section) 0',
-      }}>
-        <DataParticles count={10}/>
-
-        <div style={{ ...NARROW, position: 'relative', zIndex: 2 }}>
-
-          {/* ── THE CHALLENGE ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6 }}
-            style={{ marginBottom: 'clamp(44px, 6.5vw, 80px)' }}
-          >
-            <BodySectionHeader
-              label="The Challenge"
-              icon={<Target size={18} strokeWidth={2}/>}
-              color={B.secondary}
-              stepNum="01"
-            />
-            <div style={{
-              padding: 'clamp(24px, 3.5vw, 40px) clamp(20px, 3.5vw, 44px)',
-              borderRadius: 22,
-              background: 'rgba(255,255,255,0.70)',
-              backdropFilter: 'blur(12px)',
-              border: `1.5px solid rgba(55,55,55,0.14)`,
-              borderLeft: `4px solid ${B.secondary}`,
-              boxShadow: '0 8px 40px rgba(55,55,55,0.07)',
-              position: 'relative', overflow: 'hidden',
-            }}>
-              {/* Faint watermark number */}
-              <div style={{
-                position: 'absolute', right: 24, top: 12,
-                fontSize: 80, fontWeight: 900, lineHeight: 1,
-                color: `${B.secondary}06`, pointerEvents: 'none',
-                userSelect: 'none', fontFamily: 'var(--font-main)',
-              }}>01</div>
-              <p style={{
-                fontSize: 'var(--fs-card-title)',
-                lineHeight: 1.9, color: B.textMain, position: 'relative', zIndex: 1,
-              }}>
-                {cs.challenge}
-              </p>
-            </div>
-          </motion.div>
-
-          {/* ── OUR APPROACH ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6 }}
-            style={{ marginBottom: 'clamp(44px, 6.5vw, 80px)' }}
-          >
-            <BodySectionHeader
-              label="Our Approach"
-              icon={<Lightbulb size={18} strokeWidth={2}/>}
-              color={B.action}
-              stepNum="02"
-            />
-            <div style={{
-              padding: 'clamp(24px, 3.5vw, 40px) clamp(20px, 3.5vw, 44px)',
-              borderRadius: 22,
-              background: 'rgba(255,255,255,0.70)',
-              backdropFilter: 'blur(12px)',
-              border: `1.5px solid rgba(84,84,84,0.14)`,
-              borderLeft: `4px solid ${B.action}`,
-              boxShadow: '0 8px 40px rgba(84,84,84,0.06)',
-              position: 'relative', overflow: 'hidden',
-            }}>
-              <div style={{
-                position: 'absolute', right: 24, top: 12,
-                fontSize: 80, fontWeight: 900, lineHeight: 1,
-                color: `${B.action}06`, pointerEvents: 'none',
-                userSelect: 'none', fontFamily: 'var(--font-main)',
-              }}>02</div>
-              <p style={{
-                fontSize: 'var(--fs-card-title)',
-                lineHeight: 1.9, color: B.textMain, position: 'relative', zIndex: 1,
-              }}>
-                {cs.approach}
-              </p>
-            </div>
-          </motion.div>
-
-          {/* ── THE RESULTS ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6 }}
-            style={{ marginBottom: 'clamp(44px, 6.5vw, 80px)' }}
-          >
-            <BodySectionHeader
-              label="The Results"
-              icon={<Award size={18} strokeWidth={2}/>}
-              color={cs.accentColor}
-              stepNum="03"
-            />
-            <div>
-              {cs.results.map((r, ri) => (
-                <ResultItem key={ri} text={r} accent={cs.accentColor} i={ri}/>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── TOOLS & TECHNOLOGIES ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6 }}
-            style={{ marginBottom: 'clamp(44px, 6.5vw, 80px)' }}
-          >
-            <BodySectionHeader
-              label="Tools & Technologies"
-              icon={<Cpu size={18} strokeWidth={2}/>}
-              color={B.primary}
-              stepNum="04"
-            />
-            <div style={{
-              padding: 'clamp(20px, 3vw, 32px) clamp(18px, 3vw, 32px)',
-              borderRadius: 22,
-              background: 'rgba(255,255,255,0.70)',
-              backdropFilter: 'blur(12px)',
-              border: `1.5px solid ${B.primaryBorder}`,
-              boxShadow: B.cardShadow,
-            }}>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                {cs.tools.map((t, ti) => (
-                  <ToolBadge key={ti} label={t} accent={cs.accentColor}/>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* ── QUOTE ── */}
-          {cs.quote && (
-            <motion.div
-              initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.6 }}
-              style={{ marginBottom: 'clamp(44px, 6.5vw, 80px)' }}
-            >
-              <div style={{
-                padding: 'clamp(28px, 4vw, 48px) clamp(22px, 3.5vw, 44px)',
-                borderRadius: 'var(--radius-xl)',
-                background: `linear-gradient(135deg, ${cs.accentColor}10, ${cs.accentColor}04)`,
-                border: `1.5px solid ${cs.accentColor}22`,
-                boxShadow: `0 12px 48px ${cs.accentColor}12`,
-                position: 'relative', overflow: 'hidden',
-              }}>
-                <div style={{ position: 'absolute', top: 12, left: 24, fontSize: 88, lineHeight: 1, color: `${cs.accentColor}14`, fontWeight: 900, fontFamily: 'serif', pointerEvents: 'none' }}>"</div>
-                <div style={{ display: 'flex', gap: 3, marginBottom: 18, position: 'relative', zIndex: 2 }}>
-                  {[...Array(5)].map((_, si) => <Star key={si} size={14} fill={cs.accentColor} color={cs.accentColor}/>)}
-                </div>
-                <p style={{ fontSize: 'var(--fs-card-title)', lineHeight: 1.85, color: B.textMain, fontStyle: 'italic', marginBottom: 20, position: 'relative', zIndex: 2 }}>
-                  &ldquo;{cs.quote.text}&rdquo;
-                </p>
-                <div style={{ position: 'relative', zIndex: 2 }}>
-                  <div style={{ fontWeight: 700, fontSize: 'var(--fs-small)', color: B.textMain }}>{cs.quote.name}</div>
-                  <div style={{ fontSize: 'var(--fs-small)', color: cs.accentColor, fontWeight: 600, marginTop: 3 }}>{cs.quote.role}</div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {/* ── INLINE CTA ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6 }}
-          >
-            <div style={{
-              borderRadius: 'var(--radius-xl)',
-              background: 'rgba(255,255,255,0.80)',
-              backdropFilter: 'blur(16px)',
-              border: `2px solid ${B.primaryBorder}`,
-              boxShadow: `0 16px 48px ${B.shadowMd}`,
-              overflow: 'hidden', position: 'relative',
-            }}>
-              {/* Accent top bar */}
-              <div style={{ height: 3, background: `linear-gradient(90deg, ${cs.accentColor}, ${B.action}, ${B.secondary})` }}/>
-              <div style={{
-                padding: 'clamp(24px, 3.5vw, 40px) clamp(20px, 3vw, 40px)',
-                display: 'flex', alignItems: 'center', gap: 'clamp(20px, 3vw, 40px)', flexWrap: 'wrap',
-              }}>
-                <div style={{ flex: 1, minWidth: 220 }}>
-                  <div style={{ display: 'flex', gap: 3, marginBottom: 12 }}>
-                    {[...Array(5)].map((_, si) => <Star key={si} size={12} fill={B.accent} color={B.accent}/>)}
-                  </div>
-                  <h3 style={{ fontWeight: 800, fontSize: 'var(--fs-h3)', color: B.primaryDark, marginBottom: 10, lineHeight: 1.3 }}>
-                    Have a similar challenge?
-                  </h3>
-                  <p style={{ fontSize: 'var(--fs-card-body)', color: B.textMid, lineHeight: 1.7 }}>
-                    Book a free call. We'll tell you exactly what's possible, what it would take, and whether we're the right fit. No pitch. No pressure.
-                  </p>
-                </div>
-                <div style={{ flexShrink: 0 }}>
-                  <Link to="/book-discovery" style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 9,
-                    padding: 'clamp(12px, 1.8vw, 16px) clamp(22px, 3.5vw, 36px)',
-                    borderRadius: 'var(--radius-md)',
-                    background: `linear-gradient(135deg, ${B.action}, #393939)`,
-                    color: B.white, fontWeight: 700,
-                    fontSize: 'var(--fs-small)',
-                    letterSpacing: '0.10em', textTransform: 'uppercase',
-                    textDecoration: 'none',
-                    boxShadow: `0 8px 32px ${B.actionGlow}`,
-                    transition: 'opacity 0.2s, transform 0.2s',
-                  }}
-                    onMouseEnter={e => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = ''; }}>
-                    <Zap size={13}/> Book Free Consultation <ArrowRight size={13}/>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          4. PREV / NEXT — dark section
-         ═══════════════════════════════════════════════════════════════════ */}
-      <section style={{
-        position: 'relative', overflow: 'hidden',
-        background: 'linear-gradient(135deg, #070707 0%, #0a0a0a 50%, #0a0a0a 100%)',
-        padding: 'var(--sp-section) 0',
-      }}>
-        <CircuitBg opacity={0.07}/>
-        <DataParticles count={8} dark/>
-
+      {/* ═══ HERO ═══ */}
+      <section className="cs-hero">
         <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
+          <nav className="cs-crumbs" aria-label="Breadcrumb">
+            <Link to="/">Home</Link><ChevronRight size={13} />
+            <Link to="/case-studies">Case Studies</Link><ChevronRight size={13} />
+            <b>{meta.industryLabel}</b>
+          </nav>
+          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
+            <div className="cs-kicker">Case study <i /> {meta.industryLabel} <i /> {meta.serviceLabel}</div>
+            <h1>{cs.title}</h1>
+            <p className="cs-sub">{firstSentence(cs.overview)}</p>
+            <div className="cs-chips">{cs.tools.slice(0, 6).map((t) => <span className="cs-chip" key={t}>{t}</span>)}</div>
+            <div className="cs-actions">
+              {meta.githubUrl && (
+                <a className="cs-btn cs-btn--solid" href={meta.githubUrl} target="_blank" rel="noopener noreferrer"><SquareCode size={16} /> View the code</a>
+              )}
+              {meta.liveDemo && (
+                <a className="cs-btn cs-btn--ghost" href={meta.liveDemo} target="_blank" rel="noopener noreferrer">Open live demo <ArrowUpRight size={16} /></a>
+              )}
+            </div>
+            {cs.metrics?.length > 0 && (
+              <div className="cs-strip">
+                {cs.metrics.map((m) => <div className="cs-stat" key={m.label}><b>{m.value}</b><span>{m.label}</span></div>)}
+              </div>
+            )}
+          </motion.div>
+        </div>
+      </section>
 
-          <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
-            <SectionBadge dark style={{ color: B.textDarkMuted }}>Continue Reading</SectionBadge>
-            <h2 style={{
-              fontWeight: 700, fontSize: 'var(--fs-section-h2)',
-              color: B.textDark, lineHeight: 1.2, marginTop: 8,
-            }}>More Case Studies</h2>
+      {/* ═══ BODY ═══ */}
+      <div style={PX}>
+        <div className="cs-wrap">
+          <aside className="cs-toc" aria-label="On this page">
+            <p>On this page</p>
+            {SECTIONS.map((s) => <a key={s.id} href={`#${s.id}`} className={active === s.id ? 'is-on' : ''}>{s.label}</a>)}
+          </aside>
+
+          <main className="cs-main">
+            {image && <figure className="cs-fig"><img src={image} alt={`${cs.title} project visual`} loading="eager" decoding="async" /></figure>}
+
+            <section className="cs-sec" id="overview">
+              <h2>Overview</h2>
+              <p>{cs.overview}</p>
+              <dl className="cs-glance">
+                <div><dt>Industry</dt><dd>{meta.industryLabel}</dd></div>
+                <div><dt>Service</dt><dd>{meta.serviceLabel}</dd></div>
+                <div><dt>Project type</dt><dd>{cs.investment}</dd></div>
+                <div><dt>Source</dt><dd>{meta.githubUrl ? <a href={meta.githubUrl} target="_blank" rel="noopener noreferrer">Public GitHub repository</a> : 'Portfolio project'}</dd></div>
+                {meta.liveDemo && <div><dt>Live demo</dt><dd><a href={meta.liveDemo} target="_blank" rel="noopener noreferrer">Open the demo</a></dd></div>}
+              </dl>
+            </section>
+
+            <section className="cs-sec" id="challenge">
+              <h2>The Challenge</h2>
+              <p>{lead}</p>
+              {bullets.length > 0 && <Points items={bullets} className="cs-list" />}
+            </section>
+
+            <section className="cs-sec" id="solution">
+              <h2>The Solution</h2>
+              <Points items={steps} className="cs-steps" />
+            </section>
+
+            <section className="cs-sec" id="outcomes">
+              <h2>Outcomes</h2>
+              <ul className="cs-checks">
+                {cs.results.map((r, i) => <li key={i}><CheckCircle size={20} /><span>{r}</span></li>)}
+              </ul>
+            </section>
+
+            <section className="cs-sec" id="stack">
+              <h2>Tech stack</h2>
+              <div className="cs-stack">{cs.tools.map((t) => <span key={t}>{t}</span>)}</div>
+            </section>
+          </main>
+        </div>
+      </div>
+
+      {/* ═══ RELATED ═══ */}
+      <section className="cs-related">
+        <div style={PX}>
+          <div className="cs-related-head">
+            <h2>Explore other case studies</h2>
+            <Link to="/case-studies">Read all case studies <ArrowRight size={15} /></Link>
           </div>
+          <div className="cs-rgrid">{related.map((r) => <RelatedCard key={r.slug} item={r} />)}</div>
+        </div>
+      </section>
 
-          {/* Nav cards */}
-          <div style={{ display: 'flex', gap: 'clamp(14px, 2.5vw, 28px)', flexWrap: 'wrap', marginBottom: 'clamp(36px, 5vw, 56px)' }}>
-            {cs.prevSlug && <NavCard slug={cs.prevSlug} dir="prev"/>}
-            {cs.nextSlug && <NavCard slug={cs.nextSlug} dir="next"/>}
-          </div>
-
-          {/* "All Case Studies" button */}
-          <div style={{ textAlign: 'center' }}>
-            <Link to="/case-studies" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              fontSize: 'var(--fs-small)', fontWeight: 700,
-              color: B.textDarkMuted, textDecoration: 'none',
-              padding: 'clamp(10px, 1.4vw, 13px) clamp(18px, 2.8vw, 28px)',
-              borderRadius: 10, border: `1px solid rgba(255,255,255,0.10)`,
-              letterSpacing: '0.10em', textTransform: 'uppercase',
-              transition: 'all 0.25s ease',
-            }}
-              onMouseEnter={e => { e.currentTarget.style.color = B.textDark; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.22)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
-              onMouseLeave={e => { e.currentTarget.style.color = B.textDarkMuted; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.10)'; e.currentTarget.style.background = 'transparent'; }}>
-              View All Case Studies <ArrowRight size={13}/>
-            </Link>
+      {/* ═══ CTA ═══ */}
+      <section className="cs-cta">
+        <div style={PX}>
+          <div className="cs-cta-box">
+            <div>
+              <h2>Have a similar challenge?</h2>
+              <p>Book a free call. We'll tell you what's possible, what it would take, and whether we're the right fit.</p>
+            </div>
+            <Link to="/book-discovery" className="cs-btn cs-btn--solid">Book a discovery call <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>
-</div>
+
+    </div>
   );
 }

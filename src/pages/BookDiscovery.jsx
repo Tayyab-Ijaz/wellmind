@@ -8,6 +8,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCookieConsent, acceptCookies } from '../components/cookieConsentStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Mail, MapPin, Clock, Zap, ArrowRight, ArrowDown, CheckCircle,
@@ -157,10 +158,7 @@ function ContactForm() {
       border: `2px solid ${B.primaryBorder}`,
       boxShadow: '0 8px 32px rgba(57,57,57,0.08)',
     }}>
-      <h3 style={{ fontWeight: 700, fontSize: 'var(--fs-h3)', color: B.textMain, marginBottom: 6 }}>
-        Send Us a Message
-      </h3>
-      <p style={{ fontSize: 'var(--fs-small)', color: B.textMuted, marginBottom: 28 }}>
+      <p style={{ fontSize: 'var(--fs-small)', color: B.textMuted, marginBottom: 28, textAlign: 'center' }}>
         We'll respond with a proposal or a call — whichever fits best.
       </p>
 
@@ -239,6 +237,7 @@ function ContactForm() {
 
 // ─── Instant Booking (Calendly) ───────────────────────────────────────────────
 function InstantBooking() {
+  const consent = useCookieConsent();
   return (
     <div style={{
       height: '100%', boxSizing: 'border-box',
@@ -263,12 +262,25 @@ function InstantBooking() {
         flex: 1, borderRadius: 14, overflow: 'hidden',
         border: `1.5px solid ${B.actionBorder}`, background: '#fff',
       }}>
-        <iframe
-          title="Book a free call with WellMind Data Solutions"
-          src={`${CALENDLY_URL}`}
-          loading="lazy"
-          style={{ display: 'block', width: '100%', height: 'clamp(620px, 80vh, 720px)', border: 0 }}
-        />
+        {consent === 'accepted' ? (
+          <iframe
+            title="Book a free call with WellMind Data Solutions"
+            src={`${CALENDLY_URL}`}
+            loading="lazy"
+            style={{ display: 'block', width: '100%', height: 'clamp(620px, 80vh, 720px)', border: 0 }}
+          />
+        ) : (
+          <div style={{ minHeight: 'clamp(280px, 40vh, 380px)', padding: 'clamp(24px, 4vw, 40px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 16 }}>
+            <Calendar size={28} color={B.action}/>
+            <p style={{ maxWidth: 420, margin: 0, fontSize: 'var(--fs-card-body)', lineHeight: 1.6, color: B.textMid }}>
+              The calendar is provided by Calendly and may set its own cookies, so it only loads once you allow it.
+              {consent === 'rejected' ? ' You chose to reject cookies.' : ''}
+            </p>
+            <button type="button" onClick={acceptCookies} className="btn-primary" style={{ cursor: 'pointer' }}>
+              Allow cookies and show calendar
+            </button>
+          </div>
+        )}
       </div>
 
       <div style={{ marginTop: 12, display: 'flex', flexWrap: 'wrap', gap: '8px 18px', justifyContent: 'center', fontSize: 'var(--fs-small)', color: B.textMid }}>
@@ -492,7 +504,7 @@ export default function BookDiscovery() {
             <h2 className="section-h2" style={{ color: B.primaryDark }}>Send Us a Message</h2>
             <p className="section-lead">Fill this out and it'll open a pre-filled email straight to our inbox.</p>
           </motion.div>
-          <div style={{ maxWidth: 720, margin: '0' }}>
+          <div style={{ maxWidth: 720, margin: '0 auto' }}>
             <ContactForm />
           </div>
         </div>

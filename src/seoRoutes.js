@@ -3,20 +3,24 @@ const N = 'WellMind Data Solutions';
 
 export const ROUTE_META = {
   '/': {
-    title: `${N} | AI, Data & Biomedical Consulting`,
-    description: 'Specialist healthcare AI, biomedical data science and data consulting. We turn complex data into reliable systems, analyses and decisions.',
+    title: `${N} | Software, AI & Data Engineering`,
+    description: 'Software development, AI and data engineering company. We build custom software, AI systems and data platforms, with a particular edge in healthcare AI and biomedical data science.',
   },
   '/about': {
     title: `About Us | ${N}`,
-    description: 'Meet the team behind WellMind Data Solutions and learn how we approach AI, data science and biomedical data science projects.',
+    description: 'Meet the team behind WellMind Data Solutions and learn how we approach software, AI and data projects.',
   },
   '/case-studies': {
     title: `Case Studies | ${N}`,
-    description: 'Portfolio projects across healthcare AI, finance, retail, manufacturing, agriculture and education, published on our public GitHub.',
+    description: 'Portfolio projects across healthcare AI, finance, retail, supply chain, agriculture and education, published on our public GitHub.',
   },
   '/resources': {
     title: `Resources | ${N}`,
-    description: 'Topics we write about: biomedical data science, healthcare AI, MLOps, generative AI and data strategy.',
+    description: 'Plain-language guides on software projects, AI and machine learning, data pipelines, cloud, healthcare analytics and biomedical data science.',
+  },
+  '/careers': {
+    title: `Careers | ${N}`,
+    description: 'Join WellMind Data Solutions. We are always interested in strong software, AI, data and design talent, and in people with healthcare data experience.',
   },
   '/book-discovery': {
     title: `Book a Free Call | ${N}`,
@@ -32,7 +36,6 @@ export const ROUTE_META = {
 
   '/industry-financial-service': { title: `Financial Services AI & Data Science | ${N}`, description: 'Risk scoring, fraud detection and document automation for banks, insurers and fintech teams.' },
   '/industry-healthcare': { title: `Healthcare & Biotech AI | ${N}`, description: 'Healthcare analytics, clinical NLP and biomedical data science support for providers, payers and research teams.' },
-  '/industry-manufacturing': { title: `Manufacturing & Supply Chain AI | ${N}`, description: 'Predictive risk monitoring and operational analytics for manufacturers and supply chain teams.' },
   '/industry-retail-ecommerce': { title: `Retail & E-Commerce AI | ${N}`, description: 'Churn prediction, demand forecasting and conversational analytics for retail and e-commerce businesses.' },
   '/industry-agriculture': { title: `Agriculture & AgriTech AI | ${N}`, description: 'Satellite and weather data pipelines and yield modelling for agriculture and AgriTech teams.' },
   '/industry-education': { title: `Education & EdTech AI | ${N}`, description: 'Adaptive learning and student-success analytics for education and EdTech teams.' },

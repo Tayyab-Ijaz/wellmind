@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import Header from './components/Header';
 import Footer from './components/Footer';
 import OrphanGuard from './components/OrphanGuard';
+import CookieConsent from './components/CookieConsent';
 import { useSeo } from './seo';
 import { ROUTE_META } from './seoRoutes';
 
@@ -16,7 +17,9 @@ const About = lazy(() => import('./pages/About'));
 const CaseStudies = lazy(() => import('./pages/CaseStudies'));
 const IndividualCaseStudy = lazy(() => import('./pages/IndividualCaseStudy'));
 const Resources = lazy(() => import('./pages/Resources'));
+const Article = lazy(() => import('./pages/Article'));
 const BookDiscovery = lazy(() => import('./pages/BookDiscovery'));
+const Careers = lazy(() => import('./pages/Careers'));
 const CostCalculator = lazy(() => import('./pages/CostCalculator/CostCalculator'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
@@ -24,7 +27,6 @@ const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
 
 const IndustryFinancial = lazy(() => import('./pages/Industries/IndustryFinancial'));
 const IndustryHealthcare = lazy(() => import('./pages/Industries/IndustryHealthcare'));
-const IndustryManufacturing = lazy(() => import('./pages/Industries/IndustryManufacturing'));
 const IndustryRetail = lazy(() => import('./pages/Industries/IndustryRetail'));
 const IndustryAgriculture = lazy(() => import('./pages/Industries/Industryagriculture'));
 const IndustryEducation = lazy(() => import('./pages/Industries/Industryeducation'));
@@ -94,6 +96,7 @@ function App() {
     <BrowserRouter>
       <ScrollTop/>
       <OrphanGuard/>
+      <CookieConsent/>
       <RouteSeo/>
       <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column' }}>
         <Header/>
@@ -106,10 +109,6 @@ function App() {
             /case-studies?service=automation
             /case-studies?service=ui-ux
             /case-studies?service=health-ai
-            /case-studies?industry=financial
-            /case-studies?industry=healthcare
-            /case-studies?industry=retail
-            /case-studies?industry=manufacturing
             /case-studies?service=ai-ml&industry=healthcare   ← combined
 
           Usage in service/industry pages — "View All Case Studies" button:
@@ -125,9 +124,10 @@ function App() {
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/case-studies/:slug" element={<IndividualCaseStudy />} />
               <Route path="/resources" element={<Resources/>}/>
+              <Route path="/resources/:slug" element={<Article/>}/>
               <Route path="/book-discovery" element={<BookDiscovery/>}/>
               <Route path="/ai-cost-calculator" element={<CostCalculator/>}/>
-              <Route path="/careers" element={<Navigate to="/book-discovery" replace/>}/>
+              <Route path="/careers" element={<Careers/>}/>
               <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
               <Route path="/terms-of-service" element={<TermsOfService/>}/>
               <Route path="/cookie-policy" element={<CookiePolicy/>}/>
@@ -138,7 +138,7 @@ function App() {
 
               <Route path="/industry-financial-service" element={<IndustryFinancial/>}/>
               <Route path="/industry-healthcare" element={<IndustryHealthcare/>}/>
-              <Route path="/industry-manufacturing" element={<IndustryManufacturing/>}/>
+              <Route path="/industry-manufacturing" element={<Navigate to="/industry-retail-ecommerce" replace/>}/>
               <Route path="/industry-retail-ecommerce" element={<IndustryRetail/>}/>
               <Route path="/industry-agriculture" element={<IndustryAgriculture/>}/>
               <Route path="/industry-education" element={<IndustryEducation/>}/>

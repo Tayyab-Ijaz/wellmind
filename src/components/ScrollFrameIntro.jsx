@@ -3,11 +3,11 @@
  *
  *  1. INTRO VIDEO: full-screen, plays once per browser session, nothing else on
  *     screen (header, text and scrolling are hidden/locked until it ends or the
- *     visitor clicks "Skip intro" / presses Esc), then fades out. It is skipped
+ *     visitor taps / clicks it or presses Esc / Enter), then fades out. It is skipped
  *     automatically for reduced-motion / data-saver / 2G visitors and when the
  *     video can't start within a few seconds.
  *  2. WELLMIND HERO: live particle field behind the giant white "WELLMIND"
- *     title, "+" crop marks and "Scroll to explore".
+ *     title and "+" crop marks.
  *  3. TUNNEL SECTION (with a gap above it, one pinned stage):
  *       rest   → rounded frame with the Three.js tunnel on the left,
  *                hero text (children) on the right
@@ -191,13 +191,16 @@ function IntroVideo({ onDone }) {
 
   return (
     <div
-      role="group"
-      aria-label="Intro video"
+      role="button"
+      tabIndex={0}
+      aria-label="Intro video. Press Enter or tap to skip."
       className="wm-intro-wrap"
+      onClick={() => finishRef.current?.()}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); finishRef.current?.(); } }}
       style={{
         position: 'fixed', inset: 0, zIndex: 100000, background: PAGE_BLACK,
         opacity: fading ? 0 : 1, transition: 'opacity 0.7s ease',
-        pointerEvents: fading ? 'none' : 'auto',
+        pointerEvents: fading ? 'none' : 'auto', cursor: 'pointer', outline: 'none',
       }}
     >
       <video
@@ -205,9 +208,6 @@ function IntroVideo({ onDone }) {
         src={src} poster={INTRO_POSTER_SRC} muted playsInline preload="auto" autoPlay
         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
       />
-      <button type="button" className="wm-intro-skip" onClick={() => finishRef.current?.()}>
-        Skip intro
-      </button>
     </div>
   );
 }
@@ -367,8 +367,6 @@ const CSS = `
 @media (max-height:720px){ .wm-stage-text .wm-hero-trust{display:none} }
 @media (orientation:portrait), (max-width:900px){ .wm-intro-video{object-fit:contain !important} }
 @media (max-width:900px){ .wm-intro-wrap{height:100vh;height:100dvh !important;bottom:auto !important} }
-.wm-intro-skip{position:absolute;right:max(16px,3vw);bottom:max(18px,env(safe-area-inset-bottom));z-index:2;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.35);background:rgba(255,255,255,0.12);color:#fff;font:600 13px/1 'Space Grotesk',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .2s ease,border-color .2s ease}
-.wm-intro-skip:hover,.wm-intro-skip:focus-visible{background:rgba(255,255,255,0.28);border-color:rgba(255,255,255,0.7);outline:none}
 `;
 
 /* ─── Section ────────────────────────────────────────────────────────────── */
@@ -378,10 +376,6 @@ export default function ScrollFrameIntro({ children }) {
   const handleIntroDone = useCallback(() => setIntroDone(true), []);
   const stageH = useScreenHeight();
   const tall = Math.round(stageH * (1 + SCRUB_SCREENS));
-
-  const scrollNext = () => {
-    seqRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
 
   return (
     <>
@@ -408,17 +402,6 @@ export default function ScrollFrameIntro({ children }) {
           <HeroTitle />
         </div>
 
-        <button
-          type="button" onClick={scrollNext}
-          style={{
-            position: 'absolute', right: 'clamp(20px, 4.8vw, 92px)', bottom: 'clamp(14px, 1.9vw, 30px)', zIndex: 2,
-            background: 'none', border: 0, padding: 0, cursor: 'pointer', color: '#fff',
-            fontFamily: TITLE_FONT, fontWeight: 500, textTransform: 'uppercase',
-            fontSize: 'var(--fs-h3)', letterSpacing: '-0.01em', whiteSpace: 'nowrap',
-          }}
-        >
-          Scroll to explore
-        </button>
       </section>
 
       {/* 2 ── TUNNEL SECTION: framed tunnel + hero text, gap above it */}

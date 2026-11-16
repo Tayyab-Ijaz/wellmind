@@ -12,7 +12,7 @@ export default function TermsOfService() {
         {
           heading: '1. Our services',
           body: [
-            'WellMind Data Solutions provides consulting and delivery services across AI & machine learning, data science and analytics, automation, health AI and biomedical data science, and related software and design work. Each engagement is scoped individually after a discovery call and confirmed in a written proposal before any work begins.',
+            'WellMind Data Solutions provides software engineering, AI, data and consulting services, including AI & machine learning, data science and analytics, application engineering, automation, cloud, health AI and biomedical data science, and related design and staffing work. Each engagement is scoped individually after a discovery call and confirmed in a written proposal before any work begins.',
           ],
         },
         {

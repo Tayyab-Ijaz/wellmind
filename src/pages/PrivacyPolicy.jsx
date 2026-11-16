@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
         {
           heading: '1. Who we are',
           body: [
-            'WellMind Data Solutions is a data science, AI, and biomedical data science consultancy based in Faisalabad, Pakistan, working with clients internationally. This policy covers this website only, not the internal systems we may build for individual clients under a separate engagement.',
+            'WellMind Data Solutions is a software, AI and data engineering company based in Faisalabad, Pakistan, working with clients internationally. This policy covers this website only, not the internal systems we may build for individual clients under a separate engagement.',
           ],
         },
         {

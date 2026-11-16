@@ -22,7 +22,6 @@ export const INDUSTRIES = [
   { id: 'financial', label: 'Financial Services', href: '/industry-financial-service', desc: 'Risk, fraud, and forecasting.', img: new URL('../../assets/financial-square.webp', import.meta.url).href },
   { id: 'healthcare', label: 'Healthcare & Biotech', href: '/industry-healthcare', desc: 'Claims, clinical, and lab data.', img: new URL('../../assets/healthcare.webp', import.meta.url).href },
   { id: 'retail', label: 'Retail & E-Commerce', href: '/industry-retail-ecommerce', desc: 'Demand, churn, and pricing.', img: new URL('../../assets/retail.webp', import.meta.url).href },
-  { id: 'manufacturing', label: 'Manufacturing', href: '/industry-manufacturing', desc: 'Quality and throughput on the line.', img: new URL('../../assets/manufacturing.webp', import.meta.url).href },
   { id: 'agriculture', label: 'Agriculture & AgriTech', href: '/industry-agriculture', desc: 'Yield and field monitoring.', img: new URL('../../assets/agriculture.webp', import.meta.url).href },
   { id: 'education', label: 'Education & EdTech', href: '/industry-education', desc: 'Learner insight at scale.', img: new URL('../../assets/edu-thumb.webp', import.meta.url).href },
 ];

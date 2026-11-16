@@ -1,6 +1,7 @@
 /**
  * SolarSystem.jsx — WellMind Data Solutions
- * Three.js "AI solar system" (NLP / Analytics / Automation / Vision orbiting the AI Core).
+ * Three.js "AI solar system": nine capability planets (Data Engineering, Analytics, Machine Learning,
+ * NLP, Computer Vision, Automation, Generative AI, Health AI, Cloud) orbiting the AI Core.
  * Drop-in replacement for <AiCoreDiagram /> — fills its parent's width, fixed responsive height.
  *
  * The camera distance is solved automatically so the WHOLE outer orbit (plus planet labels)
@@ -13,13 +14,16 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 const rnd = (a) => Math.random() * a;
 
 // ── Layout / fit constants ────────────────────────────────────────────────────
-const ORBIT_R   = 49;    // outermost point of the system (Vision orbit 42 + moon)
-const LABEL_UP  = 7;     // head-room reserved for planet labels
+const ORBIT_R   = 80;    // outermost point of the system (outer orbit 77 + planet)
+const LABEL_UP  = 9;     // head-room reserved for planet labels
 const BODY_DOWN = 3.5;   // room reserved below the orbit plane for planet bodies
-const FIT_LIMIT = 0.84;  // 1 = touch the edge of the box; lower = smaller system, more breathing room
+const FIT_LIMIT = 0.96;  // 1 = touch the edge of the box; lower = smaller system, more breathing room
 const FIT_LIMIT_SMALL = 0.93; // phones: use more of the (narrow) box so the system doesn't look tiny
-const MIN_POLAR = 0.95;  // camera tilt limits (radians from the top) — keeps the system flat & fully visible
-const MAX_POLAR = 1.25;
+// camera tilt limits (radians from the top) — keep the system flat & fully visible.
+// Wide screens use a low, cinematic angle so the system spans the full width;
+// phones use a higher angle so the planet labels have vertical room.
+const POLAR_WIDE  = [1.36, 1.44];
+const POLAR_SMALL = [1.0, 1.2];
 
 // Canvas textures hold sRGB colours. Without tagging them, three.js treats them as
 // linear data and the renderer's sRGB output pass washes every colour out.
@@ -95,8 +99,8 @@ export default function SolarSystem() {
     let H = wrap.clientHeight || 420;
 
     const scene = new THREE.Scene();
-    const cam = new THREE.PerspectiveCamera(50, W / H, 0.1, 2000);
-    cam.position.set(0, 38, 68);
+    const cam = new THREE.PerspectiveCamera(30, W / H, 0.1, 2000);
+    cam.position.set(0, 12, 70);
 
     const ren = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     ren.setClearColor(0x000000, 0);
@@ -110,16 +114,21 @@ export default function SolarSystem() {
     const ctl = new OrbitControls(cam, ren.domElement);
     ctl.enableDamping = true; ctl.dampingFactor = 0.06;
     ctl.enableZoom = false; ctl.enablePan = false;
-    ctl.minPolarAngle = MIN_POLAR; ctl.maxPolarAngle = MAX_POLAR;
+    ctl.minPolarAngle = POLAR_WIDE[0]; ctl.maxPolarAngle = POLAR_WIDE[1];
     ctl.autoRotate = !reduceMotion; ctl.autoRotateSpeed = 0.35;
     // keep vertical page-scroll working on touch devices
     ren.domElement.style.touchAction = 'pan-y';
 
     const P = [
-      { n: 'NLP',        d: 14, s: 1.6, v: 1.6, c: T('#3a5fcf', ['#4f78e8', '#2c4aa8'], [{ c: '#1e2f78', n: 2, r: 12 }]) },
-      { n: 'Analytics',  d: 23, s: 2.6, v: 0.9, c: T('#e0c88f', ['#f0dfb0', '#c4a86a', '#d8bd82'], []), ring: true },
-      { n: 'Automation', d: 32, s: 1.9, v: 0.6, c: T('#b5502d', ['#d07a4a'], [{ c: '#6e2f1b', n: 30, r: 14 }, { c: '#e5c9b0', n: 2, r: 12 }]) },
-      { n: 'Vision',     d: 42, s: 2.3, v: 0.4, c: T('#2c5fa8', ['#e8f0ff'], [{ c: '#4c8a45', n: 22, r: 26 }, { c: '#8a7a52', n: 8, r: 12 }]), moon: true },
+      { n: 'Data Engineering', pr: 9, d: 13, s: 1.7, v: 1.7,  c: T('#7d8794', ['#a0aab6', '#5e6874'], [{ c: '#4a525c', n: 14, r: 10 }]) },
+      { n: 'Analytics', pr: 5,        d: 21, s: 2.7, v: 1.1,  c: T('#e0c88f', ['#f0dfb0', '#c4a86a', '#d8bd82'], []), ring: true },
+      { n: 'Machine Learning', pr: 2, d: 29, s: 2.3, v: 0.85, c: T('#6a4fc9', ['#8f78e6', '#4a35a0'], [{ c: '#32226b', n: 10, r: 14 }, { c: '#cfc3ff', n: 3, r: 10 }]) },
+      { n: 'NLP', pr: 6,              d: 37, s: 1.9, v: 0.7,  c: T('#3a5fcf', ['#4f78e8', '#2c4aa8'], [{ c: '#1e2f78', n: 2, r: 12 }]) },
+      { n: 'Computer Vision', pr: 4,  d: 45, s: 2.5, v: 0.55, c: T('#2c5fa8', ['#e8f0ff'], [{ c: '#4c8a45', n: 22, r: 26 }, { c: '#8a7a52', n: 8, r: 12 }]), moon: true },
+      { n: 'Automation', pr: 7,       d: 53, s: 2.1, v: 0.45, c: T('#b5502d', ['#d07a4a'], [{ c: '#6e2f1b', n: 30, r: 14 }, { c: '#e5c9b0', n: 2, r: 12 }]) },
+      { n: 'Generative AI', pr: 3,    d: 61, s: 2.9, v: 0.38, c: T('#2a9d8f', ['#5fd3c5', '#1c6e64', '#8ae6d8'], [{ c: '#145a52', n: 8, r: 16 }]) },
+      { n: 'Health AI', pr: 1,        d: 69, s: 2.3, v: 0.3,  c: T('#c94a5a', ['#e07a86', '#9b2e3d'], [{ c: '#6e1f2a', n: 10, r: 12 }, { c: '#f2c9cf', n: 3, r: 10 }]) },
+      { n: 'Cloud', pr: 8,            d: 77, s: 2.0, v: 0.25, c: T('#8ec5e8', ['#c6e4f6', '#6fa8cc'], [{ c: '#ffffff', n: 12, r: 18 }]) },
     ];
 
     // ── sun ──
@@ -175,8 +184,8 @@ export default function SolarSystem() {
       const rgb = `${(c.r * 255) | 0},${(c.g * 255) | 0},${(c.b * 255) | 0}`;
       const glow = track(gradientTex(128, [[0, `rgba(${rgb},0)`], [0.5, `rgba(${rgb},.7)`], [1, `rgba(${rgb},0)`]]));
       const base = { transparent: true, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending };
-      band(d - 0.9, d + 0.9, track(new THREE.MeshBasicMaterial({ ...base, map: glow, opacity: 0.35 })));
-      band(d - 0.04, d + 0.04, track(new THREE.MeshBasicMaterial({ ...base, color: col, opacity: 0.6 })));
+      band(d - 0.9, d + 0.9, track(new THREE.MeshBasicMaterial({ ...base, map: glow, opacity: 0.16 })));
+      band(d - 0.04, d + 0.04, track(new THREE.MeshBasicMaterial({ ...base, color: col, opacity: 0.30 })));
       const a = [];
       for (let k = 0; k < 500; k++) {
         const t = rnd(6.2832), r = d + (Math.random() + Math.random() - 1) * 1.1;
@@ -185,7 +194,7 @@ export default function SolarSystem() {
       const pg = track(new THREE.BufferGeometry());
       pg.setAttribute('position', new THREE.Float32BufferAttribute(a, 3));
       scene.add(new THREE.Points(pg, track(new THREE.PointsMaterial({
-        color: col, size: 1.3, sizeAttenuation: false, transparent: true, opacity: 0.45,
+        color: col, size: 1.3, sizeAttenuation: false, transparent: true, opacity: 0.30,
         blending: THREE.AdditiveBlending, depthWrite: false,
       }))));
     };
@@ -197,7 +206,7 @@ export default function SolarSystem() {
     wrap.appendChild(core);
 
     const bodies = P.map((p, i) => {
-      const R = p.s * 1.3;
+      const R = p.s * 1.6;
       const pivot = new THREE.Object3D(); scene.add(pivot);
       const m = new THREE.Mesh(
         track(new THREE.SphereGeometry(R, 48, 48)),
@@ -225,14 +234,14 @@ export default function SolarSystem() {
         mo.position.x = R * 1.9; moonPivot.add(mo);
       }
 
-      orbit(p.d, i % 2 ? 0xc98a3a : 0x1f8aa0);
-      pivot.rotation.y = rnd(6.28);
+      orbit(p.d, 0xdcdcdc);
+      pivot.rotation.y = i * 2.4 + rnd(0.5);
 
       const el = document.createElement('div');
       el.className = 'solar-lbl';
       el.textContent = p.n;
       wrap.appendChild(el);
-      return { v: p.v, lift: R + 1.2, pivot, m, moonPivot, el };
+      return { v: p.v, pr: p.pr, lift: R + 1.2, pivot, m, moonPivot, el, w: 0, sx: 0, sy: 0, on: true };
     });
 
     // ── fit: pick the camera distance so the whole system sits inside the box ──
@@ -250,7 +259,7 @@ export default function SolarSystem() {
       probe.aspect = W / H; probe.updateProjectionMatrix();
       const limit = W < 600 ? FIT_LIMIT_SMALL : FIT_LIMIT;
       let need = 0;
-      [MIN_POLAR, MAX_POLAR].forEach((polar) => {
+      [ctl.minPolarAngle, ctl.maxPolarAngle].forEach((polar) => {
         const dir = new THREE.Vector3().setFromSphericalCoords(1, polar, 0);
         let lo = 20, hi = 700;
         for (let i = 0; i < 24; i++) {
@@ -271,6 +280,8 @@ export default function SolarSystem() {
 
     const fit = () => {
       W = wrap.clientWidth || W; H = wrap.clientHeight || H;
+      const [minP, maxP] = W < 700 ? POLAR_SMALL : POLAR_WIDE;
+      ctl.minPolarAngle = minP; ctl.maxPolarAngle = maxP;
       cam.aspect = W / H;
       cam.updateProjectionMatrix();
       ren.setSize(W, H);
@@ -287,6 +298,7 @@ export default function SolarSystem() {
     let spinX = 0, spinY = 0, lx = null, ly = null, raf = 0, visible = true;
     let last = performance.now();
     const speed = reduceMotion ? 0 : 1;
+    let frame = 0, coreW = 60;
 
     const place = (el, x, y, anchor) => {
       el.style.transform = `translate(${(x * 0.5 + 0.5) * W}px,${(-y * 0.5 + 0.5) * H}px) translate(-50%,${anchor})`;
@@ -302,16 +314,34 @@ export default function SolarSystem() {
       sun.rotation.x = Math.max(-0.8, Math.min(0.8, sun.rotation.x + spinX));
       spinX *= 0.9; spinY *= 0.9;
 
+      // measure label widths now and then (fonts may load late) — reads happen before any writes
+      if (frame++ % 45 === 0) { bodies.forEach((b) => { b.w = b.el.offsetWidth; }); coreW = core.offsetWidth; }
+
       bodies.forEach((b) => {
         b.pivot.rotation.y += dt * 0.25 * b.v * speed;
         b.m.rotation.y += dt * 0.8 * speed;
         if (b.moonPivot) b.moonPivot.rotation.y += dt * 2.5 * speed;
         b.m.getWorldPosition(v3); v3.y += b.lift; v3.project(cam);
-        b.el.style.display = v3.z < 1 ? 'block' : 'none';
+        b.sx = (v3.x * 0.5 + 0.5) * W; b.sy = (-v3.y * 0.5 + 0.5) * H;
+        b.on = v3.z < 1;
         place(b.el, v3.x, v3.y, '-100%');
       });
       v3.set(0, -8, 0).project(cam);
       place(core, v3.x, v3.y, '0');
+
+      // labels: most important first; hide any label that would overlap one already shown
+      const LH = W < 560 ? 18 : 24, PAD = 4;
+      const placed = [];
+      [...bodies].sort((a, b) => a.pr - b.pr).forEach((b) => {
+        const box = { l: b.sx - b.w / 2 - PAD, r: b.sx + b.w / 2 + PAD, t: b.sy - LH - PAD, b: b.sy + PAD };
+        const hit = !b.on || placed.some((q) => box.l < q.r && box.r > q.l && box.t < q.b && box.b > q.t);
+        if (!hit) placed.push(box);
+        b.el.style.opacity = hit ? '0' : '1';
+      });
+      // the AI CORE caption yields to planet labels
+      const cx = (v3.x * 0.5 + 0.5) * W, cy = (-v3.y * 0.5 + 0.5) * H;
+      const coreBox = { l: cx - coreW / 2 - PAD, r: cx + coreW / 2 + PAD, t: cy - PAD, b: cy + 16 + PAD };
+      core.style.opacity = placed.some((q) => coreBox.l < q.r && coreBox.r > q.l && coreBox.t < q.b && coreBox.b > q.t) ? '0' : '1';
 
       ctl.update();
       ren.render(scene, cam);
@@ -357,9 +387,7 @@ export default function SolarSystem() {
   return (
     <>
       <style>{CSS}</style>
-      <div className="solar-wrapper" ref={wrapRef}>
-        <div className="solar-hint">Drag to rotate<span className="solar-hint-hover"> · hover the AI Core to spin it</span></div>
-      </div>
+      <div className="solar-wrapper" ref={wrapRef} />
     </>
   );
 }
@@ -367,27 +395,22 @@ export default function SolarSystem() {
 const CSS = `
   .solar-wrapper {
     position: relative; width: 100%; max-width: 100%; margin: 0 auto;
-    height: clamp(300px, 38vw, 500px); overflow: hidden; isolation: isolate;
+    height: clamp(400px, 41vw, 700px); overflow: hidden; isolation: isolate;
   }
   /* tablet / phone: the box follows the system's own proportions instead of a fixed height */
-  @media (max-width: 900px) { .solar-wrapper { height: auto; aspect-ratio: 8 / 5; max-height: 380px; } }
-  @media (max-width: 480px) { .solar-wrapper { aspect-ratio: 7 / 5; } }
+  @media (max-width: 900px) { .solar-wrapper { height: auto; aspect-ratio: 16 / 8; max-height: 460px; } }
+  @media (max-width: 700px) { .solar-wrapper { aspect-ratio: 6 / 5; max-height: 520px; } }
+  @media (max-width: 480px) { .solar-wrapper { aspect-ratio: 5 / 4; } }
   .solar-lbl {
     position: absolute; left: 0; top: 0; padding: 3px 12px;
     background: #fff; color: #111; border-radius: 999px;
     font: 600 clamp(10px, 1.1vw, 12px) 'Space Grotesk', system-ui, sans-serif;
-    pointer-events: none; white-space: nowrap; will-change: transform;
+    pointer-events: none; white-space: nowrap; will-change: transform, opacity; transition: opacity .25s ease;
     box-shadow: 0 0 0 3px rgba(255,255,255,.12);
   }
   @media (max-width: 560px) { .solar-lbl { padding: 2px 8px; font-size: var(--fs-label); box-shadow: 0 0 0 2px rgba(255,255,255,.12); } }
   .solar-lbl.solar-core {
-    background: none; box-shadow: none; color: #1fb5c9;
+    background: none; box-shadow: none; color: #f2f2f2;
     letter-spacing: .12em; padding: 0;
   }
-  .solar-hint {
-    position: absolute; bottom: 8px; left: 0; width: 100%; text-align: center;
-    color: rgba(255,255,255,.55); font: 12px 'Space Grotesk', system-ui, sans-serif;
-    pointer-events: none;
-  }
-  @media (hover: none), (max-width: 900px) { .solar-hint-hover { display: none; } }
 `;

@@ -3,7 +3,7 @@
  * Breakpoints: 1440 | 1024 | 768 | 425 | 320
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -12,23 +12,17 @@ import {
   Shield, Globe, Zap, BarChart3, Brain, Star, Sparkles,
   ChevronRight, CircuitBoard, Database, LineChart, BookOpen,
   Users, Award, FlaskConical, ChevronDown, Image as ImageIcon,
-  Mail, MessageCircle, Share2, Phone, DollarSign, Clock,
+  Share2, DollarSign, Clock,
   Lock, Repeat,
 } from 'lucide-react';
 import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge, SectionDivider, CircuitBg, FAQItem, InViewSection } from '../../theme';
-import { FaLinkedin } from 'react-icons/fa';
-
-import SystemDrivenDelivery from '../../assets/System-Driven Delivery.webp';
-import EnterpriseSecurity   from '../../assets/Enterprise-Security.webp';
-import ScalableArchitecture from '../../assets/Scalable-Architecture.webp';
-import RapidDeployment      from '../../assets/Rapid-Deployment.webp';
 
 import ScrollTest           from './serviceshome';
 
 import SolarSystem from './SolarSystem';
-import imgArPrioritization from '../../assets/case-studies/ar-prioritization.png';
-import imgTelecomChurn from '../../assets/case-studies/telecom-churn.png';
-import imgHealthcareFraudBilling from '../../assets/case-studies/healthcare-fraud-billing.png';
+import imgArPrioritization from '../../assets/case-studies/ar-prioritization.webp';
+import imgTelecomChurn from '../../assets/case-studies/telecom-churn.webp';
+import imgHealthcareFraudBilling from '../../assets/case-studies/healthcare-fraud-billing.webp';
 
 import ScrollFrameIntro from '../../components/ScrollFrameIntro';
 
@@ -39,55 +33,6 @@ const FONT_ACCENT   = "'Space Grotesk', var(--font-main)";
 
 
 
-
-// ─── Feature Block ─────────────────────────────────────────────────────────────
-function FeatureBlock({ title, desc, imgUrl, isActive }) {
-  const [hovered, setHovered] = useState(false);
-  const lit = isActive || hovered;   // hover lights the card exactly like reaching its position
-  return (
-    <motion.div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      animate={{ opacity: lit ? 1 : 0.35, y: lit ? 0 : 16, scale: lit ? 1 : 0.97 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      style={{
-        background: B.cardBg, backdropFilter: 'blur(8px)',
-        borderRadius: 'var(--radius-xl)',
-        border: `3px solid ${lit ? '#FFFFFF' : 'rgba(255,255,255,0.16)'}`,
-        boxShadow: lit ? '0 16px 44px -10px rgba(255,255,255,0.28)' : 'none',
-        padding: 'clamp(16px, 2.5vw, 24px)',
-        marginBottom: 'clamp(16px, 2.5vw, 24px)',
-        marginLeft: 'clamp(0px, 2vw, 30px)',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16,
-        transition: 'border-color 0.4s ease, box-shadow 0.4s ease',
-        width: '100%', cursor: 'default', overflow: 'hidden',
-      }}
-    >
-      <div style={{
-        width: '100%',
-        height: 'clamp(180px, 22vw, 350px)',
-        borderRadius: 18, overflow: 'hidden', background: '#f0f0f0',
-        marginBottom: 16, position: 'relative',
-      }}>
-        <img src={imgUrl} alt={title} loading="lazy" decoding="async" style={{
-          width: '100%', height: '100%', objectFit: 'cover',
-          transition: 'transform 0.6s ease',
-          transform: hovered ? 'scale(1.05)' : 'scale(1)',
-        }} />
-      </div>
-      <div style={{ width: '100%', textAlign: 'center' }}>
-        <h3 className="feature-title" style={{ marginBottom: 8 }}>{title}</h3>
-        <p className="feature-body" style={{
-          maxHeight: hovered ? '150px' : '0',
-          opacity: hovered ? 1 : 0,
-          overflow: 'hidden',
-          marginTop: hovered ? '12px' : '0',
-          transition: 'max-height 0.5s ease, opacity 0.4s ease, margin-top 0.4s ease',
-        }}>{desc}</p>
-      </div>
-    </motion.div>
-  );
-}
 
 // ─── Project Card ──────────────────────────────────────────────────────────────
 // Light "travel-app" style card: rounded image with a favorite pill floating on
@@ -195,113 +140,24 @@ function ProjectCard({ proj, i }) {
 
 
 
-// ─── Why WellMind — Responsive Scroll / Stack ──────────────────────────────────
-function WhyWellmindScroll() {
-  const features = [
-    { title: 'System-Driven Delivery', desc: 'Consistent outcomes via documented SOPs and clear delivery frameworks that reduce guesswork.', imgUrl: SystemDrivenDelivery, color: B.action },
-    { title: 'Enterprise Security',    desc: 'Confidentiality agreements and secure data handling, so your data stays protected throughout the engagement.',     imgUrl: EnterpriseSecurity,    color: B.primary },
-    { title: 'Scalable Architecture',  desc: 'Systems designed with growth in mind, so they can scale as your usage does.',       imgUrl: ScalableArchitecture,  color: B.accent },
-    { title: 'Rapid Deployment',       desc: 'A clear path from validated concept to a production-ready system.',       imgUrl: RapidDeployment,       color: B.secondary },
-  ];
+// ─── Why WellMind Data Solutions — differentiators (no figures, only things we can stand behind) ───
+const WHY_POINTS = [
+  { title: 'Idea to production, one team', desc: 'We scope, design, build, deploy and support software, AI and data systems ourselves, so nothing is lost between a plan and a working product.' },
+  { title: 'Healthcare AI depth', desc: 'Claims, clinical records, survival analysis and readmission risk: we have built on real healthcare data, including revenue-cycle (RCM) analytics.' },
+  { title: 'Work you can inspect', desc: 'Our portfolio projects are public, with readable code, documented methods and live demos you can open before you ever talk to us.' },
+  { title: 'Engage the way that suits you', desc: 'Fixed-scope projects, ongoing retainers, or engineers embedded in your own team. We adapt to your process and tools.' },
+  { title: 'Honest scoping, confidential by default', desc: 'Scope and deliverables are agreed in writing, NDAs come before any data is shared, and you get a plain answer if we are not the right fit.' },
+  { title: 'Built to be maintained', desc: 'Documented, reproducible and handed over cleanly, so your team can run and extend what we build long after the engagement ends.' },
+];
 
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [isDesktop, setIsDesktop] = useState(() => (typeof window === 'undefined' ? true : window.innerWidth > 900));
-  const cardRefs = useRef([]);
-
-  useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth > 900);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  // Highlight the card nearest the middle of the screen. IntersectionObserver is used
-  // instead of getBoundingClientRect maths so it stays correct under the desktop
-  // `zoom` on <html>. The diagram itself is positioned with CSS `position: sticky`
-  // (below) — no scroll listeners, no fixed-position arithmetic, no drift.
-  useEffect(() => {
-    if (!isDesktop) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) setActiveIdx(Number(e.target.dataset.idx));
-      });
-    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-    cardRefs.current.forEach((el) => el && io.observe(el));
-    return () => io.disconnect();
-  }, [isDesktop]);
-
-  // Mobile: simple stacked cards
-  if (!isDesktop) {
-    return (
-      <div style={{ ...PX, display: 'flex', flexDirection: 'column', gap: 'clamp(16px, 3vw, 24px)' }}>
-        {/* Diagram on mobile — compact framed panel */}
-        <div style={{
-          width: '100%', maxWidth: 560, margin: '0 auto 4px',
-          borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-          border: '1px solid rgba(255,255,255,0.12)',
-          background: 'radial-gradient(ellipse at 50% 45%, rgba(255,255,255,0.06), rgba(0,0,0,0) 70%), #050505',
-        }}>
-          <SolarSystem />
-        </div>
-        {features.map((f, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.07 }}
-            style={{
-              background: B.cardBg, backdropFilter: 'blur(8px)',
-              borderRadius: 'var(--radius-lg)', border: `2px solid ${B.primaryBorder}`,
-              padding: 'clamp(16px, 3vw, 24px)',
-              boxShadow: B.cardShadow,
-            }}
-          >
-            <div style={{ width: '100%', height: 'clamp(140px, 35vw, 220px)', borderRadius: 14, overflow: 'hidden', marginBottom: 14 }}>
-              <img src={f.imgUrl} alt={f.title} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
-            <h3 style={{ fontSize: 'var(--fs-card-title)', fontWeight: 700, color: B.textMain, marginBottom: 8, fontFamily: 'var(--font-main)' }}>{f.title}</h3>
-            <p style={{ fontSize: 'var(--fs-card-body)', color: B.textMid, lineHeight: 1.6 }}>{f.desc}</p>
-          </motion.div>
-        ))}
-      </div>
-    );
-  }
-
-  // Desktop: cards scroll on the left (aligned to the normal 1440px content column);
-  // the solar system lives in a column that runs all the way to the RIGHT EDGE of the page.
-  return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'minmax(0, min(640px, 50%)) minmax(0, 1fr)',
-      columnGap: 'clamp(16px, 2vw, 32px)',
-      alignItems: 'stretch',
-      paddingLeft: 'max(24px, calc((100% - 1440px) / 2 + 24px))',
-      paddingRight: 0,
-    }}>
-      <div>
-        {features.map((f, i) => (
-          <div key={i} data-idx={i} ref={el => cardRefs.current[i] = el} style={{ marginBottom: 'clamp(16px, 3vw, 32px)' }}>
-            <FeatureBlock title={f.title} desc={f.desc} imgUrl={f.imgUrl} color={f.color} isActive={activeIdx === i} />
-          </div>
-        ))}
-      </div>
-      <div style={{ minWidth: 0 }}>
-        <div style={{
-          position: 'sticky',
-          top: 'clamp(72px, 9vh, 96px)',
-          height: 'calc(100vh - clamp(72px, 9vh, 96px) - 24px)',
-          maxHeight: 700, minHeight: 420,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>
-          <div style={{ width: '100%' }}>
-            <SolarSystem bleed />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+const WHY_CSS = `
+.wm-why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(14px,2vw,22px)}
+.wm-why-card{position:relative;padding:clamp(22px,2.6vw,32px);border-radius:20px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.12);transition:border-color .3s ease,background .3s ease,transform .3s ease}
+.wm-why-card:hover{border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.06);transform:translateY(-4px)}
+.wm-why-num{display:block;margin-bottom:18px;font:600 13px/1 'Space Grotesk',system-ui,sans-serif;letter-spacing:.14em;color:rgba(255,255,255,.45)}
+.wm-why-card h3{margin:0 0 10px;font-family:var(--font-main);font-weight:700;font-size:var(--fs-card-title);line-height:1.25;color:#fff;letter-spacing:-.01em}
+.wm-why-card p{margin:0;font-size:var(--fs-card-body);line-height:1.65;color:rgba(255,255,255,.66)}
+`;
 
 // ─── MAIN ──────────────────────────────────────────────────────────────────────
 export default function Home() {
@@ -319,7 +175,7 @@ export default function Home() {
     { q: 'How long does a project take?',                a: 'Timelines depend on scope and data. We agree a clear timeline with you in a written proposal after a free discovery call.' },
     { q: 'Do you work with academic labs?',              a: "Yes, frequently. We can invoice through university procurement systems, support grant-funded projects, and deliver publication-ready outputs. We're comfortable with authorship arrangements when scope warrants it." },
     { q: 'Is my data confidential?',                     a: "Always. We sign NDAs before any data is shared and use secure transfer protocols. We never use client data in our own research or training without explicit permission." },
-    { q: 'Can you join our team part-time or on retainer?', a: "Yes. Beyond project work, we offer ongoing retainers for ongoing analysis support — ideal for research labs or startups that need flexible expert access without hiring full-time." },
+    { q: 'Can you join our team or work on retainer?', a: "Yes. Besides fixed-scope projects, we offer ongoing retainers and can embed our engineers and data scientists in your team (staff augmentation), working in your tools and process. It suits teams that need flexible expert capacity without hiring full-time." },
     { q: 'Where are you based and which time zones do you cover?', a: "Our team is based in Pakistan and works fully remote with clients internationally. We overlap working hours to fit your time zone." },
   ];
 
@@ -339,7 +195,7 @@ export default function Home() {
           <motion.div variants={fadeUp} custom={0.12} className="wm-hero-divider" style={{ width: 72, height: 4, borderRadius: 99, background: 'linear-gradient(90deg, #ababab, #a7a7a7)', margin: 'clamp(12px, 1.6vw, 22px) auto' }} />
 
           <motion.p variants={fadeUp} custom={0.18} style={{ fontFamily: 'var(--font-main)', fontSize: 'var(--fs-card-title)', color: 'rgba(255,255,255,0.68)', maxWidth: 620, margin: '0 0 clamp(16px, 2vw, 28px)', letterSpacing: '0.005em', lineHeight: 1.65 }}>
-            WellMind Data Solutions delivers specialist healthcare AI, biomedical data science, & data consulting.
+            WellMind Data Solutions is a software, AI and data engineering company, with a particular edge in healthcare AI and biomedical data science.
           </motion.p>
 
           <motion.div variants={fadeUp} custom={0.22} style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 'clamp(16px, 2.2vw, 30px)', justifyContent: 'center' }}>
@@ -362,15 +218,15 @@ export default function Home() {
         {/* Why WellMind */}
         <div style={{ position: 'relative', zIndex: 2, padding: 'var(--sp-section) 0' }}>
           <div style={{ ...PX, position: 'relative', zIndex: 2, textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 60px)' }}>
-            <SectionBadge dark>Why WellMind Data Solutions</SectionBadge>
+            <SectionBadge dark>Our Expertise</SectionBadge>
             <h2 className="section-h2 dark" style={{ marginBottom: 12 }}>
               Built for enterprise.{' '}<br className="hero-br" />
               <span style={{ background: 'linear-gradient(90deg, #ababab 25%, #a7a7a7 75%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Clear and reliable.</span>
             </h2>
-            <p className="section-lead dark" style={{ maxWidth: 1200 }}>We don't just build algorithms, we build business value. Every solution is architected for reliability and security.</p>
+            <p className="section-lead dark" style={{ maxWidth: 1200 }}>From data pipelines to applications, every system we build is engineered for reliability and security.</p>
           </div>
           <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
-            <WhyWellmindScroll />
+            <SolarSystem />
           </div>
         </div>
 
@@ -381,8 +237,8 @@ export default function Home() {
           <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center'}}>
               <SectionBadge dark>Core Capabilities</SectionBadge>
-              <h2 className="section-h2 dark">Our AI Services</h2>
-              <p className="section-lead dark" style={{ marginTop: 12, maxWidth: 1200, marginBottom: 0 }}>Comprehensive solutions across entire AI spectrum.</p>
+              <h2 className="section-h2 dark">Our Services</h2>
+              <p className="section-lead dark" style={{ marginTop: 12, maxWidth: 1200, marginBottom: 0 }}>Software, AI and data services, from strategy to delivery.</p>
             </motion.div>
           </div>
           <div style={{ overflow: 'visible' }}>
@@ -397,7 +253,7 @@ export default function Home() {
           <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 48 }}>
               <SectionBadge dark>Portfolio</SectionBadge>
-              <h2 className="section-h2 dark">Selected Projects.</h2>
+              <h2 className="section-h2 dark">Featured Case Studies.</h2>
               <p className="section-lead dark" style={{ marginTop: 12, maxWidth: 1200 }}>Explore portfolio projects that turn data into decisions across industries.</p>
             </motion.div>
 
@@ -415,10 +271,38 @@ export default function Home() {
           </div>
         </div>
 
+        <SectionDivider />
+
+        {/* Why WellMind Data Solutions */}
+        <div style={{ position: 'relative', zIndex: 2, padding: 'var(--sp-section) 0' }}>
+          <div style={{ ...PX, position: 'relative', zIndex: 2 }}>
+            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 56px)' }}>
+              <h2 className="section-h2 dark">Why WellMind Data Solutions</h2>
+              <p className="section-lead dark" style={{ marginTop: 12, maxWidth: 900, marginLeft: 'auto', marginRight: 'auto' }}>
+                A software and AI engineering team that takes work from first idea to a running system, with a particular strength in healthcare AI.
+              </p>
+            </motion.div>
+            <div className="wm-why-grid">
+              {WHY_POINTS.map((p, i) => (
+                <motion.div
+                  key={p.title}
+                  className="wm-why-card"
+                  initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
+                >
+                  <span className="wm-why-num">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{p.title}</h3>
+                  <p>{p.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
 
       </section>
 
       {/* ══ 4. FAQ ══ */}
+      <style>{WHY_CSS}</style>
       <InViewSection style={{ padding: 'var(--sp-section) 0', position: 'relative', zIndex: 1, background: '#010101' }}>
         <CircuitBg opacity={0.06} />
         <DataParticles count={5} dark />
@@ -467,22 +351,6 @@ export default function Home() {
               </motion.div>
             </div>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px 28px', justifyContent: 'center', alignItems: 'center', maxWidth: 1100, margin: '0 auto' }}>
-              {[
-                { icon: <Mail size={16} />, label: 'info@wellminddatasolutions.com', href: 'mailto:info@wellminddatasolutions.com' },
-                { icon: <Mail size={16} />, label: 'contact@wellminddatasolutions.com', href: 'mailto:contact@wellminddatasolutions.com' },
-                { icon: <MessageCircle size={16} />, label: 'WhatsApp: +92 323 6787087', href: 'https://wa.me/923236787087' },
-                { icon: <Phone size={16} />, label: 'Call: +92 323 6787087', href: 'tel:+923236787087' },
-                { icon: <FaLinkedin size={16} />, label: 'LinkedIn', href: 'https://www.linkedin.com/company/wellmind-data-solutions' },
-              ].map((c, i) => (
-                <a key={i} href={c.href} style={{ display: 'inline-flex', alignItems: 'center', gap: 9, minWidth: 0, fontSize: 'var(--fs-card-body)', color: 'rgba(255,255,255,0.72)', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0 }}
-                  onMouseEnter={e => e.currentTarget.style.color = '#FFFFFF'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.72)'}>
-                  <span style={{ color: '#FFFFFF', flexShrink: 0 }}>{c.icon}</span>
-                  <span>{c.label}</span>
-                </a>
-              ))}
-            </div>
           </motion.div>
         </div>
       </InViewSection>

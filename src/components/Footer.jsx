@@ -9,6 +9,7 @@ import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import LogoImg from '../assets/WellMindDataSolutions-white-logo.png';
 import { B } from '../theme';
+import { reopenCookieSettings } from './cookieConsentStore';
 
 function FooterColumn({ children, delay = 0 }) {
   const ref = useRef(null);
@@ -396,6 +397,7 @@ export default function Footer() {
                 { label: 'Case Studies', to: '/case-studies' },
                 { label: 'Resources', to: '/resources' },
                 { label: 'Industries', to: '/industries' },
+                { label: 'Careers', to: '/careers' },
               ].map((l) => (
                 <li key={l.to}>
                   <Link to={l.to} className="wm-footer-link">
@@ -555,6 +557,21 @@ export default function Footer() {
                 </Link>
               )
             )}
+            <button
+              type="button"
+              onClick={reopenCookieSettings}
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'var(--fs-small)',
+                color: 'rgba(255,255,255,0.52)',
+                background: 'none', border: 0, padding: 0, cursor: 'pointer',
+                transition: 'color 0.2s',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#C2C2C2')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.52)')}
+            >
+              Cookie settings
+            </button>
           </div>
         </motion.div>
       </div>

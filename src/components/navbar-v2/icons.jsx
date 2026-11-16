@@ -8,7 +8,6 @@ const P = {
   finance: <path d="M3 9.5 12 4l9 5.5M5 10v7M9.5 10v7M14.5 10v7M19 10v7M3.5 20h17" />,
   healthcare: <path d="M3 12h4l2.5-6 4 12 2.5-6H21" />,
   retail: <><path d="M5 8h14l-1 12H6L5 8Z" /><path d="M9 8V6.5a3 3 0 0 1 6 0V8" /></>,
-  manufacturing: <path d="M3.5 20h17V5h-5v8.5l-6-3.5v3.5l-6-3.5z" />,
   agri: <><path d="M12 20v-9" /><path d="M12 11c0-4 3-6 7-6 0 4-3 6-7 6Z" /><path d="M12 14c0-3-2.5-4.5-6-4.5 0 3 2.5 4.5 6 4.5Z" /></>,
   edu: <><path d="m2.5 9.5 9.5-5 9.5 5-9.5 5z" /><path d="M6.5 12v4.5c0 1.5 2.5 3 5.5 3s5.5-1.5 5.5-3V12" /></>,
   doc: <><path d="M7 3.5h7l4 4V20.5H7z" /><path d="M14 3.5V8h4M9.5 12h6M9.5 15.5h6" /></>,

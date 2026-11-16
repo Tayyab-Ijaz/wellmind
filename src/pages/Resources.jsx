@@ -13,37 +13,25 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge } from '../theme';
 import { HeroGridBg } from '../components/BgGrid';
+import { ARTICLES } from '../data/articles';
 import {
-  BookOpen, Clock, ArrowRight, Search, Zap, Dna, Brain,
-  TrendingUp, Leaf, BarChart3, Code2, FlaskConical,
-  Mail, CheckCircle, Globe, Users, Star,
+  Clock, ArrowRight, Search, Zap, Dna, Brain,
+  HeartPulse, Code2, Star, Database,
 } from 'lucide-react';
 
 /* ─── Brand Tokens — IDENTICAL to Home.jsx ─────────────────────────────── */
 /* Category config */
 const CATS = {
-  'Biomedical Data Science': { color:B.action,    bg:'rgba(84,84,84,0.10)', border:'rgba(84,84,84,0.28)', icon:<Dna size={12}/> },
-  'Healthcare AI': { color:B.primary,   bg:'rgba(57,57,57,0.10)',  border:'rgba(57,57,57,0.26)',  icon:<Brain size={12}/> },
-  'Fintech AI':    { color:B.secondary, bg:'rgba(55,55,55,0.10)',  border:'rgba(55,55,55,0.28)',  icon:<TrendingUp size={12}/> },
-  'Agriculture AI':{ color:B.accent,    bg:'rgba(149,149,149,0.10)', border:'rgba(149,149,149,0.28)', icon:<Leaf size={12}/> },
-  'MLOps':         { color:B.primaryMid,bg:'rgba(34,34,34,0.10)',   border:'rgba(34,34,34,0.26)',   icon:<Code2 size={12}/> },
-  'Data Science':  { color:B.action,    bg:'rgba(84,84,84,0.10)', border:'rgba(84,84,84,0.28)', icon:<BarChart3 size={12}/> },
-  'AI Strategy':   { color:B.secondary, bg:'rgba(55,55,55,0.10)',  border:'rgba(55,55,55,0.28)',  icon:<FlaskConical size={12}/> },
+  'Software Engineering':    { color:B.action,    bg:'rgba(84,84,84,0.10)',    border:'rgba(84,84,84,0.28)',    icon:<Code2 size={12}/> },
+  'AI & Machine Learning':   { color:B.primary,   bg:'rgba(57,57,57,0.10)',    border:'rgba(57,57,57,0.26)',    icon:<Brain size={12}/> },
+  'Data & Cloud':            { color:B.secondary, bg:'rgba(55,55,55,0.10)',    border:'rgba(55,55,55,0.28)',    icon:<Database size={12}/> },
+  'Healthcare AI':           { color:B.accent,    bg:'rgba(149,149,149,0.10)', border:'rgba(149,149,149,0.28)', icon:<HeartPulse size={12}/> },
+  'Biomedical Data Science': { color:B.primaryMid,bg:'rgba(34,34,34,0.10)',    border:'rgba(34,34,34,0.26)',    icon:<Dna size={12}/> },
 };
 const ALL_FILTERS = ['All',...Object.keys(CATS)];
 
-/* Articles */
-const articles = [
-  { slug:'rna-seq-analysis-guide',         cat:'Biomedical Data Science', featured:true,  title:'The Complete RNA-seq Analysis Pipeline',                        excerpt:'From raw FASTQ to differentially expressed genes — QC, alignment, quantification, downstream analysis with real code.',         tags:['RNA-seq','DESeq2','Genomics'], img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80' },
-  { slug:'explainable-ai-healthcare',       cat:'Healthcare AI',  featured:true,  title:'Why Explainable AI Matters More Than Accuracy in Healthcare',               excerpt:'An accurate model no clinician trusts is worthless. Why interpretability must come first — and how to achieve it.',          tags:['XAI','SHAP','Clinical AI'],          img:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80' },
-  { slug:'ai-readiness-sme',                cat:'AI Strategy',    featured:false, title:'Signs Your Business Is Ready for AI (And Signs You\'re Not)',           excerpt:'Most AI projects fail not because of bad models — but because the organisation wasn\'t ready. An honest checklist.',           tags:['Strategy','SMB','Readiness'],        img:'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80' },
-  { slug:'scrna-seq-tutorial',              cat:'Biomedical Data Science', featured:false, title:'Single-Cell RNA-seq: Tools, Tutorials, and Common Mistakes',                excerpt:'scRNA-seq unlocks cell-by-cell resolution — but the analysis is notoriously error-prone. Scanpy, Seurat, clustering pitfalls.',  tags:['scRNA-seq','Scanpy','Seurat'],       img:'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80' },
-  { slug:'nextflow-pipeline-genomics',cat:'Biomedical Data Science', featured:false, title:'Rebuilding a Manual Analysis as a Nextflow Pipeline',                     excerpt:'Rebuilding a manual notebook workflow into a containerised, parallelised Nextflow pipeline — with code and lessons learned.',    tags:['Nextflow','Docker','Automation'],    img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80' },
-  { slug:'multi-omics-integration',         cat:'Biomedical Data Science', featured:false, title:'Multi-Omics Integration: A Practical Framework for Research Teams',         excerpt:'Combining genomics, transcriptomics, and proteomics — the framework we use without losing biological signal.',                  tags:['Multi-Omics','Integration'],        img:'https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&w=800&q=80' },
-  { slug:'fraud-detection-ml-guide',        cat:'Fintech AI',     featured:false, title:'Building Production-Grade Fraud Detection: Data to Deployment',             excerpt:'Feature engineering, model selection, threshold tuning, and monitoring a real-time fraud classifier in production.',            tags:['XGBoost','Feature Engineering'],    img:'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80' },
-  { slug:'mlops-small-teams',               cat:'MLOps',          featured:false, title:'MLOps for Small Teams: What to Build, Buy, or Skip',                       excerpt:'Enterprise MLOps stacks are overkill for small teams. The pragmatic minimum — CI/CD, monitoring, retraining patterns.',     tags:['MLOps','Production','CI/CD'],       img:'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80' },
-  { slug:'crop-yield-ai',                   cat:'Agriculture AI', featured:false, title:'AI-Driven Crop Yield Prediction: Satellite, Soil & ML',                    excerpt:'How to fuse satellite NDVI, weather data, and IoT soil sensors into a single predictive model. Architecture and deployment.',   tags:['NDVI','LightGBM','AgriTech'],       img:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80' },
-];
+/* Articles live in src/data/articles — each one has its own page at /resources/:slug */
+const articles = ARTICLES;
 
 /* ─── Background helpers — identical to Home.jsx ─────────────────────────── */
 /* Featured card — dark overlay exactly like Home ProjectCard */
@@ -51,7 +39,7 @@ function FeaturedCard({ article, i }) {
   const hov = false;
   return (
     <motion.div initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6, delay:i*0.1, ease:[0.16,1,0.3,1] }}>
-      <div style={{ display:'block', height:'100%' }}>
+      <Link to={`/resources/${article.slug}`} style={{ display:'block', height:'100%' }}>
         <div
          
           style={{
@@ -65,7 +53,7 @@ function FeaturedCard({ article, i }) {
           }}
         >
           <div style={{ position:'relative', height:'clamp(160px,20vw,240px)', flexShrink:0, overflow:'hidden' }}>
-            <div style={{ position:'absolute', inset:0, backgroundImage:`url(${article.img})`, backgroundSize:'cover', backgroundPosition:'center', transform:hov?'scale(1.06)':'scale(1)', transition:'transform 0.7s cubic-bezier(0.16,1,0.3,1)', filter:hov?'brightness(0.55)':'brightness(0.45)' }}/>
+            <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle at 25% 20%, rgba(255,255,255,0.16), transparent 55%), linear-gradient(135deg,#2a2a2a 0%,#0e0e0e 100%)' }}/>
             <div style={{ position:'absolute', inset:0, background:'linear-gradient(to bottom,rgba(6,6,6,0) 30%,rgba(6,6,6,1) 100%)' }}/>
             <div style={{ position:'absolute', top:16, right:16, display:'flex', flexWrap:'wrap', gap:6, justifyContent:'flex-end', maxWidth:'80%' }}>
               <span style={{ fontSize:'var(--fs-label)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.08em', color:B.textDark, background:'rgba(255,255,255,0.12)', backdropFilter:'blur(8px)', padding:'4px 10px', borderRadius:6, border:'1px solid rgba(255,255,255,0.15)' }}>{article.cat}</span>
@@ -78,9 +66,12 @@ function FeaturedCard({ article, i }) {
             <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginBottom:24 }}>
               {article.tags.map((tag,ti) => <span key={ti} className="tool-tag" style={{ color:'#e5e5e5', background:'rgba(255,255,255,0.10)', border:'1px solid rgba(255,255,255,0.22)', padding:'4px 12px', borderRadius:6 }}>{tag}</span>)}
             </div>
+            <span style={{ display:'inline-flex', alignItems:'center', gap:8, color:'#fff', fontWeight:700, fontSize:'var(--fs-small)', letterSpacing:'0.06em', textTransform:'uppercase' }}>
+              Read article <ArrowRight size={15}/> <span style={{ marginLeft:'auto', display:'inline-flex', alignItems:'center', gap:5, color:'rgba(255,255,255,0.6)', fontWeight:600 }}><Clock size={13}/>{article.minutes} min</span>
+            </span>
           </div>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 }
@@ -91,7 +82,7 @@ function ArticleCard({ article, i }) {
   const cat = CATS[article.cat] || {};
   return (
     <motion.div initial={{ opacity:0, y:28 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.07, ease:[0.16,1,0.3,1] }} layout>
-      <div style={{ display:'block', height:'100%' }}>
+      <Link to={`/resources/${article.slug}`} style={{ display:'block', height:'100%' }}>
         <div
          
           style={{
@@ -116,9 +107,12 @@ function ArticleCard({ article, i }) {
             <div style={{ display:'flex', flexWrap:'wrap', gap:6, marginBottom:20 }}>
               {article.tags.map((tag,ti) => <span key={ti} style={{ fontSize:'var(--fs-label)', fontWeight:600, padding:'3px 9px', borderRadius:6, background:B.primaryLight, border:`1px solid ${B.primaryBorder}`, color:B.primary, letterSpacing:'0.04em' }}>{tag}</span>)}
             </div>
+            <span style={{ display:'inline-flex', alignItems:'center', gap:8, marginTop:'auto', color:B.textMain, fontWeight:700, fontSize:'var(--fs-small)', letterSpacing:'0.06em', textTransform:'uppercase' }}>
+              Read article <ArrowRight size={15}/> <span style={{ marginLeft:'auto', display:'inline-flex', alignItems:'center', gap:5, color:B.textMuted, fontWeight:600 }}><Clock size={13}/>{article.minutes} min</span>
+            </span>
           </div>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 }
@@ -191,7 +185,7 @@ export default function Resources() {
             </motion.h1>
 
             <motion.p variants={fadeUp} custom={0.2} className="hero-sub" style={{ color:B.textMid, maxWidth:1200, margin:'0 auto clamp(16px,2.5vw,36px)', letterSpacing:'0.02em' }}>
-              In-depth tutorials, case study breakdowns, and AI strategy articles written by practitioners, not content marketers. Free! No login required.
+              Plain-language guides on software, AI and data: what each thing is, why it matters and how it works. Free, no login required.
             </motion.p>
 
           </motion.div>
@@ -211,7 +205,7 @@ export default function Resources() {
               <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }} style={{ textAlign:'center', marginBottom:36 }}>
                 <SectionBadge>Editor's Picks</SectionBadge>
                 <h2 className="section-h2">Featured Articles</h2>
-                <p className="section-lead" style={{ marginTop:12 }}>Start here, our most thorough, most-read pieces.</p>
+                <p className="section-lead" style={{ marginTop:12 }}>Start here: three guides that cover how projects are run, how models ship and how healthcare revenue analytics works.</p>
               </motion.div>
               <div className="grid-projects">
                 {featured.map((a,i) => <FeaturedCard key={a.slug} article={a} i={i}/>)}
@@ -229,7 +223,7 @@ export default function Resources() {
               <SectionBadge>{showFeatured ? 'All Articles' : 'Search Results'}</SectionBadge>
               <h2 className="section-h2" style={{ marginBottom:12 }}>{showFeatured ? 'Browse Our Articles' : 'Search Results'}</h2>
               <p className="section-lead" style={{ maxWidth:600, margin:'0 auto 24px' }}>
-                Guides across biomedical data science, AI, MLOps, and data strategy.
+                Guides across software engineering, AI, data and cloud, and healthcare and biomedical data.
               </p>
 
               {/* Search Bar (Moved Here) */}

@@ -56,6 +56,15 @@ const SERVICES = [
 ];
 
 
+const WAYS = [
+  { title: 'AI & Data Systems', desc: 'Machine learning, analytics and data platforms built for production, including healthcare revenue-cycle (RCM) analytics.' },
+  { title: 'Application Engineering', desc: 'Custom web, mobile and enterprise software, from first prototype to a maintained product.' },
+  { title: 'Solution Implementation', desc: 'Taking a chosen design or platform live: integration, migration, rollout and handover to your team.' },
+  { title: 'Advisory & Strategy', desc: 'Feasibility checks, roadmaps and architecture reviews before you commit budget.' },
+  { title: 'Cloud & Infrastructure', desc: 'Cloud setup, deployment pipelines and monitoring, so systems stay reliable after launch.' },
+  { title: 'Staff Augmentation', desc: 'Our engineers and data scientists embedded in your team, working in your tools and process.' },
+];
+
 function SiteEnd() {
   return (
     <>
@@ -63,7 +72,7 @@ function SiteEnd() {
         <div className="as-end-row">
           <p>Get more inspiration <a href="https://www.linkedin.com/company/wellmind-data-solutions/" target="_blank" rel="noopener noreferrer">@wellmind</a></p>
           <p>
-            <Link to="/industries">Industries</Link> <i>/</i> <Link to="/about">About</Link> <i>/</i> <Link to="/contact">Contact</Link>
+            <Link to="/industries">Industries</Link> <i>/</i> <Link to="/about">About</Link> <i>/</i> <Link to="/careers">Careers</Link> <i>/</i> <Link to="/contact">Contact</Link>
           </p>
         </div>
         <div className="as-wordmark" aria-hidden="true">
@@ -92,7 +101,7 @@ export default function AllServices() {
     <div className="as-page">
       <header className="as-head">
         <h1>All services</h1>
-        <p>Six service areas, from machine learning to health AI. Pick one to see how we work.</p>
+        <p>Six service areas, from machine learning to health AI. Pick one to see how we work, or see how you can engage us below.</p>
       </header>
 
       <div className="as-grid">
@@ -113,6 +122,20 @@ export default function AllServices() {
         ))}
       </div>
 
+      <section className="as-ways" aria-labelledby="as-ways-h">
+        <h2 id="as-ways-h">How we work with you</h2>
+        <p className="as-ways-lead">Whatever the service area, there are six ways to engage us, from a single advisory session to engineers embedded in your own team.</p>
+        <div className="as-ways-grid">
+          {WAYS.map((w, i) => (
+            <div className="as-way" key={w.title}>
+              <span>{String(i + 1).padStart(2, '0')}</span>
+              <h3>{w.title}</h3>
+              <p>{w.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <div className="as-cta">
         <span>Not sure which fits?</span>
         <Link to="/book-discovery">Book a discovery call</Link>
@@ -121,6 +144,17 @@ export default function AllServices() {
       <SiteEnd />
 
       <style>{`
+        .as-ways { max-width: 1320px; margin: clamp(56px, 8vw, 110px) auto 0; }
+        .as-ways h2 { margin: 0 0 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: var(--fs-section-h2); letter-spacing: -0.02em; color: #fff; text-align: left; }
+        .as-ways-lead { margin: 0 0 clamp(24px, 3.6vw, 44px); max-width: 760px; color: rgba(255,255,255,0.62); font-size: var(--fs-card-body); line-height: 1.65; text-align: left; }
+        .as-ways-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 22px); }
+        .as-way { padding: clamp(20px, 2.4vw, 30px); border-radius: 18px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); transition: border-color .3s ease, background .3s ease, transform .3s ease; }
+        .as-way:hover { border-color: rgba(255,255,255,0.34); background: rgba(255,255,255,0.06); transform: translateY(-4px); }
+        .as-way span { display: block; margin-bottom: 16px; font: 600 13px/1 'Space Grotesk', sans-serif; letter-spacing: .14em; color: rgba(255,255,255,0.45); }
+        .as-way h3 { margin: 0 0 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: var(--fs-card-title); color: #fff; text-align: left; }
+        .as-way p { margin: 0; font-size: var(--fs-card-body); line-height: 1.6; color: rgba(255,255,255,0.64); text-align: left; }
+        @media (max-width: 900px) { .as-ways-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 560px) { .as-ways-grid { grid-template-columns: minmax(0, 1fr); } }
         .as-page { background: #09090a; color: #fff; min-height: 100vh; padding: clamp(110px, 14vw, 160px) clamp(16px, 4vw, 56px) 0; }
         .as-head { text-align: left; max-width: 1320px; margin: 0 auto clamp(40px, 6vw, 72px); }
         .as-head h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: var(--fs-hero); letter-spacing: -0.02em; margin: 0 0 14px; color: #fff; }
