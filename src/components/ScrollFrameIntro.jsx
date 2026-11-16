@@ -320,6 +320,11 @@ function HeroTunnelStage({ sectionRef, stageH, children }) {
         lastKey = key;
         renderer.setSize(iw, ih, false);
         camera.aspect = iw / ih;
+        // Tall/narrow frames (phones) keep the same horizontal field of view as a landscape one, otherwise
+        // the camera only sees a thin strip down the middle of the tunnel and the walls fade into the fog → black.
+        const widen = Math.max(1, 1.5 / camera.aspect);
+        camera.fov = Math.min(105, (2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(30)) * widen) * 180) / Math.PI);
+        scene.fog.density = camera.aspect < 1 ? 0.025 : 0.04;      // thinner fog on portrait so the walls stay visible
         camera.updateProjectionMatrix();
       }
 

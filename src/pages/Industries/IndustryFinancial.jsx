@@ -189,7 +189,7 @@ export default function IndustryFinancial() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }} style={{ textAlign: 'center', marginBottom: 'clamp(24px, 4vw, 48px)' }}>
             <SectionBadge dark>Technology Stack</SectionBadge>
             <h2 className="section-h2 dark" style={{ fontSize: 'var(--fs-section-h2)', marginBottom: 12 }}>Built on Enterprise-Grade Infrastructure</h2>
-            <p style={{ color: B.textDarkMid, fontSize: 'var(--fs-card-title)', maxWidth: 640, margin: '0' }}>The exact tools we've used to design, build, and ship each of the projects above.</p>
+            <p style={{ color: B.textDarkMid, fontSize: 'var(--fs-card-title)', maxWidth: 640, margin: '0 auto' }}>The exact tools we've used to design, build, and ship each of the projects above.</p>
           </motion.div>
           <div className="grid-tech">
             {[
@@ -316,9 +316,9 @@ export default function IndustryFinancial() {
             <h2 className="section-h2 dark" style={{ color: B.textDark }}>Questions from Financial Teams</h2>
             <p className="section-lead" style={{ color: B.textDarkMid }}>Honest answers before you engage.</p>
           </motion.div>
-          <div style={{ maxWidth: 840, margin: '0' }}>
+          <div style={{ maxWidth: 840, margin: '0 auto' }}>
             {faqs.map((faq, i) => (
-              <FaqItem key={i} q={faq.q} a={faq.a} isOpen={openFaq === i} onClick={() => setOpenFaq(openFaq === i ? -1 : i)} index={i} color={B.action} />
+              <FaqItem key={i} q={faq.q} a={faq.a} isOpen={openFaq === i} onClick={() => setOpenFaq(openFaq === i ? -1 : i)} index={i} color={lift(B.action)} />
             ))}
           </div>
         </div>

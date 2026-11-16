@@ -593,7 +593,6 @@ button:focus-visible {
    viewport edge). Stacks below 980px.
    ═══════════════════════════════════════════════════════════════════════════ */
 .ind-hero {
-  --ind-accent: #0b5cff;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -632,7 +631,12 @@ button:focus-visible {
   text-wrap: balance;
 }
 
-.ind-hero-accent { color: var(--ind-accent); }
+.ind-hero-accent {
+  color: #5c5c5c; /* grey accent, same as the service-page headlines */
+  background: linear-gradient(90deg, #5c5c5c 0%, #555555 48%, #727272 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 .ind-hero-text {
   font-size: var(--fs-card-title);

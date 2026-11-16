@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Zap, Sparkles } from 'lucide-react';
 import { B, PX, fadeUp, SectionBadge, DataParticles } from '../../theme';
 import { HeroGridBg } from '../../components/BgGrid';
-import uiUxImage from '../../assets/ui-ux-coming-soon.png';
+import uiUxImage from '../../assets/ui-ux-coming-soon.webp';
 
 export default function ServicesUiUx() {
   return (
@@ -49,7 +49,7 @@ export default function ServicesUiUx() {
         }
 
         .uiux-coming-title {
-          font-family: ${B.fontMain};
+          font-family: var(--font-main);
           font-weight: 750;
           font-size: var(--fs-hero);
           color: ${B.primaryDark};
@@ -97,7 +97,6 @@ export default function ServicesUiUx() {
           background:
             radial-gradient(circle at 55% 45%, rgba(128,128,128,0.19), transparent 48%),
             radial-gradient(circle at 70% 70%, rgba(130,130,130,0.12), transparent 42%);
-          filter: blur(8px);
           pointer-events: none;
         }
 
@@ -109,7 +108,6 @@ export default function ServicesUiUx() {
           margin: 0 auto;
           object-fit: contain;
           display: block;
-          filter: drop-shadow(0 26px 45px rgba(52,52,52,0.18));
           animation: uiuxFloat 5.5s ease-in-out infinite;
         }
 

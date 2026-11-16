@@ -174,7 +174,7 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
               backgroundSize: 'cover', backgroundPosition: 'center',
               transform: hovered ? 'scale(1.06)' : 'scale(1)',
               transition: 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
-              filter: hovered ? 'brightness(0.75)' : 'brightness(0.68)',
+              filter: hovered ? 'grayscale(1) brightness(0.75)' : 'grayscale(1) brightness(0.68)',
             }} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(6,6,6,0) 45%, rgba(6,6,6,0.88) 100%)' }} />
             <div style={{
@@ -196,17 +196,6 @@ function CaseStudyCard({ cs, i, isFeatured = false }) {
                 <Star size={12} fill="white" /> Featured
               </div>
             )}
-            <div style={{ position: 'absolute', top: 16, right: 16, display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'flex-end', maxWidth: '80%', zIndex: 5 }}>
-              {cs.tags.map((tag, tIdx) => (
-                <span key={tIdx} style={{
-                  fontSize: 'var(--fs-label)', fontWeight: 700,
-                  textTransform: 'uppercase', letterSpacing: '0.08em',
-                  color: B.textDark, background: 'rgba(255,255,255,0.12)',
-                  backdropFilter: 'blur(8px)', padding: '4px 10px', borderRadius: 6,
-                  border: '1px solid rgba(255,255,255,0.15)',
-                }}>{tag}</span>
-              ))}
-            </div>
           </div>
 
           {/* CONTENT */}

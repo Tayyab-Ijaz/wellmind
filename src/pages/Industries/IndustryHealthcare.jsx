@@ -313,9 +313,9 @@ export default function IndustryHealthcare() {
             <h2 className="section-h2 dark" style={{ color: B.textDark }}>Questions from Clinical Teams</h2>
             <p className="section-lead" style={{ color: B.textDarkMid }}>Honest answers before you engage.</p>
           </motion.div>
-          <div style={{ maxWidth: 840, margin: '0' }}>
+          <div style={{ maxWidth: 840, margin: '0 auto' }}>
             {faqs.map((faq, i) => (
-              <FaqItem key={i} q={faq.q} a={faq.a} isOpen={openFaq === i} onClick={() => setOpenFaq(openFaq === i ? -1 : i)} index={i} color={B.action} />
+              <FaqItem key={i} q={faq.q} a={faq.a} isOpen={openFaq === i} onClick={() => setOpenFaq(openFaq === i ? -1 : i)} index={i} color={lift(B.action)} />
             ))}
           </div>
         </div>

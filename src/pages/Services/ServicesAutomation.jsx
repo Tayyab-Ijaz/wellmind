@@ -22,7 +22,7 @@ import {
 
 import { HeroGridBg, SectionGridBg } from '../../components/BgGrid';
 import PipelineFlow from '../../components/PipelineFlow';
-import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge, SectionDivider, CircuitBg } from '../../theme';
+import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge, SectionDivider } from '../../theme';
 
 // ─── Brand Tokens (Synced with ServicesAiMl.jsx) ─────────────────────────────
 // Page-specific accent — warm amber/gold, operations / efficiency vibe
@@ -252,19 +252,6 @@ export default function ServicesAutomation() {
               ))}
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* ══════════ 2. STATS (DARK) ══════════ */}
-      <section style={{
-        padding: 'var(--sp-section) 0',
-        position: 'relative', zIndex: 1,
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #080808 100%)',
-        display: 'flex', alignItems: 'center',
-      }}>
-        <CircuitBg opacity={0.09}/>
-        <DataParticles count={12} dark/>
-        <div style={{ ...PX, position: 'relative', zIndex: 2, width: '100%' }}>
         </div>
       </section>
 

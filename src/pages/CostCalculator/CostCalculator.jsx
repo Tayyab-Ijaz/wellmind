@@ -315,9 +315,7 @@ export default function CostCalculator() {
               <Link to="/book-discovery" className="btn-outline-action">Talk to an expert</Link>
             </motion.div>
             <motion.ul variants={fadeUp} custom={0.35} className="roi-trust">
-              <li><Lock size={15} /> Runs in your browser</li>
               <li><ShieldCheck size={15} /> No sign-up or email</li>
-              <li><Zap size={15} /> Instant results</li>
             </motion.ul>
           </motion.div>
 

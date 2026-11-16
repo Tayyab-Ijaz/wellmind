@@ -370,15 +370,21 @@ const CSS = `
 .cs-stat:last-child{border-right:0}
 .cs-stat b{display:block;font-size:var(--fs-card-title);font-weight:800;letter-spacing:-.01em;color:#0b0b0b;line-height:1.2}
 .cs-stat span{display:block;margin-top:6px;font-size:var(--fs-label);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#777}
-.cs-wrap{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(32px,5vw,72px);padding:clamp(36px,5vw,72px) 0 clamp(48px,6vw,96px);align-items:start}
+.cs-wrap{display:grid;grid-template-columns:210px minmax(0,1fr) minmax(300px,400px);gap:clamp(32px,5vw,72px);padding:clamp(36px,5vw,72px) 0 clamp(48px,6vw,96px);align-items:start}
 .cs-toc{position:sticky;top:104px}
 .cs-toc p{margin:0 0 12px;font-size:var(--fs-label);font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#777}
 .cs-toc a{display:block;padding:9px 0 9px 16px;border-left:2px solid rgba(0,0,0,.12);font-size:var(--fs-small);font-weight:600;color:#666;text-decoration:none;transition:color .2s,border-color .2s}
 .cs-toc a:hover{color:#000}
 .cs-toc a.is-on{color:#000;border-left-color:#000}
-.cs-main{min-width:0;max-width:820px}
+.cs-main{min-width:0}
+.cs-side{position:sticky;top:104px;display:grid;gap:18px}
+.cs-side .cs-fig{margin:0}
+.cs-side .cs-glance{margin:0;grid-template-columns:1fr}
+.cs-side .cs-glance div:last-child{border-bottom:0}
+.cs-fig--inline{display:none}
 .cs-fig{margin:0 0 clamp(32px,4.5vw,56px);border-radius:20px;overflow:hidden;border:1px solid rgba(0,0,0,.1);background:#0b0b0b;line-height:0}
-.cs-fig img{width:100%;height:auto;display:block}
+.cs-fig img{width:100%;height:auto;display:block;filter:grayscale(1)}
+.cs-fig--side img{aspect-ratio:4/3;object-fit:cover}
 .cs-sec{scroll-margin-top:104px;margin-bottom:clamp(36px,5vw,64px)}
 .cs-sec h2{margin:0 0 clamp(14px,1.8vw,20px);font-size:var(--fs-h3);font-weight:800;letter-spacing:-.02em;color:#0b0b0b;text-align:left}
 .cs-sec p{margin:0 0 14px;font-size:var(--fs-card-title);line-height:1.8;color:#2f2f2f;text-align:left}
@@ -408,7 +414,7 @@ const CSS = `
 .cs-rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(16px,2vw,26px)}
 .cs-rcard{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);text-decoration:none;color:#fff;transition:transform .3s,border-color .3s,background .3s}
 .cs-rcard:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.07)}
-.cs-rcard img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#161616}
+.cs-rcard img{filter:grayscale(1);width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#161616}
 .cs-rbody{padding:clamp(16px,2vw,22px);display:flex;flex-direction:column;gap:10px;flex:1}
 .cs-rbody small{font-size:var(--fs-label);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .cs-rbody h3{margin:0;font-size:var(--fs-card-title);font-weight:700;line-height:1.3;color:#fff;text-align:left}
@@ -419,6 +425,13 @@ const CSS = `
 .cs-cta-box p{margin:0;max-width:640px;font-size:var(--fs-card-body);line-height:1.7;color:rgba(255,255,255,.72);text-align:left}
 .cs-cta-box .cs-btn--solid{background:#fff;color:#000;border-color:#fff}
 .cs-cta-box .cs-btn--solid:hover{background:#d9d9d9}
+@media (max-width:1180px){
+  .cs-wrap{grid-template-columns:210px minmax(0,1fr)}
+  .cs-side{position:static;grid-column:1/-1}
+  .cs-fig--side{display:none}
+  .cs-side .cs-glance{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .cs-fig--inline{display:block}
+}
 @media (max-width:980px){
   .cs-wrap{grid-template-columns:minmax(0,1fr)}
   .cs-toc{position:static;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -522,7 +535,6 @@ function CaseStudyView({ slug }) {
             <div className="cs-kicker">Case study <i /> {meta.industryLabel} <i /> {meta.serviceLabel}</div>
             <h1>{cs.title}</h1>
             <p className="cs-sub">{firstSentence(cs.overview)}</p>
-            <div className="cs-chips">{cs.tools.slice(0, 6).map((t) => <span className="cs-chip" key={t}>{t}</span>)}</div>
             <div className="cs-actions">
               {meta.githubUrl && (
                 <a className="cs-btn cs-btn--solid" href={meta.githubUrl} target="_blank" rel="noopener noreferrer"><SquareCode size={16} /> View the code</a>
@@ -549,18 +561,11 @@ function CaseStudyView({ slug }) {
           </aside>
 
           <main className="cs-main">
-            {image && <figure className="cs-fig"><img src={image} alt={`${cs.title} project visual`} loading="eager" decoding="async" /></figure>}
+            {image && <figure className="cs-fig cs-fig--inline"><img src={image} alt={`${cs.title} project visual`} loading="eager" decoding="async" /></figure>}
 
             <section className="cs-sec" id="overview">
               <h2>Overview</h2>
               <p>{cs.overview}</p>
-              <dl className="cs-glance">
-                <div><dt>Industry</dt><dd>{meta.industryLabel}</dd></div>
-                <div><dt>Service</dt><dd>{meta.serviceLabel}</dd></div>
-                <div><dt>Project type</dt><dd>{cs.investment}</dd></div>
-                <div><dt>Source</dt><dd>{meta.githubUrl ? <a href={meta.githubUrl} target="_blank" rel="noopener noreferrer">Public GitHub repository</a> : 'Portfolio project'}</dd></div>
-                {meta.liveDemo && <div><dt>Live demo</dt><dd><a href={meta.liveDemo} target="_blank" rel="noopener noreferrer">Open the demo</a></dd></div>}
-              </dl>
             </section>
 
             <section className="cs-sec" id="challenge">
@@ -586,6 +591,17 @@ function CaseStudyView({ slug }) {
               <div className="cs-stack">{cs.tools.map((t) => <span key={t}>{t}</span>)}</div>
             </section>
           </main>
+
+          <aside className="cs-side" aria-label="Project visual and details">
+            {image && <figure className="cs-fig cs-fig--side"><img src={image} alt={`${cs.title} project visual`} loading="eager" decoding="async" /></figure>}
+              <dl className="cs-glance">
+                <div><dt>Industry</dt><dd>{meta.industryLabel}</dd></div>
+                <div><dt>Service</dt><dd>{meta.serviceLabel}</dd></div>
+                <div><dt>Project type</dt><dd>{cs.investment}</dd></div>
+                <div><dt>Source</dt><dd>{meta.githubUrl ? <a href={meta.githubUrl} target="_blank" rel="noopener noreferrer">Public GitHub repository</a> : 'Portfolio project'}</dd></div>
+                {meta.liveDemo && <div><dt>Live demo</dt><dd><a href={meta.liveDemo} target="_blank" rel="noopener noreferrer">Open the demo</a></dd></div>}
+              </dl>
+          </aside>
         </div>
       </div>
 
