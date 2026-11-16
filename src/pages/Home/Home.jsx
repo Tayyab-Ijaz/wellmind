@@ -21,7 +21,7 @@ import ScrollTest           from './serviceshome';
 
 import SolarSystem from './SolarSystem';
 import imgArPrioritization from '../../assets/case-studies/ar-prioritization.webp';
-import imgTelecomChurn from '../../assets/case-studies/telecom-churn.webp';
+import imgCommandCenter from '../../assets/case-studies/command-center.webp';
 import imgHealthcareFraudBilling from '../../assets/case-studies/healthcare-fraud-billing.webp';
 
 import ScrollFrameIntro from '../../components/ScrollFrameIntro';
@@ -151,7 +151,9 @@ const WHY_POINTS = [
 ];
 
 const WHY_CSS = `
-.wm-why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(14px,2vw,22px)}
+.wm-why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px)}
+@media (max-width:900px){.wm-why-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.wm-why-grid{grid-template-columns:minmax(0,1fr)}}
 .wm-why-card{position:relative;padding:clamp(22px,2.6vw,32px);border-radius:20px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.12);transition:border-color .3s ease,background .3s ease,transform .3s ease}
 .wm-why-card:hover{border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.06);transform:translateY(-4px)}
 .wm-why-num{display:block;margin-bottom:18px;font:600 13px/1 'Space Grotesk',system-ui,sans-serif;letter-spacing:.14em;color:rgba(255,255,255,.45)}
@@ -166,7 +168,7 @@ export default function Home() {
 
   const projects = [
     { title: 'AR Prioritization & Underpayment Recovery Engine', desc: 'LightGBM classifier + live dashboard flagging underpaid Medicare claims from public CMS data.', tags: ['Data Analytics'], tools: ['Python', 'LightGBM', 'FastAPI', 'React', 'Isolation Forest'], imgUrl: imgArPrioritization, icon: <TrendingUp />, slug: 'ar-prioritization-underpayment-recovery', link: '/case-studies/ar-prioritization-underpayment-recovery' },
-    { title: 'Telecom Customer Churn Prediction', desc: 'Random Forest churn model with SHAP explainability that surfaces the customers most at risk of leaving.', tags: ['AI & Machine Learning'], tools: ['Random Forest', 'XGBoost', 'SHAP', 'SMOTE'], imgUrl: imgTelecomChurn, icon: <BarChart3 />, slug: 'telecom-churn-prediction', link: '/case-studies/telecom-churn-prediction' },
+    { title: 'Command Center: Multi-Branch Restaurant Operations Platform', desc: 'Live-deployed operations platform with face-verified, geo-fenced attendance, order tracking and real-time fraud alerts to the owner\'s WhatsApp.', tags: ['AI Software'], tools: ['React', 'Fraud Detection', 'Live Demo'], imgUrl: imgCommandCenter, icon: <Code />, slug: 'restaurant-command-center', link: '/case-studies/restaurant-command-center' },
     { title: 'Healthcare Fraud Detection System', desc: 'Peer-benchmarking, anomaly detection, and OIG exclusion-list matching to flag high-risk Medicare providers from public data.', tags: ['AI & Machine Learning'], tools: ['Isolation Forest', 'Random Forest', 'Z-score Analysis'], imgUrl: imgHealthcareFraudBilling, icon: <Shield />, slug: 'healthcare-fraud-detection-billing', link: '/case-studies/healthcare-fraud-detection-billing' },
   ];
 

@@ -12,7 +12,7 @@ export const ROUTE_META = {
   },
   '/case-studies': {
     title: `Case Studies | ${N}`,
-    description: 'Portfolio projects across healthcare AI, finance, retail, supply chain, agriculture and education, published on our public GitHub.',
+    description: 'Portfolio projects across healthcare AI, finance, retail, supply chain and education, published on our public GitHub.',
   },
   '/resources': {
     title: `Resources | ${N}`,
@@ -37,7 +37,6 @@ export const ROUTE_META = {
   '/industry-financial-service': { title: `Financial Services AI & Data Science | ${N}`, description: 'Risk scoring, fraud detection and document automation for banks, insurers and fintech teams.' },
   '/industry-healthcare': { title: `Healthcare & Biotech AI | ${N}`, description: 'Healthcare analytics, clinical NLP and biomedical data science support for providers, payers and research teams.' },
   '/industry-retail-ecommerce': { title: `Retail & E-Commerce AI | ${N}`, description: 'Churn prediction, demand forecasting and conversational analytics for retail and e-commerce businesses.' },
-  '/industry-agriculture': { title: `Agriculture & AgriTech AI | ${N}`, description: 'Satellite and weather data pipelines and yield modelling for agriculture and AgriTech teams.' },
   '/industry-education': { title: `Education & EdTech AI | ${N}`, description: 'Adaptive learning and student-success analytics for education and EdTech teams.' },
 
   '/services': { title: `All Services | ${N}`, description: 'AI and machine learning, data science, AI-powered software, automation, UI/UX design and health AI services from WellMind.' },

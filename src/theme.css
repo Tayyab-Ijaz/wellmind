@@ -673,7 +673,7 @@ button:focus-visible {
   background: transparent;
 }
 
-/* Photo variant (Agriculture / Education until custom illustrations exist) */
+/* Photo variant (Education until custom illustrations exist) */
 .ind-hero-media--cover {
   min-height: clamp(360px, 40vw, 560px);
   padding: 0;

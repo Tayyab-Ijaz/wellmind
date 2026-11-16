@@ -104,7 +104,7 @@ const BASE_CASE_STUDIES = [
     image: imgCommandCenter,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/restaurant-management-system',
     liveDemo: 'https://nexus-rms.vercel.app',
-    featured: false,
+    featured: true,
   },
   {
     slug: 'supplyguard-disruption-alerts',
@@ -152,7 +152,7 @@ const BASE_CASE_STUDIES = [
     tags: ['Random Forest', 'SHAP', 'SMOTE'],
     image: imgTelecomChurn,
     githubUrl: 'https://github.com/WELLMIND-DataSolutions/Telecom-Customer_Churn_Prediction',
-    featured: true,
+    featured: false,
   },
   {
     slug: 'retail-demand-forecasting',

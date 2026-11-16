@@ -5,7 +5,6 @@
  *
  * Changes from previous version:
  * - Section 3 (Featured) + Section 5 (CTA) merged into ONE unified light section
- * - Agriculture & Education industries added to INDUSTRIES array + caseStudies data
  */
 
 import React, { useState } from 'react';

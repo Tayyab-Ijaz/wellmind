@@ -2,11 +2,12 @@ import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useSta
 import './tokens.css';
 import './navbar.css';
 import {
-  NAV, SERVICES, INDUSTRIES, RESOURCES, PROJECTS, SEARCH_INDEX, CONFIG, EMPTY_FILTER, matches,
+  NAV, SERVICES, INDUSTRIES, RESOURCES, PROJECTS, SEARCH_INDEX, CONFIG, EMPTY_FILTER, CS_MENU_LIMIT, matches,
 } from './navData';
 import { useMedia, useReducedMotion, useScrollState, useMagnetic, useSpotlight } from './hooks';
 import CommandPalette from './CommandPalette';
 import { Icon, Thumb } from './icons';
+import ArticleCover from '../ArticleCover';
 
 const DotGrid = lazy(() => import('./DotGrid'));
 
@@ -94,18 +95,14 @@ function CaseStudiesPane({ filter, setFilter }) {
   const pick = (type, id) => setFilter((f) => (f[type] === id ? f : { ...f, [type]: id }));
   const clear = (type) => setFilter((f) => ({ ...f, [type]: null }));
   const svc = SERVICES.find((s) => s.id === filter.service);
-  const ind = INDUSTRIES.find((s) => s.id === filter.industry);
-  let rank = 0;
-  const flags = PROJECTS.map((p) => {
-    const ok = matches(p, filter);
-    return { p, ok, i: ok ? rank++ : 0 };
-  });
+  // No filter: the featured projects. With a filter: the matching ones (featured first). Counts always cover every case study.
+  const matched = PROJECTS.filter((p) => matches(p, filter)).sort((a, b) => Number(b.featured) - Number(a.featured));
+  const shown = (svc ? matched : matched.filter((p) => p.featured)).slice(0, CS_MENU_LIMIT);
 
   return (
     <div className="cs">
       <div className="cs__filters">
         <FilterList label="Filter by service" type="service" items={SERVICES} value={filter.service} onPick={pick} />
-        <FilterList label="Filter by industry" type="industry" items={INDUSTRIES} value={filter.industry} onPick={pick} />
         <a className="cta" href="/case-studies">
           View all case studies <Arrow />
         </a>
@@ -113,8 +110,8 @@ function CaseStudiesPane({ filter, setFilter }) {
 
       <div className="cs__results">
         <div className="cs__head">
-          <div className="nb-label">Featured projects</div>
-          <div className="cs__count">{flags.filter((f) => f.ok).length} of {PROJECTS.length}</div>
+          <div className="nb-label">{svc ? 'Matching projects' : 'Featured projects'}</div>
+          <div className="cs__count">{svc ? `${shown.length} of ${matched.length}` : `${PROJECTS.length} case studies in total`}</div>
         </div>
         <div className="cs__chips" aria-live="polite">
           {svc && (
@@ -122,25 +119,20 @@ function CaseStudiesPane({ filter, setFilter }) {
               {svc.label}<span aria-hidden="true">&times;</span>
             </button>
           )}
-          {ind && (
-            <button type="button" className="chip" onClick={() => clear('industry')} aria-label={`Remove filter: ${ind.label}`}>
-              {ind.label}<span aria-hidden="true">&times;</span>
-            </button>
-          )}
         </div>
 
         <div className="cs__cards">
-          {flags.map(({ p, ok, i }) => (
-            <div key={p.id} className={cx('cw', !ok && 'is-out')} style={{ '--i': i }} aria-hidden={!ok}>
+          {shown.map((p, i) => (
+            <div key={p.id} className="cw" style={{ '--i': i }}>
               <div className="clip">
-                <a className="card" data-spot href={p.href} tabIndex={ok ? 0 : -1}>
+                <a className="card" data-spot href={p.href}>
                   <span className="card__art"><Thumb kind={p.services[0]} /></span>
                   <span className="card__body">
                     <span className="card__title">{p.title}</span>
                     <span className="card__sum">{p.summary}</span>
                     <span className="card__tags">
                       {p.tags.map((t, ti) => (
-                        <span key={t} className={cx('tag', ((ti === 0 && filter.service === p.services[0]) || (ti === 1 && filter.industry === p.industries[0])) && 'tag--on')}>{t}</span>
+                        <span key={t} className={cx('tag', ti === 0 && filter.service === p.services[0] && 'tag--on')}>{t}</span>
                       ))}
                     </span>
                   </span>
@@ -149,11 +141,16 @@ function CaseStudiesPane({ filter, setFilter }) {
               </div>
             </div>
           ))}
-          {!flags.some((f) => f.ok) && (
+          {!shown.length && (
             <div className="cs__empty">
               No case studies for this combination yet.{' '}
               <a href="/case-studies">View all case studies</a>
             </div>
+          )}
+          {svc && matched.length > shown.length && (
+            <a className="cs__more" href={`/case-studies?service=${svc.id}`}>
+              View all {matched.length} {svc.label} case studies <Arrow />
+            </a>
           )}
         </div>
       </div>
@@ -162,6 +159,7 @@ function CaseStudiesPane({ filter, setFilter }) {
 }
 
 function Photo({ it, i }) {
+  if (it.art) return <ArticleCover cat={it.art.cat} kind={it.art.kind} seed={it.id} fit="meet" />;
   const style = it.imgStyle || { objectFit: 'cover', objectPosition: 'center' };
   return it.img
     ? <img src={it.img} alt="" loading="lazy" decoding="async" fetchPriority="low" style={style} />
@@ -171,7 +169,7 @@ function Photo({ it, i }) {
 const INTRO = {
   services: 'What we build, from the first model to production.',
   industries: 'Where our work is already running.',
-  resources: 'Writing and guides from our projects.',
+  resources: 'Plain-language guides: what it is, why it matters and how it works.',
 };
 
 function ListPane({ id, label, items, all, field }) {
@@ -225,7 +223,8 @@ function ListPane({ id, label, items, all, field }) {
 /* ---------- mobile ---------- */
 function MobileMenu({ open, filter, setFilter, onClick }) {
   const [acc, setAcc] = useState(null);
-  const shown = PROJECTS.filter((p) => matches(p, filter));
+  const matchedAll = PROJECTS.filter((p) => matches(p, filter));
+  const shown = (filter.service ? matchedAll : matchedAll.filter((p) => p.featured)).slice(0, 8);
   const toggle = (type, id) => setFilter((f) => ({ ...f, [type]: f[type] === id ? null : id }));
   let n = 0;
 
@@ -255,11 +254,6 @@ function MobileMenu({ open, filter, setFilter, onClick }) {
                             <div className="mm__chips" role="group" aria-label="Filter by service">
                               {SERVICES.map((s) => (
                                 <button key={s.id} type="button" className="mchip" aria-pressed={filter.service === s.id} onClick={() => toggle('service', s.id)}>{s.label}</button>
-                              ))}
-                            </div>
-                            <div className="mm__chips" role="group" aria-label="Filter by industry">
-                              {INDUSTRIES.map((s) => (
-                                <button key={s.id} type="button" className="mchip" aria-pressed={filter.industry === s.id} onClick={() => toggle('industry', s.id)}>{s.label}</button>
                               ))}
                             </div>
                             <ul className="mm__sub">

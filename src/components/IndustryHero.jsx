@@ -1,7 +1,7 @@
 /**
  * IndustryHero.jsx — WellMind Data Solutions
  * Shared hero for every industry page (Financial, Healthcare, Retail,
- * Agriculture, Education).
+ * Education).
  *
  * Layout: two equal columns that fill the section end to end — copy on the
  * left, illustration on the right bleeding to the viewport edge. Stacks on

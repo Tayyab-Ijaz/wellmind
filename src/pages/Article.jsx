@@ -11,8 +11,16 @@ import { PX } from '../theme';
 import { useSeo, SITE_NAME } from '../seo';
 import { ARTICLES, getArticle } from '../data/articles';
 import { caseStudies } from '../data/caseStudies';
+import ArticleCover from '../components/ArticleCover';
+import ArticleDiagram from '../components/ArticleDiagram';
 
 const CSS = `
+.ar-wide{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,24px)}
+.ar-hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,56px);align-items:center}
+.ar-cover{position:relative;aspect-ratio:8/5;border-radius:24px;overflow:hidden;border:1px solid rgba(0,0,0,.14);box-shadow:0 30px 60px -28px rgba(0,0,0,.45)}
+.ar-figwrap{padding-top:clamp(32px,4.5vw,56px)}
+.ar-fig{max-width:1040px;margin:0 auto}
+@media (max-width:900px){.ar-hero-grid{grid-template-columns:minmax(0,1fr)}.ar-cover{order:-1;aspect-ratio:16/8}}
 .ar-page{background:#f4f4f4;color:#111;font-family:var(--font-main);overflow-x:clip}
 .ar-hero{padding:clamp(110px,12vw,160px) 0 clamp(32px,4vw,56px);background:linear-gradient(180deg,#ececec 0%,#f4f4f4 100%);border-bottom:1px solid rgba(0,0,0,.08)}
 .ar-wrap{max-width:820px;margin:0 auto;padding:0 clamp(16px,4vw,24px)}
@@ -29,7 +37,7 @@ const CSS = `
 .ar-body h2{margin:clamp(28px,4vw,44px) 0 12px;font-size:var(--fs-h3);font-weight:800;letter-spacing:-.015em;color:#0b0b0b;text-align:left}
 .ar-body h2:first-child{margin-top:0}
 .ar-body p{margin:0 0 14px;font-size:var(--fs-card-title);line-height:1.8;color:#2f2f2f;text-align:left}
-.ar-body ul{margin:0 0 14px;padding-left:1.25em}
+.ar-body ul{margin:0 0 14px;padding-left:1.25em;list-style:disc}
 .ar-body li{margin:0 0 8px;font-size:var(--fs-card-title);line-height:1.7;color:#2f2f2f;text-align:left}
 .ar-steps{list-style:none;margin:0 0 14px;padding:0;counter-reset:ar}
 .ar-steps li{position:relative;margin:0 0 12px;padding:16px 18px 16px 64px;border-radius:16px;background:#fff;border:1px solid rgba(0,0,0,.09);counter-increment:ar}
@@ -75,19 +83,30 @@ export default function Article() {
       <style>{CSS}</style>
 
       <header className="ar-hero">
-        <div className="ar-wrap">
+        <div className="ar-wide">
           <Link to="/resources" className="ar-back"><ArrowLeft size={15} /> All resources</Link>
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}>
-            <span className="ar-cat">{a.cat}</span>
-            <h1>{a.title}</h1>
-            <p className="ar-intro">{a.intro}</p>
-            <div className="ar-meta">
-              <span><Clock size={14} /> {a.minutes} min read</span>
-              <span className="ar-tags">{a.tags.map((t) => <i key={t}>{t}</i>)}</span>
-            </div>
-          </motion.div>
+          <div className="ar-hero-grid">
+            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}>
+              <span className="ar-cat">{a.cat}</span>
+              <h1>{a.title}</h1>
+              <p className="ar-intro">{a.intro}</p>
+              <div className="ar-meta">
+                <span><Clock size={14} /> {a.minutes} min read</span>
+                <span className="ar-tags">{a.tags.map((t) => <i key={t}>{t}</i>)}</span>
+              </div>
+            </motion.div>
+            <motion.div className="ar-cover" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
+              <ArticleCover cat={a.cat} kind={a.cover} seed={a.slug} />
+            </motion.div>
+          </div>
         </div>
       </header>
+
+      {a.diagram && (
+        <div className="ar-wide ar-figwrap">
+          <div className="ar-fig"><ArticleDiagram diagram={a.diagram} /></div>
+        </div>
+      )}
 
       <article className="ar-body">
         <div className="ar-wrap">

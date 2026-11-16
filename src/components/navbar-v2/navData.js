@@ -1,3 +1,6 @@
+import { caseStudies } from '../../data/caseStudies';
+import { firstSentence } from '../../data/caseStudyText';
+
 export const CONFIG = { closeDelay: 150 };
 
 export const NAV = [
@@ -22,43 +25,31 @@ export const INDUSTRIES = [
   { id: 'financial', label: 'Financial Services', href: '/industry-financial-service', desc: 'Risk, fraud, and forecasting.', img: new URL('../../assets/financial-square.webp', import.meta.url).href },
   { id: 'healthcare', label: 'Healthcare & Biotech', href: '/industry-healthcare', desc: 'Claims, clinical, and lab data.', img: new URL('../../assets/healthcare.webp', import.meta.url).href },
   { id: 'retail', label: 'Retail & E-Commerce', href: '/industry-retail-ecommerce', desc: 'Demand, churn, and pricing.', img: new URL('../../assets/retail.webp', import.meta.url).href },
-  { id: 'agriculture', label: 'Agriculture & AgriTech', href: '/industry-agriculture', desc: 'Yield and field monitoring.', img: new URL('../../assets/agriculture.webp', import.meta.url).href },
   { id: 'education', label: 'Education & EdTech', href: '/industry-education', desc: 'Learner insight at scale.', img: new URL('../../assets/edu-thumb.webp', import.meta.url).href },
 ];
 
+// Resources menu: one row per topic. `art` drives the generated cover shown in the menu (see ArticleCover.jsx).
 export const RESOURCES = [
-  { id: 'all-resources', label: 'All Resources', href: '/resources', desc: 'Explore articles, guides, and resources.', img: new URL('../../assets/resources-hero.webp', import.meta.url).href, imgStyle: { objectFit: 'cover', objectPosition: 'center' } },
+  { id: 'all', label: 'All resources', href: '/resources', desc: 'Every guide in one place.', art: { kind: 'grid' } },
+  { id: 'software', label: 'Software Engineering', href: '/resources?cat=Software%20Engineering', desc: 'How projects run, build or buy, staffing.', art: { cat: 'Software Engineering', kind: 'flow' } },
+  { id: 'ai', label: 'AI & Machine Learning', href: '/resources?cat=AI%20%26%20Machine%20Learning', desc: 'Readiness, RAG, agents and MLOps.', art: { cat: 'AI & Machine Learning', kind: 'loop' } },
+  { id: 'data', label: 'Data & Cloud', href: '/resources?cat=Data%20%26%20Cloud', desc: 'Pipelines, data quality and cloud setup.', art: { cat: 'Data & Cloud', kind: 'layers' } },
+  { id: 'healthcare', label: 'Healthcare AI', href: '/resources?cat=Healthcare%20AI', desc: 'Revenue cycle, fraud, privacy, explainability.', art: { cat: 'Healthcare AI', kind: 'bars' } },
+  { id: 'biomedical', label: 'Biomedical Data Science', href: '/resources?cat=Biomedical%20Data%20Science', desc: 'RNA-seq and research pipelines.', art: { cat: 'Biomedical Data Science', kind: 'funnel' } },
 ];
 
-export const PROJECTS = [
-  {
-    id: 'ar-recovery',
-    title: 'AR Prioritization & Underpayment Recovery Engine',
-    summary: 'LightGBM classifier + live dashboard flagging underpaid Medicare claims from public CMS data.',
-    services: ['data-analytics'],
-    industries: ['healthcare'],
-    tags: ['Data Analytics', 'Healthcare'],
-    href: '/case-studies/ar-prioritization-underpayment-recovery',
-  },
-  {
-    id: 'telecom-churn',
-    title: 'Telecom Customer Churn Prediction',
-    summary: 'Random Forest churn model with SHAP explainability that surfaces the customers most at risk of leaving.',
-    services: ['ai-ml'],
-    industries: ['retail'],
-    tags: ['AI & Machine Learning', 'Retail'],
-    href: '/case-studies/telecom-churn-prediction',
-  },
-  {
-    id: 'fraud-detection',
-    title: 'Healthcare Fraud Detection System',
-    summary: 'Peer-benchmarking, anomaly detection, and OIG exclusion-list matching across public Medicare provider data.',
-    services: ['ai-ml'],
-    industries: ['healthcare'],
-    tags: ['AI & Machine Learning', 'Healthcare'],
-    href: '/case-studies/healthcare-fraud-detection-billing',
-  },
-];
+// Every case study, derived from the single source of truth so the menu counts always match /case-studies.
+export const PROJECTS = caseStudies.map((cs) => ({
+  id: cs.slug,
+  title: cs.title,
+  summary: firstSentence(cs.summary, 130),
+  services: [cs.service],
+  industries: [cs.industry],
+  tags: [cs.serviceLabel, cs.industryLabel],
+  href: `/case-studies/${cs.slug}`,
+  featured: !!cs.featured,
+}));
+export const CS_MENU_LIMIT = 3;   // cards shown in the menu panel (the filter counts still cover every case study)
 
 export const PAGES = [
   { id: 'calc', label: 'AI Cost Calculator', href: '/ai-cost-calculator' },

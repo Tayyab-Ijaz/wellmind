@@ -4,7 +4,7 @@
 export const SOFTWARE_EXTRAS = {
   'custom-software-project-lifecycle': [
     {
-      h: 'An illustrative example',
+      h: 'What this looks like for a delivery business',
       p: [
         'Imagine a regional distributor that tracks deliveries in spreadsheets and phone calls. Drivers do not know their next stop until the morning call, customers ring the office for updates and nobody can say how many deliveries were late last month.',
         'Discovery would start by riding along with a driver and sitting with the dispatcher for a day. It would surface the real requirements: drivers need a simple mobile list, dispatch needs a live view and customers need a tracking link. The launch scope might be just those three things, with invoicing and reporting held back for a second phase.',
@@ -35,7 +35,7 @@ export const SOFTWARE_EXTRAS = {
 
   'build-buy-or-customise': [
     {
-      h: 'An illustrative example',
+      h: 'Applying it to a clinic group',
       p: [
         'Consider a clinic group choosing a system for appointment reminders, patient intake forms and a dashboard for its operations manager. Appointment reminders are a commodity: many products do it well, so buying is the obvious choice. Intake forms are close to commodity but need to match the clinic\'s specific questions, so a configurable form tool fits.',
         'The dashboard is where the group differs from its competitors, because it blends scheduling, staffing and referral data in a way specific to how it runs. That is the part worth building, fed by the data the bought tools already expose through their APIs.',
@@ -72,9 +72,9 @@ export const SOFTWARE_EXTRAS = {
 
   'staff-augmentation-explained': [
     {
-      h: 'An illustrative example',
+      h: 'How it plays out against a fixed deadline',
       p: [
-        'A product team of five engineers is two months from a major release when it learns it must also build a data pipeline and a reporting layer for a new customer. Hiring two data engineers would take several months, and the release date will not move.',
+        'Suppose a product team of five engineers is two months from a major release when it learns it must also build a data pipeline and a reporting layer for a new customer. Hiring two data engineers would take several months, and the release date will not move.',
         'They bring in a data engineer and a backend engineer for six months. In week one the new people get repository access, a walkthrough of the architecture and a small, well-defined ticket. By week three they are reviewing and being reviewed in the normal pull request flow. They take ownership of the pipeline, document it as they go and join the retrospectives.',
         'At the end of the six months the team decides whether to extend, hire one of the roles permanently or wind down. Because the work lived in the team\'s own repositories and tools, any of those choices is straightforward.',
       ],

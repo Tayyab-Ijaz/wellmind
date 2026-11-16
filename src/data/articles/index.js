@@ -11,6 +11,7 @@ import { DATA_EXTRAS } from './extras-data';
 import { HEALTH_EXTRAS } from './extras-health';
 import { TERMS } from './extras-terms';
 import { TAKEAWAYS } from './extras-takeaways';
+import { DIAGRAMS } from './diagrams';
 
 // Worked example / checklist / FAQ sections, slotted in before each article's closing "Where to start" block.
 const EXTRAS = { ...SOFTWARE_EXTRAS, ...AI_EXTRAS, ...DATA_EXTRAS, ...HEALTH_EXTRAS };
@@ -40,6 +41,8 @@ export const ARTICLES = [...SOFTWARE_ARTICLES, ...AI_ARTICLES, ...DATA_ARTICLES,
   ...a,
   featured: FEATURED.includes(a.slug),
   minutes: Math.max(1, Math.round(wordCount(a) / 200)),
+  diagram: DIAGRAMS[a.slug] || null,
+  cover: (DIAGRAMS[a.slug] && DIAGRAMS[a.slug].cover) || 'flow',
 }));
 
 export const getArticle = (slug) => ARTICLES.find((a) => a.slug === slug);

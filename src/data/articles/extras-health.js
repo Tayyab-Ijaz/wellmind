@@ -3,9 +3,9 @@
 export const HEALTH_EXTRAS = {
   'explainable-ai-in-healthcare': [
     {
-      h: 'An illustrative example',
+      h: 'Choosing between two readmission models',
       p: [
-        'A hospital team builds a model to flag patients at higher risk of being readmitted within thirty days of discharge. A gradient-boosted model slightly outperforms a logistic regression, but when the team looks at feature attributions, the most influential inputs include the ward the patient was discharged from and the day of the week.',
+        'Suppose a hospital team builds a model to flag patients at higher risk of being readmitted within thirty days of discharge. A gradient-boosted model slightly outperforms a logistic regression, but when the team looks at feature attributions, the most influential inputs include the ward the patient was discharged from and the day of the week.',
         'Clinicians point out that these reflect staffing patterns and discharge habits rather than patient condition. The team tests a simpler model that uses clinical measures, prior admissions and medication counts. It is a little less accurate, but the reasons it gives match what a nurse would say, and nurses are willing to use it.',
         'They also check calibration across age groups and find the model overestimates risk for the youngest patients. That finding leads to a separate threshold for that group. None of this would have surfaced from a single accuracy number.',
       ],
@@ -32,9 +32,9 @@ export const HEALTH_EXTRAS = {
 
   'revenue-cycle-analytics-explained': [
     {
-      h: 'An illustrative example',
+      h: 'From rising denials to a work plan',
       p: [
-        'An outpatient group sees an uptick in denied claims but cannot say why. Analysts begin by grouping denials by the reason given on the remittance. Three reasons account for most of them: missing prior authorisation, eligibility not verified and a coding mismatch for one procedure family.',
+        'Suppose an outpatient group sees an uptick in denied claims but cannot say why. Analysts begin by grouping denials by the reason given on the remittance. Three reasons account for most of them: missing prior authorisation, eligibility not verified and a coding mismatch for one procedure family.',
         'A denial-risk model is trained on historical claims, using features such as payer, procedure code, place of service and whether authorisation was recorded. Before submission, high-risk claims are routed to a short checklist so that missing authorisations can be fixed while the patient is still in the system.',
         'In parallel, an underpayment check compares each payment with the expected amount from the payer\'s fee schedule and flags shortfalls above a threshold. Staff work the largest shortfalls first. The measure of success is not model accuracy but fewer denials, fewer days in accounts receivable and more recovered revenue.',
       ],
@@ -62,9 +62,9 @@ export const HEALTH_EXTRAS = {
 
   'healthcare-data-without-phi': [
     {
-      h: 'An illustrative example',
+      h: 'Building a billing-review tool without patient data',
       p: [
-        'A startup wants to build a tool that helps clinics spot unusual billing patterns. It has no clinic partners yet, and requesting patient records now would delay everything for months.',
+        'Suppose a startup wants to build a tool that helps clinics spot unusual billing patterns. It has no clinic partners yet, and requesting patient records now would delay everything for months.',
         'The team starts with public Medicare provider payment files and fee schedules, which describe what providers billed and were paid in aggregate, with no patient identifiers. They build the data pipeline, the peer-comparison logic and the dashboard on this data, and they write documentation of the methods.',
         'For the parts that need realistic patient-level records, such as testing the ingestion code, they generate synthetic records. When a clinic partner joins, the pipeline is already working, and only the final validation uses real, de-identified data under a signed agreement. The result is a working product months earlier and a much smaller compliance surface.',
       ],
@@ -93,9 +93,9 @@ export const HEALTH_EXTRAS = {
 
   'fraud-detection-in-production': [
     {
-      h: 'An illustrative example',
+      h: 'Ranking providers for review',
       p: [
-        'An analyst team wants to flag providers whose billing looks unusual. A labelled set of confirmed fraud cases is tiny, so they begin with peer comparison: for each provider, they compare billing patterns with similar providers, such as the same specialty in the same region, and measure how far each one deviates.',
+        'Suppose an analyst team wants to flag providers whose billing looks unusual. A labelled set of confirmed fraud cases is tiny, so they begin with peer comparison: for each provider, they compare billing patterns with similar providers, such as the same specialty in the same region, and measure how far each one deviates.',
         'An isolation forest adds a second view, highlighting providers whose combination of features is rare. A short list of top-ranked providers goes to a reviewer, who finds that many of the top results are legitimate specialists with unusual but explainable practices. That feedback leads the team to add features for specialty mix and patient volume, and the list improves.',
         'The team sets the alert volume to the number of cases the reviewer can look at in a week, shows the reasons behind each score and records each verdict. Over time those verdicts become labels, and a supervised model can be trained to complement the anomaly scores.',
       ],
@@ -122,9 +122,9 @@ export const HEALTH_EXTRAS = {
 
   'rna-seq-analysis-pipeline': [
     {
-      h: 'An illustrative example',
+      h: 'Spotting a batch effect before it misleads',
       p: [
-        'A lab compares gene expression in treated and untreated cells, with four biological replicates of each. Quality control shows that all eight samples are good, but a principal component plot reveals that the samples separate by the day they were prepared, not only by treatment.',
+        'Suppose a lab compares gene expression in treated and untreated cells, with four biological replicates of each. Quality control shows that all eight samples are good, but a principal component plot reveals that the samples separate by the day they were prepared, not only by treatment.',
         'Without that exploratory step, the batch effect could have been mistaken for a treatment effect, or could have hidden a real one. The analysts include the preparation day as a covariate in the differential expression model. The treatment now explains the second axis of variation, and the list of significantly changed genes is smaller but far more credible.',
         'Gene-set analysis then shows that genes involved in a particular stress response are enriched among those that increased. The lab treats this as a hypothesis, and plans a follow-up experiment on a few selected genes to confirm it.',
       ],

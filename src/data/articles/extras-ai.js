@@ -3,9 +3,9 @@
 export const AI_EXTRAS = {
   'is-your-business-ready-for-ai': [
     {
-      h: 'An illustrative example',
+      h: 'Sorting three AI ideas for a logistics firm',
       p: [
-        'A mid-sized logistics firm wants to "use AI". Asked what that means, the team lists three ideas: predicting late deliveries, summarising driver notes and building a chatbot. Applying the readiness checks sorts them quickly.',
+        'Suppose a mid-sized logistics firm wants to "use AI". Asked what that means, the team lists three ideas: predicting late deliveries, summarising driver notes and building a chatbot. Applying the readiness checks sorts them quickly.',
         'Late-delivery prediction has a clear outcome, years of delivery records and an operations manager who would act on a warning, so it passes. Summarising driver notes has data but no agreed benefit, so it is parked. The chatbot has no defined question it should answer, so it fails the first check.',
         'The firm starts with late-delivery prediction, measures how often deliveries are late today and uses that as its baseline. Six weeks later it knows whether the idea pays for itself, which is far more useful than a vague AI programme.',
       ],
@@ -29,9 +29,9 @@ export const AI_EXTRAS = {
 
   'ml-model-to-production': [
     {
-      h: 'An illustrative example',
+      h: 'Shipping a loan-review model',
       p: [
-        'A lender wants to predict which loan applications will need manual review. A data scientist builds a model in a notebook that scores well on historical data. To ship it, the team first asks what is known at the moment an application arrives, and finds that two of the strongest features are only filled in after review. Those features are removed, and performance drops to a more honest level.',
+        'Suppose a lender wants to predict which loan applications will need manual review. A data scientist builds a model in a notebook that scores well on historical data. To ship it, the team first asks what is known at the moment an application arrives, and finds that two of the strongest features are only filled in after review. Those features are removed, and performance drops to a more honest level.',
         'The team then packages the model behind an API, adds validation for missing fields and runs it in shadow mode for a month. Predictions are logged next to what reviewers actually decide, which shows where the model agrees and where it does not.',
         'Only after that comparison does the model start ordering the review queue, with a switch to revert to the old process. Monitoring tracks the share of applications flagged and how often reviewers overrule the score, so decay is noticed early.',
       ],
@@ -61,9 +61,9 @@ export const AI_EXTRAS = {
 
   'rag-explained': [
     {
-      h: 'An illustrative example',
+      h: 'Building a policy assistant',
       p: [
-        'A services company has several hundred pages of internal policies, and new staff keep asking the same questions about leave, expenses and security rules. The team builds a RAG assistant over the policy documents.',
+        'Suppose a services company has several hundred pages of internal policies, and new staff keep asking the same questions about leave, expenses and security rules. The team builds a RAG assistant over the policy documents.',
         'Early tests answer many questions well, but fail on expense limits. Looking at what was retrieved, they find the limits live in tables that were flattened into unreadable text when the PDFs were processed. They fix the extraction so that each table row keeps its headings, and the failing questions begin to pass.',
         'They then add the document title and section to each chunk\'s metadata so that answers can cite the exact policy, and they filter retrieval by the user\'s department so people only see documents meant for them. A set of forty real questions, re-run after every change, tells them whether each improvement actually helped.',
       ],
@@ -90,9 +90,9 @@ export const AI_EXTRAS = {
 
   'ai-agents-vs-automation': [
     {
-      h: 'An illustrative example',
+      h: 'Where each approach fits in invoice handling',
       p: [
-        'A finance team receives supplier invoices by email. A pure automation can read each attachment, extract the fields, match them against purchase orders and post the result. When a field is missing or the totals do not agree, the item goes to a person. This is predictable, cheap to run and easy to test.',
+        'Take a finance team that receives supplier invoices by email. A pure automation can read each attachment, extract the fields, match them against purchase orders and post the result. When a field is missing or the totals do not agree, the item goes to a person. This is predictable, cheap to run and easy to test.',
         'Now suppose a few invoices come with questions: a supplier writes that a price is disputed and asks for a call. Handling that means reading the thread, checking the order history, drafting a reply and possibly asking a colleague. This is where an agent with a small set of tools, such as searching the order system and drafting an email, may help.',
         'The sensible design is both: the workflow handles the routine majority, and an agent prepares a draft response for the exceptions, with a person approving anything that leaves the building.',
       ],
@@ -119,9 +119,9 @@ export const AI_EXTRAS = {
 
   'mlops-for-small-teams': [
     {
-      h: 'An illustrative example',
+      h: "A three-person team's first sprint",
       p: [
-        'A team of three runs a demand-forecasting model for a retailer. At first, retraining is a notebook someone runs when they remember, and the model file is emailed to the engineer who deploys it. When the lead is away for two weeks, nobody can reproduce the last version.',
+        'Suppose a team of three runs a demand-forecasting model for a retailer. At first, retraining is a notebook someone runs when they remember, and the model file is emailed to the engineer who deploys it. When the lead is away for two weeks, nobody can reproduce the last version.',
         'The team makes five small changes in a single sprint. Code and a pinned environment go into Git. Each training run writes its parameters, data snapshot and metrics to a tracker. A continuous integration job runs tests and a short training on every change. The model is packaged in a container and deployed with one script. A dashboard shows forecast error each week.',
         'Nothing here needed a platform team, and the risk of the knowledge sitting in one head is gone. They deliberately did not adopt a heavy orchestration system, because one scheduled job was enough.',
       ],

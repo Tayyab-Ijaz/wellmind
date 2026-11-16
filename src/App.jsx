@@ -28,7 +28,6 @@ const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
 const IndustryFinancial = lazy(() => import('./pages/Industries/IndustryFinancial'));
 const IndustryHealthcare = lazy(() => import('./pages/Industries/IndustryHealthcare'));
 const IndustryRetail = lazy(() => import('./pages/Industries/IndustryRetail'));
-const IndustryAgriculture = lazy(() => import('./pages/Industries/Industryagriculture'));
 const IndustryEducation = lazy(() => import('./pages/Industries/Industryeducation'));
 
 const AllServices = lazy(() => import('./pages/Services/AllServices'));
@@ -140,7 +139,7 @@ function App() {
               <Route path="/industry-healthcare" element={<IndustryHealthcare/>}/>
               <Route path="/industry-manufacturing" element={<Navigate to="/industry-retail-ecommerce" replace/>}/>
               <Route path="/industry-retail-ecommerce" element={<IndustryRetail/>}/>
-              <Route path="/industry-agriculture" element={<IndustryAgriculture/>}/>
+              <Route path="/industry-agriculture" element={<Navigate to="/industries" replace/>}/>
               <Route path="/industry-education" element={<IndustryEducation/>}/>
 
               <Route path="/services-ai-ml" element={<ServicesAiMl/>}/>

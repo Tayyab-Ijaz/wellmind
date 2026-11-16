@@ -8,12 +8,13 @@
  * ✅ Responsive 320px → 1440px via same clamp() values
  */
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { B, SECTION_PAD, PX, fadeUp, DataParticles, SectionBadge } from '../theme';
 import { HeroGridBg } from '../components/BgGrid';
 import { ARTICLES } from '../data/articles';
+import ArticleCover from '../components/ArticleCover';
 import {
   Clock, ArrowRight, Search, Zap, Dna, Brain,
   HeartPulse, Code2, Star, Database,
@@ -53,7 +54,7 @@ function FeaturedCard({ article, i }) {
           }}
         >
           <div style={{ position:'relative', height:'clamp(160px,20vw,240px)', flexShrink:0, overflow:'hidden' }}>
-            <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle at 25% 20%, rgba(255,255,255,0.16), transparent 55%), linear-gradient(135deg,#2a2a2a 0%,#0e0e0e 100%)' }}/>
+            <div style={{ position:'absolute', inset:0 }}><ArticleCover cat={article.cat} kind={article.cover} seed={article.slug}/></div>
             <div style={{ position:'absolute', inset:0, background:'linear-gradient(to bottom,rgba(6,6,6,0) 30%,rgba(6,6,6,1) 100%)' }}/>
             <div style={{ position:'absolute', top:16, right:16, display:'flex', flexWrap:'wrap', gap:6, justifyContent:'flex-end', maxWidth:'80%' }}>
               <span style={{ fontSize:'var(--fs-label)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.08em', color:B.textDark, background:'rgba(255,255,255,0.12)', backdropFilter:'blur(8px)', padding:'4px 10px', borderRadius:6, border:'1px solid rgba(255,255,255,0.15)' }}>{article.cat}</span>
@@ -95,7 +96,7 @@ function ArticleCard({ article, i }) {
             transform: hov ? 'translateY(-5px)' : 'translateY(0)',
           }}
         >
-          <div style={{ height:3, background:`linear-gradient(90deg,${cat.color||B.action},${(cat.color||B.action)}60)`, opacity:hov?1:0.5, transition:'opacity 0.3s' }}/>
+          <div style={{ position:'relative', aspectRatio:'16 / 7', overflow:'hidden', flexShrink:0 }}><ArticleCover cat={article.cat} kind={article.cover} seed={article.slug}/></div>
           <div style={{ padding:'clamp(20px,2.8vw,28px) clamp(20px,2.8vw,30px) clamp(18px,2.5vw,24px)', display:'flex', flexDirection:'column', flexGrow:1 }}>
             <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:18, flexWrap:'wrap', gap:8 }}>
               <div style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'5px 12px', borderRadius:99, background:cat.bg, border:`1px solid ${cat.border}`, fontSize:'var(--fs-label)', fontWeight:700, letterSpacing:'0.10em', textTransform:'uppercase', color:cat.color }}>
@@ -143,7 +144,18 @@ function FilterChip({ label, active, onClick }) {
 
 /* ─── MAIN ──────────────────────────────────────────────────────────────── */
 export default function Resources() {
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [params, setParams] = useSearchParams();
+  const catParam = params.get('cat');
+  const activeFilter = ALL_FILTERS.includes(catParam) ? catParam : 'All';
+  const setActiveFilter = (f) => setParams(f === 'All' ? {} : { cat: f }, { replace: true });
+
+  // arriving from the navbar menu with ?cat=… → bring the filtered list into view
+  useEffect(() => {
+    if (!ALL_FILTERS.includes(catParam) || catParam === 'All') return undefined;
+    const t = setTimeout(() => document.getElementById('browse')?.scrollIntoView({ block: 'start' }), 120);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [searchQuery,  setSearchQuery]  = useState('');
 
   // Filter Logic: Only applies to non-featured articles
@@ -215,7 +227,7 @@ export default function Resources() {
         )}
 
         {/* SEARCH + FILTER + GRID */}
-        <div style={{ position:'relative', zIndex:2, padding:`${SECTION_PAD} 0` }}>
+        <div id="browse" style={{ position:'relative', zIndex:2, padding:`${SECTION_PAD} 0` }}>
           <div style={{ ...PX }}>
             
             {/* Controls Section */}

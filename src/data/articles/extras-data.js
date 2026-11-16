@@ -3,9 +3,9 @@
 export const DATA_EXTRAS = {
   'building-a-data-pipeline': [
     {
-      h: 'An illustrative example',
+      h: 'Answering "which customers might leave?"',
       p: [
-        'A subscription business keeps customers in a billing system, usage in application logs and support tickets in a help-desk tool. Leadership asks a simple question, "which customers are at risk of leaving?", and three teams give three different answers because each has its own export.',
+        'Suppose a subscription business keeps customers in a billing system, usage in application logs and support tickets in a help-desk tool. Leadership asks a simple question, "which customers are at risk of leaving?", and three teams give three different answers because each has its own export.',
         'The pipeline copies each source into a raw storage area every night, untouched. A transformation layer then standardises customer IDs across the three systems, calculates usage over the last thirty days and counts open tickets, producing one table with a row per customer.',
         'Tests check that every customer appears once, that usage is never negative and that totals match the billing system within a small tolerance. A dashboard reads only from the final table, and a freshness indicator shows when it was last updated. When the billing export changes format one morning, the schema check fails and an alert goes out before anyone sees a wrong number.',
       ],
@@ -35,9 +35,9 @@ export const DATA_EXTRAS = {
 
   'data-quality-checks': [
     {
-      h: 'An illustrative example',
+      h: 'Catching leakage and silent coding',
       p: [
-        'A team trains a model to predict which patients will miss appointments. The first version scores impressively. Looking closer, they find a column recording whether a reminder call was answered, which only exists for patients who were successfully contacted, and so correlates with attendance but would not be known in advance. This is leakage; removing the column drops performance to a realistic level.',
+        'Suppose a team trains a model to predict which patients will miss appointments. The first version scores impressively. Looking closer, they find a column recording whether a reminder call was answered, which only exists for patients who were successfully contacted, and so correlates with attendance but would not be known in advance. This is leakage; removing the column drops performance to a realistic level.',
         'Profiling also shows that one clinic records missed appointments as blank rather than "no show". The model had learned that the clinic was "low risk" simply because it left the field empty. Fixing the coding changes the picture for that clinic entirely.',
         'The team adds both lessons as automated checks, so any future data load that contains the same problem fails before it reaches training.',
       ],
@@ -66,9 +66,9 @@ export const DATA_EXTRAS = {
 
   'cloud-setup-for-data-and-ai': [
     {
-      h: 'An illustrative example',
+      h: 'From one shared account to a safe setup',
       p: [
-        'A small analytics company starts with a single cloud account where three people run experiments, store data and host a demo. Within a year, an experiment accidentally deletes a shared bucket, a forgotten GPU instance runs for a weekend and the finance lead cannot say which project the bill belongs to.',
+        'Suppose a small analytics company starts with a single cloud account where three people run experiments, store data and host a demo. Within a year, an experiment accidentally deletes a shared bucket, a forgotten GPU instance runs for a weekend and the finance lead cannot say which project the bill belongs to.',
         'The clean-up takes a few days. They create separate accounts for development and production, give each person access only to what they need and store secrets in a managed vault. The infrastructure is described in version-controlled templates, so a new environment can be created in minutes. Every resource carries a project tag, budgets send alerts at set thresholds and idle development resources shut down overnight.',
         'None of these changes are exotic, and all of them are far cheaper to do at the start than after the first incident.',
       ],

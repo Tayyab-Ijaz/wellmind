@@ -39,6 +39,15 @@ const CARD_TILT = 5;                                // degrees the card tilts wh
 const CARD_COLOR = '#1f1f23';                       // solid card border (no gradient)
 const STACK_BELOW = 860;                            // stage width (px) under which text goes below the frame
 
+// Captions shown one after another while the camera flies through the tunnel (equal share of the fly-through each)
+const CHAPTERS = [
+  { n: '01', label: 'Discover', title: 'Start with the problem.', text: 'We map your workflow, your data and what a good outcome looks like, before anything is built.' },
+  { n: '02', label: 'Prepare', title: 'Make the data trustworthy.', text: 'Pipelines, quality checks and clear definitions turn scattered data into a solid foundation.' },
+  { n: '03', label: 'Build', title: 'Software and models that work.', text: 'Applications, analytics and AI systems, built in short cycles you can see and test.' },
+  { n: '04', label: 'Deploy', title: 'Ship it properly.', text: 'Cloud setup, automated releases and monitoring, so it keeps working after launch.' },
+  { n: '05', label: 'Support', title: 'Stay with it.', text: 'Documentation, clean handover, and engineers who can join your team when you need more hands.' },
+];
+
 let introPlayed = false;                            // once per page load (not again when re-visiting Home)
 
 /* Intro helpers ----------------------------------------------------------- */
@@ -220,12 +229,17 @@ function HeroTunnelStage({ sectionRef, stageH, children }) {
   const textRef = useRef(null);
   const frameRef = useRef(null);
   const innerRef = useRef(null);
+  const overlayRef = useRef(null);
+  const railFillRef = useRef(null);
+  const chapterRefs = useRef([]);
+  const dotRefs = useRef([]);
 
   useEffect(() => {
     const sticky = stickyRef.current, grid = gridRef.current, slot = slotRef.current;
     const textEl = textRef.current, frame = frameRef.current, inner = innerRef.current;
     const section = sectionRef.current;
-    if (!sticky || !grid || !slot || !textEl || !frame || !inner || !section) return undefined;
+    const overlay = overlayRef.current, railFill = railFillRef.current;
+    if (!sticky || !grid || !slot || !textEl || !frame || !inner || !section || !overlay || !railFill) return undefined;
 
     const BG = 0x010101;
     const scene = new THREE.Scene();
@@ -324,6 +338,24 @@ function HeroTunnelStage({ sectionRef, stageH, children }) {
       ahead.copy(camera.position).add(curve.getTangent(fly));
       camera.lookAt(ahead);
       renderer.render(scene, camera);
+
+      // 4) chapter captions: visible only once the frame is open, each fades in and out during its share of the flight
+      overlay.style.opacity = String(clamp01((e - 0.92) / 0.08));
+      const n = CHAPTERS.length;
+      for (let i = 0; i < n; i++) {
+        const el = chapterRefs.current[i];
+        if (!el) continue;
+        const t = clamp01((fly - i / n) * n);                       // 0 → 1 across this chapter's share
+        const fadeIn = clamp01(t / 0.2);
+        const fadeOut = i === n - 1 ? 1 : clamp01((1 - t) / 0.2);   // the last caption stays until the pin releases
+        const o = Math.min(fadeIn, fadeOut);
+        el.style.opacity = String(o);
+        el.style.transform = `translate3d(0,${(1 - fadeIn) * 26 - (1 - fadeOut) * 26}px,0)`;
+        el.style.visibility = o < 0.01 ? 'hidden' : 'visible';
+        const dot = dotRefs.current[i];
+        if (dot) dot.classList.toggle('on', fly >= i / n - 0.0001);
+      }
+      railFill.style.transform = `scaleY(${fly})`;
     };
     raf = requestAnimationFrame(tick);
 
@@ -349,6 +381,25 @@ function HeroTunnelStage({ sectionRef, stageH, children }) {
       <div ref={frameRef}>
         <div ref={innerRef} style={{ width: '100%', height: '100%', overflow: 'hidden', background: PAGE_BLACK }} />
       </div>
+
+      {/* captions that keep the visitor oriented while the camera flies through the tunnel */}
+      <div ref={overlayRef} className="wm-chapters" aria-hidden="true">
+        <div className="wm-rail">
+          <i ref={railFillRef} className="wm-rail-fill" />
+          {CHAPTERS.map((c, i) => (
+            <b key={c.n} ref={(el) => { dotRefs.current[i] = el; }} className="wm-rail-dot" style={{ top: `${(i / (CHAPTERS.length - 1)) * 100}%` }}>
+              <span>{c.label}</span>
+            </b>
+          ))}
+        </div>
+        {CHAPTERS.map((c, i) => (
+          <div key={c.n} ref={(el) => { chapterRefs.current[i] = el; }} className="wm-chapter">
+            <span className="wm-chapter-n">{c.n} / {c.label}</span>
+            <h3>{c.title}</h3>
+            <p>{c.text}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -364,6 +415,20 @@ const CSS = `
   .wm-stage-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,38%) minmax(0,1fr);gap:14px;align-items:stretch}
   .wm-stage-text{align-items:flex-start}
 }
+.wm-chapters{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0}
+.wm-chapter{position:absolute;left:clamp(16px,4vw,64px);top:50%;margin-top:-110px;width:min(520px,calc(100% - clamp(32px,8vw,128px) - 56px));
+  box-sizing:border-box;padding:clamp(18px,2.4vw,30px);border-radius:20px;background:rgba(1,1,1,.66);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.16);
+  opacity:0;visibility:hidden;will-change:opacity,transform}
+.wm-chapter-n{display:block;margin-bottom:10px;font:600 var(--fs-label)/1 'Space Grotesk',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.58)}
+.wm-chapter h3{margin:0 0 10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,44px);line-height:1.08;letter-spacing:-.02em;color:#fff;text-align:left}
+.wm-chapter p{margin:0;font-size:var(--fs-card-body);line-height:1.6;color:rgba(255,255,255,.74);text-align:left}
+.wm-rail{position:absolute;right:clamp(16px,3.4vw,52px);top:50%;width:2px;height:min(280px,42vh);transform:translateY(-50%);background:rgba(255,255,255,.2);border-radius:2px}
+.wm-rail-fill{position:absolute;inset:0;background:#fff;border-radius:2px;transform-origin:top;transform:scaleY(0)}
+.wm-rail-dot{position:absolute;left:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:#010101;border:2px solid rgba(255,255,255,.45);box-sizing:border-box;transition:background .25s,border-color .25s}
+.wm-rail-dot.on{background:#fff;border-color:#fff}
+.wm-rail-dot span{position:absolute;right:20px;top:50%;transform:translateY(-50%);font:600 var(--fs-label)/1 'Space Grotesk',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.62);white-space:nowrap}
+@media (max-width:700px){ .wm-rail-dot span{display:none} .wm-chapter{width:calc(100% - 32px - 40px)} }
 @media (max-height:720px){ .wm-stage-text .wm-hero-trust{display:none} }
 @media (orientation:portrait), (max-width:900px){ .wm-intro-video{object-fit:contain !important} }
 @media (max-width:900px){ .wm-intro-wrap{height:100vh;height:100dvh !important;bottom:auto !important} }

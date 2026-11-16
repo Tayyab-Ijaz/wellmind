@@ -403,3 +403,15 @@
   .nb .lp3__row { padding: 16px 14px; }
 }
 @media (max-width: 1149px) { .nb__bar { height: 68px; } }
+
+/* "view all N" link under a filtered project list */
+.nb .cs__more { display: inline-flex; align-items: center; gap: 8px; margin-top: 4px; font-size: var(--fs-card-body); font-weight: 600; color: var(--nb-accent-ink); text-decoration: none; border-bottom: 1px solid transparent; }
+.nb .cs__more:hover { border-color: currentColor; }
+.nb .cs__more .arrow { transition: transform var(--nb-dur) var(--nb-ease-out); }
+.nb .cs__more:hover .arrow { transform: translateX(4px); }
+
+/* case studies pane: a single "Filter by service" column (industry filter removed) */
+@media (min-width: 1181px) {
+  .nb .cs { grid-template-columns: minmax(300px, 30%) 1fr; }
+  .nb .cs__filters { grid-template-columns: minmax(0, 1fr); }
+}
