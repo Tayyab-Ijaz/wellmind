@@ -445,3 +445,30 @@
   .nb .lp3__img { aspect-ratio: 2 / 1; }
   .nb .card__sum { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
 }
+
+/* ---------- compact dropdowns, second pass: even shorter ---------- */
+.nb .pane { padding: 18px var(--nb-gutter) 20px; }
+.nb .lp3__intro h3 { font-size: var(--fs-h3); }
+.nb .lp3__intro p { margin-top: 6px; }
+.nb .lp3__more { margin-top: 12px; }
+.nb .lp3__row { padding: 8px 14px; }
+.nb .lp3__tx b { line-height: 1.25; }
+.nb .lp3__tx span { margin-top: 1px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.nb .lp3__img { aspect-ratio: 5 / 2; }
+.nb .lp3__feat figcaption { padding: 8px 2px 0; }
+.nb .lp3__feat figcaption b { margin-top: 5px; }
+.nb .lp3__d { display: none; }
+.nb .lp3__feat .lp3__more { margin-top: 4px; }
+.nb .cs, .nb .lp { gap: 24px; }
+.nb .cs__filters, .nb .side { padding: 12px 14px; }
+.nb .cs__col .item { padding: 6px 10px; }
+.nb .cs__head { margin-bottom: 8px; }
+.nb .cs__filters .cta { margin-top: 10px; padding: 9px 16px; }
+.nb .cw { margin-bottom: 8px; }
+.nb .card__art { width: 52px; height: 52px; margin: 10px 0 10px 12px; border-radius: 10px; }
+.nb .card__body { padding: 10px 8px 10px 14px; }
+.nb .card__sum { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; margin-top: 2px; }
+.nb .card__tags { margin-top: 6px; }
+.nb .tag { padding: 3px 9px; }
+.nb .go { width: 30px; height: 30px; }
+.nb .card__go { padding: 0 12px 0 4px; }
